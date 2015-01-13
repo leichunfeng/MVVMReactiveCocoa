@@ -1,0 +1,2 @@
+PODS_REVEAL_IOS_SDK_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Reveal-iOS-SDK/Reveal-Framework-1.0.7"
+PODS_REVEAL_IOS_SDK_OTHER_LDFLAGS = -l"z" -framework "CFNetwork" -framework "CoreGraphics" -framework "QuartzCore" -framework "Reveal"
