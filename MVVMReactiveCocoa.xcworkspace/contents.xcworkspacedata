@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:MVVMReactiveCocoa.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OctoKit/OctoKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OctoKit/External/OctoKitDependencies/OctoKitDependencies.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OctoKit/Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -1,0 +1,7 @@
+FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Reveal-iOS-SDK/Reveal-Framework-1.0.7"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/IQKeyboardManager" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/SSKeychain"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/IQKeyboardManager" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/SDWebImage" -isystem "${PODS_ROOT}/Headers/Public/SSKeychain"
+OTHER_LDFLAGS = -ObjC -l"Pods-IQKeyboardManager" -l"Pods-MBProgressHUD" -l"Pods-Reveal-iOS-SDK" -l"Pods-SDWebImage" -l"Pods-SSKeychain" -l"z" -framework "CFNetwork" -framework "CoreGraphics" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "Reveal" -framework "Security"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods
