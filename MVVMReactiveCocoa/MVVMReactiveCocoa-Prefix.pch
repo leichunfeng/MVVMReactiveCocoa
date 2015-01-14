@@ -1,0 +1,33 @@
+//
+//  MVVMReactiveCocoa-Prefix.pch
+//  MVVMReactiveCocoa
+//
+//  Created by leichunfeng on 14/12/27.
+//  Copyright (c) 2014年 leichunfeng. All rights reserved.
+//
+
+#ifndef MVVMReactiveCocoa_MVVMReactiveCocoa_Prefix_pch
+#define MVVMReactiveCocoa_MVVMReactiveCocoa_Prefix_pch
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import "MRCConstant.h"
+    #import "MRCUtil.h"
+    #import "MRCConfig.h"
+    #import "MRCErrors.h"
+    #import <OctoKit/OctoKit.h>
+    #import "SSKeychain.h"
+    #import "MBProgressHUD.h"
+	#import "IQKeyboardManager.h"
+    #import <SDWebImage/UIImageView+WebCache.h>
+    #import <SDWebImage/UIButton+WebCache.h>
+	#import "MRCViewModelServices.h"
+	#import "OCTUser+MRCPersistence.h"
+	#import "OCTRepository+MRCPersistence.h"
+	#import <objc/runtime.h>
+	#import <AFNetworking/AFNetworking.h>
+#endif
+
+#endif
