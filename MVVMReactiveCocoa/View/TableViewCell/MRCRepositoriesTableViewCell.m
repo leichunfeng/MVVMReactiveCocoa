@@ -17,13 +17,12 @@
 }
 
 - (void)bindViewModel:(MRCRepositoriesItemViewModel *)viewModel {
-    NSString *identifier          = viewModel.isFork ? @"RepoForked" : @"Repo";
     self.nameLabel.attributedText = viewModel.name;
-    self.descriptionLabel.text    = viewModel.repoDescription;
+    self.descriptionLabel.text    = viewModel.repository.repoDescription;
     self.languageLabel.text       = viewModel.language;
-    self.starCountLabel.text      = [@(viewModel.stargazersCount) stringValue];
-    self.forkCountLabel.text      = [@(viewModel.forksCount) stringValue];
-    self.iconImageView.image      = [UIImage octicon_imageWithIdentifier:identifier size:CGSizeMake(20, 20)];
+    self.starCountLabel.text      = [@(viewModel.repository.stargazersCount) stringValue];
+    self.forkCountLabel.text      = [@(viewModel.repository.forksCount) stringValue];
+    self.iconImageView.image      = [UIImage octicon_imageWithIdentifier:viewModel.identifier size:CGSizeMake(20, 20)];
 }
 
 @end

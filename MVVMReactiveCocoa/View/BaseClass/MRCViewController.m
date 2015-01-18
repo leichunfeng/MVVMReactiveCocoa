@@ -7,6 +7,13 @@
 //
 
 #import "MRCViewController.h"
+#import "MRCViewModel.h"
+
+@interface MRCViewController ()
+
+@property (strong, nonatomic, readwrite) MRCViewModel *viewModel;
+
+@end
 
 @implementation MRCViewController
 
@@ -32,6 +39,8 @@
     return self;
 }
 
-- (void)bindViewModel {}
+- (void)bindViewModel {
+    self.title = self.viewModel.title;
+}
 
 @end

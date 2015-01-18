@@ -7,6 +7,13 @@
 //
 
 #import "MRCTableViewController.h"
+#import "MRCTableViewModel.h"
+
+@interface MRCTableViewController ()
+
+@property (strong, nonatomic, readonly) MRCTableViewModel *viewModel;
+
+@end
 
 @implementation MRCTableViewController
 
@@ -28,6 +35,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.viewModel.didSelectCommand execute:indexPath];
 }
 
 @end

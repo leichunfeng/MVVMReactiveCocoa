@@ -10,4 +10,10 @@
 
 @implementation MRCGistsViewModel
 
+- (void)initialize {
+    [super initialize];
+    
+    self.title = @"Gists";
+}
+
 @end

@@ -12,4 +12,6 @@
 // A abstract class that conforms to MRCViewModelProtocol protocol.
 @interface MRCViewModel : NSObject <MRCViewModelProtocol>
 
+@property (strong, nonatomic) NSString *title;
+
 @end

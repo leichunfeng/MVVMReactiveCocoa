@@ -13,6 +13,8 @@
 - (void)initialize {
     [super initialize];
     
+    self.title = @"News";
+    
     [[self.services.client fetchUserEventsNotMatchingEtag:nil] subscribeNext:^(id x) {
         
     }];

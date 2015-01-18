@@ -10,6 +10,12 @@
 #define MVVMReactiveCocoa_MRCConfig_h
 
 ///------------
+/// AppDelegate
+///------------
+
+#define MRCSharedAppDelegate ((MRCAppDelegate *)[UIApplication sharedApplication].delegate)
+
+///------------
 /// Client Info
 ///------------
 

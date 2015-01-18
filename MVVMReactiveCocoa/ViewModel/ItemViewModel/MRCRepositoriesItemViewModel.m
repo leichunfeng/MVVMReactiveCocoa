@@ -10,12 +10,10 @@
 
 @interface MRCRepositoriesItemViewModel ()
 
-@property (assign, nonatomic, readwrite) BOOL isFork;
+@property (strong, nonatomic, readwrite) OCTRepository *repository;
+@property (strong, nonatomic, readwrite) NSString *identifier;
 @property (strong, nonatomic, readwrite) NSAttributedString *name;
-@property (strong, nonatomic, readwrite) NSString *repoDescription;
 @property (strong, nonatomic, readwrite) NSString *language;
-@property (assign, nonatomic, readwrite) NSUInteger stargazersCount;
-@property (assign, nonatomic, readwrite) NSUInteger forksCount;
 
 @end
 
@@ -24,6 +22,10 @@
 - (instancetype)initWithRepository:(OCTRepository *)repository {
     self = [super init];
     if (self) {
+        self.repository = repository;
+        self.identifier = repository.isFork ? @"RepoForked" : @"Repo";
+        self.language   = repository.language ?: @" ";
+        
         if (repository.isStarred) {
             NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", repository.ownerLogin, repository.name];
             
@@ -35,12 +37,6 @@
         } else {
             self.name = [[NSAttributedString alloc] initWithString:repository.name];
         }
-        
-        self.isFork          = repository.fork;
-        self.repoDescription = repository.repoDescription;
-        self.language        = repository.language ?: @" ";
-        self.stargazersCount = repository.stargazersCount;
-        self.forksCount      = repository.forksCount;
     }
     return self;
 }
