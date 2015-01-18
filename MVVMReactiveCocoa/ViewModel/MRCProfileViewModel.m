@@ -30,9 +30,13 @@
     }];
     
     self.dataSource = @[
-  		@[ @"Events", @"Issues", @"Notifications" ],
-        @[ @"Organizations" ],
-        @[ @"About" ]
+        @[
+  			@{ @"title": @"Events", @"identifier": @"Unmute" },
+  			@{ @"title": @"Issues", @"identifier": @"IssueOpened" },
+  			@{ @"title": @"Notifications", @"identifier": @"Inbox" }
+    	],
+        @[ @{ @"title": @"Organizations", @"identifier": @"Organization" } ],
+        @[ @{ @"title": @"About", @"identifier": @"Info" } ]
     ];
 }
 

@@ -16,6 +16,7 @@
 
 - (void)initialize {
     [super initialize];
+    
     self.newsViewModel = [[MRCNewsViewModel alloc] initWithServices:self.services params:nil];
     self.repositoriesViewModel = [[MRCRepositoriesViewModel alloc] initWithServices:self.services params:nil];
     self.gistsViewModel = [[MRCGistsViewModel alloc] initWithServices:self.services params:nil];

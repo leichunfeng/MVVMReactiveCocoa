@@ -38,6 +38,8 @@
     [self configureAppearance];
     [self configureKeyboardManager];
     
+    NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
+    
     return YES;
 }
 

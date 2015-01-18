@@ -20,22 +20,16 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
         NSError *error = nil;
         [[NSFileManager defaultManager] createDirectoryAtPath:persistenceDirectory withIntermediateDirectories:YES attributes:nil error:&error];
-        if (error) {
-            NSLog(@"Error: %@", error);
-        }
+        if (error) NSLog(@"Error: %@", error);
     }
     return persistenceDirectory;
 }
 
 + (OCTUser *)currentUser {
-    return [self fetchWithRawLogin:[SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN]];
+    return [self fetchUserWithRawLogin:[SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN]];
 }
 
-+ (NSString *)rawLoginOfCurrentUser {
-    return [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
-}
-
-+ (OCTUser *)fetchWithRawLogin:(NSString *)rawLogin {
++ (OCTUser *)fetchUserWithRawLogin:(NSString *)rawLogin {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:rawLogin]];
 }
 

@@ -13,7 +13,7 @@
 
 // Binds the given view model to the view.
 //
-// viewModel - the view model
+// viewModel - The view model
 - (void)bindViewModel:(id)viewModel;
 
 @end

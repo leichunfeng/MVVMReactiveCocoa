@@ -16,7 +16,7 @@
     
     RAC(self, avatarURL) = [[RACObserve(self, username)
         map:^id(NSString *username) {
-            return [[OCTUser fetchWithRawLogin:username] avatarURL];
+            return [[OCTUser fetchUserWithRawLogin:username] avatarURL];
         }]
         distinctUntilChanged];
     

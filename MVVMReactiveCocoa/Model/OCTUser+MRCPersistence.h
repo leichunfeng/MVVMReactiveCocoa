@@ -16,16 +16,11 @@
 // Returns the current `user`.
 + (OCTUser *)currentUser;
 
-// Retrieves the `rawLogin` property of the current `user`.
-//
-// Returns the `rawLogin` property.
-+ (NSString *)rawLoginOfCurrentUser;
-
 // Retrieves the user by the given `rawLogin` property.
 //
 // rawLogin - `rawLogin` property
 //
 // Returns the user.
-+ (OCTUser *)fetchWithRawLogin:(NSString *)rawLogin;
++ (OCTUser *)fetchUserWithRawLogin:(NSString *)rawLogin;
 
 @end
