@@ -18,7 +18,4 @@
 // The view model of `Profile` interface.
 @property (strong, nonatomic) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
 
-// The data source of `Profile` interface.
-@property (strong, nonatomic) NSArray *dataSource;
-
 @end
