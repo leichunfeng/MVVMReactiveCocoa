@@ -12,9 +12,6 @@
 
 @interface MRCRepositoriesViewModel ()
 
-@property (strong, nonatomic, readwrite) NSArray *dataSource;
-@property (strong, nonatomic, readwrite) NSArray *sectionIndexTitles;
-
 @property (strong, nonatomic) NSArray *repositories;
 @property (strong, nonatomic) NSArray *starredRepositories;
 

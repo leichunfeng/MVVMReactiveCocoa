@@ -10,4 +10,10 @@
 
 @interface MRCTableViewModel : MRCViewModel
 
+// The data source of table view.
+@property (strong, nonatomic) NSArray *dataSource;
+
+// The list of section titles to display in section index view.
+@property (strong, nonatomic) NSArray *sectionIndexTitles;
+
 @end

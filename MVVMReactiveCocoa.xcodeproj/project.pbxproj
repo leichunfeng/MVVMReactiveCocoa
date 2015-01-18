@@ -64,6 +64,9 @@
 		24B4DA151A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m */; };
+		24DF45631A6B8BA500F23474 /* MRCRepositoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45611A6B8BA500F23474 /* MRCRepositoryDetailViewController.m */; };
+		24DF45641A6B8BA500F23474 /* MRCRepositoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DF45621A6B8BA500F23474 /* MRCRepositoryDetailViewController.xib */; };
+		24DF45671A6B8BC800F23474 /* MRCRepositoryDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45661A6B8BC800F23474 /* MRCRepositoryDetailViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +192,11 @@
 		24B4DA141A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepositoriesTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoriesItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoriesItemViewModel.m; sourceTree = "<group>"; };
+		24DF45601A6B8BA500F23474 /* MRCRepositoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryDetailViewController.h; sourceTree = "<group>"; };
+		24DF45611A6B8BA500F23474 /* MRCRepositoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoryDetailViewController.m; sourceTree = "<group>"; };
+		24DF45621A6B8BA500F23474 /* MRCRepositoryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepositoryDetailViewController.xib; sourceTree = "<group>"; };
+		24DF45651A6B8BC800F23474 /* MRCRepositoryDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryDetailViewModel.h; sourceTree = "<group>"; };
+		24DF45661A6B8BC800F23474 /* MRCRepositoryDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoryDetailViewModel.m; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +281,9 @@
 				240D01011A654D300033CC86 /* MRCRepositoriesViewController.h */,
 				240D01021A654D300033CC86 /* MRCRepositoriesViewController.m */,
 				240D01031A654D300033CC86 /* MRCRepositoriesViewController.xib */,
+				24DF45601A6B8BA500F23474 /* MRCRepositoryDetailViewController.h */,
+				24DF45611A6B8BA500F23474 /* MRCRepositoryDetailViewController.m */,
+				24DF45621A6B8BA500F23474 /* MRCRepositoryDetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,6 +350,8 @@
 				240D01241A654D300033CC86 /* MRCProfileViewModel.m */,
 				240D01251A654D300033CC86 /* MRCRepositoriesViewModel.h */,
 				240D01261A654D300033CC86 /* MRCRepositoriesViewModel.m */,
+				24DF45651A6B8BC800F23474 /* MRCRepositoryDetailViewModel.h */,
+				24DF45661A6B8BC800F23474 /* MRCRepositoryDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -581,6 +594,7 @@
 			files = (
 				240D01411A654D300033CC86 /* MRCRepositoriesViewController.xib in Resources */,
 				240D01341A654D300033CC86 /* MRCAvatarHeaderView.xib in Resources */,
+				24DF45641A6B8BA500F23474 /* MRCRepositoryDetailViewController.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
@@ -670,6 +684,7 @@
 				240D01471A654D300033CC86 /* MRCViewModelServicesImpl.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
+				24DF45671A6B8BC800F23474 /* MRCRepositoryDetailViewModel.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
 				240D01401A654D300033CC86 /* MRCRepositoriesViewController.m in Sources */,
@@ -696,6 +711,7 @@
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				240D01331A654D300033CC86 /* MRCAvatarHeaderView.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
+				24DF45631A6B8BA500F23474 /* MRCRepositoryDetailViewController.m in Sources */,
 				240D014F1A654D300033CC86 /* MRCRepositoriesViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
