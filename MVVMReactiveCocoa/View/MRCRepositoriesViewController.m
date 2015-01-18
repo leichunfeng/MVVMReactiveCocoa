@@ -28,8 +28,6 @@
     self.tableView.estimatedRowHeight = 78;
     self.tableView.sectionIndexColor = [UIColor darkGrayColor];
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCSearchBarTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"MRCSearchBarTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepositoriesTableViewCell" bundle:nil]

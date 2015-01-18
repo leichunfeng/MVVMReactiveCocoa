@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class MRCNavigationControllerStack;
+
 @interface MRCAppDelegate : UIResponder <UIApplicationDelegate>
 
 // The window of current application.
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MRCNavigationControllerStack *navigationControllerStack;
 
 @end

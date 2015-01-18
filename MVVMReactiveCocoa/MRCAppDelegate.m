@@ -7,16 +7,15 @@
 //
 
 #import "MRCAppDelegate.h"
-#import "MRCNavigationControllerStack.h"
 #import "MRCViewModelServicesImpl.h"
 #import "MRCLoginViewModel.h"
 #import "MRCLoginViewController.h"
 #import "MRCHomepageViewModel.h"
 #import "MRCHomepageViewController.h"
+#import "MRCNavigationControllerStack.h"
 
 @interface MRCAppDelegate ()
 
-@property (strong, nonatomic) MRCNavigationControllerStack *navigationControllerStack;
 @property (strong, nonatomic) MRCViewModelServicesImpl *services;
 @property (strong, nonatomic) id<MRCViewModelProtocol> viewModel;
 
@@ -28,8 +27,10 @@
     self.services = [MRCViewModelServicesImpl new];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[self createInitialViewController]];
+    UINavigationController *navigationController = [UINavigationController new];
+    navigationController.navigationBar.hidden = YES;
     [self.navigationControllerStack pushNavigationController:navigationController];
+    [navigationController pushViewController:[self createInitialViewController] animated:NO];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;

@@ -14,6 +14,8 @@
 - (void)initialize {
     [super initialize];
     
+    self.title = @"Profile";
+    
     self.avatarHeaderViewModel = [MRCAvatarHeaderViewModel new];
     self.currentUser = [OCTUser currentUser];
     

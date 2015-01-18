@@ -22,8 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Profile";
-    
     MRCAvatarHeaderView *avatarHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
     [avatarHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
     self.tableView.tableHeaderView = avatarHeaderView;

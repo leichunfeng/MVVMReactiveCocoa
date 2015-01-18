@@ -30,6 +30,7 @@
 	#import <AFNetworking/AFNetworking.h>
 	#import "REMenu.h"
 	#import "UIImage+MRCOcticons.h"
+	#import "MRCAppDelegate.h"
 #endif
 
 #endif

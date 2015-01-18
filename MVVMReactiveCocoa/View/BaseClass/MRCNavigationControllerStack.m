@@ -8,7 +8,6 @@
 
 #import "MRCNavigationControllerStack.h"
 #import "MRCRouter.h"
-#import "MRCAppDelegate.h"
 
 @interface MRCNavigationControllerStack ()
 
@@ -41,6 +40,7 @@
 }
 
 - (void)pushNavigationController:(UINavigationController *)navigationController {
+    if ([self.navigationControllers containsObject:navigationController]) return;
     [self.navigationControllers addObject:navigationController];
 }
 
@@ -112,7 +112,7 @@
             [self.navigationControllers removeAllObjects];
             [self pushNavigationController:(UINavigationController *)viewController];
             
-            ((MRCAppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController = viewController;
+            MRCSharedAppDelegate.window.rootViewController = viewController;
         }];
 }
 

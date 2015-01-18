@@ -37,8 +37,11 @@ static MRCRouter *_sharedInstance = nil;
 }
 
 - (NSDictionary *)viewModelViewMappings {
-    return @{@"MRCLoginViewModel": @"MRCLoginViewController",
-             @"MRCHomepageViewModel": @"MRCHomepageViewController"};
+    return @{
+    	@"MRCLoginViewModel": @"MRCLoginViewController",
+        @"MRCHomepageViewModel": @"MRCHomepageViewController",
+        @"MRCRepositoryDetailViewModel": @"MRCRepositoryDetailViewController"
+    };
 }
 
 @end

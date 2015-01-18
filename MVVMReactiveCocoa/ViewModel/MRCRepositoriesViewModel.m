@@ -9,6 +9,7 @@
 #import "MRCRepositoriesViewModel.h"
 #import "MRCRepositoriesItemViewModel.h"
 #import "MRCStarredRepositoriesItemViewModel.h"
+#import "MRCRepositoryDetailViewModel.h"
 
 @interface MRCRepositoriesViewModel ()
 
@@ -108,6 +109,14 @@
         
     } completed:^{
         
+    }];
+    
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        MRCRepositoryDetailViewModel *detailViewModel = [[MRCRepositoryDetailViewModel alloc] initWithServices:self.services
+                                                                                                        params:@{ @"repository": [self.dataSource[indexPath.section][indexPath.row] repository] }];
+        [self.services pushViewModel:detailViewModel animated:YES];
+        return [RACSignal empty];
     }];
 }
 
