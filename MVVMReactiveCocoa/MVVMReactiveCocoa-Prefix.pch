@@ -28,6 +28,8 @@
 	#import "OCTRepository+MRCPersistence.h"
 	#import <objc/runtime.h>
 	#import <AFNetworking/AFNetworking.h>
+	#import "REMenu.h"
+	#import "UIImage+MRCOcticons.h"
 #endif
 
 #endif

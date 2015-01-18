@@ -10,4 +10,8 @@
 
 @interface MRCRepositoriesViewModel : MRCTableViewModel
 
+@property (nonatomic) NSInteger selectedSegmentIndex;
+@property (strong, nonatomic, readonly) NSArray *dataSource;
+@property (strong, nonatomic, readonly) NSArray *sectionIndexTitles;
+
 @end

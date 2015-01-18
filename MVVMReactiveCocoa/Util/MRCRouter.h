@@ -19,7 +19,7 @@
 
 // Retrieves the view corresponding to the given view model.
 //
-// viewModel - the view model
+// viewModel - The view model
 //
 // Returns the view corresponding to the given view model.
 - (id<MRCViewProtocol>)viewControllerForViewModel:(id<MRCViewModelProtocol>)viewModel;

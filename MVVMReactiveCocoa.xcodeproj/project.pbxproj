@@ -51,6 +51,19 @@
 		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
 		242D50001A64BD730026ABC6 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242D4FFF1A64BD730026ABC6 /* OctoKit.framework */; };
+		2483A44C1A6949CA00BA0594 /* NSString+Octicons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4461A6949CA00BA0594 /* NSString+Octicons.m */; };
+		2483A44D1A6949CA00BA0594 /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2483A4471A6949CA00BA0594 /* octicons.ttf */; };
+		2483A44E1A6949CA00BA0594 /* UIFont+Octicons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4491A6949CA00BA0594 /* UIFont+Octicons.m */; };
+		2483A44F1A6949CA00BA0594 /* UIImage+Octicons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A44B1A6949CA00BA0594 /* UIImage+Octicons.m */; };
+		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
+		2483A4561A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4541A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.m */; };
+		2483A4571A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2483A4551A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.xib */; };
+		2483A45A1A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4591A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.m */; };
+		2483A45E1A6B611400BA0594 /* MRCSearchBarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A45C1A6B611400BA0594 /* MRCSearchBarTableViewCell.m */; };
+		2483A45F1A6B611400BA0594 /* MRCSearchBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2483A45D1A6B611400BA0594 /* MRCSearchBarTableViewCell.xib */; };
+		24B4DA151A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m */; };
+		24B4DA161A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib */; };
+		24B4DA1A1A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +156,9 @@
 		240D01501A654D3D0033CC86 /* MRCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppDelegate.h; sourceTree = "<group>"; };
 		240D01511A654D3D0033CC86 /* MRCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAppDelegate.m; sourceTree = "<group>"; };
 		240D01541A654D9C0033CC86 /* MVVMReactiveCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MVVMReactiveCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		242D4FD51A64B6FA0026ABC6 /* MVVMReactiveCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMReactiveCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242D4FD91A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FDA1A64B6FA0026ABC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -151,6 +167,28 @@
 		242D4FF31A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMReactiveCocoaTests.m; sourceTree = "<group>"; };
 		242D4FFF1A64BD730026ABC6 /* OctoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OctoKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/OctoKit.framework"; sourceTree = "<group>"; };
+		2483A4451A6949CA00BA0594 /* NSString+Octicons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Octicons.h"; path = "OcticonsIOS/OcticonsIOS/NSString+Octicons.h"; sourceTree = SOURCE_ROOT; };
+		2483A4461A6949CA00BA0594 /* NSString+Octicons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Octicons.m"; path = "OcticonsIOS/OcticonsIOS/NSString+Octicons.m"; sourceTree = SOURCE_ROOT; };
+		2483A4471A6949CA00BA0594 /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = OcticonsIOS/OcticonsIOS/octicons.ttf; sourceTree = SOURCE_ROOT; };
+		2483A4481A6949CA00BA0594 /* UIFont+Octicons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+Octicons.h"; path = "OcticonsIOS/OcticonsIOS/UIFont+Octicons.h"; sourceTree = SOURCE_ROOT; };
+		2483A4491A6949CA00BA0594 /* UIFont+Octicons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Octicons.m"; path = "OcticonsIOS/OcticonsIOS/UIFont+Octicons.m"; sourceTree = SOURCE_ROOT; };
+		2483A44A1A6949CA00BA0594 /* UIImage+Octicons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Octicons.h"; path = "OcticonsIOS/OcticonsIOS/UIImage+Octicons.h"; sourceTree = SOURCE_ROOT; };
+		2483A44B1A6949CA00BA0594 /* UIImage+Octicons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Octicons.m"; path = "OcticonsIOS/OcticonsIOS/UIImage+Octicons.m"; sourceTree = SOURCE_ROOT; };
+		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
+		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
+		2483A4531A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCStarredRepositoriesTableViewCell.h; sourceTree = "<group>"; };
+		2483A4541A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCStarredRepositoriesTableViewCell.m; sourceTree = "<group>"; };
+		2483A4551A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCStarredRepositoriesTableViewCell.xib; sourceTree = "<group>"; };
+		2483A4581A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCStarredRepositoriesItemViewModel.h; sourceTree = "<group>"; };
+		2483A4591A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCStarredRepositoriesItemViewModel.m; sourceTree = "<group>"; };
+		2483A45B1A6B611400BA0594 /* MRCSearchBarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchBarTableViewCell.h; sourceTree = "<group>"; };
+		2483A45C1A6B611400BA0594 /* MRCSearchBarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchBarTableViewCell.m; sourceTree = "<group>"; };
+		2483A45D1A6B611400BA0594 /* MRCSearchBarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSearchBarTableViewCell.xib; sourceTree = "<group>"; };
+		24B4DA121A66B97900DDFA6C /* MRCRepositoriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoriesTableViewCell.h; sourceTree = "<group>"; };
+		24B4DA131A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoriesTableViewCell.m; sourceTree = "<group>"; };
+		24B4DA141A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepositoriesTableViewCell.xib; sourceTree = "<group>"; };
+		24B4DA181A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoriesItemViewModel.h; sourceTree = "<group>"; };
+		24B4DA191A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoriesItemViewModel.m; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +229,7 @@
 		240D00D11A654D300033CC86 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				2483A4441A6949B500BA0594 /* OcticonsIOS */,
 				240D00D21A654D300033CC86 /* MRCConfig.h */,
 				240D00D31A654D300033CC86 /* MRCConstant.h */,
 				240D00D41A654D300033CC86 /* MRCErrors.h */,
@@ -202,6 +241,8 @@
 				240D00DA1A654D300033CC86 /* MRCUtil.m */,
 				240D00DB1A654D300033CC86 /* UIImage+ImageEffects.h */,
 				240D00DC1A654D300033CC86 /* UIImage+ImageEffects.m */,
+				2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */,
+				2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -209,9 +250,10 @@
 		240D00DD1A654D300033CC86 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24B4DA111A66B94800DDFA6C /* TableViewCell */,
 				240D00DE1A654D300033CC86 /* BaseClass */,
-				240D00E81A654D300033CC86 /* Button */,
 				240D00EB1A654D300033CC86 /* HeaderView */,
+				240D00E81A654D300033CC86 /* Button */,
 				240D00EF1A654D300033CC86 /* ImageView */,
 				240D00F21A654D300033CC86 /* MRCGistsViewController.h */,
 				240D00F31A654D300033CC86 /* MRCGistsViewController.m */,
@@ -282,6 +324,7 @@
 		240D01081A654D300033CC86 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				24B4DA171A66C1C600DDFA6C /* ItemViewModel */,
 				240D01091A654D300033CC86 /* BaseClass */,
 				240D01151A654D300033CC86 /* HeaderViewModel */,
 				240D011B1A654D300033CC86 /* MRCGistsViewModel.h */,
@@ -390,9 +433,53 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2483A4441A6949B500BA0594 /* OcticonsIOS */ = {
+			isa = PBXGroup;
+			children = (
+				2483A4451A6949CA00BA0594 /* NSString+Octicons.h */,
+				2483A4461A6949CA00BA0594 /* NSString+Octicons.m */,
+				2483A4471A6949CA00BA0594 /* octicons.ttf */,
+				2483A4481A6949CA00BA0594 /* UIFont+Octicons.h */,
+				2483A4491A6949CA00BA0594 /* UIFont+Octicons.m */,
+				2483A44A1A6949CA00BA0594 /* UIImage+Octicons.h */,
+				2483A44B1A6949CA00BA0594 /* UIImage+Octicons.m */,
+			);
+			name = OcticonsIOS;
+			sourceTree = "<group>";
+		};
+		24B4DA111A66B94800DDFA6C /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				24B4DA121A66B97900DDFA6C /* MRCRepositoriesTableViewCell.h */,
+				24B4DA131A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m */,
+				24B4DA141A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib */,
+				2483A4531A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.h */,
+				2483A4541A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.m */,
+				2483A4551A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.xib */,
+				2483A45B1A6B611400BA0594 /* MRCSearchBarTableViewCell.h */,
+				2483A45C1A6B611400BA0594 /* MRCSearchBarTableViewCell.m */,
+				2483A45D1A6B611400BA0594 /* MRCSearchBarTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		24B4DA171A66C1C600DDFA6C /* ItemViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24B4DA181A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.h */,
+				24B4DA191A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m */,
+				2483A4581A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.h */,
+				2483A4591A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.m */,
+			);
+			path = ItemViewModel;
+			sourceTree = "<group>";
+		};
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				241545D91A67F3F4007AFD5B /* Foundation.framework */,
+				241545D71A67F3EF007AFD5B /* UIKit.framework */,
+				241545D51A67F3CF007AFD5B /* CoreGraphics.framework */,
 				242D4FFF1A64BD730026ABC6 /* OctoKit.framework */,
 				E408154D3BF129981C1EFFEF /* libPods.a */,
 			);
@@ -497,9 +584,13 @@
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
+				2483A45F1A6B611400BA0594 /* MRCSearchBarTableViewCell.xib in Resources */,
+				2483A44D1A6949CA00BA0594 /* octicons.ttf in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
+				24B4DA161A66B97900DDFA6C /* MRCRepositoriesTableViewCell.xib in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
+				2483A4571A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.xib in Resources */,
 				240D013F1A654D300033CC86 /* MRCProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,13 +656,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B4DA151A66B97900DDFA6C /* MRCRepositoriesTableViewCell.m in Sources */,
 				240D01301A654D300033CC86 /* MRCTableViewController.m in Sources */,
 				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
+				2483A44E1A6949CA00BA0594 /* UIFont+Octicons.m in Sources */,
 				240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */,
 				240D014C1A654D300033CC86 /* MRCLoginViewModel.m in Sources */,
+				2483A4561A6A3E0C00BA0594 /* MRCStarredRepositoriesTableViewCell.m in Sources */,
+				24B4DA1A1A66C1DD00DDFA6C /* MRCRepositoriesItemViewModel.m in Sources */,
 				240D01471A654D300033CC86 /* MRCViewModelServicesImpl.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
@@ -582,14 +677,19 @@
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
+				2483A44F1A6949CA00BA0594 /* UIImage+Octicons.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
+				2483A44C1A6949CA00BA0594 /* NSString+Octicons.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
+				2483A45A1A6A3F7900BA0594 /* MRCStarredRepositoriesItemViewModel.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,
 				240D014B1A654D300033CC86 /* MRCHomepageViewModel.m in Sources */,
+				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
+				2483A45E1A6B611400BA0594 /* MRCSearchBarTableViewCell.m in Sources */,
 				240D012E1A654D300033CC86 /* MRCNavigationControllerStack.m in Sources */,
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
@@ -729,6 +829,7 @@
 				INFOPLIST_FILE = MVVMReactiveCocoa/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -755,6 +856,7 @@
 				INFOPLIST_FILE = MVVMReactiveCocoa/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

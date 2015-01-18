@@ -12,6 +12,10 @@
 #import "MRCRepositoriesViewController.h"
 #import "MRCGistsViewController.h"
 #import "MRCProfileViewController.h"
+#import "MRCNewsViewModel.h"
+#import "MRCRepositoriesViewModel.h"
+#import "MRCGistsViewModel.h"
+#import "MRCProfileViewModel.h"
 
 @interface MRCHomepageViewController ()
 
@@ -25,16 +29,26 @@
     [super viewDidLoad];
     
     MRCNewsViewController *newsViewController = [[MRCNewsViewController alloc] initWithViewModel:self.viewModel.newsViewModel];
-    newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemRecents tag:1];
+    newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News"
+                                                                  image:[UIImage octicon_imageWithIdentifier:@"Home" size:CGSizeMake(25, 25)]
+                                                                    tag:1];
     
     MRCRepositoriesViewController *repositoriesViewController = [[MRCRepositoriesViewController alloc] initWithViewModel:self.viewModel.repositoriesViewModel];
-    repositoriesViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
+    repositoriesViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Repositories"
+                                                                          image:[UIImage octicon_imageWithIdentifier:@"Repo" size:CGSizeMake(25, 25)]
+                                                                            tag:2];
     
     MRCGistsViewController *gistsViewController = [[MRCGistsViewController alloc] initWithViewModel:self.viewModel.gistsViewModel];
-    gistsViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemRecents tag:3];
+    gistsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Gists"
+                                                                   image:[UIImage octicon_imageWithIdentifier:@"Gist" size:CGSizeMake(25, 25)]
+                                                                     tag:3];
     
     MRCProfileViewController *profileViewController = [[MRCProfileViewController alloc] initWithViewModel:self.viewModel.profileViewModel];
-    profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:4];
+    profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile"
+                                                                     image:[UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(25, 25)]
+                                                                       tag:4];
+    
+    self.tabBar.translucent = NO;
     
     self.viewControllers = @[[[UINavigationController alloc] initWithRootViewController:newsViewController],
                              [[UINavigationController alloc] initWithRootViewController:repositoriesViewController],

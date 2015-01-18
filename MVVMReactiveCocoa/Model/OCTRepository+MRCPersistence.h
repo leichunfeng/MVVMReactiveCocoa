@@ -9,13 +9,26 @@
 #import <OctoKit/OctoKit.h>
 #import "MRCPersistenceProtocol.h"
 
-extern const void *OCTRepositoryStarredKey;
-
 @interface OCTRepository (Persistence) <MRCPersistenceProtocol>
 
 // Retrieves the repositories of the current `user` from disk.
 //
 // Returns the repositories.
-+ (NSArray *)fetchUserRepositories;
++ (RACSignal *)fetchUserRepositories;
+
+// Retrieves the starred repositories of the current `user` from disk.
+//
+// Returns the starred repositories.
++ (RACSignal *)fetchUserStarredRepositories;
+
+// Get method, retrieves the star flag of this repository.
+//
+// Returns the star flag.
+- (BOOL)isStarred;
+
+// Set method, setting the star flag of this repository.
+//
+// starred - The star flag
+- (void)setStarred:(BOOL)starred;
 
 @end

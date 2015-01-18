@@ -63,8 +63,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text  = self.viewModel.dataSource[indexPath.section][indexPath.row][@"title"];
+    cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
+    cell.imageView.image = [UIImage octicon_imageWithIdentifier:self.viewModel.dataSource[indexPath.section][indexPath.row][@"identifier"]
+                                                 size:CGSizeMake(29, 29)];
     
     return cell;
 }
