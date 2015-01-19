@@ -9,7 +9,7 @@
 #import "MRCTabBarViewModel.h"
 
 @class MRCNewsViewModel;
-@class MRCRepositoriesViewModel;
+@class MRCReposViewModel;
 @class MRCGistsViewModel;
 @class MRCProfileViewModel;
 
@@ -19,7 +19,7 @@
 @property (strong, nonatomic) MRCNewsViewModel *newsViewModel;
 
 // The view model of `Repositories` interface.
-@property (strong, nonatomic) MRCRepositoriesViewModel *repositoriesViewModel;
+@property (strong, nonatomic) MRCReposViewModel *reposViewModel;
 
 // The view model of `Gists` interface.
 @property (strong, nonatomic) MRCGistsViewModel *gistsViewModel;

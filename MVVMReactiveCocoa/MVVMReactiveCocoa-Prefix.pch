@@ -31,6 +31,8 @@
 	#import "REMenu.h"
 	#import "UIImage+MRCOcticons.h"
 	#import "MRCAppDelegate.h"
+	#import "SVPullToRefresh.h"
+	#import "CBStoreHouseRefreshControl.h"
 #endif
 
 #endif

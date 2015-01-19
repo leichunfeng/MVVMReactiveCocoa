@@ -9,14 +9,14 @@
 #import "MRCHomepageViewController.h"
 #import "MRCHomepageViewModel.h"
 #import "MRCNewsViewController.h"
-#import "MRCRepositoriesViewController.h"
 #import "MRCGistsViewController.h"
 #import "MRCProfileViewController.h"
 #import "MRCNewsViewModel.h"
-#import "MRCRepositoriesViewModel.h"
+#import "MRCReposViewModel.h"
 #import "MRCGistsViewModel.h"
 #import "MRCProfileViewModel.h"
 #import "MRCNavigationControllerStack.h"
+#import "MRCReposViewController.h"
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 
@@ -62,7 +62,7 @@
 
 - (UINavigationController *)reposNavigationController {
     if (!_reposNavigationController) {
-        MRCRepositoriesViewController *repositoriesViewController = [[MRCRepositoriesViewController alloc] initWithViewModel:self.viewModel.repositoriesViewModel];
+        MRCReposViewController *repositoriesViewController = [[MRCReposViewController alloc] initWithViewModel:self.viewModel.reposViewModel];
         repositoriesViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Repositories"
                                                                               image:[UIImage octicon_imageWithIdentifier:@"Repo" size:CGSizeMake(25, 25)]
                                                                                 tag:2];
