@@ -6,6 +6,12 @@
 // project.
 
 
+// CBStoreHouseRefreshControl
+#define COCOAPODS_POD_AVAILABLE_CBStoreHouseRefreshControl
+#define COCOAPODS_VERSION_MAJOR_CBStoreHouseRefreshControl 1
+#define COCOAPODS_VERSION_MINOR_CBStoreHouseRefreshControl 0
+#define COCOAPODS_VERSION_PATCH_CBStoreHouseRefreshControl 0
+
 // FontAwesomeKit
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit 2
@@ -55,6 +61,12 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
+// OcticonsIOS
+#define COCOAPODS_POD_AVAILABLE_OcticonsIOS
+#define COCOAPODS_VERSION_MAJOR_OcticonsIOS 0
+#define COCOAPODS_VERSION_MINOR_OcticonsIOS 0
+#define COCOAPODS_VERSION_PATCH_OcticonsIOS 2
+
 // REMenu
 #define COCOAPODS_POD_AVAILABLE_REMenu
 #define COCOAPODS_VERSION_MAJOR_REMenu 1
@@ -84,4 +96,10 @@
 #define COCOAPODS_VERSION_MAJOR_SSKeychain 1
 #define COCOAPODS_VERSION_MINOR_SSKeychain 2
 #define COCOAPODS_VERSION_PATCH_SSKeychain 2
+
+// SVPullToRefresh
+#define COCOAPODS_POD_AVAILABLE_SVPullToRefresh
+#define COCOAPODS_VERSION_MAJOR_SVPullToRefresh 0
+#define COCOAPODS_VERSION_MINOR_SVPullToRefresh 4
+#define COCOAPODS_VERSION_PATCH_SVPullToRefresh 1
 
