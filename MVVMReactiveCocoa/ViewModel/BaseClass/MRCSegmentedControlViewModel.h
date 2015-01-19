@@ -11,6 +11,5 @@
 @interface MRCSegmentedControlViewModel : MRCViewModel
 
 @property (strong, nonatomic) NSArray *viewModels;
-@property (nonatomic) NSInteger selectedSegmentIndex;
 
 @end

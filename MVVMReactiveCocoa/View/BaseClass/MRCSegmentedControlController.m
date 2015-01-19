@@ -42,6 +42,9 @@
                                     completion:^(BOOL finished) {
                                         @strongify(self)
                                         self.currentViewController = toViewController;
+                                        if ([self.delegate respondsToSelector:@selector(segmentedControlController:didSelectViewController:)]) {
+                                            [self.delegate segmentedControlController:self didSelectViewController:self.currentViewController];
+                                        }
                                     }];
         }];
     
