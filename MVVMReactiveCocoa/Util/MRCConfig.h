@@ -34,7 +34,7 @@
 /// URL Scheme
 ///-----------
 
-#define MRC_URL_SCHEME @"MVVMReactiveCocoa"
+#define MRC_URL_SCHEME @"mvvmreactivecocoa"
 
 ///----------------------
 /// Persistence Directory

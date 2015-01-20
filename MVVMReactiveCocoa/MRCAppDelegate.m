@@ -54,11 +54,11 @@
     // The user has logged-in.
     if ([rawLogin isExist] && [accessToken isExist]) {
         OCTUser *user = [OCTUser userWithRawLogin:rawLogin server:OCTServer.dotComServer];
-        OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:accessToken];
 
-        [self.services setClient:authenticatedClient];
-        
+        OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:accessToken];
+        self.services.client = authenticatedClient;
         self.viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
+        
         return [[MRCHomepageViewController alloc] initWithViewModel:self.viewModel];
     } else {
         self.viewModel = [[MRCLoginViewModel alloc] initWithServices:self.services params:nil];
