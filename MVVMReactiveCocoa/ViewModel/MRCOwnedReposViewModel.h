@@ -10,4 +10,6 @@
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel
 
+- (RACSignal *)fetchRepositoriesSignal;
+
 @end

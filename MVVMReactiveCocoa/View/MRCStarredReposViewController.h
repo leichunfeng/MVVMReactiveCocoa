@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCTableViewController.h"
+#import "MRCOwnedReposViewController.h"
 
-@interface MRCStarredReposViewController : MRCTableViewController
+@interface MRCStarredReposViewController : MRCOwnedReposViewController
 
 @end
