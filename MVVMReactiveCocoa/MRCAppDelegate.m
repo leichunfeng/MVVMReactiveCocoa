@@ -66,13 +66,13 @@
 }
 
 - (void)configureAppearance {
-	[UINavigationBar appearance].barTintColor = HexRGB(0x576871);
-    [[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor] }];
+    UINavigationBar.appearance.barTintColor = HexRGB(0x576871);
+    UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
 }
 
 - (void)configureKeyboardManager {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    IQKeyboardManager.sharedManager.enableAutoToolbar = NO;
+    IQKeyboardManager.sharedManager.shouldResignOnTouchOutside = YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
