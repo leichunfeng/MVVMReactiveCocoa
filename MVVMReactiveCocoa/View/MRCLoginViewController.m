@@ -32,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.hidden = YES;
+    
     self.avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.avatarImageView.layer.borderWidth = 2.0f;
     
@@ -74,14 +76,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleDefault;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 @end
