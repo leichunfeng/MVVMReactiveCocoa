@@ -28,7 +28,6 @@
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
     UINavigationController *navigationController = [UINavigationController new];
-    navigationController.navigationBar.hidden = YES;
     [self.navigationControllerStack pushNavigationController:navigationController];
     [navigationController pushViewController:[self createInitialViewController] animated:NO];
     

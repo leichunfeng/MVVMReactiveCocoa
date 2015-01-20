@@ -35,10 +35,9 @@
     [super viewDidLoad];
     
     self.tabBar.translucent = NO;
+    
     self.viewControllers = @[ self.newsNavigationController, self.reposNavigationController, self.gistsNavigationController, self.profileNavigationController ];
     
-    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:self.newsNavigationController];
-
     [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
             if (tuple.second != MRCSharedAppDelegate.navigationControllerStack.topNavigationController) {
@@ -47,6 +46,11 @@
             }
      	}];
     self.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (UINavigationController *)newsNavigationController {
