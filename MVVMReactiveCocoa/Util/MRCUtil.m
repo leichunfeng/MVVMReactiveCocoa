@@ -18,6 +18,10 @@
     return self && ![self isEqualToString:@""];
 }
 
+- (NSString *)firstLetter {
+    return [[self substringToIndex:1] uppercaseString];
+}
+
 @end
 
 @implementation UIColor (Util)

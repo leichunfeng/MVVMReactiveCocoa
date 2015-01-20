@@ -8,6 +8,45 @@
 
 #import "MRCTableViewModel.h"
 
+@interface MRCTableViewModel ()
+
+@property (strong, nonatomic) RACCommand *fetchLocalDataCommand;
+@property (strong, nonatomic, readwrite) RACCommand *requestRemoteDataCommand;
+
+@end
+
 @implementation MRCTableViewModel
+
+- (void)initialize {
+    [super initialize];
+    
+    @weakify(self)
+    self.fetchLocalDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        return [self fetchLocalDataSignal];
+    }];
+    
+    self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        return [self requestRemoteDataSignal];
+    }];
+    
+    [[self.requestRemoteDataCommand.executionSignals
+    	flatten]
+    	subscribeNext:^(id x) {
+            @strongify(self)
+            [self.fetchLocalDataCommand execute:nil];
+        }];
+    
+    [self.fetchLocalDataCommand execute:nil];
+}
+
+- (RACSignal *)fetchLocalDataSignal {
+	return [RACSignal empty];
+}
+
+- (RACSignal *)requestRemoteDataSignal {
+    return [RACSignal empty];
+}
 
 @end

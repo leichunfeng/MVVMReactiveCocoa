@@ -19,6 +19,8 @@
 // Returns YES or NO.
 - (BOOL)isExist;
 
+- (NSString *)firstLetter;
+
 @end
 
 @interface UIColor (Util)

@@ -18,4 +18,10 @@
 
 @property (strong, nonatomic) RACCommand *didSelectCommand;
 
+@property (strong, nonatomic, readonly) RACCommand *requestRemoteDataCommand;
+
+- (RACSignal *)fetchLocalDataSignal;
+
+- (RACSignal *)requestRemoteDataSignal;
+
 @end
