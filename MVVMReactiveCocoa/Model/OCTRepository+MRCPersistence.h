@@ -31,4 +31,6 @@
 // starred - The star flag
 - (void)setStarred:(BOOL)starred;
 
++ (RACSignal *)updateLocalDataWithRemoteUserRepos:(NSArray *)remoteUserRepos;
+
 @end

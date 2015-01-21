@@ -43,10 +43,11 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[self.services.client
+    return [[[self.services.client
         fetchUserRepositories]
-        doNext:^(OCTRepository *repository) {
-            [repository save];
+        collect]
+        flattenMap:^RACStream *(NSArray *repositories) {
+            return [OCTRepository updateLocalDataWithRemoteUserRepos:repositories];
         }];
 }
 

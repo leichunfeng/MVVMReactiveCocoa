@@ -14,6 +14,8 @@
     return [NSKeyedArchiver archiveRootObject:self toFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:self.rawLogin]];
 }
 
+- (void)delete {}
+
 + (NSString *)persistenceDirectory {
     NSString *persistenceDirectory = [MRC_DOCUMENT_DIRECTORY stringByAppendingPathComponent:@"Persistence/Users"];
     BOOL isDirectory;
