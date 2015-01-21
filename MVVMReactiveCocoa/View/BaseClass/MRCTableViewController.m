@@ -71,6 +71,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section >= self.viewModel.sectionIndexTitles.count) return nil;
     return self.viewModel.sectionIndexTitles[section];
 }
 

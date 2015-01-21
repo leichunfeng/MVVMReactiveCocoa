@@ -15,11 +15,15 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[self.services.client
-    	fetchUserStarredRepositories]
-    	doNext:^(OCTRepository *repository) {
-            [repository setStarred:YES];
-            [repository save];
+    return [[[RACSignal
+    	combineLatest:@[ [OCTRepository fetchUserStarredRepositories], [[self.services.client fetchUserStarredRepositories] collect] ]]
+        doNext:^(RACTuple *tuple) {
+            [[tuple.second rac_sequence].signal subscribeNext:^(OCTRepository *repository) {
+                repository.starred = YES;
+            }];
+        }]
+        flattenMap:^RACStream *(RACTuple *tuple) {
+            return [OCTRepository updateLocalObjects:tuple.first withRemoteObjects:tuple.second];
         }];
 }
 
