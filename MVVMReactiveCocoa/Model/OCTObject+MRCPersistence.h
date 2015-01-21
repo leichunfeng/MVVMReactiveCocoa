@@ -7,6 +7,7 @@
 //
 
 #import <OctoKit/OctoKit.h>
+#import "MRCPersistenceProtocol.h"
 
 @interface OCTObject (MRCPersistence) <MRCPersistenceProtocol>
 
