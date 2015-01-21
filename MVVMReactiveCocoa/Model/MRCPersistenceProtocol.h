@@ -17,4 +17,6 @@
 // Returns YES or NO.
 - (BOOL)save;
 
+- (void)delete;
+
 @end

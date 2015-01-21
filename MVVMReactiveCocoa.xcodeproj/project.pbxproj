@@ -47,6 +47,7 @@
 		242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FDA1A64B6FA0026ABC6 /* main.m */; };
 		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
+		24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
@@ -165,6 +166,8 @@
 		242D4FF31A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMReactiveCocoaTests.m; sourceTree = "<group>"; };
 		242D4FFF1A64BD730026ABC6 /* OctoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OctoKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/OctoKit.framework"; sourceTree = "<group>"; };
+		24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTObject+MRCPersistence.h"; sourceTree = "<group>"; };
+		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
 		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
 		24B4DA121A66B97900DDFA6C /* MRCReposTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposTableViewCell.h; sourceTree = "<group>"; };
@@ -230,6 +233,8 @@
 				240D00CE1A654D300033CC86 /* OCTRepository+MRCPersistence.m */,
 				240D00CF1A654D300033CC86 /* OCTUser+MRCPersistence.h */,
 				240D00D01A654D300033CC86 /* OCTUser+MRCPersistence.m */,
+				24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */,
+				24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
+				24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */,
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,

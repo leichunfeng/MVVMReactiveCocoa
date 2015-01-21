@@ -8,6 +8,7 @@
 
 #import "OCTRepository+MRCPersistence.h"
 
+static void *OCTRepositoryKey = &OCTRepositoryKey;
 static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 
 @implementation OCTRepository (Persistence)
@@ -24,6 +25,15 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
     NSString *persistenceDirectory = [self isStarred] ? [self.class persistenceDirectoryOfStarred] : [self.class persistenceDirectoryOfOwned];
     NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.name, self.ownerLogin];
     return [NSKeyedArchiver archiveRootObject:self toFile:path];
+}
+
+- (void)delete {
+    NSString *persistenceDirectory = [self isStarred] ? [self.class persistenceDirectoryOfStarred] : [self.class persistenceDirectoryOfOwned];
+    NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.name, self.ownerLogin];
+   
+    NSError *error = nil;
+    [NSFileManager.defaultManager removeItemAtPath:path error:&error];
+    if (error) NSLog(@"Error: %@", error);
 }
 
 + (NSString *)persistenceDirectoryOfOwned {
@@ -91,6 +101,55 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 + (OCTRepository *)fetchRepositoryWithUniqueName:(NSString *)uniqueName isStarred:(BOOL)isStarred {
     NSString *persistenceDirectory = isStarred ? [self.class persistenceDirectoryOfStarred] : [self.class persistenceDirectoryOfOwned];
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[persistenceDirectory stringByAppendingPathComponent:uniqueName]];
+}
+
++ (RACSignal *)updateLocalDataWithRemoteUserRepos:(NSArray *)remoteUserRepos {
+    @weakify(self)
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
+        [[self.class
+          	fetchUserRepositories]
+         	subscribeNext:^(NSArray *localUserRepos) {
+                if (localUserRepos.count == 0) {
+                    [remoteUserRepos.rac_sequence.signal subscribeNext:^(OCTRepository *repository) {
+                        [repository save];
+                    } completed:^{
+                        [subscriber sendNext:@YES];
+                        [subscriber sendCompleted];
+                    }];
+                } else {
+                    NSArray *localObjectIDs = [localUserRepos.rac_sequence map:^id(OCTRepository *repository) {
+                        objc_setAssociatedObject(repository.objectID, OCTRepositoryKey, repository, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                        return repository.objectID;
+                    }].array;
+                    NSArray *remoteObjectIDs = [remoteUserRepos.rac_sequence map:^id(OCTRepository *repository) {
+                        objc_setAssociatedObject(repository.objectID, OCTRepositoryKey, repository, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                        return repository.objectID;
+                    }].array;
+                    NSArray *unionofObjectIDs = [NSSet setWithArray:[@[ localObjectIDs.rac_sequence, remoteObjectIDs.rac_sequence ].rac_sequence flatten].array].rac_sequence.array;
+                    
+                    [unionofObjectIDs.rac_sequence.signal subscribeNext:^(NSString *objectID) {
+                        BOOL localContains  = [localObjectIDs containsObject:objectID];
+                        BOOL remoteContains = [remoteObjectIDs containsObject:objectID];
+                        
+                        if (localContains && !remoteContains) { // delete
+                            [objc_getAssociatedObject(objectID, OCTRepositoryKey) delete];
+                        } else if (!localContains && remoteContains) { // save
+                            [objc_getAssociatedObject(objectID, OCTRepositoryKey) save];
+                        } else if (localContains && remoteContains) { // update
+                            OCTRepository *localRepository = objc_getAssociatedObject([localObjectIDs objectAtIndex:[localObjectIDs indexOfObject:objectID]], OCTRepositoryKey);
+                            OCTRepository *remoteRepository = objc_getAssociatedObject([remoteObjectIDs objectAtIndex:[remoteObjectIDs indexOfObject:objectID]], OCTRepositoryKey);
+                            [localRepository mergeValuesForKeysFromModel:remoteRepository];
+                            [localRepository save];
+                        }
+                    } completed:^{
+                        [subscriber sendNext:@YES];
+                        [subscriber sendCompleted];
+                    }];
+                }
+        	}];
+        return nil;
+    }];
 }
 
 @end
