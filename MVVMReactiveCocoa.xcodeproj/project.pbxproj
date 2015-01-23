@@ -56,6 +56,10 @@
 		249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */; };
 		249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */; };
 		249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F35011A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib */; };
+		249F35091A72A22E008F1C2A /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249F35081A72A22E008F1C2A /* ReactiveCocoa.framework */; };
+		249F350B1A72A23B008F1C2A /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249F350A1A72A23B008F1C2A /* Mantle.framework */; };
+		249F350D1A72A240008F1C2A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249F350C1A72A240008F1C2A /* AFNetworking.framework */; };
+		249F350F1A72A244008F1C2A /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249F350E1A72A244008F1C2A /* ISO8601DateFormatter.framework */; };
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
@@ -188,6 +192,10 @@
 		249F34FF1A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoViewCodeTableViewCell.h; sourceTree = "<group>"; };
 		249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoViewCodeTableViewCell.m; sourceTree = "<group>"; };
 		249F35011A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoViewCodeTableViewCell.xib; sourceTree = "<group>"; };
+		249F35081A72A22E008F1C2A /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = "OctoKit/Carthage/Checkouts/ReactiveCocoa/build/Release-iphoneos/ReactiveCocoa.framework"; sourceTree = "<group>"; };
+		249F350A1A72A23B008F1C2A /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mantle.framework; path = "OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos/Mantle.framework"; sourceTree = "<group>"; };
+		249F350C1A72A240008F1C2A /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "OctoKit/External/OctoKitDependencies/build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
+		249F350E1A72A244008F1C2A /* ISO8601DateFormatter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601DateFormatter.framework; path = "OctoKit/External/OctoKitDependencies/build/Debug-iphoneos/ISO8601DateFormatter.framework"; sourceTree = "<group>"; };
 		24B4DA121A66B97900DDFA6C /* MRCReposTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposTableViewCell.h; sourceTree = "<group>"; };
 		24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposTableViewCell.m; sourceTree = "<group>"; };
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
@@ -229,6 +237,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				24E1D5631A6D082C00755144 /* OctoKit.framework in Frameworks */,
+				249F35091A72A22E008F1C2A /* ReactiveCocoa.framework in Frameworks */,
+				249F350B1A72A23B008F1C2A /* Mantle.framework in Frameworks */,
+				249F350D1A72A240008F1C2A /* AFNetworking.framework in Frameworks */,
+				249F350F1A72A244008F1C2A /* ISO8601DateFormatter.framework in Frameworks */,
 				17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +528,10 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				249F350E1A72A244008F1C2A /* ISO8601DateFormatter.framework */,
+				249F350C1A72A240008F1C2A /* AFNetworking.framework */,
+				249F350A1A72A23B008F1C2A /* Mantle.framework */,
+				249F35081A72A22E008F1C2A /* ReactiveCocoa.framework */,
 				241545D91A67F3F4007AFD5B /* Foundation.framework */,
 				241545D71A67F3EF007AFD5B /* UIKit.framework */,
 				241545D51A67F3CF007AFD5B /* CoreGraphics.framework */,
@@ -864,6 +880,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
+					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/ReactiveCocoa/build/Release-iphoneos",
+					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/OctoKit/External/OctoKitDependencies/build/Debug-iphoneos",
 				);
 				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -892,6 +911,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
+					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/ReactiveCocoa/build/Release-iphoneos",
+					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/OctoKit/External/OctoKitDependencies/build/Debug-iphoneos",
 				);
 				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
