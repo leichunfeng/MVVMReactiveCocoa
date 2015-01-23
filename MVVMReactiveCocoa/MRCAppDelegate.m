@@ -68,6 +68,7 @@
 - (void)configureAppearance {
     UINavigationBar.appearance.barTintColor = HexRGB(0x576871);
     UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
+    UITableView.appearance.backgroundColor = HexRGB(0xf8f8f8);
 }
 
 - (void)configureKeyboardManager {
