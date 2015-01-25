@@ -8,6 +8,13 @@
 
 #import "MRCRepoReadMeTableViewCell.h"
 
+@interface MRCRepoReadMeTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIView *wapperView;
+@property (weak, nonatomic) IBOutlet UIView *readMeWapperView;
+
+@end
+
 @implementation MRCRepoReadMeTableViewCell
 
 - (void)awakeFromNib {
@@ -22,8 +29,16 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.separatorView1 addTopBorderWithHeight:0.5 andColor:HexRGB(0xd2d2d2)];
-    [self.separatorView2 addTopBorderWithHeight:0.5 andColor:HexRGB(0xd2d2d2)];
+    
+    self.wapperView.layer.borderColor  = HexRGB(colorB2).CGColor;
+    self.wapperView.layer.borderWidth  = 0.5;
+    self.wapperView.layer.cornerRadius = 3;
+    
+    [self.readMeWapperView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self.readMeButton addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    
+    [self.separatorView1 addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self.separatorView2 addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
 }
 
 @end
