@@ -40,7 +40,8 @@ static MRCRouter *_sharedInstance = nil;
     return @{
     	@"MRCLoginViewModel": @"MRCLoginViewController",
         @"MRCHomepageViewModel": @"MRCHomepageViewController",
-        @"MRCRepoDetailViewModel": @"MRCRepoDetailViewController"
+        @"MRCRepoDetailViewModel": @"MRCRepoDetailViewController",
+        @"MRCWebViewModel": @"MRCWebViewController"
     };
 }
 

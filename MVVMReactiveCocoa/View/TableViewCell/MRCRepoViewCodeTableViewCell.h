@@ -11,6 +11,5 @@
 @interface MRCRepoViewCodeTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *viewCodeButton;
-@property (weak, nonatomic) IBOutlet UIView *separatorView;
 
 @end

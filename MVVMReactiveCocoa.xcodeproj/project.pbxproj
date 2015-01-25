@@ -49,6 +49,9 @@
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
 		24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
+		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
+		249674331A73F5490032771B /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249674311A73F5490032771B /* MRCWebViewController.xib */; };
+		249674361A73F5650032771B /* MRCWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674351A73F5650032771B /* MRCWebViewModel.m */; };
 		249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34F71A72A197008F1C2A /* UIView+Borders.m */; };
 		249F35021A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34FA1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m */; };
 		249F35031A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FB1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib */; };
@@ -177,6 +180,11 @@
 		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
 		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
+		2496742F1A73F5490032771B /* MRCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewController.h; sourceTree = "<group>"; };
+		249674301A73F5490032771B /* MRCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCWebViewController.m; sourceTree = "<group>"; };
+		249674311A73F5490032771B /* MRCWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCWebViewController.xib; sourceTree = "<group>"; };
+		249674341A73F5650032771B /* MRCWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewModel.h; sourceTree = "<group>"; };
+		249674351A73F5650032771B /* MRCWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCWebViewModel.m; sourceTree = "<group>"; };
 		249F34F61A72A197008F1C2A /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
 		249F34F71A72A197008F1C2A /* UIView+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Borders.m"; sourceTree = "<group>"; };
 		249F34F91A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadMeTableViewCell.h; sourceTree = "<group>"; };
@@ -332,6 +340,9 @@
 				240D00E71A654D300033CC86 /* MRCViewProtocol.h */,
 				24DF45831A6BF04B00F23474 /* MRCSegmentedControlController.h */,
 				24DF45841A6BF04B00F23474 /* MRCSegmentedControlController.m */,
+				2496742F1A73F5490032771B /* MRCWebViewController.h */,
+				249674301A73F5490032771B /* MRCWebViewController.m */,
+				249674311A73F5490032771B /* MRCWebViewController.xib */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -408,6 +419,8 @@
 				240D01141A654D300033CC86 /* MRCViewModelServicesImpl.m */,
 				24DF45801A6BF01A00F23474 /* MRCSegmentedControlViewModel.h */,
 				24DF45811A6BF01A00F23474 /* MRCSegmentedControlViewModel.m */,
+				249674341A73F5650032771B /* MRCWebViewModel.h */,
+				249674351A73F5650032771B /* MRCWebViewModel.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -622,6 +635,7 @@
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
+				249674331A73F5490032771B /* MRCWebViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
@@ -726,12 +740,14 @@
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
+				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
 				24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */,
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
+				249674361A73F5650032771B /* MRCWebViewModel.m in Sources */,
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,

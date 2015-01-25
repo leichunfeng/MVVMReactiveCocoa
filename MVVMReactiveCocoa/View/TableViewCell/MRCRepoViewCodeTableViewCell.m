@@ -8,21 +8,23 @@
 
 #import "MRCRepoViewCodeTableViewCell.h"
 
+@interface MRCRepoViewCodeTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIView *wapperView;
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
+
+@end
+
 @implementation MRCRepoViewCodeTableViewCell
-
-- (void)awakeFromNib {
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.separatorView addTopBorderWithHeight:0.5 andColor:HexRGB(0xd2d2d2)];
+    
+    self.wapperView.layer.borderColor  = HexRGB(colorB2).CGColor;
+    self.wapperView.layer.borderWidth  = 0.5;
+    self.wapperView.layer.cornerRadius = 3;
+    
+    [self.separatorView addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
 }
 
 @end
