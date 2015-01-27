@@ -10,16 +10,22 @@
 
 @interface MRCRepoDetailViewModel ()
 
-@property (strong, nonatomic) OCTRepository *repository;
+@property (strong, nonatomic, readwrite) OCTRepository *repository;
 
 @end
 
 @implementation MRCRepoDetailViewModel
 
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+    self = [super initWithServices:services params:params];
+    if (self) {
+        self.repository = self.params[@"repository"];
+    }
+    return self;
+}
+
 - (void)initialize {
     [super initialize];
-    
-    self.repository = self.params[@"repository"];
     
     if (self.repository.isStarred) {
         self.title = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];

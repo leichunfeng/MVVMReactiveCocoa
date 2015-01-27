@@ -19,17 +19,7 @@
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         NSDictionary *params = @{ @"repository": [self.dataSource[indexPath.section][indexPath.row] repository] };
-        
-        [[self.services.client fetchRepositoryReadme:[self.dataSource[indexPath.section][indexPath.row] repository]] subscribeNext:^(OCTFileContent *fileContent) {
-            NSData *data = [[NSData alloc] initWithBase64EncodedString:fileContent.content options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"content: %@", content);
-        } error:^(NSError *error) {
-            
-        } completed:^{
-            
-        }];
-        
+
         MRCRepoDetailViewModel *detailViewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services params:params];
         [self.services pushViewModel:detailViewModel animated:YES];
         

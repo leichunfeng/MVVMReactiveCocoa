@@ -10,4 +10,6 @@
 
 @interface MRCRepoDetailViewModel : MRCTableViewModel
 
+@property (strong, nonatomic, readonly) OCTRepository *repository;
+
 @end

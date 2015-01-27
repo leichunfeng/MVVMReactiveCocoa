@@ -12,6 +12,7 @@
 #import "MRCRepoReadMeTableViewCell.h"
 #import "MRCRepoDetailViewModel.h"
 #import "MRCWebViewModel.h"
+#import "MRCRepoReadMeViewModel.h"
 
 @interface MRCRepoDetailViewController ()
 
@@ -86,8 +87,9 @@
         @weakify(self)
         cell.readMeButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self)
-            MRCWebViewModel *webViewModel = [[MRCWebViewModel alloc] initWithServices:self.viewModel.services params:nil];
-            [self.viewModel.services pushViewModel:webViewModel animated:YES];
+            MRCRepoReadMeViewModel *readMeViewModel = [[MRCRepoReadMeViewModel alloc] initWithServices:self.viewModel.services
+                                                                                                params:@{@"repository": self.viewModel.repository}];
+            [self.viewModel.services pushViewModel:readMeViewModel animated:YES];
             return [RACSignal empty];
         }];
         return cell;
