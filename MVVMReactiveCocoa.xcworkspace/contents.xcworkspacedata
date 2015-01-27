@@ -17,6 +17,9 @@
       location = "group:OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:MMMarkdown/MMMarkdown.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

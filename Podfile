@@ -11,6 +11,7 @@ pod 'Reveal-iOS-SDK', '~> 1.0.7'
 pod 'REMenu', '~> 1.10'
 pod 'FontAwesomeKit', '~> 2.1.0'
 pod 'SVPullToRefresh'
+pod 'DTCoreText', '~> 1.6.14'
 #pod 'OcticonsIOS', '~> 0.0.2'
 #pod 'FontAwesome+iOS', '~> 0.1.4'
 

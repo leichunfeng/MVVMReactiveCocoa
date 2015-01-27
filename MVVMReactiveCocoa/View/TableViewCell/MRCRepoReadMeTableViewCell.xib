@@ -31,14 +31,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y9d-0u-H6K">
-                                <rect key="frame" x="12" y="100" width="320" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnQ-DD-QIt">
-                                <rect key="frame" x="12" y="231" width="320" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfn-Fr-HRL">
                                 <rect key="frame" x="0.0" y="262" width="345" height="40"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -46,6 +38,12 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPE-UY-Fbv">
+                                <rect key="frame" x="8" y="48" width="329" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -55,8 +53,6 @@
                 <outlet property="readMeButton" destination="Kfn-Fr-HRL" id="lBA-xw-pWi"/>
                 <outlet property="readMeImageView" destination="6ju-sd-Jzv" id="jne-tm-iY5"/>
                 <outlet property="readMeWapperView" destination="QeC-z6-8Iy" id="Kn0-oK-Yui"/>
-                <outlet property="separatorView1" destination="Y9d-0u-H6K" id="TGq-5i-GTN"/>
-                <outlet property="separatorView2" destination="xnQ-DD-QIt" id="pcL-Jj-BzF"/>
                 <outlet property="wapperView" destination="vCf-DD-dZZ" id="2iA-aX-nkR"/>
             </connections>
             <point key="canvasLocation" x="332.5" y="183"/>

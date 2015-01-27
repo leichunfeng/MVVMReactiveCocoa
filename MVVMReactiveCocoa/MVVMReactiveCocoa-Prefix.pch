@@ -35,6 +35,8 @@
 	#import "SVPullToRefresh.h"
 	#import "CBStoreHouseRefreshControl.h"
 	#import "UIView+Borders.h"
+	#import <MMMarkdown/MMMarkdown.h>
+	#import "DTCoreText.h"
 #endif
 
 #endif

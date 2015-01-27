@@ -1,5 +1,16 @@
 PODS:
   - CBStoreHouseRefreshControl (1.0)
+  - DTCoreText (1.6.14):
+    - DTFoundation/Core (~> 1.7.1)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.1)
+    - DTFoundation/DTHTMLParser (~> 1.7.1)
+    - DTFoundation/UIKit (~> 1.7.1)
+  - DTFoundation/Core (1.7.4)
+  - DTFoundation/DTAnimatedGIF (1.7.4)
+  - DTFoundation/DTHTMLParser (1.7.4):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.4):
+    - DTFoundation/Core
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core (= 2.1.8)
     - FontAwesomeKit/FontAwesome (= 2.1.8)
@@ -28,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - CBStoreHouseRefreshControl (from `git@github.com:coolbeet/CBStoreHouseRefreshControl.git`, commit `0bec93d`)
+  - DTCoreText (~> 1.6.14)
   - FontAwesomeKit (~> 2.1.0)
   - IQKeyboardManager
   - MBProgressHUD (~> 0.9)
@@ -56,6 +68,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CBStoreHouseRefreshControl: 0a3312cced4637d20d487df5fb314629a5044c58
+  DTCoreText: 1fc0aadfa238d14c6cc56035af4e2b76b958e3b1
+  DTFoundation: 721a63964fb9acd64cb8c9d3d1642ee60bac3d6a
   FontAwesomeKit: a2edea3111dab107b4cc43b85881b404eb063385
   IQKeyboardManager: e0b33a5d821ab36ec47ce8ca9dc520030d6aac52
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8

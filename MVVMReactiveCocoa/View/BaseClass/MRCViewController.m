@@ -40,7 +40,7 @@
 }
 
 - (void)bindViewModel {
-    self.title = self.viewModel.title;
+    RAC(self, title) = RACObserve(self.viewModel, title);
 }
 
 @end
