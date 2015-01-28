@@ -66,11 +66,6 @@
 
 - (void)setAttributes:(NSDictionary *)attrs;
 {
-    if (!attrs[NSFontAttributeName]) {
-        NSMutableDictionary *mutableAttrs = [attrs mutableCopy];
-        mutableAttrs[NSFontAttributeName] = self.iconFont;
-        attrs = [mutableAttrs copy];
-    }
     [self.mutableAttributedString setAttributes:attrs range:[self rangeForMutableAttributedText]] ;
 }
 
@@ -118,7 +113,11 @@
 	// ---------- begin context ----------
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
-    [self fillBackgroundForContext:context backgroundSize:imageSize];
+    UIColor *backgroundColor = self.drawingBackgroundColor;
+	if (backgroundColor) {
+		[backgroundColor setFill];
+		CGContextFillRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
+	}
     
     [self.mutableAttributedString drawInRect:[self drawingRectWithImageSize:imageSize]];	
 	UIImage *iconImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -127,14 +126,6 @@
 	UIGraphicsEndImageContext();
 	
 	return iconImage;
-}
-
-- (void)fillBackgroundForContext:(CGContextRef)context backgroundSize:(CGSize)size
-{
-    if (self.drawingBackgroundColor) {
-		[self.drawingBackgroundColor setFill];
-		CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
-	}
 }
 
 // Calculate the correct drawing position
@@ -149,31 +140,3 @@
 }
 
 @end
-
-#pragma mark - Stacked Icons
-
-@implementation UIImage (FAKAddon)
-
-+ (UIImage *)imageWithStackedIcons:(NSArray *)icons imageSize:(CGSize)imageSize
-{
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
-	
-	// ---------- begin context ----------
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    for (FAKIcon *icon in icons) {
-        NSAssert([icon isKindOfClass:[FAKIcon class]], @"You can only stack FAKIcon derived objects.");
-        [icon fillBackgroundForContext:context backgroundSize:imageSize];
-        [icon.mutableAttributedString drawInRect:[icon drawingRectWithImageSize:imageSize]];
-    }
-    
-	UIImage *iconImage = UIGraphicsGetImageFromCurrentImageContext();
-	
-	// ---------- end context ----------
-	UIGraphicsEndImageContext();
-	
-	return iconImage;
-}
-
-@end
-
