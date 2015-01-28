@@ -7,6 +7,7 @@
 //
 
 #import "MRCRepoReadMeViewModel.h"
+#import "MRCRepositoryService.h"
 
 @interface MRCRepoReadMeViewModel ()
 
@@ -28,23 +29,13 @@
     [super initialize];
     
     @weakify(self)
-    [[self.services.client
-      	fetchRepositoryReadme:self.repository]
-     	subscribeNext:^(OCTFileContent *fileContent) {
+    [[[self.services getRepositoryService]
+     	requestRepositoryReadmeRenderedHTML:self.repository]
+    	subscribeNext:^(NSString *htmlString) {
             @strongify(self)
-            
-            self.title = fileContent.name;
-            
-            NSData *data = [[NSData alloc] initWithBase64EncodedString:fileContent.content options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            NSString *markdown = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            
-            NSError *error = nil;
-//            NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:markdown error:&error];
-//            NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:markdown extensions:MMMarkdownExtensionsGitHubFlavored error:&error];
-            NSString *htmlString = [MMMarkdown HTMLStringWithMarkdown:markdown extensions:MMMarkdownExtensionsGitHubFlavored error:&error];
-            
+            self.title = @"";
             self.attributedString = [self attributedStringFromHTMLString:htmlString];
-    	}];
+        }];
 }
 
 - (NSAttributedString *)attributedStringFromHTMLString:(NSString *)htmlString {

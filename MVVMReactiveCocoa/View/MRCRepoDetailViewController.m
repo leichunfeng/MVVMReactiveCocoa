@@ -13,10 +13,12 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCWebViewModel.h"
 #import "MRCRepoReadMeViewModel.h"
+#import "MRCRepositoryService.h"
 
 @interface MRCRepoDetailViewController ()
 
 @property (strong, nonatomic, readonly) MRCRepoDetailViewModel *viewModel;
+@property (strong, nonatomic) NSAttributedString *attributedString;
 
 @end
 
@@ -33,8 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoStatisticsTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"MRCRepoStatisticsTableViewCell"];
@@ -42,6 +46,38 @@
          forCellReuseIdentifier:@"MRCRepoViewCodeTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoReadMeTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"MRCRepoReadMeTableViewCell"];
+    
+    @weakify(self)
+    [[[self.viewModel.services getRepositoryService]
+      	requestRepositoryReadmeRenderedHTML:self.viewModel.repository]
+     	subscribeNext:^(NSString *htmlString) {
+    		@strongify(self)
+         	self.attributedString = [self attributedStringFromHTMLString:htmlString];
+            [self.tableView reloadData];
+     	}];
+}
+
+- (NSAttributedString *)attributedStringFromHTMLString:(NSString *)htmlString {
+    NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // example for setting a willFlushCallback, that gets called before elements are written to the generated attributed string
+    void (^callBackBlock)(DTHTMLElement *element) = ^(DTHTMLElement *element) {
+        // the block is being called for an entire paragraph, so we check the individual elements
+        for (DTHTMLElement *oneChildElement in element.childNodes) {
+            // if an element is larger than twice the font size put it in it's own block
+            if (oneChildElement.displayStyle == DTHTMLElementDisplayStyleInline && oneChildElement.textAttachment.displaySize.height > 2.0 * oneChildElement.fontDescriptor.pointSize) {
+                oneChildElement.displayStyle = DTHTMLElementDisplayStyleBlock;
+                oneChildElement.paragraphStyle.minimumLineHeight = element.textAttachment.displaySize.height;
+                oneChildElement.paragraphStyle.maximumLineHeight = element.textAttachment.displaySize.height;
+            }
+        }
+    };
+    
+    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@1, NSTextSizeMultiplierDocumentOption, @"Times New Roman", DTDefaultFontFamily, @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, @17, DTDefaultFontSize, nil];
+    
+    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
+    
+    return string;
 }
 
 #pragma mark - UITableViewDataSource
@@ -84,6 +120,10 @@
         MRCRepoReadMeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoReadMeTableViewCell" forIndexPath:indexPath];
         cell.readMeImageView.image = [UIImage octicon_imageWithIdentifier:@"Book" size:CGSizeMake(22, 22)];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.contentLabel.text = @"jfjdslfjdslfjsdlfjdksljfjdslfkdsjfldsjflsdfjklsdfjskldfjskldfjskldfjksldfjksldfjklsfjlskdfjksldfnsldfnslkdfnsdklfnslkdfnsdklfnslkdfnsklnfklsnfksndfklsndflksdnfklsnfeoijfioehfuohkkfdsklfdjsklfjdsklfsdjklfjslkdfjlskafjklasnflkdsnk";
+        cell.contentLabel.numberOfLines = 0;
+        cell.contentLabel.attributedString = self.attributedString;
+        [cell.contentLabel sizeToFit];
         @weakify(self)
         cell.readMeButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self)
@@ -108,7 +148,7 @@
         case 2:
             return 77;
         case 3:
-            return 302;
+            return UITableViewAutomaticDimension;
         default:
             return 44;
     }

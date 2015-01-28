@@ -71,6 +71,7 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
+		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
 		24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45611A6B8BA500F23474 /* MRCRepoDetailViewController.m */; };
 		24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DF45621A6B8BA500F23474 /* MRCRepoDetailViewController.xib */; };
 		24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45661A6B8BC800F23474 /* MRCRepoDetailViewModel.m */; };
@@ -86,6 +87,7 @@
 		24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458C1A6BF6EC00F23474 /* MRCReposViewModel.m */; };
 		24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */; };
 		24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */; };
+		55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +233,9 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
+		24D32F091A77C716008E3994 /* MRCRepositoryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryService.h; sourceTree = "<group>"; };
+		24D32F0A1A77C879008E3994 /* MRCRepositoryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryServiceImpl.h; sourceTree = "<group>"; };
+		24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoryServiceImpl.m; sourceTree = "<group>"; };
 		24DF45601A6B8BA500F23474 /* MRCRepoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoDetailViewController.h; sourceTree = "<group>"; };
 		24DF45611A6B8BA500F23474 /* MRCRepoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoDetailViewController.m; sourceTree = "<group>"; };
 		24DF45621A6B8BA500F23474 /* MRCRepoDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoDetailViewController.xib; sourceTree = "<group>"; };
@@ -280,6 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +302,9 @@
 				240D00D01A654D300033CC86 /* OCTUser+MRCPersistence.m */,
 				24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */,
 				24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */,
+				24D32F091A77C716008E3994 /* MRCRepositoryService.h */,
+				24D32F0A1A77C879008E3994 /* MRCRepositoryServiceImpl.h */,
+				24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -620,9 +629,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 242D4FFB1A64B6FA0026ABC6 /* Build configuration list for PBXNativeTarget "MVVMReactiveCocoaTests" */;
 			buildPhases = (
+				EA9395FC63FCE26D7B991597 /* Check Pods Manifest.lock */,
 				242D4FEA1A64B6FA0026ABC6 /* Sources */,
 				242D4FEB1A64B6FA0026ABC6 /* Frameworks */,
 				242D4FEC1A64B6FA0026ABC6 /* Resources */,
+				711F146F5514DA4E99DDFB00 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -724,6 +735,21 @@
 			shellPath = /bin/sh;
 			shellScript = "REV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
+		711F146F5514DA4E99DDFB00 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		94BC7850225D73433B852981 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -740,6 +766,21 @@
 			showEnvVarsInLog = 0;
 		};
 		BC079E67AC28819FE0EC438A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA9395FC63FCE26D7B991597 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -797,6 +838,7 @@
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
 				24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */,
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
+				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
 				249674361A73F5650032771B /* MRCWebViewModel.m in Sources */,
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
@@ -1000,12 +1042,15 @@
 		};
 		242D4FFC1A64B6FA0026ABC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
 				);
+				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1019,12 +1064,15 @@
 		};
 		242D4FFD1A64B6FA0026ABC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
 				);
+				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				INFOPLIST_FILE = MVVMReactiveCocoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

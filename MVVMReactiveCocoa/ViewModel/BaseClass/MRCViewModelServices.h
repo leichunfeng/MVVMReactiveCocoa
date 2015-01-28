@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "MRCNavigationProtocol.h"
 
+@protocol MRCRepositoryService;
+
 @protocol MRCViewModelServices <NSObject, MRCNavigationProtocol>
 
 @required
 
 // A reference to OCTClient instance.
 @property (strong, nonatomic) OCTClient *client;
+
+- (id<MRCRepositoryService>)getRepositoryService;
 
 @end

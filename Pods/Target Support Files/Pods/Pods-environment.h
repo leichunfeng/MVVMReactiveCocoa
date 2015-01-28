@@ -46,37 +46,37 @@
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit 1
-#define COCOAPODS_VERSION_PATCH_FontAwesomeKit 8
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit 0
 
 // FontAwesomeKit/Core
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit_Core
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_Core 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Core 1
-#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Core 8
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Core 0
 
 // FontAwesomeKit/FontAwesome
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit_FontAwesome
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_FontAwesome 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_FontAwesome 1
-#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_FontAwesome 8
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_FontAwesome 0
 
 // FontAwesomeKit/FoundationIcons
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit_FoundationIcons
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_FoundationIcons 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_FoundationIcons 1
-#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_FoundationIcons 8
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_FoundationIcons 0
 
 // FontAwesomeKit/IonIcons
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit_IonIcons
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_IonIcons 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_IonIcons 1
-#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_IonIcons 8
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_IonIcons 0
 
 // FontAwesomeKit/Zocial
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit_Zocial
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Zocial 1
-#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 8
+#define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 0
 
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
@@ -91,6 +91,12 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
+// MKNetworkKit
+#define COCOAPODS_POD_AVAILABLE_MKNetworkKit
+#define COCOAPODS_VERSION_MAJOR_MKNetworkKit 0
+#define COCOAPODS_VERSION_MINOR_MKNetworkKit 87
+#define COCOAPODS_VERSION_PATCH_MKNetworkKit 0
+
 // OcticonsIOS
 #define COCOAPODS_POD_AVAILABLE_OcticonsIOS
 #define COCOAPODS_VERSION_MAJOR_OcticonsIOS 0
@@ -102,6 +108,12 @@
 #define COCOAPODS_VERSION_MAJOR_REMenu 1
 #define COCOAPODS_VERSION_MINOR_REMenu 10
 #define COCOAPODS_VERSION_PATCH_REMenu 0
+
+// Reachability
+#define COCOAPODS_POD_AVAILABLE_Reachability
+#define COCOAPODS_VERSION_MAJOR_Reachability 3
+#define COCOAPODS_VERSION_MINOR_Reachability 1
+#define COCOAPODS_VERSION_PATCH_Reachability 1
 
 // Reveal-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Reveal_iOS_SDK

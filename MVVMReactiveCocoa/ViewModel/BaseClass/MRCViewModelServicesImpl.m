@@ -7,8 +7,11 @@
 //
 
 #import "MRCViewModelServicesImpl.h"
+#import "MRCRepositoryServiceImpl.h"
 
 @interface MRCViewModelServicesImpl ()
+
+@property (strong, nonatomic) MRCRepositoryServiceImpl *repositoryService;
 
 @end
 
@@ -19,7 +22,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-    
+        _repositoryService = [MRCRepositoryServiceImpl new];
     }
     return self;
 }
@@ -35,5 +38,9 @@
 - (void)dismissViewModelAnimated:(BOOL)animated completion:(VoidBlock)completion {}
 
 - (void)resetRootViewModel:(id<MRCViewModelProtocol>)viewModel {}
+
+- (id<MRCRepositoryService>)getRepositoryService {
+    return self.repositoryService;
+}
 
 @end

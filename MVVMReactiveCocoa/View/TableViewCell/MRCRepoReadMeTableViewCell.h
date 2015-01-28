@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *separatorView1;
 @property (weak, nonatomic) IBOutlet UIView *separatorView2;
 @property (weak, nonatomic) IBOutlet UIButton *readMeButton;
+@property (weak, nonatomic) IBOutlet DTAttributedLabel *contentLabel;
 
 @end
