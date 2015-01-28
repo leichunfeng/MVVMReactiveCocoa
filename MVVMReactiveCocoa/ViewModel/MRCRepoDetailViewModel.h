@@ -11,5 +11,6 @@
 @interface MRCRepoDetailViewModel : MRCTableViewModel
 
 @property (strong, nonatomic, readonly) OCTRepository *repository;
+@property (strong, nonatomic) NSAttributedString *readmeAttributedString;
 
 @end

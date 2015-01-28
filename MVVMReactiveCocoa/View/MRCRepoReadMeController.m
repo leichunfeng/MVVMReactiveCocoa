@@ -18,13 +18,9 @@
 
 @implementation MRCRepoReadMeController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 - (void)bindViewModel {
     [super bindViewModel];
-    RAC(self.textView, attributedString) = RACObserve(self.viewModel, attributedString);
+    RAC(self.textView, attributedString) = RACObserve(self.viewModel, readmeAttributedString);
 }
 
 @end

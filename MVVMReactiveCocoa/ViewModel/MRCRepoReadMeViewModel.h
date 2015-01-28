@@ -10,6 +10,6 @@
 
 @interface MRCRepoReadMeViewModel : MRCViewModel
 
-@property (strong, nonatomic) NSAttributedString *attributedString;
+@property (strong, nonatomic) NSAttributedString *readmeAttributedString;
 
 @end
