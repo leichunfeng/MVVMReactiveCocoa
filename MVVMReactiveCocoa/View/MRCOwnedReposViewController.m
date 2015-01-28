@@ -31,6 +31,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCReposTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCReposTableViewCell"];
+    cell.descriptionLabel.numberOfLines = 3;
     [cell bindViewModel:self.viewModel.dataSource[indexPath.section][indexPath.row]];
     return cell;
 }

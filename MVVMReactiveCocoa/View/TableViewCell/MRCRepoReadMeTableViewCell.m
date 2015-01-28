@@ -10,6 +10,7 @@
 
 @interface MRCRepoReadMeTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *readMeImageView;
 @property (weak, nonatomic) IBOutlet UIView *wapperView;
 @property (weak, nonatomic) IBOutlet UIView *readMeWapperView;
 
@@ -18,17 +19,13 @@
 @implementation MRCRepoReadMeTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.readMeImageView.image = [UIImage octicon_imageWithIdentifier:@"Book" size:CGSizeMake(22, 22)];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    self.wapperView.frame = CGRectMake(15, 0, CGRectGetWidth(self.contentView.frame) - 15*2, CGRectGetHeight(self.contentView.frame));
     
     self.wapperView.layer.borderColor  = HexRGB(colorB2).CGColor;
     self.wapperView.layer.borderWidth  = 0.5;
@@ -36,9 +33,6 @@
     
     [self.readMeWapperView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
     [self.readMeButton addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
-    
-    [self.separatorView1 addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
-    [self.separatorView2 addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
 }
 
 @end

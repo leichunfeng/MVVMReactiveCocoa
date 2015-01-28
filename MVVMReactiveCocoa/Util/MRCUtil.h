@@ -21,6 +21,8 @@
 
 - (NSString *)firstLetter;
 
+- (NSAttributedString *)HTMLString2AttributedString;
+
 @end
 
 @interface UIColor (Util)

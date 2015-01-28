@@ -33,4 +33,6 @@
 
 + (RACSignal *)updateLocalDataWithRemoteUserRepos:(NSArray *)remoteUserRepos;
 
++ (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
+
 @end

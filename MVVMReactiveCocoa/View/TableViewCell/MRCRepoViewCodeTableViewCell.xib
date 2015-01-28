@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,37 +14,63 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YTY-Zs-mVC">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTY-Zs-mVC">
                         <rect key="frame" x="15" y="0.0" width="345" height="77"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trq-l6-ELl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated 5 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An2-54-i8b">
+                                <rect key="frame" x="15" y="0.0" width="315" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Le5-px-BxP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trq-l6-ELl">
                                 <rect key="frame" x="0.0" y="37" width="345" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="W7h-ho-8c3"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MP8-ee-By3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MP8-ee-By3">
                                 <rect key="frame" x="0.0" y="37" width="345" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fg6-1a-lrj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="View Code">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Updated 5 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An2-54-i8b">
-                                <rect key="frame" x="15" y="0.0" width="315" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="trq-l6-ELl" firstAttribute="top" secondItem="An2-54-i8b" secondAttribute="bottom" id="8hl-wr-u5q"/>
+                            <constraint firstItem="An2-54-i8b" firstAttribute="top" secondItem="YTY-Zs-mVC" secondAttribute="top" id="Bas-9G-ujM"/>
+                            <constraint firstAttribute="trailing" secondItem="trq-l6-ELl" secondAttribute="trailing" id="GuY-ms-IgB"/>
+                            <constraint firstItem="trq-l6-ELl" firstAttribute="leading" secondItem="YTY-Zs-mVC" secondAttribute="leading" id="R35-NH-wGv"/>
+                            <constraint firstAttribute="bottom" secondItem="MP8-ee-By3" secondAttribute="bottom" id="V7E-bH-gE2"/>
+                            <constraint firstAttribute="trailing" secondItem="MP8-ee-By3" secondAttribute="trailing" id="fRJ-25-1L6"/>
+                            <constraint firstItem="An2-54-i8b" firstAttribute="leading" secondItem="YTY-Zs-mVC" secondAttribute="leading" constant="15" id="lIT-4J-yh7"/>
+                            <constraint firstAttribute="trailing" secondItem="An2-54-i8b" secondAttribute="trailing" constant="15" id="rOh-Ev-NNe"/>
+                            <constraint firstItem="MP8-ee-By3" firstAttribute="leading" secondItem="YTY-Zs-mVC" secondAttribute="leading" id="xfL-mH-nBh"/>
+                        </constraints>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="YTY-Zs-mVC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Qgp-bf-hk1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YTY-Zs-mVC" secondAttribute="trailing" constant="7" id="aUi-0L-Ogx"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YTY-Zs-mVC" secondAttribute="bottom" constant="-8" id="oMQ-12-k39"/>
+                    <constraint firstItem="YTY-Zs-mVC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="sZ0-FW-WLJ"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="separatorView" destination="trq-l6-ELl" id="olJ-xY-Wcl"/>
                 <outlet property="viewCodeButton" destination="MP8-ee-By3" id="gZa-bP-Ni6"/>
                 <outlet property="wapperView" destination="YTY-Zs-mVC" id="RcI-kG-bc6"/>
             </connections>
-            <point key="canvasLocation" x="219" y="795"/>
+            <point key="canvasLocation" x="152.5" y="750.5"/>
         </tableViewCell>
     </objects>
 </document>

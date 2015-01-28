@@ -10,14 +10,10 @@
 
 @implementation MRCRepoStatisticsTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
 }
 
 @end

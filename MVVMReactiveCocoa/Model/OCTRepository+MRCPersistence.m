@@ -152,4 +152,11 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
     }];
 }
 
++ (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner {
+    BOOL isStarred = ![owner isEqualToString:[OCTUser currentUser].rawLogin];
+    NSString *uniqueName = [NSString stringWithFormat:@"%@&%@", name, owner];
+    OCTRepository *repository = [self fetchRepositoryWithUniqueName:uniqueName isStarred:isStarred];
+    return [RACSignal return:repository];
+}
+
 @end
