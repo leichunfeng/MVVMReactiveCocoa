@@ -1,5 +1,5 @@
 //
-//  MRCRepoReadMeController.h
+//  MRCRepoReadmeController.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/26.
@@ -8,6 +8,6 @@
 
 #import "MRCViewController.h"
 
-@interface MRCRepoReadMeController : MRCViewController
+@interface MRCRepoReadmeController : MRCViewController
 
 @end

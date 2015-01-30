@@ -1,25 +1,25 @@
 //
-//  MRCRepoReadMeTableViewCell.m
+//  MRCRepoReadmeTableViewCell.m
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/22.
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCRepoReadMeTableViewCell.h"
+#import "MRCRepoReadmeTableViewCell.h"
 
-@interface MRCRepoReadMeTableViewCell ()
+@interface MRCRepoReadmeTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *readMeImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *readmeImageView;
 @property (weak, nonatomic) IBOutlet UIView *wapperView;
-@property (weak, nonatomic) IBOutlet UIView *readMeWapperView;
+@property (weak, nonatomic) IBOutlet UIView *readmeWapperView;
 
 @end
 
-@implementation MRCRepoReadMeTableViewCell
+@implementation MRCRepoReadmeTableViewCell
 
 - (void)awakeFromNib {
-    self.readMeImageView.image = [UIImage octicon_imageWithIdentifier:@"Book" size:CGSizeMake(22, 22)];
+    self.readmeImageView.image = [UIImage octicon_imageWithIdentifier:@"Book" size:CGSizeMake(22, 22)];
 }
 
 - (void)layoutSubviews {
@@ -31,8 +31,8 @@
     self.wapperView.layer.borderWidth  = 0.5;
     self.wapperView.layer.cornerRadius = 3;
     
-    [self.readMeWapperView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
-    [self.readMeButton addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self.readmeWapperView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self.readmeButton addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
 }
 
 @end

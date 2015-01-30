@@ -6,19 +6,43 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCRepoDetailViewController">
             <connections>
-                <outlet property="view" destination="1YY-Hb-Lik" id="oiv-Ii-HQm"/>
+                <outlet property="tableView" destination="1YY-Hb-Lik" id="7YF-bR-BVE"/>
+                <outlet property="toolbar" destination="BLE-up-6ov" id="lF8-Zo-jge"/>
+                <outlet property="view" destination="6yb-24-2vO" id="958-Gf-acA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1YY-Hb-Lik">
+        <view contentMode="scaleToFill" id="6yb-24-2vO">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="8qn-UP-jum"/>
-                <outlet property="delegate" destination="-1" id="7tf-gL-tRY"/>
-            </connections>
-            <point key="canvasLocation" x="426" y="-56"/>
-        </tableView>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="1YY-Hb-Lik">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="8qn-UP-jum"/>
+                        <outlet property="delegate" destination="-1" id="7tf-gL-tRY"/>
+                    </connections>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLE-up-6ov">
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="sI4-ck-09z"/>
+                    </constraints>
+                    <items/>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="1YY-Hb-Lik" firstAttribute="leading" secondItem="6yb-24-2vO" secondAttribute="leading" id="06f-bb-xiU"/>
+                <constraint firstItem="1YY-Hb-Lik" firstAttribute="top" secondItem="6yb-24-2vO" secondAttribute="top" id="0Dc-bd-6Ig"/>
+                <constraint firstAttribute="trailing" secondItem="BLE-up-6ov" secondAttribute="trailing" id="39g-U3-pd2"/>
+                <constraint firstAttribute="bottom" secondItem="1YY-Hb-Lik" secondAttribute="bottom" constant="44" id="4JC-WC-Ln3"/>
+                <constraint firstAttribute="bottom" secondItem="BLE-up-6ov" secondAttribute="bottom" id="9mI-Pg-WMF"/>
+                <constraint firstItem="BLE-up-6ov" firstAttribute="leading" secondItem="6yb-24-2vO" secondAttribute="leading" id="QJC-94-STD"/>
+                <constraint firstAttribute="trailing" secondItem="1YY-Hb-Lik" secondAttribute="trailing" id="mmn-dy-BUf"/>
+            </constraints>
+            <point key="canvasLocation" x="1033" y="-65"/>
+        </view>
     </objects>
 </document>

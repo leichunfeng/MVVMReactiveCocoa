@@ -12,6 +12,7 @@
 
 @synthesize services = _services;
 @synthesize params   = _params;
+@synthesize callback = _callback;
 @synthesize errors   = _errors;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
