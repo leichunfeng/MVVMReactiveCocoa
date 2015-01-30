@@ -80,8 +80,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [RACObserve(self.viewModel.repository, watchersCount) subscribeNext:^(NSNumber *watchersCount) {
-            cell.watchLabel.text = [watchersCount stringValue];
+        [RACObserve(self.viewModel.repository, subscribersCount) subscribeNext:^(NSNumber *subscribersCount) {
+            cell.watchLabel.text = [subscribersCount stringValue];
         }];
         [RACObserve(self.viewModel.repository, stargazersCount) subscribeNext:^(NSNumber *stargazersCount) {
             cell.starLabel.text = [stargazersCount stringValue];
