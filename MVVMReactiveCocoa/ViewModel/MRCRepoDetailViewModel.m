@@ -42,7 +42,8 @@
     self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
         MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
-                                                                                       params:@{@"repository": self.repository,
+                                                                                       params:@{@"title": self.repository.name,
+                                                                                                @"repository": self.repository,
                                                                                                 @"reference": reference}];
         [self.services pushViewModel:gitTreeViewModel animated:YES];
         return [RACSignal empty];

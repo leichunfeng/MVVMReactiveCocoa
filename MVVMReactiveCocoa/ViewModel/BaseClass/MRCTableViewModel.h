@@ -16,6 +16,8 @@
 // The list of section titles to display in section index view.
 @property (strong, nonatomic) NSArray *sectionIndexTitles;
 
+@property (nonatomic) BOOL shouldPullToRefresh;
+
 @property (strong, nonatomic) RACCommand *didSelectCommand;
 
 @property (strong, nonatomic, readonly) RACCommand *requestRemoteDataCommand;
