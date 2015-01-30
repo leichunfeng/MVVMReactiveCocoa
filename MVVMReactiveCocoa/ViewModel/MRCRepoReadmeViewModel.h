@@ -1,5 +1,5 @@
 //
-//  MRCRepoReadMeViewModel.h
+//  MRCRepoReadmeViewModel.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/26.
@@ -8,7 +8,7 @@
 
 #import "MRCViewModel.h"
 
-@interface MRCRepoReadMeViewModel : MRCViewModel
+@interface MRCRepoReadmeViewModel : MRCViewModel
 
 @property (strong, nonatomic) NSAttributedString *readmeAttributedString;
 

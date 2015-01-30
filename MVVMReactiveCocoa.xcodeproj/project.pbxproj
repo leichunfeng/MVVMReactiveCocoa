@@ -47,14 +47,20 @@
 		242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FDA1A64B6FA0026ABC6 /* main.m */; };
 		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
+		242D83581A7A5B0300F5F424 /* MRCSelectBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83561A7A5B0300F5F424 /* MRCSelectBranchViewController.m */; };
+		242D83591A7A5B0300F5F424 /* MRCSelectBranchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83571A7A5B0300F5F424 /* MRCSelectBranchViewController.xib */; };
+		242D835C1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */; };
+		242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */; };
+		242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */; };
+		242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */; };
 		24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
 		249674331A73F5490032771B /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249674311A73F5490032771B /* MRCWebViewController.xib */; };
 		249674361A73F5650032771B /* MRCWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674351A73F5650032771B /* MRCWebViewModel.m */; };
 		249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34F71A72A197008F1C2A /* UIView+Borders.m */; };
-		249F35021A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34FA1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m */; };
-		249F35031A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FB1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib */; };
+		249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34FA1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m */; };
+		249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FB1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib */; };
 		249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34FD1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m */; };
 		249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */; };
 		249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */; };
@@ -65,9 +71,9 @@
 		24A28AA21A75D957005235C5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28AA11A75D957005235C5 /* AFNetworking.framework */; };
 		24A28AA41A75D964005235C5 /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28AA31A75D964005235C5 /* ISO8601DateFormatter.framework */; };
 		24A28AE71A767F92005235C5 /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28AE61A767F92005235C5 /* libMMMarkdown-iOS.a */; };
-		24A28AEC1A768929005235C5 /* MRCRepoReadMeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A28AEA1A768929005235C5 /* MRCRepoReadMeController.m */; };
-		24A28AED1A768929005235C5 /* MRCRepoReadMeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A28AEB1A768929005235C5 /* MRCRepoReadMeController.xib */; };
-		24A28AF01A768949005235C5 /* MRCRepoReadMeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A28AEF1A768949005235C5 /* MRCRepoReadMeViewModel.m */; };
+		24A28AEC1A768929005235C5 /* MRCRepoReadmeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A28AEA1A768929005235C5 /* MRCRepoReadmeController.m */; };
+		24A28AED1A768929005235C5 /* MRCRepoReadmeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A28AEB1A768929005235C5 /* MRCRepoReadmeController.xib */; };
+		24A28AF01A768949005235C5 /* MRCRepoReadmeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A28AEF1A768949005235C5 /* MRCRepoReadmeViewModel.m */; };
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
@@ -198,6 +204,16 @@
 		242D4FF31A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMReactiveCocoaTests.m; sourceTree = "<group>"; };
 		242D4FFF1A64BD730026ABC6 /* OctoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OctoKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/OctoKit.framework"; sourceTree = "<group>"; };
+		242D83551A7A5B0300F5F424 /* MRCSelectBranchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSelectBranchViewController.h; sourceTree = "<group>"; };
+		242D83561A7A5B0300F5F424 /* MRCSelectBranchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSelectBranchViewController.m; sourceTree = "<group>"; };
+		242D83571A7A5B0300F5F424 /* MRCSelectBranchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSelectBranchViewController.xib; sourceTree = "<group>"; };
+		242D835A1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSelectBranchViewModel.h; sourceTree = "<group>"; };
+		242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSelectBranchViewModel.m; sourceTree = "<group>"; };
+		242D83621A7A7E1200F5F424 /* MRCGitTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGitTreeViewController.h; sourceTree = "<group>"; };
+		242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGitTreeViewController.m; sourceTree = "<group>"; };
+		242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCGitTreeViewController.xib; sourceTree = "<group>"; };
+		242D83671A7A7E4800F5F424 /* MRCGitTreeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGitTreeViewModel.h; sourceTree = "<group>"; };
+		242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGitTreeViewModel.m; sourceTree = "<group>"; };
 		24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTObject+MRCPersistence.h"; sourceTree = "<group>"; };
 		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
@@ -209,9 +225,9 @@
 		249674351A73F5650032771B /* MRCWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCWebViewModel.m; sourceTree = "<group>"; };
 		249F34F61A72A197008F1C2A /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
 		249F34F71A72A197008F1C2A /* UIView+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Borders.m"; sourceTree = "<group>"; };
-		249F34F91A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadMeTableViewCell.h; sourceTree = "<group>"; };
-		249F34FA1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoReadMeTableViewCell.m; sourceTree = "<group>"; };
-		249F34FB1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoReadMeTableViewCell.xib; sourceTree = "<group>"; };
+		249F34F91A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadmeTableViewCell.h; sourceTree = "<group>"; };
+		249F34FA1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoReadmeTableViewCell.m; sourceTree = "<group>"; };
+		249F34FB1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoReadmeTableViewCell.xib; sourceTree = "<group>"; };
 		249F34FC1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoStatisticsTableViewCell.h; sourceTree = "<group>"; };
 		249F34FD1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoStatisticsTableViewCell.m; sourceTree = "<group>"; };
 		249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoStatisticsTableViewCell.xib; sourceTree = "<group>"; };
@@ -223,11 +239,11 @@
 		24A28AA11A75D957005235C5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/AFNetworking.framework"; sourceTree = "<group>"; };
 		24A28AA31A75D964005235C5 /* ISO8601DateFormatter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601DateFormatter.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/ISO8601DateFormatter.framework"; sourceTree = "<group>"; };
 		24A28AE61A767F92005235C5 /* libMMMarkdown-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMMMarkdown-iOS.a"; path = "MMMarkdown/build/Debug-iphoneos/libMMMarkdown-iOS.a"; sourceTree = "<group>"; };
-		24A28AE91A768929005235C5 /* MRCRepoReadMeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadMeController.h; sourceTree = "<group>"; };
-		24A28AEA1A768929005235C5 /* MRCRepoReadMeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoReadMeController.m; sourceTree = "<group>"; };
-		24A28AEB1A768929005235C5 /* MRCRepoReadMeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoReadMeController.xib; sourceTree = "<group>"; };
-		24A28AEE1A768949005235C5 /* MRCRepoReadMeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadMeViewModel.h; sourceTree = "<group>"; };
-		24A28AEF1A768949005235C5 /* MRCRepoReadMeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoReadMeViewModel.m; sourceTree = "<group>"; };
+		24A28AE91A768929005235C5 /* MRCRepoReadmeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadmeController.h; sourceTree = "<group>"; };
+		24A28AEA1A768929005235C5 /* MRCRepoReadmeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoReadmeController.m; sourceTree = "<group>"; };
+		24A28AEB1A768929005235C5 /* MRCRepoReadmeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoReadmeController.xib; sourceTree = "<group>"; };
+		24A28AEE1A768949005235C5 /* MRCRepoReadmeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadmeViewModel.h; sourceTree = "<group>"; };
+		24A28AEF1A768949005235C5 /* MRCRepoReadmeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoReadmeViewModel.m; sourceTree = "<group>"; };
 		24B4DA121A66B97900DDFA6C /* MRCReposTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposTableViewCell.h; sourceTree = "<group>"; };
 		24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposTableViewCell.m; sourceTree = "<group>"; };
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
@@ -366,9 +382,15 @@
 				24DF45861A6BF6CD00F23474 /* MRCReposViewController.h */,
 				24DF45871A6BF6CD00F23474 /* MRCReposViewController.m */,
 				24DF45881A6BF6CD00F23474 /* MRCReposViewController.xib */,
-				24A28AE91A768929005235C5 /* MRCRepoReadMeController.h */,
-				24A28AEA1A768929005235C5 /* MRCRepoReadMeController.m */,
-				24A28AEB1A768929005235C5 /* MRCRepoReadMeController.xib */,
+				24A28AE91A768929005235C5 /* MRCRepoReadmeController.h */,
+				24A28AEA1A768929005235C5 /* MRCRepoReadmeController.m */,
+				24A28AEB1A768929005235C5 /* MRCRepoReadmeController.xib */,
+				242D83551A7A5B0300F5F424 /* MRCSelectBranchViewController.h */,
+				242D83561A7A5B0300F5F424 /* MRCSelectBranchViewController.m */,
+				242D83571A7A5B0300F5F424 /* MRCSelectBranchViewController.xib */,
+				242D83621A7A7E1200F5F424 /* MRCGitTreeViewController.h */,
+				242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */,
+				242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,8 +468,12 @@
 				24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */,
 				24DF45911A6BF97C00F23474 /* MRCStarredReposViewModel.h */,
 				24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */,
-				24A28AEE1A768949005235C5 /* MRCRepoReadMeViewModel.h */,
-				24A28AEF1A768949005235C5 /* MRCRepoReadMeViewModel.m */,
+				24A28AEE1A768949005235C5 /* MRCRepoReadmeViewModel.h */,
+				24A28AEF1A768949005235C5 /* MRCRepoReadmeViewModel.m */,
+				242D835A1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.h */,
+				242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */,
+				242D83671A7A7E4800F5F424 /* MRCGitTreeViewModel.h */,
+				242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -550,9 +576,9 @@
 		24B4DA111A66B94800DDFA6C /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				249F34F91A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.h */,
-				249F34FA1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m */,
-				249F34FB1A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib */,
+				249F34F91A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.h */,
+				249F34FA1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m */,
+				249F34FB1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib */,
 				249F34FC1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.h */,
 				249F34FD1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m */,
 				249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */,
@@ -689,14 +715,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24A28AED1A768929005235C5 /* MRCRepoReadMeController.xib in Resources */,
+				24A28AED1A768929005235C5 /* MRCRepoReadmeController.xib in Resources */,
 				240D01341A654D300033CC86 /* MRCAvatarHeaderView.xib in Resources */,
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				249674331A73F5490032771B /* MRCWebViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
-				249F35031A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.xib in Resources */,
+				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
@@ -704,6 +730,8 @@
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
+				242D83591A7A5B0300F5F424 /* MRCSelectBranchViewController.xib in Resources */,
+				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
@@ -815,14 +843,16 @@
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
+				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
-				24A28AF01A768949005235C5 /* MRCRepoReadMeViewModel.m in Sources */,
+				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
+				24A28AF01A768949005235C5 /* MRCRepoReadmeViewModel.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
-				249F35021A72A1A0008F1C2A /* MRCRepoReadMeTableViewCell.m in Sources */,
+				249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */,
 				240D013E1A654D300033CC86 /* MRCProfileViewController.m in Sources */,
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
@@ -833,12 +863,13 @@
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
-				24A28AEC1A768929005235C5 /* MRCRepoReadMeController.m in Sources */,
+				24A28AEC1A768929005235C5 /* MRCRepoReadmeController.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
 				24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */,
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
 				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
+				242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */,
 				249674361A73F5650032771B /* MRCWebViewModel.m in Sources */,
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
@@ -853,6 +884,7 @@
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				240D01331A654D300033CC86 /* MRCAvatarHeaderView.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
+				242D83581A7A5B0300F5F424 /* MRCSelectBranchViewController.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,
 			);

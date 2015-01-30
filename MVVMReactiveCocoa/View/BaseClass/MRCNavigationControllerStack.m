@@ -94,7 +94,7 @@
         }];
     
     [[(NSObject *)self.services
-        rac_signalForSelector:@selector(dismissViewControllerAnimated:completion:)]
+        rac_signalForSelector:@selector(dismissViewModelAnimated:completion:)]
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             [self popNavigationController];

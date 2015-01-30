@@ -1,22 +1,22 @@
 //
-//  MRCRepoReadMeController.m
+//  MRCRepoReadmeController.m
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/26.
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCRepoReadMeController.h"
-#import "MRCRepoReadMeViewModel.h"
+#import "MRCRepoReadmeController.h"
+#import "MRCRepoReadmeViewModel.h"
 
-@interface MRCRepoReadMeController ()
+@interface MRCRepoReadmeController ()
 
-@property (strong, nonatomic, readonly) MRCRepoReadMeViewModel *viewModel;
+@property (strong, nonatomic, readonly) MRCRepoReadmeViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet DTAttributedTextView *textView;
 
 @end
 
-@implementation MRCRepoReadMeController
+@implementation MRCRepoReadmeController
 
 - (void)bindViewModel {
     [super bindViewModel];
