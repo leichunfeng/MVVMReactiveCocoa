@@ -20,14 +20,14 @@
 - (void)viewDidLoad {
     @weakify(self)
     [self.viewModel.requestRemoteDataCommand.executionSignals
-     subscribeNext:^(RACSignal *requestRemoteDataSignal) {
-         @strongify(self)
-         [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading...";
-         [requestRemoteDataSignal subscribeNext:^(id x) {
-             @strongify(self)
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
-         }];
-     }];
+     	subscribeNext:^(RACSignal *requestRemoteDataSignal) {
+         	@strongify(self)
+         	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading...";
+         	[requestRemoteDataSignal subscribeNext:^(id x) {
+             	@strongify(self)
+             	[MBProgressHUD hideHUDForView:self.view animated:YES];
+         	}];
+     	}];
     
     [self.viewModel.requestRemoteDataCommand.errors subscribeNext:^(NSError *error) {
         @strongify(self)

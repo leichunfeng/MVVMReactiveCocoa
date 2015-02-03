@@ -90,7 +90,7 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    RACSignal *fetchRepoSignal   = [self.services.client fetchRepositoryWithName:self.repository.name
+    RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                            owner:self.repository.ownerLogin];
     RACSignal *fetchReadmeSignal = [[self.services getRepositoryService] requestRepositoryReadmeRenderedHTML:self.repository
                                                                                                    reference:self.reference.name];
