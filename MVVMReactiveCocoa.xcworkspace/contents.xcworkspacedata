@@ -5,18 +5,6 @@
       location = "group:MVVMReactiveCocoa.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OctoKit/OctoKit.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OctoKit/External/OctoKitDependencies/OctoKitDependencies.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OctoKit/Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:MMMarkdown/MMMarkdown.xcodeproj">
    </FileRef>
    <FileRef

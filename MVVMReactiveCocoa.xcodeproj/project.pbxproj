@@ -44,6 +44,16 @@
 		240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01221A654D300033CC86 /* MRCNewsViewModel.m */; };
 		240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01241A654D300033CC86 /* MRCProfileViewModel.m */; };
 		240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01511A654D3D0033CC86 /* MRCAppDelegate.m */; };
+		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
+		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
+		242453251A80D86300FFFCC1 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; };
+		242453291A80D86E00FFFCC1 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; };
+		2424532D1A80D87300FFFCC1 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; };
+		242453311A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FDA1A64B6FA0026ABC6 /* main.m */; };
 		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
@@ -53,6 +63,7 @@
 		242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */; };
 		242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */; };
 		242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */; };
+		243140131A7DD6E800FA357E /* assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 243140121A7DD6E800FA357E /* assets.bundle */; };
 		24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
@@ -65,11 +76,6 @@
 		249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */; };
 		249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */; };
 		249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F35011A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib */; };
-		24A28A9C1A75D91D005235C5 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242D4FFF1A64BD730026ABC6 /* OctoKit.framework */; };
-		24A28A9E1A75D936005235C5 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28A9D1A75D936005235C5 /* ReactiveCocoa.framework */; };
-		24A28AA01A75D947005235C5 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28A9F1A75D947005235C5 /* Mantle.framework */; };
-		24A28AA21A75D957005235C5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28AA11A75D957005235C5 /* AFNetworking.framework */; };
-		24A28AA41A75D964005235C5 /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28AA31A75D964005235C5 /* ISO8601DateFormatter.framework */; };
 		24A28AE71A767F92005235C5 /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A28AE61A767F92005235C5 /* libMMMarkdown-iOS.a */; };
 		24A28AEC1A768929005235C5 /* MRCRepoReadmeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A28AEA1A768929005235C5 /* MRCRepoReadmeController.m */; };
 		24A28AED1A768929005235C5 /* MRCRepoReadmeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A28AEB1A768929005235C5 /* MRCRepoReadmeController.xib */; };
@@ -97,6 +103,153 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		242452EA1A80D78800FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0871EA8169E2EFC00016ACA;
+			remoteInfo = "OctoKit Mac";
+		};
+		242452EC1A80D78800FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0871EC0169E2EFC00016ACA;
+			remoteInfo = "OctoKit Mac Tests";
+		};
+		242452EE1A80D78800FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0040CF319FEC579002869A6;
+			remoteInfo = "OctoKit iOS";
+		};
+		242452F01A80D78800FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0040CFD19FEC579002869A6;
+			remoteInfo = "OctoKit iOS Tests";
+		};
+		242452F91A80D79E00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725EA19E49ED7006002AA;
+			remoteInfo = "ReactiveCocoa-Mac";
+		};
+		242452FB1A80D79E00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725F519E49ED7006002AA;
+			remoteInfo = "ReactiveCocoa-MacTests";
+		};
+		242452FD1A80D79E00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047260C19E49F82006002AA;
+			remoteInfo = "ReactiveCocoa-iOS";
+		};
+		242452FF1A80D79E00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047261619E49F82006002AA;
+			remoteInfo = "ReactiveCocoa-iOSTests";
+		};
+		242453081A80D7AC00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D042FC3C15F72B23004E8054;
+			remoteInfo = "Mantle-Mac";
+		};
+		2424530A1A80D7AC00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D042FC5415F72B23004E8054;
+			remoteInfo = "Mantle-MacTests";
+		};
+		2424530C1A80D7AC00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0E9C35719F6DB38000D427D;
+			remoteInfo = "Mantle-iOS";
+		};
+		2424530E1A80D7AC00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0E9C36119F6DB38000D427D;
+			remoteInfo = "Mantle-iOSTests";
+		};
+		242453171A80D81700FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0476DBD177916920071F3CB;
+			remoteInfo = "AFNetworking Mac";
+		};
+		242453191A80D81700FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0040C9919FEC274002869A6;
+			remoteInfo = "AFNetworking iOS";
+		};
+		2424531B1A80D81700FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0476E5E17791AA50071F3CB;
+			remoteInfo = "ISO8601DateFormatter Mac";
+		};
+		2424531D1A80D81700FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0040CBB19FEC418002869A6;
+			remoteInfo = "ISO8601DateFormatter iOS";
+		};
+		242453211A80D85300FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D0040CF219FEC579002869A6;
+			remoteInfo = "OctoKit iOS";
+		};
+		242453261A80D86300FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D047260B19E49F82006002AA;
+			remoteInfo = "ReactiveCocoa-iOS";
+		};
+		2424532A1A80D86E00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D0E9C35619F6DB38000D427D;
+			remoteInfo = "Mantle-iOS";
+		};
+		2424532E1A80D87300FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D0040C9819FEC274002869A6;
+			remoteInfo = "AFNetworking iOS";
+		};
+		242453321A80D87D00FFFCC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D0040CBA19FEC418002869A6;
+			remoteInfo = "ISO8601DateFormatter iOS";
+		};
 		242D4FEF1A64B6FA0026ABC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 242D4FCD1A64B6FA0026ABC6 /* Project object */;
@@ -107,13 +260,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		24A28AF11A772763005235C5 /* CopyFiles */ = {
+		242453231A80D85300FFFCC1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				242453311A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Embed Frameworks */,
+				242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */,
+				2424532D1A80D87300FFFCC1 /* AFNetworking.framework in Embed Frameworks */,
+				242453251A80D86300FFFCC1 /* ReactiveCocoa.framework in Embed Frameworks */,
+				242453291A80D86E00FFFCC1 /* Mantle.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -196,6 +355,10 @@
 		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = OctoKit/OctoKit.xcodeproj; sourceTree = "<group>"; };
+		242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = OctoKit/Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
+		242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mantle.xcodeproj; path = OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj; sourceTree = "<group>"; };
+		242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKitDependencies.xcodeproj; path = OctoKit/External/OctoKitDependencies/OctoKitDependencies.xcodeproj; sourceTree = "<group>"; };
 		242D4FD51A64B6FA0026ABC6 /* MVVMReactiveCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMReactiveCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242D4FD91A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FDA1A64B6FA0026ABC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -214,6 +377,7 @@
 		242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCGitTreeViewController.xib; sourceTree = "<group>"; };
 		242D83671A7A7E4800F5F424 /* MRCGitTreeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGitTreeViewModel.h; sourceTree = "<group>"; };
 		242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGitTreeViewModel.m; sourceTree = "<group>"; };
+		243140121A7DD6E800FA357E /* assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = assets.bundle; sourceTree = "<group>"; };
 		24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTObject+MRCPersistence.h"; sourceTree = "<group>"; };
 		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
@@ -287,11 +451,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24A28AA41A75D964005235C5 /* ISO8601DateFormatter.framework in Frameworks */,
-				24A28AA21A75D957005235C5 /* AFNetworking.framework in Frameworks */,
-				24A28AA01A75D947005235C5 /* Mantle.framework in Frameworks */,
-				24A28A9E1A75D936005235C5 /* ReactiveCocoa.framework in Frameworks */,
-				24A28A9C1A75D91D005235C5 /* OctoKit.framework in Frameworks */,
+				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
+				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
+				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
+				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
+				242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */,
 				24A28AE71A767F92005235C5 /* libMMMarkdown-iOS.a in Frameworks */,
 				17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */,
 			);
@@ -509,9 +673,57 @@
 			path = HeaderViewModel;
 			sourceTree = "<group>";
 		};
+		242452E31A80D78800FFFCC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				242452EB1A80D78800FFFCC1 /* OctoKit.framework */,
+				242452ED1A80D78800FFFCC1 /* OctoKit Mac Tests.xctest */,
+				242452EF1A80D78800FFFCC1 /* OctoKit.framework */,
+				242452F11A80D78800FFFCC1 /* OctoKit iOS Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		242452F31A80D79D00FFFCC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				242452FA1A80D79E00FFFCC1 /* ReactiveCocoa.framework */,
+				242452FC1A80D79E00FFFCC1 /* ReactiveCocoa-MacTests.xctest */,
+				242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */,
+				242453001A80D79E00FFFCC1 /* ReactiveCocoa-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		242453021A80D7AB00FFFCC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				242453091A80D7AC00FFFCC1 /* Mantle.framework */,
+				2424530B1A80D7AC00FFFCC1 /* Mantle-MacTests.xctest */,
+				2424530D1A80D7AC00FFFCC1 /* Mantle.framework */,
+				2424530F1A80D7AC00FFFCC1 /* Mantle-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		242453111A80D81700FFFCC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				242453181A80D81700FFFCC1 /* AFNetworking.framework */,
+				2424531A1A80D81700FFFCC1 /* AFNetworking.framework */,
+				2424531C1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */,
+				2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		242D4FCC1A64B6FA0026ABC6 = {
 			isa = PBXGroup;
 			children = (
+				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
+				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
+				242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */,
+				242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */,
 				242D4FD71A64B6FA0026ABC6 /* MVVMReactiveCocoa */,
 				242D4FF11A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */,
 				242D4FD61A64B6FA0026ABC6 /* Products */,
@@ -532,6 +744,7 @@
 		242D4FD71A64B6FA0026ABC6 /* MVVMReactiveCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				24313CAC1A7D3CA700FA357E /* Resource */,
 				240D00D11A654D300033CC86 /* Util */,
 				240D00CB1A654D300033CC86 /* Model */,
 				240D01081A654D300033CC86 /* ViewModel */,
@@ -571,6 +784,14 @@
 				242D4FF31A64B6FA0026ABC6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		24313CAC1A7D3CA700FA357E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				243140121A7DD6E800FA357E /* assets.bundle */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		24B4DA111A66B94800DDFA6C /* TableViewCell */ = {
@@ -640,11 +861,16 @@
 				242D4FD31A64B6FA0026ABC6 /* Resources */,
 				94BC7850225D73433B852981 /* Copy Pods Resources */,
 				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
-				24A28AF11A772763005235C5 /* CopyFiles */,
+				242453231A80D85300FFFCC1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				242453221A80D85300FFFCC1 /* PBXTargetDependency */,
+				242453271A80D86300FFFCC1 /* PBXTargetDependency */,
+				2424532B1A80D86E00FFFCC1 /* PBXTargetDependency */,
+				2424532F1A80D87300FFFCC1 /* PBXTargetDependency */,
+				242453331A80D87D00FFFCC1 /* PBXTargetDependency */,
 			);
 			name = MVVMReactiveCocoa;
 			productName = MVVMReactiveCocoa;
@@ -702,6 +928,24 @@
 			mainGroup = 242D4FCC1A64B6FA0026ABC6;
 			productRefGroup = 242D4FD61A64B6FA0026ABC6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 242453021A80D7AB00FFFCC1 /* Products */;
+					ProjectRef = 242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */;
+				},
+				{
+					ProductGroup = 242452E31A80D78800FFFCC1 /* Products */;
+					ProjectRef = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 242453111A80D81700FFFCC1 /* Products */;
+					ProjectRef = 242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */;
+				},
+				{
+					ProductGroup = 242452F31A80D79D00FFFCC1 /* Products */;
+					ProjectRef = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				242D4FD41A64B6FA0026ABC6 /* MVVMReactiveCocoa */,
@@ -709,6 +953,121 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		242452EB1A80D78800FFFCC1 /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 242452EA1A80D78800FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242452ED1A80D78800FFFCC1 /* OctoKit Mac Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OctoKit Mac Tests.xctest";
+			remoteRef = 242452EC1A80D78800FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242452EF1A80D78800FFFCC1 /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 242452EE1A80D78800FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242452F11A80D78800FFFCC1 /* OctoKit iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OctoKit iOS Tests.xctest";
+			remoteRef = 242452F01A80D78800FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242452FA1A80D79E00FFFCC1 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 242452F91A80D79E00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242452FC1A80D79E00FFFCC1 /* ReactiveCocoa-MacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ReactiveCocoa-MacTests.xctest";
+			remoteRef = 242452FB1A80D79E00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 242452FD1A80D79E00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242453001A80D79E00FFFCC1 /* ReactiveCocoa-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ReactiveCocoa-iOSTests.xctest";
+			remoteRef = 242452FF1A80D79E00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242453091A80D7AC00FFFCC1 /* Mantle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Mantle.framework;
+			remoteRef = 242453081A80D7AC00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2424530B1A80D7AC00FFFCC1 /* Mantle-MacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Mantle-MacTests.xctest";
+			remoteRef = 2424530A1A80D7AC00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2424530D1A80D7AC00FFFCC1 /* Mantle.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Mantle.framework;
+			remoteRef = 2424530C1A80D7AC00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2424530F1A80D7AC00FFFCC1 /* Mantle-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Mantle-iOSTests.xctest";
+			remoteRef = 2424530E1A80D7AC00FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		242453181A80D81700FFFCC1 /* AFNetworking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AFNetworking.framework;
+			remoteRef = 242453171A80D81700FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2424531A1A80D81700FFFCC1 /* AFNetworking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AFNetworking.framework;
+			remoteRef = 242453191A80D81700FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2424531C1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ISO8601DateFormatter.framework;
+			remoteRef = 2424531B1A80D81700FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ISO8601DateFormatter.framework;
+			remoteRef = 2424531D1A80D81700FFFCC1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		242D4FD31A64B6FA0026ABC6 /* Resources */ = {
@@ -723,6 +1082,7 @@
 				249674331A73F5490032771B /* MRCWebViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
+				243140131A7DD6E800FA357E /* assets.bundle in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
@@ -901,6 +1261,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		242453221A80D85300FFFCC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "OctoKit iOS";
+			targetProxy = 242453211A80D85300FFFCC1 /* PBXContainerItemProxy */;
+		};
+		242453271A80D86300FFFCC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ReactiveCocoa-iOS";
+			targetProxy = 242453261A80D86300FFFCC1 /* PBXContainerItemProxy */;
+		};
+		2424532B1A80D86E00FFFCC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Mantle-iOS";
+			targetProxy = 2424532A1A80D86E00FFFCC1 /* PBXContainerItemProxy */;
+		};
+		2424532F1A80D87300FFFCC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AFNetworking iOS";
+			targetProxy = 2424532E1A80D87300FFFCC1 /* PBXContainerItemProxy */;
+		};
+		242453331A80D87D00FFFCC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ISO8601DateFormatter iOS";
+			targetProxy = 242453321A80D87D00FFFCC1 /* PBXContainerItemProxy */;
+		};
 		242D4FF01A64B6FA0026ABC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 242D4FD41A64B6FA0026ABC6 /* MVVMReactiveCocoa */;
