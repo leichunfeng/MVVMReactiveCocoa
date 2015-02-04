@@ -29,21 +29,22 @@
     self.tableView.sectionIndexColor = [UIColor darkGrayColor];
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"UITableViewCell"];
     
-    if (self.viewModel.shouldPullToRefresh) {
-        self.refreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView
-                                                                      target:self
-                                                               refreshAction:@selector(refreshTriggered:)
-                                                                       plist:@"storehouse"
-                                                                       color:[UIColor blackColor]
-                                                                   lineWidth:1.5
-                                                                  dropHeight:80
-                                                                       scale:1
-                                                        horizontalRandomness:150
-                                                     reverseLoadingAnimation:YES
-                                                     internalAnimationFactor:0.5];
-    }
+//    if (self.viewModel.shouldPullToRefresh) {
+    self.refreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView
+                                                                  target:self
+                                                           refreshAction:@selector(refreshTriggered:)
+                                                                   plist:@"storehouse"
+                                                                   color:[UIColor blackColor]
+                                                               lineWidth:1.5
+                                                              dropHeight:80
+                                                                   scale:1
+                                                    horizontalRandomness:150
+                                                 reverseLoadingAnimation:YES
+                                                 internalAnimationFactor:0.5];
+//    }
     
     [self.viewModel.requestRemoteDataCommand execute:nil];
 }
@@ -52,10 +53,12 @@
     [super bindViewModel];
     
     @weakify(self)
-    [RACObserve(self.viewModel, dataSource) subscribeNext:^(id x) {
-        @strongify(self)
-        [self.tableView reloadData];
-    }];
+    [[RACObserve(self.viewModel, dataSource)
+      	deliverOn:RACScheduler.mainThreadScheduler]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self.tableView reloadData];
+        }];
 }
 
 #pragma mark - UITableViewDataSource

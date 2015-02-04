@@ -54,6 +54,9 @@
 		2424532D1A80D87300FFFCC1 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; };
 		242453311A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2424533C1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m */; };
+		2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */; };
+		242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */; };
 		242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FDA1A64B6FA0026ABC6 /* main.m */; };
 		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
@@ -359,6 +362,11 @@
 		242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = OctoKit/Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mantle.xcodeproj; path = OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj; sourceTree = "<group>"; };
 		242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKitDependencies.xcodeproj; path = OctoKit/External/OctoKitDependencies/OctoKitDependencies.xcodeproj; sourceTree = "<group>"; };
+		2424533B1A811B9E00FFFCC1 /* MRCSourceEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSourceEditorViewController.h; sourceTree = "<group>"; };
+		2424533C1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSourceEditorViewController.m; sourceTree = "<group>"; };
+		2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSourceEditorViewController.xib; sourceTree = "<group>"; };
+		242453401A811C3C00FFFCC1 /* MRCSourceEditorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSourceEditorViewModel.h; sourceTree = "<group>"; };
+		242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSourceEditorViewModel.m; sourceTree = "<group>"; };
 		242D4FD51A64B6FA0026ABC6 /* MVVMReactiveCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMReactiveCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242D4FD91A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FDA1A64B6FA0026ABC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -555,6 +563,9 @@
 				242D83621A7A7E1200F5F424 /* MRCGitTreeViewController.h */,
 				242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */,
 				242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */,
+				2424533B1A811B9E00FFFCC1 /* MRCSourceEditorViewController.h */,
+				2424533C1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m */,
+				2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -638,6 +649,8 @@
 				242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */,
 				242D83671A7A7E4800F5F424 /* MRCGitTreeViewModel.h */,
 				242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */,
+				242453401A811C3C00FFFCC1 /* MRCSourceEditorViewModel.h */,
+				242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1093,6 +1106,7 @@
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
+				2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */,
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
 				240D013F1A654D300033CC86 /* MRCProfileViewController.xib in Resources */,
@@ -1196,6 +1210,7 @@
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
+				242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */,
 				240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */,
 				240D014C1A654D300033CC86 /* MRCLoginViewModel.m in Sources */,
 				24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */,
@@ -1245,6 +1260,7 @@
 				240D01331A654D300033CC86 /* MRCAvatarHeaderView.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchViewController.m in Sources */,
+				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,
 			);

@@ -23,6 +23,8 @@
 
 - (NSAttributedString *)HTMLString2AttributedString;
 
+- (BOOL)isMarkdown;
+
 @end
 
 @interface UIColor (Util)

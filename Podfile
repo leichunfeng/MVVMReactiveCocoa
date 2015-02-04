@@ -15,6 +15,7 @@ pod 'FontAwesomeKit', '2.1.0'
 pod 'SVPullToRefresh', '0.4.1'
 pod 'DTCoreText', '1.6.14'
 pod 'MKNetworkKit', '0.87'
+pod 'WebViewJavascriptBridge', '4.1.4'
 #pod 'OcticonsIOS', '0.0.2'
 #pod 'FontAwesome+iOS', '0.1.4'
 

@@ -18,26 +18,26 @@
 @implementation MRCGitTreeViewController
 
 - (void)viewDidLoad {
-    @weakify(self)
-    [self.viewModel.requestRemoteDataCommand.executionSignals
-     	subscribeNext:^(RACSignal *requestRemoteDataSignal) {
-         	@strongify(self)
-         	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading...";
-         	[requestRemoteDataSignal subscribeNext:^(id x) {
-             	@strongify(self)
-             	[MBProgressHUD hideHUDForView:self.view animated:YES];
-         	}];
-     	}];
+//    @weakify(self)
+//    [self.viewModel.requestRemoteDataCommand.executionSignals
+//     	subscribeNext:^(RACSignal *requestRemoteDataSignal) {
+//         	@strongify(self)
+//         	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading...";
+//         	[requestRemoteDataSignal subscribeNext:^(id x) {
+//             	@strongify(self)
+//             	[MBProgressHUD hideHUDForView:self.view animated:YES];
+//         	}];
+//     	}];
+//    
+//    [self.viewModel.requestRemoteDataCommand.errors subscribeNext:^(NSError *error) {
+//        @strongify(self)
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    }];
     
-    [self.viewModel.requestRemoteDataCommand.errors subscribeNext:^(NSError *error) {
-        @strongify(self)
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
-    
+    [super viewDidLoad];
+
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44;
-
-    [super viewDidLoad];
 }
 
 #pragma mark - UITableViewDataSource
@@ -50,7 +50,7 @@
     OCTTreeEntry *treeEntry = dictionary[@"treeEntry"];
     
     cell.imageView.image = [UIImage octicon_imageWithIdentifier:dictionary[@"identifier"] size:CGSizeMake(22, 22)];
-    cell.textLabel.text  = treeEntry.path;
+    cell.textLabel.text  = dictionary[@"text"];
     cell.textLabel.numberOfLines = 0;
     
     if (treeEntry.type == OCTTreeEntryTypeBlob) {
