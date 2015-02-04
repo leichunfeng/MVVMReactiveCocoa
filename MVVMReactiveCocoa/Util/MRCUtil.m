@@ -45,6 +45,17 @@
     return string;
 }
 
+- (BOOL)isMarkdown {
+    if (![self isExist]) return NO;
+    
+    NSArray *markdownExtensions = @[ @".md", @".mkdn", @".mdwn", @".mdown", @".markdown", @".mkd", @".mkdown", @".ron" ];
+    for (NSString *extension in markdownExtensions) {
+        if ([self.lowercaseString hasSuffix:extension]) return YES;
+    }
+    
+    return NO;
+}
+
 @end
 
 @implementation UIColor (Util)

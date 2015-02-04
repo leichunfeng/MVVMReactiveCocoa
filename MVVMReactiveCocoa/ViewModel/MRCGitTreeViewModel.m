@@ -7,11 +7,14 @@
 //
 
 #import "MRCGitTreeViewModel.h"
+#import "MRCSourceEditorViewModel.h"
 
 @interface MRCGitTreeViewModel ()
 
 @property (strong, nonatomic) OCTRepository *repository;
 @property (strong, nonatomic) NSString *reference;
+@property (strong, nonatomic) OCTTree *tree;
+@property (strong, nonatomic) NSString *path;
 
 @end
 
@@ -21,6 +24,8 @@
     self = [super initWithServices:services params:params];
     if (self) {
         self.title = params[@"title"];
+        self.path  = params[@"path"];
+        self.tree  = params[@"tree"];
         self.repository = params[@"repository"];
         self.reference  = params[@"reference"];
     }
@@ -31,44 +36,37 @@
     [super initialize];
     
     @weakify(self)
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    [RACObserve(self, tree) subscribeNext:^(OCTTree *tree) {
         @strongify(self)
-        OCTTreeEntry *treeEntry = self.dataSource[indexPath.section][indexPath.row][@"treeEntry"];
+        if (!tree) return;
         
-        if (treeEntry.type == OCTTreeEntryTypeTree) {
-            MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
-                                                                                           params:@{@"title": treeEntry.path,
-                                                                                                    @"repository": self.repository,
-                                                                                                    @"reference": treeEntry.SHA}];
-            [self.services pushViewModel:gitTreeViewModel animated:YES];
-        }
-
-        return [RACSignal empty];
-    }];
-}
-
-- (RACSignal *)requestRemoteDataSignal {
-    return [[self.services.client
-		fetchTreeForReference:self.reference inRepository:self.repository recursive:NO]
-     	doNext:^(OCTTree *tree) {
-            NSArray *array = [tree.entries.rac_sequence filter:^BOOL(OCTTreeEntry *treeEntry) {
+        self.dataSource = @[[[[[self.tree.entries.rac_sequence
+            filter:^BOOL(OCTTreeEntry *treeEntry) {
                 return treeEntry.type != OCTTreeEntryTypeCommit;
-            }].array;
-            
-            array = [array sortedArrayUsingComparator:^NSComparisonResult(OCTTreeEntry *treeEntry1, OCTTreeEntry *treeEntry2) {
+            }]
+            filter:^BOOL(OCTTreeEntry *treeEntry) {
+                @strongify(self)
+                if (self.path) {
+                    BOOL hasPrefix = [treeEntry.path hasPrefix:[self.path stringByAppendingString:@"/"]];
+                    BOOL isSubPath = ([treeEntry.path componentsSeparatedByString:@"/"].count == [self.path componentsSeparatedByString:@"/"].count + 1);
+                    return hasPrefix && isSubPath;
+                } else {
+                    return [treeEntry.path componentsSeparatedByString:@"/"].count == 1;
+                }
+            }].array sortedArrayUsingComparator:^NSComparisonResult(OCTTreeEntry *treeEntry1, OCTTreeEntry *treeEntry2) {
                 if (treeEntry1.type == treeEntry2.type) {
                     return [treeEntry1.path caseInsensitiveCompare:treeEntry2.path];
                 } else {
                     return treeEntry1.type == OCTTreeEntryTypeTree ? NSOrderedAscending : NSOrderedDescending;
                 }
-            }];
-            
-            array = [array.rac_sequence map:^id(OCTTreeEntry *treeEntry) {
+            }].rac_sequence
+        	map:^id(OCTTreeEntry *treeEntry) {
                 NSMutableDictionary *dictionary = [NSMutableDictionary new];
                 
                 NSString *identifier = (treeEntry.type == OCTTreeEntryTypeTree ? @"FileDirectory" : @"FileText");
                 
                 [dictionary setValue:treeEntry forKey:@"treeEntry"];
+                [dictionary setValue:[treeEntry.path componentsSeparatedByString:@"/"].lastObject forKey:@"text"];
                 [dictionary setValue:identifier forKey:@"identifier"];
                 
                 if (treeEntry.type == OCTTreeEntryTypeBlob) {
@@ -80,15 +78,46 @@
                     } else if (blobTreeEntry.size >= 1024 * 1024) {
                         size = [NSString stringWithFormat:@"%.2fM", blobTreeEntry.size / (1024 * 1024.0)];
                     }
-					
+                    
                     [dictionary setValue:size forKey:@"size"];
                 }
                 
                 return [dictionary copy];
-            }].array;
-            
-         	self.dataSource = @[array];
-     	}];
+            }].array];
+    }];
+    
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        OCTTreeEntry *treeEntry = self.dataSource[indexPath.section][indexPath.row][@"treeEntry"];
+        
+        if (treeEntry.type == OCTTreeEntryTypeTree) {
+            MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
+                                                                                           params:@{@"title": self.title,
+                                                                                                    @"path": treeEntry.path,
+                                                                                                    @"tree": self.tree,
+                                                                                                    @"repository": self.repository}];
+            [self.services pushViewModel:gitTreeViewModel animated:YES];
+        } else if (treeEntry.type == OCTTreeEntryTypeBlob) {
+            MRCSourceEditorViewModel *sourceEditorViewModel = [[MRCSourceEditorViewModel alloc] initWithServices:self.services
+                                                                                                          params:@{@"repository": self.repository,
+                                                                                                                   @"blobTreeEntry": treeEntry}];
+            [self.services pushViewModel:sourceEditorViewModel animated:YES];
+        }
+
+        return [RACSignal empty];
+    }];
+}
+
+- (RACSignal *)requestRemoteDataSignal {
+    if (self.tree) return [RACSignal empty];
+    
+    @weakify(self)
+    return [[self.services.client
+    	fetchTreeForReference:self.reference inRepository:self.repository recursive:YES]
+        doNext:^(OCTTree *tree) {
+            @strongify(self)
+            self.tree = tree;
+        }];
 }
 
 @end

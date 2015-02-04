@@ -37,6 +37,7 @@
 	#import "UIView+Borders.h"
 	#import "DTCoreText.h"
 	#import "MKNetworkKit.h"
+	#import "WebViewJavascriptBridge.h"
 #endif
 
 #endif

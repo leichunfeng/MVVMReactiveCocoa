@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MRCNavigationProtocol.h"
-
-@protocol MRCRepositoryService;
+#import "MRCRepositoryService.h"
 
 @protocol MRCViewModelServices <NSObject, MRCNavigationProtocol>
 

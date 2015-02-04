@@ -24,45 +24,61 @@ function loadImage(type, content) {
   document.body.appendChild(img);
 }
 
-window.onload = function () {
-  // var name = SourceEditor.getName();
-  var name = "MRCWebViewController.m";
-  var extension = getExtension(name);
-  // if ("png" == extension || "gif" == extension) {
-  //   loadImage(extension, SourceEditor.getRawContent());
-  //   return;
-  // } else if ("jpg" == extension || "jpeg" == extension) {
-  //   loadImage("jpeg", SourceEditor.getRawContent());
-  //   return;
-  // }
-
-  CodeMirror.modeURL = "mode/%N/%N.js";
-
-  var config = {};
-  // config.value = SourceEditor.getContent();
-  config.value = 'configureAppearance\nconfigureAppearance\nconfigureAppearance\n- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions';
-  config.readOnly = "nocursor";
-  config.lineNumbers = true;
-  config.autofocus = false;
-  // config.lineWrapping = !!SourceEditor.getWrap();
-  config.lineWrapping = false;
-  config.dragDrop = false;
-  config.fixedGutter = false;
-  var editor = CodeMirror(document.body, config);
-
-  var mode, spec;
-
-  var info = CodeMirror.findModeByExtension(extension);
-  if (info) {
-    mode = info.mode;
-    spec = info.mime;
+function connectWebViewJavascriptBridge(callback) {
+  if (window.WebViewJavascriptBridge) {
+    callback(WebViewJavascriptBridge)
+  } else {
+    document.addEventListener("WebViewJavascriptBridgeReady", function() {
+      callback(WebViewJavascriptBridge)
+    }, false)
   }
+}
 
-  if (mode) {
-    editor.setOption("mode", spec);
-    CodeMirror.autoLoadMode(editor, mode);
-  }
+connectWebViewJavascriptBridge(function(bridge) {
+  bridge.callHandler("getInitDataFromObjC", {}, function(response) {
+    var name = response["name"];
 
-  if (!config.lineWrapping)
-    updateWidth();
-};
+    var extension = getExtension(name);
+    if ("png" == extension || "gif" == extension) {
+      loadImage(extension, response["rawContent"]);
+      return;
+    } else if ("jpg" == extension || "jpeg" == extension) {
+      loadImage("jpeg", response["rawContent"]);
+      return;
+    }
+
+    CodeMirror.modeURL = "mode/%N/%N.js";
+
+    var config = {};
+    config.value = response["content"];
+    config.readOnly = "nocursor";
+    config.lineNumbers = true;
+    config.autofocus = false;
+    config.lineWrapping = !!response["lineWrapping"];
+    config.dragDrop = false;
+    config.fixedGutter = false;
+
+    var editor = CodeMirror(document.body, config);
+
+    var mode, spec;
+
+    var info = CodeMirror.findModeByExtension(extension);
+    if (info) {
+      mode = info.mode;
+      spec = info.mime;
+    }
+
+    if (mode) {
+      editor.setOption("mode", spec);
+      CodeMirror.autoLoadMode(editor, mode);
+    }
+
+    if (!config.lineWrapping) updateWidth();
+  })
+
+  var uniqueId = 1;
+  bridge.init(function(message, responseCallback) {
+    var data = { "Javascript Responds": "Wee!" };
+    responseCallback(data);
+  })
+})

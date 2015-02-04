@@ -18,9 +18,10 @@
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
-        NSDictionary *params = @{ @"repository": [self.dataSource[indexPath.section][indexPath.row] repository] };
+        OCTRepository *repository = [self.dataSource[indexPath.section][indexPath.row] repository];
 
-        MRCRepoDetailViewModel *detailViewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services params:params];
+        MRCRepoDetailViewModel *detailViewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services
+                                                                                            params:@{ @"repository": repository }];
         [self.services pushViewModel:detailViewModel animated:YES];
         
         return [RACSignal empty];
@@ -37,6 +38,9 @@
         fetchRepositoriesSignal]
     	doNext:^(NSArray *repositories) {
             @strongify(self)
+            repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                return [repo1.name caseInsensitiveCompare:repo2.name];
+            }];
             self.sectionIndexTitles = [self sectionIndexTitlesWithRepositories:repositories];
             self.dataSource = [self dataSourceWithRepositories:repositories];
         }];
