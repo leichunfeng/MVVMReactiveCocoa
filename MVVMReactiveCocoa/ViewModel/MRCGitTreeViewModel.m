@@ -12,7 +12,7 @@
 @interface MRCGitTreeViewModel ()
 
 @property (strong, nonatomic) OCTRepository *repository;
-@property (strong, nonatomic) NSString *reference;
+@property (strong, nonatomic) OCTRef *reference;
 @property (strong, nonatomic) OCTTree *tree;
 @property (strong, nonatomic) NSString *path;
 
@@ -95,11 +95,13 @@
                                                                                            params:@{@"title": self.title,
                                                                                                     @"path": treeEntry.path,
                                                                                                     @"tree": self.tree,
-                                                                                                    @"repository": self.repository}];
+                                                                                                    @"repository": self.repository,
+                                                                                                    @"reference": self.reference}];
             [self.services pushViewModel:gitTreeViewModel animated:YES];
         } else if (treeEntry.type == OCTTreeEntryTypeBlob) {
             MRCSourceEditorViewModel *sourceEditorViewModel = [[MRCSourceEditorViewModel alloc] initWithServices:self.services
                                                                                                           params:@{@"repository": self.repository,
+                                                                                                                   @"reference": self.reference,
                                                                                                                    @"blobTreeEntry": treeEntry}];
             [self.services pushViewModel:sourceEditorViewModel animated:YES];
         }
@@ -111,9 +113,11 @@
 - (RACSignal *)requestRemoteDataSignal {
     if (self.tree) return [RACSignal empty];
     
+    NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
+    
     @weakify(self)
     return [[self.services.client
-    	fetchTreeForReference:self.reference inRepository:self.repository recursive:YES]
+    	fetchTreeForReference:reference inRepository:self.repository recursive:YES]
         doNext:^(OCTTree *tree) {
             @strongify(self)
             self.tree = tree;

@@ -18,13 +18,12 @@
         MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] initWithHostName:@"api.github.com"
                                                                 customHeaderFields:@{ @"Authorization": authorization}];
         
-        NSString *path = [NSString stringWithFormat:@"repos/%@/%@/readme/%@", repository.ownerLogin, repository.name, reference];
+        NSString *path = [NSString stringWithFormat:@"repos/%@/%@/readme", repository.ownerLogin, repository.name];
         MKNetworkOperation *operation = [networkEngine operationWithPath:path
-                                                                  params:nil
+                                                                  params:@{@"ref": reference}
                                                               httpMethod:@"GET"
                                                                      ssl:YES];
         [operation addHeaders:@{ @"Accept": @"application/vnd.github.VERSION.html" }];
-
         [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             [subscriber sendNext:completedOperation.responseString];
             [subscriber sendCompleted];

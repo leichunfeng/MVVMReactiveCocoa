@@ -33,20 +33,22 @@
         @strongify(self)
         responseCallback(@{@"name": self.title,
                            @"rawContent": self.viewModel.rawContent,
-                           @"content": self.viewModel.content,
+                           @"content": self.viewModel.content ?: @"",
                            @"lineWrapping": @(self.viewModel.isLineWrapping)});
     }];
     
     [[self.viewModel.fetchBlobCommand execute:nil] subscribeNext:^(id x) {
         @strongify(self)
-        NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
-        [self.webView loadRequest:request];
-        
-//        [self.webView loadData:[NSData dataFromBase64String:self.viewModel.rawContent]
-//                      MIMEType:@"text/html"
-//              textEncodingName:@"utf-8"
-//                       baseURL:nil];
+        if (self.viewModel.isMarkdown) {
+            [self.webView loadData:[self.viewModel.content dataUsingEncoding:NSUTF8StringEncoding]
+                          MIMEType:@"text/html"
+                  textEncodingName:@"utf-8"
+                           baseURL:nil];
+        } else {
+            NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+            [self.webView loadRequest:request];
+        }
     }];
 }
 
