@@ -17,6 +17,6 @@
 // A reference to OCTClient instance.
 @property (strong, nonatomic) OCTClient *client;
 
-- (id<MRCRepositoryService>)getRepositoryService;
+@property (strong, nonatomic, readonly) id<MRCRepositoryService> repositoryService;
 
 @end

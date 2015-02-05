@@ -35,7 +35,7 @@
     
     if (!self.readmeAttributedString) {
         @weakify(self)
-        [[[self.services getRepositoryService]
+        [[self.services.repositoryService
         	requestRepositoryReadmeRenderedHTML:self.repository reference:self.reference.name]
          	subscribeNext:^(NSString *htmlString) {
              	@strongify(self)

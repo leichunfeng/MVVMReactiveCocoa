@@ -46,9 +46,6 @@
 }
 
 - (UIViewController *)createInitialViewController {
-//    MRCWebViewModel *webViewModel = [[MRCWebViewModel alloc] initWithServices:self.services params:nil];
-//    return [[MRCWebViewController alloc] initWithViewModel:webViewModel];
-    
 //    [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
 //    [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
     

@@ -41,11 +41,10 @@
     @weakify(self)
     self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
         MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
                                                                                        params:@{@"title": self.repository.name,
                                                                                                 @"repository": self.repository,
-                                                                                                @"reference": reference}];
+                                                                                                @"reference": self.reference}];
         [self.services pushViewModel:gitTreeViewModel animated:YES];
         return [RACSignal empty];
     }];
@@ -92,8 +91,8 @@
 - (RACSignal *)requestRemoteDataSignal {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                            owner:self.repository.ownerLogin];
-    RACSignal *fetchReadmeSignal = [[self.services getRepositoryService] requestRepositoryReadmeRenderedHTML:self.repository
-                                                                                                   reference:self.reference.name];
+    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedHTML:self.repository
+                                                                                              reference:self.reference.name];
     @weakify(self)
     return [[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
