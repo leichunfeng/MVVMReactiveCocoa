@@ -36,10 +36,10 @@
     if (!self.readmeAttributedString) {
         @weakify(self)
         [[self.services.repositoryService
-        	requestRepositoryReadmeRenderedHTML:self.repository reference:self.reference.name]
-         	subscribeNext:^(NSString *htmlString) {
+        	requestRepositoryReadmeRenderedMarkdown:self.repository reference:self.reference.name]
+         	subscribeNext:^(NSString *renderedMarkdown) {
              	@strongify(self)
-             	self.readmeAttributedString = [htmlString HTMLString2AttributedString];
+             	self.readmeAttributedString = [renderedMarkdown renderedMarkdown2AttributedString];
          	}];
     }
 }

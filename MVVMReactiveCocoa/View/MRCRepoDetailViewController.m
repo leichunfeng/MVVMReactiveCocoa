@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = UIColor.whiteColor;
     self.tableView.estimatedRowHeight = 44;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoStatisticsTableViewCell" bundle:nil]
@@ -81,13 +81,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [RACObserve(self.viewModel.repository, subscribersCount) subscribeNext:^(NSNumber *subscribersCount) {
-            cell.watchLabel.text = [subscribersCount stringValue];
+            cell.watchLabel.text = subscribersCount.stringValue;
         }];
         [RACObserve(self.viewModel.repository, stargazersCount) subscribeNext:^(NSNumber *stargazersCount) {
-            cell.starLabel.text = [stargazersCount stringValue];
+            cell.starLabel.text = stargazersCount.stringValue;
         }];
         [RACObserve(self.viewModel.repository, forksCount) subscribeNext:^(NSNumber *forksCount) {
-            cell.forkLabel.text = [forksCount stringValue];
+            cell.forkLabel.text = forksCount.stringValue;
         }];
         
         return cell;

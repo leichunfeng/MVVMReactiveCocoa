@@ -22,7 +22,7 @@
     return [[self substringToIndex:1] uppercaseString];
 }
 
-- (NSAttributedString *)HTMLString2AttributedString {
+- (NSAttributedString *)renderedMarkdown2AttributedString {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     
     // example for setting a willFlushCallback, that gets called before elements are written to the generated attributed string

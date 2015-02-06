@@ -22,25 +22,72 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"]
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:nil
+                                                                          action:NULL];
+    @weakify(self)
+    rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleActionSheet];
+        if (!self.viewModel.isMarkdown || self.viewModel.showRawMarkdown) {
+            [alertController addAction:[UIAlertAction actionWithTitle:self.viewModel.wrappingActionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                @strongify(self)
+                self.viewModel.lineWrapping = !self.viewModel.isLineWrapping;
+                [self loadSource];
+            }]];
+        }
+        if (self.viewModel.isMarkdown) {
+            [alertController addAction:[UIAlertAction actionWithTitle:self.viewModel.markdownActionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                @strongify(self)
+                self.viewModel.showRawMarkdown = !self.viewModel.showRawMarkdown;
+                if (self.viewModel.showRawMarkdown && !self.viewModel.rawContent) {
+                    [[self.viewModel.requestBlobCommand execute:nil] subscribeNext:^(id x) {
+                        @strongify(self)
+                        [self loadSource];
+                    }];
+                } else {
+                    [self loadSource];
+                }
+            }]];
+        }
+        alertController.popoverPresentationController.barButtonItem = rightBarButtonItem;
+        [self presentViewController:alertController animated:YES completion:NULL];
+        return [RACSignal empty];
+    }];
+    
     [WebViewJavascriptBridge enableLogging];
     
     self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView handler:^(id data, WVJBResponseCallback responseCallback) {
         responseCallback(@"Response for message from ObjC");
     }];
     
-    @weakify(self)
     [self.bridge registerHandler:@"getInitDataFromObjC" handler:^(id data, WVJBResponseCallback responseCallback) {
         @strongify(self)
         responseCallback(@{@"name": self.title,
-                           @"rawContent": self.viewModel.rawContent,
+                           @"rawContent": self.viewModel.rawContent ?: @"",
                            @"content": self.viewModel.content ?: @"",
                            @"lineWrapping": @(self.viewModel.isLineWrapping)});
     }];
     
-    [[self.viewModel.fetchBlobCommand execute:nil] subscribeNext:^(id x) {
-        @strongify(self)
-        [self loadSource];
-    }];
+    if (self.viewModel.isMarkdown) {
+        [[self.viewModel.requestRenderedMarkdownCommand execute:nil] subscribeNext:^(id x) {
+            @strongify(self)
+            self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+            [self loadSource];
+        }];
+    } else {
+        [[[self.viewModel.requestBlobCommand
+           	execute:nil]
+            deliverOn:RACScheduler.mainThreadScheduler]
+            subscribeNext:^(id x) {
+                @strongify(self)
+                self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+                [self loadSource];
+            }];
+    }
 }
 
 - (void)bindViewModel {
@@ -48,7 +95,7 @@
 }
 
 - (void)loadSource {
-    if (self.viewModel.isMarkdown) {
+    if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
         [self.webView loadData:[self.viewModel.content dataUsingEncoding:NSUTF8StringEncoding]
                       MIMEType:@"text/html"
               textEncodingName:@"utf-8"
@@ -60,8 +107,8 @@
     }
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-    [self loadSource];
-}
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+//    [self loadSource];
+//}
 
 @end

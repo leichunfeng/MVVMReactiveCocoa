@@ -31,6 +31,8 @@
 - (void)initialize {
     [super initialize];
     
+    self.shouldPullToRefresh = YES;
+    
     self.title = (self.repository.isStarred ? [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name] : self.repository.name);
 
     NSError *error = nil;
@@ -91,8 +93,8 @@
 - (RACSignal *)requestRemoteDataSignal {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                            owner:self.repository.ownerLogin];
-    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedHTML:self.repository
-                                                                                              reference:self.reference.name];
+    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedMarkdown:self.repository
+                                                                                                  reference:self.reference.name];
     @weakify(self)
     return [[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
@@ -100,7 +102,7 @@
             @strongify(self)
             [self.repository mergeValuesForKeysFromModel:tuple.first];
             [self.repository save];
-            self.readmeAttributedString = [tuple.second HTMLString2AttributedString];
+            self.readmeAttributedString = [tuple.second renderedMarkdown2AttributedString];
         }];
 }
 
