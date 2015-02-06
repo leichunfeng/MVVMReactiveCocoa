@@ -26,11 +26,12 @@
         }].array;
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
-    self.segmentedControl.tintColor = [UIColor whiteColor];
+    self.segmentedControl.tintColor = UIColor.whiteColor;
     self.segmentedControl.selectedSegmentIndex = 0;
     
     @weakify(self)
-    [[self.segmentedControl rac_newSelectedSegmentIndexChannelWithNilValue:@0]
+    [[self.segmentedControl
+      	rac_newSelectedSegmentIndexChannelWithNilValue:@0]
     	subscribeNext:^(NSNumber *selectedSegmentIndex) {
             @strongify(self)
             UIViewController *toViewController = self.viewControllers[[selectedSegmentIndex integerValue]];
