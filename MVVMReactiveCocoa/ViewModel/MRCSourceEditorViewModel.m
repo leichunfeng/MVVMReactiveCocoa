@@ -25,6 +25,7 @@
         self.reference     = params[@"reference"];
         self.blobTreeEntry = params[@"blobTreeEntry"];
         self.encoded = YES;
+        self.lineWrapping = YES;
     }
     return self;
 }

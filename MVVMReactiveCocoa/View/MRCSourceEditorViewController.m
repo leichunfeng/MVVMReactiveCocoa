@@ -39,21 +39,29 @@
     
     [[self.viewModel.fetchBlobCommand execute:nil] subscribeNext:^(id x) {
         @strongify(self)
-        if (self.viewModel.isMarkdown) {
-            [self.webView loadData:[self.viewModel.content dataUsingEncoding:NSUTF8StringEncoding]
-                          MIMEType:@"text/html"
-                  textEncodingName:@"utf-8"
-                           baseURL:nil];
-        } else {
-            NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
-            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
-            [self.webView loadRequest:request];
-        }
+        [self loadSource];
     }];
 }
 
 - (void)bindViewModel {
     [super bindViewModel];
+}
+
+- (void)loadSource {
+    if (self.viewModel.isMarkdown) {
+        [self.webView loadData:[self.viewModel.content dataUsingEncoding:NSUTF8StringEncoding]
+                      MIMEType:@"text/html"
+              textEncodingName:@"utf-8"
+                       baseURL:nil];
+    } else {
+        NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        [self.webView loadRequest:request];
+    }
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [self loadSource];
 }
 
 @end
