@@ -10,6 +10,11 @@
 
 @implementation MRCStarredReposViewModel
 
+- (void)initialize {
+    [super initialize];
+    self.shouldPullToRefresh = YES;
+}
+
 - (RACSignal *)fetchRepositoriesSignal {
     return [OCTRepository fetchUserStarredRepositories];
 }

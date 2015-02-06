@@ -14,6 +14,8 @@
 
 - (void)initialize {
     [super initialize];
+    
+    self.shouldPullToRefresh = YES;
 
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {

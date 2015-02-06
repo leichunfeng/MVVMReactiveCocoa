@@ -67,6 +67,10 @@ typedef id   (^IDBlock_id)  (id);
 #define colorA12 0x0ab8b4
 #define colorA13 0xec8621
 #define colorA14 0xfc3c39
+#define colorA15 0xe8f6ef
+#define colorA16 0x62c092
+#define colorA17 0x168f54
+#define colorA18 0x007b46
 
 #define colorB0 0xffffff
 #define colorB1 0xeeeeee

@@ -20,8 +20,8 @@
     self.nameLabel.attributedText = viewModel.name;
     self.descriptionLabel.text    = viewModel.repository.repoDescription;
     self.languageLabel.text       = viewModel.language;
-    self.starCountLabel.text      = [@(viewModel.repository.stargazersCount) stringValue];
-    self.forkCountLabel.text      = [@(viewModel.repository.forksCount) stringValue];
+    self.starCountLabel.text      = @(viewModel.repository.stargazersCount).stringValue;
+    self.forkCountLabel.text      = @(viewModel.repository.forksCount).stringValue;
     self.iconImageView.image      = [UIImage octicon_imageWithIdentifier:viewModel.identifier size:CGSizeMake(20, 20)];
 }
 

@@ -16,10 +16,16 @@
 @property (strong, nonatomic) NSString *rawContent;
 @property (strong, nonatomic) NSString *content;
 
-@property (nonatomic, getter=isLineWrapping) BOOL lineWrapping;
-@property (nonatomic, getter=isEncoded) 	 BOOL encoded;
-@property (nonatomic, getter=isMarkdown) 	 BOOL markdown;
+@property (nonatomic, getter=isLineWrapping)   BOOL lineWrapping;
+@property (nonatomic, getter=isEncoded)		   BOOL encoded;
+@property (nonatomic, getter=isMarkdown)	   BOOL markdown;
 
-@property (strong, nonatomic) RACCommand *fetchBlobCommand;
+@property (nonatomic) BOOL showRawMarkdown;
+
+@property (strong, nonatomic) RACCommand *requestBlobCommand;
+@property (strong, nonatomic) RACCommand *requestRenderedMarkdownCommand;
+
+@property (strong, nonatomic) NSString *wrappingActionTitle;
+@property (strong, nonatomic) NSString *markdownActionTitle;
 
 @end

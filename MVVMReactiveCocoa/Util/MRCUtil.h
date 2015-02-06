@@ -21,7 +21,7 @@
 
 - (NSString *)firstLetter;
 
-- (NSAttributedString *)HTMLString2AttributedString;
+- (NSAttributedString *)renderedMarkdown2AttributedString;
 
 - (BOOL)isMarkdown;
 

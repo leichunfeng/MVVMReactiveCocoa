@@ -68,9 +68,9 @@
 }
 
 - (void)configureAppearance {
-    UINavigationBar.appearance.barTintColor = HexRGB(0x313131);
-    UINavigationBar.appearance.translucent = NO;
-    UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
+    UINavigationBar.appearance.barTintColor = HexRGB(colorA17);
+    UINavigationBar.appearance.tintColor = UIColor.whiteColor;
+    UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: UIColor.whiteColor };
     UITableView.appearance.backgroundColor = HexRGB(0xf8f8f8);
 }
 

@@ -10,6 +10,6 @@
 
 @protocol MRCRepositoryService <NSObject>
 
-- (RACSignal *)requestRepositoryReadmeRenderedHTML:(OCTRepository *)repository reference:(NSString *)reference;
+- (RACSignal *)requestRepositoryReadmeRenderedMarkdown:(OCTRepository *)repository reference:(NSString *)reference;
 
 @end

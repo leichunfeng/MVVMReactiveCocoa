@@ -35,6 +35,8 @@
 - (void)initialize {
     [super initialize];
     
+    if (!self.tree) self.shouldPullToRefresh = YES;
+    
     @weakify(self)
     [RACObserve(self, tree) subscribeNext:^(OCTTree *tree) {
         @strongify(self)
@@ -111,8 +113,6 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    if (self.tree) return [RACSignal empty];
-    
     NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
     
     @weakify(self)
