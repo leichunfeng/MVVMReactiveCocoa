@@ -733,10 +733,6 @@
 		242D4FCC1A64B6FA0026ABC6 = {
 			isa = PBXGroup;
 			children = (
-				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
-				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
-				242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */,
-				242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */,
 				242D4FD71A64B6FA0026ABC6 /* MVVMReactiveCocoa */,
 				242D4FF11A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */,
 				242D4FD61A64B6FA0026ABC6 /* Products */,
@@ -838,6 +834,10 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
+				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
+				242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */,
+				242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */,
 				24A28AE61A767F92005235C5 /* libMMMarkdown-iOS.a */,
 				24A28AA31A75D964005235C5 /* ISO8601DateFormatter.framework */,
 				24A28AA11A75D957005235C5 /* AFNetworking.framework */,
