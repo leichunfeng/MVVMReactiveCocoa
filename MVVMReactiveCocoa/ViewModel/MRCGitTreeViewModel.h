@@ -10,4 +10,6 @@
 
 @interface MRCGitTreeViewModel : MRCTableViewModel
 
+@property (strong, nonatomic) OCTTree *tree;
+
 @end

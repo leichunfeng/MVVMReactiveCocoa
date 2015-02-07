@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) OCTRepository *repository;
 @property (strong, nonatomic) OCTRef *reference;
-@property (strong, nonatomic) OCTTree *tree;
 @property (strong, nonatomic) NSString *path;
 
 @end

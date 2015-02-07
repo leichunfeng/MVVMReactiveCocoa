@@ -11,10 +11,12 @@
 #import "MRCSelectBranchViewModel.h"
 #import "MRCRepoReadmeViewModel.h"
 #import "MRCGitTreeViewModel.h"
+#import "MRCSourceEditorViewModel.h"
 
 @interface MRCRepoDetailViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
+@property (strong, nonatomic) NSString *renderedMarkdown;
 
 @end
 
@@ -55,12 +57,15 @@
         @strongify(self)
         NSMutableDictionary *params = [NSMutableDictionary new];
         
+        [params setValue:@"README.md" forKey:@"title"];
         [params setValue:self.repository forKey:@"repository"];
         [params setValue:self.reference forKey:@"reference"];
-        if (self.readmeAttributedString) [params setValue:self.readmeAttributedString forKey:@"readmeAttributedString"];
+        [params setValue:@(MRCSourceEditorViewModelTypeReadme) forKey:@"type"];
         
-        MRCRepoReadmeViewModel *readmeViewModel = [[MRCRepoReadmeViewModel alloc] initWithServices:self.services params:[params copy]];
-        [self.services pushViewModel:readmeViewModel animated:YES];
+        if (self.renderedMarkdown) [params setValue:self.renderedMarkdown forKey:@"renderedMarkdown"];
+        
+        MRCSourceEditorViewModel *sourceEditorViewModel = [[MRCSourceEditorViewModel alloc] initWithServices:self.services params:params.copy];
+        [self.services pushViewModel:sourceEditorViewModel animated:YES];
         
         return [RACSignal empty];
     }];
@@ -102,6 +107,8 @@
             @strongify(self)
             [self.repository mergeValuesForKeysFromModel:tuple.first];
             [self.repository save];
+            
+            self.renderedMarkdown = tuple.second;
             self.readmeAttributedString = [tuple.second renderedMarkdown2AttributedString];
         }];
 }

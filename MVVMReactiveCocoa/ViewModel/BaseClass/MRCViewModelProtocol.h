@@ -31,11 +31,15 @@
 
 @optional
 
+@property (strong, nonatomic) NSString *title;
+
 // The callback block.
 @property (strong, nonatomic) VoidBlock_id callback;
 
 // A RACSubject object, which representing all errors occurred in view model.
 @property (strong, nonatomic, readonly) RACSubject *errors;
+
+@property (strong, nonatomic) RACSubject *willDisappearSignal;
 
 // An additional method, in which you can initialize data, RACCommand etc.
 //

@@ -18,35 +18,36 @@
 @implementation MRCGitTreeViewController
 
 - (void)viewDidLoad {
-//    @weakify(self)
-//    [self.viewModel.requestRemoteDataCommand.executionSignals
-//     	subscribeNext:^(RACSignal *requestRemoteDataSignal) {
-//         	@strongify(self)
-//         	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading...";
-//         	[requestRemoteDataSignal subscribeNext:^(id x) {
-//             	@strongify(self)
-//             	[MBProgressHUD hideHUDForView:self.view animated:YES];
-//         	}];
-//     	}];
-//    
-//    [self.viewModel.requestRemoteDataCommand.errors subscribeNext:^(NSError *error) {
-//        @strongify(self)
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    }];
-    
-    [super viewDidLoad];
-
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44;
+    
+    if (!self.viewModel.tree) {
+        @weakify(self)
+        [[self.viewModel.requestRemoteDataCommand.executionSignals
+          	take:1]
+         	subscribeNext:^(RACSignal *requestSignal) {
+             	@strongify(self)
+             	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading";
+             	[[requestSignal deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+                 	@strongify(self)
+                 	[MBProgressHUD hideHUDForView:self.view animated:YES];
+             	}];
+         	}];
+        
+        [self.viewModel.requestRemoteDataCommand.errors subscribeNext:^(id x) {
+            @strongify(self)
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }];
+    }
+    
+    [super viewDidLoad];
 }
 
-#pragma mark - UITableViewDataSource
+- (void)bindViewModel {
+    [super bindViewModel];
+}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
-    NSDictionary *dictionary = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSDictionary *)dictionary {
     OCTTreeEntry *treeEntry = dictionary[@"treeEntry"];
     
     cell.imageView.image = [UIImage octicon_imageWithIdentifier:dictionary[@"identifier"] size:CGSizeMake(22, 22)];
@@ -55,7 +56,7 @@
     
     if (treeEntry.type == OCTTreeEntryTypeBlob) {
         UILabel *sizeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-       
+        
         sizeLabel.text = dictionary[@"size"];
         sizeLabel.font = [UIFont systemFontOfSize:15];
         sizeLabel.textColor = UIColor.grayColor;
@@ -71,9 +72,9 @@
         cell.textLabel.font = [UIFont systemFontOfSize:17];
         cell.accessoryView  = nil;
     }];
-    
-    return cell;
 }
+
+#pragma mark - UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01;

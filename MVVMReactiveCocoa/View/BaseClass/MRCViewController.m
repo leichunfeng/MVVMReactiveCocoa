@@ -41,6 +41,27 @@
 
 - (void)bindViewModel {
     RAC(self, title) = RACObserve(self.viewModel, title);
+    
+    @weakify(self)
+    [self.viewModel.errors subscribeNext:^(NSError *error) {
+        @strongify(self)
+        NSLog(@"Error: %@", error);
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                 message:error.localizedDescription
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }]];
+        [self presentViewController:alertController animated:YES completion:NULL];
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.viewModel.willDisappearSignal sendNext:nil];
 }
 
 @end

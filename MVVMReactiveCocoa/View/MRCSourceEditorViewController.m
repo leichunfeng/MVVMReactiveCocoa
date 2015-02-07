@@ -44,10 +44,17 @@
                 @strongify(self)
                 self.viewModel.showRawMarkdown = !self.viewModel.showRawMarkdown;
                 if (self.viewModel.showRawMarkdown && !self.viewModel.rawContent) {
-                    [[self.viewModel.requestBlobCommand execute:nil] subscribeNext:^(id x) {
-                        @strongify(self)
-                        [self loadSource];
-                    }];
+                    if (self.viewModel.type == MRCSourceEditorViewModelTypeBlob) {
+                        [[self.viewModel.requestBlobCommand execute:nil] subscribeNext:^(id x) {
+                            @strongify(self)
+                            [self loadSource];
+                        }];
+                    } else if (self.viewModel.type == MRCSourceEditorViewModelTypeReadme) {
+                        [[self.viewModel.requestReadmeCommand execute:nil] subscribeNext:^(id x) {
+                            @strongify(self)
+                            [self loadSource];
+                        }];
+                    }
                 } else {
                     [self loadSource];
                 }
@@ -72,12 +79,37 @@
                            @"lineWrapping": @(self.viewModel.isLineWrapping)});
     }];
     
+    [[RACSignal
+     	merge:@[
+            self.viewModel.requestReadmeCommand.executionSignals,
+            self.viewModel.requestBlobCommand.executionSignals,
+            self.viewModel.requestRenderedMarkdownCommand.executionSignals
+        ]]
+     	subscribeNext:^(RACSignal *requestSignal) {
+         	@strongify(self)
+         	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading";
+         	[[requestSignal deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
+             	@strongify(self)
+             	[MBProgressHUD hideHUDForView:self.view animated:YES];
+         	}];
+     	}];
+    
+    [self.viewModel.errors subscribeNext:^(id x) {
+        @strongify(self)
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
+    
     if (self.viewModel.isMarkdown) {
-        [[self.viewModel.requestRenderedMarkdownCommand execute:nil] subscribeNext:^(id x) {
-            @strongify(self)
+        if (self.viewModel.renderedMarkdown) {
             self.navigationItem.rightBarButtonItem = rightBarButtonItem;
             [self loadSource];
-        }];
+        } else {
+            [[self.viewModel.requestRenderedMarkdownCommand execute:nil] subscribeNext:^(id x) {
+                @strongify(self)
+                self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+                [self loadSource];
+            }];
+        }
     } else {
         [[[self.viewModel.requestBlobCommand
            	execute:nil]
