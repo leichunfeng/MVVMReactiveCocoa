@@ -35,7 +35,7 @@
     
     self.shouldPullToRefresh = YES;
     
-    self.title = (self.repository.isStarred ? [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name] : self.repository.name);
+    self.title = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];
 
     NSError *error = nil;
     self.reference = [[OCTRef alloc] initWithDictionary:@{@"name": [NSString stringWithFormat:@"refs/heads/%@", self.repository.defaultBranch]}
@@ -46,7 +46,7 @@
     self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
-                                                                                       params:@{@"title": self.repository.name,
+                                                                                       params:@{@"title": self.title,
                                                                                                 @"repository": self.repository,
                                                                                                 @"reference": self.reference}];
         [self.services pushViewModel:gitTreeViewModel animated:YES];
