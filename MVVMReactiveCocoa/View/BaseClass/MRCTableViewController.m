@@ -26,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.sectionIndexColor = [UIColor darkGrayColor];
-    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.sectionIndexColor = UIColor.darkGrayColor;
+    self.tableView.sectionIndexBackgroundColor = UIColor.clearColor;
     
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"UITableViewCell"];
@@ -37,7 +37,7 @@
                                                                       target:self
                                                                refreshAction:@selector(refreshTriggered:)
                                                                        plist:@"storehouse"
-                                                                       color:[UIColor blackColor]
+                                                                       color:UIColor.blackColor
                                                                    lineWidth:1.5
                                                                   dropHeight:80
                                                                        scale:1
@@ -61,6 +61,12 @@
         }];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    return [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -72,7 +78,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    
+//    [cell addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+//    [cell addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    
+    id object = self.viewModel.dataSource[indexPath.section][indexPath.row];
+    [self configureCell:cell atIndexPath:indexPath withObject:(id)object];
+    
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

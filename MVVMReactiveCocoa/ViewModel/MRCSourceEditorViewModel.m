@@ -13,7 +13,6 @@
 @property (strong, nonatomic, readwrite) OCTRepository    *repository;
 @property (strong, nonatomic, readwrite) OCTBlobTreeEntry *blobTreeEntry;
 @property (strong, nonatomic) OCTRef *reference;
-@property (strong, nonatomic) NSString *renderedMarkdown;
 
 @end
 
@@ -22,9 +21,12 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.repository    = params[@"repository"];
-        self.reference     = params[@"reference"];
-        self.blobTreeEntry = params[@"blobTreeEntry"];
+        self.title = params[@"title"];
+        self.type  = [params[@"type"] unsignedIntegerValue];
+        self.repository = params[@"repository"];
+        self.reference  = params[@"reference"];
+        self.blobTreeEntry    = params[@"blobTreeEntry"];
+        self.renderedMarkdown = params[@"renderedMarkdown"];
         self.encoded = YES;
     }
     return self;
@@ -33,29 +35,46 @@
 - (void)initialize {
     [super initialize];
     
-    self.title = [self.blobTreeEntry.path componentsSeparatedByString:@"/"].lastObject;
+    self.title = self.title ?: [self.blobTreeEntry.path componentsSeparatedByString:@"/"].lastObject;
     self.markdown = self.title.isMarkdown;
     
     @weakify(self)
     self.requestBlobCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        return [[self.services.client
-            fetchBlob:self.blobTreeEntry.SHA inRepository:self.repository]
-            doNext:^(NSData *data) {
+        return [[[self.services.client
+        	fetchBlob:self.blobTreeEntry.SHA inRepository:self.repository]
+        	doNext:^(NSData *data) {
+            	@strongify(self)
+            	self.rawContent = data.base64EncodedString;
+            }]
+        	takeUntil:self.willDisappearSignal];
+    }];
+    
+    self.requestReadmeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        return [[[self.services.client
+            fetchRepositoryReadme:self.repository reference:self.reference.name]
+            doNext:^(OCTFileContent *fileContent) {
                 @strongify(self)
-                self.rawContent = data.base64EncodedString;
-            }];
+                self.rawContent = fileContent.content;
+            }]
+            takeUntil:self.willDisappearSignal];
     }];
     
     self.requestRenderedMarkdownCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        return [[self.services.repositoryService
+        return [[[self.services.repositoryService
         	requestRepositoryReadmeRenderedMarkdown:self.repository reference:self.reference.name]
             doNext:^(NSString *renderedMarkdown) {
                 @strongify(self)
                 self.renderedMarkdown = renderedMarkdown;
-            }];
+            }]
+            takeUntil:self.willDisappearSignal];
     }];
+    
+    [[RACSignal
+     	merge:@[ self.requestReadmeCommand.errors, self.requestBlobCommand.errors, self.requestRenderedMarkdownCommand.errors ]]
+     	subscribe:self.errors];
 }
 
 - (NSString *)content {

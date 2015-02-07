@@ -12,8 +12,10 @@
 
 @synthesize services = _services;
 @synthesize params   = _params;
+@synthesize title    = _title;
 @synthesize callback = _callback;
 @synthesize errors   = _errors;
+@synthesize willDisappearSignal = _willDisappearSignal;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewModel *viewModel = [super allocWithZone:zone];
@@ -37,6 +39,11 @@
 - (RACSubject *)errors {
     if (!_errors) _errors = [RACSubject subject];
     return _errors;
+}
+
+- (RACSubject *)willDisappearSignal {
+    if (!_willDisappearSignal) _willDisappearSignal = [RACSubject subject];
+    return _willDisappearSignal;
 }
 
 - (void)initialize {}

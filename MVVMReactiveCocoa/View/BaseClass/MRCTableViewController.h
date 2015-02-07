@@ -13,4 +13,8 @@
 // The table view for tableView controller.
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
+
 @end
