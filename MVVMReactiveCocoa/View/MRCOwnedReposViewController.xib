@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCOwnedReposViewController">
             <connections>
-                <outlet property="view" destination="dTf-Q8-vpT" id="fST-qa-SiT"/>
+                <outlet property="tableView" destination="dTf-Q8-vpT" id="GK5-Zh-tyu"/>
+                <outlet property="view" destination="5jJ-Bl-G68" id="ojj-GN-p6P"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dTf-Q8-vpT">
+        <view contentMode="scaleToFill" id="5jJ-Bl-G68">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dTf-Q8-vpT">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6H7-uo-auB"/>
+                        <outlet property="delegate" destination="-1" id="eO5-jV-vij"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="6H7-uo-auB"/>
-                <outlet property="delegate" destination="-1" id="eO5-jV-vij"/>
-            </connections>
-            <point key="canvasLocation" x="564" y="378"/>
-        </tableView>
+            <constraints>
+                <constraint firstItem="dTf-Q8-vpT" firstAttribute="leading" secondItem="5jJ-Bl-G68" secondAttribute="leading" id="4tR-4f-mUg"/>
+                <constraint firstAttribute="bottom" secondItem="dTf-Q8-vpT" secondAttribute="bottom" id="8GN-QS-g9b"/>
+                <constraint firstAttribute="trailing" secondItem="dTf-Q8-vpT" secondAttribute="trailing" id="HN4-3c-Fdj"/>
+                <constraint firstItem="dTf-Q8-vpT" firstAttribute="top" secondItem="5jJ-Bl-G68" secondAttribute="top" id="t0n-PE-LG5"/>
+            </constraints>
+            <point key="canvasLocation" x="806" y="368"/>
+        </view>
     </objects>
 </document>

@@ -101,7 +101,7 @@
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedMarkdown:self.repository
                                                                                                   reference:self.reference.name];
     @weakify(self)
-    return [[RACSignal
+    return [[[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
@@ -110,7 +110,8 @@
             
             self.renderedMarkdown = tuple.second;
             self.readmeAttributedString = [tuple.second renderedMarkdown2AttributedString];
-        }];
+        }]
+    	takeUntil:self.willDisappearSignal];
 }
 
 @end

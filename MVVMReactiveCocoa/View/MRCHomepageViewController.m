@@ -33,9 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.tabBar.translucent = NO;
-    
+        
     self.viewControllers = @[ self.newsNavigationController, self.reposNavigationController, self.gistsNavigationController, self.profileNavigationController ];
     
     [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]

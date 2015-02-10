@@ -122,10 +122,6 @@
     }
 }
 
-- (void)bindViewModel {
-    [super bindViewModel];
-}
-
 - (void)loadSource {
     if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
         [self.webView loadData:[self.viewModel.content dataUsingEncoding:NSUTF8StringEncoding]

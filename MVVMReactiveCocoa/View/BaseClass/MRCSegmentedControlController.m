@@ -27,8 +27,7 @@
             return viewController.segmentedControlItem;
         }].array;
     
-    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
-    self.segmentedControl.tintColor = UIColor.whiteColor;
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];    
     self.segmentedControl.selectedSegmentIndex = 0;
     
     @weakify(self)

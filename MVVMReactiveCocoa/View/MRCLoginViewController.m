@@ -16,6 +16,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *usernameImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
@@ -36,6 +39,9 @@
     
     self.avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.avatarImageView.layer.borderWidth = 2.0f;
+    
+    self.usernameImageView.image = [UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(22, 22)];
+    self.passwordImageView.image = [UIImage octicon_imageWithIdentifier:@"Lock" size:CGSizeMake(22, 22)];
     
     self.returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
     self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;

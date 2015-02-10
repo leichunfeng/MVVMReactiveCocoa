@@ -26,12 +26,16 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="README.md" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kf9-ZB-cdY">
-                                        <rect key="frame" x="45" y="9" width="285" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="45" y="9" width="91" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" id="JdX-tp-XaR">
+                                        <rect key="frame" x="144" y="10" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -54,6 +58,7 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activityIndicatorView" destination="JdX-tp-XaR" id="rHe-7e-ad5"/>
                 <outlet property="readmeAttributedLabel" destination="ZeY-3T-wv3" id="V0u-Xy-PX2"/>
                 <outlet property="readmeButton" destination="Kfn-Fr-HRL" id="lBA-xw-pWi"/>
                 <outlet property="readmeImageView" destination="6ju-sd-Jzv" id="jne-tm-iY5"/>

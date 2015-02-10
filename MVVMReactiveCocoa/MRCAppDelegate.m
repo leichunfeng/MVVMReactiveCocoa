@@ -68,10 +68,12 @@
 }
 
 - (void)configureAppearance {
-    UINavigationBar.appearance.barTintColor = HexRGB(colorA17);
-    UINavigationBar.appearance.tintColor = UIColor.whiteColor;
-    UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: UIColor.whiteColor };
+    UINavigationBar.appearance.barTintColor = [UIColor colorWithWhite:1 alpha:0.1];
+    UINavigationBar.appearance.tintColor = HexRGB(0x007AFF);
+    UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: UIColor.blackColor };
     UITableView.appearance.backgroundColor = HexRGB(0xf8f8f8);
+    UITabBar.appearance.barTintColor = [UIColor colorWithWhite:1 alpha:0.1];
+    UISegmentedControl.appearance.tintColor = HexRGB(0x007AFF);
 }
 
 - (void)configureKeyboardManager {
