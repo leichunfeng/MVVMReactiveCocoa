@@ -6,19 +6,32 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCGitTreeViewController">
             <connections>
-                <outlet property="view" destination="DO0-W5-5dN" id="994-EC-hhk"/>
+                <outlet property="tableView" destination="DO0-W5-5dN" id="9le-uJ-OLN"/>
+                <outlet property="view" destination="qRK-W0-1PD" id="pk3-9p-vtZ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DO0-W5-5dN">
+        <view contentMode="scaleToFill" id="qRK-W0-1PD">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="1TR-Ih-VqE"/>
-                <outlet property="delegate" destination="-1" id="s98-ae-hd9"/>
-            </connections>
-            <point key="canvasLocation" x="609" y="328"/>
-        </tableView>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="DO0-W5-5dN">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="1TR-Ih-VqE"/>
+                        <outlet property="delegate" destination="-1" id="s98-ae-hd9"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="DO0-W5-5dN" secondAttribute="trailing" id="Fav-Vi-Wj5"/>
+                <constraint firstItem="DO0-W5-5dN" firstAttribute="leading" secondItem="qRK-W0-1PD" secondAttribute="leading" id="WGl-kD-G2A"/>
+                <constraint firstItem="DO0-W5-5dN" firstAttribute="top" secondItem="qRK-W0-1PD" secondAttribute="top" id="gjk-Bt-6Yp"/>
+                <constraint firstAttribute="bottom" secondItem="DO0-W5-5dN" secondAttribute="bottom" id="kg3-21-8B4"/>
+            </constraints>
+            <point key="canvasLocation" x="770" y="258"/>
+        </view>
     </objects>
 </document>

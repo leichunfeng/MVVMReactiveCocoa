@@ -49,11 +49,12 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[RACSignal
+    return [[[RACSignal
         combineLatest:@[ [OCTRepository fetchUserRepositories], [[self.services.client fetchUserRepositories] collect] ]]
     	flattenMap:^RACStream *(RACTuple *tuple) {
             return [OCTRepository updateLocalObjects:tuple.first withRemoteObjects:tuple.second];
-        }];
+        }]
+    	takeUntil:self.willDisappearSignal];
 }
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {

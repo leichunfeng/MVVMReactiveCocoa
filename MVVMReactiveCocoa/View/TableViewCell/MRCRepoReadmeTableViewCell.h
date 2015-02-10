@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *readmeButton;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *readmeAttributedLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end

@@ -120,6 +120,11 @@
         cell.readmeAttributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
         cell.readmeButton.rac_command = self.viewModel.readmeCommand;
         
+        [cell.activityIndicatorView startAnimating];
+        [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
+            cell.activityIndicatorView.hidden = !executing.boolValue;
+        }];
+        
         self.readmeAttributedLabel = cell.readmeAttributedLabel;
         
         return cell;
