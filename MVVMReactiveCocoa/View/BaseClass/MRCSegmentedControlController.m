@@ -20,8 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     NSArray *items = [self.viewControllers.rac_sequence
     	map:^id(UIViewController *viewController) {
             return viewController.segmentedControlItem;
@@ -35,7 +33,7 @@
       	rac_newSelectedSegmentIndexChannelWithNilValue:@0]
     	subscribeNext:^(NSNumber *selectedSegmentIndex) {
             @strongify(self)
-            UIViewController *toViewController = self.viewControllers[[selectedSegmentIndex integerValue]];
+            UIViewController *toViewController = self.viewControllers[selectedSegmentIndex.integerValue];
             [self transitionFromViewController:self.currentViewController
                               toViewController:toViewController
                                       duration:0
@@ -53,6 +51,7 @@
     self.navigationItem.titleView = self.segmentedControl;
     
     for (UIViewController *viewController in self.viewControllers) {
+        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         [self addChildViewController:viewController];
     }
     
