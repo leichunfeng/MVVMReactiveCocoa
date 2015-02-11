@@ -9,7 +9,6 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCRepositoryService.h"
 #import "MRCSelectBranchViewModel.h"
-#import "MRCRepoReadmeViewModel.h"
 #import "MRCGitTreeViewModel.h"
 #import "MRCSourceEditorViewModel.h"
 

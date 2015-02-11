@@ -81,23 +81,18 @@
     
     [[RACSignal
      	merge:@[
-            self.viewModel.requestReadmeCommand.executionSignals,
-            self.viewModel.requestBlobCommand.executionSignals,
-            self.viewModel.requestRenderedMarkdownCommand.executionSignals
+            self.viewModel.requestReadmeCommand.executing,
+            self.viewModel.requestBlobCommand.executing,
+            self.viewModel.requestRenderedMarkdownCommand.executing
         ]]
-     	subscribeNext:^(RACSignal *requestSignal) {
+     	subscribeNext:^(NSNumber *executing) {
          	@strongify(self)
-         	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading";
-         	[[requestSignal deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
-             	@strongify(self)
-             	[MBProgressHUD hideHUDForView:self.view animated:YES];
-         	}];
-     	}];
-    
-    [self.viewModel.errors subscribeNext:^(id x) {
-        @strongify(self)
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+            if (executing.boolValue) {
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+            } else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            }
+        }];
     
     if (self.viewModel.isMarkdown) {
         if (self.viewModel.renderedMarkdown) {
@@ -136,6 +131,7 @@
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self loadSource];
 }
 

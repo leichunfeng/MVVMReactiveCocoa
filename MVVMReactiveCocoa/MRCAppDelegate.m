@@ -68,6 +68,7 @@
 }
 
 - (void)configureAppearance {
+    self.window.backgroundColor = UIColor.whiteColor;
 //    UINavigationBar.appearance.barStyle = UIBarStyleBlack;
 //    UINavigationBar.appearance.barTintColor = [UIColor colorWithWhite:1 alpha:0.3];
 //    UINavigationBar.appearance.tintColor = HexRGB(0x007AFF);

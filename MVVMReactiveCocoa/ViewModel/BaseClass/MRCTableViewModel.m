@@ -38,6 +38,8 @@
             [self.fetchLocalDataCommand execute:nil];
         }];
     
+    [self.requestRemoteDataCommand.errors subscribe:self.errors];
+    
     [self.fetchLocalDataCommand execute:nil];
 }
 

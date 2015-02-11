@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     NSArray *items = [self.viewControllers.rac_sequence
     	map:^id(UIViewController *viewController) {
             return viewController.segmentedControlItem;

@@ -48,6 +48,8 @@
                 [self handleWithAuthenticatedClient:authenticatedClient];
             }];
     }];
+    
+    [[RACSignal merge:@[ self.loginCommand.errors, self.browserLoginCommand.errors ]] subscribe:self.errors];
 }
 
 - (void)handleWithAuthenticatedClient:(OCTClient *)authenticatedClient {

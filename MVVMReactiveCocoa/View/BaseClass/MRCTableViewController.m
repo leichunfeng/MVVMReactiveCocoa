@@ -18,6 +18,18 @@
 
 @implementation MRCTableViewController
 
+- (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
+    self = [super initWithViewModel:viewModel];
+    if (self) {
+        @weakify(self)
+        [[self rac_signalForSelector:@selector(viewDidLoad)] subscribeNext:^(id x) {
+            @strongify(self)
+            [self.viewModel.requestRemoteDataCommand execute:nil];
+        }];
+    }
+    return self;
+}
+
 - (void)setView:(UIView *)view {
     [super setView:view];
     if ([view isKindOfClass:UITableView.class]) self.tableView = (UITableView *)view;
@@ -29,7 +41,6 @@
     self.tableView.sectionIndexColor = UIColor.darkGrayColor;
     self.tableView.sectionIndexBackgroundColor = UIColor.clearColor;
     
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"UITableViewCell"];
     
     if (self.viewModel.shouldPullToRefresh) {
@@ -45,8 +56,6 @@
                                                      reverseLoadingAnimation:YES
                                                      internalAnimationFactor:0.5];
     }
-    
-    [self.viewModel.requestRemoteDataCommand execute:nil];
 }
 
 - (void)bindViewModel {
@@ -79,9 +88,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
-//    [cell addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
-//    [cell addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
     
     id object = self.viewModel.dataSource[indexPath.section][indexPath.row];
     [self configureCell:cell atIndexPath:indexPath withObject:(id)object];
@@ -126,6 +132,9 @@
             @strongify(self)
             [self.refreshControl finishingLoading];
         } error:^(NSError *error) {
+            @strongify(self)
+            [self.refreshControl finishingLoading];
+        } completed:^{
             @strongify(self)
             [self.refreshControl finishingLoading];
         }];

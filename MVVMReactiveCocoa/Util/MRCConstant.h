@@ -123,4 +123,6 @@ typedef id   (^IDBlock_id)  (id);
 #define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
+#define MBPROGRESSHUD_LABEL_TEXT @"Loading"
+
 #endif

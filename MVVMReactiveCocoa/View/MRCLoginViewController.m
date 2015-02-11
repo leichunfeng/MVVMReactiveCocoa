@@ -63,31 +63,17 @@
     self.browserLoginButton.rac_command = self.viewModel.browserLoginCommand;
     
     [[RACSignal
-      	merge:@[self.viewModel.loginCommand.executionSignals, self.viewModel.browserLoginCommand.executionSignals]]
-    	subscribeNext:^(RACSignal *loginSignal) {
+      	merge:@[self.viewModel.loginCommand.executing, self.viewModel.browserLoginCommand.executing]]
+    	subscribeNext:^(NSNumber *executing) {
             @strongify(self)
-            [self.view endEditing:YES];
-            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES].labelText = @"Logging in...";
-            [loginSignal subscribeNext:^(id x) {
+            if (executing.boolValue) {
+                [self.view endEditing:YES];
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES].labelText = @"Logging in...";
+            } else {
                 @strongify(self)
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-            }];
+            }
         }];
-    
-    [self.viewModel.errors subscribeNext:^(NSError *error) {
-        @strongify(self)
-        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-    }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleDefault;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    UIApplication.sharedApplication.statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 @end
