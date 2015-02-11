@@ -18,33 +18,22 @@
 @implementation MRCGitTreeViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 44;
     
     if (!self.viewModel.tree) {
         @weakify(self)
-        [[self.viewModel.requestRemoteDataCommand.executionSignals
-          	take:1]
-         	subscribeNext:^(RACSignal *requestSignal) {
-             	@strongify(self)
-             	[MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading";
-             	[[requestSignal deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(id x) {
-                 	@strongify(self)
-                 	[MBProgressHUD hideHUDForView:self.view animated:YES];
-             	}];
-         	}];
-        
-        [self.viewModel.requestRemoteDataCommand.errors subscribeNext:^(id x) {
+        [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
             @strongify(self)
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (executing.boolValue) {
+                if (!self.viewModel.tree) [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+            } else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            }
         }];
     }
-    
-    [super viewDidLoad];
-}
-
-- (void)bindViewModel {
-    [super bindViewModel];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSDictionary *)dictionary {

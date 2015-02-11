@@ -40,6 +40,8 @@
         [currentUser mergeValuesForKeysFromModel:user];
         [currentUser save];
         self.viewModel.currentUser = currentUser;
+    } error:^(NSError *error) {
+        [self.viewModel.errors sendNext:error];
     }];
 }
 

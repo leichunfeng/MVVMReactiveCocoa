@@ -12,7 +12,6 @@
 #import "MRCRepoReadmeTableViewCell.h"
 #import "MRCRepoDetailViewModel.h"
 #import "MRCWebViewModel.h"
-#import "MRCRepoReadmeViewModel.h"
 #import "MRCRepositoryService.h"
 
 @interface MRCRepoDetailViewController ()

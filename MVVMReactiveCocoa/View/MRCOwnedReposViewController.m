@@ -21,10 +21,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 78;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];
+    
+    @weakify(self)
+    [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
+        @strongify(self)
+        if (executing.boolValue) {
+            if ([self.viewModel.dataSource.firstObject count] == 0) {
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+            }
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource

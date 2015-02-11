@@ -8,6 +8,7 @@
 
 #import "MRCViewController.h"
 #import "MRCViewModel.h"
+#import "MRCLoginViewModel.h"
 
 @interface MRCViewController ()
 
@@ -45,17 +46,16 @@
     @weakify(self)
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)
-        NSLog(@"Error: %@", error);
-        
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                 message:error.localizedDescription
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-        }]];
-        [self presentViewController:alertController animated:YES completion:NULL];
+        if (error.code == OCTClientErrorAuthenticationFailed) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tips"
+                                                                                     message:@"Your authorization has expired, please login again"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                MRCLoginViewModel *loginViewModel = [[MRCLoginViewModel alloc] initWithServices:self.viewModel.services params:nil];
+                [self.viewModel.services resetRootViewModel:loginViewModel];
+            }]];
+            [self presentViewController:alertController animated:YES completion:NULL];
+        }
     }];
 }
 
