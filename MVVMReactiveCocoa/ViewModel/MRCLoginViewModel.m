@@ -32,8 +32,9 @@
     self.loginCommand = [[RACCommand alloc] initWithEnabled:validLoginSignal signalBlock:^RACSignal *(id input) {
     	@strongify(self)
         OCTUser *user = [OCTUser userWithRawLogin:self.username server:OCTServer.dotComServer];
-        return [[OCTClient
+        return [[[OCTClient
         	signInAsUser:user password:self.password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil]
+            deliverOn:RACScheduler.mainThreadScheduler]
             doNext:^(OCTClient *authenticatedClient) {
                 @strongify(self)
                 [self handleWithAuthenticatedClient:authenticatedClient];
@@ -41,8 +42,9 @@
     }];
 
     self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        return [[OCTClient
+        return [[[OCTClient
         	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser]
+            deliverOn:RACScheduler.mainThreadScheduler]
             doNext:^(OCTClient *authenticatedClient) {
             	@strongify(self)
                 [self handleWithAuthenticatedClient:authenticatedClient];

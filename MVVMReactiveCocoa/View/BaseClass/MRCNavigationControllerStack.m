@@ -8,6 +8,7 @@
 
 #import "MRCNavigationControllerStack.h"
 #import "MRCRouter.h"
+#import "MRCNavigationController.h"
 
 @interface MRCNavigationControllerStack ()
 
@@ -86,7 +87,7 @@
             
             UINavigationController *presentingViewController = self.navigationControllers.lastObject;
             if (![viewController isKindOfClass:UINavigationController.class]) {
-                viewController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
             }
             [self pushNavigationController:(UINavigationController *)viewController];
             
@@ -107,7 +108,7 @@
             UIViewController *viewController = (UIViewController *)[[MRCRouter sharedInstance] viewControllerForViewModel:tuple.first];
             
             if (![viewController isKindOfClass:UINavigationController.class]) {
-                viewController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
             }
             [self.navigationControllers removeAllObjects];
             [self pushNavigationController:(UINavigationController *)viewController];

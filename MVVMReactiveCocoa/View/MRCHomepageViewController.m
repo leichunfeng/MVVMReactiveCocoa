@@ -17,6 +17,7 @@
 #import "MRCProfileViewModel.h"
 #import "MRCNavigationControllerStack.h"
 #import "MRCReposViewController.h"
+#import "MRCNavigationController.h"
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 
@@ -57,7 +58,7 @@
         newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News"
                                                                       image:[UIImage octicon_imageWithIdentifier:@"Home" size:CGSizeMake(25, 25)]
                                                                         tag:1];
-        _newsNavigationController = [[UINavigationController alloc] initWithRootViewController:newsViewController];
+        _newsNavigationController = [[MRCNavigationController alloc] initWithRootViewController:newsViewController];
     }
     return _newsNavigationController;
 }
@@ -68,7 +69,7 @@
         repositoriesViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Repositories"
                                                                               image:[UIImage octicon_imageWithIdentifier:@"Repo" size:CGSizeMake(25, 25)]
                                                                                 tag:2];
-        _reposNavigationController = [[UINavigationController alloc] initWithRootViewController:repositoriesViewController];
+        _reposNavigationController = [[MRCNavigationController alloc] initWithRootViewController:repositoriesViewController];
     }
     return _reposNavigationController;
 }
@@ -79,7 +80,7 @@
         gistsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Gists"
                                                                        image:[UIImage octicon_imageWithIdentifier:@"Gist" size:CGSizeMake(25, 25)]
                                                                          tag:3];
-        _gistsNavigationController = [[UINavigationController alloc] initWithRootViewController:gistsViewController];
+        _gistsNavigationController = [[MRCNavigationController alloc] initWithRootViewController:gistsViewController];
     }
     return _gistsNavigationController;
 }
@@ -90,7 +91,7 @@
         profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile"
                                                                          image:[UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(25, 25)]
                                                                            tag:4];
-        _profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
+        _profileNavigationController = [[MRCNavigationController alloc] initWithRootViewController:profileViewController];
     }
     return _profileNavigationController;
 }

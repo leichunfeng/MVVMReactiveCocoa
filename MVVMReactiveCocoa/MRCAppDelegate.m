@@ -15,6 +15,7 @@
 #import "MRCNavigationControllerStack.h"
 #import "MRCWebViewModel.h"
 #import "MRCWebViewController.h"
+#import "MRCNavigationController.h"
 
 @interface MRCAppDelegate ()
 
@@ -29,7 +30,7 @@
     self.services = [MRCViewModelServicesImpl new];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
-    UINavigationController *navigationController = [UINavigationController new];
+    UINavigationController *navigationController = MRCNavigationController.new;
     [self.navigationControllerStack pushNavigationController:navigationController];
     [navigationController pushViewController:[self createInitialViewController] animated:NO];
     
