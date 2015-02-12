@@ -125,4 +125,6 @@ typedef id   (^IDBlock_id)  (id);
 
 #define MBPROGRESSHUD_LABEL_TEXT @"Loading"
 
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 #endif

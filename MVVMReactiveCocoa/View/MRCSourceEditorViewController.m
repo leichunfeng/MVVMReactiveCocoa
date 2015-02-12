@@ -60,8 +60,12 @@
                 }
             }]];
         }
+        
+        if (!isPad) [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+        
         alertController.popoverPresentationController.barButtonItem = rightBarButtonItem;
         [self presentViewController:alertController animated:YES completion:NULL];
+        
         return [RACSignal empty];
     }];
     
@@ -130,9 +134,8 @@
     }
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self loadSource];
+- (NSUInteger)supportedInterfaceOrientations {
+    return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end

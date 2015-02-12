@@ -71,4 +71,12 @@
     [self.viewModel.willDisappearSignal sendNext:nil];
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskPortrait;
+}
+
 @end
