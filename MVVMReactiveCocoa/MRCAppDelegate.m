@@ -70,13 +70,6 @@
 
 - (void)configureAppearance {
     self.window.backgroundColor = UIColor.whiteColor;
-//    UINavigationBar.appearance.barStyle = UIBarStyleBlack;
-//    UINavigationBar.appearance.barTintColor = [UIColor colorWithWhite:1 alpha:0.3];
-//    UINavigationBar.appearance.tintColor = HexRGB(0x007AFF);
-//    UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName: UIColor.blackColor };
-//    UITableView.appearance.backgroundColor = HexRGB(0xf8f8f8);
-//    UITabBar.appearance.barTintColor = [UIColor colorWithWhite:1 alpha:0.3];
-//    UISegmentedControl.appearance.tintColor = HexRGB(0x007AFF);
 }
 
 - (void)configureKeyboardManager {
@@ -88,8 +81,9 @@
     if ([url.scheme isEqual:MRC_URL_SCHEME]) {
         [OCTClient completeSignInWithCallbackURL:url];
         return YES;
+    } else {
+        return NO;
     }
-    return NO;
 }
 
 @end
