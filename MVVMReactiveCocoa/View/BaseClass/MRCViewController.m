@@ -46,14 +46,13 @@
     @weakify(self)
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)
-        if (error.code == OCTClientErrorAuthenticationFailed) {
+        if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorAuthenticationFailed) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tips"
                                                                                      message:@"Your authorization has expired, please login again"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
            
             [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 @strongify(self)
-                [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
                 [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
                 
                 MRCLoginViewModel *loginViewModel = [[MRCLoginViewModel alloc] initWithServices:self.viewModel.services params:nil];

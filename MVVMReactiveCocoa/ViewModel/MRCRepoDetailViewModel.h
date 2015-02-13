@@ -11,12 +11,14 @@
 @interface MRCRepoDetailViewModel : MRCTableViewModel
 
 @property (strong, nonatomic, readonly) OCTRepository *repository;
+
+@property (strong, nonatomic) NSArray *references;
 @property (strong, nonatomic) OCTRef *reference;
 
 @property (strong, nonatomic) NSAttributedString *readmeAttributedString;
 
 @property (strong, nonatomic) RACCommand *viewCodeCommand;
 @property (strong, nonatomic) RACCommand *readmeCommand;
-@property (strong, nonatomic) RACCommand *selectBranchCommand;
+@property (strong, nonatomic) RACCommand *selectBranchOrTagCommand;
 
 @end

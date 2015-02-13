@@ -41,13 +41,14 @@
     [self configureAppearance];
     [self configureKeyboardManager];
     
+    AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
+    
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
     
     return YES;
 }
 
 - (UIViewController *)createInitialViewController {
-//    [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
 //    [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
     
     NSString *rawLogin    = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];

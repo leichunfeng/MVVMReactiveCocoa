@@ -123,7 +123,8 @@
 
 - (void)loadSource {
     if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
-        [self.webView loadData:[self.viewModel.content dataUsingEncoding:NSUTF8StringEncoding]
+        NSString *style = @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>";
+        [self.webView loadData:[[style stringByAppendingString:self.viewModel.content] dataUsingEncoding:NSUTF8StringEncoding]
                       MIMEType:@"text/html"
               textEncodingName:@"utf-8"
                        baseURL:nil];
@@ -136,6 +137,12 @@
 
 - (NSUInteger)supportedInterfaceOrientations {
     return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
 }
 
 @end

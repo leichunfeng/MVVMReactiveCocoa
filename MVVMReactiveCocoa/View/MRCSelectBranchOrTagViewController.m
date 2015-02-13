@@ -1,21 +1,21 @@
 //
-//  MRCSelectBranchViewController.m
+//  MRCSelectBranchOrTagViewController.m
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/29.
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCSelectBranchViewController.h"
-#import "MRCSelectBranchViewModel.h"
+#import "MRCSelectBranchOrTagViewController.h"
+#import "MRCSelectBranchOrTagViewModel.h"
 
-@interface MRCSelectBranchViewController ()
+@interface MRCSelectBranchOrTagViewController ()
 
-@property (strong, nonatomic, readonly) MRCSelectBranchViewModel *viewModel;
+@property (strong, nonatomic, readonly) MRCSelectBranchOrTagViewModel *viewModel;
 
 @end
 
-@implementation MRCSelectBranchViewController
+@implementation MRCSelectBranchOrTagViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +38,12 @@
     NSDictionary *dictionary = self.viewModel.dataSource[indexPath.section][indexPath.row];
     cell.imageView.image = [UIImage octicon_imageWithIdentifier:dictionary[@"identifier"] size:CGSizeMake(29, 29)];
     cell.textLabel.text  = dictionary[@"name"];
+    
+    if ([[dictionary[@"reference"] name] isEqualToString:self.viewModel.selectedReference.name]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }

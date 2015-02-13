@@ -43,7 +43,7 @@ static MRCRouter *_sharedInstance = nil;
         @"MRCRepoDetailViewModel": @"MRCRepoDetailViewController",
         @"MRCWebViewModel": @"MRCWebViewController",
         @"MRCRepoReadmeViewModel": @"MRCRepoReadmeController",
-        @"MRCSelectBranchViewModel": @"MRCSelectBranchViewController",
+        @"MRCSelectBranchOrTagViewModel": @"MRCSelectBranchOrTagViewController",
         @"MRCGitTreeViewModel": @"MRCGitTreeViewController",
         @"MRCSourceEditorViewModel": @"MRCSourceEditorViewController"
     };

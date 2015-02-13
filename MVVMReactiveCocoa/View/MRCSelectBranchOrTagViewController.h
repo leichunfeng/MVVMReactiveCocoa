@@ -1,5 +1,5 @@
 //
-//  MRCSelectBranchViewController.h
+//  MRCSelectBranchOrTagViewController.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/29.
@@ -8,6 +8,6 @@
 
 #import "MRCTableViewController.h"
 
-@interface MRCSelectBranchViewController : MRCTableViewController
+@interface MRCSelectBranchOrTagViewController : MRCTableViewController
 
 @end

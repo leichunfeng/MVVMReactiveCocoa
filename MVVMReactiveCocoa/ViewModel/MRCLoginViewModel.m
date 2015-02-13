@@ -22,48 +22,43 @@
     
     RACSignal *validLoginSignal = [[RACSignal
     	combineLatest:@[RACObserve(self, username), RACObserve(self, password)] reduce:^id(NSString *username, NSString *password) {
-        	return @(username.length >= 6 && password.length >= 6);
+        	return @(username.length > 0 && password.length > 0);
         }]
         distinctUntilChanged];
     
+    @weakify(self)
+    void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
+        @strongify(self)
+        [self.services setClient:authenticatedClient];
+        [authenticatedClient.user save];
+        
+        [SSKeychain setPassword:authenticatedClient.user.rawLogin forService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
+        [SSKeychain setPassword:self.password forService:MRC_SERVICE_NAME account:MRC_PASSWORD];
+        [SSKeychain setPassword:authenticatedClient.token forService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
+        
+        MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
+        [self.services resetRootViewModel:viewModel];
+    };
+    
     [OCTClient setClientID:MRC_CLIENT_ID clientSecret:MRC_CLIENT_SECRET];
     
-    @weakify(self)
-    self.loginCommand = [[RACCommand alloc] initWithEnabled:validLoginSignal signalBlock:^RACSignal *(id input) {
+    self.loginCommand = [[RACCommand alloc] initWithEnabled:validLoginSignal signalBlock:^RACSignal *(NSString *oneTimePassword) {
     	@strongify(self)
         OCTUser *user = [OCTUser userWithRawLogin:self.username server:OCTServer.dotComServer];
         return [[[OCTClient
-        	signInAsUser:user password:self.password oneTimePassword:nil scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil]
+        	signInAsUser:user password:self.password oneTimePassword:oneTimePassword scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil]
             deliverOn:RACScheduler.mainThreadScheduler]
-            doNext:^(OCTClient *authenticatedClient) {
-                @strongify(self)
-                [self handleWithAuthenticatedClient:authenticatedClient];
-            }];
+            doNext:doNext];
     }];
 
     self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         return [[[OCTClient
         	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser]
             deliverOn:RACScheduler.mainThreadScheduler]
-            doNext:^(OCTClient *authenticatedClient) {
-            	@strongify(self)
-                [self handleWithAuthenticatedClient:authenticatedClient];
-            }];
+            doNext:doNext];
     }];
     
     [[RACSignal merge:@[ self.loginCommand.errors, self.browserLoginCommand.errors ]] subscribe:self.errors];
-}
-
-- (void)handleWithAuthenticatedClient:(OCTClient *)authenticatedClient {
-    [self.services setClient:authenticatedClient];
-    
-    [authenticatedClient.user save];
-    
-    [SSKeychain setPassword:authenticatedClient.user.rawLogin forService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
-    [SSKeychain setPassword:authenticatedClient.token forService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
-    
-    MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
-    [self.services resetRootViewModel:viewModel];
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "MRCHomepageViewModel.h"
 #import "IQKeyboardReturnKeyHandler.h"
 
-@interface MRCLoginViewController ()
+@interface MRCLoginViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 
@@ -44,7 +44,19 @@
     self.passwordImageView.image = [UIImage octicon_imageWithIdentifier:@"Lock" size:CGSizeMake(22, 22)];
     
     self.returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
-    self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
+    self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyGo;
+    
+    self.usernameTextField.text = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
+    self.passwordTextField.text = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_PASSWORD];
+    
+    @weakify(self)
+    [[self rac_signalForSelector:@selector(textFieldShouldReturn:) fromProtocol:@protocol(UITextFieldDelegate)]
+    	subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
+            if (tuple.first == self.passwordTextField)	[self.viewModel.loginCommand execute:nil];
+        }];
+    
+    self.passwordTextField.delegate = self;
 }
 
 - (void)bindViewModel {
@@ -59,9 +71,6 @@
     RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
     RAC(self.viewModel, password) = self.passwordTextField.rac_textSignal;
     
-    self.loginButton.rac_command = self.viewModel.loginCommand;
-    self.browserLoginButton.rac_command = self.viewModel.browserLoginCommand;
-    
     [[RACSignal
       	merge:@[self.viewModel.loginCommand.executing, self.viewModel.browserLoginCommand.executing]]
     	subscribeNext:^(NSNumber *executing) {
@@ -74,6 +83,39 @@
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             }
         }];
+    
+    [self.viewModel.errors subscribeNext:^(NSError *error) {
+        @strongify(self)
+        if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorTwoFactorAuthenticationOneTimePasswordRequired) {
+            NSString *message = @"Please enter the 2FA code you received via SMS or read from an authenticator app";
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tips"
+                                                                                     message:message
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                textField.returnKeyType = UIReturnKeyGo;
+                textField.placeholder = @"2FA code";
+                textField.secureTextEntry = YES;
+            }];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Login" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                @strongify(self)
+                [self.viewModel.loginCommand execute:[alertController.textFields.firstObject text]];
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:NULL];
+        }
+    }];
+    
+    self.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        [self.viewModel.loginCommand execute:nil];
+        return [RACSignal empty];
+    }];
+    
+    self.browserLoginButton.rac_command = self.viewModel.browserLoginCommand;
 }
 
 @end
