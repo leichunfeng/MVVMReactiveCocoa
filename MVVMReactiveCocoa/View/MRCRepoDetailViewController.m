@@ -47,16 +47,33 @@
          forCellReuseIdentifier:@"MRCRepoReadmeTableViewCell"];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];
     [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
-    [button setImage:[UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(22, 22)] forState:UIControlStateNormal];
-    [button sizeToFit];
-    button.rac_command = self.viewModel.selectBranchCommand;
+    
+	[RACObserve(self.viewModel, reference) subscribeNext:^(OCTRef *reference) {
+        [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];
+        [button setImage:[UIImage octicon_imageWithIdentifier:reference.octiconIdentifier size:CGSizeMake(22, 22)] forState:UIControlStateNormal];
+        [button sizeToFit];
+    }];
+
+    button.rac_command = self.viewModel.selectBranchOrTagCommand;
     
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.toolbar.items = @[barButtonItem];
+    self.toolbar.items = @[ barButtonItem ];
+}
+
+- (void)bindViewModel {
+    [super bindViewModel];
     
     @weakify(self)
+    [self.viewModel.selectBranchOrTagCommand.executing subscribeNext:^(NSNumber *executing) {
+        @strongify(self)
+        if (executing.boolValue) {
+            if (!self.viewModel.references) [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading Branches & Tags...";
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+    }];
+    
     [RACObserve(self.viewModel, readmeAttributedString) subscribeNext:^(id x) {
         @strongify(self)
         [self.tableView reloadData];

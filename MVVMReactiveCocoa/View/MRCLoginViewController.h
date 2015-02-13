@@ -10,6 +10,4 @@
 
 @interface MRCLoginViewController : MRCViewController
 
-
-
 @end

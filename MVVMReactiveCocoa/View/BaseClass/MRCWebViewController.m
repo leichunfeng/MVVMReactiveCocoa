@@ -34,8 +34,12 @@
     NSString *htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     if (error) NSLog(@"Error: %@", error);
     
-//    [self.webView loadHTMLString:htmlString baseURL:nil];
-    [self.webView loadRequest:request];
+    NSLog(@"asserts.bundlePath: %@", asserts.bundlePath);
+    NSLog(@"asserts.resourcePath: %@", asserts.resourcePath);
+    NSLog(@"asserts.executablePath: %@", asserts.executablePath);
+    
+    [self.webView loadHTMLString:htmlString baseURL:[NSURL URLWithString:[asserts.bundlePath stringByAppendingString:@"/"]]];
+//    [self.webView loadRequest:request];
 }
 
 - (void)viewDidLayoutSubviews {

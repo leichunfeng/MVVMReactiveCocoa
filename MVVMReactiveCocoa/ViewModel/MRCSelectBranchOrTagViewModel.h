@@ -1,5 +1,5 @@
 //
-//  MRCSelectBranchViewModel.h
+//  MRCSelectBranchOrTagViewModel.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/1/29.
@@ -8,8 +8,8 @@
 
 #import "MRCTableViewModel.h"
 
-@interface MRCSelectBranchViewModel : MRCTableViewModel
+@interface MRCSelectBranchOrTagViewModel : MRCTableViewModel
 
-@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+@property (strong, nonatomic, readonly) OCTRef *selectedReference;
 
 @end

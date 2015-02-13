@@ -38,7 +38,7 @@
         }
     };
     
-    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@1, NSTextSizeMultiplierDocumentOption, @"Times New Roman", DTDefaultFontFamily, @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, @17, DTDefaultFontSize, nil];
+    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@1, NSTextSizeMultiplierDocumentOption, @"\"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif", DTDefaultFontFamily, @"purple", DTDefaultLinkColor, @"red", DTDefaultLinkHighlightColor, callBackBlock, DTWillFlushBlockCallBack, @17, DTDefaultFontSize, nil];
     
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:NULL];
     

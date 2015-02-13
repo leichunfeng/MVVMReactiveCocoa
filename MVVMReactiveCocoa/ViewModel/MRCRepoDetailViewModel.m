@@ -8,7 +8,7 @@
 
 #import "MRCRepoDetailViewModel.h"
 #import "MRCRepositoryService.h"
-#import "MRCSelectBranchViewModel.h"
+#import "MRCSelectBranchOrTagViewModel.h"
 #import "MRCGitTreeViewModel.h"
 #import "MRCSourceEditorViewModel.h"
 
@@ -69,19 +69,38 @@
         return [RACSignal empty];
     }];
     
-    self.selectBranchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.selectBranchOrTagCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        MRCSelectBranchViewModel *selectBranchViewModel = [[MRCSelectBranchViewModel alloc] initWithServices:self.services
-                                                                                                      params:@{@"repository": self.repository}];
-        selectBranchViewModel.callback = ^(OCTRef *reference) {
-            @strongify(self)
-            self.reference = reference;
-            [self.requestRemoteDataCommand execute:nil];
-        };
-        [self.services presentViewModel:selectBranchViewModel animated:YES completion:NULL];
-        
-        return [RACSignal empty];
+        if (self.references) {
+            [self presentSelectBranchOrTagViewModel];
+            return RACSignal.empty;
+        } else {
+            return [[[self.services.client
+            	fetchAllReferencesInRepository:self.repository]
+             	collect]
+                doNext:^(NSArray *references) {
+                    @strongify(self)
+                    self.references = references;
+                    [self presentSelectBranchOrTagViewModel];
+                }];
+        }
     }];
+    
+    [self.selectBranchOrTagCommand.errors subscribe:self.errors];
+}
+
+- (void)presentSelectBranchOrTagViewModel {
+    NSDictionary *params = @{@"references": self.references, @"selectedReference": self.reference };
+    MRCSelectBranchOrTagViewModel *branchViewModel = [[MRCSelectBranchOrTagViewModel alloc] initWithServices:self.services params:params];
+    
+    @weakify(self)
+    branchViewModel.callback = ^(OCTRef *reference) {
+        @strongify(self)
+        self.reference = reference;
+        [self.requestRemoteDataCommand execute:nil];
+    };
+    
+    [self.services presentViewModel:branchViewModel animated:YES completion:NULL];
 }
 
 - (RACSignal *)fetchLocalDataSignal {
@@ -96,7 +115,7 @@
 
 - (RACSignal *)requestRemoteDataSignal {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
-                                                                           owner:self.repository.ownerLogin];
+                                                                         owner:self.repository.ownerLogin];
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedMarkdown:self.repository
                                                                                                   reference:self.reference.name];
     @weakify(self)

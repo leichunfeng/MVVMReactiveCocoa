@@ -45,6 +45,7 @@
 		240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01241A654D300033CC86 /* MRCProfileViewModel.m */; };
 		240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01511A654D3D0033CC86 /* MRCAppDelegate.m */; };
 		24116E4A1A8CC62700D25218 /* MRCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E491A8CC62700D25218 /* MRCNavigationController.m */; };
+		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
@@ -61,9 +62,9 @@
 		242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FDA1A64B6FA0026ABC6 /* main.m */; };
 		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
-		242D83581A7A5B0300F5F424 /* MRCSelectBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83561A7A5B0300F5F424 /* MRCSelectBranchViewController.m */; };
-		242D83591A7A5B0300F5F424 /* MRCSelectBranchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83571A7A5B0300F5F424 /* MRCSelectBranchViewController.xib */; };
-		242D835C1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */; };
+		242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83561A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m */; };
+		242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83571A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib */; };
+		242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D835B1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m */; };
 		242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */; };
 		242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */; };
 		242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */; };
@@ -354,6 +355,8 @@
 		240D01541A654D9C0033CC86 /* MVVMReactiveCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MVVMReactiveCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		24116E481A8CC62700D25218 /* MRCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNavigationController.h; sourceTree = "<group>"; };
 		24116E491A8CC62700D25218 /* MRCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNavigationController.m; sourceTree = "<group>"; };
+		24116E851A8E653200D25218 /* OCTRef+MRCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTRef+MRCUtil.h"; sourceTree = "<group>"; };
+		24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTRef+MRCUtil.m"; sourceTree = "<group>"; };
 		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -374,11 +377,11 @@
 		242D4FF31A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMReactiveCocoaTests.m; sourceTree = "<group>"; };
 		242D4FFF1A64BD730026ABC6 /* OctoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OctoKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/OctoKit.framework"; sourceTree = "<group>"; };
-		242D83551A7A5B0300F5F424 /* MRCSelectBranchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSelectBranchViewController.h; sourceTree = "<group>"; };
-		242D83561A7A5B0300F5F424 /* MRCSelectBranchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSelectBranchViewController.m; sourceTree = "<group>"; };
-		242D83571A7A5B0300F5F424 /* MRCSelectBranchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSelectBranchViewController.xib; sourceTree = "<group>"; };
-		242D835A1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSelectBranchViewModel.h; sourceTree = "<group>"; };
-		242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSelectBranchViewModel.m; sourceTree = "<group>"; };
+		242D83551A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSelectBranchOrTagViewController.h; sourceTree = "<group>"; };
+		242D83561A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSelectBranchOrTagViewController.m; sourceTree = "<group>"; };
+		242D83571A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSelectBranchOrTagViewController.xib; sourceTree = "<group>"; };
+		242D835A1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSelectBranchOrTagViewModel.h; sourceTree = "<group>"; };
+		242D835B1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSelectBranchOrTagViewModel.m; sourceTree = "<group>"; };
 		242D83621A7A7E1200F5F424 /* MRCGitTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGitTreeViewController.h; sourceTree = "<group>"; };
 		242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGitTreeViewController.m; sourceTree = "<group>"; };
 		242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCGitTreeViewController.xib; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				24D32F091A77C716008E3994 /* MRCRepositoryService.h */,
 				24D32F0A1A77C879008E3994 /* MRCRepositoryServiceImpl.h */,
 				24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */,
+				24116E851A8E653200D25218 /* OCTRef+MRCUtil.h */,
+				24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -547,9 +552,9 @@
 				24DF45861A6BF6CD00F23474 /* MRCReposViewController.h */,
 				24DF45871A6BF6CD00F23474 /* MRCReposViewController.m */,
 				24DF45881A6BF6CD00F23474 /* MRCReposViewController.xib */,
-				242D83551A7A5B0300F5F424 /* MRCSelectBranchViewController.h */,
-				242D83561A7A5B0300F5F424 /* MRCSelectBranchViewController.m */,
-				242D83571A7A5B0300F5F424 /* MRCSelectBranchViewController.xib */,
+				242D83551A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.h */,
+				242D83561A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m */,
+				242D83571A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib */,
 				242D83621A7A7E1200F5F424 /* MRCGitTreeViewController.h */,
 				242D83631A7A7E1300F5F424 /* MRCGitTreeViewController.m */,
 				242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */,
@@ -635,8 +640,8 @@
 				24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */,
 				24DF45911A6BF97C00F23474 /* MRCStarredReposViewModel.h */,
 				24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */,
-				242D835A1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.h */,
-				242D835B1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m */,
+				242D835A1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.h */,
+				242D835B1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m */,
 				242D83671A7A7E4800F5F424 /* MRCGitTreeViewModel.h */,
 				242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */,
 				242453401A811C3C00FFFCC1 /* MRCSourceEditorViewModel.h */,
@@ -1092,7 +1097,7 @@
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
-				242D83591A7A5B0300F5F424 /* MRCSelectBranchViewController.xib in Resources */,
+				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */,
@@ -1198,6 +1203,7 @@
 				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
+				24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
 				242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */,
 				240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */,
@@ -1208,7 +1214,7 @@
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
-				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchViewModel.m in Sources */,
+				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
@@ -1247,7 +1253,7 @@
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				240D01331A654D300033CC86 /* MRCAvatarHeaderView.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
-				242D83581A7A5B0300F5F424 /* MRCSelectBranchViewController.m in Sources */,
+				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,

@@ -59,6 +59,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="lgZ-Ah-0EN" id="98H-bH-Ta8"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z4f-3o-lGq">
                             <rect key="frame" x="47" y="60" width="538" height="30"/>

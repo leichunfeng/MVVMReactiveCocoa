@@ -28,6 +28,7 @@
 
 #define MRC_SERVICE_NAME @"com.leichunfeng.MVVMReactiveCocoa"
 #define MRC_RAW_LOGIN    @"RawLogin"
+#define MRC_PASSWORD     @"Password"
 #define MRC_ACCESS_TOKEN @"AccessToken"
 
 ///-----------
