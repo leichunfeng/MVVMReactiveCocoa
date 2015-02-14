@@ -31,8 +31,6 @@
 // starred - The star flag
 - (void)setStarred:(BOOL)starred;
 
-+ (RACSignal *)updateLocalDataWithRemoteUserRepos:(NSArray *)remoteUserRepos;
-
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
 
 @end

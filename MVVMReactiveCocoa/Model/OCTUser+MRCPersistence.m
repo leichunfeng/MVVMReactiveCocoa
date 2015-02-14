@@ -11,7 +11,7 @@
 @implementation OCTUser (Persistence)
 
 - (BOOL)save {
-    return [NSKeyedArchiver archiveRootObject:self toFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:self.rawLogin]];
+    return [NSKeyedArchiver archiveRootObject:self toFile:[self.class.persistenceDirectory stringByAppendingPathComponent:self.rawLogin]];
 }
 
 - (void)delete {}
@@ -19,20 +19,20 @@
 + (NSString *)persistenceDirectory {
     NSString *persistenceDirectory = [MRC_DOCUMENT_DIRECTORY stringByAppendingPathComponent:@"Persistence/Users"];
     BOOL isDirectory;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
+    if (![NSFileManager.defaultManager fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
         NSError *error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:persistenceDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+        [NSFileManager.defaultManager createDirectoryAtPath:persistenceDirectory withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) NSLog(@"Error: %@", error);
     }
     return persistenceDirectory;
 }
 
 + (OCTUser *)currentUser {
-    return [self fetchUserWithRawLogin:[SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN]];
+    return [self fetchUserWithRawLogin:SSKeychain.rawLogin];
 }
 
 + (OCTUser *)fetchUserWithRawLogin:(NSString *)rawLogin {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:rawLogin]];
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self.class.persistenceDirectory stringByAppendingPathComponent:rawLogin]];
 }
 
 @end

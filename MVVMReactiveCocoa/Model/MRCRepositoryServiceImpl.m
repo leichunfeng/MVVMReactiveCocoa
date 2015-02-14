@@ -12,7 +12,7 @@
 
 - (RACSignal *)requestRepositoryReadmeRenderedMarkdown:(OCTRepository *)repository reference:(NSString *)reference {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSString *accessToken   = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
+        NSString *accessToken   = SSKeychain.accessToken;
         NSString *authorization = [NSString stringWithFormat:@"token %@", accessToken];
         
         MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] initWithHostName:@"api.github.com"

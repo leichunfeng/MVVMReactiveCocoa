@@ -49,16 +49,13 @@
 }
 
 - (UIViewController *)createInitialViewController {
-//    [SSKeychain deletePasswordForService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
-    
-    NSString *rawLogin    = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
-    NSString *accessToken = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
+//    [SSKeychain deleteAccessToken];
     
     // The user has logged-in.
-    if ([rawLogin isExist] && [accessToken isExist]) {
-        OCTUser *user = [OCTUser userWithRawLogin:rawLogin server:OCTServer.dotComServer];
+    if (SSKeychain.rawLogin.isExist && SSKeychain.accessToken.isExist) {
+        OCTUser *user = [OCTUser userWithRawLogin:SSKeychain.rawLogin server:OCTServer.dotComServer];
 
-        OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:accessToken];
+        OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:SSKeychain.accessToken];
         self.services.client = authenticatedClient;
         self.viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
         

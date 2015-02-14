@@ -29,12 +29,12 @@
     @weakify(self)
     void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
         @strongify(self)
-        [self.services setClient:authenticatedClient];
+        self.services.client = authenticatedClient;
         [authenticatedClient.user save];
         
-        [SSKeychain setPassword:authenticatedClient.user.rawLogin forService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
-        [SSKeychain setPassword:self.password forService:MRC_SERVICE_NAME account:MRC_PASSWORD];
-        [SSKeychain setPassword:authenticatedClient.token forService:MRC_SERVICE_NAME account:MRC_ACCESS_TOKEN];
+        SSKeychain.rawLogin    = authenticatedClient.user.rawLogin;
+        SSKeychain.password    = self.password;
+        SSKeychain.accessToken = authenticatedClient.token;
         
         MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
         [self.services resetRootViewModel:viewModel];

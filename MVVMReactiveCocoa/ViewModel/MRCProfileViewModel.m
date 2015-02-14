@@ -16,19 +16,19 @@
     
     self.title = @"Profile";
     
-    self.avatarHeaderViewModel = [MRCAvatarHeaderViewModel new];
-    self.currentUser = [OCTUser currentUser];
+    self.avatarHeaderViewModel = MRCAvatarHeaderViewModel.new;
+    self.currentUser = OCTUser.currentUser;
     
     RAC(self.avatarHeaderViewModel, avatarURL) = RACObserve(self.currentUser, avatarURL);
     RAC(self.avatarHeaderViewModel, name) = RACObserve(self.currentUser, name);
     RAC(self.avatarHeaderViewModel, followers) = [RACObserve(self.currentUser, followers) map:^id(NSNumber *followers) {
-        return [followers stringValue];
+        return followers.stringValue;
     }];
     RAC(self.avatarHeaderViewModel, repositories) = [RACObserve(self.currentUser, publicRepoCount) map:^id(NSNumber *publicRepoCount) {
-        return [publicRepoCount stringValue];
+        return publicRepoCount.stringValue;
     }];
     RAC(self.avatarHeaderViewModel, following) = [RACObserve(self.currentUser, following) map:^id(NSNumber *following) {
-        return [following stringValue];
+        return following.stringValue;
     }];
     
     self.dataSource = @[

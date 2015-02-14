@@ -23,9 +23,9 @@
     return [[[[RACSignal
     	combineLatest:@[ [OCTRepository fetchUserStarredRepositories], [[self.services.client fetchUserStarredRepositories] collect] ]]
         doNext:^(RACTuple *tuple) {
-            [[tuple.second rac_sequence].signal subscribeNext:^(OCTRepository *repository) {
+            for (OCTRepository *repository in (NSArray *)tuple.second) {
                 repository.starred = YES;
-            }];
+            }
         }]
         flattenMap:^RACStream *(RACTuple *tuple) {
             return [OCTRepository updateLocalObjects:tuple.first withRemoteObjects:tuple.second];

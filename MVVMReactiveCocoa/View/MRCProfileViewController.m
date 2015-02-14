@@ -36,7 +36,7 @@
     @weakify(self)
     [[self.viewModel.services.client fetchUserInfo] subscribeNext:^(OCTUser *user) {
     	@strongify(self)
-        OCTUser *currentUser = [OCTUser currentUser];
+        OCTUser *currentUser = OCTUser.currentUser;
         [currentUser mergeValuesForKeysFromModel:user];
         [currentUser save];
         self.viewModel.currentUser = currentUser;
@@ -66,7 +66,7 @@
     cell.textLabel.text  = self.viewModel.dataSource[indexPath.section][indexPath.row][@"title"];
     cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
     cell.imageView.image = [UIImage octicon_imageWithIdentifier:self.viewModel.dataSource[indexPath.section][indexPath.row][@"identifier"]
-                                                 size:CGSizeMake(29, 29)];
+                                                           size:CGSizeMake(22, 22)];
     
     return cell;
 }
