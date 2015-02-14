@@ -16,19 +16,19 @@
     
     self.title = @"Profile";
     
-    self.avatarHeaderViewModel = MRCAvatarHeaderViewModel.new;
     self.currentUser = OCTUser.currentUser;
+    self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.currentUser];
     
-    RAC(self.avatarHeaderViewModel, avatarURL) = RACObserve(self.currentUser, avatarURL);
-    RAC(self.avatarHeaderViewModel, name) = RACObserve(self.currentUser, name);
-    RAC(self.avatarHeaderViewModel, followers) = [RACObserve(self.currentUser, followers) map:^id(NSNumber *followers) {
-        return followers.stringValue;
-    }];
-    RAC(self.avatarHeaderViewModel, repositories) = [RACObserve(self.currentUser, publicRepoCount) map:^id(NSNumber *publicRepoCount) {
-        return publicRepoCount.stringValue;
-    }];
-    RAC(self.avatarHeaderViewModel, following) = [RACObserve(self.currentUser, following) map:^id(NSNumber *following) {
-        return following.stringValue;
+    @weakify(self)
+    self.fetchUserInfoCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [[[self.services.client
+        	fetchUserInfo]
+        	deliverOnMainThread]
+         	doNext:^(OCTUser *user) {
+            	@strongify(self)
+            	[self.currentUser mergeValuesForKeysFromModel:user];
+             	[self.currentUser save];
+         	}];
     }];
     
     self.dataSource = @[
@@ -40,6 +40,8 @@
         @[ @{ @"title": @"Organizations", @"identifier": @"Organization" } ],
         @[ @{ @"title": @"About", @"identifier": @"Info" } ]
     ];
+    
+    [self.fetchUserInfoCommand.errors subscribe:self.errors];
 }
 
 @end

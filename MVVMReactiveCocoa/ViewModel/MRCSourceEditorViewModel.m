@@ -35,7 +35,10 @@
 - (void)initialize {
     [super initialize];
     
+    self.titleViewType = MRCTitleViewTypeDoubleTitle;
     self.title = self.title ?: [self.blobTreeEntry.path componentsSeparatedByString:@"/"].lastObject;
+    self.subtitle = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
+    
     self.markdown = self.title.isMarkdown;
     
     @weakify(self)

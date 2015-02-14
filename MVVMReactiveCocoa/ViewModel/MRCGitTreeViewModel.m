@@ -22,7 +22,6 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.title = params[@"title"];
         self.path  = params[@"path"];
         self.tree  = params[@"tree"];
         self.repository = params[@"repository"];
@@ -33,6 +32,10 @@
 
 - (void)initialize {
     [super initialize];
+    
+    self.titleViewType = MRCTitleViewTypeDoubleTitle;
+    self.title = self.repository.name;
+    self.subtitle = self.repository.ownerLogin;
     
     if (!self.tree) self.shouldPullToRefresh = YES;
     
@@ -93,8 +96,7 @@
         
         if (treeEntry.type == OCTTreeEntryTypeTree) {
             MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
-                                                                                           params:@{@"title": self.title,
-                                                                                                    @"path": treeEntry.path,
+                                                                                           params:@{@"path": treeEntry.path,
                                                                                                     @"tree": self.tree,
                                                                                                     @"repository": self.repository,
                                                                                                     @"reference": self.reference}];

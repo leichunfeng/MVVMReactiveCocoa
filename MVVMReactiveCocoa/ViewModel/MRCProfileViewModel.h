@@ -18,4 +18,6 @@
 // The view model of `Profile` interface.
 @property (strong, nonatomic) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
 
+@property (strong, nonatomic) RACCommand *fetchUserInfoCommand;
+
 @end

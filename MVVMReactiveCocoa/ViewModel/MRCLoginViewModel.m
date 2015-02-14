@@ -47,14 +47,14 @@
         OCTUser *user = [OCTUser userWithRawLogin:self.username server:OCTServer.dotComServer];
         return [[[OCTClient
         	signInAsUser:user password:self.password oneTimePassword:oneTimePassword scopes:OCTClientAuthorizationScopesUser note:nil noteURL:nil fingerprint:nil]
-            deliverOn:RACScheduler.mainThreadScheduler]
+            deliverOnMainThread]
             doNext:doNext];
     }];
 
     self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         return [[[OCTClient
         	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser]
-            deliverOn:RACScheduler.mainThreadScheduler]
+            deliverOnMainThread]
             doNext:doNext];
     }];
     

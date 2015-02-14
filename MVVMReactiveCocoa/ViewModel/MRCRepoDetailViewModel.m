@@ -34,7 +34,9 @@
     
     self.shouldPullToRefresh = YES;
     
-    self.title = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];
+    self.titleViewType = MRCTitleViewTypeDoubleTitle;
+    self.title = self.repository.name;
+    self.subtitle = self.repository.ownerLogin;
 
     NSError *error = nil;
     self.reference = [[OCTRef alloc] initWithDictionary:@{@"name": [NSString stringWithFormat:@"refs/heads/%@", self.repository.defaultBranch]}
@@ -45,8 +47,7 @@
     self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
-                                                                                       params:@{@"title": self.title,
-                                                                                                @"repository": self.repository,
+                                                                                       params:@{@"repository": self.repository,
                                                                                                 @"reference": self.reference}];
         [self.services pushViewModel:gitTreeViewModel animated:YES];
         return [RACSignal empty];
@@ -75,14 +76,15 @@
             [self presentSelectBranchOrTagViewModel];
             return RACSignal.empty;
         } else {
-            return [[[self.services.client
+            return [[[[self.services.client
             	fetchAllReferencesInRepository:self.repository]
              	collect]
                 doNext:^(NSArray *references) {
                     @strongify(self)
                     self.references = references;
                     [self presentSelectBranchOrTagViewModel];
-                }];
+                }]
+            	takeUntil:self.willDisappearSignal];
         }
     }];
     
@@ -121,7 +123,7 @@
     @weakify(self)
     return [[[[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
-        deliverOn:RACScheduler.mainThreadScheduler]
+        deliverOnMainThread]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
             [self.repository mergeValuesForKeysFromModel:tuple.first];

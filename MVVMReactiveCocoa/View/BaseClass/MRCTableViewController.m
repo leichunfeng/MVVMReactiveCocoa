@@ -63,7 +63,7 @@
     
     @weakify(self)
     [[RACObserve(self.viewModel, dataSource)
-      	deliverOn:RACScheduler.mainThreadScheduler]
+      	deliverOnMainThread]
         subscribeNext:^(id x) {
             @strongify(self)
             [self.tableView reloadData];

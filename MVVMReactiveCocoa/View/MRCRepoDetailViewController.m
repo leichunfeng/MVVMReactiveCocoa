@@ -13,6 +13,7 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCWebViewModel.h"
 #import "MRCRepositoryService.h"
+#import "MRCDoubleTitleView.h"
 
 @interface MRCRepoDetailViewController ()
 
