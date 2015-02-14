@@ -46,8 +46,8 @@
     self.returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
     self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyGo;
     
-    self.usernameTextField.text = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
-    self.passwordTextField.text = [SSKeychain passwordForService:MRC_SERVICE_NAME account:MRC_PASSWORD];
+    self.usernameTextField.text = SSKeychain.rawLogin;
+    self.passwordTextField.text = SSKeychain.password;
     
     @weakify(self)
     [[self rac_signalForSelector:@selector(textFieldShouldReturn:) fromProtocol:@protocol(UITextFieldDelegate)]

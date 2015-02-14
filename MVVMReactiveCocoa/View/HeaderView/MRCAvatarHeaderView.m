@@ -47,7 +47,7 @@
                                                         if (image && finished) {
                                                             self.avatarImage = image;
                                                         } else {
-                                                            self.avatarImage = [UIImage imageNamed:@"Octocat"];
+                                                            self.avatarImage = [UIImage imageNamed:@"default-avatar"];
                                                         }
                                                     }];
     }];

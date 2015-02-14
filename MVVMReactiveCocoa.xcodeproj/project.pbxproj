@@ -46,6 +46,7 @@
 		240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01511A654D3D0033CC86 /* MRCAppDelegate.m */; };
 		24116E4A1A8CC62700D25218 /* MRCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E491A8CC62700D25218 /* MRCNavigationController.m */; };
 		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
+		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
@@ -357,6 +358,8 @@
 		24116E491A8CC62700D25218 /* MRCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNavigationController.m; sourceTree = "<group>"; };
 		24116E851A8E653200D25218 /* OCTRef+MRCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTRef+MRCUtil.h"; sourceTree = "<group>"; };
 		24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTRef+MRCUtil.m"; sourceTree = "<group>"; };
+		24116E881A8F28CE00D25218 /* SSKeychain+MRCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSKeychain+MRCUtil.h"; sourceTree = "<group>"; };
+		24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSKeychain+MRCUtil.m"; sourceTree = "<group>"; };
 		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -513,6 +516,8 @@
 				240D00DC1A654D300033CC86 /* UIImage+ImageEffects.m */,
 				2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */,
 				2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */,
+				24116E881A8F28CE00D25218 /* SSKeychain+MRCUtil.h */,
+				24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1254,6 +1259,7 @@
 				240D01331A654D300033CC86 /* MRCAvatarHeaderView.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,
+				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,

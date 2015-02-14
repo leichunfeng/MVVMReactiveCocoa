@@ -22,13 +22,13 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 }
 
 - (BOOL)save {
-    NSString *persistenceDirectory = [self isStarred] ? [self.class persistenceDirectoryOfStarred] : [self.class persistenceDirectoryOfOwned];
+    NSString *persistenceDirectory = self.isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
     NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.name, self.ownerLogin];
     return [NSKeyedArchiver archiveRootObject:self toFile:path];
 }
 
 - (void)delete {
-    NSString *persistenceDirectory = [self isStarred] ? [self.class persistenceDirectoryOfStarred] : [self.class persistenceDirectoryOfOwned];
+    NSString *persistenceDirectory = self.isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
     NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.name, self.ownerLogin];
    
     NSError *error = nil;
@@ -37,7 +37,7 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 }
 
 + (NSString *)persistenceDirectoryOfOwned {
-    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Owned", MRC_DOCUMENT_DIRECTORY, [OCTUser currentUser].rawLogin];
+    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Owned", MRC_DOCUMENT_DIRECTORY, SSKeychain.rawLogin];
     BOOL isDirectory;
     if (![[NSFileManager defaultManager] fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
         NSError *error = nil;
@@ -48,7 +48,7 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 }
 
 + (NSString *)persistenceDirectoryOfStarred {
-    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Starred", MRC_DOCUMENT_DIRECTORY, [OCTUser currentUser].rawLogin];
+    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Starred", MRC_DOCUMENT_DIRECTORY, SSKeychain.rawLogin];
     BOOL isDirectory;
     if (![[NSFileManager defaultManager] fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
         NSError *error = nil;
@@ -61,7 +61,7 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 + (RACSignal *)fetchUserRepositories {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSError *error = nil;
-        NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.class persistenceDirectoryOfOwned] error:&error];
+        NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.class.persistenceDirectoryOfOwned error:&error];
         if (error) [subscriber sendError:error];
         
         @weakify(self)
@@ -80,15 +80,13 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 + (RACSignal *)fetchUserStarredRepositories {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSError *error = nil;
-        NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.class persistenceDirectoryOfStarred] error:&error];
+        NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.class.persistenceDirectoryOfStarred error:&error];
         if (error) [subscriber sendError:error];
         
         @weakify(self)
         NSArray *repositories = [uniqueNames.rac_sequence map:^id(NSString *uniqueName) {
             @strongify(self)
-            OCTRepository *repository = [self fetchRepositoryWithUniqueName:uniqueName isStarred:YES];
-            [repository setStarred:YES];
-            return repository;
+            return [self fetchRepositoryWithUniqueName:uniqueName isStarred:YES];
         }].array;
         
         [subscriber sendNext:repositories];
@@ -99,63 +97,20 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 }
 
 + (OCTRepository *)fetchRepositoryWithUniqueName:(NSString *)uniqueName isStarred:(BOOL)isStarred {
-    NSString *persistenceDirectory = isStarred ? [self.class persistenceDirectoryOfStarred] : [self.class persistenceDirectoryOfOwned];
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[persistenceDirectory stringByAppendingPathComponent:uniqueName]];
-}
-
-+ (RACSignal *)updateLocalDataWithRemoteUserRepos:(NSArray *)remoteUserRepos {
-    @weakify(self)
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        @strongify(self)
-        [[self.class
-          	fetchUserRepositories]
-         	subscribeNext:^(NSArray *localUserRepos) {
-                if (localUserRepos.count == 0) {
-                    [remoteUserRepos.rac_sequence.signal subscribeNext:^(OCTRepository *repository) {
-                        [repository save];
-                    } completed:^{
-                        [subscriber sendNext:@YES];
-                        [subscriber sendCompleted];
-                    }];
-                } else {
-                    NSArray *localObjectIDs = [localUserRepos.rac_sequence map:^id(OCTRepository *repository) {
-                        objc_setAssociatedObject(repository.objectID, OCTRepositoryKey, repository, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                        return repository.objectID;
-                    }].array;
-                    NSArray *remoteObjectIDs = [remoteUserRepos.rac_sequence map:^id(OCTRepository *repository) {
-                        objc_setAssociatedObject(repository.objectID, OCTRepositoryKey, repository, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                        return repository.objectID;
-                    }].array;
-                    NSArray *unionofObjectIDs = [NSSet setWithArray:[@[ localObjectIDs.rac_sequence, remoteObjectIDs.rac_sequence ].rac_sequence flatten].array].rac_sequence.array;
-                    
-                    [unionofObjectIDs.rac_sequence.signal subscribeNext:^(NSString *objectID) {
-                        BOOL localContains  = [localObjectIDs containsObject:objectID];
-                        BOOL remoteContains = [remoteObjectIDs containsObject:objectID];
-                        
-                        if (localContains && !remoteContains) { // delete
-                            [objc_getAssociatedObject(objectID, OCTRepositoryKey) delete];
-                        } else if (!localContains && remoteContains) { // save
-                            [objc_getAssociatedObject(objectID, OCTRepositoryKey) save];
-                        } else if (localContains && remoteContains) { // update
-                            OCTRepository *localRepository = objc_getAssociatedObject([localObjectIDs objectAtIndex:[localObjectIDs indexOfObject:objectID]], OCTRepositoryKey);
-                            OCTRepository *remoteRepository = objc_getAssociatedObject([remoteObjectIDs objectAtIndex:[remoteObjectIDs indexOfObject:objectID]], OCTRepositoryKey);
-                            [localRepository mergeValuesForKeysFromModel:remoteRepository];
-                            [localRepository save];
-                        }
-                    } completed:^{
-                        [subscriber sendNext:@YES];
-                        [subscriber sendCompleted];
-                    }];
-                }
-        	}];
-        return nil;
-    }];
+    NSString *persistenceDirectory = isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
+    
+    OCTRepository *repository = [NSKeyedUnarchiver unarchiveObjectWithFile:[persistenceDirectory stringByAppendingPathComponent:uniqueName]];
+    repository.starred = isStarred;
+    
+    return repository;
 }
 
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner {
-    BOOL isStarred = ![owner isEqualToString:[OCTUser currentUser].rawLogin];
+    BOOL isStarred = ![owner isEqualToString:SSKeychain.rawLogin];
+    
     NSString *uniqueName = [NSString stringWithFormat:@"%@&%@", name, owner];
     OCTRepository *repository = [self fetchRepositoryWithUniqueName:uniqueName isStarred:isStarred];
+    
     return [RACSignal return:repository];
 }
 

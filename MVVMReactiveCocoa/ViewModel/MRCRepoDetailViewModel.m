@@ -119,8 +119,9 @@
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedMarkdown:self.repository
                                                                                                   reference:self.reference.name];
     @weakify(self)
-    return [[[RACSignal
+    return [[[[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
+        deliverOn:RACScheduler.mainThreadScheduler]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
             [self.repository mergeValuesForKeysFromModel:tuple.first];

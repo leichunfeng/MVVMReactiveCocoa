@@ -39,6 +39,7 @@
 	#import "MKNetworkKit.h"
 	#import "WebViewJavascriptBridge.h"
 	#import "OCTRef+MRCUtil.h"
+	#import "SSKeychain+MRCUtil.h"
 #endif
 
 #endif
