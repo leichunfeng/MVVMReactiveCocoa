@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
+    MRCTitleViewTypeDefault,
+    MRCTitleViewTypeDoubleTitle
+};
+
 @protocol MRCViewModelServices;
 
 // The Protocol for viewModel.
@@ -31,7 +36,11 @@
 
 @optional
 
+@property (nonatomic) MRCTitleViewType titleViewType;
+
 @property (strong, nonatomic) NSString *title;
+
+@property (strong, nonatomic) NSString *subtitle;
 
 // The callback block.
 @property (strong, nonatomic) VoidBlock_id callback;

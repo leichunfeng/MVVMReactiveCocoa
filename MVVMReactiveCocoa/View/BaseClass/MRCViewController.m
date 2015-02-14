@@ -9,6 +9,7 @@
 #import "MRCViewController.h"
 #import "MRCViewModel.h"
 #import "MRCLoginViewModel.h"
+#import "MRCDoubleTitleView.h"
 
 @interface MRCViewController ()
 
@@ -41,9 +42,32 @@
 }
 
 - (void)bindViewModel {
-    RAC(self, title) = RACObserve(self.viewModel, title);
-    
     @weakify(self)
+    switch (self.viewModel.titleViewType) {
+        case MRCTitleViewTypeDefault:
+            RAC(self, title) = RACObserve(self.viewModel, title);
+            break;
+        case MRCTitleViewTypeDoubleTitle: {
+            MRCDoubleTitleView *titleView = MRCDoubleTitleView.new;
+            
+            titleView.titleLabel.text = self.viewModel.title;
+            titleView.subtitleLabel.text = self.viewModel.subtitle;
+            
+            self.navigationItem.titleView = titleView;
+            
+            [[self
+            	rac_signalForSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]
+            	subscribeNext:^(id x) {
+                    @strongify(self)
+                    titleView.titleLabel.text = self.viewModel.title;
+                    titleView.subtitleLabel.text = self.viewModel.subtitle;
+                }];
+        }
+            break;
+        default:
+            break;
+    }
+    
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)
         if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorAuthenticationFailed) {

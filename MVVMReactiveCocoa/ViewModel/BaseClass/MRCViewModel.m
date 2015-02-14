@@ -12,7 +12,9 @@
 
 @synthesize services = _services;
 @synthesize params   = _params;
+@synthesize titleViewType = _titleViewType;
 @synthesize title    = _title;
+@synthesize subtitle = _subtitle;
 @synthesize callback = _callback;
 @synthesize errors   = _errors;
 @synthesize willDisappearSignal = _willDisappearSignal;

@@ -27,22 +27,9 @@
     self.tableView.tableHeaderView = avatarHeaderView;
 }
 
-- (void)bindViewModel {
-    [super bindViewModel];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    @weakify(self)
-    [[self.viewModel.services.client fetchUserInfo] subscribeNext:^(OCTUser *user) {
-    	@strongify(self)
-        OCTUser *currentUser = OCTUser.currentUser;
-        [currentUser mergeValuesForKeysFromModel:user];
-        [currentUser save];
-        self.viewModel.currentUser = currentUser;
-    } error:^(NSError *error) {
-        [self.viewModel.errors sendNext:error];
-    }];
+    [self.viewModel.fetchUserInfoCommand execute:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

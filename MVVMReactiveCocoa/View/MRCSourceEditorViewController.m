@@ -77,7 +77,7 @@
     
     [self.bridge registerHandler:@"getInitDataFromObjC" handler:^(id data, WVJBResponseCallback responseCallback) {
         @strongify(self)
-        responseCallback(@{@"name": self.title,
+        responseCallback(@{@"name": self.viewModel.title,
                            @"rawContent": self.viewModel.rawContent ?: @"",
                            @"content": self.viewModel.content ?: @"",
                            @"lineWrapping": @(self.viewModel.isLineWrapping)});
@@ -112,7 +112,7 @@
     } else {
         [[[self.viewModel.requestBlobCommand
            	execute:nil]
-            deliverOn:RACScheduler.mainThreadScheduler]
+            deliverOnMainThread]
             subscribeNext:^(id x) {
                 @strongify(self)
                 self.navigationItem.rightBarButtonItem = rightBarButtonItem;

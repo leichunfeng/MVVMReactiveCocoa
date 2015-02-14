@@ -65,7 +65,7 @@
 	@weakify(self)
     [RACObserve(self.viewModel, avatarURL) subscribeNext:^(NSURL *avatarURL) {
     	@strongify(self)
-        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"Octocat"]];
+        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
     }];
     
     RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;

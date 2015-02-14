@@ -28,4 +28,6 @@
 // The number of following.
 @property (strong, nonatomic) NSString *following;
 
+- (instancetype)initWithUser:(OCTUser *)user;
+
 @end
