@@ -161,7 +161,7 @@
                 <outlet property="overView" destination="3Yd-ZB-07H" id="Vzp-mA-vjf"/>
                 <outlet property="repositoriesLabel" destination="26k-s4-QL7" id="nJm-nG-MNP"/>
             </connections>
-            <point key="canvasLocation" x="1717" y="295.5"/>
+            <point key="canvasLocation" x="1428" y="421.5"/>
         </view>
     </objects>
 </document>
