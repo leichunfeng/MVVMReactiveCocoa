@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
 @property (strong, nonatomic, readwrite) NSString *identifier;
+@property (nonatomic, readwrite) NSInteger hexRGB;
 @property (strong, nonatomic, readwrite) NSAttributedString *name;
 @property (strong, nonatomic, readwrite) NSString *language;
 
@@ -23,8 +24,17 @@
     self = [super init];
     if (self) {
         self.repository = repository;
-        self.identifier = repository.isFork ? @"RepoForked" : @"Repo";
-        self.language   = repository.language ?: @" ";
+        
+        if (repository.isPrivate) {
+            self.identifier = @"Lock";
+            self.hexRGB = 0xe9dba5;
+        } else if (repository.isFork) {
+            self.identifier = @"RepoForked";
+        } else {
+            self.identifier = @"Repo";
+        }
+        
+        self.language = repository.language ?: @" ";
         
         if (repository.isStarred) {
             NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", repository.ownerLogin, repository.name];

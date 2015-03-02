@@ -60,17 +60,17 @@
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
     NSArray *firstLetters = [repositories.rac_sequence
     	map:^id(OCTRepository *repository) {
-            return [repository.name firstLetter];
+            return repository.name.firstLetter;
         }].array;
     
     return [[NSSet setWithArray:firstLetters].rac_sequence.array sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
 }
 
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
-    NSMutableArray *repoOfRepos = [NSMutableArray new];
+    NSMutableArray *repoOfRepos = NSMutableArray.new;
     
-    NSString *firstLetter = [[repositories.firstObject name] firstLetter];
-    NSMutableArray *repos = [NSMutableArray new];
+    NSString *firstLetter = [repositories.firstObject name].firstLetter;
+    NSMutableArray *repos = NSMutableArray.new;
     
     for (OCTRepository *repository in repositories) {
         if ([[repository.name firstLetter] isEqualToString:firstLetter]) {
@@ -78,15 +78,15 @@
         } else {
             [repoOfRepos addObject:repos];
             
-            firstLetter = [repository.name firstLetter];
-            repos = [NSMutableArray new];
+            firstLetter = repository.name.firstLetter;
+            repos = NSMutableArray.new;
             
             [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
         }
     }
     [repoOfRepos addObject:repos];
     
-    return [repoOfRepos copy];
+    return repoOfRepos.copy;
 }
 
 @end

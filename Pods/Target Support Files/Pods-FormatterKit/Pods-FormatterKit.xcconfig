@@ -1,0 +1,1 @@
+PODS_FORMATTERKIT_OTHER_LDFLAGS = -framework "AddressBook" -framework "AddressBookUI" -framework "CoreLocation"

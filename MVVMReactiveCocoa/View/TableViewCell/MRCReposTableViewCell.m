@@ -22,7 +22,13 @@
     self.languageLabel.text       = viewModel.language;
     self.starCountLabel.text      = @(viewModel.repository.stargazersCount).stringValue;
     self.forkCountLabel.text      = @(viewModel.repository.forksCount).stringValue;
-    self.iconImageView.image      = [UIImage octicon_imageWithIdentifier:viewModel.identifier size:CGSizeMake(20, 20)];
+    
+    UIColor *iconColor = viewModel.hexRGB ? HexRGB(viewModel.hexRGB) : UIColor.darkGrayColor;
+    self.iconImageView.image = [UIImage octicon_imageWithIcon:viewModel.identifier
+                                              backgroundColor:UIColor.clearColor
+                                                    iconColor:iconColor
+                                                    iconScale:1
+                                                      andSize:CGSizeMake(20, 20)];
 }
 
 @end

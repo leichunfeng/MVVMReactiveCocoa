@@ -123,9 +123,14 @@
     } else if (indexPath.section == 2) {
         MRCRepoViewCodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoViewCodeTableViewCell" forIndexPath:indexPath];
         
+        [RACObserve(self.viewModel, dateUpdated) subscribeNext:^(NSString *dateUpdated) {
+            cell.timeLabel.text = dateUpdated;
+        }];
+        
         [cell.viewCodeButton setImage:[UIImage octicon_imageWithIdentifier:@"FileDirectory" size:CGSizeMake(22, 22)]
                              forState:UIControlStateNormal];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;        
         cell.viewCodeButton.rac_command = self.viewModel.viewCodeCommand;
 
         return cell;
