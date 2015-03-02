@@ -86,6 +86,15 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
+		24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703A1A90DA7F00D8D00B /* icon-error.png */; };
+		24BD70451A90DA7F00D8D00B /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */; };
+		24BD70461A90DA7F00D8D00B /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703C1A90DA7F00D8D00B /* icon-info.png */; };
+		24BD70471A90DA7F00D8D00B /* icon-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703D1A90DA7F00D8D00B /* icon-info@2x.png */; };
+		24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703E1A90DA7F00D8D00B /* icon-success.png */; };
+		24BD70491A90DA7F00D8D00B /* icon-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */; };
+		24BD704A1A90DA7F00D8D00B /* TWMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */; };
+		24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24BD70421A90DA7F00D8D00B /* LICENSE */; };
+		24BD704C1A90DA7F00D8D00B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 24BD70431A90DA7F00D8D00B /* README.md */; };
 		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
 		24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45611A6B8BA500F23474 /* MRCRepoDetailViewController.m */; };
 		24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DF45621A6B8BA500F23474 /* MRCRepoDetailViewController.xib */; };
@@ -424,6 +433,16 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
+		24BD703A1A90DA7F00D8D00B /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
+		24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
+		24BD703C1A90DA7F00D8D00B /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
+		24BD703D1A90DA7F00D8D00B /* icon-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info@2x.png"; sourceTree = "<group>"; };
+		24BD703E1A90DA7F00D8D00B /* icon-success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success.png"; sourceTree = "<group>"; };
+		24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success@2x.png"; sourceTree = "<group>"; };
+		24BD70401A90DA7F00D8D00B /* TWMessageBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWMessageBarManager.h; sourceTree = "<group>"; };
+		24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMessageBarManager.m; sourceTree = "<group>"; };
+		24BD70421A90DA7F00D8D00B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		24BD70431A90DA7F00D8D00B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		24D32F091A77C716008E3994 /* MRCRepositoryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryService.h; sourceTree = "<group>"; };
 		24D32F0A1A77C879008E3994 /* MRCRepositoryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryServiceImpl.h; sourceTree = "<group>"; };
 		24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoryServiceImpl.m; sourceTree = "<group>"; };
@@ -811,6 +830,7 @@
 		24313CAC1A7D3CA700FA357E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				24BD70371A90DA7F00D8D00B /* TWMessageBarManager */,
 				243140121A7DD6E800FA357E /* assets.bundle */,
 			);
 			path = Resource;
@@ -842,6 +862,40 @@
 				24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */,
 			);
 			path = ItemViewModel;
+			sourceTree = "<group>";
+		};
+		24BD70371A90DA7F00D8D00B /* TWMessageBarManager */ = {
+			isa = PBXGroup;
+			children = (
+				24BD70381A90DA7F00D8D00B /* Classes */,
+				24BD70421A90DA7F00D8D00B /* LICENSE */,
+				24BD70431A90DA7F00D8D00B /* README.md */,
+			);
+			name = TWMessageBarManager;
+			path = ../../../../../Desktop/GitHub/TWMessageBarManager;
+			sourceTree = "<group>";
+		};
+		24BD70381A90DA7F00D8D00B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				24BD70391A90DA7F00D8D00B /* Icons */,
+				24BD70401A90DA7F00D8D00B /* TWMessageBarManager.h */,
+				24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		24BD70391A90DA7F00D8D00B /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				24BD703A1A90DA7F00D8D00B /* icon-error.png */,
+				24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */,
+				24BD703C1A90DA7F00D8D00B /* icon-info.png */,
+				24BD703D1A90DA7F00D8D00B /* icon-info@2x.png */,
+				24BD703E1A90DA7F00D8D00B /* icon-success.png */,
+				24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
@@ -1101,8 +1155,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				240D01341A654D300033CC86 /* MRCAvatarHeaderView.xib in Resources */,
+				24BD70471A90DA7F00D8D00B /* icon-info@2x.png in Resources */,
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
+				24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				249674331A73F5490032771B /* MRCWebViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
@@ -1111,12 +1167,17 @@
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
+				24BD70461A90DA7F00D8D00B /* icon-info.png in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
+				24BD70491A90DA7F00D8D00B /* icon-success@2x.png in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
+				24BD70451A90DA7F00D8D00B /* icon-error@2x.png in Resources */,
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
+				24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */,
+				24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */,
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
@@ -1240,6 +1301,7 @@
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
+				24BD704C1A90DA7F00D8D00B /* README.md in Sources */,
 				249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */,
 				240D013E1A654D300033CC86 /* MRCProfileViewController.m in Sources */,
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
@@ -1268,6 +1330,7 @@
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
 				24DF45721A6BE8FB00F23474 /* MRCStarredReposViewController.m in Sources */,
+				24BD704A1A90DA7F00D8D00B /* TWMessageBarManager.m in Sources */,
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				240D01331A654D300033CC86 /* MRCAvatarHeaderView.m in Sources */,
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,

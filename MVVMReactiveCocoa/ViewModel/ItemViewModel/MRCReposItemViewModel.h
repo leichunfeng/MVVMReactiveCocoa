@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic, readonly) OCTRepository *repository;
 @property (strong, nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) NSInteger hexRGB;
 @property (strong, nonatomic, readonly) NSAttributedString *name;
 @property (strong, nonatomic, readonly) NSString *language;
 

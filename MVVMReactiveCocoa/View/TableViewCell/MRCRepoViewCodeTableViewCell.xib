@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTY-Zs-mVC">
                         <rect key="frame" x="15" y="0.0" width="345" height="77"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated 5 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An2-54-i8b">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An2-54-i8b">
                                 <rect key="frame" x="15" y="0.0" width="315" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Le5-px-BxP"/>
@@ -67,10 +67,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="separatorView" destination="trq-l6-ELl" id="olJ-xY-Wcl"/>
+                <outlet property="timeLabel" destination="An2-54-i8b" id="uoE-9X-307"/>
                 <outlet property="viewCodeButton" destination="MP8-ee-By3" id="gZa-bP-Ni6"/>
                 <outlet property="wapperView" destination="YTY-Zs-mVC" id="RcI-kG-bc6"/>
             </connections>
-            <point key="canvasLocation" x="152.5" y="750.5"/>
+            <point key="canvasLocation" x="235.5" y="342.5"/>
         </tableViewCell>
     </objects>
 </document>

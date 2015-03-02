@@ -21,24 +21,25 @@
     
     @weakify(self)
     self.fetchUserInfoCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        return [[[self.services.client
+        return [[[[self.services.client
         	fetchUserInfo]
         	deliverOnMainThread]
          	doNext:^(OCTUser *user) {
             	@strongify(self)
             	[self.currentUser mergeValuesForKeysFromModel:user];
              	[self.currentUser save];
-         	}];
+         	}]
+            takeUntil:self.willDisappearSignal];
     }];
     
     self.dataSource = @[
         @[
-  			@{ @"title": @"Events", @"identifier": @"Unmute" },
-  			@{ @"title": @"Issues", @"identifier": @"IssueOpened" },
-  			@{ @"title": @"Notifications", @"identifier": @"Inbox" }
+            @{ @"identifier": @"Organization", @"textSignal": RACObserve(self.currentUser, company) },
+  			@{ @"identifier": @"Location", @"textSignal": RACObserve(self.currentUser, location) },
+  			@{ @"identifier": @"Mail", @"textSignal": RACObserve(self.currentUser, email) },
+            @{ @"identifier": @"Link", @"textSignal": RACObserve(self.currentUser, blog) }
     	],
-        @[ @{ @"title": @"Organizations", @"identifier": @"Organization" } ],
-        @[ @{ @"title": @"About", @"identifier": @"Info" } ]
+        @[ @{ @"identifier": @"Info", @"textSignal": [RACSignal return:@"About"] } ]
     ];
     
     [self.fetchUserInfoCommand.errors subscribe:self.errors];

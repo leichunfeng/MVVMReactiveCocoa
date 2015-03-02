@@ -18,7 +18,7 @@
                 <outlet property="dataSource" destination="-1" id="rJP-Gn-y5N"/>
                 <outlet property="delegate" destination="-1" id="Su2-QL-ITX"/>
             </connections>
-            <point key="canvasLocation" x="688" y="846"/>
+            <point key="canvasLocation" x="781" y="791"/>
         </tableView>
     </objects>
 </document>

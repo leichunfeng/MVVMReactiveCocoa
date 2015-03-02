@@ -71,7 +71,7 @@
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)
         if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorAuthenticationFailed) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tips"
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MRC_ALERT_TITLE
                                                                                      message:@"Your authorization has expired, please login again"
                                                                               preferredStyle:UIAlertControllerStyleAlert];
            
@@ -83,6 +83,8 @@
             }]];
             
             [self presentViewController:alertController animated:YES completion:NULL];
+        } else {
+            MRCError(error.localizedDescription);
         }
     }];
 }

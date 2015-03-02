@@ -88,7 +88,7 @@
         @strongify(self)
         if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorTwoFactorAuthenticationOneTimePasswordRequired) {
             NSString *message = @"Please enter the 2FA code you received via SMS or read from an authenticator app";
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Tips"
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MRC_ALERT_TITLE
                                                                                      message:message
                                                                               preferredStyle:UIAlertControllerStyleAlert];
             

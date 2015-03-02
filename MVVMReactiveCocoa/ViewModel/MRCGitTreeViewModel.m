@@ -22,8 +22,8 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.path  = params[@"path"];
-        self.tree  = params[@"tree"];
+        self.path = params[@"path"];
+        self.tree = params[@"tree"];
         self.repository = params[@"repository"];
         self.reference  = params[@"reference"];
     }
@@ -76,11 +76,13 @@
                 if (treeEntry.type == OCTTreeEntryTypeBlob) {
                     OCTBlobTreeEntry *blobTreeEntry = (OCTBlobTreeEntry *)treeEntry;
                     
-                    NSString *size = [NSString stringWithFormat:@"%luB", blobTreeEntry.size];
-                    if (blobTreeEntry.size >= 1024 && blobTreeEntry.size < 1024 * 1024) {
-                        size = [NSString stringWithFormat:@"%.2fKB", blobTreeEntry.size / 1024.0];
+                    NSString *size = [NSString stringWithFormat:@"%lu B", blobTreeEntry.size];
+                    if (blobTreeEntry.size >= 1024 * 1024 * 1024) {
+                        size = [NSString stringWithFormat:@"%.2f G", blobTreeEntry.size / (1024 * 1024 * 1024.0)];
                     } else if (blobTreeEntry.size >= 1024 * 1024) {
-                        size = [NSString stringWithFormat:@"%.2fM", blobTreeEntry.size / (1024 * 1024.0)];
+                        size = [NSString stringWithFormat:@"%.2f M", blobTreeEntry.size / (1024 * 1024.0)];
+                    } else if (blobTreeEntry.size >= 1024) {
+                        size = [NSString stringWithFormat:@"%.2f KB", blobTreeEntry.size / 1024.0];
                     }
                     
                     [dictionary setValue:size forKey:@"size"];

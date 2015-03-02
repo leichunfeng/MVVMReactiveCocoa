@@ -78,6 +78,66 @@
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Zocial 1
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 0
 
+// FormatterKit
+#define COCOAPODS_POD_AVAILABLE_FormatterKit
+#define COCOAPODS_VERSION_MAJOR_FormatterKit 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit 0
+
+// FormatterKit/AddressFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_AddressFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_AddressFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_AddressFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_AddressFormatter 0
+
+// FormatterKit/ArrayFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_ArrayFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_ArrayFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_ArrayFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_ArrayFormatter 0
+
+// FormatterKit/ColorFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_ColorFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_ColorFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_ColorFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_ColorFormatter 0
+
+// FormatterKit/LocationFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_LocationFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_LocationFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_LocationFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_LocationFormatter 0
+
+// FormatterKit/NameFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_NameFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_NameFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_NameFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_NameFormatter 0
+
+// FormatterKit/OrdinalNumberFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_OrdinalNumberFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_OrdinalNumberFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_OrdinalNumberFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_OrdinalNumberFormatter 0
+
+// FormatterKit/TimeIntervalFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_TimeIntervalFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_TimeIntervalFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_TimeIntervalFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_TimeIntervalFormatter 0
+
+// FormatterKit/URLRequestFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_URLRequestFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_URLRequestFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_URLRequestFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_URLRequestFormatter 0
+
+// FormatterKit/UnitOfInformationFormatter
+#define COCOAPODS_POD_AVAILABLE_FormatterKit_UnitOfInformationFormatter
+#define COCOAPODS_VERSION_MAJOR_FormatterKit_UnitOfInformationFormatter 1
+#define COCOAPODS_VERSION_MINOR_FormatterKit_UnitOfInformationFormatter 8
+#define COCOAPODS_VERSION_PATCH_FormatterKit_UnitOfInformationFormatter 0
+
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
 // This library does not follow semantic-versioning,
@@ -102,12 +162,6 @@
 #define COCOAPODS_VERSION_MAJOR_OcticonsIOS 0
 #define COCOAPODS_VERSION_MINOR_OcticonsIOS 0
 #define COCOAPODS_VERSION_PATCH_OcticonsIOS 2
-
-// REMenu
-#define COCOAPODS_POD_AVAILABLE_REMenu
-#define COCOAPODS_VERSION_MAJOR_REMenu 1
-#define COCOAPODS_VERSION_MINOR_REMenu 10
-#define COCOAPODS_VERSION_PATCH_REMenu 0
 
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability

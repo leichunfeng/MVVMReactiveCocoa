@@ -13,8 +13,8 @@
 
 + (UIImage *)octicon_imageWithIdentifier:(NSString *)identifier size:(CGSize)size {
     return [UIImage octicon_imageWithIcon:identifier
-                          backgroundColor:[UIColor clearColor]
-                                iconColor:[UIColor darkGrayColor]
+                          backgroundColor:UIColor.clearColor
+                                iconColor:UIColor.darkGrayColor
                                 iconScale:1
                                   andSize:size];
 }

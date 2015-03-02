@@ -11,6 +11,7 @@
 #import "MRCSelectBranchOrTagViewModel.h"
 #import "MRCGitTreeViewModel.h"
 #import "MRCSourceEditorViewModel.h"
+#import "TTTTimeIntervalFormatter.h"
 
 @interface MRCRepoDetailViewModel ()
 
@@ -42,6 +43,13 @@
     self.reference = [[OCTRef alloc] initWithDictionary:@{@"name": [NSString stringWithFormat:@"refs/heads/%@", self.repository.defaultBranch]}
                                                   error:&error];
     if (error) NSLog(@"Error: %@", error);
+    
+    TTTTimeIntervalFormatter *timeIntervalFormatter = TTTTimeIntervalFormatter.new;
+    timeIntervalFormatter.locale = NSLocale.currentLocale;
+    
+    RAC(self, dateUpdated) = [RACObserve(self.repository, dateUpdated) map:^id(NSDate *dateUpdated) {
+        return [NSString stringWithFormat:@"Updated %@", [timeIntervalFormatter stringForTimeIntervalFromDate:NSDate.date toDate:dateUpdated]];
+    }];
     
     @weakify(self)
     self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {

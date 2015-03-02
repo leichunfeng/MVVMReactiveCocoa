@@ -35,7 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         
-    self.viewControllers = @[ self.newsNavigationController, self.reposNavigationController, self.gistsNavigationController, self.profileNavigationController ];
+    self.viewControllers = @[ self.reposNavigationController, self.profileNavigationController ];
+    
+    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:self.reposNavigationController];
     
     [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
