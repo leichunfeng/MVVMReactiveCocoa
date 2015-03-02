@@ -37,8 +37,6 @@
         
     self.viewControllers = @[ self.reposNavigationController, self.profileNavigationController ];
     
-    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:self.reposNavigationController];
-    
     [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
             if (tuple.second != MRCSharedAppDelegate.navigationControllerStack.topNavigationController) {
@@ -56,8 +54,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [super viewWillAppear:animated];    
     self.navigationController.navigationBar.hidden = YES;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:self.reposNavigationController];
+    });
 }
 
 - (UINavigationController *)newsNavigationController {

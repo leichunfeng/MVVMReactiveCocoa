@@ -52,9 +52,12 @@
     
     cell.imageView.image = [UIImage octicon_imageWithIdentifier:self.viewModel.dataSource[indexPath.section][indexPath.row][@"identifier"]
                                                            size:CGSizeMake(22, 22)];
+    
     [self.viewModel.dataSource[indexPath.section][indexPath.row][@"textSignal"] subscribeNext:^(NSString *text) {
         cell.textLabel.text = text;
     }];
+    
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.accessoryType = indexPath.section == 0 ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;

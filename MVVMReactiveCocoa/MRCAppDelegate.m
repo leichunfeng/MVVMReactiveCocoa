@@ -30,9 +30,8 @@
     self.services = [MRCViewModelServicesImpl new];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
-    UINavigationController *navigationController = MRCNavigationController.new;
+    UINavigationController *navigationController = [[MRCNavigationController alloc] initWithRootViewController:self.createInitialViewController];
     [self.navigationControllerStack pushNavigationController:navigationController];
-    [navigationController pushViewController:[self createInitialViewController] animated:NO];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;
