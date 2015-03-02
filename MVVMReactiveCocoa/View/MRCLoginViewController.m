@@ -53,7 +53,7 @@
     [[self rac_signalForSelector:@selector(textFieldShouldReturn:) fromProtocol:@protocol(UITextFieldDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
-            if (tuple.first == self.passwordTextField)	[self.viewModel.loginCommand execute:nil];
+            if (tuple.first == self.passwordTextField) [self.viewModel.loginCommand execute:nil];
         }];
     
     self.passwordTextField.delegate = self;
@@ -79,7 +79,6 @@
                 [self.view endEditing:YES];
                 [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES].labelText = @"Logging in...";
             } else {
-                @strongify(self)
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             }
         }];
