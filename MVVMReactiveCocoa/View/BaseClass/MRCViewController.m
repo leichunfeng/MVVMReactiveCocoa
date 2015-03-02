@@ -83,7 +83,7 @@
             }]];
             
             [self presentViewController:alertController animated:YES completion:NULL];
-        } else {
+        } else if (error.code != OCTClientErrorTwoFactorAuthenticationOneTimePasswordRequired) {
             MRCError(error.localizedDescription);
         }
     }];
