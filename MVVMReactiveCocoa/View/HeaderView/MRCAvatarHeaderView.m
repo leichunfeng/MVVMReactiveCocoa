@@ -84,4 +84,9 @@
     self.avatarImageView.image = avatarImage;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.overView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+}
+
 @end

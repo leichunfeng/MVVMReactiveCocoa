@@ -61,7 +61,8 @@
         rac_signalForSelector:@selector(pushViewModel:animated:)]
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
-            UIViewController *viewController = (UIViewController *)[[MRCRouter sharedInstance] viewControllerForViewModel:tuple.first];
+            NSLog(@"Number of navigationControllers: %lu", (unsigned long)self.navigationControllers.count);
+            UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             [self.navigationControllers.lastObject pushViewController:viewController animated:tuple.second];
         }];
     
@@ -83,7 +84,7 @@
         rac_signalForSelector:@selector(presentViewModel:animated:completion:)]
         subscribeNext:^(RACTuple *tuple) {
         	@strongify(self)
-            UIViewController *viewController = (UIViewController *)[[MRCRouter sharedInstance] viewControllerForViewModel:tuple.first];
+            UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             
             UINavigationController *presentingViewController = self.navigationControllers.lastObject;
             if (![viewController isKindOfClass:UINavigationController.class]) {
@@ -105,11 +106,12 @@
     [[(NSObject *)self.services
         rac_signalForSelector:@selector(resetRootViewModel:)]
         subscribeNext:^(RACTuple *tuple) {
-            UIViewController *viewController = (UIViewController *)[[MRCRouter sharedInstance] viewControllerForViewModel:tuple.first];
+            UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             
             if (![viewController isKindOfClass:UINavigationController.class]) {
                 viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
             }
+            
             [self.navigationControllers removeAllObjects];
             [self pushNavigationController:(UINavigationController *)viewController];
             
