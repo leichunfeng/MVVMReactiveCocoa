@@ -46,11 +46,11 @@
      	}];
     self.delegate = self;
     
-    UIImage *image = [UIImage octicon_imageWithIcon:@"MarkGithub"
-                                    backgroundColor:HexRGB(0x30434E)
-                                          iconColor:UIColor.whiteColor
-                                          iconScale:0.8
-                                            andSize:CGSizeMake(1024, 1024)];
+//    UIImage *image = [UIImage octicon_imageWithIcon:@"MarkGithub"
+//                                    backgroundColor:UIColor.whiteColor
+//                                          iconColor:HexRGB(colorI2)
+//                                          iconScale:0.85
+//                                            andSize:CGSizeMake(1024, 1024)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

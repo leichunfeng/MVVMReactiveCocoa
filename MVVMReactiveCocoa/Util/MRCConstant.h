@@ -120,6 +120,11 @@ typedef id   (^IDBlock_id)  (id);
 #define colorT9b 0x967adc
 #define colorT10b 0xd671ad
 
+#define colorI1 0xBB0F23
+#define colorI2 0x30434E
+#define colorI3 0x4183C4
+#define colorI4 0xe9dba5
+
 #define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 

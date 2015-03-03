@@ -48,7 +48,7 @@
          forCellReuseIdentifier:@"MRCRepoReadmeTableViewCell"];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
-    [button setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
+    [button setTitleColor:HexRGB(colorI2) forState:UIControlStateNormal];
     
 	[RACObserve(self.viewModel, reference) subscribeNext:^(OCTRef *reference) {
         [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];
@@ -129,7 +129,7 @@
         
         [cell.viewCodeButton setImage:[UIImage octicon_imageWithIdentifier:@"FileDirectory" size:CGSizeMake(22, 22)]
                              forState:UIControlStateNormal];
-        
+                
         cell.selectionStyle = UITableViewCellSelectionStyleNone;        
         cell.viewCodeButton.rac_command = self.viewModel.viewCodeCommand;
 

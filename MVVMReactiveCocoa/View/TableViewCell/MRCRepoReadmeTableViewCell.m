@@ -20,6 +20,7 @@
 
 - (void)awakeFromNib {
     self.readmeImageView.image = [UIImage octicon_imageWithIdentifier:@"Book" size:CGSizeMake(22, 22)];
+    self.readmeButton.tintColor = HexRGB(colorI3);
 }
 
 - (void)layoutSubviews {

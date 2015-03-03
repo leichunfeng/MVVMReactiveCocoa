@@ -27,7 +27,7 @@
         
         if (repository.isPrivate) {
             self.identifier = @"Lock";
-            self.hexRGB = 0xe9dba5;
+            self.hexRGB = colorI4;
         } else if (repository.isFork) {
             self.identifier = @"RepoForked";
         } else {
@@ -40,7 +40,7 @@
             NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", repository.ownerLogin, repository.name];
             
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:uniqueName];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(0x4183C4) range:[uniqueName rangeOfString:uniqueName]];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(colorI3) range:[uniqueName rangeOfString:uniqueName]];
             [attributedString addAttribute:NSForegroundColorAttributeName value:UIColor.darkGrayColor range:[uniqueName rangeOfString:[repository.ownerLogin stringByAppendingString:@"/"]]];
             
             self.name = [attributedString copy];
