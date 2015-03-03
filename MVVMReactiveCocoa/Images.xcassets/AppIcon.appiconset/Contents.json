@@ -21,15 +21,14 @@
       "scale" : "3x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "green80@2x.png",
+      "size" : "60x60",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "green80@3x.png",
+      "filename" : "blue@3x.png",
       "scale" : "3x"
     }
   ],

@@ -36,9 +36,9 @@ static void *OCTObjectKey = &OCTObjectKey;
                 objc_setAssociatedObject(object.objectID, OCTObjectKey, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
                 return object.objectID;
             }].array;
-            NSArray *unionofObjectIDs = [NSSet setWithArray:[@[ localObjectIDs.rac_sequence, remoteObjectIDs.rac_sequence ].rac_sequence flatten].array].rac_sequence.array;
+            NSArray *unionObjectIDs = [NSSet setWithArray:[@[ localObjectIDs.rac_sequence, remoteObjectIDs.rac_sequence ].rac_sequence flatten].array].rac_sequence.array;
             
-            [unionofObjectIDs.rac_sequence.signal subscribeNext:^(NSString *objectID) {
+            [unionObjectIDs.rac_sequence.signal subscribeNext:^(NSString *objectID) {
                 BOOL localContains  = [localObjectIDs containsObject:objectID];
                 BOOL remoteContains = [remoteObjectIDs containsObject:objectID];
                 

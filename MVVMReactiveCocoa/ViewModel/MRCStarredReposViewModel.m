@@ -20,13 +20,8 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[[[RACSignal
+    return [[[RACSignal
     	combineLatest:@[ [OCTRepository fetchUserStarredRepositories], [[self.services.client fetchUserStarredRepositories] collect] ]]
-        doNext:^(RACTuple *tuple) {
-            for (OCTRepository *repository in (NSArray *)tuple.second) {
-                repository.starred = YES;
-            }
-        }]
         flattenMap:^RACStream *(RACTuple *tuple) {
             return [OCTRepository updateLocalObjects:tuple.first withRemoteObjects:tuple.second];
         }]
