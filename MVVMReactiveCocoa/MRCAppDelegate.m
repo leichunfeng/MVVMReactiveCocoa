@@ -69,12 +69,14 @@
     self.window.backgroundColor = UIColor.whiteColor;
 //    [UINavigationBar.appearance setBackgroundImage:HexRGB(0x30434E).color2Image forBarMetrics:UIBarMetricsDefault];
 //    UINavigationBar.appearance.barTintColor = HexRGB(0x30434E);
-//    UINavigationBar.appearance.barTintColor = [UIColor colorWithWhite:0.1 alpha:1];
+//    UINavigationBar.appearance.barTintColor = [UIColor colorWithWhite:0 alpha:0.1];
+//    UINavigationBar.appearance.barTintColor = UIColor.blackColor;
 //    UINavigationBar.appearance.barStyle = UIBarStyleBlack;
 //    UINavigationBar.appearance.tintColor = HexRGB(0x1FB922);
 //    UITabBar.appearance.tintColor = HexRGB(0x1FB922);
 //    UINavigationBar.appearance.translucent = YES;
-    UINavigationBar.appearance.tintColor = HexRGB(0x30434E);
+    UISegmentedControl.appearance.tintColor = HexRGB(0x30434E);
+    UINavigationBar.appearance.tintColor = UIColor.blackColor;
     UITabBar.appearance.tintColor = HexRGB(0x30434E);
 }
 

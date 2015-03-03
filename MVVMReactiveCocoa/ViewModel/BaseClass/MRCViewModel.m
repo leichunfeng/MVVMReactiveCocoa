@@ -12,11 +12,11 @@
 
 @synthesize services = _services;
 @synthesize params   = _params;
-@synthesize titleViewType = _titleViewType;
 @synthesize title    = _title;
 @synthesize subtitle = _subtitle;
 @synthesize callback = _callback;
 @synthesize errors   = _errors;
+@synthesize titleViewType = _titleViewType;
 @synthesize willDisappearSignal = _willDisappearSignal;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {

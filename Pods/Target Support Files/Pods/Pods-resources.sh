@@ -47,11 +47,7 @@ install_resource()
       ;;
   esac
 }
-          install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
-                    install_resource "FontAwesomeKit/FontAwesomeKit/foundation-icons.ttf"
-                    install_resource "FontAwesomeKit/FontAwesomeKit/ionicons.ttf"
-                    install_resource "FontAwesomeKit/FontAwesomeKit/zocial-regular-webfont.ttf"
-                    install_resource "FormatterKit/Localizations/ca.lproj"
+          install_resource "FormatterKit/Localizations/ca.lproj"
                     install_resource "FormatterKit/Localizations/cs.lproj"
                     install_resource "FormatterKit/Localizations/da.lproj"
                     install_resource "FormatterKit/Localizations/de.lproj"

@@ -1,1 +1,0 @@
-../../../FontAwesomeKit/FontAwesomeKit/FAKIcon.h
