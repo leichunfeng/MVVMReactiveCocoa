@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
     self.viewControllers = @[ self.reposNavigationController, self.profileNavigationController ];
     
     [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]
@@ -46,11 +46,11 @@
      	}];
     self.delegate = self;
     
-//    UIImage *image = [UIImage octicon_imageWithIcon:@"Octoface"
-//                                    backgroundColor:HexRGB(colorA17)
-//                                          iconColor:UIColor.whiteColor
-//                                          iconScale:0.8
-//                                            andSize:CGSizeMake(1024, 1024)];
+    UIImage *image = [UIImage octicon_imageWithIcon:@"MarkGithub"
+                                    backgroundColor:HexRGB(0x30434E)
+                                          iconColor:UIColor.whiteColor
+                                          iconScale:0.8
+                                            andSize:CGSizeMake(1024, 1024)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

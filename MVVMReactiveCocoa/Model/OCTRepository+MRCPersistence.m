@@ -8,17 +8,10 @@
 
 #import "OCTRepository+MRCPersistence.h"
 
-static void *OCTRepositoryKey = &OCTRepositoryKey;
-static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
-
 @implementation OCTRepository (Persistence)
 
 - (BOOL)isStarred {
-    return objc_getAssociatedObject(self, OCTRepositoryStarredKey);
-}
-
-- (void)setStarred:(BOOL)starred {
-    objc_setAssociatedObject(self, OCTRepositoryStarredKey, @(starred), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    return ![self.ownerLogin isEqualToString:SSKeychain.rawLogin];
 }
 
 - (BOOL)save {
@@ -59,12 +52,13 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 }
 
 + (RACSignal *)fetchUserRepositories {
+    @weakify(self)
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
         NSError *error = nil;
         NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.class.persistenceDirectoryOfOwned error:&error];
         if (error) [subscriber sendError:error];
         
-        @weakify(self)
         NSArray *repositories = [uniqueNames.rac_sequence map:^id(NSString *uniqueName) {
             @strongify(self)
             return [self fetchRepositoryWithUniqueName:uniqueName isStarred:NO];
@@ -78,12 +72,13 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 }
 
 + (RACSignal *)fetchUserStarredRepositories {
+    @weakify(self)
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
         NSError *error = nil;
         NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.class.persistenceDirectoryOfStarred error:&error];
         if (error) [subscriber sendError:error];
         
-        @weakify(self)
         NSArray *repositories = [uniqueNames.rac_sequence map:^id(NSString *uniqueName) {
             @strongify(self)
             return [self fetchRepositoryWithUniqueName:uniqueName isStarred:YES];
@@ -98,11 +93,7 @@ static void *OCTRepositoryStarredKey = &OCTRepositoryStarredKey;
 
 + (OCTRepository *)fetchRepositoryWithUniqueName:(NSString *)uniqueName isStarred:(BOOL)isStarred {
     NSString *persistenceDirectory = isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
-    
-    OCTRepository *repository = [NSKeyedUnarchiver unarchiveObjectWithFile:[persistenceDirectory stringByAppendingPathComponent:uniqueName]];
-    repository.starred = isStarred;
-    
-    return repository;
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[persistenceDirectory stringByAppendingPathComponent:uniqueName]];
 }
 
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner {

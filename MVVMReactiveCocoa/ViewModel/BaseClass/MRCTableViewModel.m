@@ -44,11 +44,11 @@
 }
 
 - (RACSignal *)fetchLocalDataSignal {
-	return [RACSignal empty];
+	return RACSignal.empty;
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [RACSignal empty];
+    return RACSignal.empty;
 }
 
 @end

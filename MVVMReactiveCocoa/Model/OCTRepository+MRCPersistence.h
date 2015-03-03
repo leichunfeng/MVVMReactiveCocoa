@@ -26,11 +26,6 @@
 // Returns the star flag.
 - (BOOL)isStarred;
 
-// Set method, setting the star flag of this repository.
-//
-// starred - The star flag
-- (void)setStarred:(BOOL)starred;
-
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
 
 @end
