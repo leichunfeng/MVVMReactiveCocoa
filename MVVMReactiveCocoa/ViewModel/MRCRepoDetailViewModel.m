@@ -45,7 +45,7 @@
     if (error) NSLog(@"Error: %@", error);
     
     TTTTimeIntervalFormatter *timeIntervalFormatter = TTTTimeIntervalFormatter.new;
-    timeIntervalFormatter.locale = NSLocale.currentLocale;
+    timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     
     RAC(self, dateUpdated) = [RACObserve(self.repository, dateUpdated) map:^id(NSDate *dateUpdated) {
         return [NSString stringWithFormat:@"Updated %@", [timeIntervalFormatter stringForTimeIntervalFromDate:NSDate.date toDate:dateUpdated]];

@@ -41,6 +41,11 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];    
+    self.extendedLayoutIncludesOpaqueBars = YES;
+}
+
 - (void)bindViewModel {
     @weakify(self)
     switch (self.viewModel.titleViewType) {

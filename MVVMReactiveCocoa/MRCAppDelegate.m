@@ -48,7 +48,7 @@
 }
 
 - (UIViewController *)createInitialViewController {
-//    [SSKeychain deleteAccessToken];
+    [SSKeychain deleteAccessToken];
     
     // The user has logged-in.
     if (SSKeychain.rawLogin.isExist && SSKeychain.accessToken.isExist) {
@@ -67,17 +67,15 @@
 
 - (void)configureAppearance {
     self.window.backgroundColor = UIColor.whiteColor;
-//    [UINavigationBar.appearance setBackgroundImage:HexRGB(0x30434E).color2Image forBarMetrics:UIBarMetricsDefault];
-//    UINavigationBar.appearance.barTintColor = HexRGB(0x30434E);
-//    UINavigationBar.appearance.barTintColor = [UIColor colorWithWhite:0 alpha:0.1];
-//    UINavigationBar.appearance.barTintColor = UIColor.blackColor;
-//    UINavigationBar.appearance.barStyle = UIBarStyleBlack;
-//    UINavigationBar.appearance.tintColor = HexRGB(0x1FB922);
-//    UITabBar.appearance.tintColor = HexRGB(0x1FB922);
-//    UINavigationBar.appearance.translucent = YES;
-    UISegmentedControl.appearance.tintColor = HexRGB(0x30434E);
-    UINavigationBar.appearance.tintColor = UIColor.blackColor;
-    UITabBar.appearance.tintColor = HexRGB(0x30434E);
+    
+    UINavigationBar.appearance.barTintColor = HexRGB(colorI2);
+    UINavigationBar.appearance.barStyle = UIBarStyleBlack;
+    UINavigationBar.appearance.translucent = NO;
+    UINavigationBar.appearance.tintColor = UIColor.whiteColor;
+    
+    UISegmentedControl.appearance.tintColor = UIColor.whiteColor;
+    
+    UITabBar.appearance.tintColor = HexRGB(colorI2);
 }
 
 - (void)configureKeyboardManager {

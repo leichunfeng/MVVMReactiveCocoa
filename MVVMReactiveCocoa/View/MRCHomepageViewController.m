@@ -54,13 +54,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:self.reposNavigationController];
-    });
+    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:(UINavigationController *)self.selectedViewController];
 }
 
 - (UINavigationController *)newsNavigationController {
