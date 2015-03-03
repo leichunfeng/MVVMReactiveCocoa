@@ -119,7 +119,7 @@
     	fetchRepositoryWithName:self.repository.name owner:self.repository.ownerLogin]
     	doNext:^(OCTRepository *repository) {
             @strongify(self)
-            self.repository = repository;
+            [self.repository mergeValuesForKeysFromModel:repository];
         }];
 }
 
