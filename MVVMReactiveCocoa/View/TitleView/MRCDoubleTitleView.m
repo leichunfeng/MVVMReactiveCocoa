@@ -60,7 +60,7 @@
         _titleLabel = UILabel.new;
         _titleLabel.font = [UIFont boldSystemFontOfSize:17];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-//        _titleLabel.textColor = UIColor.whiteColor;
+        _titleLabel.textColor = UIColor.whiteColor;
     }
     return _titleLabel;
 }
@@ -70,7 +70,7 @@
         _subtitleLabel = UILabel.new;
         _subtitleLabel.font = [UIFont systemFontOfSize:15];
         _subtitleLabel.textAlignment = NSTextAlignmentCenter;
-//        _subtitleLabel.textColor = UIColor.whiteColor;
+        _subtitleLabel.textColor = UIColor.whiteColor;
     }
     return _subtitleLabel;
 }

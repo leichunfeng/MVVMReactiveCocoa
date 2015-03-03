@@ -19,7 +19,7 @@
 @implementation MRCOwnedReposViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
     self.tableView.rowHeight = UITableViewAutomaticDimension;
