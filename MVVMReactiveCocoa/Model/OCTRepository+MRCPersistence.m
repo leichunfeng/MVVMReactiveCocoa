@@ -16,13 +16,13 @@
 
 - (BOOL)save {
     NSString *persistenceDirectory = self.isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
-    NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.name, self.ownerLogin];
+    NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.ownerLogin, self.name];
     return [NSKeyedArchiver archiveRootObject:self toFile:path];
 }
 
 - (void)delete {
     NSString *persistenceDirectory = self.isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
-    NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.name, self.ownerLogin];
+    NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.ownerLogin, self.name];
    
     NSError *error = nil;
     [NSFileManager.defaultManager removeItemAtPath:path error:&error];
@@ -99,7 +99,7 @@
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner {
     BOOL isStarred = ![owner isEqualToString:SSKeychain.rawLogin];
     
-    NSString *uniqueName = [NSString stringWithFormat:@"%@&%@", name, owner];
+    NSString *uniqueName = [NSString stringWithFormat:@"%@&%@", owner, name];
     OCTRepository *repository = [self fetchRepositoryWithUniqueName:uniqueName isStarred:isStarred];
     
     return [RACSignal return:repository];
