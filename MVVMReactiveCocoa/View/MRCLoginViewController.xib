@@ -110,15 +110,6 @@
                         <constraint firstItem="Z4f-3o-lGq" firstAttribute="top" secondItem="ujh-kK-Vbw" secondAttribute="bottom" constant="9" id="zvW-yw-o0F"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-FF-f2I" customClass="MRCButton">
-                    <rect key="frame" x="15" y="326" width="570" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="lg4-Fz-ohP"/>
-                    </constraints>
-                    <state key="normal" title="Log In">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MP0-zc-ERu">
                     <rect key="frame" x="216" y="555" width="168" height="30"/>
                     <constraints>
@@ -127,6 +118,16 @@
                     </constraints>
                     <state key="normal" title="Use the browser to login">
                         <color key="titleColor" red="0.42745098039215684" green="0.49411764705882355" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-FF-f2I" customClass="MRCButton">
+                    <rect key="frame" x="15" y="326" width="570" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="lg4-Fz-ohP"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Log In">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>

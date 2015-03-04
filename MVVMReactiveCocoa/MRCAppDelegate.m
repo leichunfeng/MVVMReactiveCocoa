@@ -68,9 +68,8 @@
 - (void)configureAppearance {
     self.window.backgroundColor = UIColor.whiteColor;
     
-    UINavigationBar.appearance.barTintColor = HexRGB(colorI2);
+    UINavigationBar.appearance.barTintColor = [UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1];
     UINavigationBar.appearance.barStyle = UIBarStyleBlack;
-    UINavigationBar.appearance.translucent = NO;
     UINavigationBar.appearance.tintColor = UIColor.whiteColor;
     
     UISegmentedControl.appearance.tintColor = UIColor.whiteColor;

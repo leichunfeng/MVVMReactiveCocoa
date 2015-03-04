@@ -108,11 +108,14 @@
         }
     }];
     
-    self.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self)
-        [self.viewModel.loginCommand execute:nil];
-        return [RACSignal empty];
-    }];
+    RAC(self.loginButton, enabled) = self.viewModel.validLoginSignal;
+    
+    [[self.loginButton
+        rac_signalForControlEvents:UIControlEventTouchUpInside]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self.viewModel.loginCommand execute:nil];
+        }];
     
     self.browserLoginButton.rac_command = self.viewModel.browserLoginCommand;
 }

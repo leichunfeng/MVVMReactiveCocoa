@@ -37,7 +37,6 @@
 - (UIColor *)titleColorForState:(UIControlState)state {
     switch (state) {
         case UIControlStateNormal:
-            return HexRGB(0xffffff);
         case UIControlStateHighlighted:
         case UIControlStateSelected:
         case UIControlStateApplication:
@@ -54,14 +53,14 @@
 - (UIImage *)backgroundImageForState:(UIControlState)state {
     switch (state) {
         case UIControlStateNormal:
-            return [HexRGB(0x576871) color2Image];
+            return HexRGB(0x576871).color2Image;
         case UIControlStateHighlighted:
         case UIControlStateSelected:
         case UIControlStateApplication:
         case UIControlStateReserved:
-            return [HexRGB(0x41525B) color2Image];
+            return HexRGB(0x41525B).color2Image;
         case UIControlStateDisabled:
-            return [HexRGB(0x6D7E87) color2Image];
+            return HexRGB(0x6D7E87).color2Image;
         default:
             break;
     }

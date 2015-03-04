@@ -19,6 +19,8 @@
 // The password entered by the user.
 @property (strong, nonatomic) NSString *password;
 
+@property (strong, nonatomic) RACSignal *validLoginSignal;
+
 // The command of login button.
 @property (strong, nonatomic) RACCommand *loginCommand;
 
