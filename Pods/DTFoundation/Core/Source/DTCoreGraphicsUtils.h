@@ -6,9 +6,16 @@
 //  Copyright 2010 Cocoanetics. All rights reserved.
 //
 
+#import <tgmath.h>
+
 /**
  Various CoreGraphics-related utility functions
  */
+
+/**
+ Promotes value to CGFloat type.
+ */
+#define CGFloat_(__x)	((CGFloat) (__x))
 
 /**
  Calculates a size that fits an original size into a different size preserving the aspect ratio.

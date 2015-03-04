@@ -5,11 +5,11 @@ PODS:
     - DTFoundation/DTAnimatedGIF (~> 1.7.1)
     - DTFoundation/DTHTMLParser (~> 1.7.1)
     - DTFoundation/UIKit (~> 1.7.1)
-  - DTFoundation/Core (1.7.4)
-  - DTFoundation/DTAnimatedGIF (1.7.4)
-  - DTFoundation/DTHTMLParser (1.7.4):
+  - DTFoundation/Core (1.7.5)
+  - DTFoundation/DTAnimatedGIF (1.7.5)
+  - DTFoundation/DTHTMLParser (1.7.5):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.4):
+  - DTFoundation/UIKit (1.7.5):
     - DTFoundation/Core
   - FormatterKit (1.8.0):
     - FormatterKit/AddressFormatter (= 1.8.0)
@@ -77,7 +77,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CBStoreHouseRefreshControl: 0a3312cced4637d20d487df5fb314629a5044c58
   DTCoreText: 1fc0aadfa238d14c6cc56035af4e2b76b958e3b1
-  DTFoundation: 721a63964fb9acd64cb8c9d3d1642ee60bac3d6a
+  DTFoundation: bea4e07459f0f88a5aa3b8258fab1576bbe2e58c
   FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
   IQKeyboardManager: e0b33a5d821ab36ec47ce8ca9dc520030d6aac52
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8

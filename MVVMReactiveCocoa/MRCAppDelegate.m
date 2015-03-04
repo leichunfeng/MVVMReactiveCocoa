@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) MRCViewModelServicesImpl *services;
 @property (strong, nonatomic) id<MRCViewModelProtocol> viewModel;
+@property (strong, nonatomic) Reachability *reachability;
 
 @end
 
@@ -39,6 +40,7 @@
     
     [self configureAppearance];
     [self configureKeyboardManager];
+    [self configureReachability];
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
@@ -48,7 +50,7 @@
 }
 
 - (UIViewController *)createInitialViewController {
-    [SSKeychain deleteAccessToken];
+//    [SSKeychain deleteAccessToken];
     
     // The user has logged-in.
     if (SSKeychain.rawLogin.isExist && SSKeychain.accessToken.isExist) {
@@ -80,6 +82,23 @@
 - (void)configureKeyboardManager {
     IQKeyboardManager.sharedManager.enableAutoToolbar = NO;
     IQKeyboardManager.sharedManager.shouldResignOnTouchOutside = YES;
+}
+
+- (void)configureReachability {
+    self.reachability = Reachability.reachabilityForInternetConnection;
+    
+    self.reachabilitySignal = [[[NSNotificationCenter.defaultCenter
+    	rac_addObserverForName:kReachabilityChangedNotification object:nil]
+        map:^id(NSNotification *notification) {
+            return @([notification.object currentReachabilityStatus]);
+        }]
+    	distinctUntilChanged];
+    
+    @weakify(self)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        @strongify(self)
+        [self.reachability startNotifier];
+    });
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

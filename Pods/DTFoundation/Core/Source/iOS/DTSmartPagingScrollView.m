@@ -7,6 +7,7 @@
 //
 
 #import "DTSmartPagingScrollView.h"
+#import "DTCoreGraphicsUtils.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface DTSmartPagingScrollView ()
@@ -80,7 +81,7 @@
 
 - (void)_updateCurrentPage
 {
-	NSUInteger newPageIndex =  roundf(self.contentOffset.x / self.frame.size.width);
+	NSUInteger newPageIndex = round(self.contentOffset.x / self.frame.size.width);
 	
 	if (_currentPageIndex != newPageIndex)
 	{
@@ -100,8 +101,8 @@
 {
 	CGFloat position = self.contentOffset.x / self.bounds.size.width;
 	
-	NSInteger firstVisibleIndex = MAX(0, floorf(position));
-	NSInteger lastVisibleIndex = MIN(ceilf(position), _numberOfPages-1);
+	NSInteger firstVisibleIndex = MAX(CGFloat_(0), floor(position));
+	NSInteger lastVisibleIndex = MIN(ceil(position), CGFloat_(_numberOfPages-1));
 	
 	// check if right page is really visible
 	CGRect rightFrame = [self frameForPageViewAtIndex:lastVisibleIndex];
@@ -193,14 +194,14 @@
 	CGRect frame = self.bounds;
 	frame.origin.x = index * frame.size.width;
 	
-	frame = CGRectInset(frame, 10, 0);
+	frame = CGRectInset(frame, CGFloat_(10), CGFloat_(0));
 	
 	return frame;
 }
 
 - (void)scrollToPage:(NSInteger)page animated:(BOOL)animated
 {
-	CGRect pageRect = CGRectMake(page * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height);
+	CGRect pageRect = CGRectMake(CGFloat_(page) * self.frame.size.width, CGFloat_(0), self.frame.size.width, self.frame.size.height);
 	[self scrollRectToVisible:pageRect animated:animated];
 }
 

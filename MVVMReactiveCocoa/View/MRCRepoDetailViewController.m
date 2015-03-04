@@ -49,6 +49,7 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setTitleColor:HexRGB(colorI2) forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     
 	[RACObserve(self.viewModel, reference) subscribeNext:^(OCTRef *reference) {
         [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];

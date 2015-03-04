@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+DTFoundation.h"
+#import "DTCoreGraphicsUtils.h"
 #import "DTLog.h"
 
 @implementation UIImage (DTFoundation)
@@ -127,12 +128,12 @@
 			}
 			
 			
-			size.width = roundf(size.width * factor);
-			size.height = roundf(size.height * factor);
+			size.width = round(size.width * factor);
+			size.height = round(size.height * factor);
 			
 			// otherwise same as center
-			drawRect = CGRectMake(roundf(CGRectGetMidX(rect)-size.width/2.0f), 
-								  roundf(CGRectGetMidY(rect)-size.height/2.0f), 
+			drawRect = CGRectMake(round(CGRectGetMidX(rect)-size.width/CGFloat_(2)),
+								  round(CGRectGetMidY(rect)-size.height/CGFloat_(2)),
 								  size.width,
 								  size.height);
 			
@@ -154,12 +155,12 @@
 			}
 			
 			
-			size.width = roundf(size.width * factor);
-			size.height = roundf(size.height * factor);
+			size.width = round(size.width * factor);
+			size.height = round(size.height * factor);
 			
 			// otherwise same as center
-			drawRect = CGRectMake(roundf(CGRectGetMidX(rect)-size.width/2.0f), 
-								  roundf(CGRectGetMidY(rect)-size.height/2.0f), 
+			drawRect = CGRectMake(round(CGRectGetMidX(rect)-size.width/CGFloat_(2)),
+								  round(CGRectGetMidY(rect)-size.height/CGFloat_(2)),
 								  size.width,
 								  size.height);
 			
@@ -168,8 +169,8 @@
 			
 		case UIViewContentModeCenter:
 		{
-			drawRect = CGRectMake(roundf(CGRectGetMidX(rect)-size.width/2.0f), 
-								  roundf(CGRectGetMidY(rect)-size.height/2.0f), 
+			drawRect = CGRectMake(round(CGRectGetMidX(rect)-size.width/CGFloat_(2)),
+								  round(CGRectGetMidY(rect)-size.height/CGFloat_(2)),
 								  size.width,
 								  size.height);
 			break;
@@ -177,7 +178,7 @@
 			
 		case UIViewContentModeTop:
 		{
-			drawRect = CGRectMake(roundf(CGRectGetMidX(rect)-size.width/2.0f), 
+			drawRect = CGRectMake(round(CGRectGetMidX(rect)-size.width/CGFloat_(2)),
 								  rect.origin.y-size.height, 
 								  size.width,
 								  size.height);
@@ -186,7 +187,7 @@
 			
 		case UIViewContentModeBottom:
 		{
-			drawRect = CGRectMake(roundf(CGRectGetMidX(rect)-size.width/2.0f), 
+			drawRect = CGRectMake(round(CGRectGetMidX(rect)-size.width/CGFloat_(2)),
 								  rect.origin.y-size.height, 
 								  size.width,
 								  size.height);
@@ -196,7 +197,7 @@
 		case UIViewContentModeLeft:
 		{
 			drawRect = CGRectMake(rect.origin.x, 
-								  roundf(CGRectGetMidY(rect)-size.height/2.0f), 
+								  round(CGRectGetMidY(rect)-size.height/CGFloat_(2)),
 								  size.width,
 								  size.height);
 			break;
@@ -205,7 +206,7 @@
 		case UIViewContentModeRight:
 		{
 			drawRect = CGRectMake(CGRectGetMaxX(rect)-size.width, 
-								  roundf(CGRectGetMidY(rect)-size.height/2.0f), 
+								  round(CGRectGetMidY(rect)-size.height/CGFloat_(2)),
 								  size.width,
 								  size.height);
 			break;
@@ -266,8 +267,8 @@
 - (UIImage *)tileImageAtColumn:(NSUInteger)column ofColumns:(NSUInteger)columns row:(NSUInteger)row ofRows:(NSUInteger)rows
 {
 	// calculate resulting size
-	CGFloat retWidth = roundf(self.size.width / (CGFloat)columns);
-	CGFloat retHeight = roundf(self.size.height / (CGFloat)rows);
+	CGFloat retWidth = round(self.size.width / CGFloat_(columns));
+	CGFloat retHeight = round(self.size.height / CGFloat_(rows));
 	
 	UIGraphicsBeginImageContextWithOptions(CGSizeMake(retWidth, retHeight), YES, self.scale);
 	
@@ -289,7 +290,6 @@
 {
 	UIGraphicsBeginImageContextWithOptions(clipRect.size, YES, scale);
 
-
 	CGFloat zoom = self.size.width / bounds.size.width;
 	
 	// this is the part from the origin image
@@ -302,7 +302,7 @@
 	// move the context such that the left/top of the tile is at the left/top of the context
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextTranslateCTM(context, -clipRect.origin.x, -clipRect.origin.y);
-	CGContextScaleCTM(context, 1.0/zoom, 1.0/zoom);
+	CGContextScaleCTM(context, CGFloat_(1)/zoom, CGFloat_(1)/zoom);
 	
 	// draw the image
 	[self drawAtPoint:CGPointZero];

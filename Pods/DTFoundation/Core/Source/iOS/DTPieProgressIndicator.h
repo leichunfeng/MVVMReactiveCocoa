@@ -15,7 +15,7 @@
 /**
  The progress in percent
  */
-@property (nonatomic, assign) CGFloat progressPercent;
+@property (nonatomic, assign) float progressPercent;
 
 /**
  The color of the pie
