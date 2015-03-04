@@ -267,7 +267,7 @@ void _processingInstruction (void *context, const xmlChar *target, const xmlChar
 	unsigned long dataSize = [_data length];
 	
 	// detect encoding if necessary
-	xmlCharEncoding charEnc = 0;
+	xmlCharEncoding charEnc = XML_CHAR_ENCODING_NONE;
 	
 	if (!_encoding)
 	{
@@ -276,12 +276,20 @@ void _processingInstruction (void *context, const xmlChar *target, const xmlChar
 	else
 	{
 		// convert the encoding
-		// TODO: proper mapping from _encoding to xmlCharEncoding
 		CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(_encoding);
-		CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
-		const char *enc = CFStringGetCStringPtr(cfencstr, 0);
 		
-		charEnc = xmlParseCharEncoding(enc);
+		if (cfenc != kCFStringEncodingInvalidId)
+		{
+			CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
+			
+			if (cfencstr)
+			{
+				NSString *NS_VALID_UNTIL_END_OF_SCOPE encstr = [NSString stringWithString:(__bridge NSString*)cfencstr];
+				const char *enc = [encstr UTF8String];
+				
+				charEnc = xmlParseCharEncoding(enc);
+			}
+		}
 	}
 	
 	// create a parse context

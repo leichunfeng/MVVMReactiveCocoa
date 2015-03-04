@@ -15,5 +15,6 @@
 // The window of current application.
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MRCNavigationControllerStack *navigationControllerStack;
+@property (strong, nonatomic) RACSignal *reachabilitySignal;
 
 @end
