@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @class MRCNavigationControllerStack;
 
@@ -15,6 +16,6 @@
 // The window of current application.
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MRCNavigationControllerStack *navigationControllerStack;
-@property (strong, nonatomic) RACSignal *reachabilitySignal;
+@property (nonatomic) NetworkStatus networkStatus;
 
 @end

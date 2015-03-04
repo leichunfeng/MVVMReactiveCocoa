@@ -86,6 +86,8 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
+		24BA846B1AA6FF1400A06125 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BA846A1AA6FF1400A06125 /* MRCNetworkHeaderView.xib */; };
+		24BA84791AA6FF2B00A06125 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BA84781AA6FF2B00A06125 /* MRCNetworkHeaderView.m */; };
 		24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703A1A90DA7F00D8D00B /* icon-error.png */; };
 		24BD70451A90DA7F00D8D00B /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */; };
 		24BD70461A90DA7F00D8D00B /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703C1A90DA7F00D8D00B /* icon-info.png */; };
@@ -433,6 +435,9 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
+		24BA846A1AA6FF1400A06125 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
+		24BA84771AA6FF2B00A06125 /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
+		24BA84781AA6FF2B00A06125 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
 		24BD703A1A90DA7F00D8D00B /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
 		24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
 		24BD703C1A90DA7F00D8D00B /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
@@ -631,6 +636,9 @@
 				240D00EC1A654D300033CC86 /* MRCAvatarHeaderView.h */,
 				240D00ED1A654D300033CC86 /* MRCAvatarHeaderView.m */,
 				240D00EE1A654D300033CC86 /* MRCAvatarHeaderView.xib */,
+				24BA84771AA6FF2B00A06125 /* MRCNetworkHeaderView.h */,
+				24BA84781AA6FF2B00A06125 /* MRCNetworkHeaderView.m */,
+				24BA846A1AA6FF1400A06125 /* MRCNetworkHeaderView.xib */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
@@ -1157,6 +1165,7 @@
 				240D01341A654D300033CC86 /* MRCAvatarHeaderView.xib in Resources */,
 				24BD70471A90DA7F00D8D00B /* icon-info@2x.png in Resources */,
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
+				24BA846B1AA6FF1400A06125 /* MRCNetworkHeaderView.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
@@ -1310,6 +1319,7 @@
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
+				24BA84791AA6FF2B00A06125 /* MRCNetworkHeaderView.m in Sources */,
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
