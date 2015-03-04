@@ -145,8 +145,7 @@
                 <constraint firstItem="lgZ-Ah-0EN" firstAttribute="top" secondItem="o21-yr-aAl" secondAttribute="bottom" constant="40" id="g1N-1X-hSG"/>
                 <constraint firstItem="lgZ-Ah-0EN" firstAttribute="leading" secondItem="LJv-0T-553" secondAttribute="leading" id="zog-Up-LDD"/>
             </constraints>
-            <nil key="simulatedTopBarMetrics"/>
-            <point key="canvasLocation" x="401" y="-401"/>
+            <point key="canvasLocation" x="503" y="-449"/>
         </view>
     </objects>
 </document>

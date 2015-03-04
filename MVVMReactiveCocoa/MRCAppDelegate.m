@@ -87,12 +87,14 @@
 - (void)configureReachability {
     self.reachability = Reachability.reachabilityForInternetConnection;
     
-    self.reachabilitySignal = [[[NSNotificationCenter.defaultCenter
+    RAC(self, networkStatus) = [[[[[NSNotificationCenter.defaultCenter
     	rac_addObserverForName:kReachabilityChangedNotification object:nil]
         map:^id(NSNotification *notification) {
             return @([notification.object currentReachabilityStatus]);
-        }]
-    	distinctUntilChanged];
+        }]    	
+    	startWith:@(self.reachability.currentReachabilityStatus)]
+        distinctUntilChanged]
+    	logAll];
     
     @weakify(self)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -105,9 +107,8 @@
     if ([url.scheme isEqual:MRC_URL_SCHEME]) {
         [OCTClient completeSignInWithCallbackURL:url];
         return YES;
-    } else {
-        return NO;
     }
+    return NO;
 }
 
 @end

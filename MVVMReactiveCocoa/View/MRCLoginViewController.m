@@ -120,4 +120,8 @@
     self.browserLoginButton.rac_command = self.viewModel.browserLoginCommand;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
+
 @end

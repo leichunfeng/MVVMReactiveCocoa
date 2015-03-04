@@ -49,11 +49,11 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setTitleColor:HexRGB(colorI2) forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     
 	[RACObserve(self.viewModel, reference) subscribeNext:^(OCTRef *reference) {
         [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];
-        [button setImage:[UIImage octicon_imageWithIdentifier:reference.octiconIdentifier size:CGSizeMake(22, 22)] forState:UIControlStateNormal];
+        [button setImage:[UIImage octicon_imageWithIcon:reference.octiconIdentifier backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:CGSizeMake(22, 22)] forState:UIControlStateNormal];
         [button sizeToFit];
     }];
 

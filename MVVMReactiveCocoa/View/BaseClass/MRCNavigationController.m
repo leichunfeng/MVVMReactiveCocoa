@@ -18,4 +18,8 @@
     return self.topViewController.supportedInterfaceOrientations;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return self.topViewController.preferredStatusBarStyle;
+}
+
 @end

@@ -28,4 +28,8 @@
     return self.selectedViewController.supportedInterfaceOrientations;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return self.selectedViewController.preferredStatusBarStyle;
+}
+
 @end
