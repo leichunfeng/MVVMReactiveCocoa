@@ -58,16 +58,13 @@
     }];
     
     cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.accessoryType = indexPath.section == 0 ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType  = indexPath.section == 0 ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = indexPath.section == 0 ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
     
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return section == 0 ? 20 : 10;

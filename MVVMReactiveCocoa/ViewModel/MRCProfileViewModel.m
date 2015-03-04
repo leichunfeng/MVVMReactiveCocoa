@@ -8,6 +8,7 @@
 
 #import "MRCProfileViewModel.h"
 #import "MRCAvatarHeaderViewModel.h"
+#import "MRCSettingsViewModel.h"
 
 @implementation MRCProfileViewModel
 
@@ -40,8 +41,17 @@
   			@{ @"identifier": @"Mail", @"textSignal": RACObserve(self.currentUser, email) },
             @{ @"identifier": @"Link", @"textSignal": RACObserve(self.currentUser, blog) }
     	],
-        @[ @{ @"identifier": @"Info", @"textSignal": [RACSignal return:@"About"] } ]
+        @[ @{ @"identifier": @"Gear", @"textSignal": [RACSignal return:@"Settings"] } ]
     ];
+    
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        if (indexPath.section == 1 && indexPath.row == 0) {
+            MRCSettingsViewModel *settingsViewModel = [[MRCSettingsViewModel alloc] initWithServices:self.services params:nil];
+            [self.services pushViewModel:settingsViewModel animated:YES];
+        }
+        return RACSignal.empty;
+    }];
     
     [self.fetchUserInfoCommand.errors subscribe:self.errors];
 }
