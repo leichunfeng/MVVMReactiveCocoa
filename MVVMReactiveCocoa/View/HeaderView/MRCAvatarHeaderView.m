@@ -33,10 +33,12 @@
 - (void)awakeFromNib {
     self.avatarImageView.layer.borderColor  = [UIColor whiteColor].CGColor;
     self.avatarImageView.layer.borderWidth  = 2.0f;
-    self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.frame)/2;
+    self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.frame) / 2;
+    self.coverImageView.backgroundColor  = HexRGB(0xEBE9E5);
+    self.avatarImageView.backgroundColor = HexRGB(0xEBE9E5);
 }
 
-- (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
+- (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {    
 	@weakify(self)
     [RACObserve(viewModel, avatarURL) subscribeNext:^(NSURL *avatarURL) {
         [SDWebImageManager.sharedManager downloadImageWithURL:avatarURL

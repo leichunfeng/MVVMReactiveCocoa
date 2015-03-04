@@ -13,12 +13,12 @@
         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="My2-rz-pHJ">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="rJP-Gn-y5N"/>
                 <outlet property="delegate" destination="-1" id="Su2-QL-ITX"/>
             </connections>
-            <point key="canvasLocation" x="781" y="791"/>
+            <point key="canvasLocation" x="674" y="674"/>
         </tableView>
     </objects>
 </document>

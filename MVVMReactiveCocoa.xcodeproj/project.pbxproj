@@ -113,6 +113,9 @@
 		24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458C1A6BF6EC00F23474 /* MRCReposViewModel.m */; };
 		24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */; };
 		24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */; };
+		24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */; };
+		24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120341AA7447A00A22D9A /* MRCSettingsViewController.m */; };
+		24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F120351AA7447A00A22D9A /* MRCSettingsViewController.xib */; };
 		55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -476,6 +479,11 @@
 		24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCOwnedReposViewModel.m; sourceTree = "<group>"; };
 		24DF45911A6BF97C00F23474 /* MRCStarredReposViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCStarredReposViewModel.h; sourceTree = "<group>"; };
 		24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCStarredReposViewModel.m; sourceTree = "<group>"; };
+		24F120251AA7445800A22D9A /* MRCSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewModel.h; sourceTree = "<group>"; };
+		24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSettingsViewModel.m; sourceTree = "<group>"; };
+		24F120331AA7447A00A22D9A /* MRCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewController.h; sourceTree = "<group>"; };
+		24F120341AA7447A00A22D9A /* MRCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSettingsViewController.m; sourceTree = "<group>"; };
+		24F120351AA7447A00A22D9A /* MRCSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSettingsViewController.xib; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -594,6 +602,9 @@
 				2424533B1A811B9E00FFFCC1 /* MRCSourceEditorViewController.h */,
 				2424533C1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m */,
 				2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */,
+				24F120331AA7447A00A22D9A /* MRCSettingsViewController.h */,
+				24F120341AA7447A00A22D9A /* MRCSettingsViewController.m */,
+				24F120351AA7447A00A22D9A /* MRCSettingsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -682,6 +693,8 @@
 				242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */,
 				242453401A811C3C00FFFCC1 /* MRCSourceEditorViewModel.h */,
 				242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */,
+				24F120251AA7445800A22D9A /* MRCSettingsViewModel.h */,
+				24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1185,6 +1198,7 @@
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
+				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */,
 				24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
@@ -1308,6 +1322,7 @@
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
+				24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
 				24BD704C1A90DA7F00D8D00B /* README.md in Sources */,
@@ -1349,6 +1364,7 @@
 				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
+				24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

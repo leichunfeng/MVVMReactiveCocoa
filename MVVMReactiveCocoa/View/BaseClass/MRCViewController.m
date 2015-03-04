@@ -83,6 +83,7 @@
             [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 @strongify(self)
                 [SSKeychain deleteAccessToken];
+                
                 MRCLoginViewModel *loginViewModel = [[MRCLoginViewModel alloc] initWithServices:self.viewModel.services params:nil];                
                 [self.viewModel.services resetRootViewModel:loginViewModel];
             }]];
