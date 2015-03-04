@@ -20,7 +20,7 @@
         }]
         distinctUntilChanged];
     
-    RACSignal *validLoginSignal = [[RACSignal
+    self.validLoginSignal = [[RACSignal
     	combineLatest:@[RACObserve(self, username), RACObserve(self, password)] reduce:^id(NSString *username, NSString *password) {
         	return @(username.length > 0 && password.length > 0);
         }]
@@ -42,7 +42,7 @@
     
     [OCTClient setClientID:MRC_CLIENT_ID clientSecret:MRC_CLIENT_SECRET];
     
-    self.loginCommand = [[RACCommand alloc] initWithEnabled:validLoginSignal signalBlock:^RACSignal *(NSString *oneTimePassword) {
+    self.loginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *oneTimePassword) {
     	@strongify(self)
         OCTUser *user = [OCTUser userWithRawLogin:self.username server:OCTServer.dotComServer];
         return [[[OCTClient
