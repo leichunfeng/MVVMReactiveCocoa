@@ -29,22 +29,36 @@
     [super viewDidLoad];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2) return [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    return [super tableView:tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+}
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
     if (indexPath.section == 0) {
-        cell.textLabel.text = @"About";
-        cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"My Account";
+        cell.detailTextLabel.text = SSKeychain.rawLogin;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else if (indexPath.section == 1) {
+        cell.textLabel.text = @"About";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 2) {
         cell.textLabel.text = @"Log Out";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
+        cell.detailTextLabel.text = nil;
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    }];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -53,14 +67,10 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? 20 : 10;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
-    if (indexPath.section == 1 && indexPath.row == 0) {
+    if (indexPath.section == 2) {
         NSString *message = @"Logout will not delete any data. You can still log in with this account.";
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                                  message:message

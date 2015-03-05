@@ -133,4 +133,6 @@ typedef id   (^IDBlock_id)  (id);
 
 #define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
+#define LEFT_IMAGE_SIZE CGSizeMake(25, 25)
+
 #endif

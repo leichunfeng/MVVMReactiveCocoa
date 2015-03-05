@@ -37,33 +37,19 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSDictionary *)dictionary {
-    OCTTreeEntry *treeEntry = dictionary[@"treeEntry"];
+    cell.imageView.image = [UIImage octicon_imageWithIcon:dictionary[@"identifier"]
+                                          backgroundColor:UIColor.clearColor
+                                                iconColor:HexRGB([dictionary[@"hexRGB"] integerValue])
+                                                iconScale:1
+                                                  andSize:LEFT_IMAGE_SIZE];
     
-    cell.imageView.image = [UIImage octicon_imageWithIdentifier:dictionary[@"identifier"] size:CGSizeMake(22, 22)];
-    cell.textLabel.text  = dictionary[@"text"];
+    cell.textLabel.text = dictionary[@"text"];
     cell.textLabel.numberOfLines = 0;
     
-    if (treeEntry.type == OCTTreeEntryTypeBlob) {
-        UILabel *sizeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        
-        sizeLabel.text = dictionary[@"size"];
-        sizeLabel.font = [UIFont systemFontOfSize:15];
-        sizeLabel.textColor = UIColor.grayColor;
-        
-        [sizeLabel sizeToFit];
-        
-        cell.accessoryView = sizeLabel;
-    } else {
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:17];
-    }
-    
-    [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
-        cell.textLabel.font = [UIFont systemFontOfSize:17];
-        cell.accessoryView  = nil;
-    }];
+    cell.detailTextLabel.text = dictionary[@"detailText"];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01;

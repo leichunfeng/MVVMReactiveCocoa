@@ -36,10 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = UIColor.whiteColor;
-    self.tableView.estimatedRowHeight = 44;
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoStatisticsTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"MRCRepoStatisticsTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoViewCodeTableViewCell" bundle:nil]
@@ -47,13 +43,17 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoReadmeTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"MRCRepoReadmeTableViewCell"];
     
+    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = UIColor.whiteColor;
+    self.tableView.estimatedRowHeight = 44;
+    
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     [button setTitleColor:HexRGB(colorI2) forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     
 	[RACObserve(self.viewModel, reference) subscribeNext:^(OCTRef *reference) {
         [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];
-        [button setImage:[UIImage octicon_imageWithIcon:reference.octiconIdentifier backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:CGSizeMake(22, 22)] forState:UIControlStateNormal];
+        [button setImage:[UIImage octicon_imageWithIcon:reference.octiconIdentifier backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:CGSizeMake(23, 23)] forState:UIControlStateNormal];
         [button sizeToFit];
     }];
 
