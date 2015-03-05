@@ -70,6 +70,14 @@
 		242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */; };
 		243140131A7DD6E800FA357E /* assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 243140121A7DD6E800FA357E /* assets.bundle */; };
 		24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */; };
+		245D62841AA8C73E00D7B081 /* MRCAboutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D627C1AA8C73E00D7B081 /* MRCAboutHeaderView.m */; };
+		245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D627D1AA8C73E00D7B081 /* MRCAboutHeaderView.xib */; };
+		245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D627F1AA8C73E00D7B081 /* MRCAvatarHeaderView.m */; };
+		245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */; };
+		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
+		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
+		245D628C1AA8C74E00D7B081 /* MRCCopyrightFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D628B1AA8C74E00D7B081 /* MRCCopyrightFooterView.m */; };
+		245D628E1AA8C79000D7B081 /* MRCCopyrightFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D628D1AA8C79000D7B081 /* MRCCopyrightFooterView.xib */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
 		249674331A73F5490032771B /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249674311A73F5490032771B /* MRCWebViewController.xib */; };
@@ -115,12 +123,6 @@
 		24F1203B1AA7525700A22D9A /* MRCAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120391AA7525700A22D9A /* MRCAboutViewController.m */; };
 		24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F1203A1AA7525700A22D9A /* MRCAboutViewController.xib */; };
 		24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */; };
-		24F1204A1AA752F400A22D9A /* MRCAvatarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120451AA752F400A22D9A /* MRCAvatarHeaderView.m */; };
-		24F1204B1AA752F400A22D9A /* MRCAvatarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F120461AA752F400A22D9A /* MRCAvatarHeaderView.xib */; };
-		24F1204C1AA752F400A22D9A /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120481AA752F400A22D9A /* MRCNetworkHeaderView.m */; };
-		24F1204D1AA752F400A22D9A /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F120491AA752F400A22D9A /* MRCNetworkHeaderView.xib */; };
-		24F120501AA7530F00A22D9A /* MRCAboutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F1204F1AA7530F00A22D9A /* MRCAboutHeaderView.m */; };
-		24F120521AA7531D00A22D9A /* MRCAboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F120511AA7531D00A22D9A /* MRCAboutHeaderView.xib */; };
 		24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */; };
 		55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -413,6 +415,18 @@
 		243140121A7DD6E800FA357E /* assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = assets.bundle; sourceTree = "<group>"; };
 		24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTObject+MRCPersistence.h"; sourceTree = "<group>"; };
 		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
+		245D627B1AA8C73E00D7B081 /* MRCAboutHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutHeaderView.h; sourceTree = "<group>"; };
+		245D627C1AA8C73E00D7B081 /* MRCAboutHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutHeaderView.m; sourceTree = "<group>"; };
+		245D627D1AA8C73E00D7B081 /* MRCAboutHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutHeaderView.xib; sourceTree = "<group>"; };
+		245D627E1AA8C73E00D7B081 /* MRCAvatarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAvatarHeaderView.h; sourceTree = "<group>"; };
+		245D627F1AA8C73E00D7B081 /* MRCAvatarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAvatarHeaderView.m; sourceTree = "<group>"; };
+		245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAvatarHeaderView.xib; sourceTree = "<group>"; };
+		245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
+		245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
+		245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
+		245D628A1AA8C74E00D7B081 /* MRCCopyrightFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCCopyrightFooterView.h; sourceTree = "<group>"; };
+		245D628B1AA8C74E00D7B081 /* MRCCopyrightFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCCopyrightFooterView.m; sourceTree = "<group>"; };
+		245D628D1AA8C79000D7B081 /* MRCCopyrightFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCCopyrightFooterView.xib; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
 		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
 		2496742F1A73F5490032771B /* MRCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewController.h; sourceTree = "<group>"; };
@@ -489,15 +503,6 @@
 		24F1203A1AA7525700A22D9A /* MRCAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutViewController.xib; sourceTree = "<group>"; };
 		24F120401AA7528A00A22D9A /* MRCAboutViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutViewModel.h; sourceTree = "<group>"; };
 		24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutViewModel.m; sourceTree = "<group>"; };
-		24F120441AA752F400A22D9A /* MRCAvatarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAvatarHeaderView.h; sourceTree = "<group>"; };
-		24F120451AA752F400A22D9A /* MRCAvatarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAvatarHeaderView.m; sourceTree = "<group>"; };
-		24F120461AA752F400A22D9A /* MRCAvatarHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAvatarHeaderView.xib; sourceTree = "<group>"; };
-		24F120471AA752F400A22D9A /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
-		24F120481AA752F400A22D9A /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
-		24F120491AA752F400A22D9A /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
-		24F1204E1AA7530F00A22D9A /* MRCAboutHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutHeaderView.h; sourceTree = "<group>"; };
-		24F1204F1AA7530F00A22D9A /* MRCAboutHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutHeaderView.m; sourceTree = "<group>"; };
-		24F120511AA7531D00A22D9A /* MRCAboutHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutHeaderView.xib; sourceTree = "<group>"; };
 		24F120531AA8004400A22D9A /* MRCTableViewCellStyleValue1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTableViewCellStyleValue1.h; sourceTree = "<group>"; };
 		24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewCellStyleValue1.m; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -576,7 +581,7 @@
 		240D00DD1A654D300033CC86 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				24F120431AA752F400A22D9A /* TableHeaderView */,
+				245D627A1AA8C73E00D7B081 /* TableHeaderFooterView */,
 				24116E8E1A8F454200D25218 /* TitleView */,
 				24B4DA111A66B94800DDFA6C /* TableViewCell */,
 				240D00DE1A654D300033CC86 /* BaseClass */,
@@ -865,6 +870,25 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		245D627A1AA8C73E00D7B081 /* TableHeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				245D627B1AA8C73E00D7B081 /* MRCAboutHeaderView.h */,
+				245D627C1AA8C73E00D7B081 /* MRCAboutHeaderView.m */,
+				245D627D1AA8C73E00D7B081 /* MRCAboutHeaderView.xib */,
+				245D627E1AA8C73E00D7B081 /* MRCAvatarHeaderView.h */,
+				245D627F1AA8C73E00D7B081 /* MRCAvatarHeaderView.m */,
+				245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */,
+				245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */,
+				245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */,
+				245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */,
+				245D628A1AA8C74E00D7B081 /* MRCCopyrightFooterView.h */,
+				245D628B1AA8C74E00D7B081 /* MRCCopyrightFooterView.m */,
+				245D628D1AA8C79000D7B081 /* MRCCopyrightFooterView.xib */,
+			);
+			path = TableHeaderFooterView;
+			sourceTree = "<group>";
+		};
 		24B4DA111A66B94800DDFA6C /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -927,22 +951,6 @@
 				24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */,
 			);
 			path = Icons;
-			sourceTree = "<group>";
-		};
-		24F120431AA752F400A22D9A /* TableHeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				24F120441AA752F400A22D9A /* MRCAvatarHeaderView.h */,
-				24F120451AA752F400A22D9A /* MRCAvatarHeaderView.m */,
-				24F120461AA752F400A22D9A /* MRCAvatarHeaderView.xib */,
-				24F120471AA752F400A22D9A /* MRCNetworkHeaderView.h */,
-				24F120481AA752F400A22D9A /* MRCNetworkHeaderView.m */,
-				24F120491AA752F400A22D9A /* MRCNetworkHeaderView.xib */,
-				24F1204E1AA7530F00A22D9A /* MRCAboutHeaderView.h */,
-				24F1204F1AA7530F00A22D9A /* MRCAboutHeaderView.m */,
-				24F120511AA7531D00A22D9A /* MRCAboutHeaderView.xib */,
-			);
-			path = TableHeaderView;
 			sourceTree = "<group>";
 		};
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
@@ -1205,7 +1213,7 @@
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */,
-				24F120521AA7531D00A22D9A /* MRCAboutHeaderView.xib in Resources */,
+				245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
 				249674331A73F5490032771B /* MRCWebViewController.xib in Resources */,
@@ -1214,20 +1222,21 @@
 				243140131A7DD6E800FA357E /* assets.bundle in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
+				245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
 				24BD70461A90DA7F00D8D00B /* icon-info.png in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
-				24F1204B1AA752F400A22D9A /* MRCAvatarHeaderView.xib in Resources */,
 				24BD70491A90DA7F00D8D00B /* icon-success@2x.png in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
 				24BD70451A90DA7F00D8D00B /* icon-error@2x.png in Resources */,
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
+				245D628E1AA8C79000D7B081 /* MRCCopyrightFooterView.xib in Resources */,
+				245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */,
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */,
-				24F1204D1AA752F400A22D9A /* MRCNetworkHeaderView.xib in Resources */,
 				24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */,
@@ -1333,6 +1342,7 @@
 				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
+				245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */,
 				24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
 				242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */,
@@ -1345,7 +1355,6 @@
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
-				24F120501AA7530F00A22D9A /* MRCAboutHeaderView.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
@@ -1353,6 +1362,7 @@
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
+				245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */,
 				24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
@@ -1363,10 +1373,10 @@
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
-				24F1204C1AA752F400A22D9A /* MRCNetworkHeaderView.m in Sources */,
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
+				245D628C1AA8C74E00D7B081 /* MRCCopyrightFooterView.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
@@ -1386,8 +1396,8 @@
 				240D012E1A654D300033CC86 /* MRCNavigationControllerStack.m in Sources */,
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
+				245D62841AA8C73E00D7B081 /* MRCAboutHeaderView.m in Sources */,
 				24DF45721A6BE8FB00F23474 /* MRCStarredReposViewController.m in Sources */,
-				24F1204A1AA752F400A22D9A /* MRCAvatarHeaderView.m in Sources */,
 				24BD704A1A90DA7F00D8D00B /* TWMessageBarManager.m in Sources */,
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,

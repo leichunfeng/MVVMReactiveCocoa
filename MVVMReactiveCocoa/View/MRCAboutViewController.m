@@ -25,19 +25,44 @@
     MRCAboutHeaderView *aboutHeaderView = [NSBundle.mainBundle loadNibNamed:@"MRCAboutHeaderView" owner:nil options:nil].firstObject;
     aboutHeaderView.frame = tableHeaderView.bounds;
     [tableHeaderView addSubview:aboutHeaderView];
-    
     self.tableView.tableHeaderView = tableHeaderView;
+    
+    UILabel *copyRightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 10 - 14 - 64, SCREEN_WIDTH, 14)];
+    copyRightLabel.text = @"Copyright (c) 2015年 leichunfeng. All rights reserved.";
+    copyRightLabel.font = [UIFont systemFontOfSize:12];
+    copyRightLabel.textColor = UIColor.darkGrayColor;
+    copyRightLabel.textAlignment = NSTextAlignmentCenter;
+    [self.tableView addSubview:copyRightLabel];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
-    cell.textLabel.text = @"Rate iGitHub";
-    cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Version upgrade";
+    } else if (indexPath.row == 1) {
+        cell.textLabel.text = @"Rate iGitHub";
+    } else if (indexPath.row == 2) {
+        cell.textLabel.text = @"About iGitHub";
+    } else if (indexPath.row == 3) {
+        cell.textLabel.text = @"Feedback";
+    }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark - UITalbeViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 4;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
 }
 
 @end
