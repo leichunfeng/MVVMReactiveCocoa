@@ -49,7 +49,7 @@
 //    UIImage *image = [UIImage octicon_imageWithIcon:@"MarkGithub"
 //                                    backgroundColor:UIColor.whiteColor
 //                                          iconColor:HexRGB(colorI2)
-//                                          iconScale:0.85
+//                                          iconScale:1
 //                                            andSize:CGSizeMake(1024, 1024)];
 }
 

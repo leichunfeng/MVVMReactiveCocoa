@@ -65,13 +65,17 @@
                 }
             }].rac_sequence
         	map:^id(OCTTreeEntry *treeEntry) {
-                NSMutableDictionary *dictionary = [NSMutableDictionary new];
+                OCTTreeEntry *tempTreeEntry = treeEntry;
+                
+                NSMutableDictionary *dictionary = NSMutableDictionary.new;
                 
                 NSString *identifier = (treeEntry.type == OCTTreeEntryTypeTree ? @"FileDirectory" : @"FileText");
+                NSNumber *hexRGB = (treeEntry.type == OCTTreeEntryTypeTree ? @(0x80a6cd) : @(0x777777));
                 
                 [dictionary setValue:treeEntry forKey:@"treeEntry"];
                 [dictionary setValue:[treeEntry.path componentsSeparatedByString:@"/"].lastObject forKey:@"text"];
                 [dictionary setValue:identifier forKey:@"identifier"];
+                [dictionary setValue:hexRGB forKey:@"hexRGB"];
                 
                 if (treeEntry.type == OCTTreeEntryTypeBlob) {
                     OCTBlobTreeEntry *blobTreeEntry = (OCTBlobTreeEntry *)treeEntry;
@@ -85,10 +89,22 @@
                         size = [NSString stringWithFormat:@"%.2f KB", blobTreeEntry.size / 1024.0];
                     }
                     
-                    [dictionary setValue:size forKey:@"size"];
+                    [dictionary setValue:size forKey:@"detailText"];
+                } else {
+                    NSUInteger subPaths = [[self.tree.entries.rac_sequence
+                        filter:^BOOL(OCTTreeEntry *treeEntry) {
+                            return treeEntry.type != OCTTreeEntryTypeCommit;
+                        }]
+                    	filter:^BOOL(OCTTreeEntry *treeEntry) {
+                            BOOL hasPrefix = [treeEntry.path hasPrefix:[tempTreeEntry.path stringByAppendingString:@"/"]];
+                            BOOL isSubPath = ([treeEntry.path componentsSeparatedByString:@"/"].count == [tempTreeEntry.path componentsSeparatedByString:@"/"].count + 1);
+                            return hasPrefix && isSubPath;
+                        }].array.count;
+                    
+                    [dictionary setValue:@(subPaths).stringValue forKey:@"detailText"];
                 }
                 
-                return [dictionary copy];
+                return dictionary.copy;
             }].array];
     }];
     

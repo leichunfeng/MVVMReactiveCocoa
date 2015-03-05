@@ -28,7 +28,7 @@
                                               backgroundColor:UIColor.clearColor
                                                     iconColor:iconColor
                                                     iconScale:1
-                                                      andSize:CGSizeMake(20, 20)];
+                                                      andSize:self.iconImageView.frame.size];
 }
 
 @end

@@ -46,7 +46,8 @@ static MRCRouter *_sharedInstance = nil;
         @"MRCSelectBranchOrTagViewModel": @"MRCSelectBranchOrTagViewController",
         @"MRCGitTreeViewModel": @"MRCGitTreeViewController",
         @"MRCSourceEditorViewModel": @"MRCSourceEditorViewController",
-        @"MRCSettingsViewModel": @"MRCSettingsViewController"        
+        @"MRCSettingsViewModel": @"MRCSettingsViewController",
+        @"MRCAboutViewModel": @"MRCAboutViewController"
     };
 }
 

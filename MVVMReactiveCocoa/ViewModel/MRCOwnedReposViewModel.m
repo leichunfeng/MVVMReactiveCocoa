@@ -36,8 +36,9 @@
 
 - (RACSignal *)fetchLocalDataSignal {
     @weakify(self)
-    return [[self
+    return [[[self
         fetchRepositoriesSignal]
+        deliverOn:RACScheduler.scheduler]
     	doNext:^(NSArray *repositories) {
             @strongify(self)
             repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {

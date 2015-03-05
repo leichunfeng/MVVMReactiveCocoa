@@ -8,6 +8,7 @@
 
 #import "MRCTableViewController.h"
 #import "MRCTableViewModel.h"
+#import "MRCTableViewCellStyleValue1.h"
 
 @interface MRCTableViewController ()
 
@@ -40,8 +41,10 @@
     
     self.tableView.sectionIndexColor = UIColor.darkGrayColor;
     self.tableView.sectionIndexBackgroundColor = UIColor.clearColor;
+    self.tableView.sectionIndexMinimumDisplayRowCount = 20;
     
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView registerClass:MRCTableViewCellStyleValue1.class forCellReuseIdentifier:@"MRCTableViewCellStyleValue1"];    
     
     if (self.viewModel.shouldPullToRefresh) {
         self.refreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView
@@ -56,6 +59,8 @@
                                                      reverseLoadingAnimation:YES
                                                      internalAnimationFactor:0.5];
     }
+    
+    self.tableView.tableFooterView = UIView.new;
 }
 
 - (void)bindViewModel {
@@ -87,7 +92,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"MRCTableViewCellStyleValue1" forIndexPath:indexPath];
     
     id object = self.viewModel.dataSource[indexPath.section][indexPath.row];
     [self configureCell:cell atIndexPath:indexPath withObject:(id)object];
@@ -105,6 +110,14 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 20 : 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return section == tableView.numberOfSections - 1 ? 20 : 10;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

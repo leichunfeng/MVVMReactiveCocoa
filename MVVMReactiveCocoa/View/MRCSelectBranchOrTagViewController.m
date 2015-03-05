@@ -36,7 +36,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
     NSDictionary *dictionary = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    cell.imageView.image = [UIImage octicon_imageWithIdentifier:dictionary[@"identifier"] size:CGSizeMake(22, 22)];
+    cell.imageView.image = [UIImage octicon_imageWithIdentifier:dictionary[@"identifier"] size:LEFT_IMAGE_SIZE];
     cell.textLabel.text  = dictionary[@"name"];
     
     if ([[dictionary[@"reference"] name] isEqualToString:self.viewModel.selectedReference.name]) {

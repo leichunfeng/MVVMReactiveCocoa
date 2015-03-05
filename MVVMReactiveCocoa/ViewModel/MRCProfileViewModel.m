@@ -34,14 +34,18 @@
             takeUntil:self.willDisappearSignal];
     }];
     
+    id (^mapEmptyValue)(NSString *) = ^id(NSString *value) {
+        return value.length > 0 ? value : @"Not Set";
+    };
+    
     self.dataSource = @[
         @[
-            @{ @"identifier": @"Organization", @"textSignal": RACObserve(self.currentUser, company) },
-  			@{ @"identifier": @"Location", @"textSignal": RACObserve(self.currentUser, location) },
-  			@{ @"identifier": @"Mail", @"textSignal": RACObserve(self.currentUser, email) },
-            @{ @"identifier": @"Link", @"textSignal": RACObserve(self.currentUser, blog) }
+            @{ @"identifier": @"Organization", @"hexRGB": @(0x24AFFC), @"textSignal": [RACObserve(self.currentUser, company) map:mapEmptyValue] },
+  			@{ @"identifier": @"Location", @"hexRGB": @(0x30C931), @"textSignal": [RACObserve(self.currentUser, location) map:mapEmptyValue] },
+  			@{ @"identifier": @"Mail", @"hexRGB": @(0x5586ED), @"textSignal": [RACObserve(self.currentUser, email) map:mapEmptyValue] },
+            @{ @"identifier": @"Link", @"hexRGB": @(0x90DD2F), @"textSignal": [RACObserve(self.currentUser, blog) map:mapEmptyValue] }
     	],
-        @[ @{ @"identifier": @"Gear", @"textSignal": [RACSignal return:@"Settings"] } ]
+        @[ @{ @"identifier": @"Gear", @"hexRGB": @(0x24AFFC), @"textSignal": [RACSignal return:@"Settings"] } ]
     ];
     
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {

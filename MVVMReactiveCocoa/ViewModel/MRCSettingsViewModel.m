@@ -8,6 +8,7 @@
 
 #import "MRCSettingsViewModel.h"
 #import "MRCLoginViewModel.h"
+#import "MRCAboutViewModel.h"
 
 @implementation MRCSettingsViewModel
 
@@ -24,6 +25,15 @@
         MRCLoginViewModel *loginViewModel = [[MRCLoginViewModel alloc] initWithServices:self.services params:nil];
         [self.services resetRootViewModel:loginViewModel];
         
+        return RACSignal.empty;
+    }];
+    
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        if (indexPath.section == 1) {
+            MRCAboutViewModel *aboutViewModel = [[MRCAboutViewModel alloc] initWithServices:self.services params:nil];
+            [self.services pushViewModel:aboutViewModel animated:YES];
+        }
         return RACSignal.empty;
     }];
 }

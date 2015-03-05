@@ -50,28 +50,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
-    cell.imageView.image = [UIImage octicon_imageWithIdentifier:self.viewModel.dataSource[indexPath.section][indexPath.row][@"identifier"]
-                                                           size:CGSizeMake(22, 22)];
+    NSDictionary *dictionary = self.viewModel.dataSource[indexPath.section][indexPath.row];
+    
+    cell.imageView.image = [UIImage octicon_imageWithIcon:dictionary[@"identifier"]
+                                          backgroundColor:UIColor.clearColor
+                                                iconColor:HexRGB([dictionary[@"hexRGB"] integerValue])
+                                                iconScale:1
+                                                  andSize:LEFT_IMAGE_SIZE];
     
     [self.viewModel.dataSource[indexPath.section][indexPath.row][@"textSignal"] subscribeNext:^(NSString *text) {
         cell.textLabel.text = text;
     }];
     
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.accessoryType  = indexPath.section == 0 ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = indexPath.section == 0 ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
     
     return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? 20 : 10;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10;
 }
 
 @end
