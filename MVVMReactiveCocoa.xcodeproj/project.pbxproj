@@ -76,8 +76,6 @@
 		245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */; };
 		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
 		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
-		245D628C1AA8C74E00D7B081 /* MRCCopyrightFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D628B1AA8C74E00D7B081 /* MRCCopyrightFooterView.m */; };
-		245D628E1AA8C79000D7B081 /* MRCCopyrightFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D628D1AA8C79000D7B081 /* MRCCopyrightFooterView.xib */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
 		249674331A73F5490032771B /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249674311A73F5490032771B /* MRCWebViewController.xib */; };
@@ -424,9 +422,6 @@
 		245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
 		245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
 		245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
-		245D628A1AA8C74E00D7B081 /* MRCCopyrightFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCCopyrightFooterView.h; sourceTree = "<group>"; };
-		245D628B1AA8C74E00D7B081 /* MRCCopyrightFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCCopyrightFooterView.m; sourceTree = "<group>"; };
-		245D628D1AA8C79000D7B081 /* MRCCopyrightFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCCopyrightFooterView.xib; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
 		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
 		2496742F1A73F5490032771B /* MRCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewController.h; sourceTree = "<group>"; };
@@ -882,9 +877,6 @@
 				245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */,
 				245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */,
 				245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */,
-				245D628A1AA8C74E00D7B081 /* MRCCopyrightFooterView.h */,
-				245D628B1AA8C74E00D7B081 /* MRCCopyrightFooterView.m */,
-				245D628D1AA8C79000D7B081 /* MRCCopyrightFooterView.xib */,
 			);
 			path = TableHeaderFooterView;
 			sourceTree = "<group>";
@@ -1233,7 +1225,6 @@
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
-				245D628E1AA8C79000D7B081 /* MRCCopyrightFooterView.xib in Resources */,
 				245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */,
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */,
@@ -1376,7 +1367,6 @@
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
-				245D628C1AA8C74E00D7B081 /* MRCCopyrightFooterView.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
