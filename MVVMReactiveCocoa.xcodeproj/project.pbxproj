@@ -99,6 +99,8 @@
 		24BD704A1A90DA7F00D8D00B /* TWMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */; };
 		24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24BD70421A90DA7F00D8D00B /* LICENSE */; };
 		24BD704C1A90DA7F00D8D00B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 24BD70431A90DA7F00D8D00B /* README.md */; };
+		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
+		24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */; };
 		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
 		24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45611A6B8BA500F23474 /* MRCRepoDetailViewController.m */; };
 		24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DF45621A6B8BA500F23474 /* MRCRepoDetailViewController.xib */; };
@@ -460,6 +462,10 @@
 		24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMessageBarManager.m; sourceTree = "<group>"; };
 		24BD70421A90DA7F00D8D00B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		24BD70431A90DA7F00D8D00B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		24D1D4251AA9FA4A000F5AEA /* MRCAppStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreService.h; sourceTree = "<group>"; };
+		24D1D4311AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreServiceImpl.h; sourceTree = "<group>"; };
+		24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAppStoreServiceImpl.m; sourceTree = "<group>"; };
+		24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAppStoreServiceImplTests.m; sourceTree = "<group>"; };
 		24D32F091A77C716008E3994 /* MRCRepositoryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryService.h; sourceTree = "<group>"; };
 		24D32F0A1A77C879008E3994 /* MRCRepositoryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryServiceImpl.h; sourceTree = "<group>"; };
 		24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoryServiceImpl.m; sourceTree = "<group>"; };
@@ -545,6 +551,9 @@
 				24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */,
 				24116E851A8E653200D25218 /* OCTRef+MRCUtil.h */,
 				24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */,
+				24D1D4251AA9FA4A000F5AEA /* MRCAppStoreService.h */,
+				24D1D4311AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.h */,
+				24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -842,6 +851,7 @@
 		242D4FF11A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */ = {
 			isa = PBXGroup;
 			children = (
+				24D1D4341AA9FBCC000F5AEA /* Model */,
 				242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */,
 				242D4FF21A64B6FA0026ABC6 /* Supporting Files */,
 			);
@@ -943,6 +953,14 @@
 				24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		24D1D4341AA9FBCC000F5AEA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
@@ -1347,6 +1365,7 @@
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
+				24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */,
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
@@ -1405,6 +1424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */,
 				242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1624,7 +1644,7 @@
 				INFOPLIST_FILE = MVVMReactiveCocoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MVVMReactiveCocoa.app/MVVMReactiveCocoa";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGitHub.app/iGitHub";
 			};
 			name = Debug;
 		};
@@ -1642,7 +1662,7 @@
 				INFOPLIST_FILE = MVVMReactiveCocoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MVVMReactiveCocoa.app/MVVMReactiveCocoa";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGitHub.app/iGitHub";
 			};
 			name = Release;
 		};

@@ -43,8 +43,32 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Version upgrade";
+        
+        [RACObserve(self.viewModel, isLatestVersion) subscribeNext:^(NSNumber *isLatestVersion) {
+            if (isLatestVersion.boolValue) {
+                cell.detailTextLabel.text = @"Latest version";
+                cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
+                cell.detailTextLabel.textColor = HexRGB(0x8E8E93);
+                cell.detailTextLabel.layer.cornerRadius = 0;
+                cell.detailTextLabel.clipsToBounds = YES;
+                cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+                cell.accessoryType  = UITableViewCellAccessoryNone;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            } else {
+                cell.detailTextLabel.text = [NSString stringWithFormat:@" new v%@ ", self.viewModel.appStoreVersion];
+                cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+                cell.detailTextLabel.textColor = [UIColor whiteColor];
+                cell.detailTextLabel.layer.cornerRadius = 10;
+                cell.detailTextLabel.clipsToBounds = YES;
+                cell.detailTextLabel.backgroundColor = HexRGB(0xF13839);
+                cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
+                cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            }
+        }];
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Rate iGitHub";
     } else if (indexPath.row == 2) {
@@ -53,7 +77,14 @@
         cell.textLabel.text = @"Feedback";
     }
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
+        cell.detailTextLabel.text = nil;
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }];
+}
+
+- (void)openAppStore {
+    [UIApplication.sharedApplication openURL:[NSURL URLWithString:MRC_APP_STORE_URL]];
 }
 
 #pragma mark - UITalbeViewDataSource
@@ -70,6 +101,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    if (indexPath.row == 0) {
+        if (!self.viewModel.isLatestVersion) [self openAppStore];
+    } else if (indexPath.row == 1) {
+        [self openAppStore];
+    }
 }
 
 @end
