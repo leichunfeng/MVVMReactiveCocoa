@@ -20,9 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44;
-    
     if (!self.viewModel.tree) {
         @weakify(self)
         [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
@@ -46,7 +43,12 @@
     cell.textLabel.text = dictionary[@"text"];
     cell.textLabel.numberOfLines = 0;
     
-    cell.detailTextLabel.text = dictionary[@"detailText"];
+    UILabel *detailLabel = UILabel.new;
+    detailLabel.text = dictionary[@"detailText"];
+    detailLabel.textColor = HexRGB(0x8E8E93);
+    [detailLabel sizeToFit];
+    
+    cell.accessoryView = detailLabel;
 }
 
 #pragma mark - UITableViewDelegate

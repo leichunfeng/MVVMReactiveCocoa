@@ -37,7 +37,7 @@
     self.title = self.repository.name;
     self.subtitle = self.repository.ownerLogin;
     
-    if (!self.tree) self.shouldPullToRefresh = YES;
+    if (!self.path) self.shouldPullToRefresh = YES;
     
     @weakify(self)
     [RACObserve(self, tree) subscribeNext:^(OCTTree *tree) {
@@ -132,6 +132,8 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
+    if (self.path) return RACSignal.empty;
+    
     NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
     
     @weakify(self)
