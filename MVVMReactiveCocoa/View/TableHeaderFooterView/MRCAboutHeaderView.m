@@ -11,6 +11,7 @@
 @interface MRCAboutHeaderView ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
@@ -18,6 +19,7 @@
 
 - (void)awakeFromNib {
     self.imageView.image = [UIImage octicon_imageWithIcon:@"MarkGithub" backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:self.imageView.frame.size];
+    self.textLabel.text = [NSString stringWithFormat:@"iGitHub v%@", MRC_APP_VERSION];
 }
 
 @end

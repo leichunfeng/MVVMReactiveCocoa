@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MRCNavigationProtocol.h"
 #import "MRCRepositoryService.h"
+#import "MRCAppStoreService.h"
 
 @protocol MRCViewModelServices <NSObject, MRCNavigationProtocol>
 
@@ -18,5 +19,7 @@
 @property (strong, nonatomic) OCTClient *client;
 
 @property (strong, nonatomic, readonly) id<MRCRepositoryService> repositoryService;
+
+@property (strong, nonatomic, readonly) id<MRCAppStoreService> appStoreService;
 
 @end

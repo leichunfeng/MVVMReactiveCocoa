@@ -8,16 +8,19 @@
 
 #import "MRCViewModelServicesImpl.h"
 #import "MRCRepositoryServiceImpl.h"
+#import "MRCAppStoreServiceImpl.h"
 
 @implementation MRCViewModelServicesImpl
 
 @synthesize client = _client;
 @synthesize repositoryService = _repositoryService;
+@synthesize appStoreService = _appStoreService;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _repositoryService = [MRCRepositoryServiceImpl new];
+        _repositoryService = MRCRepositoryServiceImpl.new;
+        _appStoreService   = MRCAppStoreServiceImpl.new;
     }
     return self;
 }
