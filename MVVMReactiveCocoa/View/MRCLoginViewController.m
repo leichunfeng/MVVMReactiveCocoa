@@ -46,8 +46,10 @@
     self.returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
     self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyGo;
     
-    self.usernameTextField.text = SSKeychain.rawLogin;
-    self.passwordTextField.text = SSKeychain.password;
+    if (SSKeychain.rawLogin != nil) {
+        self.usernameTextField.text = SSKeychain.rawLogin;
+        self.passwordTextField.text = SSKeychain.password;
+    }    
     
     @weakify(self)
     [[self rac_signalForSelector:@selector(textFieldShouldReturn:) fromProtocol:@protocol(UITextFieldDelegate)]
@@ -83,9 +85,11 @@
             }
         }];
     
-    [self.viewModel.errors subscribeNext:^(NSError *error) {
+    [[RACSignal merge:@[ self.viewModel.loginCommand.errors, self.viewModel.browserLoginCommand.errors ]] subscribeNext:^(NSError *error) {
         @strongify(self)
-        if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorTwoFactorAuthenticationOneTimePasswordRequired) {
+        if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorAuthenticationFailed) {
+            MRCError(@"Incorrect username or password");
+        } else if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorTwoFactorAuthenticationOneTimePasswordRequired) {
             NSString *message = @"Please enter the 2FA code you received via SMS or read from an authenticator app";
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MRC_ALERT_TITLE
                                                                                      message:message
@@ -105,6 +109,8 @@
             }]];
             
             [self presentViewController:alertController animated:YES completion:NULL];
+        } else {
+            MRCError(error.localizedDescription);
         }
     }];
     

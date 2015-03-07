@@ -17,7 +17,7 @@
     
     self.title = @"Profile";
     
-    self.currentUser = OCTUser.currentUser;
+    self.currentUser = [OCTUser currentUser];
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.currentUser];
     
     @weakify(self)
