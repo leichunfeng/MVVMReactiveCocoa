@@ -50,8 +50,6 @@
 }
 
 - (UIViewController *)createInitialViewController {
-//    [SSKeychain deleteAccessToken];
-    
     // The user has logged-in.
     if (SSKeychain.rawLogin.isExist && SSKeychain.accessToken.isExist) {
         OCTUser *user = [OCTUser userWithRawLogin:SSKeychain.rawLogin server:OCTServer.dotComServer];

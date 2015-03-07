@@ -56,9 +56,7 @@
         	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser | OCTClientAuthorizationScopesRepository]
             deliverOnMainThread]
             doNext:doNext];
-    }];
-    
-    [[RACSignal merge:@[ self.loginCommand.errors, self.browserLoginCommand.errors ]] subscribe:self.errors];
+    }];    
 }
 
 @end

@@ -11,7 +11,7 @@
 @implementation OCTUser (Persistence)
 
 - (BOOL)save {
-    return [NSKeyedArchiver archiveRootObject:self toFile:[self.class.persistenceDirectory stringByAppendingPathComponent:self.rawLogin]];
+    return [NSKeyedArchiver archiveRootObject:self toFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:self.login]];
 }
 
 - (void)delete {}
@@ -32,7 +32,25 @@
 }
 
 + (OCTUser *)fetchUserWithRawLogin:(NSString *)rawLogin {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self.class.persistenceDirectory stringByAppendingPathComponent:rawLogin]];
+    NSError *error = nil;
+    NSArray *uniqueNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self.class persistenceDirectory] error:&error];
+    if (error) NSLog(@"Error: %@", error);
+    
+    @weakify(self)
+    NSArray *users = [[uniqueNames.rac_sequence
+        map:^id(NSString *uniqueName) {
+            @strongify(self)
+            return [self fetchUserWithUniqueName:uniqueName];
+        }]
+        filter:^BOOL(OCTUser *user) {
+            return [user.rawLogin isEqualToString:rawLogin];
+        }].array;
+    
+    return users.firstObject;
+}
+
++ (OCTUser *)fetchUserWithUniqueName:(NSString *)uniqueName {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:uniqueName]];
 }
 
 @end

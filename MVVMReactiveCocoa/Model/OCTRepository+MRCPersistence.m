@@ -11,7 +11,7 @@
 @implementation OCTRepository (Persistence)
 
 - (BOOL)isStarred {
-    return ![self.ownerLogin isEqualToString:SSKeychain.rawLogin];
+    return ![self.ownerLogin isEqualToString:[OCTUser currentUser].login];
 }
 
 - (BOOL)save {
@@ -30,7 +30,7 @@
 }
 
 + (NSString *)persistenceDirectoryOfOwned {
-    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Owned", MRC_DOCUMENT_DIRECTORY, SSKeychain.rawLogin];
+    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Owned", MRC_DOCUMENT_DIRECTORY, [OCTUser currentUser].login];
     BOOL isDirectory;
     if (![[NSFileManager defaultManager] fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
         NSError *error = nil;
@@ -41,7 +41,7 @@
 }
 
 + (NSString *)persistenceDirectoryOfStarred {
-    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Starred", MRC_DOCUMENT_DIRECTORY, SSKeychain.rawLogin];
+    NSString *persistenceDirectory = [NSString stringWithFormat:@"%@/Persistence/Repositories/%@/Starred", MRC_DOCUMENT_DIRECTORY, [OCTUser currentUser].login];
     BOOL isDirectory;
     if (![[NSFileManager defaultManager] fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
         NSError *error = nil;
@@ -97,7 +97,7 @@
 }
 
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner {
-    BOOL isStarred = ![owner isEqualToString:SSKeychain.rawLogin];
+    BOOL isStarred = ![owner isEqualToString:[OCTUser currentUser].login];
     
     NSString *uniqueName = [NSString stringWithFormat:@"%@&%@", owner, name];
     OCTRepository *repository = [self fetchRepositoryWithUniqueName:uniqueName isStarred:isStarred];

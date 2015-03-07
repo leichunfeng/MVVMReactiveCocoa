@@ -11,7 +11,9 @@
 @implementation SSKeychain (MRCUtil)
 
 + (NSString *)rawLogin {
-    return [self passwordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
+    NSString *rawLogin = [[NSUserDefaults standardUserDefaults] objectForKey:MRC_RAW_LOGIN];
+    if (rawLogin == nil) NSLog(@"+rawLogin: %@", rawLogin);
+    return rawLogin;
 }
 
 + (NSString *)password {
@@ -23,7 +25,12 @@
 }
 
 + (BOOL)setRawLogin:(NSString *)rawLogin {
-    return [self setPassword:rawLogin forService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
+    if (rawLogin == nil) NSLog(@"+setRawLogin: %@", rawLogin);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:rawLogin forKey:MRC_RAW_LOGIN];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return YES;
 }
 
 + (BOOL)setPassword:(NSString *)password {
@@ -35,7 +42,9 @@
 }
 
 + (BOOL)deleteRawLogin {
-    return [self deletePasswordForService:MRC_SERVICE_NAME account:MRC_RAW_LOGIN];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MRC_RAW_LOGIN];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    return YES;
 }
 
 + (BOOL)deletePassword {
