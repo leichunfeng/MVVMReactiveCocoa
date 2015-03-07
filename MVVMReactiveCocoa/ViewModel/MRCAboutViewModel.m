@@ -7,6 +7,7 @@
 //
 
 #import "MRCAboutViewModel.h"
+#import "MRCFeedbackViewModel.h"
 
 #define kAppStoreVersionKey @"appStoreVersion"
 
@@ -18,6 +19,16 @@
     self.title = @"About";
     
     [self detectVersionUpgrade];
+    
+    @weakify(self)
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        if (indexPath.row == 3) {
+            MRCFeedbackViewModel *feedbackViewModel = [[MRCFeedbackViewModel alloc] initWithServices:self.services params:nil];
+            [self.services pushViewModel:feedbackViewModel animated:YES];
+        }
+        return [RACSignal empty];
+    }];
 }
 
 - (RACSignal *)requestRemoteDataSignal {

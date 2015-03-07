@@ -8,7 +8,7 @@
 
 #import "MRCViewController.h"
 
-@interface MRCTableViewController : MRCViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MRCTableViewController : MRCViewController <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 // The table view for tableView controller.
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

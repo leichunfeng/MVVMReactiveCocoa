@@ -61,7 +61,6 @@
         rac_signalForSelector:@selector(pushViewModel:animated:)]
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
-            NSLog(@"Number of navigationControllers: %lu", (unsigned long)self.navigationControllers.count);
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             [self.navigationControllers.lastObject pushViewController:viewController animated:tuple.second];
         }];

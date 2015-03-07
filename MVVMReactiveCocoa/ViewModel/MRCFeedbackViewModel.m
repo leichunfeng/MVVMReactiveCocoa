@@ -1,0 +1,40 @@
+//
+//  MRCFeedbackViewModel.m
+//  MVVMReactiveCocoa
+//
+//  Created by leichunfeng on 15/3/7.
+//  Copyright (c) 2015年 leichunfeng. All rights reserved.
+//
+
+#import "MRCFeedbackViewModel.h"
+
+@implementation MRCFeedbackViewModel
+
+- (void)initialize {
+    [super initialize];
+    
+    self.title = @"Feedback";
+    
+    RACSignal *validSubmitSignal = [RACObserve(self, content) map:^id(NSString *content) {
+        return @(content.length > 0);
+    }];
+    
+    OCTRepository *mvvmReactiveCocoa = [OCTRepository modelWithDictionary:@{ @"ownerLogin": MVVM_REACTIVECOCOA_OWNER_LOGIN, @"name": MVVM_REACTIVECOCOA_NAME } error:NULL];
+    
+    @weakify(self)
+    self.submitFeedbackCommand = [[RACCommand alloc] initWithEnabled:validSubmitSignal signalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        return [[[[self.services
+            client]
+        	createIssueWithTitle:[NSString stringWithFormat:@"%@ from %@", self.title, [SSKeychain rawLogin]] body:self.content assignee:nil milestone:nil labels:nil inRepository:mvvmReactiveCocoa]
+            deliverOnMainThread]
+            doNext:^(id x) {
+                @strongify(self)
+                [self.services popViewModelAnimated:YES];
+            }];
+    }];
+    
+    [self.submitFeedbackCommand.errors subscribe:self.errors];
+}
+
+@end

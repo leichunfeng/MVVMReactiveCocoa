@@ -42,6 +42,12 @@
 #define COCOAPODS_VERSION_MINOR_DTFoundation_UIKit 7
 #define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 5
 
+// DZNEmptyDataSet
+#define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
+#define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
+#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 1
+
 // FormatterKit
 #define COCOAPODS_POD_AVAILABLE_FormatterKit
 #define COCOAPODS_VERSION_MAJOR_FormatterKit 1
