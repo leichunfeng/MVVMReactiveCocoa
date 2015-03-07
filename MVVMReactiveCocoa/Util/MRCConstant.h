@@ -139,12 +139,19 @@ typedef id   (^IDBlock_id)  (id);
 /// App Info
 ///---------
 
-//#define MRC_APP_ID @"961330940"
-#define MRC_APP_ID @"901665459"
+#define MRC_APP_ID @"961330940"
+//#define MRC_APP_ID @"901665459"
 #define MRC_APP_STORE_URL @"https://itunes.apple.com/cn/app/id"MRC_APP_ID"?mt=8"
 
 #define MRC_APP_NAME    ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"])
 #define MRC_APP_VERSION ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"])
 #define MRC_APP_BUILD   ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"])
+
+///-----------------------------
+/// MVVMReactiveCocoa Repository
+///-----------------------------
+
+#define MVVM_REACTIVECOCOA_OWNER_LOGIN @"leichunfeng"
+#define MVVM_REACTIVECOCOA_NAME        @"MVVMReactiveCocoa"
 
 #endif

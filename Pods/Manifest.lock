@@ -11,6 +11,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.5):
     - DTFoundation/Core
+  - DZNEmptyDataSet (1.5.1)
   - FormatterKit (1.8.0):
     - FormatterKit/AddressFormatter (= 1.8.0)
     - FormatterKit/ArrayFormatter (= 1.8.0)
@@ -47,6 +48,7 @@ PODS:
 DEPENDENCIES:
   - CBStoreHouseRefreshControl (from `git@github.com:coolbeet/CBStoreHouseRefreshControl.git`, commit `0bec93d`)
   - DTCoreText (= 1.6.14)
+  - DZNEmptyDataSet (= 1.5.1)
   - FormatterKit (= 1.8.0)
   - IQKeyboardManager (= 3.2.0.3)
   - MBProgressHUD (= 0.9)
@@ -78,6 +80,7 @@ SPEC CHECKSUMS:
   CBStoreHouseRefreshControl: 0a3312cced4637d20d487df5fb314629a5044c58
   DTCoreText: 1fc0aadfa238d14c6cc56035af4e2b76b958e3b1
   DTFoundation: bea4e07459f0f88a5aa3b8258fab1576bbe2e58c
+  DZNEmptyDataSet: 86431f44cbd851772467d32630da1836b3c62634
   FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
   IQKeyboardManager: e0b33a5d821ab36ec47ce8ca9dc520030d6aac52
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8

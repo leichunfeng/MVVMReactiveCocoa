@@ -73,6 +73,11 @@
             @strongify(self)
             [self.tableView reloadData];
         }];
+    
+    [RACObserve(self.viewModel, shouldDisplayEmptyDataSet) subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadEmptyDataSet];
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
@@ -151,6 +156,26 @@
             @strongify(self)
             [self.refreshControl finishingLoading];
         }];
+}
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc] initWithString:@"No Data"];
+}
+
+#pragma mark - DZNEmptyDataSetDelegate
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return self.viewModel.shouldDisplayEmptyDataSet;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
+    return YES;
+}
+
+- (CGPoint)offsetForEmptyDataSet:(UIScrollView *)scrollView {
+    return CGPointMake(0, -(self.tableView.contentInset.top - self.tableView.contentInset.bottom) / 2);
 }
 
 @end

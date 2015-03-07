@@ -17,10 +17,12 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="DO0-W5-5dN">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="1TR-Ih-VqE"/>
                         <outlet property="delegate" destination="-1" id="s98-ae-hd9"/>
+                        <outlet property="emptyDataSetDelegate" destination="-1" id="Vea-ZQ-gE8"/>
+                        <outlet property="emptyDataSetSource" destination="-1" id="tOp-AR-jhd"/>
                     </connections>
                 </tableView>
             </subviews>

@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSArray *sectionIndexTitles;
 
 @property (nonatomic) BOOL shouldPullToRefresh;
+@property (nonatomic) BOOL shouldDisplayEmptyDataSet;
 
 @property (strong, nonatomic) RACCommand *didSelectCommand;
 

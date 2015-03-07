@@ -102,6 +102,9 @@
 		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
 		24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */; };
 		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
+		24D899D91AAA9BAC00BC607C /* MRCFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D899D71AAA9BAC00BC607C /* MRCFeedbackViewController.m */; };
+		24D899DA1AAA9BAC00BC607C /* MRCFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D899D81AAA9BAC00BC607C /* MRCFeedbackViewController.xib */; };
+		24D899EE1AAAAE9F00BC607C /* MRCFeedbackViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D899ED1AAAAE9F00BC607C /* MRCFeedbackViewModel.m */; };
 		24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45611A6B8BA500F23474 /* MRCRepoDetailViewController.m */; };
 		24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24DF45621A6B8BA500F23474 /* MRCRepoDetailViewController.xib */; };
 		24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45661A6B8BC800F23474 /* MRCRepoDetailViewModel.m */; };
@@ -469,6 +472,11 @@
 		24D32F091A77C716008E3994 /* MRCRepositoryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryService.h; sourceTree = "<group>"; };
 		24D32F0A1A77C879008E3994 /* MRCRepositoryServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepositoryServiceImpl.h; sourceTree = "<group>"; };
 		24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepositoryServiceImpl.m; sourceTree = "<group>"; };
+		24D899D61AAA9BAC00BC607C /* MRCFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCFeedbackViewController.h; sourceTree = "<group>"; };
+		24D899D71AAA9BAC00BC607C /* MRCFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCFeedbackViewController.m; sourceTree = "<group>"; };
+		24D899D81AAA9BAC00BC607C /* MRCFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCFeedbackViewController.xib; sourceTree = "<group>"; };
+		24D899EC1AAAAE9F00BC607C /* MRCFeedbackViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCFeedbackViewModel.h; sourceTree = "<group>"; };
+		24D899ED1AAAAE9F00BC607C /* MRCFeedbackViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCFeedbackViewModel.m; sourceTree = "<group>"; };
 		24DF45601A6B8BA500F23474 /* MRCRepoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoDetailViewController.h; sourceTree = "<group>"; };
 		24DF45611A6B8BA500F23474 /* MRCRepoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoDetailViewController.m; sourceTree = "<group>"; };
 		24DF45621A6B8BA500F23474 /* MRCRepoDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoDetailViewController.xib; sourceTree = "<group>"; };
@@ -633,6 +641,9 @@
 				24F120381AA7525700A22D9A /* MRCAboutViewController.h */,
 				24F120391AA7525700A22D9A /* MRCAboutViewController.m */,
 				24F1203A1AA7525700A22D9A /* MRCAboutViewController.xib */,
+				24D899D61AAA9BAC00BC607C /* MRCFeedbackViewController.h */,
+				24D899D71AAA9BAC00BC607C /* MRCFeedbackViewController.m */,
+				24D899D81AAA9BAC00BC607C /* MRCFeedbackViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -712,6 +723,8 @@
 				24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */,
 				24F120401AA7528A00A22D9A /* MRCAboutViewModel.h */,
 				24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */,
+				24D899EC1AAAAE9F00BC607C /* MRCFeedbackViewModel.h */,
+				24D899ED1AAAAE9F00BC607C /* MRCFeedbackViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1247,6 +1260,7 @@
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */,
 				24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */,
+				24D899DA1AAA9BAC00BC607C /* MRCFeedbackViewController.xib in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */,
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
@@ -1347,6 +1361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */,
+				24D899EE1AAAAE9F00BC607C /* MRCFeedbackViewModel.m in Sources */,
 				240D01301A654D300033CC86 /* MRCTableViewController.m in Sources */,
 				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
@@ -1382,6 +1397,7 @@
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
+				24D899D91AAA9BAC00BC607C /* MRCFeedbackViewController.m in Sources */,
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,

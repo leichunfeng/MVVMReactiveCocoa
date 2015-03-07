@@ -38,6 +38,15 @@
             [self.fetchLocalDataCommand execute:nil];
         }];
     
+    RAC(self, shouldDisplayEmptyDataSet) = [RACSignal combineLatest:@[ self.requestRemoteDataCommand.executing, RACObserve(self, dataSource) ] reduce:^id(NSNumber *executing, NSArray *dataSource) {
+        RACSequence *sequenceOfSequences = [dataSource.rac_sequence map:^id(NSArray *array) {
+            NSParameterAssert([array isKindOfClass:[NSArray class]]);
+            return array.rac_sequence;
+        }];
+        
+        return @(!executing.boolValue && sequenceOfSequences.flatten.array.count == 0);
+    }];
+    
     [self.requestRemoteDataCommand.errors subscribe:self.errors];
     
     [self.fetchLocalDataCommand execute:nil];
