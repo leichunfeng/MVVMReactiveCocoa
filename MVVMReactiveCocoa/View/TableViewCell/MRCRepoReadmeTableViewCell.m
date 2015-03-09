@@ -28,11 +28,11 @@
     
     self.wapperView.frame = CGRectMake(15, 0, CGRectGetWidth(self.contentView.frame) - 15*2, CGRectGetHeight(self.contentView.frame));
     self.wapperView.layer.borderColor  = HexRGB(colorB2).CGColor;
-    self.wapperView.layer.borderWidth  = 0.5;
+    self.wapperView.layer.borderWidth  = MRC_1PX_WIDTH;
     self.wapperView.layer.cornerRadius = 3;
     
-    [self.readmeWapperView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
-    [self.readmeButton addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self.readmeWapperView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self.readmeButton addTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
 }
 
 @end

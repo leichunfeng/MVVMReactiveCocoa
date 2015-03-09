@@ -88,7 +88,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.overView addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self.overView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
 }
 
 @end

@@ -12,8 +12,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self addTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
-    [self addBottomBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    [self addTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
 }
 
 @end

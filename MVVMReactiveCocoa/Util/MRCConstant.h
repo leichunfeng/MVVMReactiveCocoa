@@ -74,7 +74,7 @@ typedef id   (^IDBlock_id)  (id);
 
 #define colorB0 0xffffff
 #define colorB1 0xeeeeee
-#define colorB2 0xd2d2d2
+#define colorB2 0xC8C7CC
 #define colorB3 0xbfbfbf
 #define colorB4 0x959595
 #define colorB5 0x707070
@@ -134,6 +134,7 @@ typedef id   (^IDBlock_id)  (id);
 #define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #define LEFT_IMAGE_SIZE CGSizeMake(25, 25)
+#define MRC_1PX_WIDTH (1 / [UIScreen mainScreen].scale)
 
 ///---------
 /// App Info
