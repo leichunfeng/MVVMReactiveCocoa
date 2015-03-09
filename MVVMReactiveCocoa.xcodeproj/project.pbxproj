@@ -76,6 +76,15 @@
 		245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */; };
 		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
 		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
+		2479C93D1AAD39150057B681 /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9331AAD39150057B681 /* icon-error.png */; };
+		2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9341AAD39150057B681 /* icon-error@2x.png */; };
+		2479C93F1AAD39150057B681 /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9351AAD39150057B681 /* icon-info.png */; };
+		2479C9401AAD39150057B681 /* icon-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9361AAD39150057B681 /* icon-info@2x.png */; };
+		2479C9411AAD39150057B681 /* icon-success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9371AAD39150057B681 /* icon-success.png */; };
+		2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9381AAD39150057B681 /* icon-success@2x.png */; };
+		2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2479C93A1AAD39150057B681 /* TWMessageBarManager.m */; };
+		2479C9441AAD39150057B681 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2479C93B1AAD39150057B681 /* LICENSE */; };
+		2479C9451AAD39150057B681 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2479C93C1AAD39150057B681 /* README.md */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
 		249674331A73F5490032771B /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249674311A73F5490032771B /* MRCWebViewController.xib */; };
@@ -90,15 +99,6 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
-		24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703A1A90DA7F00D8D00B /* icon-error.png */; };
-		24BD70451A90DA7F00D8D00B /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */; };
-		24BD70461A90DA7F00D8D00B /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703C1A90DA7F00D8D00B /* icon-info.png */; };
-		24BD70471A90DA7F00D8D00B /* icon-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703D1A90DA7F00D8D00B /* icon-info@2x.png */; };
-		24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703E1A90DA7F00D8D00B /* icon-success.png */; };
-		24BD70491A90DA7F00D8D00B /* icon-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */; };
-		24BD704A1A90DA7F00D8D00B /* TWMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */; };
-		24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24BD70421A90DA7F00D8D00B /* LICENSE */; };
-		24BD704C1A90DA7F00D8D00B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 24BD70431A90DA7F00D8D00B /* README.md */; };
 		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
 		24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */; };
 		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
@@ -427,6 +427,16 @@
 		245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
 		245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
 		245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
+		2479C9331AAD39150057B681 /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
+		2479C9341AAD39150057B681 /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
+		2479C9351AAD39150057B681 /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
+		2479C9361AAD39150057B681 /* icon-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info@2x.png"; sourceTree = "<group>"; };
+		2479C9371AAD39150057B681 /* icon-success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success.png"; sourceTree = "<group>"; };
+		2479C9381AAD39150057B681 /* icon-success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success@2x.png"; sourceTree = "<group>"; };
+		2479C9391AAD39150057B681 /* TWMessageBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWMessageBarManager.h; sourceTree = "<group>"; };
+		2479C93A1AAD39150057B681 /* TWMessageBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMessageBarManager.m; sourceTree = "<group>"; };
+		2479C93B1AAD39150057B681 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2479C93C1AAD39150057B681 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
 		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
 		2496742F1A73F5490032771B /* MRCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewController.h; sourceTree = "<group>"; };
@@ -455,16 +465,6 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
-		24BD703A1A90DA7F00D8D00B /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
-		24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
-		24BD703C1A90DA7F00D8D00B /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
-		24BD703D1A90DA7F00D8D00B /* icon-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info@2x.png"; sourceTree = "<group>"; };
-		24BD703E1A90DA7F00D8D00B /* icon-success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success.png"; sourceTree = "<group>"; };
-		24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-success@2x.png"; sourceTree = "<group>"; };
-		24BD70401A90DA7F00D8D00B /* TWMessageBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWMessageBarManager.h; sourceTree = "<group>"; };
-		24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMessageBarManager.m; sourceTree = "<group>"; };
-		24BD70421A90DA7F00D8D00B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		24BD70431A90DA7F00D8D00B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		24D1D4251AA9FA4A000F5AEA /* MRCAppStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreService.h; sourceTree = "<group>"; };
 		24D1D4311AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreServiceImpl.h; sourceTree = "<group>"; };
 		24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAppStoreServiceImpl.m; sourceTree = "<group>"; };
@@ -882,7 +882,7 @@
 		24313CAC1A7D3CA700FA357E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				24BD70371A90DA7F00D8D00B /* TWMessageBarManager */,
+				2479C9301AAD39150057B681 /* TWMessageBarManager */,
 				243140121A7DD6E800FA357E /* assets.bundle */,
 			);
 			path = Resource;
@@ -902,6 +902,39 @@
 				245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */,
 			);
 			path = TableHeaderFooterView;
+			sourceTree = "<group>";
+		};
+		2479C9301AAD39150057B681 /* TWMessageBarManager */ = {
+			isa = PBXGroup;
+			children = (
+				2479C9311AAD39150057B681 /* Classes */,
+				2479C93B1AAD39150057B681 /* LICENSE */,
+				2479C93C1AAD39150057B681 /* README.md */,
+			);
+			path = TWMessageBarManager;
+			sourceTree = "<group>";
+		};
+		2479C9311AAD39150057B681 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2479C9321AAD39150057B681 /* Icons */,
+				2479C9391AAD39150057B681 /* TWMessageBarManager.h */,
+				2479C93A1AAD39150057B681 /* TWMessageBarManager.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2479C9321AAD39150057B681 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				2479C9331AAD39150057B681 /* icon-error.png */,
+				2479C9341AAD39150057B681 /* icon-error@2x.png */,
+				2479C9351AAD39150057B681 /* icon-info.png */,
+				2479C9361AAD39150057B681 /* icon-info@2x.png */,
+				2479C9371AAD39150057B681 /* icon-success.png */,
+				2479C9381AAD39150057B681 /* icon-success@2x.png */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		24B4DA111A66B94800DDFA6C /* TableViewCell */ = {
@@ -932,40 +965,6 @@
 				24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */,
 			);
 			path = ItemViewModel;
-			sourceTree = "<group>";
-		};
-		24BD70371A90DA7F00D8D00B /* TWMessageBarManager */ = {
-			isa = PBXGroup;
-			children = (
-				24BD70381A90DA7F00D8D00B /* Classes */,
-				24BD70421A90DA7F00D8D00B /* LICENSE */,
-				24BD70431A90DA7F00D8D00B /* README.md */,
-			);
-			name = TWMessageBarManager;
-			path = ../../../../../Desktop/GitHub/TWMessageBarManager;
-			sourceTree = "<group>";
-		};
-		24BD70381A90DA7F00D8D00B /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				24BD70391A90DA7F00D8D00B /* Icons */,
-				24BD70401A90DA7F00D8D00B /* TWMessageBarManager.h */,
-				24BD70411A90DA7F00D8D00B /* TWMessageBarManager.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		24BD70391A90DA7F00D8D00B /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				24BD703A1A90DA7F00D8D00B /* icon-error.png */,
-				24BD703B1A90DA7F00D8D00B /* icon-error@2x.png */,
-				24BD703C1A90DA7F00D8D00B /* icon-info.png */,
-				24BD703D1A90DA7F00D8D00B /* icon-info@2x.png */,
-				24BD703E1A90DA7F00D8D00B /* icon-success.png */,
-				24BD703F1A90DA7F00D8D00B /* icon-success@2x.png */,
-			);
-			path = Icons;
 			sourceTree = "<group>";
 		};
 		24D1D4341AA9FBCC000F5AEA /* Model */ = {
@@ -1232,37 +1231,37 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24BD70471A90DA7F00D8D00B /* icon-info@2x.png in Resources */,
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
 				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
-				24BD704B1A90DA7F00D8D00B /* LICENSE in Resources */,
 				245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
+				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
 				249674331A73F5490032771B /* MRCWebViewController.xib in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
+				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
 				243140131A7DD6E800FA357E /* assets.bundle in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
 				245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
-				24BD70461A90DA7F00D8D00B /* icon-info.png in Resources */,
+				2479C9401AAD39150057B681 /* icon-info@2x.png in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
-				24BD70491A90DA7F00D8D00B /* icon-success@2x.png in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
-				24BD70451A90DA7F00D8D00B /* icon-error@2x.png in Resources */,
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
+				2479C9411AAD39150057B681 /* icon-success.png in Resources */,
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
 				245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */,
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
-				24BD70481A90DA7F00D8D00B /* icon-success.png in Resources */,
-				24BD70441A90DA7F00D8D00B /* icon-error.png in Resources */,
+				2479C93D1AAD39150057B681 /* icon-error.png in Resources */,
 				24D899DA1AAA9BAC00BC607C /* MRCFeedbackViewController.xib in Resources */,
+				2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */,
 				240D01271A654D300033CC86 /* Images.xcassets in Resources */,
 				2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */,
+				2479C93F1AAD39150057B681 /* icon-info.png in Resources */,
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
 				240D013F1A654D300033CC86 /* MRCProfileViewController.xib in Resources */,
@@ -1384,6 +1383,7 @@
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
+				2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
@@ -1391,7 +1391,6 @@
 				24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
-				24BD704C1A90DA7F00D8D00B /* README.md in Sources */,
 				249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */,
 				240D013E1A654D300033CC86 /* MRCProfileViewController.m in Sources */,
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
@@ -1418,12 +1417,12 @@
 				240D014B1A654D300033CC86 /* MRCHomepageViewModel.m in Sources */,
 				24DF45891A6BF6CD00F23474 /* MRCReposViewController.m in Sources */,
 				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
+				2479C9451AAD39150057B681 /* README.md in Sources */,
 				240D012E1A654D300033CC86 /* MRCNavigationControllerStack.m in Sources */,
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
 				245D62841AA8C73E00D7B081 /* MRCAboutHeaderView.m in Sources */,
 				24DF45721A6BE8FB00F23474 /* MRCStarredReposViewController.m in Sources */,
-				24BD704A1A90DA7F00D8D00B /* TWMessageBarManager.m in Sources */,
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,

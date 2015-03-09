@@ -26,11 +26,11 @@
     [super layoutSubviews];
     
     self.wapperView.layer.borderColor  = HexRGB(colorB2).CGColor;
-    self.wapperView.layer.borderWidth  = 0.5;
+    self.wapperView.layer.borderWidth  = MRC_1PX_WIDTH;
     self.wapperView.layer.cornerRadius = 3;
     
     [self.separatorViewTopBorder removeFromSuperview];
-    self.separatorViewTopBorder = [self.separatorView createViewBackedTopBorderWithHeight:0.5 andColor:HexRGB(colorB2)];
+    self.separatorViewTopBorder = [self.separatorView createViewBackedTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
     [self.separatorView addSubview:self.separatorViewTopBorder];
 }
 
