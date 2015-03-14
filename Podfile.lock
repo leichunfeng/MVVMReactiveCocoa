@@ -1,16 +1,5 @@
 PODS:
   - CBStoreHouseRefreshControl (1.0)
-  - DTCoreText (1.6.14):
-    - DTFoundation/Core (~> 1.7.1)
-    - DTFoundation/DTAnimatedGIF (~> 1.7.1)
-    - DTFoundation/DTHTMLParser (~> 1.7.1)
-    - DTFoundation/UIKit (~> 1.7.1)
-  - DTFoundation/Core (1.7.5)
-  - DTFoundation/DTAnimatedGIF (1.7.5)
-  - DTFoundation/DTHTMLParser (1.7.5):
-    - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.5):
-    - DTFoundation/Core
   - DZNEmptyDataSet (1.5.1)
   - FormatterKit (1.8.0):
     - FormatterKit/AddressFormatter (= 1.8.0)
@@ -36,6 +25,7 @@ PODS:
   - MKNetworkKit (0.87):
     - Reachability (~> 3.1.0)
   - OcticonsIOS (0.0.2)
+  - Ono (1.2.0)
   - Reachability (3.1.1)
   - Reveal-iOS-SDK (1.5.1)
   - SDWebImage (3.7.1):
@@ -47,13 +37,13 @@ PODS:
 
 DEPENDENCIES:
   - CBStoreHouseRefreshControl (from `git@github.com:coolbeet/CBStoreHouseRefreshControl.git`, commit `0bec93d`)
-  - DTCoreText (= 1.6.14)
   - DZNEmptyDataSet (= 1.5.1)
   - FormatterKit (= 1.8.0)
   - IQKeyboardManager (= 3.2.0.3)
   - MBProgressHUD (= 0.9)
   - MKNetworkKit (= 0.87)
   - OcticonsIOS (from `git@github.com:jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
+  - Ono (= 1.2.0)
   - Reveal-iOS-SDK (= 1.5.1)
   - SDWebImage (= 3.7.1)
   - SSKeychain (= 1.2.2)
@@ -78,14 +68,13 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CBStoreHouseRefreshControl: 0a3312cced4637d20d487df5fb314629a5044c58
-  DTCoreText: 1fc0aadfa238d14c6cc56035af4e2b76b958e3b1
-  DTFoundation: bea4e07459f0f88a5aa3b8258fab1576bbe2e58c
   DZNEmptyDataSet: 86431f44cbd851772467d32630da1836b3c62634
   FormatterKit: 547a808c41172136a3f3acb424ac9361d38bb32f
   IQKeyboardManager: e0b33a5d821ab36ec47ce8ca9dc520030d6aac52
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MKNetworkKit: 83e6296a8d42e98a71880424a889773654846d74
   OcticonsIOS: a80bcb8f96559aa33af2c21d5717e4f700833b7b
+  Ono: 2c9f6c8c50af1b40e988ff85a3f200574ee445cd
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   Reveal-iOS-SDK: dcfeb671c7da222c85f18f866da2ce88de075524
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d

@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 
 @property (strong, nonatomic) NSString *rawContent;
 @property (strong, nonatomic) NSString *content;
-@property (strong, nonatomic) NSString *renderedMarkdown;
+@property (strong, nonatomic) NSString *readmeHTMLString;
 
 @property (nonatomic, getter=isLineWrapping) BOOL lineWrapping;
 @property (nonatomic, getter=isEncoded)		 BOOL encoded;

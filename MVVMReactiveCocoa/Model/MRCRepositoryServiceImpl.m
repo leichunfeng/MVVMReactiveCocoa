@@ -10,7 +10,7 @@
 
 @implementation MRCRepositoryServiceImpl
 
-- (RACSignal *)requestRepositoryReadmeRenderedMarkdown:(OCTRepository *)repository reference:(NSString *)reference {
+- (RACSignal *)requestRepositoryReadmeHTMLString:(OCTRepository *)repository reference:(NSString *)reference {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSString *accessToken   = SSKeychain.accessToken;
         NSString *authorization = [NSString stringWithFormat:@"token %@", accessToken];

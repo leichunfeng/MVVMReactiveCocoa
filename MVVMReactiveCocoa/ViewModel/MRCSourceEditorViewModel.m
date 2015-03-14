@@ -26,7 +26,7 @@
         self.repository = params[@"repository"];
         self.reference  = params[@"reference"];
         self.blobTreeEntry    = params[@"blobTreeEntry"];
-        self.renderedMarkdown = params[@"renderedMarkdown"];
+        self.readmeHTMLString = params[@"readmeHTMLString"];
         self.encoded = YES;
     }
     return self;
@@ -67,10 +67,10 @@
     self.requestRenderedMarkdownCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         return [[[self.services.repositoryService
-        	requestRepositoryReadmeRenderedMarkdown:self.repository reference:self.reference.name]
-            doNext:^(NSString *renderedMarkdown) {
+        	requestRepositoryReadmeHTMLString:self.repository reference:self.reference.name]
+            doNext:^(NSString *readmeHTMLString) {
                 @strongify(self)
-                self.renderedMarkdown = renderedMarkdown;
+                self.readmeHTMLString = readmeHTMLString;
             }]
             takeUntil:self.willDisappearSignal];
     }];
@@ -82,7 +82,7 @@
 
 - (NSString *)content {
     if (self.isMarkdown && !self.showRawMarkdown) {
-        return self.renderedMarkdown;
+        return self.readmeHTMLString;
     } else {
         return [[NSString alloc] initWithData:[NSData dataFromBase64String:self.rawContent] encoding:NSUTF8StringEncoding];
     }

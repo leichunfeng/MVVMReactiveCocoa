@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIView *wapperView;
 @property (weak, nonatomic) IBOutlet UIView *readmeWapperView;
 
+@property (strong, nonatomic) UIView *readmeWapperViewBottomBorder;
+@property (strong, nonatomic) UIView *readmeButtonTopBorder;
+
 @end
 
 @implementation MRCRepoReadmeTableViewCell
@@ -31,8 +34,13 @@
     self.wapperView.layer.borderWidth  = MRC_1PX_WIDTH;
     self.wapperView.layer.cornerRadius = 3;
     
-    [self.readmeWapperView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
-    [self.readmeButton addTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self.readmeWapperViewBottomBorder removeFromSuperview];
+    self.readmeWapperViewBottomBorder = [self.readmeWapperView createViewBackedBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self.readmeWapperView addSubview:self.readmeWapperViewBottomBorder];
+    
+    [self.readmeButtonTopBorder removeFromSuperview];
+    self.readmeButtonTopBorder = [self.readmeButton createViewBackedTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self.readmeButton addSubview:self.readmeButtonTopBorder];
 }
 
 @end

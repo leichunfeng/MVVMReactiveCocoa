@@ -16,7 +16,6 @@
 @interface MRCRepoDetailViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
-@property (strong, nonatomic) NSString *renderedMarkdown;
 
 @end
 
@@ -70,7 +69,7 @@
         [params setValue:self.reference forKey:@"reference"];
         [params setValue:@(MRCSourceEditorViewModelTypeReadme) forKey:@"type"];
         
-        if (self.renderedMarkdown) [params setValue:self.renderedMarkdown forKey:@"renderedMarkdown"];
+        if (self.readmeHTMLString) [params setValue:self.readmeHTMLString forKey:@"readmeHTMLString"];
         
         MRCSourceEditorViewModel *sourceEditorViewModel = [[MRCSourceEditorViewModel alloc] initWithServices:self.services params:params.copy];
         [self.services pushViewModel:sourceEditorViewModel animated:YES];
@@ -126,8 +125,8 @@
 - (RACSignal *)requestRemoteDataSignal {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                          owner:self.repository.ownerLogin];
-    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeRenderedMarkdown:self.repository
-                                                                                                  reference:self.reference.name];
+    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTMLString:self.repository
+                                                                                            reference:self.reference.name];
     @weakify(self)
     return [[[[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
@@ -137,10 +136,25 @@
             [self.repository mergeValuesForKeysFromModel:tuple.first];
             [self.repository save];
             
-            self.renderedMarkdown = tuple.second;
-            self.readmeAttributedString = [tuple.second renderedMarkdown2AttributedString];
+            self.readmeHTMLString = tuple.second;
+            self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
         }]
     	takeUntil:self.willDisappearSignal];
+}
+
+- (NSString *)summaryReadmeHTMLStringFromReadmeHTMLString:(NSString *)readmeHTMLString {
+    __block NSString *summaryReadmeHTMLString = @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>";
+    
+    NSError *error = nil;
+    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:readmeHTMLString encoding:NSUTF8StringEncoding error:&error];
+    if (error != nil) NSLog(@"Error: %@", error);
+    
+    NSString *XPath = @"//article/*";
+    [document enumerateElementsWithXPath:XPath usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
+        if (idx < 3) summaryReadmeHTMLString = [summaryReadmeHTMLString stringByAppendingString:element.description];
+    }];
+    
+    return summaryReadmeHTMLString;
 }
 
 @end

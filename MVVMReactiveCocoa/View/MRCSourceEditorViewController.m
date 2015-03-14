@@ -99,7 +99,7 @@
         }];
     
     if (self.viewModel.isMarkdown) {
-        if (self.viewModel.renderedMarkdown) {
+        if (self.viewModel.readmeHTMLString) {
             self.navigationItem.rightBarButtonItem = rightBarButtonItem;
             [self loadSource];
         } else {

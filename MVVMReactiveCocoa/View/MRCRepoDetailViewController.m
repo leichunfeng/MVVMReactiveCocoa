@@ -15,11 +15,12 @@
 #import "MRCRepositoryService.h"
 #import "MRCDoubleTitleView.h"
 
-@interface MRCRepoDetailViewController ()
+@interface MRCRepoDetailViewController () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic, readonly) MRCRepoDetailViewModel *viewModel;
-@property (strong, nonatomic) DTAttributedLabel *readmeAttributedLabel;
+@property (strong, nonatomic) MRCRepoReadmeTableViewCell *readmeTableViewCell;
+@property (nonatomic) BOOL shouldLoadHTMLString;
 
 @end
 
@@ -76,10 +77,16 @@
         }
     }];
     
-    [RACObserve(self.viewModel, readmeAttributedString) subscribeNext:^(id x) {
-        @strongify(self)
-        [self.tableView reloadData];
-    }];
+    [[[RACObserve(self.viewModel, readmeHTMLString)
+        filter:^BOOL(NSString *readmeHTMLString) {
+            return readmeHTMLString != nil;
+        }]
+        distinctUntilChanged]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            self.shouldLoadHTMLString = YES;
+            [self.tableView reloadData];
+        }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -138,9 +145,9 @@
     } else if (indexPath.section == 3) {
         MRCRepoReadmeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoReadmeTableViewCell" forIndexPath:indexPath];
         
+        self.readmeTableViewCell = cell;
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.readmeAttributedLabel.numberOfLines = 0;
-        cell.readmeAttributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
         cell.readmeButton.rac_command = self.viewModel.readmeCommand;
         
         [cell.activityIndicatorView startAnimating];
@@ -148,7 +155,26 @@
             cell.activityIndicatorView.hidden = !executing.boolValue;
         }];
         
-        self.readmeAttributedLabel = cell.readmeAttributedLabel;
+        cell.webView.userInteractionEnabled = NO;
+        cell.webView.scrollView.scrollEnabled = NO;
+        
+        @weakify(self)
+        [[self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)] subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
+            RACTupleUnpack(UIWebView *webView) = tuple;
+            
+            CGRect webViewFrame = webView.frame;
+            webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
+            webView.frame = webViewFrame;
+            
+            self.shouldLoadHTMLString = NO;
+            [self.tableView reloadData];
+        }];
+        cell.webView.delegate = self;
+        
+        if (self.shouldLoadHTMLString) {
+            [self.readmeTableViewCell.webView loadHTMLString:self.viewModel.summaryReadmeHTMLString baseURL:nil];
+        }
         
         return cell;
     }
@@ -165,10 +191,8 @@
             return UITableViewAutomaticDimension;
         case 2:
             return 77;
-        case 3: {
-            self.readmeAttributedLabel.attributedString = [self.viewModel.readmeAttributedString attributedSubstringFromRange:NSMakeRange(0, MIN(self.viewModel.readmeAttributedString.length, 350))];
-            return self.viewModel.readmeAttributedString ? 40 + 8 + [self.readmeAttributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 15*4].height + 8 + 40 : 117;
-        }
+        case 3:
+            return self.readmeTableViewCell == nil ? 117 : 40 + 8 + CGRectGetHeight(self.readmeTableViewCell.webView.frame) + 8 + 40;
         default:
             return 44;
     }
@@ -181,6 +205,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == 1) return 0.01;
+    if (section == 3) return 15;
     return 7.5;
 }
 
