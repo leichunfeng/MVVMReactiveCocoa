@@ -28,6 +28,8 @@
         return [RACSignal empty];
     }];
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+    
+    self.tableView.tintColor = HexRGB(colorI3);
 }
 
 #pragma mark - UITableViewDataSource

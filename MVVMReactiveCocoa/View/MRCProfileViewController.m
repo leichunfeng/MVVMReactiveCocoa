@@ -14,17 +14,24 @@
 @interface MRCProfileViewController ()
 
 @property (strong, nonatomic, readonly) MRCProfileViewModel *viewModel;
+@property (strong, nonatomic) MRCAvatarHeaderView *tableHeaderView;
 
 @end
 
 @implementation MRCProfileViewController
 
+- (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
+    self = [super initWithViewModel:viewModel];
+    if (self) {
+        self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
+        [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    MRCAvatarHeaderView *avatarHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
-    [avatarHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
-    self.tableView.tableHeaderView = avatarHeaderView;
+    self.tableView.tableHeaderView = self.tableHeaderView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
