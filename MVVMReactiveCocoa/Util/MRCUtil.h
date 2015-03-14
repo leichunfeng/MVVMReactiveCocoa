@@ -21,8 +21,6 @@
 
 - (NSString *)firstLetter;
 
-- (NSAttributedString *)renderedMarkdown2AttributedString;
-
 - (BOOL)isMarkdown;
 
 @end

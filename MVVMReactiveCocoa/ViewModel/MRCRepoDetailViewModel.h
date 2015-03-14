@@ -16,7 +16,8 @@
 @property (strong, nonatomic) OCTRef *reference;
 
 @property (strong, nonatomic) NSString *dateUpdated;
-@property (strong, nonatomic) NSAttributedString *readmeAttributedString;
+@property (strong, nonatomic) NSString *readmeHTMLString;
+@property (strong, nonatomic) NSString *summaryReadmeHTMLString;
 
 @property (strong, nonatomic) RACCommand *viewCodeCommand;
 @property (strong, nonatomic) RACCommand *readmeCommand;

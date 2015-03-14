@@ -34,7 +34,6 @@
 	#import "SVPullToRefresh.h"
 	#import "CBStoreHouseRefreshControl.h"
 	#import "UIView+Borders.h"
-	#import "DTCoreText.h"
 	#import "MKNetworkKit.h"
 	#import "WebViewJavascriptBridge.h"
 	#import "OCTRef+MRCUtil.h"
@@ -42,6 +41,7 @@
 	#import "UIImage+Octicons.h"
     #import "TWMessageBarManager.h"
     #import "UIScrollView+EmptyDataSet.h"
+    #import "Ono.h"
 #endif
 
 #endif

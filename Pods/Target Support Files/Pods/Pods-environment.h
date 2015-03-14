@@ -12,36 +12,6 @@
 #define COCOAPODS_VERSION_MINOR_CBStoreHouseRefreshControl 0
 #define COCOAPODS_VERSION_PATCH_CBStoreHouseRefreshControl 0
 
-// DTCoreText
-#define COCOAPODS_POD_AVAILABLE_DTCoreText
-#define COCOAPODS_VERSION_MAJOR_DTCoreText 1
-#define COCOAPODS_VERSION_MINOR_DTCoreText 6
-#define COCOAPODS_VERSION_PATCH_DTCoreText 14
-
-// DTFoundation/Core
-#define COCOAPODS_POD_AVAILABLE_DTFoundation_Core
-#define COCOAPODS_VERSION_MAJOR_DTFoundation_Core 1
-#define COCOAPODS_VERSION_MINOR_DTFoundation_Core 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_Core 5
-
-// DTFoundation/DTAnimatedGIF
-#define COCOAPODS_POD_AVAILABLE_DTFoundation_DTAnimatedGIF
-#define COCOAPODS_VERSION_MAJOR_DTFoundation_DTAnimatedGIF 1
-#define COCOAPODS_VERSION_MINOR_DTFoundation_DTAnimatedGIF 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_DTAnimatedGIF 5
-
-// DTFoundation/DTHTMLParser
-#define COCOAPODS_POD_AVAILABLE_DTFoundation_DTHTMLParser
-#define COCOAPODS_VERSION_MAJOR_DTFoundation_DTHTMLParser 1
-#define COCOAPODS_VERSION_MINOR_DTFoundation_DTHTMLParser 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_DTHTMLParser 5
-
-// DTFoundation/UIKit
-#define COCOAPODS_POD_AVAILABLE_DTFoundation_UIKit
-#define COCOAPODS_VERSION_MAJOR_DTFoundation_UIKit 1
-#define COCOAPODS_VERSION_MINOR_DTFoundation_UIKit 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 5
-
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
@@ -132,6 +102,12 @@
 #define COCOAPODS_VERSION_MAJOR_OcticonsIOS 0
 #define COCOAPODS_VERSION_MINOR_OcticonsIOS 0
 #define COCOAPODS_VERSION_PATCH_OcticonsIOS 2
+
+// Ono
+#define COCOAPODS_POD_AVAILABLE_Ono
+#define COCOAPODS_VERSION_MAJOR_Ono 1
+#define COCOAPODS_VERSION_MINOR_Ono 2
+#define COCOAPODS_VERSION_PATCH_Ono 0
 
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
