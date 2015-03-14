@@ -8,7 +8,7 @@
 
 #import "MRCViewController.h"
 
-@interface MRCWebViewController : MRCViewController
+@interface MRCWebViewController : MRCViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 

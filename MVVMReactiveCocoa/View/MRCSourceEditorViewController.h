@@ -7,7 +7,8 @@
 //
 
 #import "MRCViewController.h"
+#import "MRCWebViewController.h"
 
-@interface MRCSourceEditorViewController : MRCViewController
+@interface MRCSourceEditorViewController : MRCWebViewController
 
 @end

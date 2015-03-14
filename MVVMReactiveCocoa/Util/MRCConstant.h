@@ -155,4 +155,6 @@ typedef id   (^IDBlock_id)  (id);
 #define MVVM_REACTIVECOCOA_OWNER_LOGIN @"leichunfeng"
 #define MVVM_REACTIVECOCOA_NAME        @"MVVMReactiveCocoa"
 
+#define MRC_README_CSS_STYLE @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>"
+
 #endif

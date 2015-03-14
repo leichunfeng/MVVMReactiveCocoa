@@ -7,13 +7,14 @@
 //
 
 #import "MRCViewModel.h"
+#import "MRCWebViewModel.h"
 
 typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
     MRCSourceEditorViewModelTypeBlob,
     MRCSourceEditorViewModelTypeReadme
 };
 
-@interface MRCSourceEditorViewModel : MRCViewModel
+@interface MRCSourceEditorViewModel : MRCWebViewModel
 
 @property (nonatomic) MRCSourceEditorViewModelType type;
 

@@ -12,7 +12,6 @@
 @interface MRCSourceEditorViewController () <UIWebViewDelegate>
 
 @property (strong, nonatomic, readonly) MRCSourceEditorViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) WebViewJavascriptBridge *bridge;
 
 @end
@@ -71,7 +70,7 @@
     
     [WebViewJavascriptBridge enableLogging];
     
-    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView handler:^(id data, WVJBResponseCallback responseCallback) {
+    self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
         responseCallback(@"Response for message from ObjC");
     }];
     
@@ -123,15 +122,9 @@
 
 - (void)loadSource {
     if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
-        NSString *style = @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>";
-        [self.webView loadData:[[style stringByAppendingString:self.viewModel.content] dataUsingEncoding:NSUTF8StringEncoding]
-                      MIMEType:@"text/html"
-              textEncodingName:@"utf-8"
-                       baseURL:nil];
+        [self.webView loadHTMLString:[MRC_README_CSS_STYLE stringByAppendingString:self.viewModel.content] baseURL:nil];
     } else {
-        NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
-        [self.webView loadRequest:request];
+        [self.webView loadRequest:self.viewModel.request];
     }
 }
 
@@ -141,8 +134,8 @@
 
 #pragma mark - UIWebViewDelegate
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return navigationType == UIWebViewNavigationTypeOther;
 }
 
 @end
