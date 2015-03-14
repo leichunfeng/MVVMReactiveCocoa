@@ -69,6 +69,8 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             }
         }];
+        
+        cell.hidden = YES;
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Rate iGitHub";
     } else if (indexPath.row == 2) {
@@ -80,6 +82,7 @@
     [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
         cell.detailTextLabel.text = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.hidden = NO;
     }];
 }
 
@@ -94,6 +97,10 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return indexPath.row == 0 ? 0 : 44;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.01;
