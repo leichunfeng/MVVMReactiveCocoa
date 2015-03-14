@@ -143,7 +143,7 @@
 }
 
 - (NSString *)summaryReadmeHTMLStringFromReadmeHTMLString:(NSString *)readmeHTMLString {
-    __block NSString *summaryReadmeHTMLString = @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>";
+    __block NSString *summaryReadmeHTMLString = MRC_README_CSS_STYLE;
     
     NSError *error = nil;
     ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:readmeHTMLString encoding:NSUTF8StringEncoding error:&error];

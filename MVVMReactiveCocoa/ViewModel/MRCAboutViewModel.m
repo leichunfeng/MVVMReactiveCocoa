@@ -8,6 +8,7 @@
 
 #import "MRCAboutViewModel.h"
 #import "MRCFeedbackViewModel.h"
+#import "MRCAboutiGitHubViewModel.h"
 
 #define kAppStoreVersionKey @"appStoreVersion"
 
@@ -23,7 +24,10 @@
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
-        if (indexPath.row == 3) {
+        if (indexPath.row == 2) {
+            MRCAboutiGitHubViewModel *aboutiGitHubViewModel = [[MRCAboutiGitHubViewModel alloc] initWithServices:self.services params:nil];
+            [self.services pushViewModel:aboutiGitHubViewModel animated:YES];
+        } else if (indexPath.row == 3) {
             MRCFeedbackViewModel *feedbackViewModel = [[MRCFeedbackViewModel alloc] initWithServices:self.services params:nil];
             [self.services pushViewModel:feedbackViewModel animated:YES];
         }

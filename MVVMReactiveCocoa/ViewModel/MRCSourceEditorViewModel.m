@@ -41,6 +41,9 @@
     
     self.markdown = self.title.isMarkdown;
     
+    NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
+    self.request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+    
     @weakify(self)
     self.requestBlobCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
