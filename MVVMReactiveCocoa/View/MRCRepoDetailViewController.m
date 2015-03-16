@@ -192,7 +192,7 @@
         case 2:
             return 77;
         case 3:
-            return self.readmeTableViewCell == nil ? 117 : 40 + 8 + CGRectGetHeight(self.readmeTableViewCell.webView.frame) + 8 + 40;
+            return self.readmeTableViewCell == nil ? 101 : 40 + CGRectGetHeight(self.readmeTableViewCell.webView.frame) + 40;
         default:
             return 44;
     }
