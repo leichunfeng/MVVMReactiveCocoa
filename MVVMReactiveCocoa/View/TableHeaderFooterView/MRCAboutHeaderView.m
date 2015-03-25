@@ -19,7 +19,7 @@
 
 - (void)awakeFromNib {
     self.imageView.image = [UIImage octicon_imageWithIcon:@"MarkGithub" backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:self.imageView.frame.size];
-    self.textLabel.text = [NSString stringWithFormat:@"iGitHub v%@", MRC_APP_VERSION];
+    self.textLabel.text = [NSString stringWithFormat:@"%@ v%@", MRC_APP_NAME, MRC_APP_VERSION];
 }
 
 @end
