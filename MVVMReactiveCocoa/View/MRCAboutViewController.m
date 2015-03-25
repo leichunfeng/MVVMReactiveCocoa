@@ -72,9 +72,9 @@
         
         cell.hidden = YES;
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Rate iGitHub";
+        cell.textLabel.text = [NSString stringWithFormat:@"Rate %@", MRC_APP_NAME];
     } else if (indexPath.row == 2) {
-        cell.textLabel.text = @"About iGitHub";
+        cell.textLabel.text = [NSString stringWithFormat:@"About %@", MRC_APP_NAME];
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Feedback";
     }

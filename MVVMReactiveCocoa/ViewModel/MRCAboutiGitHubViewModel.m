@@ -13,7 +13,7 @@
 - (void)initialize {
     [super initialize];
     
-    self.title = @"About iGitHub";
+    self.title = [NSString stringWithFormat:@"About %@", MRC_APP_NAME];
     
     NSString *path = [NSBundle.mainBundle pathForResource:@"about-igithub" ofType:@"html" inDirectory:@"assets.bundle"];
     self.request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];

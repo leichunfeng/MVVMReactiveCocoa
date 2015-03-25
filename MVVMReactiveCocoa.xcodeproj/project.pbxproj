@@ -199,6 +199,8 @@
 		245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */; };
 		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
 		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
+		246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */; };
+		246477D21AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 246477D01AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist */; };
 		2479C93D1AAD39150057B681 /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9331AAD39150057B681 /* icon-error.png */; };
 		2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9341AAD39150057B681 /* icon-error@2x.png */; };
 		2479C93F1AAD39150057B681 /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9351AAD39150057B681 /* icon-info.png */; };
@@ -575,8 +577,7 @@
 		24279E081AB45F2B001700F1 /* MRCAboutiGitHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutiGitHubViewController.h; sourceTree = "<group>"; };
 		24279E091AB45F2B001700F1 /* MRCAboutiGitHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutiGitHubViewController.m; sourceTree = "<group>"; };
 		24279E0A1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutiGitHubViewController.xib; sourceTree = "<group>"; };
-		242D4FD51A64B6FA0026ABC6 /* iGitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		242D4FD91A64B6FA0026ABC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		242D4FD51A64B6FA0026ABC6 /* GitBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242D4FDA1A64B6FA0026ABC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		242D4FE81A64B6FA0026ABC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		242D4FEE1A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMReactiveCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -596,8 +597,7 @@
 		243140121A7DD6E800FA357E /* assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = assets.bundle; sourceTree = "<group>"; };
 		24497BF01A6EAE770073B1D6 /* OCTObject+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTObject+MRCPersistence.h"; sourceTree = "<group>"; };
 		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
-		245414B51AB494C200D8B8D2 /* iGitHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGitHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		245414B61AB494C200D8B8D2 /* MVVMReactiveCocoa copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MVVMReactiveCocoa copy-Info.plist"; path = "/Users/leichunfeng/workspace/github/MVVMReactiveCocoa/MVVMReactiveCocoa copy-Info.plist"; sourceTree = "<absolute>"; };
+		245414B51AB494C200D8B8D2 /* GitBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		245D627B1AA8C73E00D7B081 /* MRCAboutHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutHeaderView.h; sourceTree = "<group>"; };
 		245D627C1AA8C73E00D7B081 /* MRCAboutHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutHeaderView.m; sourceTree = "<group>"; };
 		245D627D1AA8C73E00D7B081 /* MRCAboutHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutHeaderView.xib; sourceTree = "<group>"; };
@@ -607,6 +607,8 @@
 		245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
 		245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
 		245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
+		246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MVVMReactiveCocoa-Info.plist"; sourceTree = "<group>"; };
+		246477D01AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MVVMReactiveCocoaDev-Info.plist"; sourceTree = "<group>"; };
 		2479C9331AAD39150057B681 /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
 		2479C9341AAD39150057B681 /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
 		2479C9351AAD39150057B681 /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
@@ -1021,16 +1023,15 @@
 				242D4FD61A64B6FA0026ABC6 /* Products */,
 				F040BBF1F592B1F32A774212 /* Pods */,
 				B881B6E71AA5A766D60C0E99 /* Frameworks */,
-				245414B61AB494C200D8B8D2 /* MVVMReactiveCocoa copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		242D4FD61A64B6FA0026ABC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				242D4FD51A64B6FA0026ABC6 /* iGitHub.app */,
+				242D4FD51A64B6FA0026ABC6 /* GitBucket.app */,
 				242D4FEE1A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.xctest */,
-				245414B51AB494C200D8B8D2 /* iGitHub.app */,
+				245414B51AB494C200D8B8D2 /* GitBucket.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1055,8 +1056,9 @@
 		242D4FD81A64B6FA0026ABC6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */,
+				246477D01AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist */,
 				24DF45681A6BBA5200F23474 /* storehouse.plist */,
-				242D4FD91A64B6FA0026ABC6 /* Info.plist */,
 				242D4FDA1A64B6FA0026ABC6 /* main.m */,
 				240D01541A654D9C0033CC86 /* MVVMReactiveCocoa-Prefix.pch */,
 			);
@@ -1224,6 +1226,7 @@
 				94BC7850225D73433B852981 /* Copy Pods Resources */,
 				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
 				242453231A80D85300FFFCC1 /* Embed Frameworks */,
+				F1FDB203DBC80F0AF2ED2A7D /* Find unused imports */,
 			);
 			buildRules = (
 			);
@@ -1236,7 +1239,7 @@
 			);
 			name = MVVMReactiveCocoa;
 			productName = MVVMReactiveCocoa;
-			productReference = 242D4FD51A64B6FA0026ABC6 /* iGitHub.app */;
+			productReference = 242D4FD51A64B6FA0026ABC6 /* GitBucket.app */;
 			productType = "com.apple.product-type.application";
 		};
 		242D4FED1A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */ = {
@@ -1282,7 +1285,7 @@
 			);
 			name = MVVMReactiveCocoaDev;
 			productName = MVVMReactiveCocoa;
-			productReference = 245414B51AB494C200D8B8D2 /* iGitHub.app */;
+			productReference = 245414B51AB494C200D8B8D2 /* GitBucket.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1470,6 +1473,7 @@
 				24279E0C1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
+				246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
@@ -1497,6 +1501,7 @@
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
 				240D013F1A654D300033CC86 /* MRCProfileViewController.xib in Resources */,
+				246477D21AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1668,6 +1673,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		F1FDB203DBC80F0AF2ED2A7D /* Find unused imports */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Find unused imports";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"/Users/leichunfeng/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Users/leichunfeng/workspace/github/MVVMReactiveCocoa\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2017,14 +2036,14 @@
 					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = MVVMReactiveCocoa/Info.plist;
+				INFOPLIST_FILE = "MVVMReactiveCocoa/MVVMReactiveCocoa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 				);
-				PRODUCT_NAME = iGitHub;
+				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2055,14 +2074,14 @@
 					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = MVVMReactiveCocoa/Info.plist;
+				INFOPLIST_FILE = "MVVMReactiveCocoa/MVVMReactiveCocoa-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 				);
-				PRODUCT_NAME = iGitHub;
+				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2086,7 +2105,7 @@
 				INFOPLIST_FILE = MVVMReactiveCocoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGitHub.app/iGitHub";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitBucket.app/GitBucket";
 			};
 			name = Debug;
 		};
@@ -2104,7 +2123,7 @@
 				INFOPLIST_FILE = MVVMReactiveCocoaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iGitHub.app/iGitHub";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitBucket.app/GitBucket";
 			};
 			name = Release;
 		};
@@ -2132,14 +2151,14 @@
 					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MVVMReactiveCocoa copy-Info.plist";
+				INFOPLIST_FILE = "MVVMReactiveCocoa/MVVMReactiveCocoaDev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 				);
-				PRODUCT_NAME = iGitHub;
+				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2170,14 +2189,14 @@
 					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MVVMReactiveCocoa copy-Info.plist";
+				INFOPLIST_FILE = "MVVMReactiveCocoa/MVVMReactiveCocoaDev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 				);
-				PRODUCT_NAME = iGitHub;
+				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
