@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCLoginViewController">
@@ -52,7 +52,7 @@
                                 <constraint firstAttribute="height" constant="1" id="eF6-bf-Iky"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-hG-uTO">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GitHub Username or email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-hG-uTO">
                             <rect key="frame" x="47" y="10" width="538" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="NSG-gy-dPI"/>
@@ -63,7 +63,7 @@
                                 <outlet property="delegate" destination="lgZ-Ah-0EN" id="98H-bH-Ta8"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z4f-3o-lGq">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GitHub Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z4f-3o-lGq">
                             <rect key="frame" x="47" y="60" width="538" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="fh5-mf-Dcd"/>
@@ -145,7 +145,7 @@
                 <constraint firstItem="lgZ-Ah-0EN" firstAttribute="top" secondItem="o21-yr-aAl" secondAttribute="bottom" constant="40" id="g1N-1X-hSG"/>
                 <constraint firstItem="lgZ-Ah-0EN" firstAttribute="leading" secondItem="LJv-0T-553" secondAttribute="leading" id="zog-Up-LDD"/>
             </constraints>
-            <point key="canvasLocation" x="540" y="-657"/>
+            <point key="canvasLocation" x="412" y="-816"/>
         </view>
     </objects>
 </document>
