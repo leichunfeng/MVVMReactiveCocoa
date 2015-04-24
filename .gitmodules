@@ -1,3 +1,3 @@
 [submodule "OctoKit"]
 	path = OctoKit
-	url = git@github.com:octokit/octokit.objc.git
+url=git@github.com:leichunfeng/octokit.objc.git
