@@ -22,9 +22,11 @@
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCNavigationControllerStack *navigationControllerStack = [super allocWithZone:zone];
     
+	@weakify(navigationControllerStack)
     [[navigationControllerStack
-      	rac_signalForSelector:@selector(initWithServices:)]
-     	subscribeNext:^(id x) {
+    	rac_signalForSelector:@selector(initWithServices:)]
+    	subscribeNext:^(id x) {
+            @strongify(navigationControllerStack)
         	[navigationControllerStack registerNavigationHooks];
      	}];
     

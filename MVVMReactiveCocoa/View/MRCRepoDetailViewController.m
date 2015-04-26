@@ -52,7 +52,9 @@
     [button setTitleColor:HexRGB(colorI2) forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     
+    @weakify(self)
 	[RACObserve(self.viewModel, reference) subscribeNext:^(OCTRef *reference) {
+        @strongify(self)
         [button setTitle:[self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject forState:UIControlStateNormal];
         [button setImage:[UIImage octicon_imageWithIcon:reference.octiconIdentifier backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:CGSizeMake(23, 23)] forState:UIControlStateNormal];
         [button sizeToFit];
