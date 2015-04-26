@@ -38,7 +38,7 @@
 - (id<MRCViewProtocol>)initWithViewModel:(id)viewModel {
     self = [super init];
     if (self) {
-        _viewModel = viewModel;
+        self.viewModel = viewModel;
     }
     return self;
 }

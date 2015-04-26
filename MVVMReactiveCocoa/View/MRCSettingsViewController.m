@@ -17,6 +17,8 @@
 
 @implementation MRCSettingsViewController
 
+@dynamic viewModel;
+
 - (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
     self = [super initWithViewModel:viewModel];
     if (self) {

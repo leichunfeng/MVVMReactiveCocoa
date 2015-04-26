@@ -19,6 +19,8 @@
 
 @implementation MRCReposViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     MRCOwnedReposViewController *ownedReposViewController = [[MRCOwnedReposViewController alloc] initWithViewModel:self.viewModel.viewModels[0]];
     ownedReposViewController.segmentedControlItem = @"Owned";

@@ -17,6 +17,8 @@
 
 @implementation MRCGitTreeViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

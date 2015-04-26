@@ -1306,6 +1306,9 @@
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 242D4FD41A64B6FA0026ABC6;
 					};
+					245414281AB494C200D8B8D2 = {
+						DevelopmentTeam = V45CY933KN;
+					};
 				};
 			};
 			buildConfigurationList = 242D4FD01A64B6FA0026ABC6 /* Build configuration list for PBXProject "MVVMReactiveCocoa" */;

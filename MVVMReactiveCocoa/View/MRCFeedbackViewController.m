@@ -18,6 +18,8 @@
 
 @implementation MRCFeedbackViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
