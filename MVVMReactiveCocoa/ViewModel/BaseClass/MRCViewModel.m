@@ -21,9 +21,11 @@
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewModel *viewModel = [super allocWithZone:zone];
+    @weakify(viewModel)
     [[viewModel
     	rac_signalForSelector:@selector(initWithServices:params:)]
     	subscribeNext:^(id x) {
+            @strongify(viewModel)
             [viewModel initialize];
         }];
     return viewModel;

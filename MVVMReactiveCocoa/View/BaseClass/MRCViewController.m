@@ -24,9 +24,11 @@
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewController *viewController = [super allocWithZone:zone];
 
+    @weakify(viewController)
     [[viewController
         rac_signalForSelector:@selector(viewDidLoad)]
         subscribeNext:^(id x) {
+            @strongify(viewController)
             [viewController bindViewModel];
         }];
     

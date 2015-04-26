@@ -48,7 +48,9 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Version upgrade";
         
+        @weakify(self)
         [RACObserve(self.viewModel, isLatestVersion) subscribeNext:^(NSNumber *isLatestVersion) {
+            @strongify(self)
             if (isLatestVersion.boolValue) {
                 cell.detailTextLabel.text = @"Latest version";
                 cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
