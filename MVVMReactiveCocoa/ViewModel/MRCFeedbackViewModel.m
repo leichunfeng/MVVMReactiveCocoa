@@ -26,7 +26,7 @@
         @strongify(self)
         return [[[[self.services
             client]
-        	createIssueWithTitle:[NSString stringWithFormat:@"%@ from %@", self.title, [OCTUser currentUser].login] body:self.content assignee:nil milestone:nil labels:nil inRepository:mvvmReactiveCocoa]
+        	createIssueWithTitle:[NSString stringWithFormat:@"%@ from %@", self.title, [OCTUser currentUser].login] body:self.content assignee:nil milestone:0 labels:nil inRepository:mvvmReactiveCocoa]
             deliverOnMainThread]
             doNext:^(id x) {
                 @strongify(self)

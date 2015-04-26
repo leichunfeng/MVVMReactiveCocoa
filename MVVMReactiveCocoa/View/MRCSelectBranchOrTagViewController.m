@@ -17,6 +17,8 @@
 
 @implementation MRCSelectBranchOrTagViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

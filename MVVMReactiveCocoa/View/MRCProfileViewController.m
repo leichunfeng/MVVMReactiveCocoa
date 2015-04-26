@@ -20,6 +20,8 @@
 
 @implementation MRCProfileViewController
 
+@dynamic viewModel;
+
 - (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
     self = [super initWithViewModel:viewModel];
     if (self) {

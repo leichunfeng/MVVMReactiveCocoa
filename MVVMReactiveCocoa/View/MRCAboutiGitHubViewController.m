@@ -17,6 +17,8 @@
 
 @implementation MRCAboutiGitHubViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];    
     [self.webView loadRequest:self.viewModel.request];

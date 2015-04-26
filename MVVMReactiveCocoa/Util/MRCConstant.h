@@ -140,7 +140,6 @@ typedef id   (^IDBlock_id)  (id);
 /// App Info
 ///---------
 
-#define MRC_APP_NAME      @"GitBucket"
 #define MRC_APP_ID        @"961330940"
 #define MRC_APP_STORE_URL @"https://itunes.apple.com/cn/app/id"MRC_APP_ID"?mt=8"
 

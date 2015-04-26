@@ -32,6 +32,8 @@
 
 @implementation MRCLoginViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

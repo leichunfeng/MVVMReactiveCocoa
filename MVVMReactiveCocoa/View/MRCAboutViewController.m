@@ -18,6 +18,8 @@
 
 @implementation MRCAboutViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

@@ -19,6 +19,8 @@
 
 @implementation MRCOwnedReposViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];    
     

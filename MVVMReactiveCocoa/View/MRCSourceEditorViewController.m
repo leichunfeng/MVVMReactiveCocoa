@@ -18,6 +18,8 @@
 
 @implementation MRCSourceEditorViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

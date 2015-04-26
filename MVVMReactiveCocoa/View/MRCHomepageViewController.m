@@ -32,6 +32,8 @@
 
 @implementation MRCHomepageViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
