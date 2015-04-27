@@ -44,6 +44,9 @@
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
+    // UMAnalytics
+    [MobClick startWithAppkey:MRC_UM_APP_KEY reportPolicy:BATCH channelId:nil];
+    
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
     
     return YES;
