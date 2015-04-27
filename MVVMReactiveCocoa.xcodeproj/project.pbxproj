@@ -46,6 +46,12 @@
 		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
 		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E901A8F455000D25218 /* MRCDoubleTitleView.m */; };
+		24123E3A1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */; };
+		24123E3B1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */; };
+		24123E481AEE8AD300D5A074 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E471AEE8AD300D5A074 /* libz.dylib */; };
+		24123E491AEE8AD800D5A074 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E471AEE8AD300D5A074 /* libz.dylib */; };
+		24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */; };
+		24123E4D1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
@@ -560,6 +566,12 @@
 		24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSKeychain+MRCUtil.m"; sourceTree = "<group>"; };
 		24116E8F1A8F455000D25218 /* MRCDoubleTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCDoubleTitleView.h; sourceTree = "<group>"; };
 		24116E901A8F455000D25218 /* MRCDoubleTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCDoubleTitleView.m; sourceTree = "<group>"; };
+		24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		24123E381AEE8A9B00D5A074 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		24123E391AEE8A9B00D5A074 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		24123E471AEE8AD300D5A074 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MRCUMAnalytics.h"; sourceTree = "<group>"; };
+		24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MRCUMAnalytics.m"; sourceTree = "<group>"; };
 		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -708,11 +720,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24123E491AEE8AD800D5A074 /* libz.dylib in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
 				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
 				242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */,
+				24123E3A1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */,
 				17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,9 +743,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24123E481AEE8AD300D5A074 /* libz.dylib in Frameworks */,
 				245414811AB494C200D8B8D2 /* OctoKit.framework in Frameworks */,
 				245414821AB494C200D8B8D2 /* AFNetworking.framework in Frameworks */,
 				245414831AB494C200D8B8D2 /* ISO8601DateFormatter.framework in Frameworks */,
+				24123E3B1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */,
 				245414841AB494C200D8B8D2 /* ReactiveCocoa.framework in Frameworks */,
 				245414851AB494C200D8B8D2 /* Mantle.framework in Frameworks */,
 				245414861AB494C200D8B8D2 /* libPods.a in Frameworks */,
@@ -867,6 +883,8 @@
 				249674301A73F5490032771B /* MRCWebViewController.m */,
 				24116E481A8CC62700D25218 /* MRCNavigationController.h */,
 				24116E491A8CC62700D25218 /* MRCNavigationController.m */,
+				24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */,
+				24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -969,6 +987,16 @@
 				24116E901A8F455000D25218 /* MRCDoubleTitleView.m */,
 			);
 			path = TitleView;
+			sourceTree = "<group>";
+		};
+		24123E361AEE8A9B00D5A074 /* UMAnalytics_Sdk_3.4.6 */ = {
+			isa = PBXGroup;
+			children = (
+				24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */,
+				24123E381AEE8A9B00D5A074 /* MobClick.h */,
+				24123E391AEE8A9B00D5A074 /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.4.6;
 			sourceTree = "<group>";
 		};
 		242452E31A80D78800FFFCC1 /* Products */ = {
@@ -1086,6 +1114,7 @@
 		24313CAC1A7D3CA700FA357E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				24123E361AEE8A9B00D5A074 /* UMAnalytics_Sdk_3.4.6 */,
 				2479C9301AAD39150057B681 /* TWMessageBarManager */,
 				243140121A7DD6E800FA357E /* assets.bundle */,
 			);
@@ -1182,6 +1211,7 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24123E471AEE8AD300D5A074 /* libz.dylib */,
 				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
 				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
 				242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */,
@@ -1770,6 +1800,7 @@
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,
 				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
+				24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,
@@ -1861,6 +1892,7 @@
 				2454147A1AB494C200D8B8D2 /* MRCSelectBranchOrTagViewController.m in Sources */,
 				2454147B1AB494C200D8B8D2 /* SSKeychain+MRCUtil.m in Sources */,
 				2454147C1AB494C200D8B8D2 /* MRCSourceEditorViewController.m in Sources */,
+				24123E4D1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */,
 				2454147D1AB494C200D8B8D2 /* MRCRepoDetailViewController.m in Sources */,
 				2454147E1AB494C200D8B8D2 /* MRCSettingsViewController.m in Sources */,
 				2454147F1AB494C200D8B8D2 /* MRCOwnedReposViewController.m in Sources */,
@@ -2045,6 +2077,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
@@ -2083,6 +2116,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
@@ -2160,6 +2194,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "";
@@ -2198,6 +2233,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "";
