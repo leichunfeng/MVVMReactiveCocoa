@@ -10,6 +10,12 @@ Simply add the following to your Podfile if you're using CocoaPods:
 pod 'SSKeychain'
 ```
 
+or Cartfile if you're using Carthage:
+
+```
+github "soffes/SSKeychain"
+```
+
 To manually add to your project:
 
 1. Add `Security.framework` to your target
@@ -37,7 +43,7 @@ Easy as that. (See [SSKeychain.h](https://github.com/soffes/sskeychain/blob/mast
 
 ### Use prepared documentation
 
-Read the [online documentation](http://cocoadocs.org/docsets/SSKeychain/1.2.1/).
+Read the [online documentation](http://cocoadocs.org/docsets/SSKeychain).
 
 ## Debugging
 

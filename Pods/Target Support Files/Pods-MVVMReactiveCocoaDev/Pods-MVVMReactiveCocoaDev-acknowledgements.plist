@@ -59,7 +59,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2011–2015 Mattt Thompson (http://mattt.me/)
+			<string>Copyright (c) 2011&#8211;2015 Mattt Thompson (http://mattt.me/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -118,7 +118,7 @@ SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2013 Matej Bukovinski
+			<string>Copyright (c) 2009-2015 Matej Bukovinski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -496,7 +496,7 @@ This License does not allow the use of the Software other than for business purp
 
 ### 3.1 TITLE
 
-‘REVEAL’™ and ‘ITTY BITTY APPS’™ represent proprietary common law trademarks owned by the Company and must not be used without written permission.
+&#8216;REVEAL&#8217;&#8482; and &#8216;ITTY BITTY APPS&#8217;&#8482; represent proprietary common law trademarks owned by the Company and must not be used without written permission.
 
 The Company shall own and retain all right, title and interest in and to all Intellectual Property Rights related to the Software, the Documentation and all improvements to any of them however so created. You do not acquire any other rights, express or implied, in the Software. ALL RIGHTS NOT EXPRESSLY GRANTED HEREUNDER ARE RESERVED TO THE COMPANY.
 
@@ -506,7 +506,7 @@ You may copy the Software for backup and archival purposes only, provided that t
 
 ### 3.3 THINGS YOU MUST NOT DO
 
-The Software and Documentation are protected by Australian and international copyright law. You must treat the Software and Documentation like any other copyrighted material—for example, a book. You may not:
+The Software and Documentation are protected by Australian and international copyright law. You must treat the Software and Documentation like any other copyrighted material&#8212;for example, a book. You may not:
 
 * copy the Documentation,
 * copy the Software except to make archival or backup copies as provided above,
@@ -646,6 +646,15 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
 			<key>Title</key>
 			<string>SVPullToRefresh</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright 2011 - 2015 UMeng.com. All rights reserved.
+</string>
+			<key>Title</key>
+			<string>UMengAnalytics</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

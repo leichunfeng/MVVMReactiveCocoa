@@ -46,10 +46,6 @@
 		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
 		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E901A8F455000D25218 /* MRCDoubleTitleView.m */; };
-		24123E3A1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */; };
-		24123E3B1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */; };
-		24123E481AEE8AD300D5A074 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E471AEE8AD300D5A074 /* libz.dylib */; };
-		24123E491AEE8AD800D5A074 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24123E471AEE8AD300D5A074 /* libz.dylib */; };
 		24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */; };
 		24123E4D1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
@@ -566,9 +562,6 @@
 		24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSKeychain+MRCUtil.m"; sourceTree = "<group>"; };
 		24116E8F1A8F455000D25218 /* MRCDoubleTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCDoubleTitleView.h; sourceTree = "<group>"; };
 		24116E901A8F455000D25218 /* MRCDoubleTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCDoubleTitleView.m; sourceTree = "<group>"; };
-		24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		24123E381AEE8A9B00D5A074 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		24123E391AEE8A9B00D5A074 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		24123E471AEE8AD300D5A074 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MRCUMAnalytics.h"; sourceTree = "<group>"; };
 		24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MRCUMAnalytics.m"; sourceTree = "<group>"; };
@@ -720,13 +713,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24123E491AEE8AD800D5A074 /* libz.dylib in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
 				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
 				242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */,
-				24123E3A1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */,
 				17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,11 +734,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24123E481AEE8AD300D5A074 /* libz.dylib in Frameworks */,
 				245414811AB494C200D8B8D2 /* OctoKit.framework in Frameworks */,
 				245414821AB494C200D8B8D2 /* AFNetworking.framework in Frameworks */,
 				245414831AB494C200D8B8D2 /* ISO8601DateFormatter.framework in Frameworks */,
-				24123E3B1AEE8A9B00D5A074 /* libMobClickLibrary.a in Frameworks */,
 				245414841AB494C200D8B8D2 /* ReactiveCocoa.framework in Frameworks */,
 				245414851AB494C200D8B8D2 /* Mantle.framework in Frameworks */,
 				245414861AB494C200D8B8D2 /* libPods.a in Frameworks */,
@@ -989,16 +978,6 @@
 			path = TitleView;
 			sourceTree = "<group>";
 		};
-		24123E361AEE8A9B00D5A074 /* UMAnalytics_Sdk_3.4.6 */ = {
-			isa = PBXGroup;
-			children = (
-				24123E371AEE8A9B00D5A074 /* libMobClickLibrary.a */,
-				24123E381AEE8A9B00D5A074 /* MobClick.h */,
-				24123E391AEE8A9B00D5A074 /* MobClickSocialAnalytics.h */,
-			);
-			path = UMAnalytics_Sdk_3.4.6;
-			sourceTree = "<group>";
-		};
 		242452E31A80D78800FFFCC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1114,7 +1093,6 @@
 		24313CAC1A7D3CA700FA357E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				24123E361AEE8A9B00D5A074 /* UMAnalytics_Sdk_3.4.6 */,
 				2479C9301AAD39150057B681 /* TWMessageBarManager */,
 				243140121A7DD6E800FA357E /* assets.bundle */,
 			);
