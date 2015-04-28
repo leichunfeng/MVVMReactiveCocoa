@@ -13,8 +13,6 @@
 #import "MRCHomepageViewModel.h"
 #import "MRCHomepageViewController.h"
 #import "MRCNavigationControllerStack.h"
-#import "MRCWebViewModel.h"
-#import "MRCWebViewController.h"
 #import "MRCNavigationController.h"
 
 @interface MRCAppDelegate ()
@@ -41,11 +39,9 @@
     [self configureAppearance];
     [self configureKeyboardManager];
     [self configureReachability];
+    [self configureUMAnalytics];
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
-    
-    // UMAnalytics
-    [MobClick startWithAppkey:MRC_UM_APP_KEY reportPolicy:BATCH channelId:nil];
     
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
     
@@ -100,6 +96,18 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @strongify(self)
         [self.reachability startNotifier];
+    });
+}
+
+- (void)configureUMAnalytics {
+    [MobClick startWithAppkey:MRC_UM_APP_KEY reportPolicy:BATCH channelId:nil];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *adURL = [MobClick getAdURL];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"adURL: %@", adURL);
+            self.adURL = adURL;
+        });
     });
 }
 

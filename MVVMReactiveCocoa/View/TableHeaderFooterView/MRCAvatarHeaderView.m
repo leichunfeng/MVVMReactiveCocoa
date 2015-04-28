@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 
 @property (strong, nonatomic) UIImage *avatarImage;
-@property (nonatomic) CGPoint lastContentOffsetBlurEffect;
+@property (assign, nonatomic) CGPoint lastContentOffsetBlurEffect;
 
 @end
 

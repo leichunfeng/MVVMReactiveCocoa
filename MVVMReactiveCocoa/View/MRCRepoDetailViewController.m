@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic, readonly) MRCRepoDetailViewModel *viewModel;
 @property (strong, nonatomic) MRCRepoReadmeTableViewCell *readmeTableViewCell;
-@property (nonatomic) BOOL shouldLoadHTMLString;
+@property (assign, nonatomic) BOOL shouldLoadHTMLString;
 
 @end
 

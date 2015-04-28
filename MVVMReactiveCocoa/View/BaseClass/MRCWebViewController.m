@@ -7,8 +7,25 @@
 //
 
 #import "MRCWebViewController.h"
+#import "MRCWebViewModel.h"
+
+@interface MRCWebViewController ()
+
+@property (strong, nonatomic, readonly) MRCWebViewModel *viewModel;
+
+@end
 
 @implementation MRCWebViewController
+
+@dynamic viewModel;
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    if (self.viewModel.request != nil) {
+        [self.webView loadRequest:self.viewModel.request];
+    }
+}
 
 #pragma mark - UIWebViewDelegate
 

@@ -10,7 +10,7 @@
 
 @interface MRCFeedbackViewModel : MRCViewModel
 
-@property (strong, nonatomic) NSString *content;
+@property (copy, nonatomic) NSString *content;
 @property (strong, nonatomic) RACCommand *submitFeedbackCommand;
 
 @end

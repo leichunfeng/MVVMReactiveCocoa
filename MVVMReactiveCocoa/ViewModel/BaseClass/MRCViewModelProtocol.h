@@ -36,14 +36,14 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 
 @optional
 
-@property (nonatomic) MRCTitleViewType titleViewType;
+@property (assign, nonatomic) MRCTitleViewType titleViewType;
 
-@property (strong, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *title;
 
-@property (strong, nonatomic) NSString *subtitle;
+@property (copy, nonatomic) NSString *subtitle;
 
 // The callback block.
-@property (strong, nonatomic) VoidBlock_id callback;
+@property (copy, nonatomic) VoidBlock_id callback;
 
 // A RACSubject object, which representing all errors occurred in view model.
 @property (strong, nonatomic, readonly) RACSubject *errors;

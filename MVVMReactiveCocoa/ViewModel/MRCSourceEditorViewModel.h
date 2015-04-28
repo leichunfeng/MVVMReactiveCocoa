@@ -16,26 +16,26 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 
 @interface MRCSourceEditorViewModel : MRCWebViewModel
 
-@property (nonatomic) MRCSourceEditorViewModelType type;
+@property (assign, nonatomic) MRCSourceEditorViewModelType type;
 
 @property (strong, nonatomic, readonly) OCTRepository    *repository;
 @property (strong, nonatomic, readonly) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (strong, nonatomic) NSString *rawContent;
-@property (strong, nonatomic) NSString *content;
-@property (strong, nonatomic) NSString *readmeHTMLString;
+@property (copy, nonatomic) NSString *rawContent;
+@property (copy, nonatomic) NSString *content;
+@property (copy, nonatomic) NSString *readmeHTMLString;
 
 @property (nonatomic, getter=isLineWrapping) BOOL lineWrapping;
 @property (nonatomic, getter=isEncoded)		 BOOL encoded;
 @property (nonatomic, getter=isMarkdown)	 BOOL markdown;
 
-@property (nonatomic) BOOL showRawMarkdown;
+@property (assign, nonatomic) BOOL showRawMarkdown;
 
 @property (strong, nonatomic) RACCommand *requestBlobCommand;
 @property (strong, nonatomic) RACCommand *requestRenderedMarkdownCommand;
 @property (strong, nonatomic) RACCommand *requestReadmeCommand;
 
-@property (strong, nonatomic) NSString *wrappingActionTitle;
-@property (strong, nonatomic) NSString *markdownActionTitle;
+@property (copy, nonatomic) NSString *wrappingActionTitle;
+@property (copy, nonatomic) NSString *markdownActionTitle;
 
 @end

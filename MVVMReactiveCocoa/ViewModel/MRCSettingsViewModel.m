@@ -25,16 +25,16 @@
         MRCLoginViewModel *loginViewModel = [[MRCLoginViewModel alloc] initWithServices:self.services params:nil];
         [self.services resetRootViewModel:loginViewModel];
         
-        return RACSignal.empty;
+        return [RACSignal empty];
     }];
     
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
-        if (indexPath.section == 1) {
+        if (indexPath.section == 1 && indexPath.row == 0) {
             MRCAboutViewModel *aboutViewModel = [[MRCAboutViewModel alloc] initWithServices:self.services params:nil];
             [self.services pushViewModel:aboutViewModel animated:YES];
         }
-        return RACSignal.empty;
+        return [RACSignal empty];
     }];
 }
 
