@@ -60,11 +60,7 @@
 		2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2424533C1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m */; };
 		2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */; };
 		242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */; };
-		24279DFC1AB45F09001700F1 /* MRCAboutiGitHubViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24279DFB1AB45F09001700F1 /* MRCAboutiGitHubViewModel.m */; };
-		24279E0B1AB45F2B001700F1 /* MRCAboutiGitHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24279E091AB45F2B001700F1 /* MRCAboutiGitHubViewController.m */; };
-		24279E0C1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24279E0A1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib */; };
 		242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FDA1A64B6FA0026ABC6 /* main.m */; };
-		242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */; };
 		242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83561A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m */; };
 		242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83571A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib */; };
@@ -81,7 +77,6 @@
 		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
 		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
 		246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */; };
-		246477D21AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 246477D01AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist */; };
 		2479C93D1AAD39150057B681 /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9331AAD39150057B681 /* icon-error.png */; };
 		2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9341AAD39150057B681 /* icon-error@2x.png */; };
 		2479C93F1AAD39150057B681 /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9351AAD39150057B681 /* icon-info.png */; };
@@ -125,6 +120,8 @@
 		24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458C1A6BF6EC00F23474 /* MRCReposViewModel.m */; };
 		24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */; };
 		24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */; };
+		24E84E831AEFC270003F700C /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E84E821AEFC270003F700C /* MRCWebViewController.xib */; };
+		24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */; };
 		24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120341AA7447A00A22D9A /* MRCSettingsViewController.m */; };
 		24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F120351AA7447A00A22D9A /* MRCSettingsViewController.xib */; };
@@ -405,11 +402,6 @@
 		2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSourceEditorViewController.xib; sourceTree = "<group>"; };
 		242453401A811C3C00FFFCC1 /* MRCSourceEditorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSourceEditorViewModel.h; sourceTree = "<group>"; };
 		242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSourceEditorViewModel.m; sourceTree = "<group>"; };
-		24279DFA1AB45F09001700F1 /* MRCAboutiGitHubViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutiGitHubViewModel.h; sourceTree = "<group>"; };
-		24279DFB1AB45F09001700F1 /* MRCAboutiGitHubViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutiGitHubViewModel.m; sourceTree = "<group>"; };
-		24279E081AB45F2B001700F1 /* MRCAboutiGitHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutiGitHubViewController.h; sourceTree = "<group>"; };
-		24279E091AB45F2B001700F1 /* MRCAboutiGitHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutiGitHubViewController.m; sourceTree = "<group>"; };
-		24279E0A1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutiGitHubViewController.xib; sourceTree = "<group>"; };
 		242D4FD51A64B6FA0026ABC6 /* GitBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242D4FDA1A64B6FA0026ABC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		242D4FE81A64B6FA0026ABC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -440,7 +432,6 @@
 		245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
 		245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
 		246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MVVMReactiveCocoa-Info.plist"; sourceTree = "<group>"; };
-		246477D01AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MVVMReactiveCocoaDev-Info.plist"; sourceTree = "<group>"; };
 		2479C9331AAD39150057B681 /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
 		2479C9341AAD39150057B681 /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
 		2479C9351AAD39150057B681 /* icon-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-info.png"; sourceTree = "<group>"; };
@@ -515,6 +506,7 @@
 		24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCOwnedReposViewModel.m; sourceTree = "<group>"; };
 		24DF45911A6BF97C00F23474 /* MRCStarredReposViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCStarredReposViewModel.h; sourceTree = "<group>"; };
 		24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCStarredReposViewModel.m; sourceTree = "<group>"; };
+		24E84E821AEFC270003F700C /* MRCWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCWebViewController.xib; sourceTree = "<group>"; };
 		24F120251AA7445800A22D9A /* MRCSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewModel.h; sourceTree = "<group>"; };
 		24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSettingsViewModel.m; sourceTree = "<group>"; };
 		24F120331AA7447A00A22D9A /* MRCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewController.h; sourceTree = "<group>"; };
@@ -660,9 +652,6 @@
 				24D899D61AAA9BAC00BC607C /* MRCFeedbackViewController.h */,
 				24D899D71AAA9BAC00BC607C /* MRCFeedbackViewController.m */,
 				24D899D81AAA9BAC00BC607C /* MRCFeedbackViewController.xib */,
-				24279E081AB45F2B001700F1 /* MRCAboutiGitHubViewController.h */,
-				24279E091AB45F2B001700F1 /* MRCAboutiGitHubViewController.m */,
-				24279E0A1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -687,6 +676,7 @@
 				24116E491A8CC62700D25218 /* MRCNavigationController.m */,
 				24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */,
 				24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */,
+				24E84E821AEFC270003F700C /* MRCWebViewController.xib */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -745,8 +735,6 @@
 				24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */,
 				24D899EC1AAAAE9F00BC607C /* MRCFeedbackViewModel.h */,
 				24D899ED1AAAAE9F00BC607C /* MRCFeedbackViewModel.m */,
-				24279DFA1AB45F09001700F1 /* MRCAboutiGitHubViewModel.h */,
-				24279DFB1AB45F09001700F1 /* MRCAboutiGitHubViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -876,7 +864,6 @@
 			isa = PBXGroup;
 			children = (
 				246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */,
-				246477D01AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist */,
 				24DF45681A6BBA5200F23474 /* storehouse.plist */,
 				242D4FDA1A64B6FA0026ABC6 /* main.m */,
 				240D01541A654D9C0033CC86 /* MVVMReactiveCocoa-Prefix.pch */,
@@ -1259,10 +1246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
-				242D4FE91A64B6FA0026ABC6 /* LaunchScreen.xib in Resources */,
 				245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
-				24279E0C1AB45F2B001700F1 /* MRCAboutiGitHubViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
 				246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */,
@@ -1271,10 +1256,12 @@
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
 				243140131A7DD6E800FA357E /* assets.bundle in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
+				24E84E831AEFC270003F700C /* MRCWebViewController.xib in Resources */,
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
 				245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
 				2479C9401AAD39150057B681 /* icon-info@2x.png in Resources */,
+				24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
@@ -1293,7 +1280,6 @@
 				249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
 				240D013F1A654D300033CC86 /* MRCProfileViewController.xib in Resources */,
-				246477D21AC1ADBF006F49F8 /* MVVMReactiveCocoaDev-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,7 +1388,6 @@
 				24116E4A1A8CC62700D25218 /* MRCNavigationController.m in Sources */,
 				240D014C1A654D300033CC86 /* MRCLoginViewModel.m in Sources */,
 				24F1203B1AA7525700A22D9A /* MRCAboutViewController.m in Sources */,
-				24279DFC1AB45F09001700F1 /* MRCAboutiGitHubViewModel.m in Sources */,
 				24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */,
 				240D01471A654D300033CC86 /* MRCViewModelServicesImpl.m in Sources */,
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
@@ -1410,7 +1395,6 @@
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
 				24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */,
-				24279E0B1AB45F2B001700F1 /* MRCAboutiGitHubViewController.m in Sources */,
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
@@ -1632,7 +1616,7 @@
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
+				PROVISIONING_PROFILE = "e72bccb2-9fef-4b7e-b064-f66fadcf4f36";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

@@ -28,6 +28,6 @@
 
 @interface UIViewController (MRCSegmentedControlItem)
 
-@property (strong, nonatomic) NSString *segmentedControlItem;
+@property (copy, nonatomic) NSString *segmentedControlItem;
 
 @end

@@ -8,6 +8,13 @@
 
 #import "MRCViewModel.h"
 
+@interface MRCViewModel ()
+
+@property (strong, nonatomic, readwrite) id<MRCViewModelServices> services;
+@property (strong, nonatomic, readwrite) id params;
+
+@end
+
 @implementation MRCViewModel
 
 @synthesize services = _services;
@@ -34,8 +41,9 @@
 - (instancetype)initWithServices:(id)services params:(id)params {
     self = [super init];
     if (self) {
-        _services = services;
-        _params   = params;
+        self.title    = params[@"title"];
+        self.services = services;
+        self.params   = params;
     }
     return self;
 }

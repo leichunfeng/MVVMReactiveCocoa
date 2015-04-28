@@ -8,6 +8,7 @@
 
 #import "MRCSettingsViewController.h"
 #import "MRCSettingsViewModel.h"
+#import "MRCWebViewModel.h"
 
 @interface MRCSettingsViewController ()
 
@@ -29,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.viewModel.adURL = MRCSharedAppDelegate.adURL;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
@@ -42,14 +44,22 @@
         cell.detailTextLabel.text = SSKeychain.rawLogin;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else if (indexPath.section == 1) {
-        cell.textLabel.text = @"About";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"About";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if (indexPath.row == 1) {
+            if (self.viewModel.adURL.length == 0) cell.hidden = YES;
+            
+            cell.textLabel.text = @"Advertisement";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     } else if (indexPath.section == 2) {
         cell.textLabel.text = @"Log Out";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
     [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
+        cell.hidden = NO;
         cell.detailTextLabel.text = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -64,15 +74,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return section == 1 ? 2 : 1;
 }
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1 && indexPath.row == 1 && self.viewModel.adURL.length == 0) return 0;
+    return 44;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        NSString *adURL = [self.viewModel.adURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:adURL]];
+        MRCWebViewModel *webViewModel = [[MRCWebViewModel alloc] initWithServices:self.viewModel.services
+                                                                           params:@{ @"title": @"爱淘宝",
+                                                                                     @"request": request }];
+        [self.viewModel.services pushViewModel:webViewModel animated:YES];
+    } else if (indexPath.section == 2) {
         NSString *message = @"Logout will not delete any data. You can still log in with this account.";
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                                  message:message
@@ -90,6 +110,8 @@
         
         [self presentViewController:alertController animated:YES completion:NULL];
     }
+    
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 @end

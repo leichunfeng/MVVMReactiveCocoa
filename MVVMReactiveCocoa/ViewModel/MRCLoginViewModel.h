@@ -14,10 +14,10 @@
 @property (strong, nonatomic) NSURL *avatarURL;
 
 // The username entered by the user.
-@property (strong, nonatomic) NSString *username;
+@property (copy, nonatomic) NSString *username;
 
 // The password entered by the user.
-@property (strong, nonatomic) NSString *password;
+@property (copy, nonatomic) NSString *password;
 
 @property (strong, nonatomic) RACSignal *validLoginSignal;
 

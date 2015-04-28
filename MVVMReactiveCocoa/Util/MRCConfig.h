@@ -13,7 +13,7 @@
 /// AppDelegate
 ///------------
 
-#define MRCSharedAppDelegate ((MRCAppDelegate *)UIApplication.sharedApplication.delegate)
+#define MRCSharedAppDelegate ((MRCAppDelegate *)[UIApplication sharedApplication].delegate)
 
 ///------------
 /// Client Info

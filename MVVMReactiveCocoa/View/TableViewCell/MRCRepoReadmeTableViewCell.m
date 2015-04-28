@@ -8,7 +8,7 @@
 
 #import "MRCRepoReadmeTableViewCell.h"
 
-@interface MRCRepoReadmeTableViewCell ()
+@interface MRCRepoReadmeTableViewCell () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *readmeImageView;
 @property (weak, nonatomic) IBOutlet UIView *wapperView;

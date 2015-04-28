@@ -8,7 +8,7 @@
 
 #import "MRCAboutViewModel.h"
 #import "MRCFeedbackViewModel.h"
-#import "MRCAboutiGitHubViewModel.h"
+#import "MRCWebViewModel.h"
 
 #define kAppStoreVersionKey @"appStoreVersion"
 
@@ -25,8 +25,14 @@
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.row == 2) {
-            MRCAboutiGitHubViewModel *aboutiGitHubViewModel = [[MRCAboutiGitHubViewModel alloc] initWithServices:self.services params:nil];
-            [self.services pushViewModel:aboutiGitHubViewModel animated:YES];
+            NSString *title = [NSString stringWithFormat:@"About %@", MRC_APP_NAME];
+            NSString *path = [NSBundle.mainBundle pathForResource:@"about-igithub" ofType:@"html" inDirectory:@"assets.bundle"];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+            
+            MRCWebViewModel *webViewModel = [[MRCWebViewModel alloc] initWithServices:self.services
+                                                                               params:@{ @"title": title,
+                                                                                         @"request": request }];
+            [self.services pushViewModel:webViewModel animated:YES];
         } else if (indexPath.row == 3) {
             MRCFeedbackViewModel *feedbackViewModel = [[MRCFeedbackViewModel alloc] initWithServices:self.services params:nil];
             [self.services pushViewModel:feedbackViewModel animated:YES];

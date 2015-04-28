@@ -10,7 +10,7 @@
 
 @interface MRCSourceEditorViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTRepository    *repository;
+@property (strong, nonatomic, readwrite) OCTRepository *repository;
 @property (strong, nonatomic, readwrite) OCTBlobTreeEntry *blobTreeEntry;
 @property (strong, nonatomic) OCTRef *reference;
 
@@ -21,7 +21,6 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.title = params[@"title"];
         self.type  = [params[@"type"] unsignedIntegerValue];
         self.repository = params[@"repository"];
         self.reference  = params[@"reference"];
