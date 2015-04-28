@@ -1,6 +1,6 @@
 //
 // MBProgressHUD.m
-// Version 0.9
+// Version 0.9.1
 // Created by Matej Bukovinski on 2.4.09.
 //
 
@@ -70,7 +70,6 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 @property (atomic, MB_STRONG) NSTimer *minShowTimer;
 @property (atomic, MB_STRONG) NSDate *showStarted;
 
-
 @end
 
 
@@ -115,6 +114,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 + (MB_INSTANCETYPE)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
 	MBProgressHUD *hud = [[self alloc] initWithView:view];
+	hud.removeFromSuperViewOnHide = YES;
 	[view addSubview:hud];
 	[hud show:animated];
 	return MB_AUTORELEASE(hud);
@@ -253,7 +253,6 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	} 
 	// ... otherwise show the HUD imediately 
 	else {
-		[self setNeedsDisplay];
 		[self showUsingAnimation:useAnimation];
 	}
 }
@@ -287,7 +286,6 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)handleGraceTimer:(NSTimer *)theTimer {
 	// Show the HUD only if the task is still running
 	if (taskInProgress) {
-		[self setNeedsDisplay];
 		[self showUsingAnimation:useAnimation];
 	}
 }
@@ -298,21 +296,17 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 #pragma mark - View Hierrarchy
 
-- (BOOL)shouldPerformOrientationTransform {
-	BOOL isPreiOS8 = NSFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_8_0;
-	// prior to iOS8 code needs to take care of rotation if it is being added to the window
-	return isPreiOS8 && [self.superview isKindOfClass:[UIWindow class]];
-}
-
 - (void)didMoveToSuperview {
-	if ([self shouldPerformOrientationTransform]) {
-		[self setTransformForCurrentOrientation:NO];
-	}
+    [self updateForCurrentOrientationAnimated:NO];
 }
 
 #pragma mark - Internal show & hide operations
 
 - (void)showUsingAnimation:(BOOL)animated {
+    // Cancel any scheduled hideDelayed: calls
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self setNeedsDisplay];
+
 	if (animated && animationType == MBProgressHUDAnimationZoomIn) {
 		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
 	} else if (animated && animationType == MBProgressHUDAnimationZoomOut) {
@@ -733,21 +727,25 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	UIView *superview = self.superview;
 	if (!superview) {
 		return;
-	} else if ([self shouldPerformOrientationTransform]) {
-		[self setTransformForCurrentOrientation:YES];
 	} else {
-		self.frame = self.superview.bounds;
-		[self setNeedsDisplay];
+		[self updateForCurrentOrientationAnimated:YES];
 	}
 }
 
-- (void)setTransformForCurrentOrientation:(BOOL)animated {
-	// Stay in sync with the superview
-	if (self.superview) {
-		self.bounds = self.superview.bounds;
-		[self setNeedsDisplay];
-	}
-	
+- (void)updateForCurrentOrientationAnimated:(BOOL)animated {
+    // Stay in sync with the superview in any case
+    if (self.superview) {
+        self.bounds = self.superview.bounds;
+        [self setNeedsDisplay];
+    }
+
+    // Not needed on iOS 8+, compile out when the deployment target allows,
+    // to avoid sharedApplication problems on extension targets
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 80000
+    // Only needed pre iOS 7 when added to a window
+    BOOL iOS8OrLater = kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0;
+    if (iOS8OrLater || ![self.superview isKindOfClass:[UIWindow class]]) return;
+
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 	CGFloat radians = 0;
 	if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -769,6 +767,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	if (animated) {
 		[UIView commitAnimations];
 	}
+#endif
 }
 
 @end
@@ -815,7 +814,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	
 	if (_annular) {
 		// Draw background
-		BOOL isPreiOS7 = NSFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0;
+		BOOL isPreiOS7 = kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0;
 		CGFloat lineWidth = isPreiOS7 ? 5.f : 2.f;
 		UIBezierPath *processBackgroundPath = [UIBezierPath bezierPath];
 		processBackgroundPath.lineWidth = lineWidth;
@@ -847,7 +846,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		CGFloat radius = (allRect.size.width - 4) / 2;
 		CGFloat startAngle = - ((float)M_PI / 2); // 90 degrees
 		CGFloat endAngle = (self.progress * 2 * (float)M_PI) + startAngle;
-		CGContextSetRGBFillColor(context, 1.0f, 1.0f, 1.0f, 1.0f); // white
+		[_progressTintColor setFill];
 		CGContextMoveToPoint(context, center.x, center.y);
 		CGContextAddArc(context, center.x, center.y, radius, startAngle, endAngle, 0);
 		CGContextClosePath(context);
