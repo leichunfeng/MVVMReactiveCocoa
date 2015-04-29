@@ -519,9 +519,6 @@
 		24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutViewModel.m; sourceTree = "<group>"; };
 		24F120531AA8004400A22D9A /* MRCTableViewCellStyleValue1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTableViewCellStyleValue1.h; sourceTree = "<group>"; };
 		24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewCellStyleValue1.m; sourceTree = "<group>"; };
-		66CF6B14C567890AE756971B /* libPods-MVVMReactiveCocoaDev.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MVVMReactiveCocoaDev.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D65846FF63DF3023B0C5DD7 /* Pods-MVVMReactiveCocoaDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMReactiveCocoaDev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMReactiveCocoaDev/Pods-MVVMReactiveCocoaDev.debug.xcconfig"; sourceTree = "<group>"; };
-		8CBAE9FECAE1F84F3F65984A /* Pods-MVVMReactiveCocoaDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMReactiveCocoaDev.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMReactiveCocoaDev/Pods-MVVMReactiveCocoaDev.release.xcconfig"; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1003,7 +1000,6 @@
 				241545D51A67F3CF007AFD5B /* CoreGraphics.framework */,
 				242D4FFF1A64BD730026ABC6 /* OctoKit.framework */,
 				E408154D3BF129981C1EFFEF /* libPods.a */,
-				66CF6B14C567890AE756971B /* libPods-MVVMReactiveCocoaDev.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1013,8 +1009,6 @@
 			children = (
 				D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */,
 				BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */,
-				6D65846FF63DF3023B0C5DD7 /* Pods-MVVMReactiveCocoaDev.debug.xcconfig */,
-				8CBAE9FECAE1F84F3F65984A /* Pods-MVVMReactiveCocoaDev.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";

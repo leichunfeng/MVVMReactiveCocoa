@@ -64,21 +64,21 @@
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
-            [self.navigationControllers.lastObject pushViewController:viewController animated:tuple.second];
+            [self.navigationControllers.lastObject pushViewController:viewController animated:[tuple.second boolValue]];
         }];
     
     [[(NSObject *)self.services
         rac_signalForSelector:@selector(popViewModelAnimated:)]
         subscribeNext:^(RACTuple *tuple) {
         	@strongify(self)
-        	[self.navigationControllers.lastObject popViewControllerAnimated:tuple.first];
+        	[self.navigationControllers.lastObject popViewControllerAnimated:[tuple.first boolValue]];
         }];
     
     [[(NSObject *)self.services
         rac_signalForSelector:@selector(popToRootViewModelAnimated:)]
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
-            [self.navigationControllers.lastObject popToRootViewControllerAnimated:tuple.first];
+            [self.navigationControllers.lastObject popToRootViewControllerAnimated:[tuple.first boolValue]];
         }];
     
     [[(NSObject *)self.services
@@ -93,7 +93,7 @@
             }
             [self pushNavigationController:(UINavigationController *)viewController];
             
-            [presentingViewController presentViewController:viewController animated:tuple.second completion:tuple.third];
+            [presentingViewController presentViewController:viewController animated:[tuple.second boolValue] completion:tuple.third];
         }];
     
     [[(NSObject *)self.services
@@ -101,7 +101,7 @@
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             [self popNavigationController];
-            [self.navigationControllers.lastObject dismissViewControllerAnimated:tuple.first completion:tuple.second];
+            [self.navigationControllers.lastObject dismissViewControllerAnimated:[tuple.first boolValue] completion:tuple.second];
         }];
     
     [[(NSObject *)self.services

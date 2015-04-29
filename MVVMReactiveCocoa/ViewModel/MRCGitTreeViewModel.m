@@ -81,7 +81,7 @@
                 if (treeEntry.type == OCTTreeEntryTypeBlob) {
                     OCTBlobTreeEntry *blobTreeEntry = (OCTBlobTreeEntry *)treeEntry;
                     
-                    NSString *size = [NSString stringWithFormat:@"%lu B", blobTreeEntry.size];
+                    NSString *size = [NSString stringWithFormat:@"%lu B", (unsigned long)blobTreeEntry.size];
                     if (blobTreeEntry.size >= 1024 * 1024 * 1024) {
                         size = [NSString stringWithFormat:@"%.2f G", blobTreeEntry.size / (1024 * 1024 * 1024.0)];
                     } else if (blobTreeEntry.size >= 1024 * 1024) {
