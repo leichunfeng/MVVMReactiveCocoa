@@ -1610,7 +1610,7 @@
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "e72bccb2-9fef-4b7e-b064-f66fadcf4f36";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1620,8 +1620,8 @@
 			baseConfigurationReference = BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chunfeng Lei";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chunfeng Lei";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
@@ -1649,7 +1649,7 @@
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
