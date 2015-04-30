@@ -161,19 +161,6 @@
         
         cell.webView.userInteractionEnabled = NO;
         cell.webView.scrollView.scrollEnabled = NO;
-        
-        @weakify(self)
-        [[self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)] subscribeNext:^(RACTuple *tuple) {
-            @strongify(self)
-            RACTupleUnpack(UIWebView *webView) = tuple;
-            
-            CGRect webViewFrame = webView.frame;
-            webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
-            webView.frame = webViewFrame;
-            
-            self.shouldLoadHTMLString = NO;
-            [self.tableView reloadData];
-        }];
         cell.webView.delegate = self;
         
         if (self.shouldLoadHTMLString) {
@@ -211,6 +198,19 @@
     if (section == 1) return 0.01;
     if (section == 3) return 15;
     return 7.5;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    CGRect webViewFrame = webView.frame;
+    webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
+    webView.frame = webViewFrame;
+    
+    self.shouldLoadHTMLString = NO;
+    [self.tableView reloadData];
+}
+
+- (void)dealloc {
+    self.readmeTableViewCell.webView.delegate = nil;
 }
 
 @end
