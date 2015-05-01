@@ -24,7 +24,7 @@ git clone --recursive git@github.com:leichunfeng/MVVMReactiveCocoa.git
 
 Everything will be done for you, and all you need to do is just waiting for it to finished. 
 
-Once finished, you can open the project through double-click the `MVVMReactiveCocoa.xcworkspace` file and build the `MVVMReactiveCocoaDev`(development) or `MVVMReactiveCocoa`(production, which is exclude the `Reveal-iOS-SDK` pod) target according to your needs. Any pull request will be welcome.
+Once finished, you can open the project through double-click the `MVVMReactiveCocoa.xcworkspace` file and build the `MVVMReactiveCocoa` target. Any pull request will be welcome.
 
 ## License
 
