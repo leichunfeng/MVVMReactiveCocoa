@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSInteger hexRGB;
 @property (strong, nonatomic, readonly) NSAttributedString *name;
 @property (strong, nonatomic, readonly) NSString *language;
+@property (assign, nonatomic) CGFloat height;
 
 - (instancetype)initWithRepository:(OCTRepository *)repository;
 

@@ -10,6 +10,7 @@
 #import "MRCOwnedReposViewModel.h"
 #import "MRCReposTableViewCell.h"
 #import "MRCNetworkHeaderView.h"
+#import "MRCReposItemViewModel.h"
 
 @interface MRCOwnedReposViewController ()
 
@@ -25,8 +26,6 @@
     [super viewDidLoad];    
     
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 78;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];
     
@@ -57,7 +56,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCReposTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCReposTableViewCell"];
-    cell.descriptionLabel.numberOfLines = 3;
     [cell bindViewModel:self.viewModel.dataSource[indexPath.section][indexPath.row]];
     return cell;
 }
@@ -70,6 +68,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
 }
 
 @end
