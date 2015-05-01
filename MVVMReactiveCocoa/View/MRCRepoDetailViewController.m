@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic, readonly) MRCRepoDetailViewModel *viewModel;
 @property (strong, nonatomic) MRCRepoReadmeTableViewCell *readmeTableViewCell;
-@property (assign, nonatomic) BOOL shouldLoadHTMLString;
 
 @end
 
@@ -68,6 +67,14 @@
     self.toolbar.items = @[ barButtonItem ];
 }
 
+- (MRCRepoReadmeTableViewCell *)readmeTableViewCell {
+    if (_readmeTableViewCell == nil) {
+        _readmeTableViewCell = [[UINib nibWithNibName:@"MRCRepoReadmeTableViewCell" bundle:nil] instantiateWithOwner:nil options:nil].firstObject;
+        _readmeTableViewCell.webView.hidden = YES;
+    }
+    return _readmeTableViewCell;
+}
+
 - (void)bindViewModel {
     [super bindViewModel];
     
@@ -81,15 +88,14 @@
         }
     }];
     
-    [[[RACObserve(self.viewModel, readmeHTMLString)
-        filter:^BOOL(NSString *readmeHTMLString) {
-            return readmeHTMLString != nil;
+    [[[RACObserve(self.viewModel, summaryReadmeHTMLString)
+        filter:^BOOL(NSString *summaryReadmeHTMLString) {
+            return summaryReadmeHTMLString != nil;
         }]
         distinctUntilChanged]
-        subscribeNext:^(id x) {
+        subscribeNext:^(NSString *summaryReadmeHTMLString) {
             @strongify(self)
-            self.shouldLoadHTMLString = YES;
-            [self.tableView reloadData];
+            [self.readmeTableViewCell.webView loadHTMLString:summaryReadmeHTMLString baseURL:nil];
         }];
 }
 
@@ -147,25 +153,14 @@
 
         return cell;
     } else if (indexPath.section == 3) {
-        MRCRepoReadmeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoReadmeTableViewCell" forIndexPath:indexPath];
-        
-        self.readmeTableViewCell = cell;
+        MRCRepoReadmeTableViewCell *cell = self.readmeTableViewCell;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.readmeButton.rac_command = self.viewModel.readmeCommand;
         
-        [cell.activityIndicatorView startAnimating];
-        [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
-            cell.activityIndicatorView.hidden = !executing.boolValue;
-        }];
-        
         cell.webView.userInteractionEnabled = NO;
         cell.webView.scrollView.scrollEnabled = NO;
         cell.webView.delegate = self;
-        
-        if (self.shouldLoadHTMLString) {
-            [self.readmeTableViewCell.webView loadHTMLString:self.viewModel.summaryReadmeHTMLString baseURL:nil];
-        }
         
         return cell;
     }
@@ -183,7 +178,7 @@
         case 2:
             return 77;
         case 3:
-            return self.readmeTableViewCell == nil ? 101 : 40 + CGRectGetHeight(self.readmeTableViewCell.webView.frame) + 40;
+            return 40 + CGRectGetHeight(self.readmeTableViewCell.webView.frame) + 40;
         default:
             return 44;
     }
@@ -200,17 +195,29 @@
     return 7.5;
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    self.readmeTableViewCell.activityIndicatorView.hidden = NO;
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    self.readmeTableViewCell.activityIndicatorView.hidden = YES;
+    webView.hidden = NO;
+    
     CGRect webViewFrame = webView.frame;
     webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
     webView.frame = webViewFrame;
     
-    self.shouldLoadHTMLString = NO;
     [self.tableView reloadData];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+   self.readmeTableViewCell.activityIndicatorView.hidden = YES;
 }
 
 - (void)dealloc {
     self.readmeTableViewCell.webView.delegate = nil;
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
 }
 
 @end

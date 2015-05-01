@@ -14,9 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *wapperView;
 @property (weak, nonatomic) IBOutlet UIView *readmeWapperView;
 
-@property (strong, nonatomic) UIView *readmeWapperViewBottomBorder;
-@property (strong, nonatomic) UIView *readmeButtonTopBorder;
-
 @end
 
 @implementation MRCRepoReadmeTableViewCell
@@ -24,6 +21,25 @@
 - (void)awakeFromNib {
     self.readmeImageView.image = [UIImage octicon_imageWithIdentifier:@"Book" size:CGSizeMake(22, 22)];
     self.readmeButton.tintColor = HexRGB(colorI3);
+    [self.activityIndicatorView startAnimating];
+    
+    UIView *readmeWapperViewBottomBorder = [self.readmeWapperView createViewBackedBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self.readmeWapperView addSubview:readmeWapperViewBottomBorder];
+    
+    UIView *readmeButtonTopBorder = [self.readmeButton createViewBackedTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    [self.readmeButton addSubview:readmeButtonTopBorder];
+    
+    [RACObserve(self, frame) subscribeNext:^(id x) {
+        CGRect frame = [x CGRectValue];
+        
+        CGRect borderFrame1 = readmeWapperViewBottomBorder.frame;
+        borderFrame1.size.width = frame.size.width - 30;
+        readmeWapperViewBottomBorder.frame = borderFrame1;
+        
+        CGRect borderFrame2 = readmeButtonTopBorder.frame;
+        borderFrame2.size.width = frame.size.width - 30;
+        readmeButtonTopBorder.frame = borderFrame2;
+    }];
 }
 
 - (void)layoutSubviews {
@@ -33,14 +49,6 @@
     self.wapperView.layer.borderColor  = HexRGB(colorB2).CGColor;
     self.wapperView.layer.borderWidth  = MRC_1PX_WIDTH;
     self.wapperView.layer.cornerRadius = 3;
-    
-    [self.readmeWapperViewBottomBorder removeFromSuperview];
-    self.readmeWapperViewBottomBorder = [self.readmeWapperView createViewBackedBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
-    [self.readmeWapperView addSubview:self.readmeWapperViewBottomBorder];
-    
-    [self.readmeButtonTopBorder removeFromSuperview];
-    self.readmeButtonTopBorder = [self.readmeButton createViewBackedTopBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
-    [self.readmeButton addSubview:self.readmeButtonTopBorder];
 }
 
 @end
