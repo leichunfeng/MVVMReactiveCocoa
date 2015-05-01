@@ -69,7 +69,7 @@
 
 - (MRCRepoReadmeTableViewCell *)readmeTableViewCell {
     if (_readmeTableViewCell == nil) {
-        _readmeTableViewCell = [[UINib nibWithNibName:@"MRCRepoReadmeTableViewCell" bundle:nil] instantiateWithOwner:nil options:nil].firstObject;
+        _readmeTableViewCell = [[NSBundle mainBundle] loadNibNamed:@"MRCRepoReadmeTableViewCell" owner:nil options:nil].firstObject;
         _readmeTableViewCell.webView.hidden = YES;
     }
     return _readmeTableViewCell;
