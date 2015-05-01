@@ -154,6 +154,15 @@
         if (idx < 3) summaryReadmeHTMLString = [summaryReadmeHTMLString stringByAppendingString:element.description];
     }];
     
+    // Not find the `article` element
+    // So we try to search the element that match `id="readme"` instead
+    if ([summaryReadmeHTMLString isEqualToString:MRC_README_CSS_STYLE]) {
+        NSString *CSS = @"div#readme";
+        [document enumerateElementsWithCSS:CSS usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
+            if (idx < 3) summaryReadmeHTMLString = [summaryReadmeHTMLString stringByAppendingString:element.description];
+        }];
+    }
+    
     return summaryReadmeHTMLString;
 }
 
