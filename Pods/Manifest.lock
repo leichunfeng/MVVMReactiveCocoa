@@ -1,6 +1,11 @@
 PODS:
   - CBStoreHouseRefreshControl (1.0)
   - DZNEmptyDataSet (1.5.2)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
   - FormatterKit (1.8.0):
     - FormatterKit/AddressFormatter (= 1.8.0)
     - FormatterKit/ArrayFormatter (= 1.8.0)
@@ -27,6 +32,7 @@ PODS:
   - OcticonsIOS (0.0.2)
   - Ono (1.2.1)
   - Reachability (3.1.1)
+  - Reveal-iOS-SDK (1.5.1)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
@@ -39,12 +45,14 @@ DEPENDENCIES:
   - CBStoreHouseRefreshControl (from `git@github.com:coolbeet/CBStoreHouseRefreshControl.git`,
     commit `0bec93d`)
   - DZNEmptyDataSet (~> 1.5.1)
+  - FMDB
   - FormatterKit (~> 1.8.0)
   - IQKeyboardManager (~> 3.2.0.3)
   - MBProgressHUD (~> 0.9)
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `git@github.com:jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
   - Ono (~> 1.2.0)
+  - Reveal-iOS-SDK (~> 1.5.1)
   - SDWebImage (~> 3.7.1)
   - SSKeychain (~> 1.2.2)
   - SVPullToRefresh (~> 0.4.1)
@@ -70,6 +78,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CBStoreHouseRefreshControl: a814bd725e74ff4c1e8dd96eb02358199b0da04f
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
@@ -77,6 +86,7 @@ SPEC CHECKSUMS:
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 1122212de602280cc7af19d7ab12ee98a3fc0339
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
