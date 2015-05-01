@@ -36,23 +36,25 @@
     self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.frame) / 2;
     self.coverImageView.backgroundColor  = HexRGB(0xEBE9E5);
     self.avatarImageView.backgroundColor = HexRGB(0xEBE9E5);
+    self.avatarImage = [UIImage imageNamed:@"default-avatar"];
 }
 
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {    
 	@weakify(self)
-    [RACObserve(viewModel, avatarURL) subscribeNext:^(NSURL *avatarURL) {
-        [SDWebImageManager.sharedManager downloadImageWithURL:avatarURL
-                                                      options:0
-                                                     progress:NULL
-                                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                    	@strongify(self)
-                                                        if (image && finished) {
-                                                            self.avatarImage = image;
-                                                        } else {
-                                                            self.avatarImage = [UIImage imageNamed:@"default-avatar"];
-                                                        }
-                                                    }];
-    }];
+    [[[RACObserve(viewModel, avatarURL)
+        filter:^BOOL(NSURL *avatarURL) {
+            return avatarURL != nil;
+        }]
+        distinctUntilChanged]
+        subscribeNext:^(NSURL *avatarURL) {
+            [SDWebImageManager.sharedManager downloadImageWithURL:avatarURL
+                                                          options:0
+                                                         progress:NULL
+                                                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                            @strongify(self)
+                                                            if (image && finished) self.avatarImage = image;
+                                                        }];
+        }];
     
     RAC(self.nameLabel, text) = RACObserve(viewModel, name);
     RAC(self.followersLabel, text) = RACObserve(viewModel, followers);
