@@ -14,6 +14,7 @@
 - (void)awakeFromNib {
     self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
     self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
+    self.descriptionLabel.numberOfLines = 3;
 }
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {

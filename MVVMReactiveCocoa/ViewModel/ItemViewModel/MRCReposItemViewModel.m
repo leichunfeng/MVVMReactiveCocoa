@@ -47,22 +47,24 @@
         } else {
             self.name = [[NSAttributedString alloc] initWithString:repository.name];
         }
-        
-//        RAC(self, height) = [[RACObserve(repository, repoDescription) distinctUntilChanged] map:^id(NSString *repoDescription) {
-//            CGFloat height = 0;
-//            if (repoDescription.length > 0) {
-//                NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-//                NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:15.0] };
-//                CGRect rect = [repoDescription boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 38 - 8, 0)
-//                                                            options:options
-//                                                         attributes:attributes
-//                                                            context:nil];
-//                height = MIN(ceil(rect.size.height), 54);
-//            }
-//            return @(8 + 21 + 3 + height + 5 + 14 + 7);
-//        }];
     }
     return self;
+}
+
+- (CGFloat)height {
+    if (_height == 0) {
+        CGFloat height = 0;
+        if (self.repository.repoDescription.length > 0) {
+            NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:15.0] };
+            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 61, 0)
+                                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                                     attributes:attributes
+                                                                        context:nil];
+            height = MIN(ceil(rect.size.height), 54);
+        }
+        _height = 8 + 21 + 3 + height + 5 + 14 + 7;
+    }
+    return _height;
 }
 
 @end
