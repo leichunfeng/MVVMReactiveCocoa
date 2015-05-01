@@ -56,7 +56,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCReposTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCReposTableViewCell"];
-    cell.descriptionLabel.numberOfLines = 3;
     [cell bindViewModel:self.viewModel.dataSource[indexPath.section][indexPath.row]];
     return cell;
 }
@@ -72,23 +71,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    
-    if (viewModel.height == 0) {
-        CGFloat height = 0;
-        if (viewModel.repository.repoDescription.length > 0) {
-            NSStringDrawingOptions options = NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-            NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:15.0] };
-            CGRect rect = [viewModel.repository.repoDescription boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 38 - 8, 0)
-                                                                             options:options
-                                                                          attributes:attributes
-                                                                             context:nil];
-            height = MIN(ceil(rect.size.height), 54);
-        }
-        viewModel.height = 8 + 21 + 3 + height + 5 + 14 + 7;
-    }
-    
-    return viewModel.height;
+    return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
 }
 
 @end
