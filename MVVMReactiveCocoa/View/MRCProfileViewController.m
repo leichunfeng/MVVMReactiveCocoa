@@ -34,10 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableHeaderView = self.tableHeaderView;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     [self.viewModel.fetchUserInfoCommand execute:nil];
 }
 
