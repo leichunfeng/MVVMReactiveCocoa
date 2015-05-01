@@ -23,15 +23,14 @@
     @weakify(self)
     self.fetchUserInfoCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        return [[[[self.services.client
+        return [[[self.services.client
         	fetchUserInfo]
         	deliverOnMainThread]
          	doNext:^(OCTUser *user) {
             	@strongify(self)
             	[self.currentUser mergeValuesForKeysFromModel:user];
              	[self.currentUser save];
-         	}]
-            takeUntil:self.willDisappearSignal];
+         	}];
     }];
     
     id (^mapEmptyValue)(NSString *) = ^id(NSString *value) {
