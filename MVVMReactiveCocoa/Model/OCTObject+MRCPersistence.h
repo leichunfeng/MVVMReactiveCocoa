@@ -11,6 +11,10 @@
 
 @interface OCTObject (MRCPersistence) <MRCPersistenceProtocol>
 
+@property (assign, nonatomic) NSInteger rowId;
+
+- (void)mergeValuesForKeysFromModelExcludeRowId:(MTLModel *)model;
+
 + (RACSignal *)updateLocalObjects:(NSArray *)localObjects withRemoteObjects:(NSArray *)remoteObjects;
 
 @end

@@ -7,10 +7,26 @@
 //
 
 #import "OCTObject+MRCPersistence.h"
+#import <objc/runtime.h>
 
 static void *OCTObjectKey = &OCTObjectKey;
+static void *OCTObjectIDKey = &OCTObjectIDKey;
 
 @implementation OCTObject (MRCPersistence)
+
+- (NSInteger)rowId {
+    return [objc_getAssociatedObject(self, OCTObjectIDKey) integerValue];
+}
+
+- (void)setRowId:(NSInteger)rowId {
+    objc_setAssociatedObject(self, OCTObjectIDKey, @(rowId), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (void)mergeValuesForKeysFromModelExcludeRowId:(MTLModel *)model {
+    NSInteger rowId = self.rowId;
+    [self mergeValuesForKeysFromModel:model];
+    self.rowId = rowId;
+}
 
 - (BOOL)save {
     return YES;

@@ -41,7 +41,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
     if (indexPath.section == 0) {
         cell.textLabel.text = @"My Account";
-        cell.detailTextLabel.text = SSKeychain.rawLogin;
+        cell.detailTextLabel.text = [SSKeychain rawLogin];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {

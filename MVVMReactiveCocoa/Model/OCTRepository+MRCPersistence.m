@@ -14,7 +14,7 @@
     return ![self.ownerLogin isEqualToString:[OCTUser currentUser].login];
 }
 
-- (BOOL)save {
+- (BOOL)saveOrUpdate {
     NSString *persistenceDirectory = self.isStarred ? self.class.persistenceDirectoryOfStarred : self.class.persistenceDirectoryOfOwned;
     NSString *path = [NSString stringWithFormat:@"%@/%@&%@", persistenceDirectory, self.ownerLogin, self.name];
     return [NSKeyedArchiver archiveRootObject:self toFile:path];

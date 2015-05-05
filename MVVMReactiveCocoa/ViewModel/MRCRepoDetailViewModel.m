@@ -134,7 +134,7 @@
         doNext:^(RACTuple *tuple) {
             @strongify(self)
             [self.repository mergeValuesForKeysFromModel:tuple.first];
-            [self.repository save];
+            [self.repository saveOrUpdate];
             
             self.readmeHTMLString = tuple.second;
             self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];

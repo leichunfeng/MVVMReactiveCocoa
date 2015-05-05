@@ -48,9 +48,9 @@
     self.returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
     self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyGo;
     
-    if (SSKeychain.rawLogin != nil) {
-        self.usernameTextField.text = SSKeychain.rawLogin;
-        self.passwordTextField.text = SSKeychain.password;
+    if ([SSKeychain rawLogin] != nil) {
+        self.usernameTextField.text = [SSKeychain rawLogin];
+        self.passwordTextField.text = [SSKeychain password];
     }    
     
     @weakify(self)

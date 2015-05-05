@@ -12,10 +12,7 @@
 
 @required
 
-// Persistence method, save the object to disk.
-//
-// Returns YES or NO.
-- (BOOL)save;
+- (BOOL)saveOrUpdate;
 
 - (void)delete;
 
