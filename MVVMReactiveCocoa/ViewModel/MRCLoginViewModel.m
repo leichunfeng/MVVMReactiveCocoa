@@ -30,7 +30,7 @@
     void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
         @strongify(self)
         self.services.client = authenticatedClient;
-        [authenticatedClient.user save];
+        [authenticatedClient.user saveOrUpdate];
         
         SSKeychain.rawLogin    = authenticatedClient.user.rawLogin;
         SSKeychain.password    = self.password;

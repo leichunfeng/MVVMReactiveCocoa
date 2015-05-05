@@ -28,8 +28,8 @@
         	deliverOnMainThread]
          	doNext:^(OCTUser *user) {
             	@strongify(self)
-            	[self.currentUser mergeValuesForKeysFromModel:user];
-             	[self.currentUser save];
+            	[self.currentUser mergeValuesForKeysFromModelExcludeRowId:user];
+             	[self.currentUser saveOrUpdate];
          	}];
     }];
     

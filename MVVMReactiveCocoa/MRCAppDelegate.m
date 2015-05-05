@@ -40,6 +40,7 @@
     [self configureKeyboardManager];
     [self configureReachability];
     [self configureUMAnalytics];
+    [self configureFMDB];
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
@@ -49,11 +50,13 @@
 }
 
 - (UIViewController *)createInitialViewController {
+//    [SSKeychain deleteAccessToken];
+    
     // The user has logged-in.
-    if (SSKeychain.rawLogin.isExist && SSKeychain.accessToken.isExist) {
-        OCTUser *user = [OCTUser userWithRawLogin:SSKeychain.rawLogin server:OCTServer.dotComServer];
+    if ([SSKeychain rawLogin].isExist && [SSKeychain accessToken].isExist) {
+        OCTUser *user = [OCTUser userWithRawLogin:[SSKeychain rawLogin] server:OCTServer.dotComServer];
 
-        OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:SSKeychain.accessToken];
+        OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:[SSKeychain accessToken]];
         self.services.client = authenticatedClient;
         self.viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
         
@@ -108,6 +111,22 @@
             self.adURL = adURL;
         });
     });
+}
+
+- (void)configureFMDB {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"create table User (rowId integer primary key autoincrement, rawLogin text, login text, name text, bio text, email text, avatar_url text, blog text, company text, location text, collaborators integer, public_repos integer, owned_private_repos integer, public_gists integer, private_gists integer, followers integer, following integer, disk_usage integer);"
+        				 "create table Repository (rowId integer primary key autoincrement, name text, ownerLogin text, repoDescription text, language text);";
+        
+        if (![db executeStatements:sql]) {
+            mrcLogLastError(db);
+        }
+    }
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
