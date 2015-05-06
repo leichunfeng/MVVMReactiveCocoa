@@ -10,65 +10,44 @@
 
 @implementation OCTUser (Persistence)
 
-- (BOOL)save {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
-        NSString *sql = @"insert into User values (NULL, :rawLogin, :login, :name, :bio, :email, :avatar_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);";
-
-        if (![db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]]) {
-            mrcLogLastError(db);
-            return NO;
-        }
-        
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)update {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-    	};
-        
-        NSString *sql = @"update User set rawLogin = ?, login = ?, name = ?, bio = ?, email = ?, avatar_url = ?, blog = ?, company = ?, location = ?, collaborators = ?, public_repos = ?, owned_private_repos = ?, public_gists = ?, private_gists = ?, followers = ?, following = ?, disk_usage = ?";
-        
-        NSDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self];
-        BOOL success = [db executeUpdate:sql, dictionary[@"rawLogin"], dictionary[@"login"], dictionary[@"name"], dictionary[@"bio"], dictionary[@"email"], dictionary[@"avatar_url"], dictionary[@"blog"], dictionary[@"company"], dictionary[@"location"], dictionary[@"collaborators"], dictionary[@"public_repos"], dictionary[@"owned_private_repos"], dictionary[@"public_gists"], dictionary[@"private_gists"], dictionary[@"followers"], dictionary[@"following"], dictionary[@"disk_usage"]];
-        
-        if (!success) {
-            mrcLogLastError(db);
-            return NO;
-        }
-        
-        return YES;
-    }
-    return NO;
-}
-
 - (BOOL)saveOrUpdate {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
     if ([db open]) {
         @onExit {
             [db close];
         };
         
-        FMResultSet *rs = [db executeQuery:@"select * from User where rowId = ? limit 1;", @(self.rowId)];
-        if ([rs next]) {
-            return [self update];
+        FMResultSet *rs = [db executeQuery:@"select * from User where id = ? limit 1;", self.objectID];
+        if (![rs next]) {
+            NSString *sql = @"insert into User values (:id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);";
+            
+            BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+            if (!success) {
+                mrcLogLastError(db);
+                return NO;
+            }
+            
+            return YES;
         } else {
-            return [self save];
+            NSString *sql = @"update User set rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage;";
+            
+            BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+            if (!success) {
+                mrcLogLastError(db);
+                return NO;
+            }
+            
+            return YES;
         }
     }
+    
     return NO;
 }
 
-- (void)delete {}
+- (BOOL)delete {
+	return YES;
+}
 
 + (NSString *)persistenceDirectory {
     NSString *persistenceDirectory = [MRC_DOCUMENT_DIRECTORY stringByAppendingPathComponent:@"Persistence/Users"];

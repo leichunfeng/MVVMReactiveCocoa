@@ -14,6 +14,6 @@
 
 - (BOOL)saveOrUpdate;
 
-- (void)delete;
+- (BOOL)delete;
 
 @end

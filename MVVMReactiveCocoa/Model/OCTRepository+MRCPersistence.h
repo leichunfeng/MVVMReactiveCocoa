@@ -11,6 +11,8 @@
 
 @interface OCTRepository (Persistence) <MRCPersistenceProtocol>
 
+@property (assign, nonatomic) BOOL isStarred;
+
 // Retrieves the repositories of the current `user` from disk.
 //
 // Returns the repositories.
@@ -20,11 +22,6 @@
 //
 // Returns the starred repositories.
 + (RACSignal *)fetchUserStarredRepositories;
-
-// Get method, retrieves the star flag of this repository.
-//
-// Returns the star flag.
-- (BOOL)isStarred;
 
 + (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
 
