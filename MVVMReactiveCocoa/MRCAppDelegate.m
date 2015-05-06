@@ -26,6 +26,8 @@
 @implementation MRCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self initializeFMDB];
+
     self.services = [MRCViewModelServicesImpl new];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
@@ -40,7 +42,6 @@
     [self configureKeyboardManager];
     [self configureReachability];
     [self configureUMAnalytics];
-    [self configureFMDB];
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
@@ -113,16 +114,18 @@
     });
 }
 
-- (void)configureFMDB {
+- (void)initializeFMDB {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     if ([db open]) {
         @onExit {
             [db close];
         };
         
-        NSString *sql = @"create table User (rowId integer primary key autoincrement, rawLogin text, login text, name text, bio text, email text, avatar_url text, blog text, company text, location text, collaborators integer, public_repos integer, owned_private_repos integer, public_gists integer, private_gists integer, followers integer, following integer, disk_usage integer);"
-        				 "create table Repository (rowId integer primary key autoincrement, name text, ownerLogin text, repoDescription text, language text);";
+        NSString *createUser = @"create table User (id integer primary key, rawLogin text, login text, name text, bio text, email text, avatar_url text, blog text, company text, location text, collaborators integer, public_repos integer, owned_private_repos integer, public_gists integer, private_gists integer, followers integer, following integer, disk_usage integer);";
         
+        NSString *createRepository = @"create table Repository (id integer primary key, name text, owner_login text, description text, language text, pushed_at text, created_at text, updated_at text, clone_url text, ssh_url text, git_url text, html_url text, default_branch text, private integer, fork integer, watchers_count integer, forks_count integer, stargazers_count integer, open_issues_count integer, subscribers_count integer, isStarred integer);";
+        
+        NSString *sql = [NSString stringWithFormat:@"%@%@", createUser, createRepository];
         if (![db executeStatements:sql]) {
             mrcLogLastError(db);
         }
