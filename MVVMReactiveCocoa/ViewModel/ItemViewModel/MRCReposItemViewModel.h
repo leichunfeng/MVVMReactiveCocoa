@@ -10,13 +10,14 @@
 
 @interface MRCReposItemViewModel : NSObject
 
-@property (strong, nonatomic, readonly) OCTRepository *repository;
+@property (strong, nonatomic) OCTRepository *repository;
+@property (strong, nonatomic, readonly) NSDictionary *repoDictionary;
 @property (strong, nonatomic, readonly) NSString *identifier;
-@property (nonatomic, readonly) NSInteger hexRGB;
+@property (assign, nonatomic, readonly) NSInteger hexRGB;
 @property (strong, nonatomic, readonly) NSAttributedString *name;
 @property (strong, nonatomic, readonly) NSString *language;
 @property (assign, nonatomic) CGFloat height;
 
-- (instancetype)initWithRepository:(OCTRepository *)repository;
+- (instancetype)initWithRepoDictionary:(NSDictionary *)repoDictionary;
 
 @end

@@ -74,7 +74,9 @@
         
         if (ABS(contentOffset.y - self.lastContentOffsetBlurEffect.y) >= MRCAvatarHeaderViewBlurEffectRadix) {
             self.lastContentOffsetBlurEffect = contentOffset;
-            self.coverImageView.image = [self.avatarImage applyBlurWithRadius:20 * (1 - scale) tintColor:nil saturationDeltaFactor:1 maskImage:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.coverImageView.image = [self.avatarImage applyBlurWithRadius:20 * (1 - scale) tintColor:nil saturationDeltaFactor:1 maskImage:nil];
+            });
         }
         
         self.avatarImageView.alpha = 1 * (1 - scale);
@@ -84,7 +86,9 @@
 
 - (void)setAvatarImage:(UIImage *)avatarImage {
     _avatarImage = avatarImage;
-    self.coverImageView.image  = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.coverImageView.image  = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
+    });
     self.avatarImageView.image = avatarImage;
 }
 
