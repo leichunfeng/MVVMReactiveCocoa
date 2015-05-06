@@ -96,12 +96,10 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             
             FMResultSet *rs = [db executeQuery:sql, @(isStarred)];
             while ([rs next]) {
-                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
+                NSMutableDictionary *repo = rs.resultDictionary.mutableCopy;
                 
-                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"] };
-                [dictionary removeObjectForKey:@"owner_login"];
-                
-                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+                repo[@"owner"] = @{ @"login": repo[@"owner_login"] };
+                [repo removeObjectForKey:@"owner_login"];
                 
                 [repos addObject:repo];
             }

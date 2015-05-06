@@ -40,9 +40,6 @@
         fetchRepositoriesSignal]
     	doNext:^(NSArray *repositories) {
             @strongify(self)
-            repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
-                return [repo1.name caseInsensitiveCompare:repo2.name];
-            }];
             self.sectionIndexTitles = [self sectionIndexTitlesWithRepositories:repositories];
             self.dataSource = [self dataSourceWithRepositories:repositories];
         }];
@@ -59,8 +56,8 @@
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
     NSArray *firstLetters = [repositories.rac_sequence
-    	map:^id(OCTRepository *repository) {
-            return repository.name.firstLetter;
+    	map:^id(NSDictionary *repository) {
+            return [repository[@"name"] firstLetter];
         }].array;
     
     return [[NSSet setWithArray:firstLetters].rac_sequence.array sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
@@ -69,19 +66,19 @@
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     NSMutableArray *repoOfRepos = NSMutableArray.new;
     
-    NSString *firstLetter = [repositories.firstObject name].firstLetter;
+    NSString *firstLetter = [repositories.firstObject[@"name"] firstLetter];
     NSMutableArray *repos = NSMutableArray.new;
     
-    for (OCTRepository *repository in repositories) {
-        if ([[repository.name firstLetter] isEqualToString:firstLetter]) {
-            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
+    for (NSDictionary *repository in repositories) {
+        if ([[repository[@"name"] firstLetter] isEqualToString:firstLetter]) {
+            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepoDictionary:repository]];
         } else {
             [repoOfRepos addObject:repos];
             
-            firstLetter = repository.name.firstLetter;
+            firstLetter = [repository[@"name"] firstLetter];
             repos = NSMutableArray.new;
             
-            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
+            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepoDictionary:repository]];
         }
     }
     [repoOfRepos addObject:repos];

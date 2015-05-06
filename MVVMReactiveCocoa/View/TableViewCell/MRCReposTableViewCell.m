@@ -12,12 +12,13 @@
 @implementation MRCReposTableViewCell
 
 - (void)awakeFromNib {
-    self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
-    self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
     self.descriptionLabel.numberOfLines = 3;
 }
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
+    self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
+    self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
+    
     self.nameLabel.attributedText = viewModel.name;
     self.descriptionLabel.text    = viewModel.repository.repoDescription;
     self.languageLabel.text       = viewModel.language;
