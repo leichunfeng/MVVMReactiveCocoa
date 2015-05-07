@@ -8,9 +8,9 @@
 
 #import "OCTUser+MRCPersistence.h"
 
-@implementation OCTUser (Persistence)
+@implementation OCTUser (MRCPersistence)
 
-- (BOOL)saveOrUpdate {
+- (BOOL)mrc_saveOrUpdate {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     
     if ([db open]) {
@@ -45,26 +45,15 @@
     return NO;
 }
 
-- (BOOL)delete {
+- (BOOL)mrc_delete {
 	return YES;
 }
 
-+ (NSString *)persistenceDirectory {
-    NSString *persistenceDirectory = [MRC_DOCUMENT_DIRECTORY stringByAppendingPathComponent:@"Persistence/Users"];
-    BOOL isDirectory;
-    if (![NSFileManager.defaultManager fileExistsAtPath:persistenceDirectory isDirectory:&isDirectory] || !isDirectory) {
-        NSError *error = nil;
-        [NSFileManager.defaultManager createDirectoryAtPath:persistenceDirectory withIntermediateDirectories:YES attributes:nil error:&error];
-        if (error) NSLog(@"Error: %@", error);
-    }
-    return persistenceDirectory;
++ (OCTUser *)mrc_currentUser {
+    return [self mrc_fetchUserWithRawLogin:[SSKeychain rawLogin]];
 }
 
-+ (OCTUser *)currentUser {
-    return [self fetchUserWithRawLogin:[SSKeychain rawLogin]];
-}
-
-+ (OCTUser *)fetchUserWithRawLogin:(NSString *)rawLogin {
++ (OCTUser *)mrc_fetchUserWithRawLogin:(NSString *)rawLogin {
     OCTUser *user = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -80,10 +69,6 @@
     }
     
     return user;
-}
-
-+ (OCTUser *)fetchUserWithUniqueName:(NSString *)uniqueName {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self.class persistenceDirectory] stringByAppendingPathComponent:uniqueName]];
 }
 
 @end

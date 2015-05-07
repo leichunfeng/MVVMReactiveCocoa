@@ -16,7 +16,7 @@
     
     RAC(self, avatarURL) = [[RACObserve(self, username)
         map:^id(NSString *username) {
-            return [[OCTUser fetchUserWithRawLogin:username] avatarURL];
+            return [[OCTUser mrc_fetchUserWithRawLogin:username] avatarURL];
         }]
         distinctUntilChanged];
     
@@ -30,7 +30,7 @@
     void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
         @strongify(self)
         self.services.client = authenticatedClient;
-        [authenticatedClient.user saveOrUpdate];
+        [authenticatedClient.user mrc_saveOrUpdate];
         
         SSKeychain.rawLogin    = authenticatedClient.user.rawLogin;
         SSKeychain.password    = self.password;

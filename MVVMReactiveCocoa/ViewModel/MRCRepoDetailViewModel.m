@@ -112,15 +112,15 @@
     [self.services presentViewModel:branchViewModel animated:YES completion:NULL];
 }
 
-- (RACSignal *)fetchLocalDataSignal {
-    @weakify(self)
-    return [[OCTRepository
-    	fetchRepositoryWithName:self.repository.name owner:self.repository.ownerLogin]
-    	doNext:^(OCTRepository *repository) {
-            @strongify(self)
-            [self.repository mergeValuesForKeysFromModel:repository];
-        }];
-}
+//- (RACSignal *)fetchLocalDataSignal {
+//    @weakify(self)
+//    return [[OCTRepository
+//    	fetchRepositoryWithName:self.repository.name owner:self.repository.ownerLogin]
+//    	doNext:^(OCTRepository *repository) {
+//            @strongify(self)
+//            [self.repository mergeValuesForKeysFromModel:repository];
+//        }];
+//}
 
 - (RACSignal *)requestRemoteDataSignal {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
@@ -134,7 +134,7 @@
         doNext:^(RACTuple *tuple) {
             @strongify(self)
             [self.repository mergeValuesForKeysFromModel:tuple.first];
-            [self.repository saveOrUpdate];
+            [self.repository mrc_saveOrUpdate];
             
             self.readmeHTMLString = tuple.second;
             self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
