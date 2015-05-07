@@ -10,22 +10,14 @@
 
 @implementation MRCStarredReposViewModel
 
-- (void)initialize {
-    [super initialize];
-    self.shouldPullToRefresh = YES;
-}
-
-- (RACSignal *)fetchRepositoriesSignal {
-    return [OCTRepository fetchUserStarredRepositories];
+- (NSArray *)fetchLocalRepositories {
+    return [OCTRepository mrc_fetchUserStarredRepositories];
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[[RACSignal
-    	combineLatest:@[ [OCTRepository fetchUserStarredRepositories], [[self.services.client fetchUserStarredRepositories] collect] ]]
-        flattenMap:^RACStream *(RACTuple *tuple) {
-            return [OCTRepository updateLocalObjects:tuple.first withRemoteObjects:tuple.second];
-        }]
-    	takeUntil:self.willDisappearSignal];
+    return [[[self.services client] fetchUserStarredRepositories].collect doNext:^(NSArray *repositories) {
+        [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
+    }];
 }
 
 @end

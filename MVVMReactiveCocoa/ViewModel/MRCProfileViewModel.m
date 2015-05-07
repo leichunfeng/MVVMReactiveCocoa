@@ -17,7 +17,7 @@
     
     self.title = @"Profile";
     
-    self.currentUser = [OCTUser currentUser];
+    self.currentUser = [OCTUser mrc_currentUser];
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.currentUser];
     
     @weakify(self)
@@ -29,7 +29,7 @@
          	doNext:^(OCTUser *user) {
             	@strongify(self)
             	[self.currentUser mergeValuesForKeysFromModel:user];
-             	[self.currentUser saveOrUpdate];
+             	[self.currentUser mrc_saveOrUpdate];
          	}];
     }];
     

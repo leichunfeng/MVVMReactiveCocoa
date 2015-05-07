@@ -9,20 +9,24 @@
 #import <OctoKit/OctoKit.h>
 #import "MRCPersistenceProtocol.h"
 
-@interface OCTRepository (Persistence) <MRCPersistenceProtocol>
+@interface OCTRepository (MRCPersistence) <MRCPersistenceProtocol>
 
 @property (assign, nonatomic) BOOL isStarred;
 
 // Retrieves the repositories of the current `user` from disk.
 //
 // Returns the repositories.
-+ (RACSignal *)fetchUserRepositories;
++ (NSArray *)mrc_fetchUserRepositories;
 
 // Retrieves the starred repositories of the current `user` from disk.
 //
 // Returns the starred repositories.
-+ (RACSignal *)fetchUserStarredRepositories;
++ (NSArray *)mrc_fetchUserStarredRepositories;
 
-+ (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
++ (OCTRepository *)mrc_fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
+
++ (BOOL)mrc_saveOrUpdateUserRepositories:(NSArray *)repositories;
+
++ (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories;
 
 @end

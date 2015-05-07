@@ -12,8 +12,8 @@
 
 @required
 
-- (BOOL)saveOrUpdate;
+- (BOOL)mrc_saveOrUpdate;
 
-- (BOOL)delete;
+- (BOOL)mrc_delete;
 
 @end

@@ -25,8 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-    self.tableView.estimatedRowHeight = 78;
+    self.tableView.contentInset  = UIEdgeInsetsMake(64, 0, 49, 0);
+    self.tableView.contentOffset = CGPointMake(0, -64);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];
     
@@ -59,11 +59,8 @@
     MRCReposTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCReposTableViewCell"];
     
     MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    if (viewModel.repository == nil) {
-        viewModel.repository = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:viewModel.repoDictionary error:nil];
-    }
-    
     [cell bindViewModel:viewModel];
+    
     return cell;
 }
 

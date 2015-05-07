@@ -10,7 +10,6 @@
 
 @interface MRCTableViewModel ()
 
-@property (strong, nonatomic) RACCommand *fetchLocalDataCommand;
 @property (strong, nonatomic, readwrite) RACCommand *requestRemoteDataCommand;
 
 @end
@@ -21,43 +20,27 @@
     [super initialize];
     
     @weakify(self)
-    self.fetchLocalDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self)
-        return [self fetchLocalDataSignal];
-    }];
-    
     self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        return [self requestRemoteDataSignal];
+        return [[self requestRemoteDataSignal] takeUntil:self.willDisappearSignal];
     }];
     
-    [[self.requestRemoteDataCommand.executionSignals
-    	flatten]
-    	subscribeNext:^(id x) {
-            @strongify(self)
-            [self.fetchLocalDataCommand execute:nil];
+    RAC(self, shouldDisplayEmptyDataSet) = [RACSignal
+        combineLatest:@[ self.requestRemoteDataCommand.executing, RACObserve(self, dataSource) ]
+        reduce:^id(NSNumber *executing, NSArray *dataSource) {
+            RACSequence *sequenceOfSequences = [dataSource.rac_sequence map:^id(NSArray *array) {
+                NSParameterAssert([array isKindOfClass:[NSArray class]]);
+                return array.rac_sequence;
+            }];
+            return @(!executing.boolValue && sequenceOfSequences.flatten.array.count == 0);
         }];
-    
-    RAC(self, shouldDisplayEmptyDataSet) = [RACSignal combineLatest:@[ self.requestRemoteDataCommand.executing, RACObserve(self, dataSource) ] reduce:^id(NSNumber *executing, NSArray *dataSource) {
-        RACSequence *sequenceOfSequences = [dataSource.rac_sequence map:^id(NSArray *array) {
-            NSParameterAssert([array isKindOfClass:[NSArray class]]);
-            return array.rac_sequence;
-        }];
-        
-        return @(!executing.boolValue && sequenceOfSequences.flatten.array.count == 0);
-    }];
     
     [self.requestRemoteDataCommand.errors subscribe:self.errors];
-    
-    [self.fetchLocalDataCommand execute:nil];
 }
 
-- (RACSignal *)fetchLocalDataSignal {
-	return RACSignal.empty;
-}
 
 - (RACSignal *)requestRemoteDataSignal {
-    return RACSignal.empty;
+    return [RACSignal empty];
 }
 
 @end

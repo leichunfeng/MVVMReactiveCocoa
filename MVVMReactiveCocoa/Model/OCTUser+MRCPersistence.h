@@ -9,18 +9,18 @@
 #import <OctoKit/OctoKit.h>
 #import "MRCPersistenceProtocol.h"
 
-@interface OCTUser (Persistence) <MRCPersistenceProtocol>
+@interface OCTUser (MRCPersistence) <MRCPersistenceProtocol>
 
 // Retrieves the current `user`.
 //
 // Returns the current `user`.
-+ (OCTUser *)currentUser;
++ (OCTUser *)mrc_currentUser;
 
 // Retrieves the user by the given `rawLogin` property.
 //
 // rawLogin - `rawLogin` property
 //
 // Returns the user.
-+ (OCTUser *)fetchUserWithRawLogin:(NSString *)rawLogin;
++ (OCTUser *)mrc_fetchUserWithRawLogin:(NSString *)rawLogin;
 
 @end

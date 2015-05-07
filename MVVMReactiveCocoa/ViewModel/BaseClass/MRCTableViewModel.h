@@ -23,8 +23,6 @@
 
 @property (strong, nonatomic, readonly) RACCommand *requestRemoteDataCommand;
 
-- (RACSignal *)fetchLocalDataSignal;
-
 - (RACSignal *)requestRemoteDataSignal;
 
 @end
