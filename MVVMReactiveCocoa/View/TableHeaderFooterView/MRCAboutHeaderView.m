@@ -19,7 +19,7 @@
 
 - (void)awakeFromNib {
     self.imageView.image = [UIImage octicon_imageWithIcon:@"GitMerge" backgroundColor:UIColor.clearColor iconColor:HexRGB(colorI2) iconScale:1 andSize:self.imageView.frame.size];
-    self.textLabel.text = [NSString stringWithFormat:@"%@ v%@(%@)", MRC_APP_NAME, MRC_APP_VERSION, MRC_APP_BUILD];
+    self.textLabel.text = [NSString stringWithFormat:@"%@ v%@ (%@)", MRC_APP_NAME, MRC_APP_VERSION, MRC_APP_BUILD];
 }
 
 @end

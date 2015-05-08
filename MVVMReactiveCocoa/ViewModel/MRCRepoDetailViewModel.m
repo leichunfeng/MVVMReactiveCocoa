@@ -112,16 +112,6 @@
     [self.services presentViewModel:branchViewModel animated:YES completion:NULL];
 }
 
-//- (RACSignal *)fetchLocalDataSignal {
-//    @weakify(self)
-//    return [[OCTRepository
-//    	fetchRepositoryWithName:self.repository.name owner:self.repository.ownerLogin]
-//    	doNext:^(OCTRepository *repository) {
-//            @strongify(self)
-//            [self.repository mergeValuesForKeysFromModel:repository];
-//        }];
-//}
-
 - (RACSignal *)requestRemoteDataSignal {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                          owner:self.repository.ownerLogin];

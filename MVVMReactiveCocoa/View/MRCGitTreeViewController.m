@@ -37,15 +37,15 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSDictionary *)dictionary {
     cell.imageView.image = [UIImage octicon_imageWithIcon:dictionary[@"identifier"]
-                                          backgroundColor:UIColor.clearColor
+                                          backgroundColor:[UIColor clearColor]
                                                 iconColor:HexRGB([dictionary[@"hexRGB"] integerValue])
                                                 iconScale:1
                                                   andSize:LEFT_IMAGE_SIZE];
     
     cell.textLabel.text = dictionary[@"text"];
-    cell.textLabel.numberOfLines = 0;
+//    cell.textLabel.numberOfLines = 0;
     
-    UILabel *detailLabel = UILabel.new;
+    UILabel *detailLabel = [UILabel new];
     detailLabel.text = dictionary[@"detailText"];
     detailLabel.textColor = HexRGB(0x8E8E93);
     [detailLabel sizeToFit];

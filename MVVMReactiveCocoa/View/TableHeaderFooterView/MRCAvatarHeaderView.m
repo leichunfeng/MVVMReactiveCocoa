@@ -42,9 +42,7 @@
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {    
 	@weakify(self)
     [[[RACObserve(viewModel, avatarURL)
-        filter:^BOOL(NSURL *avatarURL) {
-            return avatarURL != nil;
-        }]
+        ignore:nil]
         distinctUntilChanged]
         subscribeNext:^(NSURL *avatarURL) {
             [SDWebImageManager.sharedManager downloadImageWithURL:avatarURL
@@ -86,9 +84,7 @@
 
 - (void)setAvatarImage:(UIImage *)avatarImage {
     _avatarImage = avatarImage;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.coverImageView.image  = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
-    });
+    self.coverImageView.image  = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
     self.avatarImageView.image = avatarImage;
 }
 

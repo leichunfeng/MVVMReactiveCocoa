@@ -171,7 +171,6 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:repo].mutableCopy;
             
             dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
-            dictionary[@"isStarred"] = @(![repo.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]);
             
             if (![oldIDs containsObject:repo.objectID]) { // insert
                 sql = [sql stringByAppendingString:[NSString stringWithFormat:@"insert into Repository values (%ld, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld);", [dictionary[@"id"] integerValue], [dictionary[@"name"] escapeSingleQuote], [dictionary[@"owner_login"] escapeSingleQuote], [dictionary[@"description"] escapeSingleQuote], [dictionary[@"language"] escapeSingleQuote], [dictionary[@"pushed_at"] escapeSingleQuote], [dictionary[@"created_at"] escapeSingleQuote], [dictionary[@"updated_at"] escapeSingleQuote], [dictionary[@"clone_url"] escapeSingleQuote], [dictionary[@"ssh_url"] escapeSingleQuote], [dictionary[@"git_url"] escapeSingleQuote], [dictionary[@"html_url"] escapeSingleQuote], [dictionary[@"default_branch"] escapeSingleQuote], [dictionary[@"private"] integerValue], [dictionary[@"fork"] integerValue], [dictionary[@"watchers_count"] integerValue], [dictionary[@"forks_count"] integerValue], [dictionary[@"stargazers_count"] integerValue], [dictionary[@"open_issues_count"] integerValue], [dictionary[@"subscribers_count"] integerValue], [dictionary[@"isStarred"] integerValue]]];
@@ -179,6 +178,8 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
                 sql = [sql stringByAppendingString:[NSString stringWithFormat:@"update Repository set name = '%@', owner_login = '%@', description = '%@', language = '%@', pushed_at = '%@', created_at = '%@', updated_at = '%@', clone_url = '%@', ssh_url = '%@', git_url = '%@', html_url = '%@', default_branch = '%@', private = %ld, fork = %ld, watchers_count = %ld, forks_count = %ld, stargazers_count = %ld, open_issues_count = %ld, subscribers_count = %ld, isStarred = %ld where id = %ld;", [dictionary[@"name"] escapeSingleQuote], [dictionary[@"owner_login"] escapeSingleQuote], [dictionary[@"description"] escapeSingleQuote], [dictionary[@"language"] escapeSingleQuote], [dictionary[@"pushed_at"] escapeSingleQuote], [dictionary[@"created_at"] escapeSingleQuote], [dictionary[@"updated_at"] escapeSingleQuote], [dictionary[@"clone_url"] escapeSingleQuote], [dictionary[@"ssh_url"] escapeSingleQuote], [dictionary[@"git_url"] escapeSingleQuote], [dictionary[@"html_url"] escapeSingleQuote], [dictionary[@"default_branch"] escapeSingleQuote], [dictionary[@"private"] integerValue], [dictionary[@"fork"] integerValue], [dictionary[@"watchers_count"] integerValue], [dictionary[@"forks_count"] integerValue], [dictionary[@"stargazers_count"] integerValue], [dictionary[@"open_issues_count"] integerValue], [dictionary[@"subscribers_count"] integerValue], [dictionary[@"isStarred"] integerValue], [dictionary[@"id"] integerValue]]];
             }
         }
+        
+        sql = [sql stringByReplacingOccurrencesOfString:@"'<null>'" withString:@"NULL"];
         
         BOOL success = [db executeStatements:sql];
         if (!success) {

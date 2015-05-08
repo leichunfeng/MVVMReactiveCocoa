@@ -57,9 +57,12 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[[self.services client] fetchUserRepositories].collect doNext:^(NSArray *repositories) {
-        [OCTRepository mrc_saveOrUpdateUserRepositories:repositories];
-    }];
+    return [[[self.services
+        client]
+        fetchUserRepositories].collect
+        doNext:^(NSArray *repositories) {
+            [OCTRepository mrc_saveOrUpdateUserRepositories:repositories];
+        }];
 }
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {

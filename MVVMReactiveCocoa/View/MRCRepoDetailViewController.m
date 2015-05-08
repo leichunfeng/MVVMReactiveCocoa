@@ -216,8 +216,6 @@
 
 - (void)dealloc {
     self.readmeTableViewCell.webView.delegate = nil;
-    self.tableView.delegate = nil;
-    self.tableView.dataSource = nil;
 }
 
 @end

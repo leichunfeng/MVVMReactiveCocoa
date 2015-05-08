@@ -41,12 +41,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.sectionIndexColor = UIColor.darkGrayColor;
-    self.tableView.sectionIndexBackgroundColor = UIColor.clearColor;
+    self.tableView.sectionIndexColor = [UIColor darkGrayColor];
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     self.tableView.sectionIndexMinimumDisplayRowCount = 20;
     
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"UITableViewCell"];
-    [self.tableView registerClass:MRCTableViewCellStyleValue1.class forCellReuseIdentifier:@"MRCTableViewCellStyleValue1"];    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView registerClass:[MRCTableViewCellStyleValue1 class] forCellReuseIdentifier:@"MRCTableViewCellStyleValue1"];
     
     if (self.viewModel.shouldPullToRefresh) {
         self.refreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView
@@ -62,7 +62,12 @@
                                                      internalAnimationFactor:0.5];
     }
     
-    self.tableView.tableFooterView = UIView.new;
+    self.tableView.tableFooterView = [UIView new];
+}
+
+- (void)dealloc {
+    self.tableView.dataSource = nil;
+    self.tableView.delegate = nil;
 }
 
 - (void)bindViewModel {
