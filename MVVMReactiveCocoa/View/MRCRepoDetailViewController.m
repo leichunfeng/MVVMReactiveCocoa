@@ -89,9 +89,7 @@
     }];
     
     [[[RACObserve(self.viewModel, summaryReadmeHTMLString)
-        filter:^BOOL(NSString *summaryReadmeHTMLString) {
-            return summaryReadmeHTMLString != nil;
-        }]
+        ignore:nil]
         distinctUntilChanged]
         subscribeNext:^(NSString *summaryReadmeHTMLString) {
             @strongify(self)

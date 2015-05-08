@@ -118,16 +118,21 @@
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTMLString:self.repository
                                                                                             reference:self.reference.name];
     @weakify(self)
-    return [[[[RACSignal
+    return [[[RACSignal
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
-        deliverOnMainThread]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
-            [self.repository mergeValuesForKeysFromModel:tuple.first];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.repository mergeValuesForKeysFromModel:tuple.first];
+            });
             [self.repository mrc_saveOrUpdate];
             
             self.readmeHTMLString = tuple.second;
-            self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
+            
+            NSString *summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.summaryReadmeHTMLString = summaryReadmeHTMLString;
+            });
         }]
     	takeUntil:self.willDisappearSignal];
 }

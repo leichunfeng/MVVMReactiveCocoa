@@ -25,10 +25,14 @@
                                                                      ssl:YES];
         [operation addHeaders:@{ @"Accept": @"application/vnd.github.VERSION.html" }];
         [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-            [subscriber sendNext:completedOperation.responseString];
-            [subscriber sendCompleted];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [subscriber sendNext:completedOperation.responseString];
+                [subscriber sendCompleted];
+            });
         } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-            [subscriber sendError:error];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [subscriber sendError:error];
+            });
         }];
         
         [networkEngine enqueueOperation:operation];
