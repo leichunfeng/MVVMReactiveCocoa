@@ -145,13 +145,20 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
 }
 
 + (BOOL)mrc_saveOrUpdateRepositories:(NSArray *)repositories isStarred:(BOOL)isStarred {
+    if (repositories.count == 0) return YES;
+    
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     if ([db open]) {
         @onExit {
             [db close];
         };
         
-        // delete
+        // @"delete from Repository where id not in (36502, 65252, 174922) and isStarred = 1;";
+        NSString *newIDs = [[repositories.rac_sequence map:^id(OCTRepository *repo) {
+            return @(repo.objectID.integerValue);
+        }].array componentsJoinedByString:@","];
+        
+        NSString *sql = [NSString stringWithFormat:@"delete from Repository where id not in (%@) and isStarred = %d;", newIDs, isStarred];
         
         NSMutableArray *oldIDs = nil;
         
@@ -160,8 +167,6 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
-        
-        NSString *sql = @"";
         for (OCTRepository *repo in repositories) {
             NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:repo].mutableCopy;
             
