@@ -25,18 +25,15 @@
 - (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
     self = [super initWithViewModel:viewModel];
     if (self) {
-        
+        self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
+        [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
-    [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
     self.tableView.tableHeaderView = self.tableHeaderView;
-    
     [self.viewModel.fetchUserInfoCommand execute:nil];
 }
 

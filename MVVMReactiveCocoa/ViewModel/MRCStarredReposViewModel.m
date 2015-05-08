@@ -15,9 +15,15 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    return [[[self.services client] fetchUserStarredRepositories].collect doNext:^(NSArray *repositories) {
-        [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
-    }];
+    return [[[self.services
+        client]
+        fetchUserStarredRepositories].collect
+        doNext:^(NSArray *repositories) {
+            for (OCTRepository *repo in repositories) {
+                repo.isStarred = YES;
+            }
+            [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
+        }];
 }
 
 @end
