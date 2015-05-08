@@ -74,12 +74,10 @@
     [super bindViewModel];
     
     @weakify(self)
-    [[RACObserve(self.viewModel, dataSource)
-      	deliverOnMainThread]
-        subscribeNext:^(id x) {
-            @strongify(self)
-            [self.tableView reloadData];
-        }];
+    [RACObserve(self.viewModel, dataSource) subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
     
     [RACObserve(self.viewModel, shouldDisplayEmptyDataSet) subscribeNext:^(id x) {
         @strongify(self)

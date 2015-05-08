@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
+		24041CA41AFD111400B2DE7E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */; };
 		240D01271A654D300033CC86 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D00CA1A654D300033CC86 /* Images.xcassets */; };
 		240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00CE1A654D300033CC86 /* OCTRepository+MRCPersistence.m */; };
 		240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00D01A654D300033CC86 /* OCTUser+MRCPersistence.m */; };
@@ -308,6 +309,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_0_1.sql; sourceTree = "<group>"; };
 		240D00CA1A654D300033CC86 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		240D00CC1A654D300033CC86 /* MRCPersistenceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCPersistenceProtocol.h; sourceTree = "<group>"; };
 		240D00CD1A654D300033CC86 /* OCTRepository+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTRepository+MRCPersistence.h"; sourceTree = "<group>"; };
@@ -549,9 +551,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24041CA21AFD111400B2DE7E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		240D00CB1A654D300033CC86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				24041CA21AFD111400B2DE7E /* Database */,
 				240D00CC1A654D300033CC86 /* MRCPersistenceProtocol.h */,
 				240D00CD1A654D300033CC86 /* OCTRepository+MRCPersistence.h */,
 				240D00CE1A654D300033CC86 /* OCTRepository+MRCPersistence.m */,
@@ -1254,6 +1265,7 @@
 				249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */,
 				245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */,
 				24DF45691A6BBA5200F23474 /* storehouse.plist in Resources */,
+				24041CA41AFD111400B2DE7E /* update_v1_0_1.sql in Resources */,
 				2479C9401AAD39150057B681 /* icon-info@2x.png in Resources */,
 				24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
