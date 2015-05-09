@@ -36,8 +36,13 @@
         SSKeychain.password = self.password;
         SSKeychain.accessToken = authenticatedClient.token;
         
+        [[NSUserDefaults standardUserDefaults] setObject:authenticatedClient.user.objectID forKey:@"userId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
-        [self.services resetRootViewModel:viewModel];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.services resetRootViewModel:viewModel];
+        });
     };
     
     [OCTClient setClientID:MRC_CLIENT_ID clientSecret:MRC_CLIENT_SECRET];
@@ -45,16 +50,14 @@
     self.loginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *oneTimePassword) {
     	@strongify(self)
         OCTUser *user = [OCTUser userWithRawLogin:self.username server:OCTServer.dotComServer];
-        return [[[OCTClient
+        return [[OCTClient
         	signInAsUser:user password:self.password oneTimePassword:oneTimePassword scopes:OCTClientAuthorizationScopesUser | OCTClientAuthorizationScopesRepository note:nil noteURL:nil fingerprint:nil]
-            deliverOnMainThread]
             doNext:doNext];
     }];
 
     self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        return [[[OCTClient
+        return [[OCTClient
         	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser | OCTClientAuthorizationScopesRepository]
-            deliverOnMainThread]
             doNext:doNext];
     }];    
 }

@@ -30,7 +30,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         NSString *sql = nil;
         
-        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? limit 1;", [OCTUser mrc_currentUser].objectID, self.objectID];
+        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID];
         if (![rs next]) { // insert
             sql = @"insert into Repository values (:userId, :id, :name, :owner_login, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count, :isStarred);";
         } else { // update
@@ -39,7 +39,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
         
-        dictionary[@"userId"] = [OCTUser mrc_currentUser].objectID;
+        dictionary[@"userId"] = [OCTUser mrc_currentUserId];
         dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
         
         BOOL success = [db executeUpdate:sql withParameterDictionary:dictionary];
@@ -62,7 +62,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             [db close];
         };
         
-        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ?;", [OCTUser mrc_currentUser].objectID, self.objectID];
+        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ?;", [OCTUser mrc_currentUserId], self.objectID];
         if (!success) {
             mrcLogLastError(db);
             return NO;
@@ -93,7 +93,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         NSString *sql = @"select * from Repository where userId = ? and isStarred = ? order by lower(name);";
         
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUser].objectID, @(isStarred)];
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], @(isStarred)];
         while ([rs next]) {
             if (repos == nil) repos = [NSMutableArray new];
             
@@ -133,11 +133,11 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             return @(repo.objectID.integerValue);
         }].array componentsJoinedByString:@","];
         
-        NSString *sql = [NSString stringWithFormat:@"delete from Repository where userId = %ld and id not in (%@) and isStarred = %d;", [OCTUser mrc_currentUser].objectID.integerValue, newIDs, isStarred];
+        NSString *sql = [NSString stringWithFormat:@"delete from Repository where userId = %ld and id not in (%@) and isStarred = %d;", [OCTUser mrc_currentUserId].integerValue, newIDs, isStarred];
         
         NSMutableArray *oldIDs = nil;
         
-        FMResultSet *rs = [db executeQuery:@"select id from Repository where userId = ? and isStarred = ?;", [OCTUser mrc_currentUser].objectID, @(isStarred)];
+        FMResultSet *rs = [db executeQuery:@"select id from Repository where userId = ? and isStarred = ?;", [OCTUser mrc_currentUserId], @(isStarred)];
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -145,7 +145,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         for (OCTRepository *repo in repositories) {
             NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:repo].mutableCopy;
             
-            dictionary[@"userId"] = [OCTUser mrc_currentUser].objectID;
+            dictionary[@"userId"] = [OCTUser mrc_currentUserId];
             dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
             
             if (![oldIDs containsObject:repo.objectID]) { // insert

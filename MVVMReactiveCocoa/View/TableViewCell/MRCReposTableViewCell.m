@@ -9,6 +9,8 @@
 #import "MRCReposTableViewCell.h"
 #import "MRCReposItemViewModel.h"
 
+static NSMutableArray *_iconImages;
+
 @interface MRCReposTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutConstraint;
@@ -18,6 +20,11 @@
 @implementation MRCReposTableViewCell
 
 - (void)awakeFromNib {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _iconImages = [NSMutableArray new];
+    });
+    
     self.descriptionLabel.numberOfLines = 3;
     self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
     self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
@@ -30,12 +37,26 @@
     self.starCountLabel.text      = @(viewModel.repository.stargazersCount).stringValue;
     self.forkCountLabel.text      = @(viewModel.repository.forksCount).stringValue;
     
-    UIColor *iconColor = viewModel.hexRGB ? HexRGB(viewModel.hexRGB) : UIColor.darkGrayColor;
-    self.iconImageView.image = [UIImage octicon_imageWithIcon:viewModel.identifier
-                                              backgroundColor:UIColor.clearColor
-                                                    iconColor:iconColor
-                                                    iconScale:1
-                                                      andSize:self.iconImageView.frame.size];
+    UIColor *iconColor = viewModel.hexRGB ? HexRGB(viewModel.hexRGB) : [UIColor darkGrayColor];
+    
+    BOOL exists = NO;
+    for (NSDictionary *dic in _iconImages) {
+        if ([viewModel.identifier isEqualToString:dic[@"identifier"]] && [iconColor isEqual:dic[@"iconColor"]]) {
+            exists = YES;
+            self.iconImageView.image = dic[@"iconImage"];
+        }
+    }
+    if (!exists) {
+        UIImage *iconImage = [UIImage octicon_imageWithIcon:viewModel.identifier
+                                            backgroundColor:[UIColor clearColor]
+                                                  iconColor:iconColor
+                                                  iconScale:1
+                                                    andSize:self.iconImageView.frame.size];
+        self.iconImageView.image = iconImage;
+        
+        NSDictionary *dic = @{ @"identifier": viewModel.identifier, @"iconColor": iconColor, @"iconImage": iconImage };
+        [_iconImages addObject:dic];
+    }
     
     if (viewModel.language.length == 0) {
         self.layoutConstraint.constant = 0;

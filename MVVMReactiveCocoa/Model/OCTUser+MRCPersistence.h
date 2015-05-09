@@ -11,6 +11,8 @@
 
 @interface OCTUser (MRCPersistence) <MRCPersistenceProtocol>
 
++ (NSString *)mrc_currentUserId;
+
 // Retrieves the current `user`.
 //
 // Returns the current `user`.
