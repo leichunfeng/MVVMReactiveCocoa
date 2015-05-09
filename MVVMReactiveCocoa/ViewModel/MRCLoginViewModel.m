@@ -32,8 +32,8 @@
         self.services.client = authenticatedClient;
         [authenticatedClient.user mrc_saveOrUpdate];
         
-        SSKeychain.rawLogin    = authenticatedClient.user.rawLogin;
-        SSKeychain.password    = self.password;
+        SSKeychain.rawLogin = authenticatedClient.user.rawLogin;
+        SSKeychain.password = self.password;
         SSKeychain.accessToken = authenticatedClient.token;
         
         MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
