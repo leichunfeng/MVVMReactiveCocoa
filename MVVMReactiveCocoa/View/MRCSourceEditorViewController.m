@@ -51,7 +51,7 @@
                             [self loadSource];
                         }];
                     } else if (self.viewModel.type == MRCSourceEditorViewModelTypeReadme) {
-                        [[self.viewModel.requestReadmeCommand execute:nil] subscribeNext:^(id x) {
+                        [[self.viewModel.requestReadmeMarkdownCommand execute:nil] subscribeNext:^(id x) {
                             @strongify(self)
                             [self loadSource];
                         }];
@@ -78,7 +78,7 @@
     
     [self.bridge registerHandler:@"getInitDataFromObjC" handler:^(id data, WVJBResponseCallback responseCallback) {
         @strongify(self)
-        responseCallback(@{@"name": self.viewModel.title,
+        responseCallback(@{@"name": self.viewModel.title ?: @"",
                            @"rawContent": self.viewModel.rawContent ?: @"",
                            @"content": self.viewModel.content ?: @"",
                            @"lineWrapping": @(self.viewModel.isLineWrapping)});
@@ -86,9 +86,9 @@
     
     [[RACSignal
      	merge:@[
-            self.viewModel.requestReadmeCommand.executing,
+            self.viewModel.requestReadmeMarkdownCommand.executing,
             self.viewModel.requestBlobCommand.executing,
-            self.viewModel.requestRenderedMarkdownCommand.executing
+            self.viewModel.requestReadmeHTMLStringCommand.executing
         ]]
      	subscribeNext:^(NSNumber *executing) {
          	@strongify(self)
@@ -104,40 +104,41 @@
             self.navigationItem.rightBarButtonItem = rightBarButtonItem;
             [self loadSource];
         } else {
-            [[self.viewModel.requestRenderedMarkdownCommand execute:nil] subscribeNext:^(id x) {
-                @strongify(self)
-                self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-                [self loadSource];
-            }];
+            [[self.viewModel.requestReadmeHTMLStringCommand
+                execute:nil]
+                subscribeNext:^(id x) {
+                    @strongify(self)
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+                    });
+                    [self loadSource];
+                }];
         }
     } else {
-        [[[self.viewModel.requestBlobCommand
+        [[self.viewModel.requestBlobCommand
            	execute:nil]
-            deliverOnMainThread]
             subscribeNext:^(id x) {
                 @strongify(self)
-                self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+                });
                 [self loadSource];
             }];
     }
 }
 
 - (void)loadSource {
-    if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
-        [self.webView loadHTMLString:[MRC_README_CSS_STYLE stringByAppendingString:self.viewModel.content] baseURL:nil];
-    } else {
-        [self.webView loadRequest:self.viewModel.request];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
+            [self.webView loadHTMLString:[MRC_README_CSS_STYLE stringByAppendingString:self.viewModel.content] baseURL:nil];
+        } else {
+            [self.webView loadRequest:self.viewModel.request];
+        }
+    });
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
     return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskAllButUpsideDown;
 }
-
-#pragma mark - UIWebViewDelegate
-
-//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-//    return navigationType == UIWebViewNavigationTypeOther;
-//}
 
 @end

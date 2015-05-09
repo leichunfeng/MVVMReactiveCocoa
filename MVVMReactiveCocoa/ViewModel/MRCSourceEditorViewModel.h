@@ -32,8 +32,8 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 @property (assign, nonatomic) BOOL showRawMarkdown;
 
 @property (strong, nonatomic) RACCommand *requestBlobCommand;
-@property (strong, nonatomic) RACCommand *requestRenderedMarkdownCommand;
-@property (strong, nonatomic) RACCommand *requestReadmeCommand;
+@property (strong, nonatomic) RACCommand *requestReadmeHTMLStringCommand;
+@property (strong, nonatomic) RACCommand *requestReadmeMarkdownCommand;
 
 @property (copy, nonatomic) NSString *wrappingActionTitle;
 @property (copy, nonatomic) NSString *markdownActionTitle;
