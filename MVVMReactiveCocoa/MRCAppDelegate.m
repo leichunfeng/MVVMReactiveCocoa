@@ -28,6 +28,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self initializeFMDB];
 
+    AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
+    
     self.services = [MRCViewModelServicesImpl new];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
@@ -42,8 +44,6 @@
     [self configureKeyboardManager];
     [self configureReachability];
     [self configureUMAnalytics];
-    
-    AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
     

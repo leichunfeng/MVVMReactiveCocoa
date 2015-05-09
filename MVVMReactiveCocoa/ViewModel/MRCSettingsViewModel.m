@@ -22,6 +22,9 @@
         @strongify(self)
         [SSKeychain deleteAccessToken];
         
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         MRCLoginViewModel *loginViewModel = [[MRCLoginViewModel alloc] initWithServices:self.services params:nil];
         [self.services resetRootViewModel:loginViewModel];
         
