@@ -29,8 +29,10 @@
             	@strongify(self)
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.currentUser mergeValuesForKeysFromModel:user];
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [self.currentUser mrc_saveOrUpdate];
+                    });
                 });
-             	[self.currentUser mrc_saveOrUpdate];
          	}];
     }];
     
