@@ -23,8 +23,6 @@
 // Returns the starred repositories.
 + (NSArray *)mrc_fetchUserStarredRepositories;
 
-+ (OCTRepository *)mrc_fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
-
 + (BOOL)mrc_saveOrUpdateUserRepositories:(NSArray *)repositories;
 
 + (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories;

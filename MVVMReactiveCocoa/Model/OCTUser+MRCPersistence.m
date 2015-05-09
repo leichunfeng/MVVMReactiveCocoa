@@ -30,7 +30,7 @@
             
             return YES;
         } else {
-            NSString *sql = @"update User set rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage;";
+            NSString *sql = @"update User set rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage where id = :id;";
             
             BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
             if (!success) {
@@ -62,7 +62,7 @@
             [db close];
         };
         
-        FMResultSet *rs = [db executeQuery:@"select * from User where rawLogin = ? limit 1;", rawLogin];
+        FMResultSet *rs = [db executeQuery:@"select * from User where login = ? or email = ? limit 1;", rawLogin, rawLogin];
         if ([rs next]) {
             user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
         }
