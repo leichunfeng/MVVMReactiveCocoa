@@ -95,17 +95,19 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], @(isStarred)];
         while ([rs next]) {
-            if (repos == nil) repos = [NSMutableArray new];
-            
-            NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
-            
-            [dictionary removeObjectForKey:@"userId"];
-            dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"] };
-            [dictionary removeObjectForKey:@"owner_login"];
-            
-            OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
-            
-            [repos addObject:repo];
+            @autoreleasepool {
+                if (repos == nil) repos = [NSMutableArray new];
+                
+                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
+                
+                [dictionary removeObjectForKey:@"userId"];
+                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"] };
+                [dictionary removeObjectForKey:@"owner_login"];
+                
+                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+                
+                [repos addObject:repo];
+            }
         }
     }
     
