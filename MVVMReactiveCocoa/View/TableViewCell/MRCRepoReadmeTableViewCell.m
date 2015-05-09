@@ -23,7 +23,6 @@
     self.readmeButton.tintColor = HexRGB(colorI3);
 
     [self.activityIndicatorView startAnimating];
-    self.activityIndicatorView.hidden = YES;
     
     UIView *readmeWapperViewBottomBorder = [self.readmeWapperView createViewBackedBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
     [self.readmeWapperView addSubview:readmeWapperViewBottomBorder];

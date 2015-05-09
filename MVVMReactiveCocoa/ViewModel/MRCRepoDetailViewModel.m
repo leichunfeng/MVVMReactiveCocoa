@@ -124,14 +124,17 @@
         combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.repository mergeValuesForKeysFromModel:tuple.first];
-            });
-
-            [self.repository mrc_saveOrUpdate];
+            RACTupleUnpack(OCTRepository *repo, NSString *readmeHTMLString) = tuple;
             
-            self.readmeHTMLString = tuple.second;
-			self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.repository mergeValuesForKeysFromModel:repo];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [self.repository mrc_saveOrUpdate];
+                });
+            });
+            
+            self.readmeHTMLString = readmeHTMLString;
+			self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:readmeHTMLString];
         }]
     	takeUntil:self.willDisappearSignal];
 }

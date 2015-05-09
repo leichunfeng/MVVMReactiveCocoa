@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic, readonly) MRCRepoDetailViewModel *viewModel;
 @property (strong, nonatomic) MRCRepoReadmeTableViewCell *readmeTableViewCell;
+@property (strong, nonatomic) RACSignal *webViewExecuting;
 
 @end
 
@@ -70,7 +71,6 @@
 - (MRCRepoReadmeTableViewCell *)readmeTableViewCell {
     if (_readmeTableViewCell == nil) {
         _readmeTableViewCell = [[NSBundle mainBundle] loadNibNamed:@"MRCRepoReadmeTableViewCell" owner:nil options:nil].firstObject;
-        _readmeTableViewCell.webView.hidden = YES;
     }
     return _readmeTableViewCell;
 }
@@ -95,6 +95,42 @@
         subscribeNext:^(NSString *summaryReadmeHTMLString) {
             @strongify(self)
             [self.readmeTableViewCell.webView loadHTMLString:summaryReadmeHTMLString baseURL:nil];
+        }];
+    
+    // UIWebViewDelegate
+    RACSignal *startLoadSignal  = [self rac_signalForSelector:@selector(webViewDidStartLoad:) fromProtocol:@protocol(UIWebViewDelegate)];
+    RACSignal *finishLoadSignal = [self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)];
+    RACSignal *failLoadSignal   = [self rac_signalForSelector:@selector(webView:didFailLoadWithError:) fromProtocol:@protocol(UIWebViewDelegate)];
+   
+    self.readmeTableViewCell.webView.delegate = self;
+    
+    // webView hidden or not
+    RAC(self.readmeTableViewCell.webView, hidden) = [[[finishLoadSignal mapReplace:@NO] distinctUntilChanged] startWith:@YES];
+    
+    // once `webViewDidFinishLoad:` reload table
+    [finishLoadSignal subscribeNext:^(RACTuple *tuple) {
+        @strongify(self)
+        UIWebView *webView = tuple.first;
+        
+        CGRect webViewFrame = webView.frame;
+        webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
+        webView.frame = webViewFrame;
+        
+        [self.tableView reloadData];
+    }];
+    
+    self.webViewExecuting = [[RACSignal
+        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [[startLoadSignal mapReplace:@YES] subscribe:subscriber];
+            [[[RACSignal merge:@[ finishLoadSignal, failLoadSignal ]] mapReplace:@NO] subscribe:subscriber];
+            return nil;
+        }]
+        startWith:@NO];
+    
+    RAC(self.readmeTableViewCell.activityIndicatorView, hidden) = [RACSignal
+        combineLatest:@[ self.viewModel.requestRemoteDataCommand.executing, self.webViewExecuting ]
+        reduce:^id(NSNumber *reqExecuting, NSNumber *webViewExecuting) {
+            return @(!reqExecuting.boolValue && !webViewExecuting.boolValue);
         }];
 }
 
@@ -159,7 +195,6 @@
         
         cell.webView.userInteractionEnabled = NO;
         cell.webView.scrollView.scrollEnabled = NO;
-        cell.webView.delegate = self;
         
         return cell;
     }
@@ -192,25 +227,6 @@
     if (section == 1) return 0.01;
     if (section == 3) return 15;
     return 7.5;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    self.readmeTableViewCell.activityIndicatorView.hidden = NO;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.readmeTableViewCell.activityIndicatorView.hidden = YES;
-    webView.hidden = NO;
-    
-    CGRect webViewFrame = webView.frame;
-    webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
-    webView.frame = webViewFrame;
-    
-    [self.tableView reloadData];
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-   self.readmeTableViewCell.activityIndicatorView.hidden = YES;
 }
 
 - (void)dealloc {
