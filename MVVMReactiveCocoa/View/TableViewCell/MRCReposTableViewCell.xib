@@ -80,11 +80,10 @@
                     <constraint firstAttribute="bottomMargin" secondItem="fwg-3l-gFe" secondAttribute="bottom" constant="0.5" id="3Hm-6b-R1U"/>
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="leading" secondItem="mCv-Me-fja" secondAttribute="trailing" constant="8" id="BUU-2g-frm"/>
                     <constraint firstItem="RSt-0U-npC" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="1" id="C8d-CL-FFz"/>
-                    <constraint firstItem="fwg-3l-gFe" firstAttribute="leading" secondItem="oJP-yh-nTm" secondAttribute="trailing" constant="10.5" id="Gsf-hC-wfd"/>
                     <constraint firstItem="mCv-Me-fja" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="HIl-G4-v5f"/>
                     <constraint firstItem="mCv-Me-fja" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="HnA-1H-DZC"/>
                     <constraint firstAttribute="trailing" secondItem="HyE-cQ-QY9" secondAttribute="trailing" constant="8" id="HrE-GN-Uuy"/>
-                    <constraint firstItem="fwg-3l-gFe" firstAttribute="leading" secondItem="oJP-yh-nTm" secondAttribute="trailing" constant="10.5" id="QX3-CS-6ef"/>
+                    <constraint firstItem="fwg-3l-gFe" firstAttribute="leading" secondItem="oJP-yh-nTm" secondAttribute="trailing" constant="10" id="QX3-CS-6ef"/>
                     <constraint firstItem="HyE-cQ-QY9" firstAttribute="top" secondItem="wmI-y3-vgC" secondAttribute="bottom" constant="3.5" id="YNe-5v-RUB"/>
                     <constraint firstAttribute="bottomMargin" secondItem="7wm-RA-G0d" secondAttribute="bottom" constant="0.5" id="Yxw-sQ-gbT"/>
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="leading" secondItem="HyE-cQ-QY9" secondAttribute="leading" id="eAp-jv-rzV"/>
@@ -92,7 +91,7 @@
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="gym-G3-TVG"/>
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ojd-0a-lbw"/>
                     <constraint firstItem="7wm-RA-G0d" firstAttribute="leading" secondItem="RSt-0U-npC" secondAttribute="trailing" constant="10" id="qoF-p0-rHg"/>
-                    <constraint firstItem="58l-HU-ZyO" firstAttribute="leading" secondItem="7wm-RA-G0d" secondAttribute="trailing" constant="4.5" id="twi-rE-3wn"/>
+                    <constraint firstItem="58l-HU-ZyO" firstAttribute="leading" secondItem="7wm-RA-G0d" secondAttribute="trailing" constant="4" id="twi-rE-3wn"/>
                     <constraint firstItem="RSt-0U-npC" firstAttribute="leading" secondItem="fwg-3l-gFe" secondAttribute="trailing" constant="4" id="wPT-1r-YkD"/>
                 </constraints>
             </tableViewCellContentView>
@@ -102,11 +101,12 @@
                 <outlet property="forkIconImageView" destination="7wm-RA-G0d" id="GFA-Ub-bmm"/>
                 <outlet property="iconImageView" destination="mCv-Me-fja" id="KHQ-mI-AnO"/>
                 <outlet property="languageLabel" destination="oJP-yh-nTm" id="yXn-aE-6Mr"/>
+                <outlet property="layoutConstraint" destination="QX3-CS-6ef" id="4CC-1b-5pX"/>
                 <outlet property="nameLabel" destination="wmI-y3-vgC" id="Kdg-Rm-mCL"/>
                 <outlet property="starCountLabel" destination="RSt-0U-npC" id="xaA-hN-Obl"/>
                 <outlet property="starIconImageView" destination="fwg-3l-gFe" id="7bq-YP-KOI"/>
             </connections>
-            <point key="canvasLocation" x="-40" y="359"/>
+            <point key="canvasLocation" x="-233.5" y="-32"/>
         </tableViewCell>
     </objects>
 </document>

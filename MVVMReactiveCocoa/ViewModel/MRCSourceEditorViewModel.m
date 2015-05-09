@@ -55,7 +55,7 @@
         	takeUntil:self.willDisappearSignal];
     }];
     
-    self.requestReadmeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.requestReadmeMarkdownCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         return [[[self.services.client
             fetchRepositoryReadme:self.repository reference:self.reference.name]
@@ -66,7 +66,7 @@
             takeUntil:self.willDisappearSignal];
     }];
     
-    self.requestRenderedMarkdownCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.requestReadmeHTMLStringCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         return [[[self.services.repositoryService
         	requestRepositoryReadmeHTMLString:self.repository reference:self.reference.name]
@@ -78,7 +78,7 @@
     }];
     
     [[RACSignal
-     	merge:@[ self.requestReadmeCommand.errors, self.requestBlobCommand.errors, self.requestRenderedMarkdownCommand.errors ]]
+     	merge:@[ self.requestReadmeMarkdownCommand.errors, self.requestBlobCommand.errors, self.requestReadmeHTMLStringCommand.errors ]]
      	subscribe:self.errors];
 }
 

@@ -81,7 +81,7 @@
         @strongify(self)
         if (self.references) {
             [self presentSelectBranchOrTagViewModel];
-            return RACSignal.empty;
+            return [RACSignal empty];
         } else {
             return [[[[self.services.client
             	fetchAllReferencesInRepository:self.repository]
@@ -109,7 +109,9 @@
         [self.requestRemoteDataCommand execute:nil];
     };
     
-    [self.services presentViewModel:branchViewModel animated:YES completion:NULL];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.services presentViewModel:branchViewModel animated:YES completion:NULL];
+    });
 }
 
 - (RACSignal *)requestRemoteDataSignal {
@@ -125,14 +127,11 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.repository mergeValuesForKeysFromModel:tuple.first];
             });
+
             [self.repository mrc_saveOrUpdate];
             
             self.readmeHTMLString = tuple.second;
-            
-            NSString *summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.summaryReadmeHTMLString = summaryReadmeHTMLString;
-            });
+			self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:tuple.second];
         }]
     	takeUntil:self.willDisappearSignal];
 }

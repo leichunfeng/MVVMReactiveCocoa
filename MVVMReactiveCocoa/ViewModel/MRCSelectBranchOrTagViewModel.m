@@ -54,7 +54,7 @@
             self.callback(self.dataSource[indexPath.section][indexPath.row][@"reference"]);
         }
         [self.services dismissViewModelAnimated:YES completion:NULL];
-        return RACSignal.empty;
+        return [RACSignal empty];
     }];
 }
 

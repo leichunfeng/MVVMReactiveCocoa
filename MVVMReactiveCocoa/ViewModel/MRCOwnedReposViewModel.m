@@ -45,12 +45,9 @@
 
     [self.requestRemoteDataCommand.executionSignals.flatten subscribeNext:^(NSArray *repositories) {
         @strongify(self)
-        repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+        self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
             return [repo1.name caseInsensitiveCompare:repo2.name];
         }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.repositories = repositories;
-        });
     }];
 }
 

@@ -34,7 +34,7 @@
             self.identifier = @"Repo";
         }
         
-        self.language = repository.language ?: @"Unknown";
+        self.language = repository.language ?: @"";
         
         if (repository.isStarred) {
             NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", repository.ownerLogin, repository.name];

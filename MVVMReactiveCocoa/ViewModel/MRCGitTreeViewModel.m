@@ -45,7 +45,7 @@
         @strongify(self)
         if (!tree) return;
         
-        NSArray *dataSource = @[[[[[self.tree.entries.rac_sequence
+        self.dataSource = @[[[[[self.tree.entries.rac_sequence
             filter:^BOOL(OCTTreeEntry *treeEntry) {
                 return treeEntry.type != OCTTreeEntryTypeCommit;
             }]
@@ -107,10 +107,6 @@
                 
                 return dictionary.copy;
             }].array];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.dataSource = dataSource;
-        });
     }];
     
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
@@ -137,7 +133,7 @@
 }
 
 - (RACSignal *)requestRemoteDataSignal {
-    if (self.path) return RACSignal.empty;
+    if (self.path) return [RACSignal empty];
     
     NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
     

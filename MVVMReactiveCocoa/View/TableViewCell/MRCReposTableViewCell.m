@@ -9,16 +9,21 @@
 #import "MRCReposTableViewCell.h"
 #import "MRCReposItemViewModel.h"
 
+@interface MRCReposTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutConstraint;
+
+@end
+
 @implementation MRCReposTableViewCell
 
 - (void)awakeFromNib {
     self.descriptionLabel.numberOfLines = 3;
+    self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
+    self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
 }
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
-    self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
-    self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
-    
     self.nameLabel.attributedText = viewModel.name;
     self.descriptionLabel.text    = viewModel.repository.repoDescription;
     self.languageLabel.text       = viewModel.language;
@@ -31,6 +36,12 @@
                                                     iconColor:iconColor
                                                     iconScale:1
                                                       andSize:self.iconImageView.frame.size];
+    
+    if (viewModel.language.length == 0) {
+        self.layoutConstraint.constant = 0;
+    } else {
+        self.layoutConstraint.constant = 10;
+    }
 }
 
 @end

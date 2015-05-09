@@ -23,12 +23,13 @@
     @weakify(self)
     self.fetchUserInfoCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        return [[[self.services.client
+        return [[self.services.client
         	fetchUserInfo]
-        	deliverOnMainThread]
          	doNext:^(OCTUser *user) {
             	@strongify(self)
-            	[self.currentUser mergeValuesForKeysFromModel:user];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.currentUser mergeValuesForKeysFromModel:user];
+                });
              	[self.currentUser mrc_saveOrUpdate];
          	}];
     }];
@@ -53,7 +54,7 @@
             MRCSettingsViewModel *settingsViewModel = [[MRCSettingsViewModel alloc] initWithServices:self.services params:nil];
             [self.services pushViewModel:settingsViewModel animated:YES];
         }
-        return RACSignal.empty;
+        return [RACSignal empty];
     }];
     
     [self.fetchUserInfoCommand.errors subscribe:self.errors];

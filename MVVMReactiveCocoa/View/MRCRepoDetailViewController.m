@@ -88,9 +88,10 @@
         }
     }];
     
-    [[[RACObserve(self.viewModel, summaryReadmeHTMLString)
+    [[[[RACObserve(self.viewModel, summaryReadmeHTMLString)
         ignore:nil]
         distinctUntilChanged]
+        deliverOnMainThread]
         subscribeNext:^(NSString *summaryReadmeHTMLString) {
             @strongify(self)
             [self.readmeTableViewCell.webView loadHTMLString:summaryReadmeHTMLString baseURL:nil];
