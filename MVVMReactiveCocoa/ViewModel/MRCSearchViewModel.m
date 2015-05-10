@@ -13,7 +13,7 @@
 - (void)initialize {
     [super initialize];
     
-    self.searchResultsViewModel = [[MRCOwnedReposViewModel alloc] initWithServices:self.services params:nil];
+    self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
 }
 
 @end

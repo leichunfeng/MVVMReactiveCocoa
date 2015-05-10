@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCReposSearchResultsViewController">
+            <connections>
+                <outlet property="tableView" destination="IAf-yj-g2k" id="XtT-MQ-gCH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-yj-g2k">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="rJD-e5-jpa"/>
+                        <outlet property="delegate" destination="-1" id="Wrm-T0-EEe"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="IAf-yj-g2k" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3fN-Nx-BIj"/>
+                <constraint firstItem="IAf-yj-g2k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KT6-Vh-WfU"/>
+                <constraint firstAttribute="trailing" secondItem="IAf-yj-g2k" secondAttribute="trailing" id="gT5-MZ-c3m"/>
+                <constraint firstAttribute="bottom" secondItem="IAf-yj-g2k" secondAttribute="bottom" id="xws-Xw-Tjn"/>
+            </constraints>
+            <point key="canvasLocation" x="311" y="360"/>
+        </view>
+    </objects>
+</document>

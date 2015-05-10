@@ -10,6 +10,8 @@
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel
 
+@property (strong, nonatomic) NSArray *repositories;
+
 - (NSArray *)fetchLocalRepositories;
 
 @end

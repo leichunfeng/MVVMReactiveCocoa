@@ -15,9 +15,9 @@
     
     self.title = @"News";
     
-    [[self.services.client fetchUserEventsNotMatchingEtag:nil] subscribeNext:^(id x) {
-        
-    }];
+//    [[self.services.client fetchUserEventsNotMatchingEtag:nil] subscribeNext:^(id x) {
+//        
+//    }];
 }
 
 @end

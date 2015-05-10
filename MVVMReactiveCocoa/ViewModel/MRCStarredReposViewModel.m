@@ -22,6 +22,9 @@
             for (OCTRepository *repo in repositories) {
                 repo.isStarred = YES;
             }
+            self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                return [repo1.name caseInsensitiveCompare:repo2.name];
+            }];
             [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
         }];
 }
