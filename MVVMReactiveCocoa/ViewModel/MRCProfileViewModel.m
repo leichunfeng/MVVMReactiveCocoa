@@ -60,10 +60,6 @@
     }];
     
     [self.fetchUserInfoCommand.errors subscribe:self.errors];
-    
-    [[[self.services client] searchRepositoriesWithQuery:@"tetris" sort:@"stars" order:@"desc"] subscribeNext:^(id x) {
-        
-    }];
 }
 
 @end

@@ -10,12 +10,6 @@
 #import "MRCReposItemViewModel.h"
 #import "MRCRepoDetailViewModel.h"
 
-@interface MRCOwnedReposViewModel ()
-
-@property (strong, nonatomic) NSArray *repositories;
-
-@end
-
 @implementation MRCOwnedReposViewModel
 
 - (void)initialize {
@@ -42,13 +36,6 @@
     }];
     
     self.repositories = [self fetchLocalRepositories];
-
-    [self.requestRemoteDataCommand.executionSignals.flatten subscribeNext:^(NSArray *repositories) {
-        @strongify(self)
-        self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
-            return [repo1.name caseInsensitiveCompare:repo2.name];
-        }];
-    }];
 }
 
 - (NSArray *)fetchLocalRepositories {
@@ -60,6 +47,9 @@
         client]
         fetchUserRepositories].collect
         doNext:^(NSArray *repositories) {
+            self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                return [repo1.name caseInsensitiveCompare:repo2.name];
+            }];
             [OCTRepository mrc_saveOrUpdateUserRepositories:repositories];
         }];
 }

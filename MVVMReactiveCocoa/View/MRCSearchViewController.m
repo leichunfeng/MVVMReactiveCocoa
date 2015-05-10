@@ -8,14 +8,14 @@
 
 #import "MRCSearchViewController.h"
 #import "MRCSearchViewModel.h"
-#import "MRCOwnedReposViewController.h"
+#import "MRCReposSearchResultsViewController.h"
 
-@interface MRCSearchViewController ()
+@interface MRCSearchViewController () <UISearchControllerDelegate>
 
 @property (strong, nonatomic, readonly) MRCSearchViewModel *viewModel;
 
 @property (strong, nonatomic) UISearchController *searchController;
-@property (strong, nonatomic) MRCOwnedReposViewController *searchResultsController;
+@property (strong, nonatomic) MRCReposSearchResultsViewController *searchResultsController;
 
 @end
 
@@ -26,12 +26,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.searchResultsController = [[MRCOwnedReposViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
+    self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.searchResultsUpdater = self.searchResultsController;
+    self.searchController.searchBar.showsCancelButton = NO;
+    self.searchController.searchBar.delegate = self.searchResultsController;
+    self.searchController.delegate = self;
     
     self.navigationItem.titleView = self.searchController.searchBar;
+}
+
+- (void)willPresentSearchController:(UISearchController *)searchController {
+    
+}
+
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController {
+    
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    
 }
 
 @end

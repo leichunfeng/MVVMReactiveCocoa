@@ -7,10 +7,10 @@
 //
 
 #import "MRCViewModel.h"
-#import "MRCOwnedReposViewModel.h"
+#import "MRCReposSearchResultsViewModel.h"
 
 @interface MRCSearchViewModel : MRCViewModel
 
-@property (strong, nonatomic) MRCOwnedReposViewModel *searchResultsViewModel;
+@property (strong, nonatomic) MRCReposSearchResultsViewModel *searchResultsViewModel;
 
 @end
