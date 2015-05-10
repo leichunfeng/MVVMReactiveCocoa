@@ -9,7 +9,6 @@
 #import "MRCHomepageViewController.h"
 #import "MRCHomepageViewModel.h"
 #import "MRCNewsViewController.h"
-#import "MRCGistsViewController.h"
 #import "MRCProfileViewController.h"
 #import "MRCNewsViewModel.h"
 #import "MRCReposViewModel.h"
@@ -18,6 +17,8 @@
 #import "MRCNavigationControllerStack.h"
 #import "MRCReposViewController.h"
 #import "MRCNavigationController.h"
+#import "MRCSearchViewController.h"
+#import "MRCGistsViewController.h"
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) UINavigationController *newsNavigationController;
 @property (strong, nonatomic) UINavigationController *reposNavigationController;
 @property (strong, nonatomic) UINavigationController *gistsNavigationController;
+@property (strong, nonatomic) UINavigationController *searchNavigationController;
 @property (strong, nonatomic) UINavigationController *profileNavigationController;
 
 @end
@@ -37,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.viewControllers = @[ self.reposNavigationController, self.profileNavigationController ];
+    self.viewControllers = @[ self.reposNavigationController, self.searchNavigationController, self.profileNavigationController ];
     
     [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
@@ -94,12 +96,23 @@
     return _gistsNavigationController;
 }
 
+- (UINavigationController *)searchNavigationController {
+    if (!_searchNavigationController) {
+        MRCSearchViewController *searchViewController = [[MRCSearchViewController alloc] initWithViewModel:self.viewModel.searchViewModel];
+        searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search"
+                                                                       image:[UIImage octicon_imageWithIdentifier:@"Search" size:CGSizeMake(25, 25)]
+                                                                         tag:4];
+        _searchNavigationController = [[MRCNavigationController alloc] initWithRootViewController:searchViewController];
+    }
+    return _searchNavigationController;
+}
+
 - (UINavigationController *)profileNavigationController {
     if (!_profileNavigationController) {
         MRCProfileViewController *profileViewController = [[MRCProfileViewController alloc] initWithViewModel:self.viewModel.profileViewModel];
         profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile"
                                                                          image:[UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(25, 25)]
-                                                                           tag:4];
+                                                                           tag:5];
         _profileNavigationController = [[MRCNavigationController alloc] initWithRootViewController:profileViewController];
     }
     return _profileNavigationController;

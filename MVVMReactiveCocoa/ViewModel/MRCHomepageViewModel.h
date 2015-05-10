@@ -7,11 +7,11 @@
 //
 
 #import "MRCTabBarViewModel.h"
-
-@class MRCNewsViewModel;
-@class MRCReposViewModel;
-@class MRCGistsViewModel;
-@class MRCProfileViewModel;
+#import "MRCNewsViewModel.h"
+#import "MRCReposViewModel.h"
+#import "MRCGistsViewModel.h"
+#import "MRCProfileViewModel.h"
+#import "MRCSearchViewModel.h"
 
 @interface MRCHomepageViewModel : MRCTabBarViewModel
 
@@ -23,6 +23,9 @@
 
 // The view model of `Gists` interface.
 @property (strong, nonatomic) MRCGistsViewModel *gistsViewModel;
+
+// The view model of `Search` interface.
+@property (strong, nonatomic) MRCSearchViewModel *searchViewModel;
 
 // The view model of `Profile` interface.
 @property (strong, nonatomic) MRCProfileViewModel *profileViewModel;
