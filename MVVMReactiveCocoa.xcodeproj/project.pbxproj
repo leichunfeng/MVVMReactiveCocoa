@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 		24041CA41AFD111400B2DE7E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */; };
+		240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */; };
+		240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBE51AFF2420006ABC05 /* MRCSearchViewController.m */; };
+		240BFBE81AFF2420006ABC05 /* MRCSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240BFBE61AFF2420006ABC05 /* MRCSearchViewController.xib */; };
 		240D01271A654D300033CC86 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D00CA1A654D300033CC86 /* Images.xcassets */; };
 		240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00CE1A654D300033CC86 /* OCTRepository+MRCPersistence.m */; };
 		240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00D01A654D300033CC86 /* OCTUser+MRCPersistence.m */; };
@@ -310,6 +313,11 @@
 
 /* Begin PBXFileReference section */
 		24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_0_1.sql; sourceTree = "<group>"; };
+		240BFBD61AFF240B006ABC05 /* MRCSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewModel.h; sourceTree = "<group>"; };
+		240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchViewModel.m; sourceTree = "<group>"; };
+		240BFBE41AFF2420006ABC05 /* MRCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewController.h; sourceTree = "<group>"; };
+		240BFBE51AFF2420006ABC05 /* MRCSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchViewController.m; sourceTree = "<group>"; };
+		240BFBE61AFF2420006ABC05 /* MRCSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSearchViewController.xib; sourceTree = "<group>"; };
 		240D00CA1A654D300033CC86 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		240D00CC1A654D300033CC86 /* MRCPersistenceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCPersistenceProtocol.h; sourceTree = "<group>"; };
 		240D00CD1A654D300033CC86 /* OCTRepository+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTRepository+MRCPersistence.h"; sourceTree = "<group>"; };
@@ -660,6 +668,9 @@
 				24D899D61AAA9BAC00BC607C /* MRCFeedbackViewController.h */,
 				24D899D71AAA9BAC00BC607C /* MRCFeedbackViewController.m */,
 				24D899D81AAA9BAC00BC607C /* MRCFeedbackViewController.xib */,
+				240BFBE41AFF2420006ABC05 /* MRCSearchViewController.h */,
+				240BFBE51AFF2420006ABC05 /* MRCSearchViewController.m */,
+				240BFBE61AFF2420006ABC05 /* MRCSearchViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -743,6 +754,8 @@
 				24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */,
 				24D899EC1AAAAE9F00BC607C /* MRCFeedbackViewModel.h */,
 				24D899ED1AAAAE9F00BC607C /* MRCFeedbackViewModel.m */,
+				240BFBD61AFF240B006ABC05 /* MRCSearchViewModel.h */,
+				240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1251,6 +1264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
+				240BFBE81AFF2420006ABC05 /* MRCSearchViewController.xib in Resources */,
 				245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
@@ -1387,6 +1401,7 @@
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
 				245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */,
+				240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */,
 				24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
 				242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */,
@@ -1404,6 +1419,7 @@
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
+				240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */,
 				2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
