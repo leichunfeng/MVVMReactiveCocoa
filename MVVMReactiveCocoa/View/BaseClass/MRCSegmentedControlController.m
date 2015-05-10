@@ -17,22 +17,25 @@
 
 @implementation MRCSegmentedControlController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)initialize {
+    for (UIViewController *viewController in self.viewControllers) {
+        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [self addChildViewController:viewController];
+    }
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.currentViewController = self.viewControllers.firstObject;
+    [self.view addSubview:self.currentViewController.view];
+
+    NSArray *items = [self.viewControllers.rac_sequence map:^id(UIViewController *viewController) {
+        return viewController.segmentedControlItem;
+    }].array;
     
-    NSArray *items = [self.viewControllers.rac_sequence
-    	map:^id(UIViewController *viewController) {
-            return viewController.segmentedControlItem;
-        }].array;
-    
-    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];    
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
     self.segmentedControl.selectedSegmentIndex = 0;
     
     @weakify(self)
     [[self.segmentedControl
-      	rac_newSelectedSegmentIndexChannelWithNilValue:@0]
+    	rac_newSelectedSegmentIndexChannelWithNilValue:@0]
     	subscribeNext:^(NSNumber *selectedSegmentIndex) {
             @strongify(self)
             UIViewController *toViewController = self.viewControllers[selectedSegmentIndex.integerValue];
@@ -42,28 +45,18 @@
                                        options:0
                                     animations:NULL
                                     completion:^(BOOL finished) {
-                                        @strongify(self)
-                                        self.currentViewController = toViewController;
-                                        if ([self.delegate respondsToSelector:@selector(segmentedControlController:didSelectViewController:)]) {
-                                            [self.delegate segmentedControlController:self didSelectViewController:self.currentViewController];
+                                    	@strongify(self)
+                                    	self.currentViewController = toViewController;
+                                    	if ([self.delegate respondsToSelector:@selector(segmentedControlController:didSelectViewController:)]) {
+                                    		[self.delegate segmentedControlController:self didSelectViewController:self.currentViewController];
                                         }
                                     }];
-        }];
-    
-    self.navigationItem.titleView = self.segmentedControl;
-    
-    for (UIViewController *viewController in self.viewControllers) {
-        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        [self addChildViewController:viewController];
-    }
-    
-    self.currentViewController = self.viewControllers.firstObject;
-    [self.view addSubview:self.currentViewController.view];
+     }];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.currentViewController.view.frame = self.view.bounds;
+- (void)setViewControllers:(NSArray *)viewControllers {
+    _viewControllers = viewControllers;
+    [self initialize];
 }
 
 @end

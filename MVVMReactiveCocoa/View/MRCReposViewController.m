@@ -22,6 +22,8 @@
 @dynamic viewModel;
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     MRCOwnedReposViewController *ownedReposViewController = [[MRCOwnedReposViewController alloc] initWithViewModel:self.viewModel.viewModels[0]];
     ownedReposViewController.segmentedControlItem = @"Owned";
     
@@ -29,8 +31,6 @@
     starredReposViewController.segmentedControlItem = @"Starred";
     
     self.viewControllers = @[ ownedReposViewController, starredReposViewController ];
-
-    [super viewDidLoad];
 }
 
 @end

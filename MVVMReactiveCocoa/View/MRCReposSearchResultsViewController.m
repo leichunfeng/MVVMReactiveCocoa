@@ -23,14 +23,11 @@
     [super viewDidLoad];
 }
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
-}
-
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.viewModel.query = searchText;
+    self.viewModel.dataSource = nil;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

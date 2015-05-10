@@ -24,11 +24,9 @@
 
 @property (strong, nonatomic, readonly) MRCHomepageViewModel *viewModel;
 
-@property (strong, nonatomic) UINavigationController *newsNavigationController;
-@property (strong, nonatomic) UINavigationController *reposNavigationController;
-@property (strong, nonatomic) UINavigationController *gistsNavigationController;
-@property (strong, nonatomic) UINavigationController *searchNavigationController;
-@property (strong, nonatomic) UINavigationController *profileNavigationController;
+@property (strong, nonatomic) MRCReposViewController   *reposViewController;
+@property (strong, nonatomic) MRCSearchViewController  *searchViewController;
+@property (strong, nonatomic) MRCProfileViewController *profileViewController;
 
 @end
 
@@ -39,83 +37,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.viewControllers = @[ self.reposNavigationController, self.searchNavigationController, self.profileNavigationController ];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    [[self rac_signalForSelector:@selector(tabBarController:didSelectViewController:) fromProtocol:@protocol(UITabBarControllerDelegate)]
-    	subscribeNext:^(RACTuple *tuple) {
-            if (tuple.second != MRCSharedAppDelegate.navigationControllerStack.topNavigationController) {
-                [MRCSharedAppDelegate.navigationControllerStack popNavigationController];
-                [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:tuple.second];
+    self.reposViewController = [[MRCReposViewController alloc] initWithViewModel:self.viewModel.reposViewModel];
+    UIImage *reposImage = [UIImage octicon_imageWithIdentifier:@"Repo" size:CGSizeMake(25, 25)];
+    self.reposViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Repositories" image:reposImage tag:1];
+    
+    self.searchViewController = [[MRCSearchViewController alloc] initWithViewModel:self.viewModel.searchViewModel];
+    UIImage *searchImage = [UIImage octicon_imageWithIdentifier:@"Search" size:CGSizeMake(25, 25)];
+    self.searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:searchImage tag:2];
+    
+    UIImage *profileImage = [UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(25, 25)];
+    self.profileViewController = [[MRCProfileViewController alloc] initWithViewModel:self.viewModel.profileViewModel];
+    self.profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:profileImage tag:3];
+    
+    self.viewControllers = @[ self.reposViewController, self.searchViewController, self.profileViewController ];
+    
+    [[[self
+        rac_signalForSelector:@selector(tabBarController:didSelectViewController:)
+        fromProtocol:@protocol(UITabBarControllerDelegate)]
+        startWith:RACTuplePack(self, self.reposViewController)]
+        subscribeNext:^(RACTuple *tuple) {
+            RACTupleUnpack(UITabBarController *tabBarController, UIViewController *viewController) = tuple;
+            if (viewController.tabBarItem.tag == 1) {
+                tabBarController.navigationItem.titleView = ((MRCReposViewController *)viewController).segmentedControl;
+            } else if (viewController.tabBarItem.tag == 2) {
+                tabBarController.navigationItem.titleView = ((MRCSearchViewController *)viewController).searchController.searchBar;
+            } else if (viewController.tabBarItem.tag == 3) {
+                tabBarController.navigationItem.title = [((MRCProfileViewController *)viewController).viewModel title];
+                tabBarController.navigationItem.titleView = nil;
             }
-     	}];
+        }];
     self.delegate = self;
-    
-//    UIImage *image = [UIImage octicon_imageWithIcon:@"GitMerge"
-//                                    backgroundColor:UIColor.whiteColor
-//                                          iconColor:HexRGB(colorI2)
-//                                          iconScale:1
-//                                            andSize:CGSizeMake(1024, 1024)];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:(UINavigationController *)self.selectedViewController];
-}
-
-- (UINavigationController *)newsNavigationController {
-    if (!_newsNavigationController) {
-        MRCNewsViewController *newsViewController = [[MRCNewsViewController alloc] initWithViewModel:self.viewModel.newsViewModel];
-        newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News"
-                                                                      image:[UIImage octicon_imageWithIdentifier:@"Home" size:CGSizeMake(25, 25)]
-                                                                        tag:1];
-        _newsNavigationController = [[MRCNavigationController alloc] initWithRootViewController:newsViewController];
-    }
-    return _newsNavigationController;
-}
-
-- (UINavigationController *)reposNavigationController {
-    if (!_reposNavigationController) {
-        MRCReposViewController *repositoriesViewController = [[MRCReposViewController alloc] initWithViewModel:self.viewModel.reposViewModel];
-        repositoriesViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Repositories"
-                                                                              image:[UIImage octicon_imageWithIdentifier:@"Repo" size:CGSizeMake(25, 25)]
-                                                                                tag:2];
-        _reposNavigationController = [[MRCNavigationController alloc] initWithRootViewController:repositoriesViewController];
-    }
-    return _reposNavigationController;
-}
-
-- (UINavigationController *)gistsNavigationController {
-    if (!_gistsNavigationController) {
-        MRCGistsViewController *gistsViewController = [[MRCGistsViewController alloc] initWithViewModel:self.viewModel.gistsViewModel];
-        gistsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Gists"
-                                                                       image:[UIImage octicon_imageWithIdentifier:@"Gist" size:CGSizeMake(25, 25)]
-                                                                         tag:3];
-        _gistsNavigationController = [[MRCNavigationController alloc] initWithRootViewController:gistsViewController];
-    }
-    return _gistsNavigationController;
-}
-
-- (UINavigationController *)searchNavigationController {
-    if (!_searchNavigationController) {
-        MRCSearchViewController *searchViewController = [[MRCSearchViewController alloc] initWithViewModel:self.viewModel.searchViewModel];
-        searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search"
-                                                                       image:[UIImage octicon_imageWithIdentifier:@"Search" size:CGSizeMake(25, 25)]
-                                                                         tag:4];
-        _searchNavigationController = [[MRCNavigationController alloc] initWithRootViewController:searchViewController];
-    }
-    return _searchNavigationController;
-}
-
-- (UINavigationController *)profileNavigationController {
-    if (!_profileNavigationController) {
-        MRCProfileViewController *profileViewController = [[MRCProfileViewController alloc] initWithViewModel:self.viewModel.profileViewModel];
-        profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile"
-                                                                         image:[UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(25, 25)]
-                                                                           tag:5];
-        _profileNavigationController = [[MRCNavigationController alloc] initWithRootViewController:profileViewController];
-    }
-    return _profileNavigationController;
 }
 
 @end

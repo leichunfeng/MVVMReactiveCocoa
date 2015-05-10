@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     
-    self.tableView.contentInset  = UIEdgeInsetsMake(64, 0, 49, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
     self.tableView.contentOffset = CGPointMake(0, -64);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];
