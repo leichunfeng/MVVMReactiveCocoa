@@ -8,6 +8,6 @@
 
 #import "MRCOwnedReposViewController.h"
 
-@interface MRCReposSearchResultsViewController : MRCOwnedReposViewController <UISearchResultsUpdating, UISearchBarDelegate>
+@interface MRCReposSearchResultsViewController : MRCOwnedReposViewController <UISearchBarDelegate>
 
 @end

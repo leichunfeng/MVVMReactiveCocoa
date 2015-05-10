@@ -10,12 +10,19 @@
 
 @implementation MRCReposSearchResultsViewModel
 
+- (void)initialize {
+    [super initialize];
+    
+    self.shouldPullToRefresh = NO;
+}
+
 - (NSArray *)fetchLocalRepositories {
     return nil;
 }
 
 - (RACSignal *)requestRemoteDataSignal {
     if (self.query.length == 0) return [RACSignal empty];
+    
     return [[[self.services
         client]
         searchRepositoriesWithQuery:self.query sort:nil order:nil]

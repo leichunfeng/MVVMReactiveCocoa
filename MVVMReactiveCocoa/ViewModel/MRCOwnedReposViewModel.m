@@ -29,7 +29,7 @@
         return [RACSignal empty];
     }];
     
-    [[RACObserve(self, repositories) ignore:nil] subscribeNext:^(NSArray *repositories) {
+    [RACObserve(self, repositories) subscribeNext:^(NSArray *repositories) {
         @strongify(self)
         self.sectionIndexTitles = [self sectionIndexTitlesWithRepositories:repositories];
         self.dataSource = [self dataSourceWithRepositories:repositories];
@@ -55,6 +55,8 @@
 }
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
+    if (!repositories) return nil;
+    
     NSArray *firstLetters = [repositories.rac_sequence
     	map:^id(OCTRepository *repository) {
             return repository.name.firstLetter;
@@ -64,6 +66,8 @@
 }
 
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
+    if (!repositories) return nil;
+    
     NSMutableArray *repoOfRepos = NSMutableArray.new;
     
     NSString *firstLetter = [repositories.firstObject name].firstLetter;

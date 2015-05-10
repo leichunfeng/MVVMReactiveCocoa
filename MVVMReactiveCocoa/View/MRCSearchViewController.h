@@ -10,4 +10,6 @@
 
 @interface MRCSearchViewController : MRCViewController
 
+@property (strong, nonatomic, readonly) UISearchController *searchController;
+
 @end

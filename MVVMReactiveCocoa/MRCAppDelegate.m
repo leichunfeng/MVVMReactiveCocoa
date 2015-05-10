@@ -47,6 +47,12 @@
     
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
     
+//    UIImage *image = [UIImage octicon_imageWithIcon:@"GitMerge"
+//                                    backgroundColor:UIColor.whiteColor
+//                                          iconColor:HexRGB(colorI2)
+//                                          iconScale:1
+//                                            andSize:CGSizeMake(1024, 1024)];
+    
     return YES;
 }
 

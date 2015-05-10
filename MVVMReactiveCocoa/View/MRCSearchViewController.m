@@ -10,11 +10,10 @@
 #import "MRCSearchViewModel.h"
 #import "MRCReposSearchResultsViewController.h"
 
-@interface MRCSearchViewController () <UISearchControllerDelegate>
+@interface MRCSearchViewController () <UISearchControllerDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic, readonly) MRCSearchViewModel *viewModel;
-
-@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic, readwrite) UISearchController *searchController;
 @property (strong, nonatomic) MRCReposSearchResultsViewController *searchResultsController;
 
 @end
@@ -30,20 +29,18 @@
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.searchResultsUpdater = self.searchResultsController;
     self.searchController.searchBar.showsCancelButton = NO;
+    self.searchController.searchBar.tintColor = HexRGB(0x24AFFC);
     self.searchController.searchBar.delegate = self.searchResultsController;
     self.searchController.delegate = self;
-    
-    self.navigationItem.titleView = self.searchController.searchBar;
 }
 
 - (void)willPresentSearchController:(UISearchController *)searchController {
-    
+
 }
 
 - (void)didPresentSearchController:(UISearchController *)searchController {
-    
+
 }
 
 - (void)willDismissSearchController:(UISearchController *)searchController {
@@ -52,6 +49,10 @@
 
 - (void)didDismissSearchController:(UISearchController *)searchController {
     
+}
+
+- (void)presentSearchController:(UISearchController *)searchController {
+    [self presentViewController:searchController animated:YES completion:NULL];
 }
 
 @end

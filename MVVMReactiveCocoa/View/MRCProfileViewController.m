@@ -33,7 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
     self.tableView.tableHeaderView = self.tableHeaderView;
+    
     [self.viewModel.fetchUserInfoCommand execute:nil];
 }
 
