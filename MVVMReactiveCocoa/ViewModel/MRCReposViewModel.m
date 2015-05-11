@@ -15,6 +15,8 @@
 - (void)initialize {
     [super initialize];
     
+    self.title = @"Repositories";
+    
     MRCOwnedReposViewModel *ownedReposViewModel = [[MRCOwnedReposViewModel alloc] initWithServices:self.services params:nil];
     MRCStarredReposViewModel *starredReposViewModel = [[MRCStarredReposViewModel alloc] initWithServices:self.services params:nil];
     

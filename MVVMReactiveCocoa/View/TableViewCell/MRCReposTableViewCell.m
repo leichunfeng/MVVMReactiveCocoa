@@ -13,6 +13,15 @@ static NSMutableArray *_iconImages;
 
 @interface MRCReposTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *updateTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *starCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forkCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *starIconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *forkIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutConstraint;
 
 @end
@@ -32,6 +41,7 @@ static NSMutableArray *_iconImages;
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
     self.nameLabel.attributedText = viewModel.name;
+    self.updateTimeLabel.text     = viewModel.updateTime;
     self.descriptionLabel.text    = viewModel.repository.repoDescription;
     self.languageLabel.text       = viewModel.language;
     self.starCountLabel.text      = @(viewModel.repository.stargazersCount).stringValue;

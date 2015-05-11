@@ -59,12 +59,14 @@
         startWith:RACTuplePack(self, self.reposViewController)]
         subscribeNext:^(RACTuple *tuple) {
             RACTupleUnpack(UITabBarController *tabBarController, UIViewController *viewController) = tuple;
+            
+            tabBarController.navigationItem.title = [((MRCViewController *)viewController).viewModel title];
+            
             if (viewController.tabBarItem.tag == 1) {
                 tabBarController.navigationItem.titleView = ((MRCReposViewController *)viewController).segmentedControl;
             } else if (viewController.tabBarItem.tag == 2) {
                 tabBarController.navigationItem.titleView = ((MRCSearchViewController *)viewController).searchController.searchBar;
             } else if (viewController.tabBarItem.tag == 3) {
-                tabBarController.navigationItem.title = [((MRCProfileViewController *)viewController).viewModel title];
                 tabBarController.navigationItem.titleView = nil;
             }
         }];

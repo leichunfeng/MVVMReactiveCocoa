@@ -7,14 +7,15 @@
 //
 
 #import "MRCReposItemViewModel.h"
+#import "TTTTimeIntervalFormatter.h"
 
 @interface MRCReposItemViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
-@property (strong, nonatomic, readwrite) NSString *identifier;
+@property (copy, nonatomic, readwrite) NSString *identifier;
 @property (assign, nonatomic, readwrite) NSInteger hexRGB;
-@property (strong, nonatomic, readwrite) NSAttributedString *name;
-@property (strong, nonatomic, readwrite) NSString *language;
+@property (copy, nonatomic, readwrite) NSString *language;
+@property (copy, nonatomic, readwrite) NSString *updateTime;
 
 @end
 
@@ -34,37 +35,45 @@
             self.identifier = @"Repo";
         }
         
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+        timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        self.updateTime = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.repository.dateUpdated];
+        
         self.language = repository.language ?: @"";
         
-        if (repository.isStarred) {
-            NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", repository.ownerLogin, repository.name];
-            
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:uniqueName];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(colorI3) range:[uniqueName rangeOfString:uniqueName]];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:UIColor.darkGrayColor range:[uniqueName rangeOfString:[repository.ownerLogin stringByAppendingString:@"/"]]];
-            
-            self.name = [attributedString copy];
-        } else {
-            self.name = [[NSAttributedString alloc] initWithString:repository.name];
-        }
-    }
-    return self;
-}
-
-- (CGFloat)height {
-    if (_height == 0) {
         CGFloat height = 0;
         if (self.repository.repoDescription.length > 0) {
             NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:15.0] };
-            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 61, 0)
+            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(self.repoDescriptionWidth, 0)
                                                                         options:NSStringDrawingUsesLineFragmentOrigin
                                                                      attributes:attributes
                                                                         context:nil];
             height = MIN(ceil(rect.size.height), 54);
         }
-        _height = 8 + 21 + 3 + height + 5 + 14 + 7;
+        self.height = 8 + 21 + 3 + height + 5 + 14 + 7;
     }
-    return _height;
+    return self;
+}
+
+- (CGFloat)repoDescriptionWidth {
+    return SCREEN_WIDTH - 61;
+}
+
+- (NSAttributedString *)name {
+    if (!_name) {
+        if (self.repository.isStarred) {
+            NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];
+            
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:uniqueName];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(colorI3) range:[uniqueName rangeOfString:uniqueName]];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:UIColor.darkGrayColor range:[uniqueName rangeOfString:[self.repository.ownerLogin stringByAppendingString:@"/"]]];
+            
+            _name = attributedString;
+        } else {
+            _name = [[NSAttributedString alloc] initWithString:self.repository.name];
+        }
+    }
+    return _name;
 }
 
 @end

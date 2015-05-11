@@ -27,7 +27,7 @@
                             <constraint firstAttribute="height" constant="22" id="qNu-AT-ZWN"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="MVVMReactiveCocoa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmI-y3-vgC">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="751" text="MVVMReactiveCocoa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmI-y3-vgC">
                         <rect key="frame" x="38" y="8" width="329" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.25490196078431371" green="0.51372549019607838" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,6 +73,12 @@
                             <constraint firstAttribute="height" constant="12" id="tII-iS-Ycu"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gz-E0-Wao">
+                        <rect key="frame" x="305" y="55" width="62" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="58l-HU-ZyO" secondAttribute="bottom" constant="-0.5" id="0Ch-dW-9vN"/>
@@ -80,12 +86,14 @@
                     <constraint firstAttribute="bottomMargin" secondItem="fwg-3l-gFe" secondAttribute="bottom" constant="0.5" id="3Hm-6b-R1U"/>
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="leading" secondItem="mCv-Me-fja" secondAttribute="trailing" constant="8" id="BUU-2g-frm"/>
                     <constraint firstItem="RSt-0U-npC" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="1" id="C8d-CL-FFz"/>
+                    <constraint firstItem="9gz-E0-Wao" firstAttribute="centerY" secondItem="58l-HU-ZyO" secondAttribute="centerY" id="ERo-PW-XFu"/>
                     <constraint firstItem="mCv-Me-fja" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="HIl-G4-v5f"/>
                     <constraint firstItem="mCv-Me-fja" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="HnA-1H-DZC"/>
                     <constraint firstAttribute="trailing" secondItem="HyE-cQ-QY9" secondAttribute="trailing" constant="8" id="HrE-GN-Uuy"/>
                     <constraint firstItem="fwg-3l-gFe" firstAttribute="leading" secondItem="oJP-yh-nTm" secondAttribute="trailing" constant="10" id="QX3-CS-6ef"/>
                     <constraint firstItem="HyE-cQ-QY9" firstAttribute="top" secondItem="wmI-y3-vgC" secondAttribute="bottom" constant="3.5" id="YNe-5v-RUB"/>
                     <constraint firstAttribute="bottomMargin" secondItem="7wm-RA-G0d" secondAttribute="bottom" constant="0.5" id="Yxw-sQ-gbT"/>
+                    <constraint firstAttribute="trailing" secondItem="wmI-y3-vgC" secondAttribute="trailing" constant="8" id="agM-fE-8Vd"/>
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="leading" secondItem="HyE-cQ-QY9" secondAttribute="leading" id="eAp-jv-rzV"/>
                     <constraint firstItem="oJP-yh-nTm" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="1" id="gAD-Nz-YrW"/>
                     <constraint firstItem="wmI-y3-vgC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="gym-G3-TVG"/>
@@ -93,7 +101,13 @@
                     <constraint firstItem="7wm-RA-G0d" firstAttribute="leading" secondItem="RSt-0U-npC" secondAttribute="trailing" constant="10" id="qoF-p0-rHg"/>
                     <constraint firstItem="58l-HU-ZyO" firstAttribute="leading" secondItem="7wm-RA-G0d" secondAttribute="trailing" constant="4" id="twi-rE-3wn"/>
                     <constraint firstItem="RSt-0U-npC" firstAttribute="leading" secondItem="fwg-3l-gFe" secondAttribute="trailing" constant="4" id="wPT-1r-YkD"/>
+                    <constraint firstAttribute="trailing" secondItem="9gz-E0-Wao" secondAttribute="trailing" constant="8" id="ytD-K4-yHj"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="gym-G3-TVG"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="HyE-cQ-QY9" id="3BZ-h7-E4N"/>
@@ -105,8 +119,9 @@
                 <outlet property="nameLabel" destination="wmI-y3-vgC" id="Kdg-Rm-mCL"/>
                 <outlet property="starCountLabel" destination="RSt-0U-npC" id="xaA-hN-Obl"/>
                 <outlet property="starIconImageView" destination="fwg-3l-gFe" id="7bq-YP-KOI"/>
+                <outlet property="updateTimeLabel" destination="9gz-E0-Wao" id="Olp-aG-EFB"/>
             </connections>
-            <point key="canvasLocation" x="-233.5" y="-32"/>
+            <point key="canvasLocation" x="-287.5" y="70"/>
         </tableViewCell>
     </objects>
 </document>
