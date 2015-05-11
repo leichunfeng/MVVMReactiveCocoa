@@ -14,7 +14,7 @@
 @property (copy, nonatomic, readonly) NSString *identifier;
 @property (assign, nonatomic, readonly) NSInteger hexRGB;
 @property (strong, nonatomic) NSAttributedString *name;
-@property (copy, nonatomic, readonly) NSString *updateTime;
+@property (copy, nonatomic) NSString *updateTime;
 @property (copy, nonatomic, readonly) NSString *language;
 @property (assign, nonatomic) CGFloat height;
 @property (assign, nonatomic) CGFloat repoDescriptionWidth;
