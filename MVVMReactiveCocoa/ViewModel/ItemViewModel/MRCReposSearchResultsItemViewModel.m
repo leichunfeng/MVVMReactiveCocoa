@@ -11,6 +11,7 @@
 @implementation MRCReposSearchResultsItemViewModel
 
 @synthesize name = _name;
+@synthesize repoDescription = _repoDescription;
 
 - (CGFloat)repoDescriptionWidth {
     return [super repoDescriptionWidth] + 15;
@@ -23,9 +24,41 @@
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:uniqueName];
         [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(colorI3) range:[uniqueName rangeOfString:uniqueName]];
         
+        for (NSDictionary *textMatche in self.repository.textMatches) {
+            if ([textMatche[@"property"] isEqualToString:@"name"]) {
+                for (NSDictionary *matche in textMatche[@"matches"]) {
+                    NSUInteger loc = [[matche[@"indices"] firstObject] unsignedIntegerValue];
+                    NSUInteger len = [[matche[@"indices"] lastObject] unsignedIntegerValue] - loc ;
+                    [attributedString addAttribute:NSBackgroundColorAttributeName value:RGBAlpha(255, 255, 140, 0.5) range:NSMakeRange(loc + self.repository.ownerLogin.length + 1, len)];
+                }
+            }
+        }
+        
         _name = attributedString;
     }
     return _name;
+}
+
+- (NSAttributedString *)repoDescription {
+    if (!_repoDescription) {
+        NSMutableAttributedString *attributedString = nil;
+        
+        if (self.repository.repoDescription) {
+            attributedString = [[NSMutableAttributedString alloc] initWithString:self.repository.repoDescription];
+            for (NSDictionary *textMatche in self.repository.textMatches) {
+                if ([textMatche[@"property"] isEqualToString:@"description"]) {
+                    for (NSDictionary *matche in textMatche[@"matches"]) {
+                        NSUInteger loc = [[matche[@"indices"] firstObject] unsignedIntegerValue];
+                        NSUInteger len = [[matche[@"indices"] lastObject] unsignedIntegerValue] - loc ;
+                        [attributedString addAttribute:NSBackgroundColorAttributeName value:RGBAlpha(255, 255, 140, 0.5) range:NSMakeRange(loc, len)];
+                    }
+                }
+            }
+        }
+        
+        _repoDescription = attributedString.copy;
+    }
+    return _repoDescription;
 }
 
 @end

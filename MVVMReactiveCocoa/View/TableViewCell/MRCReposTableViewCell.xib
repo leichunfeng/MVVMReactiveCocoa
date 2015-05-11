@@ -117,7 +117,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="descriptionLabel" destination="HyE-cQ-QY9" id="3BZ-h7-E4N"/>
+                <outlet property="desLabel" destination="HyE-cQ-QY9" id="ZiX-RD-3LA"/>
                 <outlet property="forkCountLabel" destination="58l-HU-ZyO" id="CQk-Y7-Sgn"/>
                 <outlet property="forkIconImageView" destination="7wm-RA-G0d" id="GFA-Ub-bmm"/>
                 <outlet property="iconImageView" destination="mCv-Me-fja" id="KHQ-mI-AnO"/>
