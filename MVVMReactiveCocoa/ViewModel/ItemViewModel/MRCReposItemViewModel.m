@@ -7,6 +7,7 @@
 //
 
 #import "MRCReposItemViewModel.h"
+#import "TTTTimeIntervalFormatter.h"
 
 @interface MRCReposItemViewModel ()
 
@@ -42,9 +43,9 @@
                                                                         options:NSStringDrawingUsesLineFragmentOrigin
                                                                      attributes:attributes
                                                                         context:nil];
-            height = MIN(ceil(rect.size.height), 54);
+            height = MIN(ceil(rect.size.height), 18 * 3);
         }
-        self.height = 8 + 21 + 3 + height + 5 + 14 + 7;
+        self.height = 8 + 21 + 5 + height + 5 + 15 + 8 + 1;
     }
     return self;
 }
@@ -68,6 +69,15 @@
         }
     }
     return _name;
+}
+
+- (NSString *)updateTime {
+    if (!_updateTime) {
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+        timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        _updateTime = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.repository.dateUpdated].copy;
+    }
+    return _updateTime;
 }
 
 @end
