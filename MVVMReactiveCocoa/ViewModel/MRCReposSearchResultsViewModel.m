@@ -7,6 +7,7 @@
 //
 
 #import "MRCReposSearchResultsViewModel.h"
+#import "MRCReposSearchResultsItemViewModel.h"
 
 @implementation MRCReposSearchResultsViewModel
 
@@ -33,6 +34,17 @@
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
     return nil;
+}
+
+- (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
+    if (!repositories) return nil;
+    
+    NSMutableArray *repos = [NSMutableArray new];
+    for (OCTRepository *repository in repositories) {
+        [repos addObject:[[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository]];
+    }
+    
+    return @[ repos ];
 }
 
 @end

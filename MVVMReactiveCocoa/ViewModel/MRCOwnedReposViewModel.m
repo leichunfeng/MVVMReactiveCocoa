@@ -68,10 +68,10 @@
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     if (!repositories) return nil;
     
-    NSMutableArray *repoOfRepos = NSMutableArray.new;
+    NSMutableArray *repoOfRepos = [NSMutableArray new];
     
     NSString *firstLetter = [repositories.firstObject name].firstLetter;
-    NSMutableArray *repos = NSMutableArray.new;
+    NSMutableArray *repos = [NSMutableArray new];
     
     for (OCTRepository *repository in repositories) {
         if ([[repository.name firstLetter] isEqualToString:firstLetter]) {
@@ -80,14 +80,14 @@
             [repoOfRepos addObject:repos];
             
             firstLetter = repository.name.firstLetter;
-            repos = NSMutableArray.new;
+            repos = [NSMutableArray new];
             
             [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
         }
     }
     [repoOfRepos addObject:repos];
     
-    return repoOfRepos.copy;
+    return repoOfRepos;
 }
 
 @end
