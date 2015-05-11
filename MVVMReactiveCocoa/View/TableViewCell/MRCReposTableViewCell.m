@@ -15,7 +15,7 @@ static NSMutableArray *_iconImages;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *updateTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *desLabel;
 @property (weak, nonatomic) IBOutlet UILabel *languageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *starCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *forkCountLabel;
@@ -34,7 +34,7 @@ static NSMutableArray *_iconImages;
         _iconImages = [NSMutableArray new];
     });
     
-    self.descriptionLabel.numberOfLines = 3;
+    self.desLabel.numberOfLines = 3;
     self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
     self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
 }
@@ -42,7 +42,7 @@ static NSMutableArray *_iconImages;
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
     self.nameLabel.attributedText = viewModel.name;
     self.updateTimeLabel.text     = viewModel.updateTime;
-    self.descriptionLabel.text    = viewModel.repository.repoDescription;
+    self.desLabel.attributedText  = viewModel.repoDescription;
     self.languageLabel.text       = viewModel.language;
     self.starCountLabel.text      = @(viewModel.repository.stargazersCount).stringValue;
     self.forkCountLabel.text      = @(viewModel.repository.forksCount).stringValue;

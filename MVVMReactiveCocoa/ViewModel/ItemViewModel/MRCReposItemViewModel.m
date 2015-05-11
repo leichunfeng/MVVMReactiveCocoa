@@ -63,9 +63,9 @@
             [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(colorI3) range:[uniqueName rangeOfString:uniqueName]];
             [attributedString addAttribute:NSForegroundColorAttributeName value:UIColor.darkGrayColor range:[uniqueName rangeOfString:[self.repository.ownerLogin stringByAppendingString:@"/"]]];
             
-            _name = attributedString;
+            _name = attributedString.copy;
         } else {
-            _name = [[NSAttributedString alloc] initWithString:self.repository.name];
+            _name = [[NSAttributedString alloc] initWithString:self.repository.name].copy;
         }
     }
     return _name;
@@ -78,6 +78,17 @@
         _updateTime = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.repository.dateUpdated].copy;
     }
     return _updateTime;
+}
+
+- (NSAttributedString *)repoDescription {
+    if (!_repoDescription) {
+        NSAttributedString *attributedString = nil;
+        if (self.repository.repoDescription) {
+            attributedString = [[NSAttributedString alloc] initWithString:self.repository.repoDescription];
+        }
+        _repoDescription = attributedString.copy;
+    }
+    return _repoDescription;
 }
 
 @end
