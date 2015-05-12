@@ -133,7 +133,7 @@ typedef id   (^IDBlock_id)  (id);
 
 #define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
-#define LEFT_IMAGE_SIZE CGSizeMake(25, 25)
+#define MRC_LEFT_IMAGE_SIZE CGSizeMake(25, 25)
 #define MRC_1PX_WIDTH (1 / [UIScreen mainScreen].scale)
 
 ///---------
@@ -168,5 +168,11 @@ typedef id   (^IDBlock_id)  (id);
 
 #define MRC_FMDB_PATH [NSString stringWithFormat:@"%@/%@.db", MRC_DOCUMENT_DIRECTORY, MRC_APP_NAME]
 #define mrcLogLastError(db) NSLog(@"lastError: %@, lastErrorCode: %d, lastErrorMessage: %@", [db lastError], [db lastErrorCode], [db lastErrorMessage]);
+
+//--------------
+/// Notification
+///-------------
+
+#define MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION @"MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION"
 
 #endif

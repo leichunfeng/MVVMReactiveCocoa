@@ -27,4 +27,6 @@
 
 + (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories;
 
+- (BOOL)hasUserStarred;
+
 @end

@@ -12,6 +12,7 @@
 #import "MRCGitTreeViewModel.h"
 #import "MRCSourceEditorViewModel.h"
 #import "TTTTimeIntervalFormatter.h"
+#import "MRCRepoSettingsViewModel.h"
 
 @interface MRCRepoDetailViewModel ()
 
@@ -96,6 +97,14 @@
     }];
     
     [self.selectBranchOrTagCommand.errors subscribe:self.errors];
+    
+    self.rightBarButtonItemCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        MRCRepoSettingsViewModel *settingsViewModel = [[MRCRepoSettingsViewModel alloc] initWithServices:self.services
+                                                                                                  params:@{ @"repository": self.repository }];
+        [self.services pushViewModel:settingsViewModel animated:YES];
+        return [RACSignal empty];
+    }];
 }
 
 - (void)presentSelectBranchOrTagViewModel {

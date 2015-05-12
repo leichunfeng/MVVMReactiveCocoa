@@ -66,6 +66,12 @@
     
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.toolbar.items = @[ barButtonItem ];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"]
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:nil
+                                                                             action:NULL];
+    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.rightBarButtonItemCommand;
 }
 
 - (MRCRepoReadmeTableViewCell *)readmeTableViewCell {
