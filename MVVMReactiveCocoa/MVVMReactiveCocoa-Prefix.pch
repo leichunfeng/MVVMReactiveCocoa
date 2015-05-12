@@ -44,6 +44,7 @@
     #import "Ono.h"
     #import "MobClick.h"
 	#import "FMDB.h"
+    #import "MRCSearch.h"
 #endif
 
 #endif

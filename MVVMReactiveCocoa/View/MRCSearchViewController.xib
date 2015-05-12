@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCSearchViewController">
             <connections>
+                <outlet property="tableView" destination="8eJ-IU-BNg" id="OiR-1S-r5i"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,8 +14,26 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8eJ-IU-BNg">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="g3K-H4-uWA"/>
+                        <outlet property="delegate" destination="-1" id="vzO-1J-4Bk"/>
+                        <outlet property="emptyDataSetDelegate" destination="-1" id="1tC-GS-Uw6"/>
+                        <outlet property="emptyDataSetSource" destination="-1" id="Mxe-ob-oXO"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="446" y="33"/>
+            <constraints>
+                <constraint firstItem="8eJ-IU-BNg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OZA-fo-ClQ"/>
+                <constraint firstAttribute="bottom" secondItem="8eJ-IU-BNg" secondAttribute="bottom" id="n6e-UD-yPc"/>
+                <constraint firstItem="8eJ-IU-BNg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tha-6e-Phh"/>
+                <constraint firstAttribute="trailing" secondItem="8eJ-IU-BNg" secondAttribute="trailing" id="uTc-HV-O40"/>
+            </constraints>
+            <point key="canvasLocation" x="269" y="-59"/>
         </view>
     </objects>
 </document>

@@ -24,6 +24,13 @@
 - (RACSignal *)requestRemoteDataSignal {
     if (self.query.length == 0) return [RACSignal empty];
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        MRCSearch *search = [MRCSearch modelWithDictionary:@{ @"keyword": self.query, @"dateSearched": [NSDate date] } error:nil];
+        if ([search mrc_saveOrUpdate]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION object:nil];
+        }
+    });
+    
     return [[[self.services
         client]
         searchRepositoriesWithQuery:self.query sort:nil order:nil]
