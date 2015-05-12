@@ -78,6 +78,9 @@
 		243140131A7DD6E800FA357E /* assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 243140121A7DD6E800FA357E /* assets.bundle */; };
 		24497BF21A6EAE770073B1D6 /* OCTObject+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */; };
 		2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */; };
+		2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2441B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m */; };
+		2458A2541B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2521B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m */; };
+		2458A2551B00EFBD00E9FB9B /* MRCRepoSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2458A2531B00EFBD00E9FB9B /* MRCRepoSettingsViewController.xib */; };
 		245D62841AA8C73E00D7B081 /* MRCAboutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D627C1AA8C73E00D7B081 /* MRCAboutHeaderView.m */; };
 		245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D627D1AA8C73E00D7B081 /* MRCAboutHeaderView.xib */; };
 		245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D627F1AA8C73E00D7B081 /* MRCAvatarHeaderView.m */; };
@@ -443,6 +446,11 @@
 		24497BF11A6EAE770073B1D6 /* OCTObject+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTObject+MRCPersistence.m"; sourceTree = "<group>"; };
 		2458A22B1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposSearchResultsItemViewModel.h; sourceTree = "<group>"; };
 		2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposSearchResultsItemViewModel.m; sourceTree = "<group>"; };
+		2458A2431B00EFA000E9FB9B /* MRCRepoSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsViewModel.h; sourceTree = "<group>"; };
+		2458A2441B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoSettingsViewModel.m; sourceTree = "<group>"; };
+		2458A2511B00EFBD00E9FB9B /* MRCRepoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsViewController.h; sourceTree = "<group>"; };
+		2458A2521B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoSettingsViewController.m; sourceTree = "<group>"; };
+		2458A2531B00EFBD00E9FB9B /* MRCRepoSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoSettingsViewController.xib; sourceTree = "<group>"; };
 		245D627B1AA8C73E00D7B081 /* MRCAboutHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAboutHeaderView.h; sourceTree = "<group>"; };
 		245D627C1AA8C73E00D7B081 /* MRCAboutHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutHeaderView.m; sourceTree = "<group>"; };
 		245D627D1AA8C73E00D7B081 /* MRCAboutHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCAboutHeaderView.xib; sourceTree = "<group>"; };
@@ -685,6 +693,9 @@
 				240BFC061AFF31F3006ABC05 /* MRCReposSearchResultsViewController.h */,
 				240BFC071AFF31F3006ABC05 /* MRCReposSearchResultsViewController.m */,
 				240BFC081AFF31F3006ABC05 /* MRCReposSearchResultsViewController.xib */,
+				2458A2511B00EFBD00E9FB9B /* MRCRepoSettingsViewController.h */,
+				2458A2521B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m */,
+				2458A2531B00EFBD00E9FB9B /* MRCRepoSettingsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -772,6 +783,8 @@
 				240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */,
 				240BFBF81AFF31C8006ABC05 /* MRCReposSearchResultsViewModel.h */,
 				240BFBF91AFF31C8006ABC05 /* MRCReposSearchResultsViewModel.m */,
+				2458A2431B00EFA000E9FB9B /* MRCRepoSettingsViewModel.h */,
+				2458A2441B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1282,6 +1295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DF45641A6B8BA500F23474 /* MRCRepoDetailViewController.xib in Resources */,
+				2458A2551B00EFBD00E9FB9B /* MRCRepoSettingsViewController.xib in Resources */,
 				240BFBE81AFF2420006ABC05 /* MRCSearchViewController.xib in Resources */,
 				245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
@@ -1446,6 +1460,7 @@
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
 				245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */,
+				2458A2541B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m in Sources */,
 				24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */,
 				240D01321A654D300033CC86 /* MRCButton.m in Sources */,
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
@@ -1487,6 +1502,7 @@
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,
 				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,
+				2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
 				24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,

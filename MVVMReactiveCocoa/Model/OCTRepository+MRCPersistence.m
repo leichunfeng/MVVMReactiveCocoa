@@ -30,7 +30,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         NSString *sql = nil;
         
-        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, self.isStarred];
+        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, @(self.isStarred)];
         if (![rs next]) { // insert
             sql = @"insert into Repository values (:userId, :id, :isStarred, :name, :owner_login, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);";
         } else { // update
@@ -62,7 +62,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             [db close];
         };
         
-        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ? and isStarred = ?;", [OCTUser mrc_currentUserId], self.objectID, self.isStarred];
+        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ? and isStarred = ?;", [OCTUser mrc_currentUserId], self.objectID, @(self.isStarred)];
         if (!success) {
             mrcLogLastError(db);
             return NO;
@@ -170,6 +170,20 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         return YES;
     }
     
+    return NO;
+}
+
+- (BOOL)hasUserStarred {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, @1];
+        
+        return [rs next];
+    }
     return NO;
 }
 

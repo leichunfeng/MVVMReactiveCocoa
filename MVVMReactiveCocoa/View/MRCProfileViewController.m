@@ -64,7 +64,7 @@
                                           backgroundColor:UIColor.clearColor
                                                 iconColor:HexRGB([dictionary[@"hexRGB"] integerValue])
                                                 iconScale:1
-                                                  andSize:LEFT_IMAGE_SIZE];
+                                                  andSize:MRC_LEFT_IMAGE_SIZE];
     
     [self.viewModel.dataSource[indexPath.section][indexPath.row][@"textSignal"] subscribeNext:^(NSString *text) {
         cell.textLabel.text = text;

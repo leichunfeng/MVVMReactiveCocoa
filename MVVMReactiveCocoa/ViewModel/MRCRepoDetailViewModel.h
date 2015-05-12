@@ -22,5 +22,6 @@
 @property (strong, nonatomic) RACCommand *viewCodeCommand;
 @property (strong, nonatomic) RACCommand *readmeCommand;
 @property (strong, nonatomic) RACCommand *selectBranchOrTagCommand;
+@property (strong, nonatomic) RACCommand *rightBarButtonItemCommand;
 
 @end

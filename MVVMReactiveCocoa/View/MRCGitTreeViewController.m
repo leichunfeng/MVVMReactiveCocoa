@@ -40,7 +40,7 @@
                                           backgroundColor:[UIColor clearColor]
                                                 iconColor:HexRGB([dictionary[@"hexRGB"] integerValue])
                                                 iconScale:1
-                                                  andSize:LEFT_IMAGE_SIZE];
+                                                  andSize:MRC_LEFT_IMAGE_SIZE];
     
     cell.textLabel.text = dictionary[@"text"];
 //    cell.textLabel.numberOfLines = 0;
