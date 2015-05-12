@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCViewModel.h"
+#import "MRCTableViewModel.h"
 #import "MRCReposSearchResultsViewModel.h"
 
-@interface MRCSearchViewModel : MRCViewModel
+@interface MRCSearchViewModel : MRCTableViewModel
 
 @property (strong, nonatomic) MRCReposSearchResultsViewModel *searchResultsViewModel;
 

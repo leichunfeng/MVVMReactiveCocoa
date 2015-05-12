@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCViewController.h"
+#import "MRCTableViewController.h"
 
-@interface MRCSearchViewController : MRCViewController
+@interface MRCSearchViewController : MRCTableViewController
 
 @property (strong, nonatomic, readonly) UISearchController *searchController;
 
