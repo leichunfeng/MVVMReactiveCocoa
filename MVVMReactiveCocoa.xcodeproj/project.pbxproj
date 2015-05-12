@@ -107,6 +107,7 @@
 		249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */; };
 		249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */; };
 		249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F35011A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib */; };
+		24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */; };
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
@@ -493,6 +494,8 @@
 		24A28AA11A75D957005235C5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/AFNetworking.framework"; sourceTree = "<group>"; };
 		24A28AA31A75D964005235C5 /* ISO8601DateFormatter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601DateFormatter.framework; path = "../../../Library/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug/ISO8601DateFormatter.framework"; sourceTree = "<group>"; };
 		24A28AE61A767F92005235C5 /* libMMMarkdown-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMMMarkdown-iOS.a"; path = "MMMarkdown/build/Debug-iphoneos/libMMMarkdown-iOS.a"; sourceTree = "<group>"; };
+		24AF97691B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+MRCShowsCancelButton.h"; sourceTree = "<group>"; };
+		24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+MRCShowsCancelButton.m"; sourceTree = "<group>"; };
 		24B4DA121A66B97900DDFA6C /* MRCReposTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposTableViewCell.h; sourceTree = "<group>"; };
 		24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposTableViewCell.m; sourceTree = "<group>"; };
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
@@ -721,6 +724,8 @@
 				24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */,
 				24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */,
 				24E84E821AEFC270003F700C /* MRCWebViewController.xib */,
+				24AF97691B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.h */,
+				24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1466,6 +1471,7 @@
 				240D01461A654D300033CC86 /* MRCViewModel.m in Sources */,
 				249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */,
 				240D013E1A654D300033CC86 /* MRCProfileViewController.m in Sources */,
+				24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */,
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
