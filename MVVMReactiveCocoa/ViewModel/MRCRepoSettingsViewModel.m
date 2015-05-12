@@ -27,7 +27,7 @@
 - (void)initialize {
     [super initialize];
     
-    self.title = self.repository.name;
+    self.title = @"Settings";
     
     self.repository.isStarred = [self.repository hasUserStarred];
     self.isStarred = self.repository.isStarred;
