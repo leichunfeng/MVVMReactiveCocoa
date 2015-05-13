@@ -31,7 +31,9 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self.viewModel.requestRemoteDataCommand execute:nil];
+    if (searchBar.text.length > 0) {
+        [self.viewModel.requestRemoteDataCommand execute:nil];
+    }
 }
 
 @end

@@ -25,6 +25,8 @@
 @synthesize errors   = _errors;
 @synthesize titleViewType = _titleViewType;
 @synthesize willDisappearSignal = _willDisappearSignal;
+@synthesize shouldFetchLocalDataOnViewModelInitialize = _shouldFetchLocalDataOnViewModelInitialize;
+@synthesize shouldRequestRemoteDataOnViewDidLoad = _shouldRequestRemoteDataOnViewDidLoad;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewModel *viewModel = [super allocWithZone:zone];
@@ -41,6 +43,8 @@
 - (instancetype)initWithServices:(id)services params:(id)params {
     self = [super init];
     if (self) {
+        self.shouldFetchLocalDataOnViewModelInitialize = YES;
+        self.shouldRequestRemoteDataOnViewDidLoad = YES;
         self.title    = params[@"title"];
         self.services = services;
         self.params   = params;

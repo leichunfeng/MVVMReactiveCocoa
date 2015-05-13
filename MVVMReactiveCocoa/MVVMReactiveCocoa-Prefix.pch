@@ -24,7 +24,6 @@
     #import <SDWebImage/UIImageView+WebCache.h>
     #import <SDWebImage/UIButton+WebCache.h>
 	#import "MRCViewModelServices.h"
-	#import "OCTObject+MRCPersistence.h"
 	#import "OCTUser+MRCPersistence.h"
 	#import "OCTRepository+MRCPersistence.h"
 	#import <objc/runtime.h>
