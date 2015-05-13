@@ -7,7 +7,6 @@
 //
 
 #import "MRCReposItemViewModel.h"
-#import "TTTTimeIntervalFormatter.h"
 
 @interface MRCReposItemViewModel ()
 
@@ -69,15 +68,6 @@
         }
     }
     return _name;
-}
-
-- (NSString *)updateTime {
-    if (!_updateTime) {
-        TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
-        timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-        _updateTime = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.repository.dateUpdated].copy;
-    }
-    return _updateTime;
 }
 
 - (NSAttributedString *)repoDescription {
