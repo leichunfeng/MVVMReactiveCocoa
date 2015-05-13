@@ -17,9 +17,7 @@
 #pragma mark - Query
 
 + (NSArray *)mrc_recentSearches {
-    NSArray *recentSearches = nil;
-    
-    NSMutableArray *dictionaries = nil;
+    NSMutableArray *recentSearches = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     if ([db open]) {
@@ -31,16 +29,15 @@
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
         while ([rs next]) {
             @autoreleasepool {
-                if (dictionaries == nil) dictionaries = [NSMutableArray new];
+                if (recentSearches == nil) recentSearches = [NSMutableArray new];
                 
                 NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
                 [dictionary removeObjectForKey:@"userId"];
                 
-                [dictionaries addObject:dictionary];
+                MRCSearch *search = [MTLJSONAdapter modelOfClass:[MRCSearch class] fromJSONDictionary:dictionary error:nil];
+                [recentSearches addObject:search];
             }
         }
-        
-        recentSearches = [MTLJSONAdapter modelsOfClass:[MRCSearch class] fromJSONArray:dictionaries error:nil];
     }
     
     return recentSearches;

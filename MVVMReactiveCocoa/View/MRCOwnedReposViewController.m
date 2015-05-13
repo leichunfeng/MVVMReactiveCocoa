@@ -45,12 +45,16 @@
         @strongify(self)
         if (executing.boolValue) {
             if ([self.viewModel.dataSource.firstObject count] == 0) {
-                [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = [self labelText];
             }
         } else {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
+}
+
+- (NSString *)labelText {
+    return MBPROGRESSHUD_LABEL_TEXT;
 }
 
 #pragma mark - UITableViewDataSource

@@ -15,6 +15,7 @@
     [super initialize];
     
     self.shouldPullToRefresh = NO;
+    self.shouldDisplayEmptyDataSet = NO;
     self.shouldRequestRemoteDataOnViewDidLoad = NO;
 }
 
@@ -34,6 +35,7 @@
         client]
         searchRepositoriesWithQuery:self.query sort:nil order:nil]
         doNext:^(OCTRepositoriesSearchResult *searchResult) {
+            self.shouldDisplayEmptyDataSet = YES;
             self.repositories = searchResult.repositories;
         }];
 }

@@ -10,4 +10,6 @@
 
 @interface MRCOwnedReposViewController : MRCTableViewController
 
+- (NSString *)labelText;
+
 @end
