@@ -48,6 +48,9 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 // A RACSubject object, which representing all errors occurred in view model.
 @property (strong, nonatomic, readonly) RACSubject *errors;
 
+@property (assign, nonatomic) BOOL shouldFetchLocalDataOnViewModelInitialize;
+@property (assign, nonatomic) BOOL shouldRequestRemoteDataOnViewDidLoad;
+
 @property (strong, nonatomic) RACSubject *willDisappearSignal;
 
 // An additional method, in which you can initialize data, RACCommand etc.

@@ -14,7 +14,7 @@
     [super initialize];
     
     self.title = @"Search";
-    
+        
     self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
     
     @weakify(self)

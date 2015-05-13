@@ -24,11 +24,13 @@
 - (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
     self = [super initWithViewModel:viewModel];
     if (self) {
-        @weakify(self)
-        [[self rac_signalForSelector:@selector(viewDidLoad)] subscribeNext:^(id x) {
-            @strongify(self)
-            [self.viewModel.requestRemoteDataCommand execute:nil];
-        }];
+        if ([viewModel shouldRequestRemoteDataOnViewDidLoad]) {
+            @weakify(self)
+            [[self rac_signalForSelector:@selector(viewDidLoad)] subscribeNext:^(id x) {
+                @strongify(self)
+                [self.viewModel.requestRemoteDataCommand execute:nil];
+            }];
+        }
     }
     return self;
 }
