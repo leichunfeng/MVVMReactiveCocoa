@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    self.tableView.tableFooterView = nil;
     
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
     
@@ -65,10 +66,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

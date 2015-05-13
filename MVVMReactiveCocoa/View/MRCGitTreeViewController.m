@@ -43,7 +43,6 @@
                                                   andSize:MRC_LEFT_IMAGE_SIZE];
     
     cell.textLabel.text = dictionary[@"text"];
-//    cell.textLabel.numberOfLines = 0;
     
     UILabel *detailLabel = [UILabel new];
     detailLabel.text = dictionary[@"detailText"];
