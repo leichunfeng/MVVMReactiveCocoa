@@ -81,7 +81,7 @@
         [self.tableView reloadData];
     }];
     
-    [RACObserve(self.viewModel, shouldDisplayEmptyDataSet) subscribeNext:^(id x) {
+    [[RACObserve(self.viewModel, shouldDisplayEmptyDataSet) deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self)
         [self.tableView reloadEmptyDataSet];
     }];
