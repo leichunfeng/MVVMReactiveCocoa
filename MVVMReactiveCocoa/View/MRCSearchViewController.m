@@ -32,7 +32,7 @@
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.searchBar.tintColor = HexRGB(0x24AFFC);
+    self.searchController.searchBar.tintColor = HexRGB(colorI5);
     self.searchController.searchBar.delegate = self.searchResultsController;
     self.searchController.delegate = self;
 }

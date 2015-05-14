@@ -41,13 +41,7 @@
             };
             
             if (!self.isStarred) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    self.repository.isStarred = YES;
-                    if ([self.repository mrc_saveOrUpdate]) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:self];
-                    }
-                });
-                return [[self.services client] starRepository:self.repository];
+                return [[self.services client] mrc_starRepository:self.repository];
             }
         } else if (indexPath.row == 1) {
             @onExit {
@@ -55,12 +49,7 @@
             };
             
             if (self.isStarred) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    if ([self.repository mrc_delete]) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:self];
-                    }
-                });
-                return [[self.services client] unstarRepository:self.repository];
+                return [[self.services client] mrc_unstarRepository:self.repository];
             }
         }
         return [RACSignal empty];

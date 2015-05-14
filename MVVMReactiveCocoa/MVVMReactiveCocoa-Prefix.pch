@@ -44,6 +44,7 @@
     #import "MobClick.h"
 	#import "FMDB.h"
     #import "MRCSearch.h"
+    #import "OCTClient+MRCRepository.h"
 #endif
 
 #endif
