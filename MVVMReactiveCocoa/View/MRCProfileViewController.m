@@ -34,14 +34,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     [self.viewModel.fetchUserInfoCommand execute:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y + 64);
+    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y);
     self.viewModel.avatarHeaderViewModel.contentOffset = contentOffset;
 }
 
