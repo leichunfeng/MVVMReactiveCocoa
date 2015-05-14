@@ -15,7 +15,7 @@
     
     @weakify(self)
     RAC(self, repositories) = [[[NSNotificationCenter defaultCenter]
-        rac_addObserverForName:MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION object:nil]
+        rac_addObserverForName:MRCStarredReposDidChangeNotification object:nil]
         map:^id(id value) {
             @strongify(self)
             return [self fetchLocalRepositories];

@@ -173,7 +173,7 @@ typedef id   (^IDBlock_id)  (id);
 /// Notification
 ///-------------
 
-#define MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION   @"MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION"
-#define MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION @"MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION"
+#define MRCStarredReposDidChangeNotification   @"MRCStarredReposDidChangeNotification"
+#define MRCRecentSearchesDidChangeNotification @"MRCRecentSearchesDidChangeNotification"
 
 #endif

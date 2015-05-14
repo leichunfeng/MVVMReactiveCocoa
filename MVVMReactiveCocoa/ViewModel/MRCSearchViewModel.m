@@ -17,18 +17,12 @@
         
     self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
     
-    @weakify(self)
-    [[[[NSNotificationCenter defaultCenter]
-        rac_addObserverForName:MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION object:nil]
-        startWith:[NSNotification notificationWithName:MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION object:nil]]
-        subscribeNext:^(id x) {
-            @strongify(self)
+    RAC(self, dataSource) = [[[[NSNotificationCenter defaultCenter]
+        rac_addObserverForName:MRCRecentSearchesDidChangeNotification object:nil]
+        startWith:nil]
+        map:^(id value) {
             NSArray *recentSearches = [MRCSearch mrc_recentSearches];
-            if (recentSearches) {
-                self.dataSource = @[ recentSearches ];
-            } else {
-                self.dataSource = nil;
-            }
+            return recentSearches ? @[ recentSearches ] : nil;
         }];
 }
 
