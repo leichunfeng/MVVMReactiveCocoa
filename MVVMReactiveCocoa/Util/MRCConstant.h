@@ -166,6 +166,7 @@ typedef id   (^IDBlock_id)  (id);
 // Wechat
 #define MRC_WX_APP_ID     @"wx738f343b7a8d1bdb"
 #define MRC_WX_APP_SECRET @"a09ec93457abc134f769e37da4d8ad21"
+#define MRC_WX_URL        @"http://www.umeng.com/social"
 
 // Sina Weibo
 #define MRC_WEIBO_APP_KEY    @"2568724352"
