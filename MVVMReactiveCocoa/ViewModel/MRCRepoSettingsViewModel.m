@@ -10,7 +10,7 @@
 
 @interface MRCRepoSettingsViewModel ()
 
-@property (strong, nonatomic) OCTRepository *repository;
+@property (strong, nonatomic, readwrite) OCTRepository *repository;
 
 @end
 
@@ -35,21 +35,23 @@
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
-        if (indexPath.row == 0) {
-            @onExit {
-                self.isStarred = YES;
-            };
-            
-            if (!self.isStarred) {
-                return [[self.services client] mrc_starRepository:self.repository];
-            }
-        } else if (indexPath.row == 1) {
-            @onExit {
-                self.isStarred = NO;
-            };
-            
-            if (self.isStarred) {
-                return [[self.services client] mrc_unstarRepository:self.repository];
+        if (indexPath.section == 2) {
+            if (indexPath.row == 0) {
+                @onExit {
+                    self.isStarred = YES;
+                };
+                
+                if (!self.isStarred) {
+                    return [[self.services client] mrc_starRepository:self.repository];
+                }
+            } else if (indexPath.row == 1) {
+                @onExit {
+                    self.isStarred = NO;
+                };
+                
+                if (self.isStarred) {
+                    return [[self.services client] mrc_unstarRepository:self.repository];
+                }
             }
         }
         return [RACSignal empty];
