@@ -107,6 +107,7 @@
 		249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */; };
 		249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F35011A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib */; };
 		24AF977E1B02292700E2A737 /* MRCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF977D1B02292700E2A737 /* MRCSearch.m */; };
+		24B1045F1B04CE100046473E /* OCTClient+MRCRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B1045E1B04CE100046473E /* OCTClient+MRCRepository.m */; };
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
@@ -493,6 +494,8 @@
 		24A28AE61A767F92005235C5 /* libMMMarkdown-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMMMarkdown-iOS.a"; path = "MMMarkdown/build/Debug-iphoneos/libMMMarkdown-iOS.a"; sourceTree = "<group>"; };
 		24AF977C1B02292700E2A737 /* MRCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearch.h; sourceTree = "<group>"; };
 		24AF977D1B02292700E2A737 /* MRCSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearch.m; sourceTree = "<group>"; };
+		24B1045D1B04CE100046473E /* OCTClient+MRCRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTClient+MRCRepository.h"; sourceTree = "<group>"; };
+		24B1045E1B04CE100046473E /* OCTClient+MRCRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTClient+MRCRepository.m"; sourceTree = "<group>"; };
 		24B4DA121A66B97900DDFA6C /* MRCReposTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposTableViewCell.h; sourceTree = "<group>"; };
 		24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposTableViewCell.m; sourceTree = "<group>"; };
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 				24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */,
 				24AF977C1B02292700E2A737 /* MRCSearch.h */,
 				24AF977D1B02292700E2A737 /* MRCSearch.m */,
+				24B1045D1B04CE100046473E /* OCTClient+MRCRepository.h */,
+				24B1045E1B04CE100046473E /* OCTClient+MRCRepository.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1449,6 +1454,7 @@
 				240D01471A654D300033CC86 /* MRCViewModelServicesImpl.m in Sources */,
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
+				24B1045F1B04CE100046473E /* OCTClient+MRCRepository.m in Sources */,
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
 				24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */,

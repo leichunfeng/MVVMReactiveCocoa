@@ -29,7 +29,7 @@
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:nil action:NULL];
     rightBarButtonItem.rac_command = self.viewModel.submitFeedbackCommand;
-    rightBarButtonItem.tintColor = HexRGB(0x24AFFC);
+    rightBarButtonItem.tintColor = HexRGB(colorI5);
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
     __block MBProgressHUD *progressHUD = nil;
