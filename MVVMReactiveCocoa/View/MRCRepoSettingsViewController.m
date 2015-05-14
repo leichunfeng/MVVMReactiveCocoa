@@ -32,18 +32,10 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Owner";
-            cell.detailTextLabel.text = self.viewModel.repository.ownerLogin;
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Name";
-            cell.detailTextLabel.text = self.viewModel.repository.name;
-        }
-    } else if (indexPath.section == 1) {
-        cell.textLabel.text = @"Language";
-        cell.detailTextLabel.text = self.viewModel.repository.language ?: @"Unknown";
-    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Star"
                                                   backgroundColor:[UIColor clearColor]
@@ -61,23 +53,30 @@
             cell.textLabel.text = @"Unstar";
             cell.accessoryType  = !self.viewModel.isStarred ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
-    } else if (indexPath.section == 3) {
-        cell.textLabel.text = @"Default Branch";
-        cell.detailTextLabel.text = self.viewModel.repository.defaultBranch;
-    } else if (indexPath.section == 4) {
-        cell.textLabel.text = @"Open Issues";
-        cell.detailTextLabel.text = [@(self.viewModel.repository.openIssuesCount) stringValue];
+    } else if (indexPath.section == 1) {
+        cell.textLabel.text = @"Share";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 2) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Watchers Count";
+            cell.detailTextLabel.text = [@(self.viewModel.repository.watchersCount) stringValue];
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Open Issues Count";
+            cell.detailTextLabel.text = [@(self.viewModel.repository.openIssuesCount) stringValue];
+        }
     }
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (section == 0 || section == 2) ? 2 : 1;
+    return section == 1 ? 1 : 2;
 }
 
 #pragma mark - UITableViewDelegate
@@ -88,6 +87,18 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return (section == tableView.numberOfSections - 1) ? 20 : 10;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    if (indexPath.section == 1) {
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:@"507fcab25270157b37000010"
+                                          shareText:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social"
+                                         shareImage:[UIImage imageNamed:@"icon"]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,nil]
+                                           delegate:self];
+    }
 }
 
 @end
