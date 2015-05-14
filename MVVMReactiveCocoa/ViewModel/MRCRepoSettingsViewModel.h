@@ -10,6 +10,7 @@
 
 @interface MRCRepoSettingsViewModel : MRCTableViewModel
 
+@property (strong, nonatomic, readonly) OCTRepository *repository;
 @property (assign, nonatomic) BOOL isStarred;
 
 @end
