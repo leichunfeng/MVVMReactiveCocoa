@@ -54,7 +54,7 @@
             cell.accessoryType  = !self.viewModel.isStarred ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
     } else if (indexPath.section == 1) {
-        cell.textLabel.text = @"Share";
+        cell.textLabel.text = @"Share To Friends";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 2) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -92,12 +92,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (indexPath.section == 1) {
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = self.viewModel.repository.name;
+        [UMSocialData defaultData].extConfig.wechatSessionData.shareText = self.viewModel.repository.repoDescription;
+        [UMSocialData defaultData].extConfig.wechatSessionData.wxMessageType = UMSocialWXMessageTypeApp;
+       
+        [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.viewModel.repository.name;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.shareText = self.viewModel.repository.repoDescription;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.shareImage = [UIImage imageNamed:@"icon320"];
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.viewModel.repository.HTMLURL.absoluteString;
+       
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.title = self.viewModel.repository.name;
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.shareText = self.viewModel.repository.repoDescription;
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.shareImage = [UIImage imageNamed:@"icon320"];
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.url = self.viewModel.repository.HTMLURL.absoluteString;
+       
+        [UMSocialData defaultData].extConfig.qqData.title = self.viewModel.repository.name;
+        [UMSocialData defaultData].extConfig.qqData.shareText = self.viewModel.repository.repoDescription;
+        [UMSocialData defaultData].extConfig.qqData.url = self.viewModel.repository.HTMLURL.absoluteString;
+        
+        [UMSocialData defaultData].extConfig.sinaData.urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:self.viewModel.repository.HTMLURL.absoluteString];
+        [UMSocialData defaultData].extConfig.sinaData.shareText = [self.viewModel.repository.repoDescription stringByAppendingString:self.viewModel.repository.HTMLURL.absoluteString];
+        
         [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:@"507fcab25270157b37000010"
-                                          shareText:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social"
-                                         shareImage:[UIImage imageNamed:@"icon"]
-                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,nil]
-                                           delegate:self];
+                                             appKey:nil
+                                          shareText:nil
+                                         shareImage:nil
+                                    shareToSnsNames:@[ UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, UMShareToQQ, UMShareToQzone, UMShareToTencent, UMShareToSina ]
+                                           delegate:nil];
     }
 }
 

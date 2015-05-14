@@ -46,6 +46,8 @@
 	#import "FMDB.h"
     #import "MRCSearch.h"
     #import "OCTClient+MRCRepository.h"
+    #import "UMSocialWechatHandler.h"
+    #import "UMSocialSinaHandler.h"
 #endif
 
 #endif
