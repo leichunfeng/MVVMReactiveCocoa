@@ -169,6 +169,12 @@
 #define COCOAPODS_VERSION_MINOR_UMengAnalytics 4
 #define COCOAPODS_VERSION_PATCH_UMengAnalytics 6
 
+// UMengSocial
+#define COCOAPODS_POD_AVAILABLE_UMengSocial
+#define COCOAPODS_VERSION_MAJOR_UMengSocial 4
+#define COCOAPODS_VERSION_MINOR_UMengSocial 2
+#define COCOAPODS_VERSION_PATCH_UMengSocial 2
+
 // WebViewJavascriptBridge
 #define COCOAPODS_POD_AVAILABLE_WebViewJavascriptBridge
 #define COCOAPODS_VERSION_MAJOR_WebViewJavascriptBridge 4

@@ -622,6 +622,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Copyright 2011 - 2015 UMeng.com. All rights reserved.
 
 
+## UMengSocial
+
+Copyright 2011 - 2013 UMeng.com. All rights reserved.
+
+
 ## WebViewJavascriptBridge
 
 Copyright (c) 2011-2014 Marcus Westin, Antoine Lagadec

@@ -157,11 +157,23 @@ typedef id   (^IDBlock_id)  (id);
 
 #define MRC_README_CSS_STYLE @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>"
 
-///------------
-/// UMAnalytics
-///------------
+///--------------------
+/// UMAnalytics & Share
+///--------------------
 
 #define MRC_UM_APP_KEY @"553e402e67e58ed9f4004045"
+
+// Wechat
+#define MRC_WX_APP_ID     @"wx738f343b7a8d1bdb"
+#define MRC_WX_APP_SECRET @"a09ec93457abc134f769e37da4d8ad21"
+
+// Sina Weibo
+#define MRC_WEIBO_APP_KEY    @"2568724352"
+#define MRC_WEIBO_APP_SECRET @"ef15e9184ff294fc67a3240e960782f2"
+
+// QQ
+#define MRC_QQ_APP_ID  @"1104637080"
+#define MRC_QQ_APP_KEY @"WWGP247M3a7xIAUL"
 
 ///-----
 /// FMDB
