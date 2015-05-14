@@ -49,23 +49,40 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Recent Searches";
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         MRCSearch *search = self.viewModel.dataSource[indexPath.section][indexPath.row];
         if ([search mrc_delete]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:MRCRecentSearchesDidChangeNotification object:nil];
         }
     });
 }
 
 #pragma mark - UITableViewDelegate
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [UIView new];
+    view.backgroundColor = HexRGB(0xF7F7F7);
+  
+    UILabel *label = [UILabel new];
+    label.text = @"Recent Searches";
+    label.font = [UIFont systemFontOfSize:15];
+    [label sizeToFit];
+    
+    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
+    
+    CGRect frame = label.frame;
+    frame.origin.x = 20;
+    frame.origin.y = (height - frame.size.height) / 2;
+    label.frame = frame;
+    
+    [view addSubview:label];
+    
+    return view;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 28;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

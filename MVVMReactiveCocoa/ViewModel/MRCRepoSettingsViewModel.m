@@ -44,7 +44,7 @@
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     self.repository.isStarred = YES;
                     if ([self.repository mrc_saveOrUpdate]) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION object:self];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:self];
                     }
                 });
                 return [[self.services client] starRepository:self.repository];
@@ -57,7 +57,7 @@
             if (self.isStarred) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     if ([self.repository mrc_delete]) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:MRC_STARRED_REPOS_DID_CHANGE_NOTIFICATION object:self];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:self];
                     }
                 });
                 return [[self.services client] unstarRepository:self.repository];

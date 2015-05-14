@@ -27,7 +27,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         MRCSearch *search = [MRCSearch modelWithDictionary:@{ @"keyword": self.query, @"dateSearched": [NSDate date] } error:nil];
         if ([search mrc_saveOrUpdate]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:MRC_RECENT_SEARCHES_DID_CHANGE_NOTIFICATION object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:MRCRecentSearchesDidChangeNotification object:nil];
         }
     });
     
