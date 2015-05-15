@@ -121,6 +121,9 @@
     // view controller contents
     UIImageView *transitionView = [[UIImageView alloc] initWithImage:fromViewController.imageView.image];
     transitionView.contentMode = UIViewContentModeScaleAspectFill;
+    transitionView.layer.cornerRadius = self.referenceImageView.layer.cornerRadius;
+//    transitionView.layer.borderWidth = self.referenceImageView.layer.borderWidth;
+//    transitionView.layer.borderColor = self.referenceImageView.layer.borderColor;
     transitionView.clipsToBounds = YES;
     transitionView.frame = transitionViewInitialFrame;
     [transitionContext.containerView addSubview:transitionView];

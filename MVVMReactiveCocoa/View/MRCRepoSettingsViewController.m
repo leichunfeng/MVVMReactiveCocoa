@@ -70,7 +70,7 @@
             viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             viewController.transitioningDelegate = self;
            
-            [self presentViewController:viewController animated:YES completion:nil];
+            [self presentViewController:viewController animated:YES completion:NULL];
         }];
         
         ownerTableViewCell.topTextLabel.text = self.viewModel.repository.ownerLogin;

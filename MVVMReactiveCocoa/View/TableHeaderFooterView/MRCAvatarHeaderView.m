@@ -9,15 +9,17 @@
 #import "MRCAvatarHeaderView.h"
 #import "MRCAvatarHeaderViewModel.h"
 #import "UIImage+ImageEffects.h"
+#import "TGRImageZoomAnimationController.h"
+#import "TGRImageViewController.h"
 
 #define MRCAvatarHeaderViewContentOffsetRadix 40.0f
 #define MRCAvatarHeaderViewBlurEffectRadix    2.0f
 
-@interface MRCAvatarHeaderView ()
+@interface MRCAvatarHeaderView () <UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *overView;
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *repositoriesLabel;
@@ -31,11 +33,13 @@
 @implementation MRCAvatarHeaderView
 
 - (void)awakeFromNib {
-    self.avatarImageView.layer.borderColor  = [UIColor whiteColor].CGColor;
-    self.avatarImageView.layer.borderWidth  = 2.0f;
-    self.avatarImageView.layer.cornerRadius = CGRectGetWidth(self.avatarImageView.frame) / 2;
-    self.coverImageView.backgroundColor  = HexRGB(0xEBE9E5);
-    self.avatarImageView.backgroundColor = HexRGB(0xEBE9E5);
+    self.avatarButton.imageView.layer.borderColor  = [UIColor whiteColor].CGColor;
+    self.avatarButton.imageView.layer.borderWidth  = 2.0f;
+    self.avatarButton.imageView.layer.cornerRadius = CGRectGetWidth(self.avatarButton.frame) / 2;
+    self.avatarButton.imageView.backgroundColor = HexRGB(0xEBE9E5);
+    self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    self.coverImageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
 }
 
@@ -53,6 +57,18 @@
                                                             if (image && finished) self.avatarImage = image;
                                                         }];
         }];
+    
+    [[self.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *avatarButton) {
+        @strongify(self)
+        MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
+        
+        TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
+        
+        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        viewController.transitioningDelegate = self;
+        
+        [MRCSharedAppDelegate.window.rootViewController presentViewController:viewController animated:YES completion:NULL];
+    }];
     
     RAC(self.nameLabel, text) = RACObserve(viewModel, name);
     RAC(self.followersLabel, text) = RACObserve(viewModel, followers);
@@ -77,20 +93,36 @@
             });
         }
         
-        self.avatarImageView.alpha = 1 * (1 - scale);
+        self.avatarButton.imageView.alpha = 1 * (1 - scale);
         self.nameLabel.alpha = 1 * (1 - scale);
     }];
 }
 
 - (void)setAvatarImage:(UIImage *)avatarImage {
     _avatarImage = avatarImage;
-    self.coverImageView.image  = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
-    self.avatarImageView.image = avatarImage;
+    self.coverImageView.image = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
+    [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.overView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    if ([presented isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    if ([dismissed isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+    }
+    return nil;
 }
 
 @end

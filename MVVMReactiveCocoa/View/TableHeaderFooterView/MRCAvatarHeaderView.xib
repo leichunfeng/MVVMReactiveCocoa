@@ -17,13 +17,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yd-ZB-07H">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="381"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WIV-jI-rsc" customClass="MRCImageView">
-                            <rect key="frame" x="157" y="136" width="86" height="86"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="86" id="Qh6-r9-o5q"/>
-                                <constraint firstAttribute="width" constant="86" id="hkW-rm-dHi"/>
-                            </constraints>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hsiaoming Yang" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn1-Db-Vnf">
                             <rect key="frame" x="0.0" y="230" width="400" height="21"/>
                             <constraints>
@@ -104,14 +97,25 @@
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhD-JH-4xb">
+                            <rect key="frame" x="157" y="136" width="86" height="86"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="M5W-YC-1Am"/>
+                                <constraint firstAttribute="width" constant="86" id="inz-96-INf"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Dn1-Db-Vnf" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="0XH-Za-73u"/>
-                        <constraint firstAttribute="centerX" secondItem="WIV-jI-rsc" secondAttribute="centerX" id="1Ql-bx-mQ0"/>
                         <constraint firstItem="4ul-kt-YxP" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="9Io-HY-7a4"/>
                         <constraint firstAttribute="bottom" secondItem="cn5-Wc-3W7" secondAttribute="bottom" id="FHx-CE-uJW"/>
+                        <constraint firstItem="Dn1-Db-Vnf" firstAttribute="top" secondItem="HhD-JH-4xb" secondAttribute="bottom" constant="8" id="HcY-mO-LS1"/>
                         <constraint firstItem="H1b-wD-zLu" firstAttribute="width" secondItem="IeH-hb-XtX" secondAttribute="width" id="KBp-vW-nIz"/>
+                        <constraint firstAttribute="centerX" secondItem="HhD-JH-4xb" secondAttribute="centerX" id="M6a-5v-Cu3"/>
                         <constraint firstAttribute="bottom" secondItem="IeH-hb-XtX" secondAttribute="bottom" constant="9" id="OsR-Gj-PnD"/>
                         <constraint firstItem="J5Z-ju-2dA" firstAttribute="top" secondItem="wR3-ne-zHg" secondAttribute="bottom" constant="9" id="QVQ-m6-f51"/>
                         <constraint firstAttribute="bottom" secondItem="wR3-ne-zHg" secondAttribute="bottom" constant="57" id="TJJ-hk-i95"/>
@@ -127,6 +131,7 @@
                         <constraint firstItem="BSL-Bg-VGO" firstAttribute="width" secondItem="H1b-wD-zLu" secondAttribute="width" id="hXg-ny-iUT"/>
                         <constraint firstAttribute="bottom" secondItem="x7G-n5-WFV" secondAttribute="bottom" id="jQP-tO-Ww7"/>
                         <constraint firstAttribute="trailing" secondItem="BSL-Bg-VGO" secondAttribute="trailing" id="jUA-u9-MsN"/>
+                        <constraint firstAttribute="centerY" secondItem="HhD-JH-4xb" secondAttribute="centerY" constant="12" id="jUw-xN-Ugz"/>
                         <constraint firstAttribute="centerX" secondItem="IeH-hb-XtX" secondAttribute="centerX" id="mnF-0R-cjv"/>
                         <constraint firstAttribute="bottom" secondItem="BSL-Bg-VGO" secondAttribute="bottom" constant="9" id="nhB-LW-03a"/>
                         <constraint firstItem="IeH-hb-XtX" firstAttribute="width" secondItem="26k-s4-QL7" secondAttribute="width" id="nn2-ir-5H6"/>
@@ -134,9 +139,7 @@
                         <constraint firstAttribute="trailing" secondItem="wR3-ne-zHg" secondAttribute="trailing" id="pUO-hN-AWi"/>
                         <constraint firstItem="J5Z-ju-2dA" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="pYY-cE-Hb2"/>
                         <constraint firstAttribute="trailing" secondItem="H1b-wD-zLu" secondAttribute="trailing" id="qfD-Tk-ReK"/>
-                        <constraint firstItem="Dn1-Db-Vnf" firstAttribute="top" secondItem="WIV-jI-rsc" secondAttribute="bottom" constant="8" id="s4S-UU-ajy"/>
                         <constraint firstAttribute="centerX" secondItem="x7G-n5-WFV" secondAttribute="centerX" constant="-66.5" id="whp-bL-z7M"/>
-                        <constraint firstAttribute="centerY" secondItem="WIV-jI-rsc" secondAttribute="centerY" constant="11.5" id="yaH-9o-pU2"/>
                     </constraints>
                 </view>
             </subviews>
@@ -153,7 +156,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="avatarImageView" destination="WIV-jI-rsc" id="NvV-X4-yDO"/>
+                <outlet property="avatarButton" destination="HhD-JH-4xb" id="Slo-1L-Pmz"/>
                 <outlet property="coverImageView" destination="Xbr-KA-lMJ" id="nnv-uo-dUJ"/>
                 <outlet property="followersLabel" destination="J5Z-ju-2dA" id="kQz-XG-6gm"/>
                 <outlet property="followingLabel" destination="H1b-wD-zLu" id="svr-ZM-EgU"/>
@@ -161,7 +164,7 @@
                 <outlet property="overView" destination="3Yd-ZB-07H" id="Vzp-mA-vjf"/>
                 <outlet property="repositoriesLabel" destination="26k-s4-QL7" id="nJm-nG-MNP"/>
             </connections>
-            <point key="canvasLocation" x="1323" y="475.5"/>
+            <point key="canvasLocation" x="1102" y="443.5"/>
         </view>
     </objects>
 </document>
