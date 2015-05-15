@@ -48,6 +48,7 @@
     #import "OCTClient+MRCRepository.h"
     #import "UMSocialWechatHandler.h"
     #import "UMSocialSinaHandler.h"
+    #import "UMSocialQQHandler.h"
 #endif
 
 #endif

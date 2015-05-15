@@ -8,8 +8,9 @@
 
 #import "MRCRepoSettingsViewController.h"
 #import "MRCRepoSettingsViewModel.h"
+#import "MRCRepoSettingsAvatarTableViewCell.h"
 
-@interface MRCRepoSettingsViewController ()
+@interface MRCRepoSettingsViewController () <UMSocialUIDelegate>
 
 @property (strong, nonatomic, readonly) MRCRepoSettingsViewModel *viewModel;
 
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     
     self.tableView.tintColor = HexRGB(colorI3);
+    [self.tableView registerClass:[MRCRepoSettingsAvatarTableViewCell class] forCellReuseIdentifier:@"MRCRepoSettingsAvatarTableViewCell"];
     
     @weakify(self)
     [[RACObserve(self.viewModel, isStarred) deliverOnMainThread] subscribeNext:^(id x) {
@@ -31,11 +33,37 @@
     }];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 0) {
+//        return [tableView dequeueReusableCellWithIdentifier:@"MRCRepoSettingsAvatarTableViewCell" forIndexPath:indexPath];
+//    }
+    return [super tableView:tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+}
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-
+    
     if (indexPath.section == 0) {
+//        MRCRepoSettingsAvatarTableViewCell *avatarTableViewCell = (MRCRepoSettingsAvatarTableViewCell *)cell;
+//
+//        avatarTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        [avatarTableViewCell.imageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL
+//                                         placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+//        
+//        avatarTableViewCell.detailTextLabel.text = self.viewModel.repository.ownerLogin;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"Owner";
+        cell.detailTextLabel.text = [self.viewModel.repository.ownerLogin stringByAppendingString:@" "];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
+        imageView.layer.cornerRadius = 5;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        [imageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+        
+        cell.accessoryView = imageView;
+    } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Star"
                                                   backgroundColor:[UIColor clearColor]
@@ -53,10 +81,10 @@
             cell.textLabel.text = @"Unstar";
             cell.accessoryType  = !self.viewModel.isStarred ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         cell.textLabel.text = @"Share To Friends";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         if (indexPath.row == 0) {
@@ -72,11 +100,11 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 1 ? 1 : 2;
+    return (section == 0 || section == 2) ? 1 : 2;
 }
 
 #pragma mark - UITableViewDelegate
@@ -89,36 +117,62 @@
     return (section == tableView.numberOfSections - 1) ? 20 : 10;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return indexPath.section == 0 ? 90 : 44;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    if (indexPath.section == 1) {
-        [UMSocialData defaultData].extConfig.wechatSessionData.title = self.viewModel.repository.name;
-        [UMSocialData defaultData].extConfig.wechatSessionData.shareText = self.viewModel.repository.repoDescription;
+    if (indexPath.section == 2) {
+        // base property snsName、shareText、shareImage、urlResource
+        
+        UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:self.viewModel.repository.ownerAvatarURL.absoluteString];
+        
+        NSString *title = self.viewModel.repository.name;
+        NSString *shareText = self.viewModel.repository.repoDescription;
+        NSString *url = self.viewModel.repository.HTMLURL.absoluteString;
+        
+        // Wechat Session
+        [UMSocialData defaultData].extConfig.wechatSessionData.urlResource = urlResource;
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
+        [UMSocialData defaultData].extConfig.wechatSessionData.shareText = shareText;
         [UMSocialData defaultData].extConfig.wechatSessionData.wxMessageType = UMSocialWXMessageTypeApp;
        
-        [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.viewModel.repository.name;
-        [UMSocialData defaultData].extConfig.wechatTimelineData.shareText = self.viewModel.repository.repoDescription;
-        [UMSocialData defaultData].extConfig.wechatTimelineData.shareImage = [UIImage imageNamed:@"icon320"];
-        [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.viewModel.repository.HTMLURL.absoluteString;
+        // Wechat Timeline
+        [UMSocialData defaultData].extConfig.wechatTimelineData.urlResource = urlResource;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.shareText = shareText;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = url;
        
-        [UMSocialData defaultData].extConfig.wechatFavoriteData.title = self.viewModel.repository.name;
-        [UMSocialData defaultData].extConfig.wechatFavoriteData.shareText = self.viewModel.repository.repoDescription;
-        [UMSocialData defaultData].extConfig.wechatFavoriteData.shareImage = [UIImage imageNamed:@"icon320"];
-        [UMSocialData defaultData].extConfig.wechatFavoriteData.url = self.viewModel.repository.HTMLURL.absoluteString;
+        // Wechat Favorite
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.urlResource = urlResource;
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.title = title;
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.shareText = shareText;
+        [UMSocialData defaultData].extConfig.wechatFavoriteData.url = url;
        
-        [UMSocialData defaultData].extConfig.qqData.title = self.viewModel.repository.name;
-        [UMSocialData defaultData].extConfig.qqData.shareText = self.viewModel.repository.repoDescription;
-        [UMSocialData defaultData].extConfig.qqData.url = self.viewModel.repository.HTMLURL.absoluteString;
+        // QQ
+        [UMSocialData defaultData].extConfig.qqData.urlResource = urlResource;
+        [UMSocialData defaultData].extConfig.qqData.title = title;
+        [UMSocialData defaultData].extConfig.qqData.shareText = shareText;
+        [UMSocialData defaultData].extConfig.qqData.url = url;
+       
+        // Qzone
+        [UMSocialData defaultData].extConfig.qzoneData.urlResource = urlResource;
+        [UMSocialData defaultData].extConfig.qzoneData.title = title;
+        [UMSocialData defaultData].extConfig.qzoneData.shareText = shareText;
+        [UMSocialData defaultData].extConfig.qzoneData.url = url;
+       
+        // Tencent Weibo
+//        [UMSocialData defaultData].extConfig.tencentData.urlResource = urlResource;
+//        [UMSocialData defaultData].extConfig.tencentData.title = title;
+//        [UMSocialData defaultData].extConfig.tencentData.shareText = shareText;
         
-        [UMSocialData defaultData].extConfig.sinaData.urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:self.viewModel.repository.HTMLURL.absoluteString];
-        [UMSocialData defaultData].extConfig.sinaData.shareText = [self.viewModel.repository.repoDescription stringByAppendingString:self.viewModel.repository.HTMLURL.absoluteString];
+        // Sina Weibo
+        [UMSocialData defaultData].extConfig.sinaData.urlResource = urlResource;
+        [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"#%@# %@ %@", title, shareText, url];
         
-        [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:nil
-                                          shareText:nil
-                                         shareImage:nil
-                                    shareToSnsNames:@[ UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, UMShareToQQ, UMShareToQzone, UMShareToTencent, UMShareToSina ]
-                                           delegate:nil];
+        NSArray *snsNames = @[ UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, UMShareToQQ, UMShareToQzone, UMShareToSina ];
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:nil shareImage:nil shareToSnsNames:snsNames delegate:self];
     }
 }
 
