@@ -11,8 +11,10 @@
 @implementation MRCRepoSettingsOwnerTableViewCell
 
 - (void)awakeFromNib {
-    self.avatarImageView.layer.cornerRadius = 5;
-    self.avatarImageView.clipsToBounds = YES;
+    self.avatarButton.imageView.layer.cornerRadius = 5;
+    self.avatarButton.imageView.clipsToBounds = YES;
+    self.avatarButton.imageView.frame = self.avatarButton.bounds;
+    self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 @end

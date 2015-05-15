@@ -8,12 +8,14 @@
 
 #import "MRCRepoSettingsViewController.h"
 #import "MRCRepoSettingsViewModel.h"
-#import "MRCRepoSettingsAvatarTableViewCell.h"
 #import "MRCRepoSettingsOwnerTableViewCell.h"
+#import "TGRImageViewController.h"
+#import "TGRImageZoomAnimationController.h"
 
-@interface MRCRepoSettingsViewController () <UMSocialUIDelegate>
+@interface MRCRepoSettingsViewController () <UMSocialUIDelegate, UIViewControllerTransitioningDelegate>
 
 @property (strong, nonatomic, readonly) MRCRepoSettingsViewModel *viewModel;
+@property (strong, nonatomic) UIButton *avatarButton;
 
 @end
 
@@ -25,7 +27,9 @@
     [super viewDidLoad];
     
     self.tableView.tintColor = HexRGB(colorI3);
-    [self.tableView registerClass:[MRCRepoSettingsAvatarTableViewCell class] forCellReuseIdentifier:@"MRCRepoSettingsAvatarTableViewCell"];
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoSettingsOwnerTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCRepoSettingsOwnerTableViewCell"];
     
     @weakify(self)
@@ -47,27 +51,28 @@
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     
     if (indexPath.section == 0) {
-//        MRCRepoSettingsAvatarTableViewCell *avatarTableViewCell = (MRCRepoSettingsAvatarTableViewCell *)cell;
-//
-//        avatarTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        [avatarTableViewCell.imageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL
-//                                         placeholderImage:[UIImage imageNamed:@"default-avatar"]];
-//        
-//        avatarTableViewCell.detailTextLabel.text = self.viewModel.repository.ownerLogin;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.textLabel.text = @"Owner";
-//        cell.detailTextLabel.text = [self.viewModel.repository.ownerLogin stringByAppendingString:@" "];
-//        
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
-//        imageView.layer.cornerRadius = 5;
-//        imageView.contentMode = UIViewContentModeScaleAspectFill;
-//        imageView.clipsToBounds = YES;
-//        [imageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
-//        
-//        cell.accessoryView = imageView;
-        
         MRCRepoSettingsOwnerTableViewCell *ownerTableViewCell = (MRCRepoSettingsOwnerTableViewCell *)cell;
-        [ownerTableViewCell.avatarImageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+        
+        self.avatarButton = ownerTableViewCell.avatarButton;
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [ownerTableViewCell.avatarButton sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL
+                                                   forState:UIControlStateNormal
+                                           placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+        
+        @weakify(self)
+        [[ownerTableViewCell.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *avatarButton) {
+            @strongify(self)
+            MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
+            
+            TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
+            
+            viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            viewController.transitioningDelegate = self;
+           
+            [self presentViewController:viewController animated:YES completion:nil];
+        }];
+        
         ownerTableViewCell.topTextLabel.text = self.viewModel.repository.ownerLogin;
         ownerTableViewCell.bottomTextLabel.text = self.viewModel.repository.name;
     } else if (indexPath.section == 1) {
@@ -181,6 +186,22 @@
         NSArray *snsNames = @[ UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, UMShareToQQ, UMShareToQzone, UMShareToSina ];
         [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:nil shareImage:nil shareToSnsNames:snsNames delegate:self];
     }
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    if ([presented isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    if ([dismissed isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+    }
+    return nil;
 }
 
 @end
