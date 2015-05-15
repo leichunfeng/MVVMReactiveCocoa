@@ -9,6 +9,7 @@
 #import "MRCRepoSettingsViewController.h"
 #import "MRCRepoSettingsViewModel.h"
 #import "MRCRepoSettingsAvatarTableViewCell.h"
+#import "MRCRepoSettingsOwnerTableViewCell.h"
 
 @interface MRCRepoSettingsViewController () <UMSocialUIDelegate>
 
@@ -25,18 +26,19 @@
     
     self.tableView.tintColor = HexRGB(colorI3);
     [self.tableView registerClass:[MRCRepoSettingsAvatarTableViewCell class] forCellReuseIdentifier:@"MRCRepoSettingsAvatarTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoSettingsOwnerTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCRepoSettingsOwnerTableViewCell"];
     
     @weakify(self)
     [[RACObserve(self.viewModel, isStarred) deliverOnMainThread] subscribeNext:^(id x) {
         @strongify(self)
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//        return [tableView dequeueReusableCellWithIdentifier:@"MRCRepoSettingsAvatarTableViewCell" forIndexPath:indexPath];
-//    }
+    if (indexPath.section == 0) {
+        return [tableView dequeueReusableCellWithIdentifier:@"MRCRepoSettingsOwnerTableViewCell" forIndexPath:indexPath];
+    }
     return [super tableView:tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 }
 
@@ -53,16 +55,21 @@
 //        
 //        avatarTableViewCell.detailTextLabel.text = self.viewModel.repository.ownerLogin;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = @"Owner";
-        cell.detailTextLabel.text = [self.viewModel.repository.ownerLogin stringByAppendingString:@" "];
+//        cell.textLabel.text = @"Owner";
+//        cell.detailTextLabel.text = [self.viewModel.repository.ownerLogin stringByAppendingString:@" "];
+//        
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
+//        imageView.layer.cornerRadius = 5;
+//        imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        imageView.clipsToBounds = YES;
+//        [imageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+//        
+//        cell.accessoryView = imageView;
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 65, 65)];
-        imageView.layer.cornerRadius = 5;
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-        [imageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
-        
-        cell.accessoryView = imageView;
+        MRCRepoSettingsOwnerTableViewCell *ownerTableViewCell = (MRCRepoSettingsOwnerTableViewCell *)cell;
+        [ownerTableViewCell.avatarImageView sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+        ownerTableViewCell.topTextLabel.text = self.viewModel.repository.ownerLogin;
+        ownerTableViewCell.bottomTextLabel.text = self.viewModel.repository.name;
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Star"

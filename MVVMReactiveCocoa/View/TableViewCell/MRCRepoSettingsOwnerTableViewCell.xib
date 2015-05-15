@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MRCRepoSettingsOwnerTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Kv-je-UHG">
+                        <rect key="frame" x="20" y="11" width="65" height="65"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="65" id="JJz-4z-2of"/>
+                            <constraint firstAttribute="width" constant="65" id="VG5-3t-Gfo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="leichunfeng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlp-vd-MW0">
+                        <rect key="frame" x="95" y="23" width="260" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MVVMReactiveCocoa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bX3-m3-sjP">
+                        <rect key="frame" x="95" y="46" width="260" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="bX3-m3-sjP" secondAttribute="trailing" constant="20" id="4mm-ow-1xo"/>
+                    <constraint firstAttribute="centerY" secondItem="zlp-vd-MW0" secondAttribute="centerY" constant="11.5" id="6w3-ho-4Cs"/>
+                    <constraint firstAttribute="centerY" secondItem="1Kv-je-UHG" secondAttribute="centerY" id="H7e-6h-kfS"/>
+                    <constraint firstItem="bX3-m3-sjP" firstAttribute="leading" secondItem="1Kv-je-UHG" secondAttribute="trailing" constant="10" id="Vjz-2q-0Dd"/>
+                    <constraint firstAttribute="trailing" secondItem="zlp-vd-MW0" secondAttribute="trailing" constant="20" id="bJJ-xF-qPA"/>
+                    <constraint firstAttribute="centerY" secondItem="bX3-m3-sjP" secondAttribute="centerY" constant="-11.5" id="cLI-1f-m2Q"/>
+                    <constraint firstItem="zlp-vd-MW0" firstAttribute="leading" secondItem="1Kv-je-UHG" secondAttribute="trailing" constant="10" id="fL7-61-lCl"/>
+                    <constraint firstItem="1Kv-je-UHG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="q4f-y6-5bI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="1Kv-je-UHG" id="idg-sq-X84"/>
+                <outlet property="bottomTextLabel" destination="bX3-m3-sjP" id="odU-be-7lS"/>
+                <outlet property="topTextLabel" destination="zlp-vd-MW0" id="Z9f-mD-4H8"/>
+            </connections>
+            <point key="canvasLocation" x="-187.5" y="257"/>
+        </tableViewCell>
+    </objects>
+</document>
