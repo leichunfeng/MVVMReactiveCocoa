@@ -161,20 +161,22 @@ typedef id   (^IDBlock_id)  (id);
 /// UMAnalytics & Share
 ///--------------------
 
-#define MRC_UM_APP_KEY @"553e402e67e58ed9f4004045"
+#define MRC_UM_APP_KEY   @"553e402e67e58ed9f4004045"
+#define MRC_UM_SHARE_URL @"http://www.umeng.com/social"
 
 // Wechat
 #define MRC_WX_APP_ID     @"wx738f343b7a8d1bdb"
 #define MRC_WX_APP_SECRET @"a09ec93457abc134f769e37da4d8ad21"
-#define MRC_WX_URL        @"http://www.umeng.com/social"
 
 // Sina Weibo
-#define MRC_WEIBO_APP_KEY    @"2568724352"
-#define MRC_WEIBO_APP_SECRET @"ef15e9184ff294fc67a3240e960782f2"
+#define MRC_WEIBO_APP_KEY      @"2568724352"
+#define MRC_WEIBO_APP_SECRET   @"ef15e9184ff294fc67a3240e960782f2"
+#define MRC_WEIBO_REDIRECT_URL @"http://sns.whalecloud.com/sina2/callback"
 
 // QQ
-#define MRC_QQ_APP_ID  @"1104637080"
-#define MRC_QQ_APP_KEY @"WWGP247M3a7xIAUL"
+#define MRC_QQ_APP_ID            @"1104637080"
+#define MRC_QQ_APP_KEY           @"WWGP247M3a7xIAUL"
+#define MRC_TENCENT_REDIRECT_URL @"http://sns.whalecloud.com/tencent2/callback"
 
 ///-----
 /// FMDB

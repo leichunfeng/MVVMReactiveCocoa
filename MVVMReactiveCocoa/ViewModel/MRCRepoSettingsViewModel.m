@@ -35,7 +35,7 @@
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
-        if (indexPath.section == 0) {
+        if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 @onExit {
                     self.isStarred = YES;
