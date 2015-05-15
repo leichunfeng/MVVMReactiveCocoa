@@ -102,6 +102,12 @@
 		249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */; };
 		249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B1E1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m */; };
 		249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B1F1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib */; };
+		249E5B321B065D4600BFDEA1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B281B065D4600BFDEA1 /* LICENSE */; };
+		249E5B331B065D4600BFDEA1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B291B065D4600BFDEA1 /* README.md */; };
+		249E5B341B065D4600BFDEA1 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B2C1B065D4600BFDEA1 /* TGRImageViewController.m */; };
+		249E5B351B065D4600BFDEA1 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B2D1B065D4600BFDEA1 /* TGRImageViewController.xib */; };
+		249E5B361B065D4600BFDEA1 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B2F1B065D4600BFDEA1 /* TGRImageZoomAnimationController.m */; };
+		249E5B371B065D4600BFDEA1 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B311B065D4600BFDEA1 /* UIImage+AspectFit.m */; };
 		249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34F71A72A197008F1C2A /* UIView+Borders.m */; };
 		249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34FA1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m */; };
 		249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FB1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib */; };
@@ -484,6 +490,15 @@
 		249E5B1D1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsOwnerTableViewCell.h; sourceTree = "<group>"; };
 		249E5B1E1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoSettingsOwnerTableViewCell.m; sourceTree = "<group>"; };
 		249E5B1F1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCRepoSettingsOwnerTableViewCell.xib; sourceTree = "<group>"; };
+		249E5B281B065D4600BFDEA1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		249E5B291B065D4600BFDEA1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		249E5B2B1B065D4600BFDEA1 /* TGRImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRImageViewController.h; sourceTree = "<group>"; };
+		249E5B2C1B065D4600BFDEA1 /* TGRImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageViewController.m; sourceTree = "<group>"; };
+		249E5B2D1B065D4600BFDEA1 /* TGRImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TGRImageViewController.xib; sourceTree = "<group>"; };
+		249E5B2E1B065D4600BFDEA1 /* TGRImageZoomAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRImageZoomAnimationController.h; sourceTree = "<group>"; };
+		249E5B2F1B065D4600BFDEA1 /* TGRImageZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageZoomAnimationController.m; sourceTree = "<group>"; };
+		249E5B301B065D4600BFDEA1 /* UIImage+AspectFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AspectFit.h"; sourceTree = "<group>"; };
+		249E5B311B065D4600BFDEA1 /* UIImage+AspectFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AspectFit.m"; sourceTree = "<group>"; };
 		249F34F61A72A197008F1C2A /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
 		249F34F71A72A197008F1C2A /* UIView+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Borders.m"; sourceTree = "<group>"; };
 		249F34F91A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadmeTableViewCell.h; sourceTree = "<group>"; };
@@ -955,6 +970,7 @@
 		24313CAC1A7D3CA700FA357E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				249E5B271B065D4600BFDEA1 /* Vertigo */,
 				2479C9301AAD39150057B681 /* TWMessageBarManager */,
 				243140121A7DD6E800FA357E /* assets.bundle */,
 			);
@@ -1008,6 +1024,30 @@
 				2479C9381AAD39150057B681 /* icon-success@2x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		249E5B271B065D4600BFDEA1 /* Vertigo */ = {
+			isa = PBXGroup;
+			children = (
+				249E5B281B065D4600BFDEA1 /* LICENSE */,
+				249E5B291B065D4600BFDEA1 /* README.md */,
+				249E5B2A1B065D4600BFDEA1 /* Vertigo */,
+			);
+			path = Vertigo;
+			sourceTree = "<group>";
+		};
+		249E5B2A1B065D4600BFDEA1 /* Vertigo */ = {
+			isa = PBXGroup;
+			children = (
+				249E5B2B1B065D4600BFDEA1 /* TGRImageViewController.h */,
+				249E5B2C1B065D4600BFDEA1 /* TGRImageViewController.m */,
+				249E5B2D1B065D4600BFDEA1 /* TGRImageViewController.xib */,
+				249E5B2E1B065D4600BFDEA1 /* TGRImageZoomAnimationController.h */,
+				249E5B2F1B065D4600BFDEA1 /* TGRImageZoomAnimationController.m */,
+				249E5B301B065D4600BFDEA1 /* UIImage+AspectFit.h */,
+				249E5B311B065D4600BFDEA1 /* UIImage+AspectFit.m */,
+			);
+			path = Vertigo;
 			sourceTree = "<group>";
 		};
 		24B4DA111A66B94800DDFA6C /* TableViewCell */ = {
@@ -1334,6 +1374,7 @@
 				24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
+				249E5B351B065D4600BFDEA1 /* TGRImageViewController.xib in Resources */,
 				240D013B1A654D300033CC86 /* MRCLoginViewController.xib in Resources */,
 				24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */,
 				2479C9411AAD39150057B681 /* icon-success.png in Resources */,
@@ -1342,6 +1383,7 @@
 				245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */,
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */,
+				249E5B321B065D4600BFDEA1 /* LICENSE in Resources */,
 				2479C93D1AAD39150057B681 /* icon-error.png in Resources */,
 				24D899DA1AAA9BAC00BC607C /* MRCFeedbackViewController.xib in Resources */,
 				2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */,
@@ -1448,8 +1490,10 @@
 			files = (
 				24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */,
 				24AF977E1B02292700E2A737 /* MRCSearch.m in Sources */,
+				249E5B361B065D4600BFDEA1 /* TGRImageZoomAnimationController.m in Sources */,
 				24D899EE1AAAAE9F00BC607C /* MRCFeedbackViewModel.m in Sources */,
 				240D01301A654D300033CC86 /* MRCTableViewController.m in Sources */,
+				249E5B371B065D4600BFDEA1 /* UIImage+AspectFit.m in Sources */,
 				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
@@ -1472,6 +1516,7 @@
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
 				24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */,
+				249E5B341B065D4600BFDEA1 /* TGRImageViewController.m in Sources */,
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
@@ -1508,6 +1553,7 @@
 				249674361A73F5650032771B /* MRCWebViewModel.m in Sources */,
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */,
+				249E5B331B065D4600BFDEA1 /* README.md in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,
 				240D014B1A654D300033CC86 /* MRCHomepageViewModel.m in Sources */,

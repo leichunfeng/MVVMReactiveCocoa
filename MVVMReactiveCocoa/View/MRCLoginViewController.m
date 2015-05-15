@@ -11,10 +11,12 @@
 #import "MRCHomepageViewController.h"
 #import "MRCHomepageViewModel.h"
 #import "IQKeyboardReturnKeyHandler.h"
+#import "TGRImageViewController.h"
+#import "TGRImageZoomAnimationController.h"
 
-@interface MRCLoginViewController () <UITextFieldDelegate>
+@interface MRCLoginViewController () <UITextFieldDelegate, UIViewControllerTransitioningDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *usernameImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
@@ -39,8 +41,10 @@
     
     self.navigationController.navigationBar.hidden = YES;
     
-    self.avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.avatarImageView.layer.borderWidth = 2.0f;
+    self.avatarButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.avatarButton.layer.borderWidth = 2.0f;
+    
+    self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     self.usernameImageView.image = [UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(22, 22)];
     self.passwordImageView.image = [UIImage octicon_imageWithIdentifier:@"Lock" size:CGSizeMake(22, 22)];
@@ -69,7 +73,19 @@
 	@weakify(self)
     [RACObserve(self.viewModel, avatarURL) subscribeNext:^(NSURL *avatarURL) {
     	@strongify(self)
-        [self.avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+        [self.avatarButton sd_setImageWithURL:avatarURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+    }];
+    
+    [[self.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *avatarButton) {
+        @strongify(self)
+        MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
+        
+        TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
+        
+        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        viewController.transitioningDelegate = self;
+        
+        [self presentViewController:viewController animated:YES completion:nil];
     }];
     
     RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
@@ -130,6 +146,22 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    if ([presented isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    if ([dismissed isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+    }
+    return nil;
 }
 
 @end

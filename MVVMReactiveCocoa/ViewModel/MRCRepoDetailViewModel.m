@@ -172,8 +172,4 @@
     return summaryReadmeHTMLString;
 }
 
-- (RACSubject *)willDisappearSignal {
-    return nil;
-}
-
 @end
