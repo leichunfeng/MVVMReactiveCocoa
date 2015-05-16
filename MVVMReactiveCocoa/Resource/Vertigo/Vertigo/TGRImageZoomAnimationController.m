@@ -50,6 +50,8 @@
 }
 
 - (void)animateZoomInTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
+    
     // Get the view controllers participating in the transition
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     TGRImageViewController *toViewController = (TGRImageViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -141,6 +143,8 @@
                      } completion:^(BOOL finished) {
                          [transitionView removeFromSuperview];
                          [transitionContext completeTransition:YES];
+                         
+                         MRCSharedAppDelegate.window.backgroundColor = [UIColor whiteColor];
                      }];
 }
 
