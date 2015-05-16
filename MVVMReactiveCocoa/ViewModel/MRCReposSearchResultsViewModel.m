@@ -53,7 +53,7 @@
     for (OCTRepository *repository in repositories) {
         [repos addObject:[[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository]];
         
-        if (![repository.ownerLogin isEqualToString:[OCTUser mrc_currentUserId]]) {
+        if (![repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
             for (OCTRepository *starredRepo in starredRepos) {
                 if ([repository.objectID isEqualToString:starredRepo.objectID]) {
                     repository.isStarred = YES;
