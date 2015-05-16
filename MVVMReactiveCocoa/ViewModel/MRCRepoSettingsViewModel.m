@@ -29,7 +29,7 @@
     
     self.title = @"Settings";
     
-    self.repository.isStarred = [self.repository hasUserStarred];
+    self.repository.isStarred = [self.repository mrc_hasUserStarred];
     self.isStarred = self.repository.isStarred;
     
     @weakify(self)

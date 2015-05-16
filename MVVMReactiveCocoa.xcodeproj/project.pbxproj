@@ -108,6 +108,7 @@
 		249E5B351B065D4600BFDEA1 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B2D1B065D4600BFDEA1 /* TGRImageViewController.xib */; };
 		249E5B361B065D4600BFDEA1 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B2F1B065D4600BFDEA1 /* TGRImageZoomAnimationController.m */; };
 		249E5B371B065D4600BFDEA1 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B311B065D4600BFDEA1 /* UIImage+AspectFit.m */; };
+		249E5B4F1B07A8EA00BFDEA1 /* UIImage+RTTint.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B4E1B07A8EA00BFDEA1 /* UIImage+RTTint.m */; };
 		249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34F71A72A197008F1C2A /* UIView+Borders.m */; };
 		249F35021A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F34FA1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.m */; };
 		249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FB1A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib */; };
@@ -499,6 +500,8 @@
 		249E5B2F1B065D4600BFDEA1 /* TGRImageZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageZoomAnimationController.m; sourceTree = "<group>"; };
 		249E5B301B065D4600BFDEA1 /* UIImage+AspectFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AspectFit.h"; sourceTree = "<group>"; };
 		249E5B311B065D4600BFDEA1 /* UIImage+AspectFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AspectFit.m"; sourceTree = "<group>"; };
+		249E5B4D1B07A8EA00BFDEA1 /* UIImage+RTTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RTTint.h"; sourceTree = "<group>"; };
+		249E5B4E1B07A8EA00BFDEA1 /* UIImage+RTTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RTTint.m"; sourceTree = "<group>"; };
 		249F34F61A72A197008F1C2A /* UIView+Borders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Borders.h"; sourceTree = "<group>"; };
 		249F34F71A72A197008F1C2A /* UIView+Borders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Borders.m"; sourceTree = "<group>"; };
 		249F34F91A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoReadmeTableViewCell.h; sourceTree = "<group>"; };
@@ -640,6 +643,8 @@
 		240D00D11A654D300033CC86 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				249E5B4D1B07A8EA00BFDEA1 /* UIImage+RTTint.h */,
+				249E5B4E1B07A8EA00BFDEA1 /* UIImage+RTTint.m */,
 				249F34F61A72A197008F1C2A /* UIView+Borders.h */,
 				249F34F71A72A197008F1C2A /* UIView+Borders.m */,
 				240D00D21A654D300033CC86 /* MRCConfig.h */,
@@ -1496,6 +1501,7 @@
 				249E5B371B065D4600BFDEA1 /* UIImage+AspectFit.m in Sources */,
 				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
 				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
+				249E5B4F1B07A8EA00BFDEA1 /* UIImage+RTTint.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
 				245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */,
 				240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */,

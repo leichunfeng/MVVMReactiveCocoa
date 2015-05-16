@@ -11,4 +11,6 @@
 
 @interface MRCReposTableViewCell : UITableViewCell <MRCReactiveView>
 
+@property (weak, nonatomic) IBOutlet UIImageView *starIconImageView;
+
 @end
