@@ -15,7 +15,7 @@
 @interface MRCRepoSettingsViewController () <UMSocialUIDelegate, UIViewControllerTransitioningDelegate>
 
 @property (strong, nonatomic, readonly) MRCRepoSettingsViewModel *viewModel;
-@property (strong, nonatomic) UIButton *avatarButton;
+@property (strong, nonatomic) UIImageView *avatarImageView;
 
 @end
 
@@ -53,17 +53,18 @@
     if (indexPath.section == 0) {
         MRCRepoSettingsOwnerTableViewCell *ownerTableViewCell = (MRCRepoSettingsOwnerTableViewCell *)cell;
         
-        self.avatarButton = ownerTableViewCell.avatarButton;
+        self.avatarImageView = ownerTableViewCell.avatarImageView;
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [ownerTableViewCell.avatarButton sd_setImageWithURL:self.viewModel.repository.ownerAvatarURL
-                                                   forState:UIControlStateNormal
-                                           placeholderImage:[UIImage imageNamed:@"default-avatar"]];
+        
+        [ownerTableViewCell.avatarImageView setImageWithURL:self.viewModel.repository.ownerAvatarURL
+                                           placeholderImage:[UIImage imageNamed:@"default-avatar"]
+                                usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
         @weakify(self)
-        [[ownerTableViewCell.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *avatarButton) {
+        [[ownerTableViewCell.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             @strongify(self)
-            TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
+            TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:ownerTableViewCell.avatarImageView.image];
             
             viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             viewController.transitioningDelegate = self;
@@ -190,14 +191,14 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     if ([presented isKindOfClass:TGRImageViewController.class]) {
-        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarImageView];
     }
     return nil;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     if ([dismissed isKindOfClass:TGRImageViewController.class]) {
-        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarImageView];
     }
     return nil;
 }

@@ -4,6 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 pod 'SDWebImage', '~> 3.7.1'
+pod 'UIActivityIndicator-for-SDWebImage'
 pod 'MBProgressHUD', '~> 0.9'
 pod 'SSKeychain', '~> 1.2.2'
 pod 'IQKeyboardManager', '~> 3.2.0.3'
