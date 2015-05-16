@@ -126,6 +126,8 @@ typedef id   (^IDBlock_id)  (id);
 #define colorI4 0xe9dba5
 #define colorI5 0x24AFFC
 
+#define MRC_PLACEHOLDER_IMAGE [HexRGB(0xEDEDED) color2Image]
+
 #define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
