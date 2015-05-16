@@ -27,6 +27,12 @@
 
 + (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories;
 
-- (BOOL)hasUserStarred;
+- (BOOL)mrc_hasUserStarred;
+
+- (BOOL)mrc_starRepository;
+
+- (BOOL)mrc_unstarRepository;
+
++ (BOOL)mrc_deleteRepositoryWithId:(NSString *)id isStarred:(BOOL)isStarred;
 
 @end

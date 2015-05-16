@@ -57,37 +57,18 @@
     return MBPROGRESSHUD_LABEL_TEXT;
 }
 
-#pragma mark - UITableViewDataSource
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MRCReposTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCReposTableViewCell"];
-    
-    MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    [cell bindViewModel:viewModel];
-    
-    return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    return [tableView dequeueReusableCellWithIdentifier:@"MRCReposTableViewCell" forIndexPath:indexPath];
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {}
+- (void)configureCell:(MRCReposTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCReposItemViewModel *)viewModel {
+    [cell bindViewModel:viewModel];
+}
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
-}
-
-- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    void (^handler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        tableView.editing = false;
-        
-        MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-        [[[self.viewModel.services client] mrc_starRepository:viewModel.repository] subscribeNext:^(id x) {}];
-    };
-    
-    UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
-                                                                          title:@"Star"
-                                                                        handler:handler];
-    return @[ starAction ];
 }
 
 @end

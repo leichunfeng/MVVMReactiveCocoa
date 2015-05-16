@@ -20,7 +20,6 @@ static NSMutableArray *_iconImages;
 @property (weak, nonatomic) IBOutlet UILabel *starCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *forkCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *starIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *forkIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutConstraint;
 

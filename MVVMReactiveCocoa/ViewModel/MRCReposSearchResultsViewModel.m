@@ -47,9 +47,20 @@
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     if (!repositories) return nil;
     
+    NSArray *starredRepos = [OCTRepository mrc_fetchUserStarredRepositories];
+    
     NSMutableArray *repos = [NSMutableArray new];
     for (OCTRepository *repository in repositories) {
         [repos addObject:[[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository]];
+        
+        if (![repository.ownerLogin isEqualToString:[OCTUser mrc_currentUserId]]) {
+            for (OCTRepository *starredRepo in starredRepos) {
+                if ([repository.objectID isEqualToString:starredRepo.objectID]) {
+                    repository.isStarred = YES;
+                    break;
+                }
+            }
+        }
     }
     
     return @[ repos ];

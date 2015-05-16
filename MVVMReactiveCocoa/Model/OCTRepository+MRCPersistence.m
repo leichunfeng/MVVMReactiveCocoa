@@ -20,6 +20,16 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
     objc_setAssociatedObject(self, OCTRepositoryIsStarredKey, @(isStarred), OBJC_ASSOCIATION_ASSIGN);
 }
 
+- (BOOL)mrc_starRepository {
+    self.isStarred = YES;
+    return [self mrc_saveOrUpdate];
+}
+
+- (BOOL)mrc_unstarRepository {
+    self.isStarred = NO;
+    return [OCTRepository mrc_deleteRepositoryWithId:self.objectID isStarred:@YES];
+}
+
 - (BOOL)mrc_saveOrUpdate {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     
@@ -177,7 +187,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
     return NO;
 }
 
-- (BOOL)hasUserStarred {
+- (BOOL)mrc_hasUserStarred {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     if ([db open]) {
         @onExit {
@@ -188,6 +198,26 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         return [rs next];
     }
+    return NO;
+}
+
++ (BOOL)mrc_deleteRepositoryWithId:(NSString *)id isStarred:(BOOL)isStarred {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ? and isStarred = ?;", [OCTUser mrc_currentUserId], id, @(isStarred)];
+        if (!success) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        return YES;
+    }
+    
     return NO;
 }
 

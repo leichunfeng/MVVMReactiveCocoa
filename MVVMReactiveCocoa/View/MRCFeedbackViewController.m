@@ -47,7 +47,7 @@
         progressHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
         
         progressHUD.mode = MBProgressHUDModeCustomView;
-        progressHUD.labelText = @"Completed";
+        progressHUD.labelText = @"Submited";
         
         [progressHUD hide:YES afterDelay:3];
     }];
