@@ -30,6 +30,37 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
     return [OCTRepository mrc_deleteRepositoryWithId:self.objectID isStarred:@YES];
 }
 
+- (BOOL)mrc_update {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, @(self.isStarred)];
+        if ([rs next]) {
+            NSString *sql = @"update Repository set name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count, subscribers_count = :subscribers_count where userId = :userId and id = :id and isStarred = :isStarred;";
+            
+            NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
+            
+            dictionary[@"userId"] = [OCTUser mrc_currentUserId];
+            dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
+            dictionary[@"owner_avatar_url"] = dictionary[@"owner"][@"avatar_url"];
+            
+            BOOL success = [db executeUpdate:sql withParameterDictionary:dictionary];
+            if (!success) {
+                mrcLogLastError(db);
+                return NO;
+            }
+            
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 - (BOOL)mrc_saveOrUpdate {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     

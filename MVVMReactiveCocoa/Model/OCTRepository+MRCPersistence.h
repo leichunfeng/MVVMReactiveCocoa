@@ -13,6 +13,8 @@
 
 @property (assign, nonatomic) BOOL isStarred;
 
+- (BOOL)mrc_update;
+
 // Retrieves the repositories of the current `user` from disk.
 //
 // Returns the repositories.
