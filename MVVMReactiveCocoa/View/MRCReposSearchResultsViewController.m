@@ -32,11 +32,17 @@
 
 - (void)configureCell:(MRCReposTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCReposSearchResultsItemViewModel *)viewModel {
     [super configureCell:cell atIndexPath:indexPath withObject:viewModel];
-    if (viewModel.repository.isStarred) {
-        cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:HexRGB(colorI5)];
-    } else {
-        cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:[UIColor darkGrayColor]];
-    }
+    
+    [[[RACObserve(viewModel.repository, isStarred)
+        distinctUntilChanged]
+        deliverOnMainThread]
+        subscribeNext:^(NSNumber *isStarred) {
+             if (isStarred.boolValue) {
+                 cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:HexRGB(colorI5)];
+             } else {
+                 cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:[UIColor darkGrayColor]];
+             }
+         }];
 }
 
 #pragma mark - UISearchBarDelegate
@@ -80,9 +86,6 @@
         void (^handler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
             tableView.editing = false;
             
-            MRCReposTableViewCell *cell = (MRCReposTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-            cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:[UIColor darkGrayColor]];
-            
             MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
             [[[self.viewModel.services client] mrc_unstarRepository:viewModel.repository] subscribeNext:^(id x) {}];
         };
@@ -94,9 +97,6 @@
     } else {
         void (^handler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
             tableView.editing = false;
-            
-            MRCReposTableViewCell *cell = (MRCReposTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-            cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:HexRGB(colorI5)];
             
             MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
             [[[self.viewModel.services client] mrc_starRepository:viewModel.repository] subscribeNext:^(id x) {}];
