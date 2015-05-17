@@ -38,7 +38,7 @@
         CGFloat height = 0;
         if (self.repository.repoDescription.length > 0) {
             NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:15.0] };
-            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(self.repoDescriptionWidth, 0)
+            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(self.repoDesWidth, 0)
                                                                         options:NSStringDrawingUsesLineFragmentOrigin
                                                                      attributes:attributes
                                                                         context:nil];
@@ -49,7 +49,7 @@
     return self;
 }
 
-- (CGFloat)repoDescriptionWidth {
+- (CGFloat)repoDesWidth {
     return SCREEN_WIDTH - 61;
 }
 
@@ -68,17 +68,6 @@
         }
     }
     return _name;
-}
-
-- (NSAttributedString *)repoDescription {
-    if (!_repoDescription) {
-        NSAttributedString *attributedString = nil;
-        if (self.repository.repoDescription) {
-            attributedString = [[NSAttributedString alloc] initWithString:self.repository.repoDescription];
-        }
-        _repoDescription = attributedString.copy;
-    }
-    return _repoDescription;
 }
 
 @end

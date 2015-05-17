@@ -40,11 +40,17 @@ static NSMutableArray *_iconImages;
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
     self.nameLabel.attributedText = viewModel.name;
-    self.updateTimeLabel.text     = viewModel.updateTime;
-    self.desLabel.attributedText  = viewModel.repoDescription;
-    self.languageLabel.text       = viewModel.language;
-    self.starCountLabel.text      = @(viewModel.repository.stargazersCount).stringValue;
-    self.forkCountLabel.text      = @(viewModel.repository.forksCount).stringValue;
+    self.updateTimeLabel.text = viewModel.updateTime;
+    
+    if (viewModel.repoDescription) {
+        self.desLabel.attributedText = viewModel.repoDescription;
+    } else {
+        self.desLabel.text = viewModel.repository.repoDescription;
+    }
+    
+    self.languageLabel.text  = viewModel.language;
+    self.starCountLabel.text = @(viewModel.repository.stargazersCount).stringValue;
+    self.forkCountLabel.text = @(viewModel.repository.forksCount).stringValue;
     
     UIColor *iconColor = viewModel.hexRGB ? HexRGB(viewModel.hexRGB) : [UIColor darkGrayColor];
     
