@@ -49,6 +49,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    cell.hidden = NO;
     
     if (indexPath.section == 0) {
         MRCRepoSettingsOwnerTableViewCell *ownerTableViewCell = (MRCRepoSettingsOwnerTableViewCell *)cell;
@@ -92,6 +93,10 @@
             cell.textLabel.text = @"Unstar";
             cell.accessoryType  = !self.viewModel.isStarred ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
+        
+        if ([self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
+            cell.hidden = YES;
+        }
     } else if (indexPath.section == 2) {
         cell.textLabel.text = @"Share To Friends";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -121,14 +126,23 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 1 && [self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
+        return 0.01;
+    }
     return section == 0 ? 20 : 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 1 && [self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
+        return 0.01;
+    }
     return (section == tableView.numberOfSections - 1) ? 20 : 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1 && [self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
+        return 0;
+    }
     return indexPath.section == 0 ? 90 : 44;
 }
 
