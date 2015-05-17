@@ -50,16 +50,16 @@
 }
 
 + (NSString *)mrc_currentUserId {
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    if (!userId) {
-        [[NSUserDefaults standardUserDefaults] setObject:[self mrc_currentUser].objectID forKey:@"userId"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    return userId;
+    return [self mrc_currentUser].objectID;
 }
 
 + (OCTUser *)mrc_currentUser {
-    return [self mrc_fetchUserWithRawLogin:[SSKeychain rawLogin]];
+    OCTUser *currentUser = [[MRCMemoryCache sharedInstance] objectForKey:@"currentUser"];
+    if (!currentUser) {
+        currentUser = [self mrc_fetchUserWithRawLogin:[SSKeychain rawLogin]];
+        [[MRCMemoryCache sharedInstance] setObject:currentUser forKey:@"currentUser"];
+    }
+    return currentUser;
 }
 
 + (OCTUser *)mrc_fetchUserWithRawLogin:(NSString *)rawLogin {

@@ -15,7 +15,8 @@
 @interface MRCReposSearchResultsViewController ()
 
 @property (strong, nonatomic, readonly) MRCReposSearchResultsViewModel *viewModel;
-
+@property (strong, nonatomic) UIImage *unstarImage;
+@property (strong, nonatomic) UIImage *starImage;
 @end
 
 @implementation MRCReposSearchResultsViewController
@@ -24,6 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.unstarImage = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
+    self.starImage   = [self.unstarImage rt_tintedImageWithColor:HexRGB(colorI5)];
 }
 
 - (NSString *)labelText {
@@ -38,9 +42,9 @@
         deliverOnMainThread]
         subscribeNext:^(NSNumber *isStarred) {
              if (isStarred.boolValue) {
-                 cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:HexRGB(colorI5)];
+                 cell.starIconImageView.image = self.starImage;
              } else {
-                 cell.starIconImageView.image = [cell.starIconImageView.image rt_tintedImageWithColor:[UIColor darkGrayColor]];
+                 cell.starIconImageView.image = self.unstarImage;
              }
          }];
 }

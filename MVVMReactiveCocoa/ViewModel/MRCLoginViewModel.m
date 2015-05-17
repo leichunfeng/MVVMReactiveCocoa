@@ -36,8 +36,7 @@
         SSKeychain.password = self.password;
         SSKeychain.accessToken = authenticatedClient.token;
         
-        [[NSUserDefaults standardUserDefaults] setObject:authenticatedClient.user.objectID forKey:@"userId"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[MRCMemoryCache sharedInstance] setObject:authenticatedClient.user forKey:@"currentUser"];
         
         MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
         dispatch_async(dispatch_get_main_queue(), ^{

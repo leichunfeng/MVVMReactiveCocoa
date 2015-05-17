@@ -15,8 +15,8 @@
 @synthesize repoDescription = _repoDescription;
 @synthesize updateTime = _updateTime;
 
-- (CGFloat)repoDescriptionWidth {
-    return [super repoDescriptionWidth] + 15;
+- (CGFloat)repoDesWidth {
+    return [super repoDesWidth] + 15;
 }
 
 - (NSAttributedString *)name {

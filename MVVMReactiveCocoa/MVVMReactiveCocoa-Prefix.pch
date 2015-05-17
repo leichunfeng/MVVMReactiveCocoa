@@ -50,6 +50,7 @@
     #import "UMSocialSinaHandler.h"
     #import "UMSocialQQHandler.h"
     #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+    #import "MRCMemoryCache.h"
 #endif
 
 #endif

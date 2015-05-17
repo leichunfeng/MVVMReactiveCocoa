@@ -17,7 +17,7 @@
 @property (copy, nonatomic) NSString *updateTime;
 @property (copy, nonatomic, readonly) NSString *language;
 @property (assign, nonatomic) CGFloat height;
-@property (assign, nonatomic) CGFloat repoDescriptionWidth;
+@property (assign, nonatomic) CGFloat repoDesWidth;
 @property (copy, nonatomic) NSAttributedString *repoDescription;
 
 - (instancetype)initWithRepository:(OCTRepository *)repository;
