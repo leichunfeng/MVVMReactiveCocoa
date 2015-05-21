@@ -37,7 +37,9 @@
             self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
                 return [repo1.name caseInsensitiveCompare:repo2.name];
             }];
-            [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
+            });
         }];
 }
 
