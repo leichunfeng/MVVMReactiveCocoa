@@ -87,6 +87,7 @@
 		245D62871AA8C73E00D7B081 /* MRCAvatarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62801AA8C73E00D7B081 /* MRCAvatarHeaderView.xib */; };
 		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
 		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
+		24619DAC1B1BF3CC0097258E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24619DAB1B1BF3CC0097258E /* update_v1_1_0.sql */; };
 		246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */; };
 		2479C93D1AAD39150057B681 /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9331AAD39150057B681 /* icon-error.png */; };
 		2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9341AAD39150057B681 /* icon-error@2x.png */; };
@@ -472,6 +473,7 @@
 		245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNetworkHeaderView.h; sourceTree = "<group>"; };
 		245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNetworkHeaderView.m; sourceTree = "<group>"; };
 		245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNetworkHeaderView.xib; sourceTree = "<group>"; };
+		24619DAB1B1BF3CC0097258E /* update_v1_1_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_1_0.sql; sourceTree = "<group>"; };
 		246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MVVMReactiveCocoa-Info.plist"; sourceTree = "<group>"; };
 		2479C9331AAD39150057B681 /* icon-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error.png"; sourceTree = "<group>"; };
 		2479C9341AAD39150057B681 /* icon-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-error@2x.png"; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 			isa = PBXGroup;
 			children = (
 				24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */,
+				24619DAB1B1BF3CC0097258E /* update_v1_1_0.sql */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1369,6 +1372,7 @@
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
+				24619DAC1B1BF3CC0097258E /* update_v1_1_0.sql in Resources */,
 				246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
