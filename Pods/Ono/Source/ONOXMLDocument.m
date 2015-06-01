@@ -27,6 +27,8 @@
 #import <libxml2/libxml/xpathInternals.h>
 #import <libxml2/libxml/HTMLparser.h>
 
+NSString * const ONOXMLDocumentErrorDomain = @"com.ono.error";
+
 static NSRegularExpression * ONOIdRegularExpression() {
     static NSRegularExpression *_ONOIdRegularExpression = nil;
     static dispatch_once_t onceToken;
@@ -133,6 +135,16 @@ static BOOL ONOXMLNodeMatchesTagInNamespace(xmlNodePtr node, NSString *tag, NSSt
     return matchingTag && matchingNamespace;
 }
 
+static void ONOSetErrorFromXMLErrorPtr(NSError * __autoreleasing *error, xmlErrorPtr errorPtr) {
+    if (error && errorPtr) {
+        NSString *message = [[NSString stringWithCString:(const char *)errorPtr->message encoding:NSUTF8StringEncoding] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSInteger code = errorPtr->code;
+        NSDictionary *userInfo = @{NSLocalizedFailureReasonErrorKey: message};
+        *error = [NSError errorWithDomain:ONOXMLDocumentErrorDomain code:code userInfo:userInfo];
+        xmlResetError(errorPtr);
+    }
+}
+
 @interface ONOXPathEnumerator : NSEnumerator <NSFastEnumeration>
 @end
 
@@ -232,6 +244,7 @@ static BOOL ONOXMLNodeMatchesTagInNamespace(xmlNodePtr node, NSString *tag, NSSt
 {
     xmlDocPtr document = xmlReadMemory([data bytes], (int)[data length], "", nil, XML_PARSE_NOWARNING | XML_PARSE_NOERROR | XML_PARSE_RECOVER);
     if (!document) {
+        ONOSetErrorFromXMLErrorPtr(error, xmlGetLastError());
         return nil;
     }
 
@@ -250,6 +263,7 @@ static BOOL ONOXMLNodeMatchesTagInNamespace(xmlNodePtr node, NSString *tag, NSSt
 {
     xmlDocPtr document = htmlReadMemory([data bytes], (int)[data length], "", nil, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR | HTML_PARSE_RECOVER);
     if (!document) {
+        ONOSetErrorFromXMLErrorPtr(error, xmlGetLastError());
         return nil;
     }
 
@@ -367,8 +381,7 @@ static BOOL ONOXMLNodeMatchesTagInNamespace(xmlNodePtr node, NSString *tag, NSSt
     [self.rootElement enumerateElementsWithXPath:XPath usingBlock:block];
 }
 
-- (ONOXMLElement *)firstChildWithXPath:(NSString *)XPath
-{
+- (ONOXMLElement *)firstChildWithXPath:(NSString *)XPath {
     return [self.rootElement firstChildWithXPath:XPath];
 }
 
@@ -388,8 +401,7 @@ static BOOL ONOXMLNodeMatchesTagInNamespace(xmlNodePtr node, NSString *tag, NSSt
     [self.rootElement enumerateElementsWithCSS:CSS usingBlock:block];
 }
 
-- (ONOXMLElement *)firstChildWithCSS:(NSString *)CSS
-{
+- (ONOXMLElement *)firstChildWithCSS:(NSString *)CSS {
     return [self.rootElement firstChildWithCSS:CSS];
 }
 

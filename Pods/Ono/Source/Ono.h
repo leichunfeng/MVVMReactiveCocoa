@@ -28,4 +28,4 @@ FOUNDATION_EXPORT double Ono_VersionNumber;
 //! Project version string for Ono iOS.
 FOUNDATION_EXPORT const unsigned char Ono_VersionString[];
 
-#import <Ono/OnoXMLDocument.h>
+#import <Ono/ONOXMLDocument.h>
