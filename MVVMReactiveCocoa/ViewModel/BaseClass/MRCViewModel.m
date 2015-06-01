@@ -42,7 +42,7 @@
 
 - (instancetype)initWithServices:(id)services params:(id)params {
     self = [super init];
-    if (self) {
+    if (self) { 
         self.shouldFetchLocalDataOnViewModelInitialize = YES;
         self.shouldRequestRemoteDataOnViewDidLoad = YES;
         self.title    = params[@"title"];
