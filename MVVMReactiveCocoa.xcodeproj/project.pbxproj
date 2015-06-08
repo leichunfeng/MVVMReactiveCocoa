@@ -77,6 +77,7 @@
 		242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D83641A7A7E1300F5F424 /* MRCGitTreeViewController.xib */; };
 		242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */; };
 		243140131A7DD6E800FA357E /* assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 243140121A7DD6E800FA357E /* assets.bundle */; };
+		243688211B25D18300D801D3 /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 243688201B25D18300D801D3 /* update_v1_2_0.sql */; };
 		2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */; };
 		2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2441B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m */; };
 		2458A2541B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2521B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m */; };
@@ -457,6 +458,7 @@
 		242D83671A7A7E4800F5F424 /* MRCGitTreeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGitTreeViewModel.h; sourceTree = "<group>"; };
 		242D83681A7A7E4800F5F424 /* MRCGitTreeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGitTreeViewModel.m; sourceTree = "<group>"; };
 		243140121A7DD6E800FA357E /* assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = assets.bundle; sourceTree = "<group>"; };
+		243688201B25D18300D801D3 /* update_v1_2_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_2_0.sql; sourceTree = "<group>"; };
 		2458A22B1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposSearchResultsItemViewModel.h; sourceTree = "<group>"; };
 		2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposSearchResultsItemViewModel.m; sourceTree = "<group>"; };
 		2458A2431B00EFA000E9FB9B /* MRCRepoSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsViewModel.h; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 			children = (
 				24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */,
 				24619DAB1B1BF3CC0097258E /* update_v1_1_0.sql */,
+				243688201B25D18300D801D3 /* update_v1_2_0.sql */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1373,6 +1376,7 @@
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
 				24619DAC1B1BF3CC0097258E /* update_v1_1_0.sql in Resources */,
+				243688211B25D18300D801D3 /* update_v1_2_0.sql in Resources */,
 				246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
