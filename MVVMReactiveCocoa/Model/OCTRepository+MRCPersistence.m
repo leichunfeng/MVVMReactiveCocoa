@@ -188,6 +188,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
+        
         for (OCTRepository *repo in repositories) {
             @autoreleasepool {
                 NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:repo].mutableCopy;

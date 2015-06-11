@@ -135,7 +135,7 @@
             [db close];
         };
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_0_1" ofType:@"sql"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
         NSString *sql = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         
         if (![db executeStatements:sql]) {
