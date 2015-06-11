@@ -33,7 +33,7 @@
     
     return [[[self.services
         client]
-        searchRepositoriesWithQuery:self.query sort:nil order:nil]
+        searchRepositoriesWithQuery:self.query orderBy:nil asc:NO]
         doNext:^(OCTRepositoriesSearchResult *searchResult) {
             self.shouldDisplayEmptyDataSet = YES;
             self.repositories = searchResult.repositories;
