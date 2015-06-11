@@ -29,14 +29,14 @@
     @weakify(self)
     void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
         @strongify(self)
+        [[MRCMemoryCache sharedInstance] setObject:authenticatedClient.user forKey:@"currentUser"];
+
         self.services.client = authenticatedClient;
         [authenticatedClient.user mrc_saveOrUpdate];
         
         SSKeychain.rawLogin = authenticatedClient.user.rawLogin;
         SSKeychain.password = self.password;
         SSKeychain.accessToken = authenticatedClient.token;
-        
-        [[MRCMemoryCache sharedInstance] setObject:authenticatedClient.user forKey:@"currentUser"];
         
         MRCHomepageViewModel *viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
