@@ -19,10 +19,13 @@
 - (void)initialize {
     [super initialize];
     
+    self.currentPage = 1;
+    self.pageSize = 3;
+    
     @weakify(self)
-    self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSNumber *currentPage) {
         @strongify(self)
-        return [[self requestRemoteDataSignal] takeUntil:self.willDisappearSignal];
+        return [[self requestRemoteDataSignalWithCurrentPage:currentPage.unsignedIntegerValue] takeUntil:self.willDisappearSignal];
     }];
     
     RAC(self, shouldDisplayEmptyDataSet) = [RACSignal
@@ -38,9 +41,12 @@
     [self.requestRemoteDataCommand.errors subscribe:self.errors];
 }
 
-
 - (RACSignal *)requestRemoteDataSignal {
     return [RACSignal empty];
+}
+
+- (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
+    return [self requestRemoteDataSignal];
 }
 
 @end

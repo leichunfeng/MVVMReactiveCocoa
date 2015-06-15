@@ -64,6 +64,36 @@
                                                      internalAnimationFactor:0.5];
     }
     
+    @weakify(self)
+    if (self.viewModel.shouldInfiniteScrolling) {
+        [self.tableView addInfiniteScrollingWithActionHandler:^{
+            @strongify(self)
+            [[[self.viewModel.requestRemoteDataCommand execute:@(self.viewModel.currentPage + 1)]
+        		deliverOnMainThread]
+            	subscribeNext:^(NSArray *results) {
+                    @strongify(self)
+                    [self.tableView.infiniteScrollingView stopAnimating];
+                    if (results != nil && results.count > 0) self.viewModel.currentPage += 1;
+                } error:^(NSError *error) {
+                    @strongify(self)
+                    [self.tableView.infiniteScrollingView stopAnimating];
+                } completed:^{
+                    @strongify(self)
+                    [self.tableView.infiniteScrollingView stopAnimating];
+                }];
+        }];
+        
+        // 当列表的项数大于等于 pageSize 的时候才显示上拉加载，否则隐藏上拉加载功能
+        [[RACObserve(self.viewModel, dataSource) deliverOnMainThread] subscribeNext:^(NSArray *dataSource) {
+            @strongify(self)
+            NSUInteger count = 0;
+            for (NSArray *array in dataSource) {
+                count += array.count;
+            }
+            self.tableView.showsInfiniteScrolling = (count >= self.viewModel.pageSize);
+        }];
+    }
+    
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -143,7 +173,7 @@
 - (void)refreshTriggered:(id)sender {
     @weakify(self)
     [[[self.viewModel.requestRemoteDataCommand
-     	execute:nil]
+     	execute:@1]
      	deliverOnMainThread]
     	subscribeNext:^(id x) {
             @strongify(self)
