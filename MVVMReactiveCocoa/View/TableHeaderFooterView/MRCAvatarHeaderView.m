@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *followersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *repositoriesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
+@property (weak, nonatomic) IBOutlet UIButton *followersButton;
+@property (weak, nonatomic) IBOutlet UIButton *reposButton;
+@property (weak, nonatomic) IBOutlet UIButton *followingButton;
 
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (assign, nonatomic) CGPoint lastContentOffsetBlurEffect;
@@ -38,7 +41,6 @@
     self.avatarButton.imageView.layer.cornerRadius = CGRectGetWidth(self.avatarButton.frame) / 2;
     self.avatarButton.imageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    
     self.coverImageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
 }
@@ -74,6 +76,9 @@
     RAC(self.followersLabel, text) = RACObserve(viewModel, followers);
     RAC(self.repositoriesLabel, text) = RACObserve(viewModel, repositories);
     RAC(self.followingLabel, text) = RACObserve(viewModel, following);
+    
+    self.followersButton.rac_command = viewModel.followersCommand;
+    self.followingButton.rac_command = viewModel.followingCommand;
     
     [[RACObserve(viewModel, contentOffset) filter:^BOOL(id value) {
         return [value CGPointValue].y < 0;

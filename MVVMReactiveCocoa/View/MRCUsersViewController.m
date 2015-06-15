@@ -23,7 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCUsersTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCUsersTableViewCell"];
+    
+    [self.viewModel requestRemoteDataSignalWithCurrentPage:1];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

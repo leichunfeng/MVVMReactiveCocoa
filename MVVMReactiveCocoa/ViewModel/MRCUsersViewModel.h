@@ -8,6 +8,14 @@
 
 #import "MRCTableViewModel.h"
 
+typedef NS_ENUM(NSUInteger, MRCUsersViewModelType) {
+    MRCUsersViewModelTypeFollowers,
+    MRCUsersViewModelTypeFollowing
+};
+
 @interface MRCUsersViewModel : MRCTableViewModel
+
+@property (assign, nonatomic, readonly) MRCUsersViewModelType type;
+@property (copy, nonatomic) NSArray *users;
 
 @end

@@ -9,6 +9,7 @@
 #import "MRCProfileViewModel.h"
 #import "MRCAvatarHeaderViewModel.h"
 #import "MRCSettingsViewModel.h"
+#import "MRCUsersViewModel.h"
 
 @implementation MRCProfileViewModel
 
@@ -19,6 +20,18 @@
     
     self.currentUser = [OCTUser mrc_currentUser];
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.currentUser];
+    
+    self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        MRCUsersViewModel *viewModel = [[MRCUsersViewModel alloc] initWithServices:self.services params:@{ @"type": @0 }];
+        [self.services pushViewModel:viewModel animated:YES];
+        return [RACSignal empty];
+    }];
+
+    self.avatarHeaderViewModel.followingCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        MRCUsersViewModel *viewModel = [[MRCUsersViewModel alloc] initWithServices:self.services params:@{ @"type": @1 }];
+        [self.services pushViewModel:viewModel animated:YES];
+        return [RACSignal empty];
+    }];
     
     @weakify(self)
     self.fetchUserInfoCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {

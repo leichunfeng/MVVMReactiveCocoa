@@ -39,6 +39,9 @@ typedef NS_ENUM(NSUInteger, OCTUserRelationship) {
 + (BOOL)mrc_saveOrUpdateFollowers:(NSArray *)users;
 + (BOOL)mrc_saveOrUpdateFollowing:(NSArray *)users;
 
++ (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page;
++ (NSArray *)mrc_fetchFollowingWithPage:(NSUInteger)page;
+
 NSString *MRCStringFromRelationship(OCTUserRelationship relationship);
 OCTUserRelationship MRCRelationshipFromString(NSString *string);
 

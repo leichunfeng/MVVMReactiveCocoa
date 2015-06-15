@@ -72,16 +72,6 @@
             }
         }];
     self.delegate = self;
-    
-    @weakify(self)
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Followers" style:UIBarButtonItemStylePlain target:nil action:nil];
-    rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self)
-        MRCUsersViewModel *viewModel = [[MRCUsersViewModel alloc] initWithServices:self.viewModel.services params:nil];
-        [self.viewModel.services pushViewModel:viewModel animated:YES];
-        return [RACSignal empty];
-    }];
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 }
 
 @end
