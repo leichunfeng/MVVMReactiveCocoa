@@ -13,7 +13,7 @@
 @interface MRCProfileViewModel : MRCTableViewModel
 
 // The current `user`.
-@property (strong, nonatomic) OCTUser *currentUser;
+@property (strong, nonatomic) OCTUser *user;
 
 // The view model of `Profile` interface.
 @property (strong, nonatomic) MRCAvatarHeaderViewModel *avatarHeaderViewModel;

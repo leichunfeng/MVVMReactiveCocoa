@@ -1,30 +1,30 @@
 //
-//  MRCUsersViewModel.m
+//  MRCUserListViewModel.m
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/6/8.
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCUsersViewModel.h"
+#import "MRCUserListViewModel.h"
 #import "MRCUsersItemViewModel.h"
 
-@interface MRCUsersViewModel ()
+@interface MRCUserListViewModel ()
 
-@property (assign, nonatomic, readwrite) MRCUsersViewModelType type;
+@property (assign, nonatomic, readwrite) MRCUserListViewModelType type;
 
 @end
 
-@implementation MRCUsersViewModel
+@implementation MRCUserListViewModel
 
 - (void)initialize {
     [super initialize];
     
     self.type = [self.params[@"type"] unsignedIntegerValue];
     
-    if (self.type == MRCUsersViewModelTypeFollowers) {
+    if (self.type == MRCUserListViewModelTypeFollowers) {
         self.title = @"Followers";
-    } else if (self.type == MRCUsersViewModelTypeFollowing) {
+    } else if (self.type == MRCUserListViewModelTypeFollowing) {
         self.title = @"Following";
     }
     
@@ -43,7 +43,7 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
-    if (self.type == MRCUsersViewModelTypeFollowers) {
+    if (self.type == MRCUserListViewModelTypeFollowers) {
         return [[[[self.services
         	client]
             fetchFollowersWithPage:currentPage]
@@ -66,7 +66,7 @@
                     //                });
                 }
             }];
-    } else if (self.type == MRCUsersViewModelTypeFollowing) {
+    } else if (self.type == MRCUserListViewModelTypeFollowing) {
         return [[[[self.services
             client]
             fetchFollowingWithPage:currentPage]

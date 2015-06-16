@@ -1,5 +1,5 @@
 //
-//  MRCUsersViewController.h
+//  MRCUserListViewController.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/6/8.
@@ -8,6 +8,6 @@
 
 #import "MRCTableViewController.h"
 
-@interface MRCUsersViewController : MRCTableViewController
+@interface MRCUserListViewController : MRCTableViewController
 
 @end

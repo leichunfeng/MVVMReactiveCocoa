@@ -19,7 +19,7 @@
 #import "MRCNavigationController.h"
 #import "MRCSearchViewController.h"
 #import "MRCGistsViewController.h"
-#import "MRCUsersViewModel.h"
+#import "MRCUserListViewModel.h"
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 
