@@ -153,6 +153,54 @@
     return NO;
 }
 
++ (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
+    NSMutableArray *followers = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"SELECT * FROM user WHERE userId = ? AND isFollower = 1";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        while ([rs next]) {
+            @autoreleasepool {
+                if (followers == nil) followers = [NSMutableArray new];
+                OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
+                [followers addObject:user];
+            }
+        }
+    }
+    
+    return followers;
+}
+
++ (NSArray *)mrc_fetchFollowingWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
+    NSMutableArray *followers = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"SELECT * FROM user WHERE userId = ? AND isFollowing = 1";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        while ([rs next]) {
+            @autoreleasepool {
+                if (followers == nil) followers = [NSMutableArray new];
+                OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
+                [followers addObject:user];
+            }
+        }
+    }
+    
+    return followers;
+}
+
 NSString *MRCStringFromRelationship(OCTUserRelationship relationship) {
     switch (relationship) {
         case OCTUserRelationshipFollower:

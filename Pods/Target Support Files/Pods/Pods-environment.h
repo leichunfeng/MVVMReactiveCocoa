@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
 #define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 2
 
+// FDFullscreenPopGesture
+#define COCOAPODS_POD_AVAILABLE_FDFullscreenPopGesture
+#define COCOAPODS_VERSION_MAJOR_FDFullscreenPopGesture 1
+#define COCOAPODS_VERSION_MINOR_FDFullscreenPopGesture 1
+#define COCOAPODS_VERSION_PATCH_FDFullscreenPopGesture 0
+
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
 #define COCOAPODS_VERSION_MAJOR_FMDB 2

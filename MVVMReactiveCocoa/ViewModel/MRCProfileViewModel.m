@@ -7,7 +7,6 @@
 //
 
 #import "MRCProfileViewModel.h"
-#import "MRCAvatarHeaderViewModel.h"
 #import "MRCSettingsViewModel.h"
 #import "MRCUserListViewModel.h"
 
@@ -18,7 +17,7 @@
     
     self.title = @"Profile";
     
-    self.user = [OCTUser mrc_currentUser];
+    self.user = self.user ?: [OCTUser mrc_currentUser];
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.user];
     
     self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -31,22 +30,6 @@
         MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services params:@{ @"type": @1 }];
         [self.services pushViewModel:viewModel animated:YES];
         return [RACSignal empty];
-    }];
-    
-    @weakify(self)
-    self.fetchUserInfoCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        @strongify(self)
-        return [[self.services.client
-        	fetchUserInfo]
-         	doNext:^(OCTUser *user) {
-            	@strongify(self)
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.user mergeValuesForKeysFromModel:user];
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [self.user mrc_saveOrUpdate];
-                    });
-                });
-         	}];
     }];
     
     id (^mapEmptyValue)(NSString *) = ^id(NSString *value) {
@@ -63,6 +46,7 @@
         @[ @{ @"identifier": @"Gear", @"hexRGB": @(0x24AFFC), @"textSignal": [RACSignal return:@"Settings"] } ]
     ];
     
+    @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 1 && indexPath.row == 0) {
@@ -72,7 +56,20 @@
         return [RACSignal empty];
     }];
     
-    [self.fetchUserInfoCommand.errors subscribe:self.errors];
+    [self.requestRemoteDataCommand.errors subscribe:self.errors];
+}
+
+- (RACSignal *)requestRemoteDataSignal {
+    return [[self.services.client
+    	fetchUserInfo]
+        doNext:^(OCTUser *user) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.user mergeValuesForKeysFromModel:user];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [self.user mrc_saveOrUpdate];
+                });
+            });
+        }];
 }
 
 @end

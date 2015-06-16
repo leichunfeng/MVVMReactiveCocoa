@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         RAC(self, avatarURL) = RACObserve(user, avatarURL);
-        RAC(self, name) = RACObserve(user, name);
+        RAC(self, name) = RACObserve(user, login);
         
         RAC(self, followers) = [RACObserve(user, followers) map:^id(NSNumber *followers) {
             return followers.stringValue;

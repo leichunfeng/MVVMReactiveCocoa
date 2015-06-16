@@ -7,8 +7,7 @@
 //
 
 #import "MRCTableViewModel.h"
-
-@class MRCAvatarHeaderViewModel;
+#import "MRCAvatarHeaderViewModel.h"
 
 @interface MRCProfileViewModel : MRCTableViewModel
 
@@ -17,7 +16,5 @@
 
 // The view model of `Profile` interface.
 @property (strong, nonatomic) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
-
-@property (strong, nonatomic) RACCommand *fetchUserInfoCommand;
 
 @end

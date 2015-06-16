@@ -7,31 +7,71 @@
 //
 
 #import "MRCUserDetailViewController.h"
+#import "MRCUserDetailViewModel.h"
 
 @interface MRCUserDetailViewController ()
+
+@property (strong, nonatomic, readonly) MRCUserDetailViewModel *viewModel;
 
 @end
 
 @implementation MRCUserDetailViewController
 
+@dynamic viewModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.fd_prefersNavigationBarHidden = YES;
+    self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - 44);
+    self.viewModel.avatarHeaderViewModel.contentOffset = contentOffset;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UITableViewDataSource
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return section == 0 ? 2 : 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"MRCTableViewCellStyleValue1" forIndexPath:indexPath];
+    
+    if (indexPath.section == 2) {
+        cell.textLabel.text = @"Name";
+        [RACObserve(self.viewModel.user, name) subscribeNext:^(NSString *name) {
+            cell.detailTextLabel.text = name;
+        }];
+    } else if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
+                                                  backgroundColor:[UIColor clearColor]
+                                                        iconColor:HexRGB(colorI3)
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = @"Follow";
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Unfollow";
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
+                                                  backgroundColor:[UIColor clearColor]
+                                                        iconColor:[UIColor lightGrayColor]
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+        }
+    } else if (indexPath.section == 1) {
+        cell.textLabel.text = @"Starred Repos";
+    }
+    
+    return cell;
+}
 
 @end
