@@ -10,6 +10,7 @@
 
 @interface MRCUsersItemViewModel : NSObject
 
+@property (strong, nonatomic, readonly) OCTUser *user;
 @property (strong, nonatomic, readonly) NSURL *avatarURL;
 @property (copy, nonatomic, readonly) NSString *login;
 

@@ -36,8 +36,6 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     self.tableView.tableHeaderView = self.tableHeaderView;
-    
-    [self.viewModel.fetchUserInfoCommand execute:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

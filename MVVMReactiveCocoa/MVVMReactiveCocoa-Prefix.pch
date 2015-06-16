@@ -51,6 +51,7 @@
     #import "UMSocialQQHandler.h"
     #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
     #import "MRCMemoryCache.h"
+    #import "UINavigationController+FDFullscreenPopGesture.h"
 #endif
 
 #endif

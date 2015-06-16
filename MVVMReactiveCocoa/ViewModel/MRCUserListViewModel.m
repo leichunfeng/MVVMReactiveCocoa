@@ -8,17 +8,30 @@
 
 #import "MRCUserListViewModel.h"
 #import "MRCUsersItemViewModel.h"
+#import "MRCUserDetailViewModel.h"
 
 @interface MRCUserListViewModel ()
 
+@property (strong, nonatomic) OCTUser *user;
 @property (assign, nonatomic, readwrite) MRCUserListViewModelType type;
+@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
 
 @end
 
 @implementation MRCUserListViewModel
 
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+    self = [super initWithServices:services params:params];
+    if (self) {
+        self.user = params[@"user"];
+    }
+    return self;
+}
+
 - (void)initialize {
     [super initialize];
+    
+    self.isCurrentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
     
     self.type = [self.params[@"type"] unsignedIntegerValue];
     
@@ -32,6 +45,14 @@
     self.shouldInfiniteScrolling = YES;
     
     @weakify(self)
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        MRCUsersItemViewModel *itemViewModel = self.dataSource[indexPath.section][indexPath.row];
+        MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:@{ @"user": itemViewModel.user }];
+        [self.services pushViewModel:viewModel animated:YES];
+        return [RACSignal empty];
+    }];
+    
     [[RACObserve(self, users)
         ignore:nil]
         subscribeNext:^(NSArray *users) {
@@ -46,13 +67,28 @@
     if (self.type == MRCUserListViewModelTypeFollowers) {
         return [[[[self.services
         	client]
-            fetchFollowersWithPage:currentPage]
+            fetchFollowersWithUser:self.user page:currentPage perPage:self.pageSize]
             collect]
         	doNext:^(NSArray *users) {
                 if (users != nil && users.count > 0) {
                     for (OCTUser *user in users) {
                         user.userId = [OCTUser mrc_currentUserId];
-                        user.isFollower = YES;
+                    }
+                    
+                    if (self.isCurrentUser) {
+                        for (OCTUser *user in users) {
+                            user.isFollower = YES;
+                        }
+                    } else {
+                        NSArray *followers = [OCTUser mrc_fetchFollowersWithPage:0 perPage:0];
+                        for (OCTUser *user in users) {
+                            for (OCTUser *follower in followers) {
+                                if ([user.objectID isEqualToString:follower.objectID]) {
+                                    user.isFollower = YES;
+                                    break;
+                                }
+                            }
+                        }
                     }
                     
                     if (currentPage == 1) {
@@ -61,9 +97,9 @@
                         self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
                     }
                     
-                    //                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    //                    [OCTUser mrc_saveOrUpdateFollowers:users];
-                    //                });
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [OCTUser mrc_saveOrUpdateFollowers:users];
+                    });
                 }
             }];
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
@@ -75,7 +111,22 @@
                 if (users != nil && users.count > 0) {
                     for (OCTUser *user in users) {
                         user.userId = [OCTUser mrc_currentUserId];
-                        user.isFollower = YES;
+                    }
+                    
+                    if (self.isCurrentUser) {
+                        for (OCTUser *user in users) {
+                            user.isFollowing = YES;
+                        }
+                    } else {
+                        NSArray *followings = [OCTUser mrc_fetchFollowingWithPage:0 perPage:0];
+                        for (OCTUser *user in users) {
+                            for (OCTUser *following in followings) {
+                                if ([user.objectID isEqualToString:following.objectID]) {
+                                    user.isFollowing = YES;
+                                    break;
+                                }
+                            }
+                        }
                     }
                     
                     if (currentPage == 1) {
@@ -84,9 +135,13 @@
                         self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
                     }
                     
-                    //                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    //                    [OCTUser mrc_saveOrUpdateFollowers:users];
-                    //                });
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        if (self.isCurrentUser) {
+                            [OCTUser mrc_saveOrUpdateFollowing:users];
+                        } else {
+                            [OCTUser mrc_saveOrUpdateFollowers:users];
+                        }
+                    });
                 }
             }];
     }

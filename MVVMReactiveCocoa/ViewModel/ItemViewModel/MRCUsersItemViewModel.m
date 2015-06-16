@@ -10,6 +10,7 @@
 
 @interface MRCUsersItemViewModel ()
 
+@property (strong, nonatomic, readwrite) OCTUser *user;
 @property (strong, nonatomic, readwrite) NSURL *avatarURL;
 @property (copy, nonatomic, readwrite) NSString *login;
 
@@ -20,6 +21,7 @@
 - (instancetype)initWithUser:(OCTUser *)user {
     self = [super init];
     if (self) {
+        self.user = user;
         self.avatarURL = user.avatarURL;
         self.login = user.login;
     }
