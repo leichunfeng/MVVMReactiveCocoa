@@ -1,23 +1,23 @@
 //
-//  MRCUsersViewController.m
+//  MRCUserListViewController.m
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/6/8.
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCUsersViewController.h"
-#import "MRCUsersViewModel.h"
+#import "MRCUserListViewController.h"
+#import "MRCUserListViewModel.h"
 #import "MRCUsersTableViewCell.h"
 #import "MRCUsersItemViewModel.h"
 
-@interface MRCUsersViewController ()
+@interface MRCUserListViewController ()
 
-@property (strong, nonatomic, readonly) MRCUsersViewModel *viewModel;
+@property (strong, nonatomic, readonly) MRCUserListViewModel *viewModel;
 
 @end
 
-@implementation MRCUsersViewController
+@implementation MRCUserListViewController
 
 @dynamic viewModel;
 
