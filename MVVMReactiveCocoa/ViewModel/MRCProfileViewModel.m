@@ -10,14 +10,31 @@
 #import "MRCSettingsViewModel.h"
 #import "MRCUserListViewModel.h"
 
+@interface MRCProfileViewModel ()
+
+@property (strong, nonatomic, readwrite) OCTUser *user;
+@property (strong, nonatomic, readwrite) NSString *company;
+@property (strong, nonatomic, readwrite) NSString *location;
+@property (strong, nonatomic, readwrite) NSString *email;
+@property (strong, nonatomic, readwrite) NSString *blog;
+
+@end
+
 @implementation MRCProfileViewModel
+
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+    self = [super initWithServices:services params:params];
+    if (self) {
+        self.user = params[@"user"];
+    }
+    return self;
+}
 
 - (void)initialize {
     [super initialize];
     
     self.title = @"Profile";
     
-    self.user = self.user ?: [OCTUser mrc_currentUser];
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.user];
     
     self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -34,19 +51,14 @@
         return [RACSignal empty];
     }];
     
-    id (^mapEmptyValue)(NSString *) = ^id(NSString *value) {
+    id (^map)(NSString *) = ^(NSString *value) {
         return value.length > 0 ? value : @"Not Set";
     };
     
-    self.dataSource = @[
-        @[
-            @{ @"identifier": @"Organization", @"hexRGB": @(0x24AFFC), @"textSignal": [RACObserve(self.user, company) map:mapEmptyValue] },
-  			@{ @"identifier": @"Location", @"hexRGB": @(0x30C931), @"textSignal": [RACObserve(self.user, location) map:mapEmptyValue] },
-  			@{ @"identifier": @"Mail", @"hexRGB": @(0x5586ED), @"textSignal": [RACObserve(self.user, email) map:mapEmptyValue] },
-            @{ @"identifier": @"Link", @"hexRGB": @(0x90DD2F), @"textSignal": [RACObserve(self.user, blog) map:mapEmptyValue] }
-    	],
-        @[ @{ @"identifier": @"Gear", @"hexRGB": @(0x24AFFC), @"textSignal": [RACSignal return:@"Settings"] } ]
-    ];
+    RAC(self, company) = [RACObserve(self.user, company) map:map];
+    RAC(self, location) = [RACObserve(self.user, location) map:map];
+    RAC(self, email) = [RACObserve(self.user, email) map:map];
+    RAC(self, blog) = [RACObserve(self.user, blog) map:map];
     
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
@@ -63,7 +75,7 @@
 
 - (RACSignal *)requestRemoteDataSignal {
     return [[self.services.client
-    	fetchUserInfo]
+        fetchUserInfoWithUser:self.user]
         doNext:^(OCTUser *user) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.user mergeValuesForKeysFromModel:user];

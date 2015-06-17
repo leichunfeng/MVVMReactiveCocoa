@@ -12,7 +12,7 @@
 @interface MRCProfileViewModel : MRCTableViewModel
 
 // The current `user`.
-@property (strong, nonatomic) OCTUser *user;
+@property (strong, nonatomic, readonly) OCTUser *user;
 
 @property (strong, nonatomic, readonly) NSString *company;
 @property (strong, nonatomic, readonly) NSString *location;

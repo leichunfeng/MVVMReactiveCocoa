@@ -22,22 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.fd_prefersNavigationBarHidden = YES;
-    self.tableView.contentInset = UIEdgeInsetsMake(-44, 0, 0, 0);
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    @weakify(self)
-    [[self.viewModel.requestRemoteDataCommand.executionSignals.flatten
-        deliverOnMainThread]
-        subscribeNext:^(id x) {
-            @strongify(self)
-            [self.tableView reloadData];
-        }];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - 44);
-    self.viewModel.avatarHeaderViewModel.contentOffset = contentOffset;
 }
 
 #pragma mark - UITableViewDataSource
@@ -58,29 +43,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"MRCTableViewCellStyleValue1" forIndexPath:indexPath];
     
-	if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
-                                                  backgroundColor:[UIColor clearColor]
-                                                        iconColor:HexRGB(colorI3)
-                                                        iconScale:1
-                                                          andSize:MRC_LEFT_IMAGE_SIZE];
-            cell.textLabel.text = @"Follow";
-            cell.accessoryType = self.viewModel.followingStatus ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        } else if (indexPath.row == 1) {
-            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
-                                                  backgroundColor:[UIColor clearColor]
-                                                        iconColor:[UIColor lightGrayColor]
-                                                        iconScale:1
-                                                          andSize:MRC_LEFT_IMAGE_SIZE];
-            cell.textLabel.text = @"Unfollow";
-            cell.accessoryType = !self.viewModel.followingStatus ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        }
-    } else if (indexPath.section == 0) {
+    if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
                                                   backgroundColor:UIColor.clearColor
-                                                        iconColor:HexRGB(colorI3)
+                                                        iconColor:HexRGB(0x24AFFC)
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Name";
@@ -102,32 +69,28 @@
                                                         iconColor:HexRGB(0x24AFFC)
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
-            cell.textLabel.text = @"Company";
-            cell.detailTextLabel.text = self.viewModel.company;
+            cell.textLabel.text = self.viewModel.company;
         } else if (indexPath.row == 1) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Location"
                                                   backgroundColor:UIColor.clearColor
                                                         iconColor:HexRGB(0x30C931)
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
-            cell.textLabel.text = @"Location";
-            cell.detailTextLabel.text = self.viewModel.location;
+            cell.textLabel.text = self.viewModel.location;
         } else if (indexPath.row == 2) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Mail"
                                                   backgroundColor:UIColor.clearColor
                                                         iconColor:HexRGB(0x5586ED)
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
-            cell.textLabel.text = @"Email";
-            cell.detailTextLabel.text = self.viewModel.email;
+            cell.textLabel.text = self.viewModel.email;
         } else if (indexPath.row == 3) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Link"
                                                   backgroundColor:UIColor.clearColor
                                                         iconColor:HexRGB(0x90DD2F)
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
-            cell.textLabel.text = @"Blog";
-            cell.detailTextLabel.text = self.viewModel.blog;
+            cell.textLabel.text = self.viewModel.blog;
         }
     }
     

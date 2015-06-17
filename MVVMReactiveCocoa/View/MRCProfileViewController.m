@@ -36,6 +36,14 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     self.tableView.tableHeaderView = self.tableHeaderView;
+    
+    @weakify(self)
+    [[self.viewModel.requestRemoteDataCommand.executionSignals.flatten
+    	deliverOnMainThread]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self.tableView reloadData];
+        }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -46,28 +54,55 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.viewModel.dataSource.count;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.viewModel.dataSource[section] count];
+	return section == 0 ? 4 : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
-    NSDictionary *dictionary = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    
-    cell.imageView.image = [UIImage octicon_imageWithIcon:dictionary[@"identifier"]
-                                          backgroundColor:UIColor.clearColor
-                                                iconColor:HexRGB([dictionary[@"hexRGB"] integerValue])
-                                                iconScale:1
-                                                  andSize:MRC_LEFT_IMAGE_SIZE];
-    
-    [self.viewModel.dataSource[indexPath.section][indexPath.row][@"textSignal"] subscribeNext:^(NSString *text) {
-        cell.textLabel.text = text;
-    }];
-    
+    UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"MRCTableViewCellStyleValue1" forIndexPath:indexPath];
+                             
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Organization"
+                                                  backgroundColor:UIColor.clearColor
+                                                        iconColor:HexRGB(0x24AFFC)
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = self.viewModel.company;
+        } else if (indexPath.row == 1) {
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Location"
+                                                  backgroundColor:UIColor.clearColor
+                                                        iconColor:HexRGB(0x30C931)
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = self.viewModel.location;
+        } else if (indexPath.row == 2) {
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Mail"
+                                                  backgroundColor:UIColor.clearColor
+                                                        iconColor:HexRGB(0x5586ED)
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = self.viewModel.email;
+        } else if (indexPath.row == 3) {
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Link"
+                                                  backgroundColor:UIColor.clearColor
+                                                        iconColor:HexRGB(0x90DD2F)
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = self.viewModel.blog;
+        }
+    } else if (indexPath.section == 1) {
+        cell.imageView.image = [UIImage octicon_imageWithIcon:@"Gear"
+                                              backgroundColor:UIColor.clearColor
+                                                    iconColor:HexRGB(0x24AFFC)
+                                                    iconScale:1
+                                                      andSize:MRC_LEFT_IMAGE_SIZE];
+        cell.textLabel.text = @"Settings";
+    }
+
     cell.accessoryType  = indexPath.section == 0 ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = indexPath.section == 0 ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
     
