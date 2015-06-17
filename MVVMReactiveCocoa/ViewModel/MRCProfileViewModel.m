@@ -29,7 +29,7 @@
 
     self.avatarHeaderViewModel.followingCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
-                                                                                  params:@{ @"type": @1 }];
+                                                                                  params:@{ @"type": @1, @"user": self.user }];
         [self.services pushViewModel:viewModel animated:YES];
         return [RACSignal empty];
     }];

@@ -8,7 +8,21 @@
 
 #import "MRCUserDetailViewModel.h"
 
+@interface MRCUserDetailViewModel ()
+
+@property (strong, nonatomic, readwrite) NSString *company;
+@property (strong, nonatomic, readwrite) NSString *location;
+@property (strong, nonatomic, readwrite) NSString *email;
+@property (strong, nonatomic, readwrite) NSString *blog;
+
+@end
+
 @implementation MRCUserDetailViewModel
+
+@synthesize company = _company;
+@synthesize location = _location;
+@synthesize email = _email;
+@synthesize blog = _blog;
 
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
@@ -16,6 +30,15 @@
         self.user = params[@"user"];
     }
     return self;
+}
+
+- (void)initialize {
+    [super initialize];
+    
+    RAC(self, company, @"Not Set")  = RACObserve(self.user, company);
+    RAC(self, location, @"Not Set") = RACObserve(self.user, location);
+    RAC(self, email, @"Not Set")    = RACObserve(self.user, email);
+    RAC(self, blog, @"Not Set")     = RACObserve(self.user, blog);
 }
 
 - (RACSignal *)requestRemoteDataSignal {
