@@ -17,7 +17,7 @@
     self.reposViewModel   = [[MRCReposViewModel alloc] initWithServices:self.services params:nil];
     self.gistsViewModel   = [[MRCGistsViewModel alloc] initWithServices:self.services params:nil];
     self.searchViewModel  = [[MRCSearchViewModel alloc] initWithServices:self.services params:nil];
-    self.profileViewModel = [[MRCProfileViewModel alloc] initWithServices:self.services params:nil];
+    self.profileViewModel = [[MRCProfileViewModel alloc] initWithServices:self.services params:@{ @"user": [OCTUser mrc_currentUser] }];
 }
 
 @end

@@ -163,6 +163,7 @@
 		24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F1203A1AA7525700A22D9A /* MRCAboutViewController.xib */; };
 		24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */; };
 		24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */; };
+		24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */; };
 		55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -608,6 +609,8 @@
 		24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutViewModel.m; sourceTree = "<group>"; };
 		24F120531AA8004400A22D9A /* MRCTableViewCellStyleValue1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTableViewCellStyleValue1.h; sourceTree = "<group>"; };
 		24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewCellStyleValue1.m; sourceTree = "<group>"; };
+		24FDDEE31B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MRCBackBarButtonItem.h"; sourceTree = "<group>"; };
+		24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MRCBackBarButtonItem.m"; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -795,6 +798,8 @@
 				24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */,
 				24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */,
 				24E84E821AEFC270003F700C /* MRCWebViewController.xib */,
+				24FDDEE31B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.h */,
+				24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1612,6 +1617,7 @@
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
 				24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */,
+				24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */,
 				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
 				249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */,
 				242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */,
