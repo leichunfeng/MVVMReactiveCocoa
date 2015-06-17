@@ -8,8 +8,8 @@
 
 #import "MRCUserListViewController.h"
 #import "MRCUserListViewModel.h"
-#import "MRCUsersTableViewCell.h"
-#import "MRCUsersItemViewModel.h"
+#import "MRCUserListTableViewCell.h"
+#import "MRCUserListItemViewModel.h"
 
 @interface MRCUserListViewController ()
 
@@ -24,14 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"MRCUsersTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCUsersTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MRCUserListTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCUserListTableViewCell"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    return [tableView dequeueReusableCellWithIdentifier:@"MRCUsersTableViewCell" forIndexPath:indexPath];
+    return [tableView dequeueReusableCellWithIdentifier:@"MRCUserListTableViewCell" forIndexPath:indexPath];
 }
 
-- (void)configureCell:(MRCUsersTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCUsersItemViewModel *)viewModel {
+- (void)configureCell:(MRCUserListTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCUserListItemViewModel *)viewModel {
     [cell bindViewModel:viewModel];
 }
 

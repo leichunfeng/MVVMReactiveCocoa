@@ -1,5 +1,5 @@
 //
-//  MRCUsersItemViewModel.h
+//  MRCUserListItemViewModel.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/6/8.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MRCUsersItemViewModel : NSObject
+@interface MRCUserListItemViewModel : NSObject
 
 @property (strong, nonatomic, readonly) OCTUser *user;
 @property (strong, nonatomic, readonly) NSURL *avatarURL;

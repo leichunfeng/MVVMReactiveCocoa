@@ -9,12 +9,6 @@
 #import <OctoKit/OctoKit.h>
 #import "MRCPersistenceProtocol.h"
 
-typedef NS_ENUM(NSUInteger, OCTUserRelationship) {
-    OCTUserRelationshipFollower,
-    OCTUserRelationshipFollowing,
-    OCTUserRelationshipUnknown
-};
-
 typedef NS_ENUM(NSUInteger, OCTUserFollowerStatus) {
     OCTUserFollowerStatusUnknown,
     OCTUserFollowerStatusYES,
@@ -29,32 +23,22 @@ typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
 
 @interface OCTUser (MRCPersistence) <MRCPersistenceProtocol>
 
-@property (copy, nonatomic) NSString *userId;
-
 @property (assign, nonatomic) OCTUserFollowerStatus followerStatus;
 @property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
 
 + (NSString *)mrc_currentUserId;
 
-// Retrieves the current `user`.
-//
-// Returns the current `user`.
 + (OCTUser *)mrc_currentUser;
-
-// Retrieves the user by the given `rawLogin` property.
-//
-// rawLogin - `rawLogin` property
-//
-// Returns the user.
 + (OCTUser *)mrc_fetchUserWithRawLogin:(NSString *)rawLogin;
 
-+ (BOOL)mrc_saveOrUpdateFollowers:(NSArray *)users;
-+ (BOOL)mrc_saveOrUpdateFollowing:(NSArray *)users;
++ (BOOL)mrc_saveOrUpdateUsers:(NSArray *)users;
++ (BOOL)mrc_saveOrUpdateFollowerStatusWithUsers:(NSArray *)users;
++ (BOOL)mrc_saveOrUpdateFollowingStatusWithUsers:(NSArray *)users;
 
 + (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 + (NSArray *)mrc_fetchFollowingWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 
-NSString *MRCStringFromRelationship(OCTUserRelationship relationship);
-OCTUserRelationship MRCRelationshipFromString(NSString *string);
++ (BOOL)mrc_followUser:(OCTUser *)user;
++ (BOOL)mrc_unfollowUser:(OCTUser *)user;
 
 @end
