@@ -63,6 +63,7 @@
         }
         return [RACSignal empty];
     }];
+    operationCommand.allowsConcurrentExecution = YES;
     
     [[RACObserve(self, users)
         ignore:nil]
@@ -75,14 +76,17 @@
                 
                 if (user.followingStatus == OCTUserFollowingStatusUnknown) {
                     @weakify(viewModel)
-                    [[[self.services
+                    [[[[self.services
                         client]
                         hasFollowUser:user]
-                        subscribeNext:^(NSNumber *following) {
+                     	takeUntil:viewModel.rac_willDeallocSignal]
+                        subscribeNext:^(NSNumber *isFollowing) {
                             @strongify(viewModel)
-                            if (following.boolValue) {
+                            if (isFollowing.boolValue) {
+                                user.followingStatus = OCTUserFollowingStatusYES;
                                 viewModel.followingStatus = OCTUserFollowingStatusYES;
                             } else {
+                                user.followingStatus = OCTUserFollowingStatusNO;
                                 viewModel.followingStatus = OCTUserFollowingStatusNO;
                             }
                         }];
@@ -116,6 +120,14 @@
                     }
                     
                     if (currentPage == 1) {
+                        for (OCTUser *user in users) {
+                            for (OCTUser *preUser in self.users) {
+                                if ([user.objectID isEqualToString:preUser.objectID]) {
+                                    user.followingStatus = preUser.followingStatus;
+                                    break;
+                                }
+                            }
+                        }
                         self.users = users;
                     } else {
                         self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
