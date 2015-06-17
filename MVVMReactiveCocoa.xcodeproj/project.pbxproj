@@ -164,6 +164,7 @@
 		24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */; };
 		24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */; };
 		24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */; };
+		24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */; };
 		55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -611,6 +612,8 @@
 		24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewCellStyleValue1.m; sourceTree = "<group>"; };
 		24FDDEE31B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MRCBackBarButtonItem.h"; sourceTree = "<group>"; };
 		24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MRCBackBarButtonItem.m"; sourceTree = "<group>"; };
+		24FDDEE61B31C6660040B5C3 /* MRCFollowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCFollowButton.h; sourceTree = "<group>"; };
+		24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCFollowButton.m; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -809,6 +812,8 @@
 			children = (
 				240D00E91A654D300033CC86 /* MRCButton.h */,
 				240D00EA1A654D300033CC86 /* MRCButton.m */,
+				24FDDEE61B31C6660040B5C3 /* MRCFollowButton.h */,
+				24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -1566,6 +1571,7 @@
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
 				245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */,
 				240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */,
+				24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */,
 				2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */,
 				24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
