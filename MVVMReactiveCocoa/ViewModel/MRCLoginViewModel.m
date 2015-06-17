@@ -29,6 +29,8 @@
     @weakify(self)
     void (^doNext)(OCTClient *) = ^(OCTClient *authenticatedClient) {
         @strongify(self)
+        authenticatedClient.user.userId = authenticatedClient.user.objectID;
+        
         [[MRCMemoryCache sharedInstance] setObject:authenticatedClient.user forKey:@"currentUser"];
 
         self.services.client = authenticatedClient;

@@ -28,7 +28,7 @@
             @weakify(self)
             [[self rac_signalForSelector:@selector(viewDidLoad)] subscribeNext:^(id x) {
                 @strongify(self)
-                [self.viewModel.requestRemoteDataCommand execute:nil];
+                [self.viewModel.requestRemoteDataCommand execute:@1];
             }];
         }
     }

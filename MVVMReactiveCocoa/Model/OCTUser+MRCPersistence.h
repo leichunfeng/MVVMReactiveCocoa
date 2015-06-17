@@ -15,12 +15,24 @@ typedef NS_ENUM(NSUInteger, OCTUserRelationship) {
     OCTUserRelationshipUnknown
 };
 
+typedef NS_ENUM(NSUInteger, OCTUserFollowerStatus) {
+    OCTUserFollowerStatusUnknown,
+    OCTUserFollowerStatusYES,
+    OCTUserFollowerStatusNO
+};
+
+typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
+    OCTUserFollowingStatusUnknown,
+    OCTUserFollowingStatusYES,
+    OCTUserFollowingStatusNO
+};
+
 @interface OCTUser (MRCPersistence) <MRCPersistenceProtocol>
 
 @property (copy, nonatomic) NSString *userId;
 
-@property (assign, nonatomic) BOOL isFollower;
-@property (assign, nonatomic) BOOL isFollowing;
+@property (assign, nonatomic) OCTUserFollowerStatus followerStatus;
+@property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
 
 + (NSString *)mrc_currentUserId;
 
