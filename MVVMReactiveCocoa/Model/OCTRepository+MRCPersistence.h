@@ -15,24 +15,14 @@
 
 - (BOOL)mrc_update;
 
-// Retrieves the repositories of the current `user` from disk.
-//
-// Returns the repositories.
 + (NSArray *)mrc_fetchUserRepositories;
-
-// Retrieves the starred repositories of the current `user` from disk.
-//
-// Returns the starred repositories.
 + (NSArray *)mrc_fetchUserStarredRepositories;
 
 + (BOOL)mrc_saveOrUpdateUserRepositories:(NSArray *)repositories;
-
 + (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories;
 
 - (BOOL)mrc_hasUserStarred;
-
 - (BOOL)mrc_starRepository;
-
 - (BOOL)mrc_unstarRepository;
 
 + (BOOL)mrc_deleteRepositoryWithId:(NSString *)id isStarred:(BOOL)isStarred;

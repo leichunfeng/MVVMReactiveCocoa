@@ -20,7 +20,7 @@
 
 - (RACSignal *)requestRemoteDataSignal {
     return [[self.services.client
-        fetchUserInfoWithLogin:self.user.login]
+        fetchUserInfoWithUser:self.user]
         doNext:^(OCTUser *user) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.user mergeValuesForKeysFromModel:user];

@@ -1,5 +1,5 @@
 //
-//  MRCUsersTableViewCell.h
+//  MRCUserListTableViewCell.h
 //  MVVMReactiveCocoa
 //
 //  Created by leichunfeng on 15/6/8.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MRCReactiveView.h"
 
-@interface MRCUsersTableViewCell : UITableViewCell <MRCReactiveView>
+@interface MRCUserListTableViewCell : UITableViewCell <MRCReactiveView>
 
 @end

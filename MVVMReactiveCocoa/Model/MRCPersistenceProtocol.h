@@ -13,7 +13,6 @@
 @required
 
 - (BOOL)mrc_saveOrUpdate;
-
 - (BOOL)mrc_delete;
 
 @end
