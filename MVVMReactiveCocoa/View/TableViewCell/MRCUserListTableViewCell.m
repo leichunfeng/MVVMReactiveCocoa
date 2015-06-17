@@ -8,6 +8,7 @@
 
 #import "MRCUserListTableViewCell.h"
 #import "MRCUserListItemViewModel.h"
+#import "MRCFollowButton.h"
 
 @interface MRCUserListTableViewCell ()
 
@@ -15,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) UIButton *operationButton;
+@property (strong, nonatomic) MRCFollowButton *operationButton;
 
 @property (strong, nonatomic) MRCUserListItemViewModel *viewModel;
 
@@ -26,30 +27,7 @@
 - (void)awakeFromNib {
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
-    self.operationButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [self.operationButton setTitle:@"Follow" forState:UIControlStateNormal];
-    [self.operationButton setTitle:@"Unollow" forState:UIControlStateSelected];
-    
-    [self.operationButton setTitleColor:HexRGB(colorB0) forState:UIControlStateNormal];
-    [self.operationButton setTitleColor:HexRGB(colorB5) forState:UIControlStateSelected];
-    
-    [self.operationButton setImage:[UIImage octicon_imageWithIdentifier:@"Person" size:CGSizeMake(15, 15)]
-                          forState:UIControlStateNormal];
-    
-    [self.operationButton setBackgroundImage:[UIImage octicon_imageWithIdentifier:@"Plus" size:CGSizeMake(15, 15)]
-                                    forState:UIControlStateNormal];
-    
-    self.operationButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    self.operationButton.backgroundColor = HexRGB(colorA11);
-    self.operationButton.layer.borderColor = HexRGB(0xcccccc).CGColor;
-    self.operationButton.layer.borderWidth = MRC_1PX_WIDTH;
-    
-    self.operationButton.layer.cornerRadius = 3;
-    self.operationButton.contentEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
-    
-    [self.operationButton sizeToFit];
-    
+    self.operationButton = [[MRCFollowButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     [self.operationButton addTarget:self action:@selector(didClickOperationButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
