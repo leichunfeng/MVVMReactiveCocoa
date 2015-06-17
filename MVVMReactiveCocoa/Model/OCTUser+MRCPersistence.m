@@ -18,20 +18,20 @@
     objc_setAssociatedObject(self, @selector(userId), userId, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)isFollower {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
+- (OCTUserFollowerStatus)followerStatus {
+    return [objc_getAssociatedObject(self, _cmd) unsignedIntegerValue];
 }
 
-- (void)setIsFollower:(BOOL)isFollower {
-    objc_setAssociatedObject(self, @selector(isFollower), @(isFollower), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setFollowerStatus:(OCTUserFollowerStatus)followerStatus {
+    objc_setAssociatedObject(self, @selector(followerStatus), @(followerStatus), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)isFollowing {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
+- (OCTUserFollowingStatus)followingStatus {
+    return [objc_getAssociatedObject(self, _cmd) unsignedIntegerValue];
 }
 
-- (void)setIsFollowing:(BOOL)isFollowing {
-    objc_setAssociatedObject(self, @selector(isFollowing), @(isFollowing), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setFollowingStatus:(OCTUserFollowingStatus)followingStatus {
+    objc_setAssociatedObject(self, @selector(followingStatus), @(followingStatus), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)mrc_saveOrUpdate {
@@ -46,9 +46,9 @@
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE userId = ? AND id = ? LIMIT 1;", [OCTUser mrc_currentUserId], self.objectID];
         if (![rs next]) {
-            sql = @"INSERT INTO User VALUES (:userId, :id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage, :isFollower, :isFollowing);";
+            sql = @"INSERT INTO User VALUES (:userId, :id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage, :followerStatus, :followingStatus);";
         } else {
-            sql = @"UPDATE User SET rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage, isFollower = :isFollower, isFollowing = :isFollowing WHERE userId = :userId AND id = :id;";
+            sql = @"UPDATE User SET rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage, followerStatus = :followerStatus, followingStatus = :followingStatus WHERE userId = :userId AND id = :id;";
         }
         
         BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
@@ -124,8 +124,10 @@
         
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM User WHERE userId = %@ AND id NOT IN (%@) AND %@ = 1;", [OCTUser mrc_currentUserId], newIDs, string];
         
+        NSString *selectSql = [NSString stringWithFormat:@"SELECT id FROM User WHERE userId = %@ AND %@ = 1;", [OCTUser mrc_currentUserId], string];
+
         NSMutableArray *oldIDs = nil;
-        FMResultSet *rs = [db executeQuery:@"SELECT id FROM User WHERE userId = ? AND %@ = 1;", [OCTUser mrc_currentUserId], string];
+        FMResultSet *rs = [db executeQuery:selectSql];
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -133,9 +135,9 @@
         
         for (OCTUser *user in users) {
             if (![oldIDs containsObject:user.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@, %@, %@);", [OCTUser mrc_currentUserId], user.objectID, user.rawLogin, user.login, user.name, user.bio, user.email, user.avatarURL.absoluteString, user.blog, user.company, user.location, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), @(user.isFollower), @(user.isFollowing)]];
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@, %@, %@);", [OCTUser mrc_currentUserId], user.objectID, user.rawLogin, user.login, user.name, user.bio, user.email, user.avatarURL.absoluteString, user.blog, user.company, user.location, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), @(user.followerStatus), @(user.followingStatus)]];
             } else { // UPDATE
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', name = '%@', bio = '%@', email = '%@', avatar_url = '%@', blog = '%@', company = '%@', location = '%@', collaborators = %@, public_repos = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, followers = %@, following = %@, disk_usage = %@, %@ = %@, WHERE userId = %@ AND id = %@;", user.rawLogin, user.login, user.name, user.bio, user.email, user.avatarURL.absoluteString, user.blog, user.company, user.location, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), string, [user valueForKey:string], [OCTUser mrc_currentUserId], user.objectID]];
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', name = '%@', bio = '%@', email = '%@', avatar_url = '%@', blog = '%@', company = '%@', location = '%@', collaborators = %@, public_repos = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, followers = %@, following = %@, disk_usage = %@, %@ = %@ WHERE userId = %@ AND id = %@;", user.rawLogin, user.login, user.name, user.bio, user.email, user.avatarURL.absoluteString, user.blog, user.company, user.location, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), string, [user valueForKey:string], [OCTUser mrc_currentUserId], user.objectID]];
             }
         }
         
@@ -162,9 +164,14 @@
             [db close];
         };
         
-        NSString *sql = @"SELECT * FROM user WHERE userId = ? AND isFollower = 1";
+        NSNumber *limit = @0;
+        if (page > 0 && perPage > 0) {
+            limit = @(page * perPage);
+        }
         
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        NSString *sql = @"SELECT * FROM user WHERE userId = ? AND followerStatus = 1 LIMIT ?";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
         while ([rs next]) {
             @autoreleasepool {
                 if (followers == nil) followers = [NSMutableArray new];
@@ -186,9 +193,14 @@
             [db close];
         };
         
-        NSString *sql = @"SELECT * FROM user WHERE userId = ? AND isFollowing = 1";
+        NSNumber *limit = @0;
+        if (page > 0 && perPage > 0) {
+            limit = @(page * perPage);
+        }
         
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        NSString *sql = @"SELECT * FROM user WHERE userId = ? AND followingStatus = 1 LIMIT ?";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
         while ([rs next]) {
             @autoreleasepool {
                 if (followers == nil) followers = [NSMutableArray new];
@@ -204,9 +216,9 @@
 NSString *MRCStringFromRelationship(OCTUserRelationship relationship) {
     switch (relationship) {
         case OCTUserRelationshipFollower:
-            return @"isFollower";
+            return @"followerStatus";
         case OCTUserRelationshipFollowing:
-            return @"isFollowing";
+            return @"followingStatus";
         case OCTUserRelationshipUnknown:
         default:
             return nil;
@@ -214,9 +226,9 @@ NSString *MRCStringFromRelationship(OCTUserRelationship relationship) {
 }
 
 OCTUserRelationship MRCRelationshipFromString(NSString *string)  {
-    if ([string isEqualToString:@"isFollower"]) {
+    if ([string isEqualToString:@"followerStatus"]) {
         return OCTUserRelationshipFollower;
-    } else if ([string isEqualToString:@"isFollowing"]) {
+    } else if ([string isEqualToString:@"followingStatus"]) {
         return OCTUserRelationshipFollowing;
     }
     return OCTUserRelationshipUnknown;

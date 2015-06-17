@@ -21,13 +21,15 @@
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.user];
     
     self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services params:@{ @"type": @0 }];
+        MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
+                                                                                  params:@{ @"type": @0, @"user": self.user }];
         [self.services pushViewModel:viewModel animated:YES];
         return [RACSignal empty];
     }];
 
     self.avatarHeaderViewModel.followingCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services params:@{ @"type": @1 }];
+        MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
+                                                                                  params:@{ @"type": @1 }];
         [self.services pushViewModel:viewModel animated:YES];
         return [RACSignal empty];
     }];

@@ -45,12 +45,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"MRCTableViewCellStyleValue1" forIndexPath:indexPath];
     
-    if (indexPath.section == 2) {
-        cell.textLabel.text = @"Name";
-        [RACObserve(self.viewModel.user, name) subscribeNext:^(NSString *name) {
-            cell.detailTextLabel.text = name;
-        }];
-    } else if (indexPath.section == 0) {
+	if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
                                                   backgroundColor:[UIColor clearColor]
@@ -58,14 +53,15 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Follow";
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.accessoryType = self.viewModel.followingStatus ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Unfollow";
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
                                                   backgroundColor:[UIColor clearColor]
                                                         iconColor:[UIColor lightGrayColor]
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = @"Unfollow";
+            cell.accessoryType = !self.viewModel.followingStatus ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
     } else if (indexPath.section == 1) {
         cell.textLabel.text = @"Starred Repos";

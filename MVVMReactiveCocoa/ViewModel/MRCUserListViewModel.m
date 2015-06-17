@@ -58,9 +58,21 @@
         subscribeNext:^(NSArray *users) {
             @strongify(self)
             self.dataSource = @[ [users.rac_sequence map:^(OCTUser *user) {
-                return [[MRCUsersItemViewModel alloc] initWithUser:user];
+                MRCUsersItemViewModel *itemViewModel = [[MRCUsersItemViewModel alloc] initWithUser:user];
+                itemViewModel.operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                    return [RACSignal empty];
+                }];
+                return itemViewModel;
             }].array ];
         }];
+
+    if (self.isCurrentUser) {
+        if (self.type == MRCUserListViewModelTypeFollowers) {
+            self.users = [OCTUser mrc_fetchFollowersWithPage:1 perPage:self.pageSize];
+        } else if (self.type == MRCUserListViewModelTypeFollowing) {
+            self.users = [OCTUser mrc_fetchFollowingWithPage:1 perPage:self.pageSize];
+        }
+    }
 }
 
 - (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
@@ -73,22 +85,7 @@
                 if (users != nil && users.count > 0) {
                     for (OCTUser *user in users) {
                         user.userId = [OCTUser mrc_currentUserId];
-                    }
-                    
-                    if (self.isCurrentUser) {
-                        for (OCTUser *user in users) {
-                            user.isFollower = YES;
-                        }
-                    } else {
-                        NSArray *followers = [OCTUser mrc_fetchFollowersWithPage:0 perPage:0];
-                        for (OCTUser *user in users) {
-                            for (OCTUser *follower in followers) {
-                                if ([user.objectID isEqualToString:follower.objectID]) {
-                                    user.isFollower = YES;
-                                    break;
-                                }
-                            }
-                        }
+                        if (self.isCurrentUser) user.followerStatus = OCTUserFollowerStatusYES;
                     }
                     
                     if (currentPage == 1) {
@@ -97,9 +94,11 @@
                         self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
                     }
                     
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [OCTUser mrc_saveOrUpdateFollowers:users];
-                    });
+                    if (self.isCurrentUser) {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                            [OCTUser mrc_saveOrUpdateFollowers:self.users];
+                        });
+                    }
                 }
             }];
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
@@ -111,22 +110,7 @@
                 if (users != nil && users.count > 0) {
                     for (OCTUser *user in users) {
                         user.userId = [OCTUser mrc_currentUserId];
-                    }
-                    
-                    if (self.isCurrentUser) {
-                        for (OCTUser *user in users) {
-                            user.isFollowing = YES;
-                        }
-                    } else {
-                        NSArray *followings = [OCTUser mrc_fetchFollowingWithPage:0 perPage:0];
-                        for (OCTUser *user in users) {
-                            for (OCTUser *following in followings) {
-                                if ([user.objectID isEqualToString:following.objectID]) {
-                                    user.isFollowing = YES;
-                                    break;
-                                }
-                            }
-                        }
+                        if (self.isCurrentUser) user.followingStatus = OCTUserFollowingStatusYES;
                     }
                     
                     if (currentPage == 1) {
@@ -135,13 +119,11 @@
                         self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
                     }
                     
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        if (self.isCurrentUser) {
-                            [OCTUser mrc_saveOrUpdateFollowing:users];
-                        } else {
-                            [OCTUser mrc_saveOrUpdateFollowers:users];
-                        }
-                    });
+                    if (self.isCurrentUser) {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                            [OCTUser mrc_saveOrUpdateFollowing:self.users];
+                        });
+                    }
                 }
             }];
     }

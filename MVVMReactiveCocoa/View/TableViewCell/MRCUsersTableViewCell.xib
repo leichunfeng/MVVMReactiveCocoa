@@ -26,11 +26,20 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjI-Qy-MPM">
+                        <rect key="frame" x="315" y="12" width="45" height="30"/>
+                        <state key="normal" title="Follow">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" title="Unfollow"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="r1g-4l-Uwz" secondAttribute="centerY" id="8dK-RQ-4wK"/>
                     <constraint firstItem="hBf-Us-uZ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="9V7-LP-Gjo"/>
+                    <constraint firstAttribute="centerY" secondItem="xjI-Qy-MPM" secondAttribute="centerY" id="BnC-Rb-hbF"/>
                     <constraint firstAttribute="trailing" secondItem="r1g-4l-Uwz" secondAttribute="trailing" constant="10" id="Q80-Zc-ILo"/>
+                    <constraint firstAttribute="trailing" secondItem="xjI-Qy-MPM" secondAttribute="trailing" constant="15" id="bAS-yo-D4R"/>
                     <constraint firstAttribute="centerY" secondItem="hBf-Us-uZ8" secondAttribute="centerY" id="cGa-ub-Jmf"/>
                     <constraint firstItem="r1g-4l-Uwz" firstAttribute="leading" secondItem="hBf-Us-uZ8" secondAttribute="trailing" constant="10" id="s3d-A6-Jnd"/>
                 </constraints>
@@ -38,8 +47,9 @@
             <connections>
                 <outlet property="avatarImageView" destination="hBf-Us-uZ8" id="Dww-ML-dRA"/>
                 <outlet property="loginLabel" destination="r1g-4l-Uwz" id="oXH-Bw-sbH"/>
+                <outlet property="operationButton" destination="xjI-Qy-MPM" id="yci-2Y-jLE"/>
             </connections>
-            <point key="canvasLocation" x="122.5" y="318.5"/>
+            <point key="canvasLocation" x="32.5" y="297.5"/>
         </tableViewCell>
     </objects>
 </document>
