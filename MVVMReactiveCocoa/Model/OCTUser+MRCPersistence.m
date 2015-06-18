@@ -120,13 +120,13 @@
         
         for (OCTUser *user in users) {
             if (![oldIDs containsObject:user.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@);", user.objectID, user.rawLogin, user.login, user.name, user.bio, user.email, user.avatarURL.absoluteString, user.blog, user.company, user.location, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage)]];
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@);", user.objectID, user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage)]];
             } else { // UPDATE
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', name = '%@', bio = '%@', email = '%@', avatar_url = '%@', blog = '%@', company = '%@', location = '%@', collaborators = %@, public_repos = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, followers = %@, following = %@, disk_usage = %@ WHERE id = %@;", user.rawLogin, user.login, user.name, user.bio, user.email, user.avatarURL.absoluteString, user.blog, user.company, user.location, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), user.objectID]];
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', name = '%@', bio = '%@', email = '%@', avatar_url = '%@', blog = '%@', company = '%@', location = '%@', collaborators = %@, public_repos = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, followers = %@, following = %@, disk_usage = %@ WHERE id = %@;", user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), user.objectID]];
             }
         }
         
-        sql = [sql stringByReplacingOccurrencesOfString:@"'<null>'" withString:@"NULL"];
+        sql = [sql stringByReplacingOccurrencesOfString:@"'(null)'" withString:@"NULL"];
         
         BOOL success = [db executeStatements:sql];
         if (!success) {
@@ -168,8 +168,6 @@
             }
         }
         
-        sql = [sql stringByReplacingOccurrencesOfString:@"'<null>'" withString:@"NULL"];
-        
         BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
@@ -209,8 +207,6 @@
                 sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Following_User VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], user.objectID]];
             }
         }
-        
-        sql = [sql stringByReplacingOccurrencesOfString:@"'<null>'" withString:@"NULL"];
         
         BOOL success = [db executeStatements:sql];
         if (!success) {

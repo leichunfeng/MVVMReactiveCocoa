@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *repositoriesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followersButton;
-@property (weak, nonatomic) IBOutlet UIButton *reposButton;
+@property (weak, nonatomic) IBOutlet UIButton *repositoriesButton;
 @property (weak, nonatomic) IBOutlet UIButton *followingButton;
 
 @property (strong, nonatomic) UIImage *avatarImage;
@@ -78,6 +78,7 @@
     RAC(self.followingLabel, text) = RACObserve(viewModel, following);
     
     self.followersButton.rac_command = viewModel.followersCommand;
+    self.repositoriesButton.rac_command = viewModel.repositoriesCommand;
     self.followingButton.rac_command = viewModel.followingCommand;
     
     [[RACObserve(viewModel, contentOffset) filter:^BOOL(id value) {
