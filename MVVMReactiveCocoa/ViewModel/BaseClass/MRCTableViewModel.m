@@ -20,7 +20,7 @@
     [super initialize];
     
     self.currentPage = 1;
-    self.pageSize = 3;
+    self.pageSize = 30;
     
     @weakify(self)
     self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSNumber *currentPage) {
