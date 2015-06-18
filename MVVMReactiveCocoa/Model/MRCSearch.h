@@ -14,6 +14,6 @@
 
 @property (strong, nonatomic, readonly) NSDate *dateSearched;
 
-+ (NSArray *)mrc_recentSearches;
++ (NSArray *)recentSearches;
 
 @end

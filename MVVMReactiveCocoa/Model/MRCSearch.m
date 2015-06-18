@@ -16,7 +16,7 @@
 
 #pragma mark - Query
 
-+ (NSArray *)mrc_recentSearches {
++ (NSArray *)recentSearches {
     NSMutableArray *recentSearches = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -25,7 +25,7 @@
             [db close];
         };
         
-        NSString *sql = @"select * from Search where userId = ? order by searched_at desc";
+        NSString *sql = @"SELECT * FROM Search WHERE userId = ? ORDER BY searched_at DESC";
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
         while ([rs next]) {
             @autoreleasepool {
@@ -67,11 +67,11 @@
         
         NSString *sql = nil;
         
-        FMResultSet *rs = [db executeQuery:@"select * from Search where keyword = ? and userId = ? limit 1;", self.keyword, [OCTUser mrc_currentUserId]];
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Search WHERE keyword = ? AND userId = ? LIMIT 1;", self.keyword, [OCTUser mrc_currentUserId]];
         if (![rs next]) {
-            sql = @"insert into Search values (:id, :keyword, :searched_at, :userId);";
+            sql = @"INSERT INTO Search VALUES (:id, :keyword, :searched_at, :userId);";
         } else {
-            sql = @"update Search set searched_at = :searched_at where keyword = :keyword and userId = :userId;";
+            sql = @"UPDATE Search SET searched_at = :searched_at WHERE keyword = :keyword AND userId = :userId;";
         }
 
         NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
@@ -97,7 +97,7 @@
             [db close];
         };
         
-        BOOL success = [db executeUpdate:@"delete from Search where id = ?;", self.objectID];
+        BOOL success = [db executeUpdate:@"DELETE FROM Search WHERE id = ?;", self.objectID];
         if (!success) {
             mrcLogLastError(db);
             return NO;
