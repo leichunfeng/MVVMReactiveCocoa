@@ -29,29 +29,14 @@
     
     self.title = @"Settings";
     
-    self.repository.starredStatus = [OCTRepository mrc_hasUserStarredRepository:self.repository] ? OCTRepositoryStarredStatusYES : OCTRepositoryStarredStatusNO;
-    self.isStarred = self.repository.starredStatus == OCTRepositoryStarredStatusYES;
-    
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 1) {
             if (indexPath.row == 0) {
-                @onExit {
-                    self.isStarred = YES;
-                };
-                
-                if (!self.isStarred) {
-                    return [[self.services client] mrc_starRepository:self.repository];
-                }
+                return [[self.services client] mrc_starRepository:self.repository];
             } else if (indexPath.row == 1) {
-                @onExit {
-                    self.isStarred = NO;
-                };
-                
-                if (self.isStarred) {
-                    return [[self.services client] mrc_unstarRepository:self.repository];
-                }
+                return [[self.services client] mrc_unstarRepository:self.repository];
             }
         }
         return [RACSignal empty];

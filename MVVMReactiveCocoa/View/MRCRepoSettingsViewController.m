@@ -30,13 +30,8 @@
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoSettingsOwnerTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCRepoSettingsOwnerTableViewCell"];
-    
-    @weakify(self)
-    [[RACObserve(self.viewModel, isStarred) deliverOnMainThread] subscribeNext:^(id x) {
-        @strongify(self)
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoSettingsOwnerTableViewCell" bundle:nil]
+         forCellReuseIdentifier:@"MRCRepoSettingsOwnerTableViewCell"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
@@ -49,7 +44,6 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object {
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    cell.hidden = NO;
     
     if (indexPath.section == 0) {
         MRCRepoSettingsOwnerTableViewCell *ownerTableViewCell = (MRCRepoSettingsOwnerTableViewCell *)cell;
@@ -83,7 +77,14 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Star";
-            cell.accessoryType  = self.viewModel.isStarred ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            
+            [RACObserve(self.viewModel.repository, starredStatus) subscribeNext:^(NSNumber *starredStatus) {
+                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                } else {
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            }];
         } else if (indexPath.row == 1) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Star"
                                                   backgroundColor:[UIColor clearColor]
@@ -91,11 +92,14 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Unstar";
-            cell.accessoryType  = !self.viewModel.isStarred ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        }
-        
-        if ([self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
-            cell.hidden = YES;
+            
+            [RACObserve(self.viewModel.repository, starredStatus) subscribeNext:^(NSNumber *starredStatus) {
+                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusNO) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                } else {
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            }];
         }
     } else if (indexPath.section == 2) {
         cell.textLabel.text = @"Share To Friends";
@@ -126,23 +130,14 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 1 && [self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
-        return 0.01;
-    }
     return section == 0 ? 20 : 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 1 && [self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
-        return 0.01;
-    }
     return (section == tableView.numberOfSections - 1) ? 20 : 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1 && [self.viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
-        return 0;
-    }
     return indexPath.section == 0 ? 90 : 44;
 }
 

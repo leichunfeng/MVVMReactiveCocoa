@@ -65,10 +65,42 @@
     [cell bindViewModel:viewModel];
 }
 
+#pragma mark - UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {}
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
+
+    void (^handlerStar)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        tableView.editing = false;
+        [[[self.viewModel.services client] mrc_starRepository:viewModel.repository] subscribeNext:^(id x) {}];
+    };
+    
+    UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
+                                                                          title:@"Star"
+                                                                        handler:handlerStar];
+    
+    void (^handlerUnstar)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        tableView.editing = false;
+        [[[self.viewModel.services client] mrc_unstarRepository:viewModel.repository] subscribeNext:^(id x) {}];
+    };
+    
+    UITableViewRowAction *unstarAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
+                                                                            title:@"Unstar"
+                                                                          handler:handlerUnstar];
+    
+    if (viewModel.repository.starredStatus == OCTRepositoryStarredStatusYES) {
+        return @[ unstarAction ];
+    } else {
+        return @[ starAction ];
+    }
 }
 
 @end

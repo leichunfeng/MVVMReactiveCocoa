@@ -17,6 +17,7 @@
 @property (strong, nonatomic, readonly) MRCReposSearchResultsViewModel *viewModel;
 @property (strong, nonatomic) UIImage *unstarImage;
 @property (strong, nonatomic) UIImage *starImage;
+
 @end
 
 @implementation MRCReposSearchResultsViewController
@@ -37,10 +38,12 @@
 - (void)configureCell:(MRCReposTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCReposSearchResultsItemViewModel *)viewModel {
     [super configureCell:cell atIndexPath:indexPath withObject:viewModel];
     
+    @weakify(self)
     [[[RACObserve(viewModel.repository, starredStatus)
         distinctUntilChanged]
         deliverOnMainThread]
         subscribeNext:^(NSNumber *starredStatus) {
+            @strongify(self)
              if (starredStatus.unsignedIntegerValue) {
                  cell.starIconImageView.image = self.starImage;
              } else {
@@ -67,50 +70,6 @@
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     return [[NSAttributedString alloc] initWithString:@"No Results"];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    MRCReposSearchResultsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    if ([viewModel.repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-#pragma mark - UITableViewDelegate
-
-- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MRCReposSearchResultsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    if (viewModel.repository.starredStatus == OCTRepositoryStarredStatusYES) {
-        void (^handler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            tableView.editing = false;
-            
-            MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-            [[[self.viewModel.services client] mrc_unstarRepository:viewModel.repository] subscribeNext:^(id x) {}];
-        };
-        
-        UITableViewRowAction *unstarAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
-                                                                                title:@"Unstar"
-                                                                              handler:handler];
-        return @[ unstarAction ];
-    } else {
-        void (^handler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            tableView.editing = false;
-            
-            MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-            [[[self.viewModel.services client] mrc_starRepository:viewModel.repository] subscribeNext:^(id x) {}];
-        };
-        
-        UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal
-                                                                              title:@"Star"
-                                                                            handler:handler];
-        return @[ starAction ];
-    }
 }
 
 @end

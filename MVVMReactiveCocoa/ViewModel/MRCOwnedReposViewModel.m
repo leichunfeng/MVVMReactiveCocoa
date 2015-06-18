@@ -10,12 +10,30 @@
 #import "MRCReposItemViewModel.h"
 #import "MRCRepoDetailViewModel.h"
 
+@interface MRCOwnedReposViewModel ()
+
+@property (strong, nonatomic, readwrite) OCTUser *user;
+@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+
+@end
+
 @implementation MRCOwnedReposViewModel
+
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+    self = [super initWithServices:services params:params];
+    if (self) {
+        self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
+    }
+    return self;
+}
 
 - (void)initialize {
     [super initialize];
     
+    self.isCurrentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
+    
     self.shouldPullToRefresh = YES;
+    self.shouldInfiniteScrolling = !self.isCurrentUser;
 
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
@@ -29,65 +47,96 @@
         return [RACSignal empty];
     }];
     
-    [RACObserve(self, repositories) subscribeNext:^(NSArray *repositories) {
-        @strongify(self)
-        self.sectionIndexTitles = [self sectionIndexTitlesWithRepositories:repositories];
-        self.dataSource = [self dataSourceWithRepositories:repositories];
-    }];
+    [[RACObserve(self, repositories)
+        doNext:^(NSArray *repositories) {
+            repositories = [OCTRepository matchStarredStatusForRepositories:repositories];
+        }]
+        subscribeNext:^(NSArray *repositories) {
+            @strongify(self)
+            self.sectionIndexTitles = [self sectionIndexTitlesWithRepositories:repositories];
+            self.dataSource = [self dataSourceWithRepositories:repositories];
+        }];
     
-    self.repositories = [self fetchLocalRepositories];
+    if (self.isCurrentUser) self.repositories = [self fetchLocalRepositories];
 }
 
 - (NSArray *)fetchLocalRepositories {
     return [OCTRepository mrc_fetchUserRepositoriesWithPage:0 perPage:0];
 }
 
-- (RACSignal *)requestRemoteDataSignal {
-    return [[[self.services
-        client]
-        fetchUserRepositories].collect
-        doNext:^(NSArray *repositories) {
-            self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
-                return [repo1.name caseInsensitiveCompare:repo2.name];
+- (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
+    if (self.isCurrentUser) {
+        return [[[[self.services
+        	client]
+            fetchUserRepositories]
+            collect]
+            doNext:^(NSArray *repositories) {
+                self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                    return [repo1.name caseInsensitiveCompare:repo2.name];
+                }];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [OCTRepository mrc_saveOrUpdateRepositories:repositories];
+                });
             }];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [OCTRepository mrc_saveOrUpdateRepositories:repositories];
-            });
-        }];
+    } else {
+        return [[[[self.services
+        	client]
+            fetchRepositoriesWithUser:self.user page:currentPage perPage:self.pageSize]
+            collect]
+            doNext:^(NSArray *repositories) {
+                if (currentPage == 1) {
+                    self.repositories = repositories;
+                } else {
+                    self.repositories = @[ (self.repositories ?: @[]).rac_sequence, repositories.rac_sequence ].rac_sequence.flatten.array;
+                }
+            }];
+    }
 }
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
-    if (!repositories) return nil;
+    if (repositories.count == 0) return nil;
     
-    NSArray *firstLetters = [repositories.rac_sequence
-    	map:^id(OCTRepository *repository) {
-            return repository.name.firstLetter;
-        }].array;
+    if (self.isCurrentUser) {
+        NSArray *firstLetters = [repositories.rac_sequence
+        	map:^id(OCTRepository *repository) {
+                return repository.name.firstLetter;
+            }].array;
+
+        return [[NSSet setWithArray:firstLetters].rac_sequence.array sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
+    }
     
-    return [[NSSet setWithArray:firstLetters].rac_sequence.array sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
+    return nil;
 }
 
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
-    if (!repositories) return nil;
+    if (repositories.count == 0) return nil;
     
     NSMutableArray *repoOfRepos = [NSMutableArray new];
-    
-    NSString *firstLetter = [repositories.firstObject name].firstLetter;
-    NSMutableArray *repos = [NSMutableArray new];
-    
-    for (OCTRepository *repository in repositories) {
-        if ([[repository.name firstLetter] isEqualToString:firstLetter]) {
-            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
-        } else {
-            [repoOfRepos addObject:repos];
-            
-            firstLetter = repository.name.firstLetter;
-            repos = [NSMutableArray new];
-            
-            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
+
+    if (self.isCurrentUser) {
+        NSString *firstLetter = [repositories.firstObject name].firstLetter;
+        NSMutableArray *repos = [NSMutableArray new];
+        
+        for (OCTRepository *repository in repositories) {
+            if ([[repository.name firstLetter] isEqualToString:firstLetter]) {
+                [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
+            } else {
+                [repoOfRepos addObject:repos];
+                
+                firstLetter = repository.name.firstLetter;
+                repos = [NSMutableArray new];
+                
+                [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
+            }
         }
+        
+        [repoOfRepos addObject:repos];
+    } else {
+        NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
+            return [[MRCReposItemViewModel alloc] initWithRepository:repository];
+        }].array;
+        [repoOfRepos addObject:repos];
     }
-    [repoOfRepos addObject:repos];
     
     return repoOfRepos;
 }

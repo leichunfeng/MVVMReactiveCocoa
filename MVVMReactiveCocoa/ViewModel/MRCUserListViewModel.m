@@ -23,7 +23,7 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.user = params[@"user"];
+        self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
     }
     return self;
 }
@@ -34,7 +34,6 @@
     self.isCurrentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
     
     self.type = [self.params[@"type"] unsignedIntegerValue];
-    
     if (self.type == MRCUserListViewModelTypeFollowers) {
         self.title = @"Followers";
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
