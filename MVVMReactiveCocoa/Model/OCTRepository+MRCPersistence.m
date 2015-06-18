@@ -8,58 +8,19 @@
 
 #import "OCTRepository+MRCPersistence.h"
 
-static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
-
 @implementation OCTRepository (MRCPersistence)
 
-- (BOOL)isStarred {
-    return [objc_getAssociatedObject(self, OCTRepositoryIsStarredKey) boolValue];
+#pragma mark - Properties
+
+- (OCTRepositoryStarredStatus)starredStatus {
+    return [objc_getAssociatedObject(self, _cmd) unsignedIntegerValue];
 }
 
-- (void)setIsStarred:(BOOL)isStarred {
-    objc_setAssociatedObject(self, OCTRepositoryIsStarredKey, @(isStarred), OBJC_ASSOCIATION_ASSIGN);
+- (void)setStarredStatus:(OCTRepositoryStarredStatus)starredStatus {
+    objc_setAssociatedObject(self, @selector(starredStatus), @(starredStatus), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)mrc_starRepository {
-    self.isStarred = YES;
-    return [self mrc_saveOrUpdate];
-}
-
-- (BOOL)mrc_unstarRepository {
-    self.isStarred = NO;
-    return [OCTRepository mrc_deleteRepositoryWithId:self.objectID isStarred:@YES];
-}
-
-- (BOOL)mrc_update {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
-        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, @(self.isStarred)];
-        if ([rs next]) {
-            NSString *sql = @"update Repository set name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count, subscribers_count = :subscribers_count where userId = :userId and id = :id and isStarred = :isStarred;";
-            
-            NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
-            
-            dictionary[@"userId"] = [OCTUser mrc_currentUserId];
-            dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
-            dictionary[@"owner_avatar_url"] = dictionary[@"owner"][@"avatar_url"];
-            
-            BOOL success = [db executeUpdate:sql withParameterDictionary:dictionary];
-            if (!success) {
-                mrcLogLastError(db);
-                return NO;
-            }
-            
-            return YES;
-        }
-    }
-    
-    return NO;
-}
+#pragma mark - MRCPersistenceProtocol
 
 - (BOOL)mrc_saveOrUpdate {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -71,16 +32,15 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         
         NSString *sql = nil;
         
-        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, @(self.isStarred)];
-        if (![rs next]) { // insert
-            sql = @"insert into Repository values (:userId, :id, :isStarred, :name, :owner_login, :owner_avatar_url, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);";
-        } else { // update
-            sql = @"update Repository set name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count, subscribers_count = :subscribers_count where userId = :userId and id = :id and isStarred = :isStarred;";
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? limit 1;", self.objectID];
+        if (![rs next]) { // INSERT
+            sql = @"INSERT INTO Repository VALUES (:id, :name, :owner_login, :owner_avatar_url, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);";
+        } else { // UPDATE
+            sql = @"UPDATE Repository SET name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count, subscribers_count = :subscribers_count WHERE id = :id;";
         }
         
         NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
         
-        dictionary[@"userId"] = [OCTUser mrc_currentUserId];
         dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
         dictionary[@"owner_avatar_url"] = dictionary[@"owner"][@"avatar_url"];
         
@@ -104,7 +64,7 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             [db close];
         };
         
-        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ? and isStarred = ?;", [OCTUser mrc_currentUserId], self.objectID, @(self.isStarred)];
+        BOOL success = [db executeUpdate:@"DELETE FROM Repository WHERE id = ?;", self.objectID];
         if (!success) {
             mrcLogLastError(db);
             return NO;
@@ -116,57 +76,9 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
     return NO;
 }
 
-+ (NSArray *)mrc_fetchUserRepositories {
-    return [self mrc_fetchRepositoriesIsStarred:NO];
-}
+#pragma mark - Save Or Update Repositories
 
-+ (NSArray *)mrc_fetchUserStarredRepositories {
-    return [self mrc_fetchRepositoriesIsStarred:YES];
-}
-
-+ (NSArray *)mrc_fetchRepositoriesIsStarred:(BOOL)isStarred {
-    NSMutableArray *repos = nil;
-    
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
-        NSString *sql = @"select * from Repository where userId = ? and isStarred = ? order by lower(name);";
-        
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], @(isStarred)];
-        while ([rs next]) {
-            @autoreleasepool {
-                if (repos == nil) repos = [NSMutableArray new];
-                
-                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
-                
-                [dictionary removeObjectForKey:@"userId"];
-               
-                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
-                [dictionary removeObjectForKey:@"owner_login"];
-                [dictionary removeObjectForKey:@"owner_avatar_url"];
-                
-                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
-                
-                [repos addObject:repo];
-            }
-        }
-    }
-    
-    return repos;
-}
-
-+ (BOOL)mrc_saveOrUpdateUserRepositories:(NSArray *)repositories {
-    return [self mrc_saveOrUpdateRepositories:repositories isStarred:NO];
-}
-
-+ (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories {
-    return [self mrc_saveOrUpdateRepositories:repositories isStarred:YES];
-}
-
-+ (BOOL)mrc_saveOrUpdateRepositories:(NSArray *)repositories isStarred:(BOOL)isStarred {
++ (BOOL)mrc_saveOrUpdateRepositories:(NSArray *)repositories {
     if (repositories.count == 0) return YES;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -179,28 +91,27 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
             return @(repo.objectID.integerValue);
         }].array componentsJoinedByString:@","];
         
-        NSString *sql = [NSString stringWithFormat:@"delete from Repository where userId = %ld and id not in (%@) and isStarred = %d;", [OCTUser mrc_currentUserId].integerValue, newIDs, isStarred];
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM Repository WHERE owner_login = %@ AND id NOT IN (%@);", [OCTUser mrc_currentUser].login, newIDs];
         
         NSMutableArray *oldIDs = nil;
         
-        FMResultSet *rs = [db executeQuery:@"select id from Repository where userId = ? and isStarred = ?;", [OCTUser mrc_currentUserId], @(isStarred)];
+        FMResultSet *rs = [db executeQuery:@"SELECT id FROM Repository WHERE owner_login = ?;", [OCTUser mrc_currentUser].login];
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
         
-        for (OCTRepository *repo in repositories) {
+        for (OCTRepository *repository in repositories) {
             @autoreleasepool {
-                NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:repo].mutableCopy;
+                NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:repository].mutableCopy;
                 
-                dictionary[@"userId"] = [OCTUser mrc_currentUserId];
                 dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
                 dictionary[@"owner_avatar_url"] = dictionary[@"owner"][@"avatar_url"];
                 
-                if (![oldIDs containsObject:repo.objectID]) { // insert
-                    sql = [sql stringByAppendingString:[NSString stringWithFormat:@"insert into Repository values (%ld, %ld, %ld, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %ld, %ld, %ld, %ld, %ld, %ld, %ld);", [dictionary[@"userId"] integerValue], [dictionary[@"id"] integerValue], [dictionary[@"isStarred"] integerValue], [dictionary[@"name"] escapeSingleQuote], [dictionary[@"owner_login"] escapeSingleQuote], [dictionary[@"owner_avatar_url"] escapeSingleQuote], [dictionary[@"description"] escapeSingleQuote], [dictionary[@"language"] escapeSingleQuote], [dictionary[@"pushed_at"] escapeSingleQuote], [dictionary[@"created_at"] escapeSingleQuote], [dictionary[@"updated_at"] escapeSingleQuote], [dictionary[@"clone_url"] escapeSingleQuote], [dictionary[@"ssh_url"] escapeSingleQuote], [dictionary[@"git_url"] escapeSingleQuote], [dictionary[@"html_url"] escapeSingleQuote], [dictionary[@"default_branch"] escapeSingleQuote], [dictionary[@"private"] integerValue], [dictionary[@"fork"] integerValue], [dictionary[@"watchers_count"] integerValue], [dictionary[@"forks_count"] integerValue], [dictionary[@"stargazers_count"] integerValue], [dictionary[@"open_issues_count"] integerValue], [dictionary[@"subscribers_count"] integerValue]]];
-                } else { // update
-                    sql = [sql stringByAppendingString:[NSString stringWithFormat:@"update Repository set name = '%@', owner_login = '%@', owner_avatar_url = '%@', description = '%@', language = '%@', pushed_at = '%@', created_at = '%@', updated_at = '%@', clone_url = '%@', ssh_url = '%@', git_url = '%@', html_url = '%@', default_branch = '%@', private = %ld, fork = %ld, watchers_count = %ld, forks_count = %ld, stargazers_count = %ld, open_issues_count = %ld, subscribers_count = %ld where userId = %ld and id = %ld and isStarred = %ld;", [dictionary[@"name"] escapeSingleQuote], [dictionary[@"owner_login"] escapeSingleQuote], [dictionary[@"owner_avatar_url"] escapeSingleQuote], [dictionary[@"description"] escapeSingleQuote], [dictionary[@"language"] escapeSingleQuote], [dictionary[@"pushed_at"] escapeSingleQuote], [dictionary[@"created_at"] escapeSingleQuote], [dictionary[@"updated_at"] escapeSingleQuote], [dictionary[@"clone_url"] escapeSingleQuote], [dictionary[@"ssh_url"] escapeSingleQuote], [dictionary[@"git_url"] escapeSingleQuote], [dictionary[@"html_url"] escapeSingleQuote], [dictionary[@"default_branch"] escapeSingleQuote], [dictionary[@"private"] integerValue], [dictionary[@"fork"] integerValue], [dictionary[@"watchers_count"] integerValue], [dictionary[@"forks_count"] integerValue], [dictionary[@"stargazers_count"] integerValue], [dictionary[@"open_issues_count"] integerValue], [dictionary[@"subscribers_count"] integerValue], [dictionary[@"userId"] integerValue], [dictionary[@"id"] integerValue], [dictionary[@"isStarred"] integerValue]]];
+                if (![oldIDs containsObject:repository.objectID]) { // INSERT
+                    sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO Repository VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@);", repository.objectID, repository.name, repository.ownerLogin, repository.ownerAvatarURL.absoluteString, repository.repoDescription, repository.language, repository.datePushed, repository.dateCreated, repository.dateUpdated, repository.HTTPSURL.absoluteString, repository.SSHURL, repository.gitURL.absoluteString, repository.HTMLURL.absoluteString, repository.defaultBranch, @(repository.private), @(repository.fork), @(repository.watchersCount), @(repository.forksCount), @(repository.stargazersCount), @(repository.openIssuesCount), @(repository.subscribersCount)]];
+                } else { // UPDATE
+                    sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE Repository SET name = '%@', owner_login = '%@', owner_avatar_url = '%@', description = '%@', language = '%@', pushed_at = '%@', created_at = '%@', updated_at = '%@', clone_url = '%@', ssh_url = '%@', git_url = '%@', html_url = '%@', default_branch = '%@', private = %@, fork = %@, watchers_count = %@, forks_count = %@, stargazers_count = %@, open_issues_count = %@, subscribers_count = %@ WHERE id = %@;", repository.name, repository.ownerLogin, repository.ownerAvatarURL.absoluteString, repository.repoDescription, repository.language, repository.datePushed, repository.dateCreated, repository.dateUpdated, repository.HTTPSURL.absoluteString, repository.SSHURL, repository.gitURL.absoluteString, repository.HTMLURL.absoluteString, repository.defaultBranch, @(repository.private), @(repository.fork), @(repository.watchersCount), @(repository.forksCount), @(repository.stargazersCount), @(repository.openIssuesCount), @(repository.subscribersCount), repository.objectID]];
                 }
             }
         }
@@ -219,29 +130,37 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
     return NO;
 }
 
-- (BOOL)mrc_hasUserStarred {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
-        FMResultSet *rs = [db executeQuery:@"select * from Repository where userId = ? and id = ? and isStarred = ? limit 1;", [OCTUser mrc_currentUserId], self.objectID, @1];
-        
-        return [rs next];
-    }
-    return NO;
-}
-
-+ (BOOL)mrc_deleteRepositoryWithId:(NSString *)id isStarred:(BOOL)isStarred {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
++ (BOOL)mrc_saveOrUpdateStarredStatusWithRepositories:(NSArray *)repositories {
+    if (repositories.count == 0) return YES;
     
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
     if ([db open]) {
         @onExit {
             [db close];
         };
         
-        BOOL success = [db executeUpdate:@"delete from Repository where userId = ? and id = ? and isStarred = ?;", [OCTUser mrc_currentUserId], id, @(isStarred)];
+        NSString *newIDs = [[repositories.rac_sequence map:^id(OCTUser *user) {
+            return user.objectID;
+        }].array componentsJoinedByString:@","];
+        
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Starred_Repository WHERE userId = %@ AND repositoryId NOT IN (%@);", [OCTUser mrc_currentUserId], newIDs];
+        
+        NSMutableArray *oldIDs = nil;
+        FMResultSet *rs = [db executeQuery:@"SELECT repositoryId FROM User_Starred_Repository WHERE userId = ?;", [OCTUser mrc_currentUserId]];
+        while ([rs next]) {
+            if (oldIDs == nil) oldIDs = [NSMutableArray new];
+            [oldIDs addObject:[rs stringForColumnIndex:0]];
+        }
+        
+        for (OCTRepository *repository in repositories) {
+            if (![oldIDs containsObject:repository.objectID]) { // INSERT
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Starred_Repository VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], repository.objectID]];
+            }
+        }
+        
+        sql = [sql stringByReplacingOccurrencesOfString:@"'<null>'" withString:@"NULL"];
+        
+        BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
             return NO;
@@ -250,6 +169,143 @@ static void *OCTRepositoryIsStarredKey = &OCTRepositoryIsStarredKey;
         return YES;
     }
     
+    return NO;
+}
+
+#pragma mark - Fetch Repositories
+
++ (NSArray *)mrc_fetchUserRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
+    NSMutableArray *repos = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSNumber *limit = @0;
+        if (page > 0 && perPage > 0) {
+            limit = @(page * perPage);
+        }
+        
+        NSString *sql = @"SELECT * FROM Repository WHERE owner_login = ? LIMIT ? order by lower(name);";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUser].login, limit];
+        while ([rs next]) {
+            @autoreleasepool {
+                if (repos == nil) repos = [NSMutableArray new];
+                
+                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
+                
+                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
+                [dictionary removeObjectForKey:@"owner_login"];
+                [dictionary removeObjectForKey:@"owner_avatar_url"];
+                
+                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+                
+                [repos addObject:repo];
+            }
+        }
+    }
+    
+    return repos;
+}
+
++ (NSArray *)mrc_fetchUserStarredRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
+    NSMutableArray *repos = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSNumber *limit = @0;
+        if (page > 0 && perPage > 0) {
+            limit = @(page * perPage);
+        }
+        
+        NSString *sql = @"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = ? AND usr.repositoryId = r.id LIMIT ?;";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
+        while ([rs next]) {
+            @autoreleasepool {
+                if (repos == nil) repos = [NSMutableArray new];
+                
+                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
+                
+                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
+                [dictionary removeObjectForKey:@"owner_login"];
+                [dictionary removeObjectForKey:@"owner_avatar_url"];
+                
+                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+                
+                [repos addObject:repo];
+            }
+        }
+    }
+    
+    return repos;
+}
+
+#pragma mark - Star Or Unstar Repository
+
++ (BOOL)mrc_hasUserStarredRepository:(OCTRepository *)repository {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"SELECT * FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ? LIMIT 1;";
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], repository.objectID];
+        
+        return [rs next];
+    }
+    return NO;
+}
+
++ (BOOL)mrc_starRepository:(OCTRepository *)repository {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"INSERT INTO User_Starred_Repository VALUES (?, ?, ?);";
+        
+        BOOL success = [db executeUpdate:sql, nil, [OCTUser mrc_currentUserId], repository.objectID];
+        if (!success) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        repository.starredStatus = OCTRepositoryStarredStatusYES;
+        
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)mrc_unstarRepository:(OCTRepository *)repository {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"DELETE FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ?;";
+        
+        BOOL success = [db executeUpdate:sql, [OCTUser mrc_currentUserId], repository.objectID];
+        if (!success) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        repository.starredStatus = OCTRepositoryStarredStatusNO;
+        
+        return YES;
+    }
     return NO;
 }
 

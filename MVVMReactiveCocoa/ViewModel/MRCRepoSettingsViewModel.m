@@ -29,8 +29,8 @@
     
     self.title = @"Settings";
     
-    self.repository.isStarred = [self.repository mrc_hasUserStarred];
-    self.isStarred = self.repository.isStarred;
+    self.repository.starredStatus = [OCTRepository mrc_hasUserStarredRepository:self.repository] ? OCTRepositoryStarredStatusYES : OCTRepositoryStarredStatusNO;
+    self.isStarred = self.repository.starredStatus == OCTRepositoryStarredStatusYES;
     
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {

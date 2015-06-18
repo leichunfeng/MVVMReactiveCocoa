@@ -39,7 +39,7 @@
 }
 
 - (NSArray *)fetchLocalRepositories {
-    return [OCTRepository mrc_fetchUserRepositories];
+    return [OCTRepository mrc_fetchUserRepositoriesWithPage:0 perPage:0];
 }
 
 - (RACSignal *)requestRemoteDataSignal {
@@ -51,7 +51,7 @@
                 return [repo1.name caseInsensitiveCompare:repo2.name];
             }];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [OCTRepository mrc_saveOrUpdateUserRepositories:repositories];
+                [OCTRepository mrc_saveOrUpdateRepositories:repositories];
             });
         }];
 }

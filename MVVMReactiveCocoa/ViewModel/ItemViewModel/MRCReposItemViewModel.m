@@ -55,7 +55,7 @@
 
 - (NSAttributedString *)name {
     if (!_name) {
-        if (self.repository.isStarred) {
+        if (self.repository.starredStatus == OCTRepositoryStarredStatusYES) {
             NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];
             
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:uniqueName];

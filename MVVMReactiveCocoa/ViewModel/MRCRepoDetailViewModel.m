@@ -136,10 +136,10 @@
             RACTupleUnpack(OCTRepository *repo, NSString *readmeHTMLString) = tuple;
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                repo.isStarred = self.repository.isStarred;
+                repo.starredStatus = self.repository.starredStatus;
                 [self.repository mergeValuesForKeysFromModel:repo];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [self.repository mrc_update];
+                    [self.repository mrc_saveOrUpdate];
                 });
             });
             

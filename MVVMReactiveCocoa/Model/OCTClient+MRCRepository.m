@@ -12,7 +12,7 @@
 
 - (RACSignal *)mrc_starRepository:(OCTRepository *)repository {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if ([repository mrc_starRepository]) {
+        if ([OCTRepository mrc_starRepository:repository]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:nil];
         }
     });
@@ -21,7 +21,7 @@
 
 - (RACSignal *)mrc_unstarRepository:(OCTRepository *)repository {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if ([repository mrc_unstarRepository]) {
+        if ([OCTRepository mrc_unstarRepository:repository]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:nil];
         }
     });
