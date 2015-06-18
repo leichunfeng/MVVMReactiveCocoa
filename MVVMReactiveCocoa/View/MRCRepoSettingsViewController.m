@@ -78,13 +78,15 @@
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Star";
             
-            [RACObserve(self.viewModel.repository, starredStatus) subscribeNext:^(NSNumber *starredStatus) {
-                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                } else {
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                }
-            }];
+            [[RACObserve(self.viewModel.repository, starredStatus)
+                deliverOnMainThread]
+                subscribeNext:^(NSNumber *starredStatus) {
+                    if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
+                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    } else {
+                        cell.accessoryType = UITableViewCellAccessoryNone;
+                    }
+                }];
         } else if (indexPath.row == 1) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Star"
                                                   backgroundColor:[UIColor clearColor]
@@ -93,13 +95,15 @@
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Unstar";
             
-            [RACObserve(self.viewModel.repository, starredStatus) subscribeNext:^(NSNumber *starredStatus) {
-                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusNO) {
-                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                } else {
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                }
-            }];
+            [[RACObserve(self.viewModel.repository, starredStatus)
+                deliverOnMainThread]
+                subscribeNext:^(NSNumber *starredStatus) {
+                    if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusNO) {
+                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    } else {
+                        cell.accessoryType = UITableViewCellAccessoryNone;
+                    }
+                }];
         }
     } else if (indexPath.section == 2) {
         cell.textLabel.text = @"Share To Friends";

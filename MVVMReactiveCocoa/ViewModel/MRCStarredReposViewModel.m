@@ -10,18 +10,8 @@
 
 @implementation MRCStarredReposViewModel
 
-- (void)initialize {
-    [super initialize];
-    
-    if (self.isCurrentUser) {
-        @weakify(self)
-        RAC(self, repositories) = [[[NSNotificationCenter defaultCenter]
-        	rac_addObserverForName:MRCStarredReposDidChangeNotification object:nil]
-            map:^id(id value) {
-                @strongify(self)
-                return [self fetchLocalRepositories];
-            }];
-    }
+- (MRCReposViewModelType)type {
+    return MRCReposViewModelTypeStarred;
 }
 
 - (NSArray *)fetchLocalRepositories {

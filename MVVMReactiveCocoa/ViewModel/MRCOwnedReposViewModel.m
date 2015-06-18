@@ -57,7 +57,19 @@
             self.dataSource = [self dataSourceWithRepositories:repositories];
         }];
     
-    if (self.isCurrentUser) self.repositories = [self fetchLocalRepositories];
+    if (self.isCurrentUser && self.type != MRCReposViewModelTypeSearch) {
+        RAC(self, repositories) = [[[[NSNotificationCenter defaultCenter]
+        	rac_addObserverForName:MRCStarredReposDidChangeNotification object:nil]
+            startWith:nil]
+       		map:^id(id value) {
+           		@strongify(self)
+           		return [self fetchLocalRepositories];
+       		}];
+    }
+}
+
+- (MRCReposViewModelType)type {
+    return MRCReposViewModelTypeOwned;
 }
 
 - (NSArray *)fetchLocalRepositories {
