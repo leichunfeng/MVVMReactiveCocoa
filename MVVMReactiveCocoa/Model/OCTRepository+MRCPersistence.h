@@ -9,22 +9,24 @@
 #import <OctoKit/OctoKit.h>
 #import "MRCPersistenceProtocol.h"
 
+typedef NS_ENUM(NSUInteger, OCTRepositoryStarredStatus) {
+    OCTRepositoryStarredStatusUnknown,
+    OCTRepositoryStarredStatusYES,
+    OCTRepositoryStarredStatusNO
+};
+
 @interface OCTRepository (MRCPersistence) <MRCPersistenceProtocol>
 
-@property (assign, nonatomic) BOOL isStarred;
+@property (assign, nonatomic) OCTRepositoryStarredStatus starredStatus;
 
-- (BOOL)mrc_update;
++ (BOOL)mrc_saveOrUpdateRepositories:(NSArray *)repositories;
++ (BOOL)mrc_saveOrUpdateStarredStatusWithRepositories:(NSArray *)repositories;
 
-+ (NSArray *)mrc_fetchUserRepositories;
-+ (NSArray *)mrc_fetchUserStarredRepositories;
++ (NSArray *)mrc_fetchUserRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
++ (NSArray *)mrc_fetchUserStarredRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 
-+ (BOOL)mrc_saveOrUpdateUserRepositories:(NSArray *)repositories;
-+ (BOOL)mrc_saveOrUpdateUserStarredRepositories:(NSArray *)repositories;
-
-- (BOOL)mrc_hasUserStarred;
-- (BOOL)mrc_starRepository;
-- (BOOL)mrc_unstarRepository;
-
-+ (BOOL)mrc_deleteRepositoryWithId:(NSString *)id isStarred:(BOOL)isStarred;
++ (BOOL)mrc_hasUserStarredRepository:(OCTRepository *)repository;
++ (BOOL)mrc_starRepository:(OCTRepository *)repository;
++ (BOOL)mrc_unstarRepository:(OCTRepository *)repository;
 
 @end

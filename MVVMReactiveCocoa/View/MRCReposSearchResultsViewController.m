@@ -37,11 +37,11 @@
 - (void)configureCell:(MRCReposTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCReposSearchResultsItemViewModel *)viewModel {
     [super configureCell:cell atIndexPath:indexPath withObject:viewModel];
     
-    [[[RACObserve(viewModel.repository, isStarred)
+    [[[RACObserve(viewModel.repository, starredStatus)
         distinctUntilChanged]
         deliverOnMainThread]
-        subscribeNext:^(NSNumber *isStarred) {
-             if (isStarred.boolValue) {
+        subscribeNext:^(NSNumber *starredStatus) {
+             if (starredStatus.unsignedIntegerValue) {
                  cell.starIconImageView.image = self.starImage;
              } else {
                  cell.starIconImageView.image = self.unstarImage;
@@ -86,7 +86,7 @@
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCReposSearchResultsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    if (viewModel.repository.isStarred) {
+    if (viewModel.repository.starredStatus == OCTRepositoryStarredStatusYES) {
         void (^handler)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
             tableView.editing = false;
             

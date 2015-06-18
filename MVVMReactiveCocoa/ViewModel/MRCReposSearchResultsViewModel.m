@@ -47,7 +47,7 @@
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     if (!repositories) return nil;
     
-    NSArray *starredRepos = [OCTRepository mrc_fetchUserStarredRepositories];
+    NSArray *starredRepos = [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
     
     NSMutableArray *repos = [NSMutableArray new];
     for (OCTRepository *repository in repositories) {
@@ -56,7 +56,7 @@
         if (![repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
             for (OCTRepository *starredRepo in starredRepos) {
                 if ([repository.objectID isEqualToString:starredRepo.objectID]) {
-                    repository.isStarred = YES;
+                    repository.starredStatus = OCTRepositoryStarredStatusYES;
                     break;
                 }
             }

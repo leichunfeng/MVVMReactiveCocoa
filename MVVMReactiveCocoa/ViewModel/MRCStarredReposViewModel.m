@@ -23,7 +23,7 @@
 }
 
 - (NSArray *)fetchLocalRepositories {
-    return [OCTRepository mrc_fetchUserStarredRepositories];
+    return [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
 }
 
 - (RACSignal *)requestRemoteDataSignal {
@@ -32,13 +32,14 @@
         fetchUserStarredRepositories].collect
         doNext:^(NSArray *repositories) {
             for (OCTRepository *repo in repositories) {
-                repo.isStarred = YES;
+                repo.starredStatus = OCTRepositoryStarredStatusYES;
             }
             self.repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
                 return [repo1.name caseInsensitiveCompare:repo2.name];
             }];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [OCTRepository mrc_saveOrUpdateUserStarredRepositories:repositories];
+                [OCTRepository mrc_saveOrUpdateRepositories:repositories];
+                [OCTRepository mrc_saveOrUpdateStarredStatusWithRepositories:repositories];
             });
         }];
 }
