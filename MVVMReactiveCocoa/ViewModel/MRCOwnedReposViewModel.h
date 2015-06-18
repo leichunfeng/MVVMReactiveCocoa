@@ -10,7 +10,9 @@
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel
 
-@property (strong, nonatomic) NSArray *repositories;
+@property (strong, nonatomic, readonly) OCTUser *user;
+@property (assign, nonatomic, readonly) BOOL isCurrentUser;
+@property (copy, nonatomic) NSArray *repositories;
 
 - (NSArray *)fetchLocalRepositories;
 

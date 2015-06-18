@@ -29,4 +29,6 @@ typedef NS_ENUM(NSUInteger, OCTRepositoryStarredStatus) {
 + (BOOL)mrc_starRepository:(OCTRepository *)repository;
 + (BOOL)mrc_unstarRepository:(OCTRepository *)repository;
 
++ (NSArray *)matchStarredStatusForRepositories:(NSArray *)repositories;
+
 @end

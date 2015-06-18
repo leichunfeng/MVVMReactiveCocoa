@@ -309,4 +309,22 @@
     return NO;
 }
 
++ (NSArray *)matchStarredStatusForRepositories:(NSArray *)repositories {
+    if (repositories.count == 0) return nil;
+    
+    NSArray *starredRepos = [self mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
+   
+    for (OCTRepository *repository in repositories) {
+        repository.starredStatus = OCTRepositoryStarredStatusNO;
+        for (OCTRepository *starredRepo in starredRepos) {
+            if ([repository.objectID isEqualToString:starredRepo.objectID]) {
+                repository.starredStatus = OCTRepositoryStarredStatusYES;
+                break;
+            }
+        }
+    }
+
+    return repositories;
+}
+
 @end

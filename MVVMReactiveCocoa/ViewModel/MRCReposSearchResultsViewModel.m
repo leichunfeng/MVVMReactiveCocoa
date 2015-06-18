@@ -45,23 +45,13 @@
 }
 
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
-    if (!repositories) return nil;
+    if (repositories.count == 0) return nil;
     
-    NSArray *starredRepos = [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
+    repositories = [OCTRepository matchStarredStatusForRepositories:repositories];
     
-    NSMutableArray *repos = [NSMutableArray new];
-    for (OCTRepository *repository in repositories) {
-        [repos addObject:[[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository]];
-        
-        if (![repository.ownerLogin isEqualToString:[OCTUser mrc_currentUser].login]) {
-            for (OCTRepository *starredRepo in starredRepos) {
-                if ([repository.objectID isEqualToString:starredRepo.objectID]) {
-                    repository.starredStatus = OCTRepositoryStarredStatusYES;
-                    break;
-                }
-            }
-        }
-    }
+    NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
+        return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository];
+    }].array;
     
     return @[ repos ];
 }
