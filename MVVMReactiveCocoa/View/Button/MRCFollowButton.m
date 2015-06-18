@@ -48,7 +48,7 @@ static UIImage *unfollowImage = nil;
         self.layer.cornerRadius = 5;
         
         self.titleLabel.font = [UIFont systemFontOfSize:15];
-        self.contentEdgeInsets = UIEdgeInsetsMake(5, 3, 5, 5);
+        self.contentEdgeInsets = UIEdgeInsetsMake(6, 3, 6, 5);
     }
     return self;
 }

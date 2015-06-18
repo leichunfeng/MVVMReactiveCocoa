@@ -25,6 +25,10 @@
 @implementation MRCUserListTableViewCell
 
 - (void)awakeFromNib {
+    self.avatarImageView.backgroundColor = HexRGB(0xEFEDEA);
+    self.avatarImageView.layer.cornerRadius = 5;
+    self.avatarImageView.clipsToBounds = YES;
+    
     self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     self.operationButton = [[MRCFollowButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];

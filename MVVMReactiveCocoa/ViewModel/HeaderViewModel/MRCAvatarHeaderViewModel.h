@@ -29,6 +29,7 @@
 @property (copy, nonatomic) NSString *following;
 
 @property (strong, nonatomic) RACCommand *followersCommand;
+@property (strong, nonatomic) RACCommand *repositoriesCommand;
 @property (strong, nonatomic) RACCommand *followingCommand;
 
 - (instancetype)initWithUser:(OCTUser *)user;

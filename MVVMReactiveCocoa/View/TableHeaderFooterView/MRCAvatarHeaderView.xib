@@ -201,7 +201,7 @@
                 <outlet property="followingLabel" destination="H1b-wD-zLu" id="svr-ZM-EgU"/>
                 <outlet property="nameLabel" destination="Dn1-Db-Vnf" id="i55-PC-jHU"/>
                 <outlet property="overView" destination="3Yd-ZB-07H" id="Vzp-mA-vjf"/>
-                <outlet property="reposButton" destination="St6-Mx-YFz" id="NWs-8i-Abd"/>
+                <outlet property="repositoriesButton" destination="St6-Mx-YFz" id="tl8-u5-IOP"/>
                 <outlet property="repositoriesLabel" destination="26k-s4-QL7" id="nJm-nG-MNP"/>
             </connections>
             <point key="canvasLocation" x="1001" y="491.5"/>

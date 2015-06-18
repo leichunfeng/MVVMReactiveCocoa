@@ -9,6 +9,7 @@
 #import "MRCProfileViewModel.h"
 #import "MRCSettingsViewModel.h"
 #import "MRCUserListViewModel.h"
+#import "MRCOwnedReposViewModel.h"
 
 @interface MRCProfileViewModel ()
 
@@ -37,14 +38,25 @@
     
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.user];
     
+    @weakify(self)
     self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
         MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
                                                                                   params:@{ @"type": @0, @"user": self.user }];
         [self.services pushViewModel:viewModel animated:YES];
         return [RACSignal empty];
     }];
+    
+    self.avatarHeaderViewModel.repositoriesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        MRCOwnedReposViewModel *viewModel = [[MRCOwnedReposViewModel alloc] initWithServices:self.services
+                                                                                      params:@{ @"type": @0, @"user": self.user }];
+        [self.services pushViewModel:viewModel animated:YES];
+        return [RACSignal empty];
+    }];
 
     self.avatarHeaderViewModel.followingCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
         MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
                                                                                   params:@{ @"type": @1, @"user": self.user }];
         [self.services pushViewModel:viewModel animated:YES];
@@ -60,7 +72,6 @@
     RAC(self, email) = [RACObserve(self.user, email) map:map];
     RAC(self, blog) = [RACObserve(self.user, blog) map:map];
     
-    @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 1 && indexPath.row == 0) {
