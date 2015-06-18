@@ -44,7 +44,7 @@
         deliverOnMainThread]
         subscribeNext:^(NSNumber *starredStatus) {
             @strongify(self)
-             if (starredStatus.unsignedIntegerValue) {
+             if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
                  cell.starIconImageView.image = self.starImage;
              } else {
                  cell.starIconImageView.image = self.unstarImage;

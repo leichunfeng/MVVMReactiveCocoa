@@ -8,11 +8,18 @@
 
 #import "MRCTableViewModel.h"
 
+typedef NS_ENUM(NSUInteger, MRCReposViewModelType) {
+    MRCReposViewModelTypeOwned,
+    MRCReposViewModelTypeStarred,
+    MRCReposViewModelTypeSearch
+};
+
 @interface MRCOwnedReposViewModel : MRCTableViewModel
 
 @property (strong, nonatomic, readonly) OCTUser *user;
 @property (assign, nonatomic, readonly) BOOL isCurrentUser;
 @property (copy, nonatomic) NSArray *repositories;
+@property (assign, nonatomic, readonly) MRCReposViewModelType type;
 
 - (NSArray *)fetchLocalRepositories;
 
