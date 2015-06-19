@@ -15,6 +15,7 @@
 @property (strong, nonatomic) OCTUser *user;
 @property (assign, nonatomic, readwrite) MRCUserListViewModelType type;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+@property (strong, nonatomic) RACCommand *operationCommand;
 
 @end
 
@@ -46,13 +47,15 @@
         @strongify(self)
         MRCUserListItemViewModel *itemViewModel = self.dataSource[indexPath.section][indexPath.row];
         
-        MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:@{ @"user": itemViewModel.user }];
+        MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services
+                                                                                      params:@{ @"user": itemViewModel.user }];
         [self.services pushViewModel:viewModel animated:YES];
        
         return [RACSignal empty];
     }];
     
-    RACCommand *operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(MRCUserListItemViewModel *viewModel) {
+    self.operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(MRCUserListItemViewModel *viewModel) {
+        @strongify(self)
         if (viewModel.followingStatus == OCTUserFollowingStatusYES) {
             return [[self.services client] followUser:viewModel.user];
         } else if (viewModel.followingStatus == OCTUserFollowingStatusNO) {
@@ -60,48 +63,29 @@
         }
         return [RACSignal empty];
     }];
-    operationCommand.allowsConcurrentExecution = YES;
+
+    self.operationCommand.allowsConcurrentExecution = YES;
     
-    [[RACObserve(self, users)
-        ignore:nil]
-        subscribeNext:^(NSArray *users) {
-            @strongify(self)
-            self.dataSource = @[ [users.rac_sequence map:^(OCTUser *user) {
-                @strongify(self)
-
-                MRCUserListItemViewModel *viewModel = [[MRCUserListItemViewModel alloc] initWithUser:user];
-                
-                if (user.followingStatus == OCTUserFollowingStatusUnknown) {
-                    @weakify(viewModel)
-                    [[[[self.services
-                        client]
-                        hasFollowUser:user]
-                     	takeUntil:viewModel.rac_willDeallocSignal]
-                        subscribeNext:^(NSNumber *isFollowing) {
-                            @strongify(viewModel)
-                            if (isFollowing.boolValue) {
-                                user.followingStatus = OCTUserFollowingStatusYES;
-                                viewModel.followingStatus = OCTUserFollowingStatusYES;
-                            } else {
-                                user.followingStatus = OCTUserFollowingStatusNO;
-                                viewModel.followingStatus = OCTUserFollowingStatusNO;
-                            }
-                        }];
-                }
-                
-                viewModel.operationCommand = operationCommand;
-                
-                return viewModel;
-            }].array ];
-        }];
-
-    if (self.isCurrentUser) {
-        if (self.type == MRCUserListViewModelTypeFollowers) {
-            self.users = [OCTUser mrc_fetchFollowersWithPage:1 perPage:self.perPage];
-        } else if (self.type == MRCUserListViewModelTypeFollowing) {
-            self.users = [OCTUser mrc_fetchFollowingWithPage:1 perPage:self.perPage];
+    RACSignal *fetchLocalDataSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        @strongify(self)
+        if (self.isCurrentUser) {
+            if (self.type == MRCUserListViewModelTypeFollowers) {
+                [subscriber sendNext:[OCTUser mrc_fetchFollowersWithPage:1 perPage:self.perPage]];
+            } else if (self.type == MRCUserListViewModelTypeFollowing) {
+                [subscriber sendNext:[OCTUser mrc_fetchFollowingWithPage:1 perPage:self.perPage]];
+            }
         }
-    }
+        return nil;
+    }];
+    
+    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.flatten;
+    
+    RAC(self, users) = [fetchLocalDataSignal merge:requestRemoteDataSignal];
+    
+    RAC(self, dataSource) = [RACObserve(self, users) map:^(NSArray *users) {
+        @strongify(self)
+        return [self dataSourceWithUsers:users];
+    }];
 }
 
 - (BOOL)isCurrentUser {
@@ -110,65 +94,97 @@
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     if (self.type == MRCUserListViewModelTypeFollowers) {
-        return [[[[self.services
+        return [[[[[self.services
         	client]
-            fetchFollowersWithUser:self.user page:page perPage:self.perPage]
-            collect]
-        	doNext:^(NSArray *users) {
-                if (users != nil && users.count > 0) {
+            fetchFollowersWithUser:self.user page:page perPage:self.perPage].collect
+        	map:^(NSArray *users) {
+                for (OCTUser *user in users) {
+                    if (self.isCurrentUser) user.followerStatus = OCTUserFollowerStatusYES;
+                }
+                return users;
+            }]
+        	map:^(NSArray *users) {
+                if (page == 1) {
                     for (OCTUser *user in users) {
-                        if (self.isCurrentUser) user.followerStatus = OCTUserFollowerStatusYES;
-                    }
-                    
-                    if (page == 1) {
-                        for (OCTUser *user in users) {
-                            for (OCTUser *preUser in self.users) {
-                                if ([user.objectID isEqualToString:preUser.objectID]) {
-                                    user.followingStatus = preUser.followingStatus;
-                                    break;
-                                }
+                        for (OCTUser *preUser in self.users) {
+                            if ([user.objectID isEqualToString:preUser.objectID]) {
+                                user.followingStatus = preUser.followingStatus;
+                                break;
                             }
                         }
-                        self.users = users;
-                    } else {
-                        self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
                     }
-                    
-                    if (self.isCurrentUser) {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                            [OCTUser mrc_saveOrUpdateUsers:self.users];
-                            [OCTUser mrc_saveOrUpdateFollowerStatusWithUsers:self.users];
-                        });
-                    }
+                } else {
+                    users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
+                }
+                return users;
+            }]
+        	doNext:^(NSArray *users) {
+                if (self.isCurrentUser) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [OCTUser mrc_saveOrUpdateUsers:self.users];
+                        [OCTUser mrc_saveOrUpdateFollowerStatusWithUsers:self.users];
+                    });
                 }
             }];
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
-        return [[[[self.services
+        return [[[[[self.services
             client]
-            fetchFollowingWithUser:self.user page:page perPage:self.perPage]
-            collect]
-            doNext:^(NSArray *users) {
-                if (users != nil && users.count > 0) {
-                    for (OCTUser *user in users) {
-                        if (self.isCurrentUser) user.followingStatus = OCTUserFollowingStatusYES;
-                    }
-                    
-                    if (page == 1) {
-                        self.users = users;
-                    } else {
-                        self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
-                    }
-                    
-                    if (self.isCurrentUser) {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                            [OCTUser mrc_saveOrUpdateUsers:self.users];
-                            [OCTUser mrc_saveOrUpdateFollowingStatusWithUsers:self.users];
-                        });
-                    }
+            fetchFollowingWithUser:self.user page:page perPage:self.perPage].collect
+            map:^(NSArray *users) {
+                for (OCTUser *user in users) {
+                    if (self.isCurrentUser) user.followingStatus = OCTUserFollowingStatusYES;
+                }
+                return users;
+            }]
+        	map:^(NSArray *users) {
+                if (page != 1) {
+                    users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
+                }
+                return users;
+            }]
+        	doNext:^(NSArray *users) {
+                if (self.isCurrentUser) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [OCTUser mrc_saveOrUpdateUsers:self.users];
+                        [OCTUser mrc_saveOrUpdateFollowingStatusWithUsers:self.users];
+                    });
                 }
             }];
     }
     return [RACSignal empty];
+}
+
+- (NSArray *)dataSourceWithUsers:(NSArray *)users {
+    if (users.count == 0) return nil;
+    
+    @weakify(self)
+    NSArray *viewModels = [users.rac_sequence map:^(OCTUser *user) {
+        @strongify(self)
+        MRCUserListItemViewModel *viewModel = [[MRCUserListItemViewModel alloc] initWithUser:user];
+        
+        if (user.followingStatus == OCTUserFollowingStatusUnknown) {
+            @weakify(viewModel)
+            [[[[self.services
+                client]
+                hasFollowUser:user]
+                takeUntil:viewModel.rac_willDeallocSignal]
+                subscribeNext:^(NSNumber *isFollowing) {
+                    @strongify(viewModel)
+                    if (isFollowing.boolValue) {
+                        user.followingStatus = OCTUserFollowingStatusYES;
+                        viewModel.followingStatus = OCTUserFollowingStatusYES;
+                    } else {
+                        user.followingStatus = OCTUserFollowingStatusNO;
+                        viewModel.followingStatus = OCTUserFollowingStatusNO;
+                    }
+             }];
+        }
+        viewModel.operationCommand = self.operationCommand;
+        
+        return viewModel;
+    }].array;
+    
+    return @[ viewModels ];
 }
 
 @end
