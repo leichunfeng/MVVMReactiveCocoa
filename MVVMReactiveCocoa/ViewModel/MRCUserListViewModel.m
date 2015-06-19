@@ -24,7 +24,7 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.user = params[@"user"];
+        self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
     }
     return self;
 }

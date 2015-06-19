@@ -10,6 +10,12 @@
 
 @implementation MRCPublicReposViewModel
 
+- (void)initialize {
+    [super initialize];
+    
+    self.title = @"Public Repos";
+}
+
 - (MRCReposViewModelType)type {
     return MRCReposViewModelTypePublic;
 }

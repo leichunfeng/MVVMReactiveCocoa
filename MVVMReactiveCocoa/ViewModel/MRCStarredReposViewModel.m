@@ -10,6 +10,12 @@
 
 @implementation MRCStarredReposViewModel
 
+- (void)initialize {
+    [super initialize];
+    
+    self.title = @"Starred Repos";
+}
+
 - (MRCReposViewModelType)type {
     return MRCReposViewModelTypeStarred;
 }

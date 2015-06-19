@@ -25,7 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];    
     
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    if (self.viewModel.isCurrentUser && (self.viewModel.type == MRCReposViewModelTypeOwned || self.viewModel.type == MRCReposViewModelTypeStarred)) {
+        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+    } else {
+        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    }
+    
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64, 0, 0, 0);
     self.tableView.contentOffset = CGPointMake(0, -64);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];

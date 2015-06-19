@@ -23,7 +23,7 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.user = [OCTUser mrc_currentUser];
+        self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
     }
     return self;
 }
@@ -62,7 +62,9 @@
     
     RACSignal *fetchLocalDataSignal = [[fetchLocalDataOnInitializeSignal
     	merge:starredReposDidChangeSignal]
-    	mapReplace:[self fetchLocalData]];
+        map:^(id value) {
+            return [self fetchLocalData];
+        }];
     
     RACSignal *requestRemoteDataSignal = [[self.requestRemoteDataCommand.executionSignals.flatten
     	map:^(NSArray *repositories) {
