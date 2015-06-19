@@ -43,7 +43,7 @@
 
 - (void)awakeFromNib {
     self.avatarButton.imageView.layer.borderColor  = [UIColor whiteColor].CGColor;
-    self.avatarButton.imageView.layer.borderWidth  = 2.0f;
+    self.avatarButton.imageView.layer.borderWidth  = MRC_1PX_WIDTH * 3;
     self.avatarButton.imageView.layer.cornerRadius = CGRectGetWidth(self.avatarButton.frame) / 2;
     self.avatarButton.imageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
