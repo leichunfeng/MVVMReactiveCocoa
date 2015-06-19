@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *htmlLabel;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) IBOutlet MRCFollowButton *operationButton;
@@ -35,6 +36,7 @@
     
     [self.avatarImageView sd_setImageWithURL:viewModel.avatarURL];
     self.loginLabel.text = viewModel.login;
+    self.htmlLabel.text = viewModel.user.HTMLURL.absoluteString;
     
     @weakify(self)
     [[[[RACObserve(viewModel.user, followingStatus)
