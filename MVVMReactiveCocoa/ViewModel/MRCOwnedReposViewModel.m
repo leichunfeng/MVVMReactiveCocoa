@@ -169,7 +169,9 @@
         
         [repoOfRepos addObject:repos];
     } else {
+        @weakify(self)
         NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
+            @strongify(self)
             return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.itemOptions];
         }].array;
         

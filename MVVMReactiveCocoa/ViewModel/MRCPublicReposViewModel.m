@@ -24,7 +24,7 @@
     MRCReposViewModelOptions options = 0;
     
     if (self.isCurrentUser) {
-        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
+//        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
 //        options = options | MRCReposViewModelOptionsObserveStarredReposChange;
         options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //        options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
