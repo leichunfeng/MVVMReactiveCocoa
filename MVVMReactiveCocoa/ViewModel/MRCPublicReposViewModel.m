@@ -15,7 +15,7 @@
 }
 
 - (NSArray *)fetchLocalData {
-    return [OCTRepository mrc_fetchUserPublicRepositoriesWithPage:0 perPage:0];
+    return [OCTRepository mrc_fetchUserPublicRepositoriesWithPage:1 perPage:self.perPage];
 }
 
 @end

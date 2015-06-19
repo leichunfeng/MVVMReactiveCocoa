@@ -13,8 +13,8 @@
 // The data source of table view.
 @property (strong, nonatomic) NSArray *dataSource;
 
-@property (assign, nonatomic) NSUInteger currentPage;
-@property (assign, nonatomic) NSUInteger pageSize;
+@property (assign, nonatomic) NSUInteger page;
+@property (assign, nonatomic) NSUInteger perPage;
 
 // The list of section titles to display in section index view.
 @property (strong, nonatomic) NSArray *sectionIndexTitles;
@@ -30,6 +30,6 @@
 - (id)fetchLocalData;
 
 - (RACSignal *)requestRemoteDataSignal;
-- (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage;
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page;
 
 @end

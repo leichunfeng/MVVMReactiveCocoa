@@ -23,7 +23,7 @@
     return MRCReposViewModelTypeSearch;
 }
 
-- (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         MRCSearch *search = [MRCSearch modelWithDictionary:@{ @"keyword": self.query, @"dateSearched": [NSDate date] } error:nil];
         if ([search mrc_saveOrUpdate]) {
