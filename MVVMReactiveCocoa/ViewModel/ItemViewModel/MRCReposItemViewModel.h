@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_OPTIONS(NSUInteger, MRCReposItemViewModelOptions) {
+    MRCReposItemViewModelOptionsShowOwnerLogin = 1 << 0
+};
+
 @interface MRCReposItemViewModel : NSObject
 
 @property (strong, nonatomic, readonly) OCTRepository *repository;
@@ -21,5 +25,6 @@
 @property (copy, nonatomic) NSAttributedString *repoDescription;
 
 - (instancetype)initWithRepository:(OCTRepository *)repository;
+- (instancetype)initWithRepository:(OCTRepository *)repository options:(MRCReposItemViewModelOptions)options;
 
 @end

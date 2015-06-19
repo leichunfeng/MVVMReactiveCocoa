@@ -14,15 +14,21 @@
 @property (copy, nonatomic, readwrite) NSString *identifier;
 @property (assign, nonatomic, readwrite) NSInteger hexRGB;
 @property (copy, nonatomic, readwrite) NSString *language;
+@property (assign, nonatomic) MRCReposItemViewModelOptions options;
 
 @end
 
 @implementation MRCReposItemViewModel
 
 - (instancetype)initWithRepository:(OCTRepository *)repository {
+    return [self initWithRepository:repository options:0];
+}
+
+- (instancetype)initWithRepository:(OCTRepository *)repository options:(MRCReposItemViewModelOptions)options {
     self = [super init];
     if (self) {
         self.repository = repository;
+        self.options = options;
         
         if (repository.isPrivate) {
             self.identifier = @"Lock";
@@ -55,7 +61,7 @@
 
 - (NSAttributedString *)name {
     if (!_name) {
-        if (self.repository.starredStatus == OCTRepositoryStarredStatusYES) {
+        if (self.options & MRCReposItemViewModelOptionsShowOwnerLogin) {
             NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];
             
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:uniqueName];
