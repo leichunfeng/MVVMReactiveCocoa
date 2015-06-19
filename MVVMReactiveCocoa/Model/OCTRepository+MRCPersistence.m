@@ -322,6 +322,8 @@
     NSArray *starredRepos = [self mrc_fetchUserStarredRepositories];
    
     for (OCTRepository *repository in repositories) {
+        if (repository.starredStatus != OCTRepositoryStarredStatusUnknown) continue;
+        
         repository.starredStatus = OCTRepositoryStarredStatusNO;
         for (OCTRepository *starredRepo in starredRepos) {
             if ([repository.objectID isEqualToString:starredRepo.objectID]) {

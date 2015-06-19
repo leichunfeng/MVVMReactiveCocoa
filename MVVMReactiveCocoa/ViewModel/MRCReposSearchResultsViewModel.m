@@ -23,6 +23,19 @@
     return MRCReposViewModelTypeSearch;
 }
 
+- (MRCReposViewModelOptions)options {
+    MRCReposViewModelOptions options = 0;
+    
+//    options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
+//    options = options | MRCReposViewModelOptionsObserveStarredReposChange;
+//    options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
+//    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
+//    options = options | MRCReposViewModelOptionsPagination;
+//    options = options | MRCReposViewModelOptionsSectionIndex;
+    
+    return options;
+}
+
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         MRCSearch *search = [MRCSearch modelWithDictionary:@{ @"keyword": self.query, @"dateSearched": [NSDate date] } error:nil];
@@ -34,20 +47,14 @@
     return [[[self.services
         client]
         searchRepositoriesWithQuery:self.query orderBy:nil ascending:NO]
-        doNext:^(OCTRepositoriesSearchResult *searchResult) {
+        map:^(OCTRepositoriesSearchResult *searchResult) {
             self.shouldDisplayEmptyDataSet = YES;
-            self.repositories = searchResult.repositories;
+            return searchResult.repositories;
         }];
-}
-
-- (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
-    return nil;
 }
 
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     if (repositories.count == 0) return nil;
-    
-    repositories = [OCTRepository matchStarredStatusForRepositories:repositories];
     
     NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
         return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository];
