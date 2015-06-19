@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic, readwrite) OCTUser *user;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+@property (assign, nonatomic) MRCReposItemViewModelOptions itemOptions;
 
 @end
 
@@ -155,28 +156,33 @@
         NSMutableArray *repos = [NSMutableArray new];
         
         for (OCTRepository *repository in repositories) {
-            if ([[repository.name firstLetter] isEqualToString:firstLetter]) {
-                [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
-            } else {
+            if (![[repository.name firstLetter] isEqualToString:firstLetter]) {
                 [repoOfRepos addObject:repos];
                 
                 firstLetter = repository.name.firstLetter;
                 repos = [NSMutableArray new];
-                
-                [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository]];
             }
+            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository options:self.itemOptions]];
         }
         
         [repoOfRepos addObject:repos];
     } else {
         NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
-            return [[MRCReposItemViewModel alloc] initWithRepository:repository];
+            return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.itemOptions];
         }].array;
         
         [repoOfRepos addObject:repos];
     }
     
     return repoOfRepos;
+}
+
+- (MRCReposItemViewModelOptions)itemOptions {
+    if (self.isCurrentUser && (self.type == MRCReposViewModelTypeOwned || self.type == MRCReposViewModelTypePublic)) {
+        return 0;
+    } else {
+        return MRCReposItemViewModelOptionsShowOwnerLogin;
+    }
 }
 
 @end
