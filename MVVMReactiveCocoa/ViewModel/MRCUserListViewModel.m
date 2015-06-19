@@ -56,10 +56,10 @@
     
     self.operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(MRCUserListItemViewModel *viewModel) {
         @strongify(self)
-        if (viewModel.followingStatus == OCTUserFollowingStatusYES) {
-            return [[self.services client] followUser:viewModel.user];
-        } else if (viewModel.followingStatus == OCTUserFollowingStatusNO) {
-            return [[self.services client] unfollowUser:viewModel.user];
+        if (viewModel.user.followingStatus == OCTUserFollowingStatusYES) {
+            return [[self.services client] mrc_unfollowUser:viewModel.user];
+        } else if (viewModel.user.followingStatus == OCTUserFollowingStatusNO) {
+            return [[self.services client] mrc_followUser:viewModel.user];
         }
         return [RACSignal empty];
     }];
@@ -163,19 +163,15 @@
         MRCUserListItemViewModel *viewModel = [[MRCUserListItemViewModel alloc] initWithUser:user];
         
         if (user.followingStatus == OCTUserFollowingStatusUnknown) {
-            @weakify(viewModel)
             [[[[self.services
                 client]
                 hasFollowUser:user]
                 takeUntil:viewModel.rac_willDeallocSignal]
                 subscribeNext:^(NSNumber *isFollowing) {
-                    @strongify(viewModel)
                     if (isFollowing.boolValue) {
                         user.followingStatus = OCTUserFollowingStatusYES;
-                        viewModel.followingStatus = OCTUserFollowingStatusYES;
                     } else {
                         user.followingStatus = OCTUserFollowingStatusNO;
-                        viewModel.followingStatus = OCTUserFollowingStatusNO;
                     }
              }];
         }

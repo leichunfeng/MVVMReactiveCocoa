@@ -24,7 +24,6 @@
         self.user = user;
         self.avatarURL = user.avatarURL;
         self.login = user.login;
-        self.followingStatus = user.followingStatus;
     }
     return self;
 }

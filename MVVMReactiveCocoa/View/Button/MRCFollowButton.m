@@ -40,17 +40,40 @@ static UIImage *unfollowImage = nil;
     return unfollowImage;
 }
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.borderWidth = 1;
-        self.layer.borderColor = MRC_FOLLOW_COLOR.CGColor;
-        self.layer.cornerRadius = 5;
-        
-        self.titleLabel.font = [UIFont systemFontOfSize:15];
-        self.contentEdgeInsets = UIEdgeInsetsMake(6, 3, 6, 5);
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize {
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = MRC_FOLLOW_COLOR.CGColor;
+    self.layer.cornerRadius = 5;
+    
+    self.titleLabel.font = [UIFont systemFontOfSize:15];
+//    self.contentEdgeInsets = UIEdgeInsetsMake(6, 3, 6, 5);
+//    self.contentEdgeInsets = UIEdgeInsetsMake(4, 1, 4, 3);
+//    self.contentEdgeInsets = UIEdgeInsetsMake(6, 0, 6, 2);
+    self.contentEdgeInsets = UIEdgeInsetsMake(6, 1, 6, 3);
 }
 
 - (void)setSelected:(BOOL)selected {

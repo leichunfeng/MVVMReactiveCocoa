@@ -89,6 +89,7 @@
         fetchUserInfoWithUser:self.user]
         doNext:^(OCTUser *user) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                user.followingStatus = self.user.followingStatus;
                 [self.user mergeValuesForKeysFromModel:user];
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     [self.user mrc_saveOrUpdate];
