@@ -137,6 +137,13 @@
         reduce:^id(NSNumber *reqExecuting, NSNumber *webViewExecuting) {
             return @(!reqExecuting.boolValue && !webViewExecuting.boolValue);
         }];
+    
+    [[self.viewModel.requestRemoteDataCommand.executionSignals.flatten
+        deliverOnMainThread]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self.tableView reloadData];
+        }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -154,50 +161,37 @@
         MRCRepoStatisticsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoStatisticsTableViewCell" forIndexPath:indexPath];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [RACObserve(self.viewModel.repository, subscribersCount) subscribeNext:^(NSNumber *subscribersCount) {
-            cell.watchLabel.text = subscribersCount.stringValue;
-        }];
-        [RACObserve(self.viewModel.repository, stargazersCount) subscribeNext:^(NSNumber *stargazersCount) {
-            cell.starLabel.text = stargazersCount.stringValue;
-        }];
-        [RACObserve(self.viewModel.repository, forksCount) subscribeNext:^(NSNumber *forksCount) {
-            cell.forkLabel.text = forksCount.stringValue;
-        }];
+        cell.watchLabel.text = @(self.viewModel.repository.subscribersCount).stringValue;
+        cell.starLabel.text  = @(self.viewModel.repository.stargazersCount).stringValue;
+        cell.forkLabel.text  = @(self.viewModel.repository.forksCount).stringValue;
         
         return cell;
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
         
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.numberOfLines = 0;
-        
-        [RACObserve(self.viewModel.repository, repoDescription) subscribeNext:^(NSString *repoDescription) {
-            cell.textLabel.text = repoDescription;
-        }];
+        cell.textLabel.text = self.viewModel.repository.repoDescription;
         
         return cell;
     } else if (indexPath.section == 2) {
         MRCRepoViewCodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoViewCodeTableViewCell" forIndexPath:indexPath];
         
-        [RACObserve(self.viewModel, dateUpdated) subscribeNext:^(NSString *dateUpdated) {
-            cell.timeLabel.text = dateUpdated;
-        }];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.timeLabel.text = self.viewModel.dateUpdated;
         
         [cell.viewCodeButton setImage:[UIImage octicon_imageWithIdentifier:@"FileDirectory" size:CGSizeMake(22, 22)]
                              forState:UIControlStateNormal];
-                
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;        
         cell.viewCodeButton.rac_command = self.viewModel.viewCodeCommand;
 
         return cell;
     } else if (indexPath.section == 3) {
         MRCRepoReadmeTableViewCell *cell = self.readmeTableViewCell;
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.readmeButton.rac_command = self.viewModel.readmeCommand;
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.webView.userInteractionEnabled = NO;
         cell.webView.scrollView.scrollEnabled = NO;
         
