@@ -11,6 +11,8 @@
 #import "UIImage+ImageEffects.h"
 #import "TGRImageZoomAnimationController.h"
 #import "TGRImageViewController.h"
+#import "MRCFollowButton.h"
+#import "MRCAvatarHeaderViewModel.h"
 
 #define MRCAvatarHeaderViewContentOffsetRadix 40.0f
 #define MRCAvatarHeaderViewBlurEffectRadix    2.0f
@@ -27,9 +29,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *followersButton;
 @property (weak, nonatomic) IBOutlet UIButton *repositoriesButton;
 @property (weak, nonatomic) IBOutlet UIButton *followingButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
 
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (assign, nonatomic) CGPoint lastContentOffsetBlurEffect;
+
+@property (strong, nonatomic) MRCAvatarHeaderViewModel *viewModel;
 
 @end
 
@@ -45,8 +51,33 @@
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
 }
 
-- (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {    
-	@weakify(self)
+- (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
+    self.viewModel = viewModel;
+    
+    @weakify(self)
+    if (viewModel.operationCommand == nil) {
+        self.activityIndicatorView.hidden = YES;
+        self.operationButton.hidden = YES;
+    } else {
+        [[[RACObserve(viewModel.user, followingStatus)
+           	deliverOnMainThread]
+          	doNext:^(NSNumber *followingStatus) {
+              	@strongify(self)
+              	[self.activityIndicatorView startAnimating];
+              	self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
+          	}]
+         	subscribeNext:^(NSNumber *followingStatus) {
+             	@strongify(self)
+             	if (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown) {
+                 	self.operationButton.hidden = YES;
+                 	self.activityIndicatorView.hidden = NO;
+             	} else {
+                 	self.activityIndicatorView.hidden = YES;
+                 	self.operationButton.hidden = NO;
+             	}
+         	}];
+    }
+    
     [[[RACObserve(viewModel, avatarURL)
         ignore:nil]
         distinctUntilChanged]
@@ -99,8 +130,11 @@
             });
         }
         
-        self.avatarButton.imageView.alpha = 1 * (1 - scale);
-        self.nameLabel.alpha = 1 * (1 - scale);
+        CGFloat alpha = 1 * (1 - scale);
+        
+        self.avatarButton.imageView.alpha = alpha;
+        self.nameLabel.alpha = alpha;
+        self.operationButton.alpha = alpha;
     }];
 }
 
@@ -113,6 +147,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.overView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+}
+
+- (IBAction)didClickOperationButton:(id)sender {
+    [self.viewModel.operationCommand execute:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

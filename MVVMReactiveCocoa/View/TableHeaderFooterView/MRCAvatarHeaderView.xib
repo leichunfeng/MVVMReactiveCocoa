@@ -19,9 +19,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="400" height="381"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hsiaoming Yang" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn1-Db-Vnf">
-                            <rect key="frame" x="0.0" y="230" width="400" height="21"/>
+                            <rect key="frame" x="0.0" y="227" width="400" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="MHf-Ne-HaA"/>
+                                <constraint firstAttribute="height" constant="25" id="MHf-Ne-HaA"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,21 +138,36 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkv-tX-3TX" customClass="MRCFollowButton">
+                            <rect key="frame" x="332" y="77" width="55" height="34"/>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didClickOperationButton:" destination="5Gh-f3-t2G" eventType="touchUpInside" id="3Rh-xy-Kzm"/>
+                            </connections>
+                        </button>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="DJB-bO-ym8">
+                            <rect key="frame" x="367" y="77" width="20" height="20"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Dn1-Db-Vnf" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="0XH-Za-73u"/>
+                        <constraint firstAttribute="trailing" secondItem="Kkv-tX-3TX" secondAttribute="trailing" constant="13" id="5nR-Lq-eqa"/>
                         <constraint firstAttribute="trailing" secondItem="dNM-dr-1mp" secondAttribute="trailing" id="73D-Vb-4re"/>
                         <constraint firstItem="4ul-kt-YxP" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="9Io-HY-7a4"/>
                         <constraint firstItem="KD9-5h-jdJ" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="9Ir-aG-dwF"/>
                         <constraint firstAttribute="bottom" secondItem="cn5-Wc-3W7" secondAttribute="bottom" id="FHx-CE-uJW"/>
-                        <constraint firstItem="Dn1-Db-Vnf" firstAttribute="top" secondItem="HhD-JH-4xb" secondAttribute="bottom" constant="8" id="HcY-mO-LS1"/>
+                        <constraint firstItem="Dn1-Db-Vnf" firstAttribute="top" secondItem="HhD-JH-4xb" secondAttribute="bottom" constant="5" id="HcY-mO-LS1"/>
                         <constraint firstAttribute="centerX" secondItem="St6-Mx-YFz" secondAttribute="centerX" id="I0t-f6-Bhk"/>
                         <constraint firstItem="H1b-wD-zLu" firstAttribute="width" secondItem="IeH-hb-XtX" secondAttribute="width" id="KBp-vW-nIz"/>
                         <constraint firstAttribute="bottom" secondItem="KD9-5h-jdJ" secondAttribute="bottom" id="LEB-Af-LRm"/>
                         <constraint firstAttribute="centerX" secondItem="HhD-JH-4xb" secondAttribute="centerX" id="M6a-5v-Cu3"/>
                         <constraint firstAttribute="bottom" secondItem="IeH-hb-XtX" secondAttribute="bottom" constant="9" id="OsR-Gj-PnD"/>
                         <constraint firstItem="J5Z-ju-2dA" firstAttribute="top" secondItem="wR3-ne-zHg" secondAttribute="bottom" constant="9" id="QVQ-m6-f51"/>
+                        <constraint firstItem="Kkv-tX-3TX" firstAttribute="top" secondItem="DJB-bO-ym8" secondAttribute="top" id="QsM-yR-8Sw"/>
+                        <constraint firstAttribute="centerX" secondItem="Kkv-tX-3TX" secondAttribute="centerX" id="S49-Nh-hNN"/>
                         <constraint firstAttribute="bottom" secondItem="wR3-ne-zHg" secondAttribute="bottom" constant="57" id="TJJ-hk-i95"/>
                         <constraint firstItem="26k-s4-QL7" firstAttribute="top" secondItem="wR3-ne-zHg" secondAttribute="bottom" constant="9" id="TSB-ow-TSg"/>
                         <constraint firstAttribute="bottom" secondItem="St6-Mx-YFz" secondAttribute="bottom" id="VTd-IG-Ae3"/>
@@ -163,7 +178,10 @@
                         <constraint firstItem="J5Z-ju-2dA" firstAttribute="width" secondItem="3Yd-ZB-07H" secondAttribute="width" multiplier="1:3" id="cfY-Zm-WUN"/>
                         <constraint firstItem="J5Z-ju-2dA" firstAttribute="width" secondItem="4ul-kt-YxP" secondAttribute="width" id="dDJ-aj-a4s"/>
                         <constraint firstItem="H1b-wD-zLu" firstAttribute="top" secondItem="wR3-ne-zHg" secondAttribute="bottom" constant="9" id="dPT-8M-KGl"/>
+                        <constraint firstItem="Kkv-tX-3TX" firstAttribute="trailing" secondItem="DJB-bO-ym8" secondAttribute="trailing" id="dRd-fZ-deu"/>
+                        <constraint firstAttribute="trailing" secondItem="Kkv-tX-3TX" secondAttribute="trailing" constant="15" id="du0-Ze-N8G"/>
                         <constraint firstItem="26k-s4-QL7" firstAttribute="width" secondItem="4ul-kt-YxP" secondAttribute="width" id="foI-NC-c9K"/>
+                        <constraint firstItem="dNM-dr-1mp" firstAttribute="top" secondItem="Kkv-tX-3TX" secondAttribute="bottom" constant="15" id="gYd-Lm-NTA"/>
                         <constraint firstAttribute="bottom" secondItem="dNM-dr-1mp" secondAttribute="bottom" id="gd4-i4-Ndv"/>
                         <constraint firstItem="BSL-Bg-VGO" firstAttribute="width" secondItem="H1b-wD-zLu" secondAttribute="width" id="hXg-ny-iUT"/>
                         <constraint firstAttribute="bottom" secondItem="x7G-n5-WFV" secondAttribute="bottom" id="jQP-tO-Ww7"/>
@@ -176,8 +194,16 @@
                         <constraint firstAttribute="trailing" secondItem="wR3-ne-zHg" secondAttribute="trailing" id="pUO-hN-AWi"/>
                         <constraint firstItem="J5Z-ju-2dA" firstAttribute="leading" secondItem="3Yd-ZB-07H" secondAttribute="leading" id="pYY-cE-Hb2"/>
                         <constraint firstAttribute="trailing" secondItem="H1b-wD-zLu" secondAttribute="trailing" id="qfD-Tk-ReK"/>
+                        <constraint firstItem="Kkv-tX-3TX" firstAttribute="top" secondItem="3Yd-ZB-07H" secondAttribute="top" constant="77" id="vbO-Ap-Xba"/>
                         <constraint firstAttribute="centerX" secondItem="x7G-n5-WFV" secondAttribute="centerX" constant="-66.5" id="whp-bL-z7M"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="S49-Nh-hNN"/>
+                            <exclude reference="du0-Ze-N8G"/>
+                            <exclude reference="gYd-Lm-NTA"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,6 +219,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="activityIndicatorView" destination="DJB-bO-ym8" id="wly-vS-QIE"/>
                 <outlet property="avatarButton" destination="HhD-JH-4xb" id="Slo-1L-Pmz"/>
                 <outlet property="coverImageView" destination="Xbr-KA-lMJ" id="nnv-uo-dUJ"/>
                 <outlet property="followersButton" destination="KD9-5h-jdJ" id="QXn-Zm-BHg"/>
@@ -200,11 +227,12 @@
                 <outlet property="followingButton" destination="dNM-dr-1mp" id="IAI-hm-cP0"/>
                 <outlet property="followingLabel" destination="H1b-wD-zLu" id="svr-ZM-EgU"/>
                 <outlet property="nameLabel" destination="Dn1-Db-Vnf" id="i55-PC-jHU"/>
+                <outlet property="operationButton" destination="Kkv-tX-3TX" id="ZOu-At-5zp"/>
                 <outlet property="overView" destination="3Yd-ZB-07H" id="Vzp-mA-vjf"/>
                 <outlet property="repositoriesButton" destination="St6-Mx-YFz" id="tl8-u5-IOP"/>
                 <outlet property="repositoriesLabel" destination="26k-s4-QL7" id="nJm-nG-MNP"/>
             </connections>
-            <point key="canvasLocation" x="1001" y="491.5"/>
+            <point key="canvasLocation" x="-50" y="52.5"/>
         </view>
     </objects>
 </document>

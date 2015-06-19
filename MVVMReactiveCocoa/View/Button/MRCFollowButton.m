@@ -13,6 +13,8 @@
 
 static UIImage *followImage = nil;
 static UIImage *unfollowImage = nil;
+static UIImage *followBackgroundImage = nil;
+static UIImage *unfollowBackgroundImage = nil;
 
 @implementation MRCFollowButton
 
@@ -38,6 +40,30 @@ static UIImage *unfollowImage = nil;
                                                andSize:CGSizeMake(15, 15)];
     });
     return unfollowImage;
+}
+
++ (UIImage *)followBackgroundImageWithSize:(CGSize)size {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        followBackgroundImage = [UIImage octicon_imageWithIcon:@"Person"
+                                               backgroundColor:MRC_UNFOLLOW_COLOR
+                                                     iconColor:[UIColor clearColor]
+                                                     iconScale:1
+                                                       andSize:size];
+    });
+    return followBackgroundImage;
+}
+
++ (UIImage *)unfollowBackgroundImageWithSize:(CGSize)size {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        unfollowBackgroundImage = [UIImage octicon_imageWithIcon:@"Person"
+                                                 backgroundColor:MRC_FOLLOW_COLOR
+                                                       iconColor:[UIColor clearColor]
+                                                       iconScale:1
+                                                         andSize:size];
+    });
+    return unfollowBackgroundImage;
 }
 
 - (id)init {
@@ -68,11 +94,9 @@ static UIImage *unfollowImage = nil;
     self.layer.borderWidth = 1;
     self.layer.borderColor = MRC_FOLLOW_COLOR.CGColor;
     self.layer.cornerRadius = 5;
+    self.clipsToBounds = YES;
     
     self.titleLabel.font = [UIFont systemFontOfSize:15];
-//    self.contentEdgeInsets = UIEdgeInsetsMake(6, 3, 6, 5);
-//    self.contentEdgeInsets = UIEdgeInsetsMake(4, 1, 4, 3);
-//    self.contentEdgeInsets = UIEdgeInsetsMake(6, 0, 6, 2);
     self.contentEdgeInsets = UIEdgeInsetsMake(6, 1, 6, 3);
 }
 
@@ -83,13 +107,13 @@ static UIImage *unfollowImage = nil;
         [self setImage:[self.class unfollowImage] forState:UIControlStateNormal];
         [self setTitle:@"Unfollow" forState:UIControlStateNormal];
         [self setTitleColor:MRC_UNFOLLOW_COLOR forState:UIControlStateNormal];
-        self.backgroundColor = MRC_FOLLOW_COLOR;
         [self sizeToFit];
+        [self setBackgroundImage:[self.class unfollowBackgroundImageWithSize:self.frame.size] forState:UIControlStateNormal];
     } else {
         [self setImage:[self.class followImage] forState:UIControlStateNormal];
         [self setTitle:@"Follow" forState:UIControlStateNormal];
         [self setTitleColor:MRC_FOLLOW_COLOR forState:UIControlStateNormal];
-        self.backgroundColor = MRC_UNFOLLOW_COLOR;
+        [self setBackgroundImage:[self.class followBackgroundImageWithSize:self.frame.size] forState:UIControlStateNormal];
         [self sizeToFit];
     }
 }

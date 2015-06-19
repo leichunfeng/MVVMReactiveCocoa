@@ -28,8 +28,6 @@
     self.avatarImageView.backgroundColor = HexRGB(0xEFEDEA);
     self.avatarImageView.layer.cornerRadius = 5;
     self.avatarImageView.clipsToBounds = YES;
-    
-    [self.operationButton addTarget:self action:@selector(didClickOperationButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)bindViewModel:(MRCUserListItemViewModel *)viewModel {
@@ -59,7 +57,7 @@
         }];
 }
 
-- (void)didClickOperationButton:(UIButton *)operationButton {
+- (IBAction)didClickOperationButton:(id)sender {
     [self.viewModel.operationCommand execute:self.viewModel];
 }
 
