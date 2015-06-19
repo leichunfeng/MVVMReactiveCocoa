@@ -59,7 +59,6 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Starred Repos";
-            cell.detailTextLabel.text = @(self.viewModel.user.publicGistCount).stringValue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else if (indexPath.section == 1) {
