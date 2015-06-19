@@ -132,7 +132,7 @@
     }];
 }
 
-- (RACSignal *)requestRemoteDataSignal {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     if (self.path) return [RACSignal empty];
     
     NSString *reference = [self.reference.name componentsSeparatedByString:@"/"].lastObject;

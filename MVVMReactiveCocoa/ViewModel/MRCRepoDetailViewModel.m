@@ -123,7 +123,7 @@
     });
 }
 
-- (RACSignal *)requestRemoteDataSignal {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                          owner:self.repository.ownerLogin];
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTMLString:self.repository
