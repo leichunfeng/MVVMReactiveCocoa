@@ -33,6 +33,16 @@
                                         andSize:CGSizeMake(55, 55)];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCUserListTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCUserListTableViewCell"];
+    
+    @weakify(self)
+    [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
+        @strongify(self)
+        if (executing.boolValue && self.viewModel.dataSource == nil) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
