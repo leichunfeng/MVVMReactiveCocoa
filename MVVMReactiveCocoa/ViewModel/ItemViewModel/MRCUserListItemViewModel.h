@@ -13,7 +13,6 @@
 @property (strong, nonatomic, readonly) OCTUser *user;
 @property (strong, nonatomic, readonly) NSURL *avatarURL;
 @property (copy, nonatomic, readonly) NSString *login;
-@property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
 @property (strong, nonatomic) RACCommand *operationCommand;
 
 - (instancetype)initWithUser:(OCTUser *)user;

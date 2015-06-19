@@ -10,10 +10,12 @@
 #import "MRCUserListViewModel.h"
 #import "MRCUserListTableViewCell.h"
 #import "MRCUserListItemViewModel.h"
+#import "MRCFollowButton.h"
 
 @interface MRCUserListViewController ()
 
 @property (strong, nonatomic, readonly) MRCUserListViewModel *viewModel;
+@property (strong, nonatomic) UIImage *image;
 
 @end
 
@@ -23,6 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.image = [UIImage octicon_imageWithIcon:@"Person"
+                                backgroundColor:HexRGB(0xEFEDEA)
+                                      iconColor:[UIColor clearColor]
+                                      iconScale:1
+                                        andSize:CGSizeMake(55, 55)];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCUserListTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCUserListTableViewCell"];
 }

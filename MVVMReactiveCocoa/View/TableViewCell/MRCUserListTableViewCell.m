@@ -15,8 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) MRCFollowButton *operationButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) IBOutlet MRCFollowButton *operationButton;
 
 @property (strong, nonatomic) MRCUserListItemViewModel *viewModel;
 
@@ -29,9 +29,6 @@
     self.avatarImageView.layer.cornerRadius = 5;
     self.avatarImageView.clipsToBounds = YES;
     
-    self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    self.operationButton = [[MRCFollowButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     [self.operationButton addTarget:self action:@selector(didClickOperationButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -42,7 +39,7 @@
     self.loginLabel.text = viewModel.login;
     
     @weakify(self)
-    [[[[RACObserve(viewModel, followingStatus)
+    [[[[RACObserve(viewModel.user, followingStatus)
        	takeUntil:viewModel.rac_willDeallocSignal]
       	deliverOnMainThread]
         doNext:^(NSNumber *followingStatus) {
@@ -53,19 +50,16 @@
         subscribeNext:^(NSNumber *followingStatus) {
             @strongify(self)
             if (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown) {
-                self.accessoryView = self.activityIndicatorView;
+                self.operationButton.hidden = YES;
+                self.activityIndicatorView.hidden = NO;
             } else {
-                self.accessoryView = self.operationButton;
+                self.activityIndicatorView.hidden = YES;
+                self.operationButton.hidden = NO;
             }
         }];
 }
 
 - (void)didClickOperationButton:(UIButton *)operationButton {
-    if (self.viewModel.followingStatus == OCTUserFollowingStatusYES) {
-        self.viewModel.followingStatus = OCTUserFollowingStatusNO;
-    } else if (self.viewModel.followingStatus == OCTUserFollowingStatusNO) {
-        self.viewModel.followingStatus = OCTUserFollowingStatusYES;
-    }
     [self.viewModel.operationCommand execute:self.viewModel];
 }
 
