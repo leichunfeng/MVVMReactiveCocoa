@@ -109,6 +109,9 @@
 		248973781B3028AA00A867DE /* MRCUserDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 248973771B3028AA00A867DE /* MRCUserDetailViewModel.m */; };
 		248973871B3028BC00A867DE /* MRCUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 248973851B3028BC00A867DE /* MRCUserDetailViewController.m */; };
 		248973881B3028BC00A867DE /* MRCUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 248973861B3028BC00A867DE /* MRCUserDetailViewController.xib */; };
+		2489AD5B1B33AEE200D76523 /* MRCPublicReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489AD5A1B33AEE200D76523 /* MRCPublicReposViewModel.m */; };
+		2489AD6A1B33AF0000D76523 /* MRCPublicReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489AD681B33AF0000D76523 /* MRCPublicReposViewController.m */; };
+		2489AD6B1B33AF0000D76523 /* MRCPublicReposViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2489AD691B33AF0000D76523 /* MRCPublicReposViewController.xib */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
 		249674361A73F5650032771B /* MRCWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674351A73F5650032771B /* MRCWebViewModel.m */; };
 		249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */; };
@@ -515,6 +518,11 @@
 		248973841B3028BC00A867DE /* MRCUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCUserDetailViewController.h; sourceTree = "<group>"; };
 		248973851B3028BC00A867DE /* MRCUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCUserDetailViewController.m; sourceTree = "<group>"; };
 		248973861B3028BC00A867DE /* MRCUserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCUserDetailViewController.xib; sourceTree = "<group>"; };
+		2489AD591B33AEE200D76523 /* MRCPublicReposViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCPublicReposViewModel.h; sourceTree = "<group>"; };
+		2489AD5A1B33AEE200D76523 /* MRCPublicReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCPublicReposViewModel.m; sourceTree = "<group>"; };
+		2489AD671B33AF0000D76523 /* MRCPublicReposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCPublicReposViewController.h; sourceTree = "<group>"; };
+		2489AD681B33AF0000D76523 /* MRCPublicReposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCPublicReposViewController.m; sourceTree = "<group>"; };
+		2489AD691B33AF0000D76523 /* MRCPublicReposViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCPublicReposViewController.xib; sourceTree = "<group>"; };
 		2496742F1A73F5490032771B /* MRCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewController.h; sourceTree = "<group>"; };
 		249674301A73F5490032771B /* MRCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCWebViewController.m; sourceTree = "<group>"; };
 		249674341A73F5650032771B /* MRCWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewModel.h; sourceTree = "<group>"; };
@@ -776,6 +784,9 @@
 				248973841B3028BC00A867DE /* MRCUserDetailViewController.h */,
 				248973851B3028BC00A867DE /* MRCUserDetailViewController.m */,
 				248973861B3028BC00A867DE /* MRCUserDetailViewController.xib */,
+				2489AD671B33AF0000D76523 /* MRCPublicReposViewController.h */,
+				2489AD681B33AF0000D76523 /* MRCPublicReposViewController.m */,
+				2489AD691B33AF0000D76523 /* MRCPublicReposViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -873,6 +884,8 @@
 				243688381B25E2D700D801D3 /* MRCUserListViewModel.m */,
 				248973761B3028AA00A867DE /* MRCUserDetailViewModel.h */,
 				248973771B3028AA00A867DE /* MRCUserDetailViewModel.m */,
+				2489AD591B33AEE200D76523 /* MRCPublicReposViewModel.h */,
+				2489AD5A1B33AEE200D76523 /* MRCPublicReposViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1453,6 +1466,7 @@
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */,
 				249E5B321B065D4600BFDEA1 /* LICENSE in Resources */,
+				2489AD6B1B33AF0000D76523 /* MRCPublicReposViewController.xib in Resources */,
 				2479C93D1AAD39150057B681 /* icon-error.png in Resources */,
 				24D899DA1AAA9BAC00BC607C /* MRCFeedbackViewController.xib in Resources */,
 				2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */,
@@ -1582,6 +1596,7 @@
 				24116E4A1A8CC62700D25218 /* MRCNavigationController.m in Sources */,
 				240D014C1A654D300033CC86 /* MRCLoginViewModel.m in Sources */,
 				24F1203B1AA7525700A22D9A /* MRCAboutViewController.m in Sources */,
+				2489AD5B1B33AEE200D76523 /* MRCPublicReposViewModel.m in Sources */,
 				24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */,
 				240D01471A654D300033CC86 /* MRCViewModelServicesImpl.m in Sources */,
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
@@ -1651,6 +1666,7 @@
 				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,
 				2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
+				2489AD6A1B33AF0000D76523 /* MRCPublicReposViewController.m in Sources */,
 				24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */,

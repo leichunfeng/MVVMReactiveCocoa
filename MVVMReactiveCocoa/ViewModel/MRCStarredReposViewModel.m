@@ -14,7 +14,7 @@
     return MRCReposViewModelTypeStarred;
 }
 
-- (NSArray *)fetchLocalRepositories {
+- (NSArray *)fetchLocalData {
     return [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
 }
 

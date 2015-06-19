@@ -41,6 +41,10 @@
     [self.requestRemoteDataCommand.errors subscribe:self.errors];
 }
 
+- (id)fetchLocalData {
+    return nil;
+}
+
 - (RACSignal *)requestRemoteDataSignal {
     return [RACSignal empty];
 }

@@ -63,7 +63,7 @@
             startWith:nil]
        		map:^id(id value) {
            		@strongify(self)
-           		return [self fetchLocalRepositories];
+           		return [self fetchLocalData];
        		}];
     }
 }
@@ -72,7 +72,7 @@
     return MRCReposViewModelTypeOwned;
 }
 
-- (NSArray *)fetchLocalRepositories {
+- (NSArray *)fetchLocalData {
     return [OCTRepository mrc_fetchUserRepositoriesWithPage:0 perPage:0];
 }
 

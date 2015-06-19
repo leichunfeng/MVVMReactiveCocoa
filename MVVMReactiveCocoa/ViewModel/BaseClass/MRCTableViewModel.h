@@ -27,6 +27,8 @@
 
 @property (strong, nonatomic, readonly) RACCommand *requestRemoteDataCommand;
 
+- (id)fetchLocalData;
+
 - (RACSignal *)requestRemoteDataSignal;
 - (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage;
 
