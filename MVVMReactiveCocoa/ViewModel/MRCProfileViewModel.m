@@ -9,7 +9,7 @@
 #import "MRCProfileViewModel.h"
 #import "MRCSettingsViewModel.h"
 #import "MRCUserListViewModel.h"
-#import "MRCOwnedReposViewModel.h"
+#import "MRCPublicReposViewModel.h"
 
 @interface MRCProfileViewModel ()
 
@@ -49,8 +49,8 @@
     
     self.avatarHeaderViewModel.repositoriesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        MRCOwnedReposViewModel *viewModel = [[MRCOwnedReposViewModel alloc] initWithServices:self.services
-                                                                                      params:@{ @"type": @0, @"user": self.user }];
+        MRCPublicReposViewModel *viewModel = [[MRCPublicReposViewModel alloc] initWithServices:self.services
+                                                                                        params:@{ @"user": self.user }];
         [self.services pushViewModel:viewModel animated:YES];
         return [RACSignal empty];
     }];
