@@ -37,6 +37,9 @@
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="didClickOperationButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2Ht-KS-u91"/>
+                        </connections>
                     </button>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RV8-KF-3fV">
                         <rect key="frame" x="345" y="27" width="20" height="20"/>
@@ -63,7 +66,7 @@
                 <outlet property="loginLabel" destination="r1g-4l-Uwz" id="oXH-Bw-sbH"/>
                 <outlet property="operationButton" destination="9uJ-bn-Trs" id="jQU-He-bUG"/>
             </connections>
-            <point key="canvasLocation" x="-436.5" y="329.5"/>
+            <point key="canvasLocation" x="-553.5" y="-77.5"/>
         </tableViewCell>
     </objects>
 </document>

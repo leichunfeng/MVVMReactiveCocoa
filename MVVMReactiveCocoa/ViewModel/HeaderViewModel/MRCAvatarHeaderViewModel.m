@@ -8,11 +8,19 @@
 
 #import "MRCAvatarHeaderViewModel.h"
 
+@interface MRCAvatarHeaderViewModel ()
+
+@property (strong, nonatomic, readwrite) OCTUser *user;
+
+@end
+
 @implementation MRCAvatarHeaderViewModel
 
 - (instancetype)initWithUser:(OCTUser *)user {
     self = [super init];
     if (self) {
+        self.user = user;
+        
         RAC(self, avatarURL) = RACObserve(user, avatarURL);
         RAC(self, name) = RACObserve(user, login);
         

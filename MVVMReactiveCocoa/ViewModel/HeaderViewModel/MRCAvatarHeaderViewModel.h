@@ -10,6 +10,8 @@
 
 @interface MRCAvatarHeaderViewModel : NSObject
 
+@property (strong, nonatomic, readonly) OCTUser *user;
+
 // The contentOffset of the scroll view.
 @property (assign, nonatomic) CGPoint contentOffset;
 
@@ -28,6 +30,7 @@
 // The number of following.
 @property (copy, nonatomic) NSString *following;
 
+@property (strong, nonatomic) RACCommand *operationCommand;
 @property (strong, nonatomic) RACCommand *followersCommand;
 @property (strong, nonatomic) RACCommand *repositoriesCommand;
 @property (strong, nonatomic) RACCommand *followingCommand;

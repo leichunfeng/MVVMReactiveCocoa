@@ -17,6 +17,30 @@
     self.title = self.user.login;
     
     @weakify(self)
+    self.avatarHeaderViewModel.operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self)
+        if (self.user.followingStatus == OCTUserFollowingStatusYES) {
+            return [[self.services client] mrc_unfollowUser:self.user];
+        } else if (self.user.followingStatus == OCTUserFollowingStatusNO) {
+            return [[self.services client] mrc_followUser:self.user];
+        }
+        return [RACSignal empty];
+    }];
+    
+    if (self.user.followingStatus == OCTUserFollowingStatusUnknown) {
+        [[[self.services
+        	client]
+        	hasFollowUser:self.user]
+        	subscribeNext:^(NSNumber *isFollowing) {
+                @strongify(self)
+             	if (isFollowing.boolValue) {
+                 	self.user.followingStatus = OCTUserFollowingStatusYES;
+             	} else {
+                 	self.user.followingStatus = OCTUserFollowingStatusNO;
+             	}
+         	}];
+    }
+    
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 0) {
