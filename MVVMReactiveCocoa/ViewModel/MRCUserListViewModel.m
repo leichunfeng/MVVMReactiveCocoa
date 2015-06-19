@@ -99,18 +99,18 @@
 
     if (self.isCurrentUser) {
         if (self.type == MRCUserListViewModelTypeFollowers) {
-            self.users = [OCTUser mrc_fetchFollowersWithPage:1 perPage:self.pageSize];
+            self.users = [OCTUser mrc_fetchFollowersWithPage:1 perPage:self.perPage];
         } else if (self.type == MRCUserListViewModelTypeFollowing) {
-            self.users = [OCTUser mrc_fetchFollowingWithPage:1 perPage:self.pageSize];
+            self.users = [OCTUser mrc_fetchFollowingWithPage:1 perPage:self.perPage];
         }
     }
 }
 
-- (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     if (self.type == MRCUserListViewModelTypeFollowers) {
         return [[[[self.services
         	client]
-            fetchFollowersWithUser:self.user page:currentPage perPage:self.pageSize]
+            fetchFollowersWithUser:self.user page:page perPage:self.perPage]
             collect]
         	doNext:^(NSArray *users) {
                 if (users != nil && users.count > 0) {
@@ -118,7 +118,7 @@
                         if (self.isCurrentUser) user.followerStatus = OCTUserFollowerStatusYES;
                     }
                     
-                    if (currentPage == 1) {
+                    if (page == 1) {
                         for (OCTUser *user in users) {
                             for (OCTUser *preUser in self.users) {
                                 if ([user.objectID isEqualToString:preUser.objectID]) {
@@ -143,7 +143,7 @@
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
         return [[[[self.services
             client]
-            fetchFollowingWithUser:self.user page:currentPage perPage:self.pageSize]
+            fetchFollowingWithUser:self.user page:page perPage:self.perPage]
             collect]
             doNext:^(NSArray *users) {
                 if (users != nil && users.count > 0) {
@@ -151,7 +151,7 @@
                         if (self.isCurrentUser) user.followingStatus = OCTUserFollowingStatusYES;
                     }
                     
-                    if (currentPage == 1) {
+                    if (page == 1) {
                         self.users = users;
                     } else {
                         self.users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;

@@ -32,7 +32,7 @@
         
         NSString *sql = nil;
         
-        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? limit 1;", self.objectID];
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? LIMIT 1;", self.objectID];
         if (![rs next]) { // INSERT
             sql = @"INSERT INTO Repository VALUES (:id, :name, :owner_login, :owner_avatar_url, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);";
         } else { // UPDATE

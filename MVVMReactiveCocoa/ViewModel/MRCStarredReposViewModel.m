@@ -18,7 +18,7 @@
     return [OCTRepository mrc_fetchUserStarredRepositories];
 }
 
-- (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     if (self.isCurrentUser) {
         return [[[[self.services
         	client]
@@ -39,10 +39,10 @@
     } else {
         return [[[[self.services
         	client]
-        	fetchStarredRepositoriesWithUser:self.user page:currentPage perPage:self.pageSize]
+        	fetchStarredRepositoriesWithUser:self.user page:page perPage:self.perPage]
         	collect]
         	doNext:^(NSArray *repositories) {
-                if (currentPage == 1) {
+                if (page == 1) {
                     self.repositories = repositories;
                 } else {
                     self.repositories = @[ (self.repositories ?: @[]).rac_sequence, repositories.rac_sequence ].rac_sequence.flatten.array;
