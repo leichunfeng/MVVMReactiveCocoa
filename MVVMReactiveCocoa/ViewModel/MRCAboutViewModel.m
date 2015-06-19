@@ -41,7 +41,7 @@
     }];
 }
 
-- (RACSignal *)requestRemoteDataSignal {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     @weakify(self)
     return [[[self.services
         appStoreService]

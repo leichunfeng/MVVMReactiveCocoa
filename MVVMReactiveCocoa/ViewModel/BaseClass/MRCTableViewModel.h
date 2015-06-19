@@ -29,7 +29,6 @@
 
 - (id)fetchLocalData;
 
-- (RACSignal *)requestRemoteDataSignal;
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page;
 
 @end

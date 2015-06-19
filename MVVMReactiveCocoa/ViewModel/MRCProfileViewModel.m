@@ -84,7 +84,7 @@
     [self.requestRemoteDataCommand.errors subscribe:self.errors];
 }
 
-- (RACSignal *)requestRemoteDataSignal {
+- (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     return [[self.services.client
         fetchUserInfoWithUser:self.user]
         doNext:^(OCTUser *user) {

@@ -45,12 +45,8 @@
     return nil;
 }
 
-- (RACSignal *)requestRemoteDataSignal {
-    return [RACSignal empty];
-}
-
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [self requestRemoteDataSignal];
+    return [RACSignal empty];
 }
 
 @end
