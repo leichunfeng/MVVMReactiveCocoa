@@ -23,15 +23,13 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
+        self.user = params[@"user"];
     }
     return self;
 }
 
 - (void)initialize {
     [super initialize];
-    
-    self.isCurrentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
     
     self.type = [self.params[@"type"] unsignedIntegerValue];
     if (self.type == MRCUserListViewModelTypeFollowers) {
@@ -104,6 +102,10 @@
             self.users = [OCTUser mrc_fetchFollowingWithPage:1 perPage:self.perPage];
         }
     }
+}
+
+- (BOOL)isCurrentUser {
+    return [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
