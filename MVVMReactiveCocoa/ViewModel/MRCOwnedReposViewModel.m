@@ -70,7 +70,7 @@
     	map:^(NSArray *repositories) {
             @strongify(self)
             if (self.options & MRCReposViewModelOptionsSectionIndex) {
-                [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
                     return [repo1.name caseInsensitiveCompare:repo2.name];
                 }];
             }
