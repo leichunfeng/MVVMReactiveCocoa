@@ -14,4 +14,8 @@
     return MRCReposViewModelTypePublic;
 }
 
+- (NSArray *)fetchLocalData {
+    return [OCTRepository mrc_fetchUserPublicRepositoriesWithPage:0 perPage:0];
+}
+
 @end
