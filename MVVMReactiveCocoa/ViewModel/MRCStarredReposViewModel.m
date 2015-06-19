@@ -15,7 +15,7 @@
 }
 
 - (NSArray *)fetchLocalData {
-    return [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
+    return [OCTRepository mrc_fetchUserStarredRepositories];
 }
 
 - (RACSignal *)requestRemoteDataSignalWithCurrentPage:(NSUInteger)currentPage {

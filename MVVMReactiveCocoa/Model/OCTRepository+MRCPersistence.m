@@ -161,7 +161,7 @@
 
 #pragma mark - Fetch Repositories
 
-+ (NSArray *)mrc_fetchUserRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
++ (NSArray *)mrc_fetchUserRepositories {
     NSMutableArray *repos = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -170,16 +170,9 @@
             [db close];
         };
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM Repository WHERE owner_login = '%@' ORDER BY LOWER(name)", [OCTUser mrc_currentUser].login];
-        
-        NSNumber *limit = @(page * perPage);
-        if (![limit isEqualToNumber:@0]) {
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@" LIMIT %@", limit]];
-        }
-        
-        sql = [sql stringByAppendingString:@";"];
-        
-        FMResultSet *rs = [db executeQuery:sql];
+        NSString *sql = @"SELECT * FROM Repository WHERE owner_login = ? ORDER BY LOWER(name);";
+
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUser].login];
         while ([rs next]) {
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
@@ -197,7 +190,7 @@
     return repos;
 }
 
-+ (NSArray *)mrc_fetchUserStarredRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
++ (NSArray *)mrc_fetchUserStarredRepositories {
     NSMutableArray *repos = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -206,7 +199,36 @@
             [db close];
         };
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = %@ AND usr.repositoryId = r.id ORDER BY LOWER(name)", [OCTUser mrc_currentUserId]];
+        NSString *sql = @"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = ? AND usr.repositoryId = r.id ORDER BY LOWER(name);";
+        
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        while ([rs next]) {
+            @autoreleasepool {
+                if (repos == nil) repos = [NSMutableArray new];
+                
+                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
+                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
+
+                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+                
+                [repos addObject:repo];
+            }
+        }
+    }
+    
+    return repos;
+}
+
++ (NSArray *)mrc_fetchUserPublicRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
+    NSMutableArray *repos = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM Repository WHERE owner_login = '%@' AND private = 0 ORDER BY LOWER(name)", [OCTUser mrc_currentUser].login];
         
         NSNumber *limit = @(page * perPage);
         if (![limit isEqualToNumber:@0]) {
@@ -222,7 +244,7 @@
                 
                 NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
                 dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
-
+                
                 OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
                 
                 [repos addObject:repo];
@@ -297,7 +319,7 @@
 + (NSArray *)matchStarredStatusForRepositories:(NSArray *)repositories {
     if (repositories.count == 0) return nil;
     
-    NSArray *starredRepos = [self mrc_fetchUserStarredRepositoriesWithPage:0 perPage:0];
+    NSArray *starredRepos = [self mrc_fetchUserStarredRepositories];
    
     for (OCTRepository *repository in repositories) {
         repository.starredStatus = OCTRepositoryStarredStatusNO;
