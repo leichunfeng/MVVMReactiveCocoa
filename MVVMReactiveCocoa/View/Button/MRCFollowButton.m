@@ -96,8 +96,8 @@ static UIImage *unfollowBackgroundImage = nil;
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     
-    self.titleLabel.font = [UIFont systemFontOfSize:15];
-    self.contentEdgeInsets = UIEdgeInsetsMake(6, 1, 6, 3);
+    self.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.contentEdgeInsets = UIEdgeInsetsMake(7, 1, 7, 3);
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -113,8 +113,8 @@ static UIImage *unfollowBackgroundImage = nil;
         [self setImage:[self.class followImage] forState:UIControlStateNormal];
         [self setTitle:@"Follow" forState:UIControlStateNormal];
         [self setTitleColor:MRC_FOLLOW_COLOR forState:UIControlStateNormal];
-        [self setBackgroundImage:[self.class followBackgroundImageWithSize:self.frame.size] forState:UIControlStateNormal];
         [self sizeToFit];
+        [self setBackgroundImage:[self.class followBackgroundImageWithSize:self.frame.size] forState:UIControlStateNormal];
     }
 }
 
