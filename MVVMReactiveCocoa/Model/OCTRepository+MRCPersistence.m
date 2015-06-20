@@ -91,7 +91,7 @@
         
         NSMutableArray *oldIDs = nil;
         
-        FMResultSet *rs = [db executeQuery:@"SELECT id FROM Repository WHERE owner_login = ?;", [OCTUser mrc_currentUser].login];
+        FMResultSet *rs = [db executeQuery:@"SELECT id FROM Repository;"];
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
