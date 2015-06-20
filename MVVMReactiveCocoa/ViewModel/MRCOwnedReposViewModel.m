@@ -79,7 +79,6 @@
     	doNext:^(NSArray *repositories) {
             @strongify(self)
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                @strongify(self)
                 if (self.options & MRCReposViewModelOptionsSaveOrUpdateRepos) {
                     [OCTRepository mrc_saveOrUpdateRepositories:repositories];
                 }
