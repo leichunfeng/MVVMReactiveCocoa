@@ -18,7 +18,6 @@
 @property (copy, nonatomic) NSString *updateTime;
 @property (copy, nonatomic, readonly) NSString *language;
 @property (assign, nonatomic) CGFloat height;
-@property (assign, nonatomic) CGFloat repoDesWidth;
 @property (copy, nonatomic) NSAttributedString *repoDescription;
 
 @property (assign, nonatomic, readonly) MRCReposViewModelOptions options;
