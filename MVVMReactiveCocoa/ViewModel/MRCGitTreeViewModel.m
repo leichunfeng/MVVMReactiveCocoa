@@ -65,7 +65,8 @@
                     return treeEntry1.type == OCTTreeEntryTypeTree ? NSOrderedAscending : NSOrderedDescending;
                 }
             }].rac_sequence
-        	map:^id(OCTTreeEntry *treeEntry) {
+        	map:^(OCTTreeEntry *treeEntry) {
+                @strongify(self)
                 OCTTreeEntry *tempTreeEntry = treeEntry;
                 
                 NSMutableDictionary *dictionary = NSMutableDictionary.new;
