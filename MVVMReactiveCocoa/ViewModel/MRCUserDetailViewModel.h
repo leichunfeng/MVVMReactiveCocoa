@@ -11,6 +11,4 @@
 
 @interface MRCUserDetailViewModel : MRCProfileViewModel
 
-@property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
-
 @end

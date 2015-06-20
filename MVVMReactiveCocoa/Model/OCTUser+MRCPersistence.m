@@ -63,41 +63,6 @@
 	return YES;
 }
 
-#pragma mark - Fetch UserId
-
-+ (NSString *)mrc_currentUserId {
-    return [self mrc_currentUser].objectID;
-}
-
-#pragma mark - Fetch User
-
-+ (OCTUser *)mrc_currentUser {
-    OCTUser *currentUser = [[MRCMemoryCache sharedInstance] objectForKey:@"currentUser"];
-    if (!currentUser) {
-        currentUser = [self mrc_fetchUserWithRawLogin:[SSKeychain rawLogin]];
-        [[MRCMemoryCache sharedInstance] setObject:currentUser forKey:@"currentUser"];
-    }
-    return currentUser;
-}
-
-+ (OCTUser *)mrc_fetchUserWithRawLogin:(NSString *)rawLogin {
-    OCTUser *user = nil;
-    
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
-        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? OR email = ? LIMIT 1;", rawLogin, rawLogin];
-        if ([rs next]) {
-            user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
-        }
-    }
-    
-    return user;
-}
-
 #pragma mark - Save Or Update Users
 
 + (BOOL)mrc_saveOrUpdateUsers:(NSArray *)users {
@@ -122,7 +87,7 @@
             if (![oldIDs containsObject:user.objectID]) { // INSERT
                 sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@);", user.objectID, user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage)]];
             } else { // UPDATE
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', name = '%@', bio = '%@', email = '%@', avatar_url = '%@', html_url = '%@', blog = '%@', company = '%@', location = '%@', collaborators = %@, public_repos = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, followers = %@, following = %@, disk_usage = %@ WHERE id = %@;", user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage), user.objectID]];
+                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', bio = '%@', avatar_url = '%@', html_url = '%@', collaborators = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, disk_usage = %@ WHERE id = %@;", user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.bio.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, @(user.collaborators), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.diskUsage), user.objectID]];
             }
         }
         
@@ -218,6 +183,59 @@
     }
     
     return NO;
+}
+
+#pragma mark - Fetch UserId
+
++ (NSString *)mrc_currentUserId {
+    return ((OCTUser *)[self mrc_currentUser]).objectID;
+}
+
+#pragma mark - Fetch User
+
++ (instancetype)mrc_currentUser {
+    OCTUser *currentUser = [[MRCMemoryCache sharedInstance] objectForKey:@"currentUser"];
+    if (!currentUser) {
+        currentUser = [self mrc_fetchUserWithRawLogin:[SSKeychain rawLogin]];
+        [[MRCMemoryCache sharedInstance] setObject:currentUser forKey:@"currentUser"];
+    }
+    return currentUser;
+}
+
++ (instancetype)mrc_fetchUserWithRawLogin:(NSString *)rawLogin {
+    OCTUser *user = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? OR email = ? LIMIT 1;", rawLogin, rawLogin];
+        if ([rs next]) {
+            user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
+        }
+    }
+    
+    return user;
+}
+
++ (instancetype)mrc_fetchUser:(OCTUser *)user {
+    OCTUser *result = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? LIMIT 1;", user.login];
+        if ([rs next]) {
+            result = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
+        }
+    }
+    
+    return result;
 }
 
 #pragma mark - Fetch Users

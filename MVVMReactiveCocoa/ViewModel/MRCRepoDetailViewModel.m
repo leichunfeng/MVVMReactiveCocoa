@@ -109,8 +109,9 @@
     RACSignal *fetchLocalDataSignal = [RACSignal return:[self fetchLocalData]];
     RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.flatten;
     
-    [[fetchLocalDataSignal
+    [[[fetchLocalDataSignal
     	merge:requestRemoteDataSignal]
+     	deliverOnMainThread]
     	subscribeNext:^(OCTRepository *repo) {
             @strongify(self)
             [self willChangeValueForKey:@"repository"];

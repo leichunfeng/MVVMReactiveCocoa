@@ -39,12 +39,11 @@
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     @weakify(self)
-    [[self.viewModel.requestRemoteDataCommand.executionSignals.flatten
-    	deliverOnMainThread]
-        subscribeNext:^(id x) {
-            @strongify(self)
-            [self.tableView reloadData];
-        }];
+    [RACObserve(self.viewModel, user)
+    	subscribeNext:^(id x) {
+        	@strongify(self)
+        	[self.tableView reloadData];
+    	}];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

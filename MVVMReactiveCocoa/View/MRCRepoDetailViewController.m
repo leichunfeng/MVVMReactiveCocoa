@@ -138,12 +138,10 @@
             return @(!reqExecuting.boolValue && !webViewExecuting.boolValue);
         }];
     
-    [[RACObserve(self.viewModel, repository)
-        deliverOnMainThread]
-        subscribeNext:^(id x) {
-            @strongify(self)
-            [self.tableView reloadData];
-        }];
+    [RACObserve(self.viewModel, repository) subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
