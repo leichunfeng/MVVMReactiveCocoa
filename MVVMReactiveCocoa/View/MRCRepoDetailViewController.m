@@ -138,7 +138,7 @@
             return @(!reqExecuting.boolValue && !webViewExecuting.boolValue);
         }];
     
-    [[self.viewModel.requestRemoteDataCommand.executionSignals.flatten
+    [[RACObserve(self.viewModel, repository)
         deliverOnMainThread]
         subscribeNext:^(id x) {
             @strongify(self)

@@ -105,6 +105,23 @@
         [self.services pushViewModel:settingsViewModel animated:YES];
         return [RACSignal empty];
     }];
+    
+    RACSignal *fetchLocalDataSignal = [RACSignal return:[self fetchLocalData]];
+    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.flatten;
+    
+    [[fetchLocalDataSignal
+    	merge:requestRemoteDataSignal]
+    	subscribeNext:^(OCTRepository *repo) {
+            @strongify(self)
+            [self willChangeValueForKey:@"repository"];
+            repo.starredStatus = self.repository.starredStatus;
+            [self.repository mergeValuesForKeysFromModel:repo];
+            [self didChangeValueForKey:@"repository"];
+        }];
+}
+
+- (OCTRepository *)fetchLocalData {
+    return [OCTRepository fetchRepository:self.repository];
 }
 
 - (void)presentSelectBranchOrTagViewModel {
@@ -129,22 +146,21 @@
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTMLString:self.repository
                                                                                             reference:self.reference.name];
     @weakify(self)
-    return [[[RACSignal
-        combineLatest:@[fetchRepoSignal, fetchReadmeSignal]]
+    return [[[[[RACSignal
+        combineLatest:@[ fetchRepoSignal, fetchReadmeSignal ]]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
-            RACTupleUnpack(OCTRepository *repo, NSString *readmeHTMLString) = tuple;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                repo.starredStatus = self.repository.starredStatus;
-                [self.repository mergeValuesForKeysFromModel:repo];
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [self.repository mrc_saveOrUpdate];
-                });
-            });
-            
+            NSString *readmeHTMLString = tuple.last;
             self.readmeHTMLString = readmeHTMLString;
-			self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:readmeHTMLString];
+            self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:readmeHTMLString];
+        }]
+        map:^(RACTuple *tuple) {
+            return tuple.first;
+        }]
+    	doNext:^(OCTRepository *repo) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [repo mrc_saveOrUpdate];
+            });
         }]
     	takeUntil:self.willDisappearSignal];
 }
