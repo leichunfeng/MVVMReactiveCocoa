@@ -52,7 +52,7 @@
             	@strongify(self)
             	self.rawContent = data.base64EncodedString;
             }]
-        	takeUntil:self.willDisappearSignal];
+        	takeUntil:self.rac_willDeallocSignal];
     }];
     
     self.requestReadmeMarkdownCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -63,7 +63,7 @@
                 @strongify(self)
                 self.rawContent = fileContent.content;
             }]
-            takeUntil:self.willDisappearSignal];
+            takeUntil:self.rac_willDeallocSignal];
     }];
     
     self.requestReadmeHTMLStringCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -74,7 +74,7 @@
                 @strongify(self)
                 self.readmeHTMLString = readmeHTMLString;
             }]
-            takeUntil:self.willDisappearSignal];
+            takeUntil:self.rac_willDeallocSignal];
     }];
     
     [[RACSignal

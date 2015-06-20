@@ -25,7 +25,7 @@
     @weakify(self)
     self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSNumber *page) {
         @strongify(self)
-        return [[self requestRemoteDataSignalWithPage:page.unsignedIntegerValue] takeUntil:self.willDisappearSignal];
+        return [[self requestRemoteDataSignalWithPage:page.unsignedIntegerValue] takeUntil:self.rac_willDeallocSignal];
     }];
     
     RAC(self, shouldDisplayEmptyDataSet) = [RACSignal

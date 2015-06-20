@@ -81,6 +81,10 @@
     return _readmeTableViewCell;
 }
 
+- (void)dealloc {
+    self.readmeTableViewCell.webView.delegate = nil;
+}
+
 - (void)bindViewModel {
     [super bindViewModel];
     
@@ -106,7 +110,7 @@
     RACSignal *startLoadSignal  = [self rac_signalForSelector:@selector(webViewDidStartLoad:) fromProtocol:@protocol(UIWebViewDelegate)];
     RACSignal *finishLoadSignal = [self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)];
     RACSignal *failLoadSignal   = [self rac_signalForSelector:@selector(webView:didFailLoadWithError:) fromProtocol:@protocol(UIWebViewDelegate)];
-   
+    
     self.readmeTableViewCell.webView.delegate = self;
     
     // webView hidden or not
@@ -226,8 +230,10 @@
     return 7.5;
 }
 
-- (void)dealloc {
-    self.readmeTableViewCell.webView.delegate = nil;
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return self.navigationController.topViewController == self;
 }
 
 @end
