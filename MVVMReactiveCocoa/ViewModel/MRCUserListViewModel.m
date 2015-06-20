@@ -93,6 +93,24 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
+    NSArray * (^mapFollowingStatus)(NSArray *) = ^(NSArray *users) {
+        if (page == 1) {
+            for (OCTUser *user in users) {
+                if (user.followingStatus == OCTUserFollowingStatusYES) continue;
+                
+                for (OCTUser *preUser in self.users) {
+                    if ([user.objectID isEqualToString:preUser.objectID]) {
+                        user.followingStatus = preUser.followingStatus;
+                        break;
+                    }
+                }
+            }
+        } else {
+            users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
+        }
+        return users;
+    };
+    
     if (self.type == MRCUserListViewModelTypeFollowers) {
         return [[[[[self.services
         	client]
@@ -103,21 +121,7 @@
                 }
                 return users;
             }]
-        	map:^(NSArray *users) {
-                if (page == 1) {
-                    for (OCTUser *user in users) {
-                        for (OCTUser *preUser in self.users) {
-                            if ([user.objectID isEqualToString:preUser.objectID]) {
-                                user.followingStatus = preUser.followingStatus;
-                                break;
-                            }
-                        }
-                    }
-                } else {
-                    users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
-                }
-                return users;
-            }]
+        	map:mapFollowingStatus]
         	doNext:^(NSArray *users) {
                 if (self.isCurrentUser) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -136,12 +140,7 @@
                 }
                 return users;
             }]
-        	map:^(NSArray *users) {
-                if (page != 1) {
-                    users = @[ (self.users ?: @[]).rac_sequence, users.rac_sequence ].rac_sequence.flatten.array;
-                }
-                return users;
-            }]
+        	map:mapFollowingStatus]
         	doNext:^(NSArray *users) {
                 if (self.isCurrentUser) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
