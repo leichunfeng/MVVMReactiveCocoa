@@ -121,7 +121,7 @@
 }
 
 - (OCTRepository *)fetchLocalData {
-    return [OCTRepository fetchRepository:self.repository];
+    return [OCTRepository mrc_fetchRepository:self.repository];
 }
 
 - (void)presentSelectBranchOrTagViewModel {

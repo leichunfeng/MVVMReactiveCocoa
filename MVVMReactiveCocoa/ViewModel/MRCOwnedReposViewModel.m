@@ -91,7 +91,7 @@
     
     RAC(self, dataSource) = [[[RACObserve(self, repositories)
 		map:^(NSArray *repositories) {
-            return [OCTRepository matchStarredStatusForRepositories:repositories];
+            return [OCTRepository mrc_matchStarredStatusForRepositories:repositories];
         }]
     	doNext:^(NSArray *repositories) {
             @strongify(self)

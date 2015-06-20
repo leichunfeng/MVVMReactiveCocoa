@@ -161,7 +161,7 @@
 
 #pragma mark - Fetch Repositories
 
-+ (instancetype)fetchRepository:(OCTRepository *)repository {
++ (instancetype)mrc_fetchRepository:(OCTRepository *)repository {
     OCTRepository *repo = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -339,7 +339,7 @@
     return NO;
 }
 
-+ (NSArray *)matchStarredStatusForRepositories:(NSArray *)repositories {
++ (NSArray *)mrc_matchStarredStatusForRepositories:(NSArray *)repositories {
     if (repositories.count == 0) return nil;
     
     NSArray *starredRepos = [self mrc_fetchUserStarredRepositories];
