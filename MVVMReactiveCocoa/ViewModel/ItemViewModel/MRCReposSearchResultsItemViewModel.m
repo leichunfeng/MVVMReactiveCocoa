@@ -15,10 +15,6 @@
 @synthesize repoDescription = _repoDescription;
 @synthesize updateTime = _updateTime;
 
-- (CGFloat)repoDesWidth {
-    return [super repoDesWidth] + 15;
-}
-
 - (NSAttributedString *)name {
     if (!_name) {
         NSString *uniqueName = [NSString stringWithFormat:@"%@/%@", self.repository.ownerLogin, self.repository.name];

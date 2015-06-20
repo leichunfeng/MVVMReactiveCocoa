@@ -42,7 +42,13 @@
         CGFloat height = 0;
         if (self.repository.repoDescription.length > 0) {
             NSDictionary *attributes = @{ NSFontAttributeName: [UIFont systemFontOfSize:15.0] };
-            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(self.repoDesWidth, 0)
+            
+            CGFloat width = SCREEN_WIDTH - 38 - 8;
+            if (self.options & MRCReposViewModelOptionsSectionIndex) {
+                width -= 15;
+            }
+            
+            CGRect rect = [self.repository.repoDescription boundingRectWithSize:CGSizeMake(width, 0)
                                                                         options:NSStringDrawingUsesLineFragmentOrigin
                                                                      attributes:attributes
                                                                         context:nil];
@@ -51,10 +57,6 @@
         self.height = 8 + 21 + 5 + height + 5 + 15 + 8 + 1;
     }
     return self;
-}
-
-- (CGFloat)repoDesWidth {
-    return SCREEN_WIDTH - 61;
 }
 
 - (NSAttributedString *)name {
