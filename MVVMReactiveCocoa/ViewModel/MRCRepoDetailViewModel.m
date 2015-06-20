@@ -147,7 +147,7 @@
     RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTMLString:self.repository
                                                                                             reference:self.reference.name];
     @weakify(self)
-    return [[[[[RACSignal
+    return [[[[RACSignal
         combineLatest:@[ fetchRepoSignal, fetchReadmeSignal ]]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
@@ -162,8 +162,7 @@
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [repo mrc_saveOrUpdate];
             });
-        }]
-    	takeUntil:self.willDisappearSignal];
+        }];
 }
 
 - (NSString *)summaryReadmeHTMLStringFromReadmeHTMLString:(NSString *)readmeHTMLString {
