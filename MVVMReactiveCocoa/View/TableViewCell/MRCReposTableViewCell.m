@@ -83,7 +83,7 @@ static UIImage *_tintedStarIcon = nil;
         self.layoutConstraint.constant = 10;
     }
     
-    if (viewModel.options & MRCReposItemViewModelOptionsMarkStarredStatus) {
+    if (viewModel.options & MRCReposViewModelOptionsMarkStarredStatus) {
         if (viewModel.repository.starredStatus == OCTRepositoryStarredStatusYES) {
             self.starIconImageView.image = _tintedStarIcon;
         } else {

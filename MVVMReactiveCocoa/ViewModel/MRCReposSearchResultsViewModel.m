@@ -32,12 +32,10 @@
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
 //    options = options | MRCReposViewModelOptionsPagination;
 //    options = options | MRCReposViewModelOptionsSectionIndex;
+    options = options | MRCReposViewModelOptionsShowOwnerLogin;
+    options = options | MRCReposViewModelOptionsMarkStarredStatus;
     
     return options;
-}
-
-- (MRCReposItemViewModelOptions)itemOptions {
-    return MRCReposItemViewModelOptionsShowOwnerLogin | MRCReposItemViewModelOptionsMarkStarredStatus;
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
@@ -61,7 +59,7 @@
     if (repositories.count == 0) return nil;
     
     NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
-        return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository options:self.itemOptions];
+        return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository options:self.options];
     }].array;
     
     return @[ repos ];

@@ -7,7 +7,6 @@
 //
 
 #import "MRCTableViewModel.h"
-#import "MRCReposItemViewModel.h"
 
 typedef NS_ENUM(NSUInteger, MRCReposViewModelType) {
     MRCReposViewModelTypeOwned,
@@ -23,6 +22,8 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
     MRCReposViewModelOptionsSaveOrUpdateStarredStatus = 1 << 3,
     MRCReposViewModelOptionsPagination = 1 << 4,
     MRCReposViewModelOptionsSectionIndex = 1 << 5,
+    MRCReposViewModelOptionsShowOwnerLogin = 1 << 6,
+    MRCReposViewModelOptionsMarkStarredStatus = 1 << 7
 };
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel
@@ -33,6 +34,5 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
 
 @property (assign, nonatomic, readonly) MRCReposViewModelType type;
 @property (assign, nonatomic, readonly) MRCReposViewModelOptions options;
-@property (assign, nonatomic, readonly) MRCReposItemViewModelOptions itemOptions;
 
 @end

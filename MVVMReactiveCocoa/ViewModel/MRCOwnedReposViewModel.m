@@ -8,6 +8,7 @@
 
 #import "MRCOwnedReposViewModel.h"
 #import "MRCRepoDetailViewModel.h"
+#import "MRCReposItemViewModel.h"
 
 @interface MRCOwnedReposViewModel ()
 
@@ -118,12 +119,10 @@
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
 //    options = options | MRCReposViewModelOptionsPagination;
     options = options | MRCReposViewModelOptionsSectionIndex;
+//    options = options | MRCReposViewModelOptionsShowOwnerLogin;
+//    options = options | MRCReposViewModelOptionsMarkStarredStatus;
     
     return options;
-}
-
-- (MRCReposItemViewModelOptions)itemOptions {
-    return 0;
 }
 
 - (NSArray *)fetchLocalData {
@@ -166,7 +165,7 @@
                 firstLetter = repository.name.firstLetter;
                 repos = [NSMutableArray new];
             }
-            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository options:self.itemOptions]];
+            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options]];
         }
         
         [repoOfRepos addObject:repos];
@@ -174,7 +173,7 @@
         @weakify(self)
         NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
             @strongify(self)
-            return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.itemOptions];
+            return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options];
         }].array;
         
         [repoOfRepos addObject:repos];

@@ -30,6 +30,8 @@
         options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
 //        options = options | MRCReposViewModelOptionsPagination;
         options = options | MRCReposViewModelOptionsSectionIndex;
+        options = options | MRCReposViewModelOptionsShowOwnerLogin;
+//        options = options | MRCReposViewModelOptionsMarkStarredStatus;
     } else {
 //        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
 //        options = options | MRCReposViewModelOptionsObserveStarredReposChange;
@@ -37,17 +39,11 @@
 //        options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
         options = options | MRCReposViewModelOptionsPagination;
 //        options = options | MRCReposViewModelOptionsSectionIndex;
+        options = options | MRCReposViewModelOptionsShowOwnerLogin;
+        options = options | MRCReposViewModelOptionsMarkStarredStatus;
     }
     
     return options;
-}
-
-- (MRCReposItemViewModelOptions)itemOptions {
-    if (self.isCurrentUser) {
-        return MRCReposItemViewModelOptionsShowOwnerLogin;
-    } else {
-        return MRCReposItemViewModelOptionsShowOwnerLogin | MRCReposItemViewModelOptionsMarkStarredStatus;
-    }
 }
 
 - (NSArray *)fetchLocalData {

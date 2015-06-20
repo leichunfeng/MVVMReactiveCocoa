@@ -7,11 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_OPTIONS(NSUInteger, MRCReposItemViewModelOptions) {
-    MRCReposItemViewModelOptionsShowOwnerLogin = 1 << 0,
-    MRCReposItemViewModelOptionsMarkStarredStatus = 1 << 1
-};
+#import "MRCOwnedReposViewModel.h"
 
 @interface MRCReposItemViewModel : NSObject
 
@@ -25,8 +21,8 @@ typedef NS_OPTIONS(NSUInteger, MRCReposItemViewModelOptions) {
 @property (assign, nonatomic) CGFloat repoDesWidth;
 @property (copy, nonatomic) NSAttributedString *repoDescription;
 
-@property (assign, nonatomic, readonly) MRCReposItemViewModelOptions options;
+@property (assign, nonatomic, readonly) MRCReposViewModelOptions options;
 
-- (instancetype)initWithRepository:(OCTRepository *)repository options:(MRCReposItemViewModelOptions)options;
+- (instancetype)initWithRepository:(OCTRepository *)repository options:(MRCReposViewModelOptions)options;
 
 @end
