@@ -62,6 +62,7 @@
     RACSignal *fetchLocalDataSignal = [[fetchLocalDataOnInitializeSignal
     	merge:starredReposDidChangeSignal]
         map:^(id value) {
+            @strongify(self)
             return [self fetchLocalData];
         }];
     
@@ -76,7 +77,9 @@
             return repositories;
         }]
     	doNext:^(NSArray *repositories) {
+            @strongify(self)
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                @strongify(self)
                 if (self.options & MRCReposViewModelOptionsSaveOrUpdateRepos) {
                     [OCTRepository mrc_saveOrUpdateRepositories:repositories];
                 }
@@ -171,7 +174,7 @@
         [repoOfRepos addObject:repos];
     } else {
         @weakify(self)
-        NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
+        NSArray *repos = [repositories.rac_sequence map:^(OCTRepository *repository) {
             @strongify(self)
             return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options];
         }].array;

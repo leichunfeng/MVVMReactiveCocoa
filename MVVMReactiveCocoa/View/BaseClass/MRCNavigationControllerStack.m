@@ -107,6 +107,7 @@
     [[(NSObject *)self.services
         rac_signalForSelector:@selector(resetRootViewModel:)]
         subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             
             if (![viewController isKindOfClass:UINavigationController.class]) {

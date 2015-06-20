@@ -51,10 +51,12 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
+    @weakify(self)
     return [[[self.services
     	client]
     	fetchRepositoriesWithUser:self.user page:page perPage:self.perPage].collect
     	map:^(NSArray *repositories) {
+            @strongify(self)
             if (page != 1) {
                 repositories = @[ (self.repositories ?: @[]).rac_sequence, repositories.rac_sequence ].rac_sequence.flatten.array;
             }

@@ -30,8 +30,9 @@
     
     RAC(self, shouldDisplayEmptyDataSet) = [RACSignal
         combineLatest:@[ self.requestRemoteDataCommand.executing, RACObserve(self, dataSource) ]
-        reduce:^id(NSNumber *executing, NSArray *dataSource) {
-            RACSequence *sequenceOfSequences = [dataSource.rac_sequence map:^id(NSArray *array) {
+        reduce:^(NSNumber *executing, NSArray *dataSource) {
+            RACSequence *sequenceOfSequences = [dataSource.rac_sequence map:^(NSArray *array) {
+                @strongify(self)
                 NSParameterAssert([array isKindOfClass:[NSArray class]]);
                 return array.rac_sequence;
             }];

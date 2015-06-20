@@ -8,14 +8,6 @@
 
 #import "MRCPublicReposViewController.h"
 
-@interface MRCPublicReposViewController ()
-
-@end
-
 @implementation MRCPublicReposViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
 
 @end

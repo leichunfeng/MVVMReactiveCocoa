@@ -11,8 +11,6 @@
 @interface MRCReposItemViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
-@property (copy, nonatomic, readwrite) NSString *identifier;
-@property (assign, nonatomic, readwrite) NSInteger hexRGB;
 @property (copy, nonatomic, readwrite) NSString *language;
 
 @property (assign, nonatomic, readwrite) MRCReposViewModelOptions options;
@@ -25,18 +23,9 @@
     self = [super init];
     if (self) {
         self.repository = repository;
-        
+     
         self.options = options;
-        
-        if (repository.isPrivate) {
-            self.identifier = @"Lock";
-            self.hexRGB = colorI4;
-        } else if (repository.isFork) {
-            self.identifier = @"RepoForked";
-        } else {
-            self.identifier = @"Repo";
-        }
-        
+       
         self.language = repository.language ?: @"";
         
         CGFloat height = 0;
