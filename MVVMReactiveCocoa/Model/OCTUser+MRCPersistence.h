@@ -26,14 +26,15 @@ typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
 @property (assign, nonatomic) OCTUserFollowerStatus followerStatus;
 @property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
 
-+ (NSString *)mrc_currentUserId;
-
-+ (OCTUser *)mrc_currentUser;
-+ (OCTUser *)mrc_fetchUserWithRawLogin:(NSString *)rawLogin;
-
 + (BOOL)mrc_saveOrUpdateUsers:(NSArray *)users;
 + (BOOL)mrc_saveOrUpdateFollowerStatusWithUsers:(NSArray *)users;
 + (BOOL)mrc_saveOrUpdateFollowingStatusWithUsers:(NSArray *)users;
+
++ (NSString *)mrc_currentUserId;
+
++ (instancetype)mrc_currentUser;
++ (instancetype)mrc_fetchUserWithRawLogin:(NSString *)rawLogin;
++ (instancetype)mrc_fetchUser:(OCTUser *)user;
 
 + (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 + (NSArray *)mrc_fetchFollowingWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;

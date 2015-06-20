@@ -81,19 +81,31 @@
         return [RACSignal empty];
     }];
     
-    [self.requestRemoteDataCommand.errors subscribe:self.errors];
+    RACSignal *fetchLocalDataSignal = [RACSignal return:[self fetchLocalData]];
+    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.flatten;
+    
+    [[[fetchLocalDataSignal
+    	merge:requestRemoteDataSignal]
+     	deliverOnMainThread]
+    	subscribeNext:^(OCTUser *user) {
+            @strongify(self)
+            [self willChangeValueForKey:@"user"];
+            user.followingStatus = self.user.followingStatus;
+            [self.user mergeValuesForKeysFromModel:user];
+            [self didChangeValueForKey:@"user"];
+        }];
+}
+
+- (OCTUser *)fetchLocalData {
+    return [OCTUser mrc_fetchUser:self.user];
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     return [[self.services.client
         fetchUserInfoWithUser:self.user]
         doNext:^(OCTUser *user) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                user.followingStatus = self.user.followingStatus;
-                [self.user mergeValuesForKeysFromModel:user];
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [self.user mrc_saveOrUpdate];
-                });
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [user mrc_saveOrUpdate];
             });
         }];
 }
