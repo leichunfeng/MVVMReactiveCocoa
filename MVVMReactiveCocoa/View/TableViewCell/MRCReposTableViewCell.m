@@ -8,8 +8,15 @@
 
 #import "MRCReposTableViewCell.h"
 #import "MRCReposItemViewModel.h"
+#import "UIImage+RTTint.h"
 
-static NSMutableArray *_iconImages;
+static UIImage *_repoIcon = nil;
+static UIImage *_repoForkedIcon = nil;
+static UIImage *_lockIcon = nil;
+
+static UIImage *_starIcon = nil;
+static UIImage *_gitBranchIcon = nil;
+static UIImage *_tintedStarIcon = nil;
 
 @interface MRCReposTableViewCell ()
 
@@ -20,6 +27,7 @@ static NSMutableArray *_iconImages;
 @property (weak, nonatomic) IBOutlet UILabel *starCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *forkCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *starIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *forkIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutConstraint;
 
@@ -30,12 +38,21 @@ static NSMutableArray *_iconImages;
 - (void)awakeFromNib {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _iconImages = [NSMutableArray new];
+        _repoIcon = [UIImage octicon_imageWithIdentifier:@"Repo" size:self.iconImageView.frame.size];
+        _repoForkedIcon = [UIImage octicon_imageWithIdentifier:@"RepoForked" size:self.iconImageView.frame.size];
+        _lockIcon = [UIImage octicon_imageWithIcon:@"Lock"
+                                   backgroundColor:[UIColor clearColor]
+                                         iconColor:HexRGB(colorI4)
+                                         iconScale:1
+                                           andSize:self.iconImageView.frame.size];
+        
+        _starIcon = [UIImage octicon_imageWithIdentifier:@"Star" size:self.starIconImageView.frame.size];
+        _gitBranchIcon = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:self.forkIconImageView.frame.size];
+        _tintedStarIcon = [_starIcon rt_tintedImageWithColor:HexRGB(colorI5)];
     });
     
     self.desLabel.numberOfLines = 3;
-    self.starIconImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
-    self.forkIconImageView.image = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:CGSizeMake(12, 12)];
+    self.forkIconImageView.image = _gitBranchIcon;
 }
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
@@ -52,31 +69,28 @@ static NSMutableArray *_iconImages;
     self.starCountLabel.text = @(viewModel.repository.stargazersCount).stringValue;
     self.forkCountLabel.text = @(viewModel.repository.forksCount).stringValue;
     
-    UIColor *iconColor = viewModel.hexRGB ? HexRGB(viewModel.hexRGB) : [UIColor darkGrayColor];
-    
-    BOOL exists = NO;
-    for (NSDictionary *dic in _iconImages) {
-        if ([viewModel.identifier isEqualToString:dic[@"identifier"]] && [iconColor isEqual:dic[@"iconColor"]]) {
-            exists = YES;
-            self.iconImageView.image = dic[@"iconImage"];
-        }
-    }
-    if (!exists) {
-        UIImage *iconImage = [UIImage octicon_imageWithIcon:viewModel.identifier
-                                            backgroundColor:[UIColor clearColor]
-                                                  iconColor:iconColor
-                                                  iconScale:1
-                                                    andSize:self.iconImageView.frame.size];
-        self.iconImageView.image = iconImage;
-        
-        NSDictionary *dic = @{ @"identifier": viewModel.identifier, @"iconColor": iconColor, @"iconImage": iconImage };
-        [_iconImages addObject:dic];
+    if (viewModel.repository.isPrivate) {
+        self.iconImageView.image = _lockIcon;
+    } else if (viewModel.repository.isFork) {
+        self.iconImageView.image = _repoForkedIcon;
+    } else {
+        self.iconImageView.image = _repoIcon;
     }
     
     if (viewModel.language.length == 0) {
         self.layoutConstraint.constant = 0;
     } else {
         self.layoutConstraint.constant = 10;
+    }
+    
+    if (viewModel.options & MRCReposItemViewModelOptionsMarkStarredStatus) {
+        if (viewModel.repository.starredStatus == OCTRepositoryStarredStatusYES) {
+            self.starIconImageView.image = _tintedStarIcon;
+        } else {
+            self.starIconImageView.image = _starIcon;
+        }
+    } else {
+        self.starIconImageView.image = _starIcon;
     }
 }
 
