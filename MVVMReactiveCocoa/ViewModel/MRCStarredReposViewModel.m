@@ -42,6 +42,14 @@
     return options;
 }
 
+- (MRCReposItemViewModelOptions)itemOptions {
+    if (self.isCurrentUser) {
+        return MRCReposItemViewModelOptionsShowOwnerLogin;
+    } else {
+        return MRCReposItemViewModelOptionsShowOwnerLogin | MRCReposItemViewModelOptionsMarkStarredStatus;
+    }
+}
+
 - (NSArray *)fetchLocalData {
     return [OCTRepository mrc_fetchUserStarredRepositories];
 }

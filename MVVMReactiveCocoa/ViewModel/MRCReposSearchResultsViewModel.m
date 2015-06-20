@@ -36,6 +36,10 @@
     return options;
 }
 
+- (MRCReposItemViewModelOptions)itemOptions {
+    return MRCReposItemViewModelOptionsShowOwnerLogin | MRCReposItemViewModelOptionsMarkStarredStatus;
+}
+
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         MRCSearch *search = [MRCSearch modelWithDictionary:@{ @"keyword": self.query, @"dateSearched": [NSDate date] } error:nil];
@@ -57,7 +61,7 @@
     if (repositories.count == 0) return nil;
     
     NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
-        return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository];
+        return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository options:self.itemOptions];
     }].array;
     
     return @[ repos ];

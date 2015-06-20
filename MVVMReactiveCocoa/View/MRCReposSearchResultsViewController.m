@@ -10,13 +10,10 @@
 #import "MRCReposSearchResultsViewModel.h"
 #import "MRCReposTableViewCell.h"
 #import "MRCReposSearchResultsItemViewModel.h"
-#import "UIImage+RTTint.h"
 
 @interface MRCReposSearchResultsViewController ()
 
 @property (strong, nonatomic, readonly) MRCReposSearchResultsViewModel *viewModel;
-@property (strong, nonatomic) UIImage *unstarImage;
-@property (strong, nonatomic) UIImage *starImage;
 
 @end
 
@@ -24,32 +21,8 @@
 
 @dynamic viewModel;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.unstarImage = [UIImage octicon_imageWithIdentifier:@"Star" size:CGSizeMake(12, 12)];
-    self.starImage   = [self.unstarImage rt_tintedImageWithColor:HexRGB(colorI5)];
-}
-
 - (NSString *)labelText {
     return @"Searching";
-}
-
-- (void)configureCell:(MRCReposTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCReposSearchResultsItemViewModel *)viewModel {
-    [super configureCell:cell atIndexPath:indexPath withObject:viewModel];
-    
-    @weakify(self)
-    [[[RACObserve(viewModel.repository, starredStatus)
-        distinctUntilChanged]
-        deliverOnMainThread]
-        subscribeNext:^(NSNumber *starredStatus) {
-            @strongify(self)
-             if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
-                 cell.starIconImageView.image = self.starImage;
-             } else {
-                 cell.starIconImageView.image = self.unstarImage;
-             }
-         }];
 }
 
 #pragma mark - UISearchBarDelegate

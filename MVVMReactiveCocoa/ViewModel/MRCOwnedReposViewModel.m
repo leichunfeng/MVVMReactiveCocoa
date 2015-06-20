@@ -7,14 +7,12 @@
 //
 
 #import "MRCOwnedReposViewModel.h"
-#import "MRCReposItemViewModel.h"
 #import "MRCRepoDetailViewModel.h"
 
 @interface MRCOwnedReposViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTUser *user;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
-@property (assign, nonatomic) MRCReposItemViewModelOptions itemOptions;
 
 @end
 
@@ -124,6 +122,10 @@
     return options;
 }
 
+- (MRCReposItemViewModelOptions)itemOptions {
+    return 0;
+}
+
 - (NSArray *)fetchLocalData {
     return [OCTRepository mrc_fetchUserRepositories];
 }
@@ -179,14 +181,6 @@
     }
     
     return repoOfRepos;
-}
-
-- (MRCReposItemViewModelOptions)itemOptions {
-    if (self.isCurrentUser && (self.type == MRCReposViewModelTypeOwned || self.type == MRCReposViewModelTypePublic)) {
-        return 0;
-    } else {
-        return MRCReposItemViewModelOptionsShowOwnerLogin;
-    }
 }
 
 @end

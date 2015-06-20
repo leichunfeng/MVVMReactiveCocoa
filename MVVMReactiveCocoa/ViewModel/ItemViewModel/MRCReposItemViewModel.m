@@ -14,15 +14,11 @@
 @property (copy, nonatomic, readwrite) NSString *identifier;
 @property (assign, nonatomic, readwrite) NSInteger hexRGB;
 @property (copy, nonatomic, readwrite) NSString *language;
-@property (assign, nonatomic) MRCReposItemViewModelOptions options;
+@property (assign, nonatomic, readwrite) MRCReposItemViewModelOptions options;
 
 @end
 
 @implementation MRCReposItemViewModel
-
-- (instancetype)initWithRepository:(OCTRepository *)repository {
-    return [self initWithRepository:repository options:0];
-}
 
 - (instancetype)initWithRepository:(OCTRepository *)repository options:(MRCReposItemViewModelOptions)options {
     self = [super init];
