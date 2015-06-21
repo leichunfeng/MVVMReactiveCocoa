@@ -7,6 +7,7 @@
 //
 
 #import "MRCRepoSettingsViewModel.h"
+#import "MRCUserDetailViewModel.h"
 
 @interface MRCRepoSettingsViewModel ()
 
@@ -32,7 +33,13 @@
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
-        if (indexPath.section == 1) {
+        if (indexPath.section == 0) {
+            NSDictionary *dictionary = @{ @"login": self.repository.ownerLogin ?: @"",
+                                          @"avatarURL": self.repository.ownerAvatarURL.absoluteString ?: @"" };
+            
+            MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:@{ @"user": dictionary }];
+            [self.services pushViewModel:viewModel animated:YES];
+        } else if (indexPath.section == 1) {
             if (indexPath.row == 0) {
                 return [[self.services client] mrc_starRepository:self.repository];
             } else if (indexPath.row == 1) {
