@@ -46,9 +46,9 @@
     networkHeaderView.frame = tableHeaderView.bounds;
     [tableHeaderView addSubview:networkHeaderView];
     
-    @weakify(self, tableHeaderView)
+    @weakify(self)
     [RACObserve(MRCSharedAppDelegate, networkStatus) subscribeNext:^(NSNumber *networkStatus) {
-        @strongify(self, tableHeaderView)
+        @strongify(self)
         self.tableView.tableHeaderView = (networkStatus.integerValue == NotReachable ? tableHeaderView : nil);
     }];
     
@@ -87,9 +87,7 @@
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
 
-    @weakify(self, tableView, viewModel)
     void (^handlerStar)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        @strongify(self, tableView, viewModel)
         tableView.editing = false;
         [[[self.viewModel.services client] mrc_starRepository:viewModel.repository] subscribeNext:^(id x) {}];
     };
@@ -99,7 +97,6 @@
                                                                         handler:handlerStar];
     
     void (^handlerUnstar)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        @strongify(self, tableView, viewModel)
         tableView.editing = false;
         [[[self.viewModel.services client] mrc_unstarRepository:viewModel.repository] subscribeNext:^(id x) {}];
     };
