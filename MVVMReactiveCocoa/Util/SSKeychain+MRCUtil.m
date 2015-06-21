@@ -44,6 +44,7 @@
 + (BOOL)deleteRawLogin {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:MRC_RAW_LOGIN];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     return YES;
 }
 
