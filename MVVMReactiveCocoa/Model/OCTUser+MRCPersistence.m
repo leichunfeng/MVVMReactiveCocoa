@@ -218,6 +218,8 @@
 }
 
 + (instancetype)mrc_fetchUserWithRawLogin:(NSString *)rawLogin {
+    if (rawLogin.length == 0) return nil;
+    
     OCTUser *user = nil;
     
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
@@ -384,7 +386,7 @@
             limit = @(page * perPage);
         }
         
-       	NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id LIMIT ?;";
+       	NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id ORDER BY u.id LIMIT ?;";
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
         if (rs == nil) {
