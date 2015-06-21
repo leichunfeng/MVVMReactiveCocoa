@@ -238,6 +238,72 @@
     return result;
 }
 
++ (BOOL)mrc_followUser:(OCTUser *)user {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = @"";
+        
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", user.objectID];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        if (![rs next]) { // INSERT
+            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@);", user.objectID, user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage)]];
+        }
+        
+        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Following_User VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], user.objectID]];
+        
+        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET followers = %@ WHERE id = %@;", @(user.followers+1), user.objectID]];
+        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET following = %@ WHERE id = %@;", @([OCTUser mrc_currentUser].following+1), [OCTUser mrc_currentUserId]]];
+        
+        BOOL success = [db executeStatements:sql];
+        if (!success) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        user.followingStatus = OCTUserFollowingStatusYES;
+        [user increaseFollowers];
+        [[OCTUser mrc_currentUser] increaseFollowing];
+    }
+    return YES;
+}
+
++ (BOOL)mrc_unfollowUser:(OCTUser *)user {
+    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    if ([db open]) {
+        @onExit {
+            [db close];
+        };
+        
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE userId = %@ AND targetUserId = %@;", [OCTUser mrc_currentUserId], user.objectID];
+        
+        if (user.followers != 0) {
+            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET followers = %@ WHERE id = %@;", @(user.followers-1), user.objectID]];
+        }
+        if ([OCTUser mrc_currentUser].following != 0) {
+            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET following = %@ WHERE id = %@;", @([OCTUser mrc_currentUser].following-1), [OCTUser mrc_currentUserId]]];
+        }
+        
+        BOOL success = [db executeStatements:sql];
+        if (!success) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        user.followingStatus = OCTUserFollowingStatusNO;
+        [user decreaseFollowers];
+        [[OCTUser mrc_currentUser] decreaseFollowing];
+    }
+    return YES;
+}
+
 #pragma mark - Fetch Users
 
 + (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
@@ -298,6 +364,46 @@
     }
     
     return followers;
+}
+
+- (void)increaseFollowers {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+    
+    dictionary[@"followers"] = @([dictionary[@"followers"] unsignedIntegerValue] + 1);
+    OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:dictionary error:nil];
+    
+    [self mergeValueForKey:@"followers" fromModel:user];
+}
+
+- (void)decreaseFollowers {
+    if (self.followers == 0) return;
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+    
+    dictionary[@"followers"] = @([dictionary[@"followers"] unsignedIntegerValue] - 1);
+    OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:dictionary error:nil];
+    
+    [self mergeValueForKey:@"followers" fromModel:user];
+}
+
+- (void)increaseFollowing {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+    
+    dictionary[@"following"] = @([dictionary[@"following"] unsignedIntegerValue] + 1);
+    OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:dictionary error:nil];
+    
+    [self mergeValueForKey:@"following" fromModel:user];
+}
+
+- (void)decreaseFollowing {
+    if (self.following == 0) return;
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+    
+    dictionary[@"following"] = @([dictionary[@"following"] unsignedIntegerValue] - 1);
+    OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:dictionary error:nil];
+    
+    [self mergeValueForKey:@"following" fromModel:user];
 }
 
 @end

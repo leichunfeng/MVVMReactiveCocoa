@@ -36,6 +36,9 @@ typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
 + (instancetype)mrc_fetchUserWithRawLogin:(NSString *)rawLogin;
 + (instancetype)mrc_fetchUser:(OCTUser *)user;
 
++ (BOOL)mrc_followUser:(OCTUser *)user;
++ (BOOL)mrc_unfollowUser:(OCTUser *)user;
+
 + (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 + (NSArray *)mrc_fetchFollowingWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 
