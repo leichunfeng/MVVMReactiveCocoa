@@ -78,7 +78,7 @@
          	}];
     }
     
-    [[[RACObserve(viewModel, avatarURL)
+    [[[RACObserve(viewModel.user, avatarURL)
         ignore:nil]
         distinctUntilChanged]
         subscribeNext:^(NSURL *avatarURL) {
@@ -103,11 +103,16 @@
         [MRCSharedAppDelegate.window.rootViewController presentViewController:viewController animated:YES completion:NULL];
     }];
     
-    RAC(self.nameLabel, text) = RACObserve(viewModel, name);
-    RAC(self.followersLabel, text) = RACObserve(viewModel, followers);
-    RAC(self.repositoriesLabel, text) = RACObserve(viewModel, repositories);
-    RAC(self.followingLabel, text) = RACObserve(viewModel, following);
+    RAC(self.nameLabel, text) = RACObserve(viewModel.user, login);
     
+    NSString * (^mapNumberToString)(NSNumber *) = ^(NSNumber *value) {
+        return value.stringValue;
+    };
+    
+    RAC(self.repositoriesLabel, text) = [RACObserve(viewModel.user, publicRepoCount) map:mapNumberToString];
+    RAC(self.followersLabel, text) = [[RACObserve(viewModel.user, followers) map:mapNumberToString] deliverOnMainThread];
+    RAC(self.followingLabel, text) = [[RACObserve(viewModel.user, following) map:mapNumberToString] deliverOnMainThread];
+
     self.followersButton.rac_command = viewModel.followersCommand;
     self.repositoriesButton.rac_command = viewModel.repositoriesCommand;
     self.followingButton.rac_command = viewModel.followingCommand;

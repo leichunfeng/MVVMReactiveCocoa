@@ -13,7 +13,9 @@
 - (RACSignal *)mrc_followUser:(OCTUser *)user {
     if (user.followingStatus == OCTUserFollowingStatusYES) return [RACSignal empty];
 
-    user.followingStatus = OCTUserFollowingStatusYES;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [OCTUser mrc_followUser:user];
+    });
     
     return [self followUser:user];
 }
@@ -21,7 +23,9 @@
 - (RACSignal *)mrc_unfollowUser:(OCTUser *)user {
     if (user.followingStatus == OCTUserFollowingStatusNO) return [RACSignal empty];
     
-    user.followingStatus = OCTUserFollowingStatusNO;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [OCTUser mrc_unfollowUser:user];
+    });
     
     return [self unfollowUser:user];
 }

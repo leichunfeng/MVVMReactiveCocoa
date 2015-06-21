@@ -34,7 +34,4 @@ typedef NS_ENUM(NSUInteger, OCTRepositoryStarredStatus) {
 
 + (NSArray *)mrc_matchStarredStatusForRepositories:(NSArray *)repositories;
 
-- (void)increaseStargazersCount;
-- (void)decreaseStargazersCount;
-
 @end
