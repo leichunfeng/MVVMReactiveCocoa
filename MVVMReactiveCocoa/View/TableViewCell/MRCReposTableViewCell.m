@@ -84,11 +84,17 @@ static UIImage *_tintedStarIcon = nil;
     }
     
     if (viewModel.options & MRCReposViewModelOptionsMarkStarredStatus) {
-        if (viewModel.repository.starredStatus == OCTRepositoryStarredStatusYES) {
-            self.starIconImageView.image = _tintedStarIcon;
-        } else {
-            self.starIconImageView.image = _starIcon;
-        }
+        @weakify(self)
+        [[RACObserve(viewModel.repository, starredStatus)
+            deliverOnMainThread]
+            subscribeNext:^(NSNumber *starredStatus) {
+                @strongify(self)
+                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
+                    self.starIconImageView.image = _tintedStarIcon;
+                } else {
+                    self.starIconImageView.image = _starIcon;
+                }
+            }];
     } else {
         self.starIconImageView.image = _starIcon;
     }
