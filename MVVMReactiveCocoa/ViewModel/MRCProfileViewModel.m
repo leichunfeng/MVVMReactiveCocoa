@@ -72,7 +72,7 @@
     }];
     
     id (^map)(NSString *) = ^(NSString *value) {
-        return value.length > 0 ? value : @"Not Set";
+        return (value.length > 0 && ![value isEqualToString:@"(null)"]) ? value : MRC_EMPTY_PLACEHOLDER;
     };
     
     RAC(self, company) = [RACObserve(self.user, company) map:map];

@@ -128,6 +128,8 @@ typedef id   (^IDBlock_id)  (id);
 
 #define MRC_PLACEHOLDER_IMAGE [HexRGB(0xEDEDED) color2Image]
 
+#define MRC_EMPTY_PLACEHOLDER @"Not Set"
+
 #define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
