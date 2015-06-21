@@ -50,6 +50,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.tableView registerClass:[MRCTableViewCellStyleValue1 class] forCellReuseIdentifier:@"MRCTableViewCellStyleValue1"];
     
+    @weakify(self)
     if (self.viewModel.shouldPullToRefresh) {
         self.refreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableView
                                                                       target:self
@@ -64,7 +65,6 @@
                                                      internalAnimationFactor:0.5];
     }
     
-    @weakify(self)
     if (self.viewModel.shouldInfiniteScrolling) {
         [self.tableView addInfiniteScrollingWithActionHandler:^{
             @strongify(self)
@@ -72,8 +72,8 @@
         		deliverOnMainThread]
             	subscribeNext:^(NSArray *results) {
                     @strongify(self)
-                    self.viewModel.page += 1;
                     [self.tableView.infiniteScrollingView stopAnimating];
+                    self.viewModel.page += 1;
                 } error:^(NSError *error) {
                     @strongify(self)
                     [self.tableView.infiniteScrollingView stopAnimating];
@@ -99,8 +99,8 @@
 }
 
 - (void)dealloc {
-    self.tableView.dataSource = nil;
-    self.tableView.delegate = nil;
+    _tableView.dataSource = nil;
+    _tableView.delegate = nil;
 }
 
 - (void)bindViewModel {

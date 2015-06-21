@@ -1,5 +1,4 @@
 PODS:
-  - CBStoreHouseRefreshControl (1.0)
   - DZNEmptyDataSet (1.5.2)
   - FDFullscreenPopGesture (1.1)
   - FMDB (2.5):
@@ -46,8 +45,6 @@ PODS:
   - WebViewJavascriptBridge (4.1.4)
 
 DEPENDENCIES:
-  - CBStoreHouseRefreshControl (from `git@github.com:coolbeet/CBStoreHouseRefreshControl.git`,
-    commit `0bec93d`)
   - DZNEmptyDataSet (~> 1.5.1)
   - FDFullscreenPopGesture (~> 1.1)
   - FMDB
@@ -67,23 +64,16 @@ DEPENDENCIES:
   - WebViewJavascriptBridge (~> 4.1.4)
 
 EXTERNAL SOURCES:
-  CBStoreHouseRefreshControl:
-    :commit: 0bec93d
-    :git: git@github.com:coolbeet/CBStoreHouseRefreshControl.git
   OcticonsIOS:
     :commit: 4bd3b21
     :git: git@github.com:jacksonh/OcticonsIOS.git
 
 CHECKOUT OPTIONS:
-  CBStoreHouseRefreshControl:
-    :commit: 0bec93d
-    :git: git@github.com:coolbeet/CBStoreHouseRefreshControl.git
   OcticonsIOS:
     :commit: 4bd3b21
     :git: git@github.com:jacksonh/OcticonsIOS.git
 
 SPEC CHECKSUMS:
-  CBStoreHouseRefreshControl: a814bd725e74ff4c1e8dd96eb02358199b0da04f
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52

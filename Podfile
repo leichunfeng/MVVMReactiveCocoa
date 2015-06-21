@@ -21,4 +21,4 @@ pod 'UMengSocial', '~> 4.2.2'
 pod 'FDFullscreenPopGesture', '~> 1.1'
 
 pod 'OcticonsIOS', :git => 'git@github.com:jacksonh/OcticonsIOS.git', :commit => '4bd3b21'
-pod 'CBStoreHouseRefreshControl', :git => 'git@github.com:coolbeet/CBStoreHouseRefreshControl.git', :commit => '0bec93d'
+#pod 'CBStoreHouseRefreshControl', :git => 'git@github.com:coolbeet/CBStoreHouseRefreshControl.git', :commit => '0bec93d'

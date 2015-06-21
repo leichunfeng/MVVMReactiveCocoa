@@ -55,9 +55,9 @@
                                            placeholderImage:[UIImage imageNamed:@"default-avatar"]
                                 usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
-        @weakify(self)
+        @weakify(self, ownerTableViewCell)
         [[ownerTableViewCell.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            @strongify(self)
+            @strongify(self, ownerTableViewCell)
             TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:ownerTableViewCell.avatarImageView.image];
             
             viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);

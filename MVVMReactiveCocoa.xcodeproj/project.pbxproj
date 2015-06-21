@@ -169,6 +169,10 @@
 		24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */; };
 		24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */; };
 		24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */; };
+		24FF300C1B370CFA00915F8E /* BarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30071B370CFA00915F8E /* BarItem.m */; };
+		24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */; };
+		24FF300E1B370CFA00915F8E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24FF300A1B370CFA00915F8E /* LICENSE */; };
+		24FF300F1B370CFA00915F8E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 24FF300B1B370CFA00915F8E /* README.md */; };
 		55C1332CC55A71EEC19CAF90 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -625,6 +629,12 @@
 		24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MRCBackBarButtonItem.m"; sourceTree = "<group>"; };
 		24FDDEE61B31C6660040B5C3 /* MRCFollowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCFollowButton.h; sourceTree = "<group>"; };
 		24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCFollowButton.m; sourceTree = "<group>"; };
+		24FF30061B370CFA00915F8E /* BarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarItem.h; sourceTree = "<group>"; };
+		24FF30071B370CFA00915F8E /* BarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarItem.m; sourceTree = "<group>"; };
+		24FF30081B370CFA00915F8E /* CBStoreHouseRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBStoreHouseRefreshControl.h; sourceTree = "<group>"; };
+		24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStoreHouseRefreshControl.m; sourceTree = "<group>"; };
+		24FF300A1B370CFA00915F8E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		24FF300B1B370CFA00915F8E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D1B559736D8D7A568B2FA04F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E408154D3BF129981C1EFFEF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1048,6 +1058,7 @@
 		24313CAC1A7D3CA700FA357E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				24FF30041B370CFA00915F8E /* CBStoreHouseRefreshControl */,
 				249E5B271B065D4600BFDEA1 /* Vertigo */,
 				2479C9301AAD39150057B681 /* TWMessageBarManager */,
 				243140121A7DD6E800FA357E /* assets.bundle */,
@@ -1176,6 +1187,27 @@
 				24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		24FF30041B370CFA00915F8E /* CBStoreHouseRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				24FF30051B370CFA00915F8E /* Class */,
+				24FF300A1B370CFA00915F8E /* LICENSE */,
+				24FF300B1B370CFA00915F8E /* README.md */,
+			);
+			path = CBStoreHouseRefreshControl;
+			sourceTree = "<group>";
+		};
+		24FF30051B370CFA00915F8E /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				24FF30061B370CFA00915F8E /* BarItem.h */,
+				24FF30071B370CFA00915F8E /* BarItem.m */,
+				24FF30081B370CFA00915F8E /* CBStoreHouseRefreshControl.h */,
+				24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
@@ -1445,6 +1477,7 @@
 				24619DAC1B1BF3CC0097258E /* update_v1_1_0.sql in Resources */,
 				243688211B25D18300D801D3 /* update_v1_2_0.sql in Resources */,
 				246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */,
+				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
@@ -1607,15 +1640,18 @@
 				249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */,
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				24B1045F1B04CE100046473E /* OCTClient+MRCRepository.m in Sources */,
+				24FF300F1B370CFA00915F8E /* README.md in Sources */,
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
 				24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */,
 				243688391B25E2D700D801D3 /* MRCUserListViewModel.m in Sources */,
+				24FF300C1B370CFA00915F8E /* BarItem.m in Sources */,
 				249E5B341B065D4600BFDEA1 /* TGRImageViewController.m in Sources */,
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
 				240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */,
+				24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */,
 				243688461B25E33700D801D3 /* MRCUserListItemViewModel.m in Sources */,
 				2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,

@@ -82,7 +82,7 @@
 }
 
 - (void)dealloc {
-    self.readmeTableViewCell.webView.delegate = nil;
+    _readmeTableViewCell.webView.delegate = nil;
 }
 
 - (void)bindViewModel {
