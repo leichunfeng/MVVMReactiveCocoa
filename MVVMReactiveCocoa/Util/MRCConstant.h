@@ -126,7 +126,8 @@ typedef id   (^IDBlock_id)  (id);
 #define colorI4 0xe9dba5
 #define colorI5 0x24AFFC
 #define colorI6 0xEDEDED
-#define colorI7 0xEFEDEA
+//#define colorI6 0xE1E8ED
+//#define colorI6 0xEFEDEA
 
 #define MRC_PLACEHOLDER_IMAGE [HexRGB(0xEDEDED) color2Image]
 

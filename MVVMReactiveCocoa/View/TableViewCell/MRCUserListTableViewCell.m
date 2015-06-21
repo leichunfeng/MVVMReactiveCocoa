@@ -34,8 +34,7 @@
 - (void)bindViewModel:(MRCUserListItemViewModel *)viewModel {
     self.viewModel = viewModel;
     
-    [self.avatarImageView setImageWithURL:viewModel.avatarURL usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
+    [self.avatarImageView sd_setImageWithURL:viewModel.avatarURL];
     self.loginLabel.text = viewModel.login;
     self.htmlLabel.text = viewModel.user.HTMLURL.absoluteString;
     
