@@ -33,6 +33,11 @@
         NSString *sql = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? LIMIT 1;", self.objectID];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         if (![rs next]) { // INSERT
             sql = @"INSERT INTO Repository VALUES (:id, :name, :owner_login, :owner_avatar_url, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);";
         } else { // UPDATE
@@ -88,6 +93,11 @@
         NSMutableArray *oldIDs = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT id FROM Repository;"];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -129,7 +139,13 @@
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Starred_Repository WHERE userId = %@ AND repositoryId NOT IN (%@);", [OCTUser mrc_currentUserId], newIDs];
         
         NSMutableArray *oldIDs = nil;
+      
         FMResultSet *rs = [db executeQuery:@"SELECT repositoryId FROM User_Starred_Repository WHERE userId = ?;", [OCTUser mrc_currentUserId]];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -165,6 +181,11 @@
         NSString *sql = @"SELECT * FROM Repository WHERE id = ? LIMIT 1;";
         
         FMResultSet *rs = [db executeQuery:sql, repository.objectID];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         if ([rs next]) {
             NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
             dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
@@ -188,6 +209,11 @@
         NSString *sql = @"SELECT * FROM Repository WHERE owner_login = ? ORDER BY LOWER(name);";
 
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUser].login];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         while ([rs next]) {
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
@@ -217,6 +243,11 @@
         NSString *sql = @"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = ? AND usr.repositoryId = r.id ORDER BY LOWER(name);";
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         while ([rs next]) {
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
@@ -253,6 +284,11 @@
         sql = [sql stringByAppendingString:@";"];
         
         FMResultSet *rs = [db executeQuery:sql];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         while ([rs next]) {
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
@@ -280,7 +316,12 @@
         };
         
         NSString *sql = @"SELECT * FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ? LIMIT 1;";
+        
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], repository.objectID];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
         
         return [rs next];
     }

@@ -26,7 +26,13 @@
         };
         
         NSString *sql = @"SELECT * FROM Search WHERE userId = ? ORDER BY searched_at DESC";
+       
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         while ([rs next]) {
             @autoreleasepool {
                 if (recentSearches == nil) recentSearches = [NSMutableArray new];
@@ -68,6 +74,11 @@
         NSString *sql = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM Search WHERE keyword = ? AND userId = ? LIMIT 1;", self.keyword, [OCTUser mrc_currentUserId]];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         if (![rs next]) {
             sql = @"INSERT INTO Search VALUES (:id, :keyword, :searched_at, :userId);";
         } else {
