@@ -54,9 +54,11 @@
             mrcLogLastError(db);
             return NO;
         }
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 - (BOOL)mrc_delete {
@@ -72,9 +74,11 @@
             mrcLogLastError(db);
             return NO;
         }
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 #pragma mark - Save Or Update Repositories
@@ -118,9 +122,11 @@
             mrcLogLastError(db);
             return NO;
         }
+        
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 + (BOOL)mrc_saveOrUpdateStarredStatusWithRepositories:(NSArray *)repositories {
@@ -162,9 +168,11 @@
             mrcLogLastError(db);
             return NO;
         }
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 #pragma mark - Fetch Repositories
@@ -360,9 +368,11 @@
         
         repository.starredStatus = OCTRepositoryStarredStatusYES;
         [repository increaseStargazersCount];
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 + (BOOL)mrc_unstarRepository:(OCTRepository *)repository {
@@ -387,9 +397,11 @@
         
         repository.starredStatus = OCTRepositoryStarredStatusNO;
         [repository decreaseStargazersCount];
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 + (NSArray *)mrc_matchStarredStatusForRepositories:(NSArray *)repositories {

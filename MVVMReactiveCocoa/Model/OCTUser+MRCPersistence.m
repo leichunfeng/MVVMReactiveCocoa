@@ -57,9 +57,11 @@
             mrcLogLastError(db);
             return NO;
         }
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 - (BOOL)mrc_delete {
@@ -107,9 +109,11 @@
             mrcLogLastError(db);
             return NO;
         }
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 + (BOOL)mrc_saveOrUpdateFollowerStatusWithUsers:(NSArray *)users {
@@ -151,9 +155,11 @@
             mrcLogLastError(db);
             return NO;
         }
+        
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 + (BOOL)mrc_saveOrUpdateFollowingStatusWithUsers:(NSArray *)users {
@@ -195,9 +201,11 @@
             mrcLogLastError(db);
             return NO;
         }
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 #pragma mark - Fetch UserId
@@ -299,9 +307,11 @@
         user.followingStatus = OCTUserFollowingStatusYES;
         [user increaseFollowers];
         [[OCTUser mrc_currentUser] increaseFollowing];
+    
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 + (BOOL)mrc_unfollowUser:(OCTUser *)user {
@@ -330,9 +340,11 @@
         user.followingStatus = OCTUserFollowingStatusNO;
         [user decreaseFollowers];
         [[OCTUser mrc_currentUser] decreaseFollowing];
+
+        return YES;
     }
     
-    return YES;
+    return NO;
 }
 
 #pragma mark - Fetch Users
