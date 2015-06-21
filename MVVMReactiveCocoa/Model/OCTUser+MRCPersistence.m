@@ -41,6 +41,11 @@
         NSString *sql = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", self.objectID];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         if (![rs next]) { // INSERT
             sql = @"INSERT INTO User VALUES (:id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :html_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);";
         } else { // UPDATE
@@ -75,7 +80,13 @@
         NSString *sql = @"";
         
         NSMutableArray *oldIDs = nil;
+        
         FMResultSet *rs = [db executeQuery:@"SELECT id FROM User;"];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -117,7 +128,13 @@
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE userId NOT IN (%@) AND targetUserId = %@;", newIDs, [OCTUser mrc_currentUserId]];
         
         NSMutableArray *oldIDs = nil;
+        
         FMResultSet *rs = [db executeQuery:@"SELECT userId FROM User_Following_User WHERE targetUserId = ?;", [OCTUser mrc_currentUserId]];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+      
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -155,7 +172,13 @@
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE targetUserId NOT IN (%@) AND userId = %@;", newIDs, [OCTUser mrc_currentUserId]];
         
         NSMutableArray *oldIDs = nil;
+       
         FMResultSet *rs = [db executeQuery:@"SELECT targetUserId FROM User_Following_User WHERE userId = ?;", [OCTUser mrc_currentUserId]];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -204,6 +227,11 @@
         };
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? OR email = ? LIMIT 1;", rawLogin, rawLogin];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         if ([rs next]) {
             user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
         }
@@ -222,6 +250,11 @@
         };
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? LIMIT 1;", user.login];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         if ([rs next]) {
             result = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
         }
@@ -319,6 +352,11 @@
         NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.targetUserId = ? AND ufu.userId = u.id LIMIT ?;";
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         while ([rs next]) {
             @autoreleasepool {
                 if (followers == nil) followers = [NSMutableArray new];
@@ -349,6 +387,11 @@
        	NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id LIMIT ?;";
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return nil;
+        }
+        
         while ([rs next]) {
             @autoreleasepool {
                 if (followers == nil) followers = [NSMutableArray new];
