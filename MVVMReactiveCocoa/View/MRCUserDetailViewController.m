@@ -43,6 +43,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self tableView:tableView dequeueReusableCellWithIdentifier:@"MRCTableViewCellStyleValue1" forIndexPath:indexPath];
     
+    cell.accessoryType  = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Person"
@@ -50,8 +53,11 @@
                                                         iconColor:HexRGB(0x24AFFC)
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
+            
             cell.textLabel.text = @"Name";
             cell.detailTextLabel.text = self.viewModel.user.name;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 1) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Star"
                                                   backgroundColor:UIColor.clearColor
@@ -59,6 +65,7 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Starred Repos";
+            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else if (indexPath.section == 1) {
@@ -69,6 +76,8 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = self.viewModel.company;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 1) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Location"
                                                   backgroundColor:UIColor.clearColor
@@ -76,6 +85,8 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = self.viewModel.location;
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         } else if (indexPath.row == 2) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Mail"
                                                   backgroundColor:UIColor.clearColor
@@ -83,6 +94,12 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = self.viewModel.email;
+            
+            if ([self.viewModel.email isEqualToString:MRC_EMPTY_PLACEHOLDER]) {
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
         } else if (indexPath.row == 3) {
             cell.imageView.image = [UIImage octicon_imageWithIcon:@"Link"
                                                   backgroundColor:UIColor.clearColor
@@ -90,10 +107,30 @@
                                                         iconScale:1
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = self.viewModel.blog;
+            
+            if ([self.viewModel.blog isEqualToString:MRC_EMPTY_PLACEHOLDER]) {
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
         }
     }
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    if (indexPath.section == 1) {
+        if (indexPath.row == 2) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@", self.viewModel.email]]];
+        } else if (indexPath.row == 3) {
+            [UIApplication.sharedApplication openURL:[NSURL URLWithString:self.viewModel.blog]];
+        }
+    }
 }
 
 @end
