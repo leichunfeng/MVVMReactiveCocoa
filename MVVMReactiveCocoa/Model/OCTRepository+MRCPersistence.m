@@ -302,19 +302,32 @@
             [db close];
         };
         
-        NSString *sql = @"INSERT INTO User_Starred_Repository VALUES (?, ?, ?);";
+        NSString *sql = @"";
         
-        BOOL success = [db executeUpdate:sql, nil, [OCTUser mrc_currentUserId], repository.objectID];
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? LIMIT 1;", repository.objectID];
+        if (rs == nil) {
+            mrcLogLastError(db);
+            return NO;
+        }
+        
+        if (![rs next]) { // INSERT
+            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO Repository VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@);", repository.objectID, repository.name.escapeSingleQuote, repository.ownerLogin.escapeSingleQuote, repository.ownerAvatarURL.absoluteString.escapeSingleQuote, repository.repoDescription.escapeSingleQuote, repository.language.escapeSingleQuote, [NSDateFormatter oct_stringFromDate:repository.datePushed], [NSDateFormatter oct_stringFromDate:repository.dateCreated], [NSDateFormatter oct_stringFromDate:repository.dateUpdated], repository.HTTPSURL.absoluteString.escapeSingleQuote, repository.SSHURL.escapeSingleQuote, repository.gitURL.absoluteString.escapeSingleQuote, repository.HTMLURL.absoluteString.escapeSingleQuote, repository.defaultBranch.escapeSingleQuote, @(repository.private), @(repository.fork), @(repository.watchersCount), @(repository.forksCount), @(repository.stargazersCount), @(repository.openIssuesCount), @(repository.subscribersCount)]];
+        }
+        
+        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Starred_Repository VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], repository.objectID]];
+
+        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE Repository SET stargazers_count = %@ WHERE id = %@;", @(repository.stargazersCount+1), repository.objectID]];
+        
+        BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
             return NO;
         }
         
         repository.starredStatus = OCTRepositoryStarredStatusYES;
-        
-        return YES;
+        [repository increaseStargazersCount];
     }
-    return NO;
+    return YES;
 }
 
 + (BOOL)mrc_unstarRepository:(OCTRepository *)repository {
@@ -324,19 +337,22 @@
             [db close];
         };
         
-        NSString *sql = @"DELETE FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ?;";
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Starred_Repository WHERE userId = %@ AND repositoryId = %@;", [OCTUser mrc_currentUserId], repository.objectID];
         
-        BOOL success = [db executeUpdate:sql, [OCTUser mrc_currentUserId], repository.objectID];
+        if (repository.stargazersCount != 0) {
+            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE Repository SET stargazers_count = %@ WHERE id = %@;", @(repository.stargazersCount-1), repository.objectID]];
+        }
+        
+        BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
             return NO;
         }
         
         repository.starredStatus = OCTRepositoryStarredStatusNO;
-        
-        return YES;
+        [repository decreaseStargazersCount];
     }
-    return NO;
+    return YES;
 }
 
 + (NSArray *)mrc_matchStarredStatusForRepositories:(NSArray *)repositories {
@@ -357,6 +373,26 @@
     }
 
     return repositories;
+}
+
+- (void)increaseStargazersCount {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+   
+    dictionary[@"stargazers_count"] = @([dictionary[@"stargazers_count"] unsignedIntegerValue] + 1);
+    OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+    
+    [self mergeValueForKey:@"stargazersCount" fromModel:repo];
+}
+
+- (void)decreaseStargazersCount {
+    if (self.stargazersCount == 0) return;
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
+    
+    dictionary[@"stargazers_count"] = @([dictionary[@"stargazers_count"] unsignedIntegerValue] - 1);
+    OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+    
+    [self mergeValueForKey:@"stargazersCount" fromModel:repo];
 }
 
 @end

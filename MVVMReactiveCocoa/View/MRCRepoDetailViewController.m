@@ -163,9 +163,14 @@
         MRCRepoStatisticsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCRepoStatisticsTableViewCell" forIndexPath:indexPath];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.watchLabel.text = @(self.viewModel.repository.subscribersCount).stringValue;
-        cell.starLabel.text  = @(self.viewModel.repository.stargazersCount).stringValue;
         cell.forkLabel.text  = @(self.viewModel.repository.forksCount).stringValue;
+        cell.watchLabel.text = @(self.viewModel.repository.subscribersCount).stringValue;
+
+        [[RACObserve(self.viewModel.repository, stargazersCount)
+            deliverOnMainThread]
+            subscribeNext:^(NSNumber *stargazersCount) {
+                cell.starLabel.text = stargazersCount.stringValue;
+            }];
         
         return cell;
     } else if (indexPath.section == 1) {

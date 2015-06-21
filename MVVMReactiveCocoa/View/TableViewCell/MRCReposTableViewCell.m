@@ -66,8 +66,15 @@ static UIImage *_tintedStarIcon = nil;
     }
     
     self.languageLabel.text  = viewModel.language;
-    self.starCountLabel.text = @(viewModel.repository.stargazersCount).stringValue;
     self.forkCountLabel.text = @(viewModel.repository.forksCount).stringValue;
+
+    @weakify(self)
+    [[RACObserve(viewModel.repository, stargazersCount)
+        deliverOnMainThread]
+        subscribeNext:^(NSNumber *stargazersCount) {
+            @strongify(self)
+            self.starCountLabel.text = stargazersCount.stringValue;
+        }];
     
     if (viewModel.repository.isPrivate) {
         self.iconImageView.image = _lockIcon;
@@ -84,7 +91,6 @@ static UIImage *_tintedStarIcon = nil;
     }
     
     if (viewModel.options & MRCReposViewModelOptionsMarkStarredStatus) {
-        @weakify(self)
         [[RACObserve(viewModel.repository, starredStatus)
             deliverOnMainThread]
             subscribeNext:^(NSNumber *starredStatus) {
