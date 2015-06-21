@@ -49,8 +49,7 @@
         MRCRepoSettingsOwnerTableViewCell *ownerTableViewCell = (MRCRepoSettingsOwnerTableViewCell *)cell;
         
         self.avatarImageView = ownerTableViewCell.avatarImageView;
-
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         [ownerTableViewCell.avatarImageView setImageWithURL:self.viewModel.repository.ownerAvatarURL
                                            placeholderImage:[UIImage imageNamed:@"default-avatar"]
