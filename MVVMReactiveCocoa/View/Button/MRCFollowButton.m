@@ -8,63 +8,12 @@
 
 #import "MRCFollowButton.h"
 
-#define MRC_FOLLOW_COLOR HexRGB(colorI3)
-#define MRC_UNFOLLOW_COLOR [UIColor whiteColor]
+#define MRC_FOLLOW_BUTTON_IMAGE_SIZE CGSizeMake(16, 16)
 
-static UIImage *followImage = nil;
-static UIImage *unfollowImage = nil;
-static UIImage *followBackgroundImage = nil;
-static UIImage *unfollowBackgroundImage = nil;
+static UIImage *_image = nil;
+static UIImage *_selectedImage = nil;
 
 @implementation MRCFollowButton
-
-+ (UIImage *)followImage {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        followImage = [UIImage octicon_imageWithIcon:@"Person"
-                                     backgroundColor:[UIColor clearColor]
-                                           iconColor:MRC_FOLLOW_COLOR
-                                           iconScale:1
-                                             andSize:CGSizeMake(15, 15)];
-    });
-    return followImage;
-}
-
-+ (UIImage *)unfollowImage {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        unfollowImage = [UIImage octicon_imageWithIcon:@"Person"
-                                       backgroundColor:[UIColor clearColor]
-                                             iconColor:MRC_UNFOLLOW_COLOR
-                                             iconScale:1
-                                               andSize:CGSizeMake(15, 15)];
-    });
-    return unfollowImage;
-}
-
-+ (UIImage *)followBackgroundImageWithSize:(CGSize)size {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        followBackgroundImage = [UIImage octicon_imageWithIcon:@"Person"
-                                               backgroundColor:MRC_UNFOLLOW_COLOR
-                                                     iconColor:[UIColor clearColor]
-                                                     iconScale:1
-                                                       andSize:size];
-    });
-    return followBackgroundImage;
-}
-
-+ (UIImage *)unfollowBackgroundImageWithSize:(CGSize)size {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        unfollowBackgroundImage = [UIImage octicon_imageWithIcon:@"Person"
-                                                 backgroundColor:MRC_FOLLOW_COLOR
-                                                       iconColor:[UIColor clearColor]
-                                                       iconScale:1
-                                                         andSize:size];
-    });
-    return unfollowBackgroundImage;
-}
 
 - (id)init {
     self = [super init];
@@ -91,30 +40,47 @@ static UIImage *unfollowBackgroundImage = nil;
 }
 
 - (void)initialize {
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = MRC_FOLLOW_COLOR.CGColor;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _image = [UIImage octicon_imageWithIcon:@"Person"
+                                backgroundColor:[UIColor clearColor]
+                                      iconColor:HexRGB(0xffffff)
+                                      iconScale:1
+                                        andSize:MRC_FOLLOW_BUTTON_IMAGE_SIZE];
+        _selectedImage = [UIImage octicon_imageWithIcon:@"Person"
+                                        backgroundColor:[UIColor clearColor]
+                                              iconColor:HexRGB(0x333333)
+                                              iconScale:1
+                                                andSize:MRC_FOLLOW_BUTTON_IMAGE_SIZE];
+    });
+    
+    self.layer.borderColor = HexRGB(0xd5d5d5).CGColor;
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     
-    self.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     self.contentEdgeInsets = UIEdgeInsetsMake(7, 1, 7, 3);
+    
+    [self setImage:_image forState:UIControlStateNormal];
+    [self setTitle:@"Follow" forState:UIControlStateNormal];
+    [self setTitleColor:HexRGB(0xffffff) forState:UIControlStateNormal];
+    
+    [self setImage:_selectedImage forState:UIControlStateSelected];
+    [self setTitle:@"Unfollow" forState:UIControlStateSelected];
+    [self setTitleColor:HexRGB(0x333333) forState:UIControlStateSelected];
+    
+    self.selected = NO;
 }
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
-    
-    if (selected) {
-        [self setImage:[self.class unfollowImage] forState:UIControlStateNormal];
-        [self setTitle:@"Unfollow" forState:UIControlStateNormal];
-        [self setTitleColor:MRC_UNFOLLOW_COLOR forState:UIControlStateNormal];
-        [self sizeToFit];
-        [self setBackgroundImage:[self.class unfollowBackgroundImageWithSize:self.frame.size] forState:UIControlStateNormal];
+
+    if (!selected) {
+        self.backgroundColor = HexRGB(0x569e3d);
+        self.layer.borderWidth = 0;
     } else {
-        [self setImage:[self.class followImage] forState:UIControlStateNormal];
-        [self setTitle:@"Follow" forState:UIControlStateNormal];
-        [self setTitleColor:MRC_FOLLOW_COLOR forState:UIControlStateNormal];
-        [self sizeToFit];
-        [self setBackgroundImage:[self.class followBackgroundImageWithSize:self.frame.size] forState:UIControlStateNormal];
+        self.backgroundColor = HexRGB(0xeeeeee);
+        self.layer.borderWidth = 1;
     }
 }
 
