@@ -150,7 +150,7 @@
                                 <action selector="didClickOperationButton:" destination="5Gh-f3-t2G" eventType="touchUpInside" id="3Rh-xy-Kzm"/>
                             </connections>
                         </button>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="DJB-bO-ym8">
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DJB-bO-ym8">
                             <rect key="frame" x="367" y="77" width="20" height="20"/>
                         </activityIndicatorView>
                     </subviews>

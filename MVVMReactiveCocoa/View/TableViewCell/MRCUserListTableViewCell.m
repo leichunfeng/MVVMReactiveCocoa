@@ -26,7 +26,7 @@
 @implementation MRCUserListTableViewCell
 
 - (void)awakeFromNib {
-    self.avatarImageView.backgroundColor = HexRGB(0xEFEDEA);
+    self.avatarImageView.backgroundColor = HexRGB(colorI6);
     self.avatarImageView.layer.cornerRadius = 5;
     self.avatarImageView.clipsToBounds = YES;
 }
@@ -34,7 +34,8 @@
 - (void)bindViewModel:(MRCUserListItemViewModel *)viewModel {
     self.viewModel = viewModel;
     
-    [self.avatarImageView sd_setImageWithURL:viewModel.avatarURL];
+    [self.avatarImageView setImageWithURL:viewModel.avatarURL usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
     self.loginLabel.text = viewModel.login;
     self.htmlLabel.text = viewModel.user.HTMLURL.absoluteString;
     
