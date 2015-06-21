@@ -61,14 +61,6 @@ static UIImage *_selectedImage = nil;
     self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     self.contentEdgeInsets = UIEdgeInsetsMake(7, 1, 7, 3);
     
-    [self setImage:_image forState:UIControlStateNormal];
-    [self setTitle:@"Follow" forState:UIControlStateNormal];
-    [self setTitleColor:HexRGB(0xffffff) forState:UIControlStateNormal];
-    
-    [self setImage:_selectedImage forState:UIControlStateSelected];
-    [self setTitle:@"Unfollow" forState:UIControlStateSelected];
-    [self setTitleColor:HexRGB(0x333333) forState:UIControlStateSelected];
-    
     self.selected = NO;
 }
 
@@ -76,9 +68,17 @@ static UIImage *_selectedImage = nil;
     [super setSelected:selected];
 
     if (!selected) {
+        [self setImage:_image forState:UIControlStateNormal];
+        [self setTitle:@"Follow" forState:UIControlStateNormal];
+        [self setTitleColor:HexRGB(0xffffff) forState:UIControlStateNormal];
+        
         self.backgroundColor = HexRGB(0x569e3d);
         self.layer.borderWidth = 0;
     } else {
+        [self setImage:_selectedImage forState:UIControlStateNormal];
+        [self setTitle:@"Unfollow" forState:UIControlStateNormal];
+        [self setTitleColor:HexRGB(0x333333) forState:UIControlStateNormal];
+        
         self.backgroundColor = HexRGB(0xeeeeee);
         self.layer.borderWidth = 1;
     }
