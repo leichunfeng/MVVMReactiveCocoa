@@ -14,7 +14,7 @@
     if (repository.starredStatus == OCTRepositoryStarredStatusYES) return [RACSignal empty];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if ([repository mrc_saveOrUpdate] && [OCTRepository mrc_starRepository:repository]) {
+        if ([OCTRepository mrc_starRepository:repository]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:MRCStarredReposDidChangeNotification object:nil];
         }
     });
