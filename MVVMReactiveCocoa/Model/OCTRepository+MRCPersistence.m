@@ -49,11 +49,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 - (BOOL)mrc_delete {
@@ -69,11 +67,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 #pragma mark - Save Or Update Repositories
@@ -112,11 +108,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 + (BOOL)mrc_saveOrUpdateStarredStatusWithRepositories:(NSArray *)repositories {
@@ -152,11 +146,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 #pragma mark - Fetch Repositories
@@ -297,6 +289,7 @@
 
 + (BOOL)mrc_starRepository:(OCTRepository *)repository {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
     if ([db open]) {
         @onExit {
             [db close];
@@ -327,11 +320,13 @@
         repository.starredStatus = OCTRepositoryStarredStatusYES;
         [repository increaseStargazersCount];
     }
+    
     return YES;
 }
 
 + (BOOL)mrc_unstarRepository:(OCTRepository *)repository {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
     if ([db open]) {
         @onExit {
             [db close];
@@ -352,6 +347,7 @@
         repository.starredStatus = OCTRepositoryStarredStatusNO;
         [repository decreaseStargazersCount];
     }
+    
     return YES;
 }
 

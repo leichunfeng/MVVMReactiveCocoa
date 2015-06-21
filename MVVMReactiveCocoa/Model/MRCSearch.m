@@ -82,11 +82,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 - (BOOL)mrc_delete {
@@ -102,11 +100,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 @end

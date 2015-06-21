@@ -52,11 +52,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 - (BOOL)mrc_delete {
@@ -98,11 +96,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 + (BOOL)mrc_saveOrUpdateFollowerStatusWithUsers:(NSArray *)users {
@@ -138,11 +134,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 + (BOOL)mrc_saveOrUpdateFollowingStatusWithUsers:(NSArray *)users {
@@ -178,11 +172,9 @@
             mrcLogLastError(db);
             return NO;
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 #pragma mark - Fetch UserId
@@ -240,6 +232,7 @@
 
 + (BOOL)mrc_followUser:(OCTUser *)user {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
     if ([db open]) {
         @onExit {
             [db close];
@@ -272,11 +265,13 @@
         [user increaseFollowers];
         [[OCTUser mrc_currentUser] increaseFollowing];
     }
+    
     return YES;
 }
 
 + (BOOL)mrc_unfollowUser:(OCTUser *)user {
     FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    
     if ([db open]) {
         @onExit {
             [db close];
@@ -301,6 +296,7 @@
         [user decreaseFollowers];
         [[OCTUser mrc_currentUser] decreaseFollowing];
     }
+    
     return YES;
 }
 
