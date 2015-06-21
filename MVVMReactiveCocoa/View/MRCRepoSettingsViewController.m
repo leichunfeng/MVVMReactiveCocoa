@@ -52,7 +52,6 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         [ownerTableViewCell.avatarImageView setImageWithURL:self.viewModel.repository.ownerAvatarURL
-                                           placeholderImage:[UIImage imageNamed:@"default-avatar"]
                                 usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         
         @weakify(self, ownerTableViewCell)
