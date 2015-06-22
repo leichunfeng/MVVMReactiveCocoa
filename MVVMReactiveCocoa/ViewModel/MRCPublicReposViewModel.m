@@ -54,7 +54,7 @@
     @weakify(self)
     return [[[self.services
     	client]
-    	fetchRepositoriesWithUser:self.user page:page perPage:self.perPage].collect
+    	fetchPublicRepositoriesForUser:self.user page:page perPage:self.perPage].collect
     	map:^(NSArray *repositories) {
             @strongify(self)
             if (page != 1) {

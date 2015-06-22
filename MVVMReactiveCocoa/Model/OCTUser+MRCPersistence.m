@@ -291,7 +291,7 @@
         }
         
         if (![rs next]) { // INSERT
-            BOOL success = [db executeUpdate:INSERT_STATEMENT, [MTLJSONAdapter JSONDictionaryFromModel:user]];
+            BOOL success = [db executeUpdate:INSERT_STATEMENT withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:user]];
             if (!success) {
                 mrcLogLastError(db);
                 result = NO;
