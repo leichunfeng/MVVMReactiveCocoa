@@ -33,13 +33,6 @@
     return NO;
 }
 
-- (NSString *)escapeSingleQuote {
-    if (self.length > 0) {
-        return [self stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
-    }
-    return self;
-}
-
 @end
 
 @implementation UIColor (Util)
@@ -56,14 +49,6 @@
     UIGraphicsEndImageContext();
     
     return image;
-}
-
-@end
-
-@implementation NSNull (MRCUtil)
-
-- (NSNull *)escapeSingleQuote {
-    return self;
 }
 
 @end

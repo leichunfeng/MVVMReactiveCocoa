@@ -23,8 +23,6 @@
 
 - (BOOL)isMarkdown;
 
-- (NSString *)escapeSingleQuote;
-
 @end
 
 @interface UIColor (Util)
@@ -33,11 +31,5 @@
 //
 // Returns a new image.
 - (UIImage *)color2Image;
-
-@end
-
-@interface NSNull (MRCUtil)
-
-- (NSNull *)escapeSingleQuote;
 
 @end

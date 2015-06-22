@@ -8,6 +8,10 @@
 
 #import "OCTUser+MRCPersistence.h"
 
+#define INSERT_STATEMENT @"INSERT INTO User VALUES (:id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :html_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);"
+#define UPDATE_STATEMENT @"UPDATE User SET rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, html_url = :html_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage WHERE id = :id;"
+#define UPDATE_STATEMENT_LIST @"UPDATE User SET rawLogin = :rawLogin, login = :login, bio = :bio, avatar_url = :avatar_url, html_url = :html_url, collaborators = :collaborators, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, disk_usage = :disk_usage WHERE id = :id;"
+
 @implementation OCTUser (MRCPersistence)
 
 #pragma mark - Properties
@@ -34,8 +38,6 @@
     __block BOOL result = YES;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = nil;
-        
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", self.objectID];
         
         @onExit {
@@ -48,11 +50,7 @@
             return;
         }
         
-        if (![rs next]) { // INSERT
-            sql = @"INSERT INTO User VALUES (:id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :html_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);";
-        } else { // UPDATE
-            sql = @"UPDATE User SET rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, html_url = :html_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage WHERE id = :id;";
-        }
+        NSString *sql = ![rs next] ? INSERT_STATEMENT : UPDATE_STATEMENT;
         
         BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
         if (!success) {
@@ -76,9 +74,7 @@
     
     __block BOOL result = YES;
     
-    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = @"";
-        
+    [[FMDatabaseQueue sharedInstance] inTransaction:^(FMDatabase *db, BOOL *rollback) {
         NSMutableArray *oldIDs = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT id FROM User;"];
@@ -99,20 +95,14 @@
         }
         
         for (OCTUser *user in users) {
-            if (![oldIDs containsObject:user.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@);", user.objectID, user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage)]];
-            } else { // UPDATE
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET rawLogin = '%@', login = '%@', bio = '%@', avatar_url = '%@', html_url = '%@', collaborators = %@, owned_private_repos = %@, public_gists = %@, private_gists = %@, disk_usage = %@ WHERE id = %@;", user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.bio.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, @(user.collaborators), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.diskUsage), user.objectID]];
+            NSString *sql = ![oldIDs containsObject:user.objectID] ? INSERT_STATEMENT : UPDATE_STATEMENT_LIST;
+            
+            BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:user]];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
             }
-        }
-        
-        sql = [sql stringByReplacingOccurrencesOfString:@"'(null)'" withString:@"NULL"];
-        
-        BOOL success = [db executeStatements:sql];
-        if (!success) {
-            mrcLogLastError(db);
-            result = NO;
-            return;
         }
     }];
     
@@ -124,14 +114,17 @@
     
     __block BOOL result = YES;
     
-    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+    [[FMDatabaseQueue sharedInstance] inTransaction:^(FMDatabase *db, BOOL *rollback) {
         NSString *newIDs = [[users.rac_sequence map:^(OCTUser *user) {
             return user.objectID;
         }].array componentsJoinedByString:@","];
         
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE userId NOT IN (%@) AND targetUserId = %@;", newIDs, [OCTUser mrc_currentUserId]];
-        
-        NSMutableArray *oldIDs = nil;
+        BOOL success = [db executeUpdate:@"DELETE FROM User_Following_User WHERE userId NOT IN (?) AND targetUserId = ?;", newIDs, [OCTUser mrc_currentUserId]];
+        if (!success) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
         
         FMResultSet *rs = [db executeQuery:@"SELECT userId FROM User_Following_User WHERE targetUserId = ?;", [OCTUser mrc_currentUserId]];
         
@@ -145,6 +138,7 @@
             return;
         }
         
+        NSMutableArray *oldIDs = nil;
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -152,15 +146,13 @@
         
         for (OCTUser *user in users) {
             if (![oldIDs containsObject:user.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Following_User VALUES (%@, %@, %@);", nil, user.objectID, [OCTUser mrc_currentUserId]]];
+                success = [db executeUpdate:@"INSERT INTO User_Following_User VALUES (?, ?, ?);", nil, user.objectID, [OCTUser mrc_currentUserId]];
+                if (!success) {
+                    mrcLogLastError(db);
+                    result = NO;
+                    return;
+                }
             }
-        }
-        
-        BOOL success = [db executeStatements:sql];
-        if (!success) {
-            mrcLogLastError(db);
-            result = NO;
-            return;
         }
     }];
     
@@ -172,14 +164,17 @@
     
     __block BOOL result = YES;
     
-    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+    [[FMDatabaseQueue sharedInstance] inTransaction:^(FMDatabase *db, BOOL *rollback) {
         NSString *newIDs = [[users.rac_sequence map:^id(OCTUser *user) {
             return user.objectID;
         }].array componentsJoinedByString:@","];
         
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE targetUserId NOT IN (%@) AND userId = %@;", newIDs, [OCTUser mrc_currentUserId]];
-        
-        NSMutableArray *oldIDs = nil;
+        BOOL success = [db executeUpdate:@"DELETE FROM User_Following_User WHERE targetUserId NOT IN (?) AND userId = ?;", newIDs, [OCTUser mrc_currentUserId]];
+        if (!success) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
         
         FMResultSet *rs = [db executeQuery:@"SELECT targetUserId FROM User_Following_User WHERE userId = ?;", [OCTUser mrc_currentUserId]];
         
@@ -193,6 +188,7 @@
             return;
         }
         
+        NSMutableArray *oldIDs = nil;
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -200,15 +196,13 @@
         
         for (OCTUser *user in users) {
             if (![oldIDs containsObject:user.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Following_User VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], user.objectID]];
+                success = [db executeUpdate:@"INSERT INTO User_Following_User VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], user.objectID];
+                if (!success) {
+                    mrcLogLastError(db);
+                    result = NO;
+                    return;
+                }
             }
-        }
-        
-        BOOL success = [db executeStatements:sql];
-        if (!success) {
-            mrcLogLastError(db);
-            result = NO;
-            return;
         }
     }];
     
@@ -284,8 +278,6 @@
     __block BOOL result = YES;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = @"";
-        
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", user.objectID];
         
         @onExit {
@@ -299,15 +291,29 @@
         }
         
         if (![rs next]) { // INSERT
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@, %@, %@);", user.objectID, user.rawLogin.escapeSingleQuote, user.login.escapeSingleQuote, user.name.escapeSingleQuote, user.bio.escapeSingleQuote, user.email.escapeSingleQuote, user.avatarURL.absoluteString.escapeSingleQuote, user.HTMLURL.absoluteString.escapeSingleQuote, user.blog.escapeSingleQuote, user.company.escapeSingleQuote, user.location.escapeSingleQuote, @(user.collaborators), @(user.publicRepoCount), @(user.privateRepoCount), @(user.publicGistCount), @(user.privateGistCount), @(user.followers), @(user.following), @(user.diskUsage)]];
+            BOOL success = [db executeUpdate:INSERT_STATEMENT, [MTLJSONAdapter JSONDictionaryFromModel:user]];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
+            }
         }
         
-        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Following_User VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], user.objectID]];
+        BOOL success = [db executeUpdate:@"INSERT INTO User_Following_User VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], user.objectID];
+        if (!success) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
         
-        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET followers = %@ WHERE id = %@;", @(user.followers+1), user.objectID]];
-        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET following = %@ WHERE id = %@;", @([OCTUser mrc_currentUser].following+1), [OCTUser mrc_currentUserId]]];
+        success = [db executeUpdate:@"UPDATE User SET followers = ? WHERE id = ?;", @(user.followers+1), user.objectID];
+        if (!success) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
         
-        BOOL success = [db executeStatements:sql];
+        success = [db executeUpdate:@"UPDATE User SET following = ? WHERE id = ?;", @([OCTUser mrc_currentUser].following+1), [OCTUser mrc_currentUserId]];
         if (!success) {
             mrcLogLastError(db);
             result = NO;
@@ -326,20 +332,24 @@
     __block BOOL result = YES;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE userId = %@ AND targetUserId = %@;", [OCTUser mrc_currentUserId], user.objectID];
+        BOOL success = [db executeUpdate:@"DELETE FROM User_Following_User WHERE userId = ? AND targetUserId = ?;", [OCTUser mrc_currentUserId], user.objectID];
         
         if (user.followers != 0) {
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET followers = %@ WHERE id = %@;", @(user.followers-1), user.objectID]];
-        }
-        if ([OCTUser mrc_currentUser].following != 0) {
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE User SET following = %@ WHERE id = %@;", @([OCTUser mrc_currentUser].following-1), [OCTUser mrc_currentUserId]]];
+            success = [db executeUpdate:@"UPDATE User SET followers = ? WHERE id = ?;", @(user.followers-1), user.objectID];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
+            }
         }
         
-        BOOL success = [db executeStatements:sql];
-        if (!success) {
-            mrcLogLastError(db);
-            result = NO;
-            return;
+        if ([OCTUser mrc_currentUser].following != 0) {
+            success = [db executeUpdate:@"UPDATE User SET following = ? WHERE id = ?;", @([OCTUser mrc_currentUser].following-1), [OCTUser mrc_currentUserId]];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
+            }
         }
         
         user.followingStatus = OCTUserFollowingStatusNO;
@@ -356,19 +366,19 @@
     __block NSMutableArray *followers = nil;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSNumber *limit = @0;
-        if (page > 0 && perPage > 0) {
-            limit = @(page * perPage);
-        }
-        
-        NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.targetUserId = ? AND ufu.userId = u.id LIMIT ?;";
-        
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
+        FMResultSet *rs = nil;
         
         @onExit {
             [rs close];
         };
-
+        
+        NSNumber *limit = @(page * perPage);
+        if (![limit isEqualToNumber:@0]) {
+            rs = [db executeQuery:@"SELECT * FROM User_Following_User ufu, User u WHERE ufu.targetUserId = ? AND ufu.userId = u.id LIMIT ?;", [OCTUser mrc_currentUserId], limit];
+        } else {
+            rs = [db executeQuery:@"SELECT * FROM User_Following_User ufu, User u WHERE ufu.targetUserId = ? AND ufu.userId = u.id;", [OCTUser mrc_currentUserId]];
+        }
+        
         if (rs == nil) {
             mrcLogLastError(db);
             return;
@@ -391,18 +401,18 @@
     __block NSMutableArray *followings = nil;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSNumber *limit = @0;
-        if (page > 0 && perPage > 0) {
-            limit = @(page * perPage);
-        }
+        FMResultSet *rs = nil;
         
-        NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id ORDER BY u.id LIMIT ?;";
-        
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
-
         @onExit {
             [rs close];
         };
+        
+        NSNumber *limit = @(page * perPage);
+        if (![limit isEqualToNumber:@0]) {
+            rs = [db executeQuery:@"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id ORDER BY u.id LIMIT ?;", [OCTUser mrc_currentUserId], limit];
+        } else {
+            rs = [db executeQuery:@"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id ORDER BY u.id;", [OCTUser mrc_currentUserId]];
+        }
         
         if (rs == nil) {
             mrcLogLastError(db);
