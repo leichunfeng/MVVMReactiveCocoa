@@ -129,19 +129,14 @@
 }
 
 - (void)initializeFMDB {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
-        NSString *sql = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         
         if (![db executeStatements:sql]) {
             mrcLogLastError(db);
         }
-    }
+    }];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

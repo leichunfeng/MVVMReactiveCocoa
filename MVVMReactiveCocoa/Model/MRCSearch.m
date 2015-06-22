@@ -17,20 +17,18 @@
 #pragma mark - Query
 
 + (NSArray *)recentSearches {
-    NSMutableArray *recentSearches = nil;
+    __block NSMutableArray *recentSearches = nil;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Search WHERE userId = ? ORDER BY searched_at DESC", [OCTUser mrc_currentUserId]];
+
         @onExit {
-            [db close];
+            [rs close];
         };
         
-        NSString *sql = @"SELECT * FROM Search WHERE userId = ? ORDER BY searched_at DESC";
-       
-        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId]];
         if (rs == nil) {
             mrcLogLastError(db);
-            return nil;
+            return;
         }
         
         while ([rs next]) {
@@ -44,7 +42,7 @@
                 [recentSearches addObject:search];
             }
         }
-    }
+    }];
     
     return recentSearches;
 }
@@ -64,19 +62,21 @@
 #pragma mark - MRCPersistenceProtocol
 
 - (BOOL)mrc_saveOrUpdate {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    __block BOOL result = YES;
     
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *sql = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM Search WHERE keyword = ? AND userId = ? LIMIT 1;", self.keyword, [OCTUser mrc_currentUserId]];
+
+        @onExit {
+            [rs close];
+        };
+        
         if (rs == nil) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         if (![rs next]) {
@@ -84,40 +84,34 @@
         } else {
             sql = @"UPDATE Search SET searched_at = :searched_at WHERE keyword = :keyword AND userId = :userId;";
         }
-
+        
         NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
         dictionary[@"userId"] = [OCTUser mrc_currentUserId];
         
         BOOL success = [db executeUpdate:sql withParameterDictionary:dictionary];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-        
-        return YES;
-    }
+    }];
     
-    return NO;
+    return result;
 }
 
 - (BOOL)mrc_delete {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    __block BOOL result = YES;
     
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         BOOL success = [db executeUpdate:@"DELETE FROM Search WHERE id = ?;", self.objectID];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-      
-        return YES;
-    }
+    }];
 
-    return NO;
+    return result;
 }
 
 @end

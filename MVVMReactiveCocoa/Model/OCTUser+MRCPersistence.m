@@ -31,19 +31,21 @@
 #pragma mark - MRCPersistenceProtocol
 
 - (BOOL)mrc_saveOrUpdate {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    __block BOOL result = YES;
     
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *sql = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", self.objectID];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         if (![rs next]) { // INSERT
@@ -55,13 +57,12 @@
         BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-
-        return YES;
-    }
-    
-    return NO;
+    }];
+     
+    return result;
 }
 
 - (BOOL)mrc_delete {
@@ -73,20 +74,23 @@
 + (BOOL)mrc_saveOrUpdateUsers:(NSArray *)users {
     if (users.count == 0) return YES;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    __block BOOL result = YES;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *sql = @"";
         
         NSMutableArray *oldIDs = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT id FROM User;"];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         while ([rs next]) {
@@ -107,25 +111,21 @@
         BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-
-        return YES;
-    }
+    }];
     
-    return NO;
+    return result;
 }
 
 + (BOOL)mrc_saveOrUpdateFollowerStatusWithUsers:(NSArray *)users {
     if (users.count == 0) return YES;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
-        NSString *newIDs = [[users.rac_sequence map:^id(OCTUser *user) {
+    __block BOOL result = YES;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        NSString *newIDs = [[users.rac_sequence map:^(OCTUser *user) {
             return user.objectID;
         }].array componentsJoinedByString:@","];
         
@@ -134,11 +134,17 @@
         NSMutableArray *oldIDs = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT userId FROM User_Following_User WHERE targetUserId = ?;", [OCTUser mrc_currentUserId]];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-      
+        
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [NSMutableArray new];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
@@ -153,24 +159,20 @@
         BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-        
-        return YES;
-    }
+    }];
     
-    return NO;
+    return result;
 }
 
 + (BOOL)mrc_saveOrUpdateFollowingStatusWithUsers:(NSArray *)users {
     if (users.count == 0) return YES;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    __block BOOL result = YES;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *newIDs = [[users.rac_sequence map:^id(OCTUser *user) {
             return user.objectID;
         }].array componentsJoinedByString:@","];
@@ -178,11 +180,17 @@
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE targetUserId NOT IN (%@) AND userId = %@;", newIDs, [OCTUser mrc_currentUserId]];
         
         NSMutableArray *oldIDs = nil;
-       
+        
         FMResultSet *rs = [db executeQuery:@"SELECT targetUserId FROM User_Following_User WHERE userId = ?;", [OCTUser mrc_currentUserId]];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         while ([rs next]) {
@@ -199,13 +207,12 @@
         BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
-
-        return YES;
-    }
+    }];
     
-    return NO;
+    return result;
 }
 
 #pragma mark - Fetch UserId
@@ -228,65 +235,67 @@
 + (instancetype)mrc_fetchUserWithRawLogin:(NSString *)rawLogin {
     if (rawLogin.length == 0) return nil;
     
-    OCTUser *user = nil;
+    __block OCTUser *user = nil;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? OR email = ? LIMIT 1;", rawLogin, rawLogin];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return nil;
+            return;
         }
         
         if ([rs next]) {
             user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
         }
-    }
+    }];
     
     return user;
 }
 
 + (instancetype)mrc_fetchUser:(OCTUser *)user {
-    OCTUser *result = nil;
+    __block OCTUser *result = nil;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? LIMIT 1;", user.login];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return nil;
+            return;
         }
         
         if ([rs next]) {
             result = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
         }
-    }
+    }];
     
     return result;
 }
 
 + (BOOL)mrc_followUser:(OCTUser *)user {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    __block BOOL result = YES;
     
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *sql = @"";
         
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", user.objectID];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         if (![rs next]) { // INSERT
@@ -301,27 +310,22 @@
         BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         user.followingStatus = OCTUserFollowingStatusYES;
         [user increaseFollowers];
         [[OCTUser mrc_currentUser] increaseFollowing];
+    }];
     
-        return YES;
-    }
-    
-    return NO;
+    return result;
 }
 
 + (BOOL)mrc_unfollowUser:(OCTUser *)user {
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
+    __block BOOL result = YES;
     
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Following_User WHERE userId = %@ AND targetUserId = %@;", [OCTUser mrc_currentUserId], user.objectID];
         
         if (user.followers != 0) {
@@ -334,30 +338,24 @@
         BOOL success = [db executeStatements:sql];
         if (!success) {
             mrcLogLastError(db);
-            return NO;
+            result = NO;
+            return;
         }
         
         user.followingStatus = OCTUserFollowingStatusNO;
         [user decreaseFollowers];
         [[OCTUser mrc_currentUser] decreaseFollowing];
+    }];
 
-        return YES;
-    }
-    
-    return NO;
+    return result;
 }
 
 #pragma mark - Fetch Users
 
 + (NSArray *)mrc_fetchFollowersWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
-    NSMutableArray *followers = nil;
+    __block NSMutableArray *followers = nil;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSNumber *limit = @0;
         if (page > 0 && perPage > 0) {
             limit = @(page * perPage);
@@ -366,9 +364,14 @@
         NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.targetUserId = ? AND ufu.userId = u.id LIMIT ?;";
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
+        
+        @onExit {
+            [rs close];
+        };
+
         if (rs == nil) {
             mrcLogLastError(db);
-            return nil;
+            return;
         }
         
         while ([rs next]) {
@@ -379,44 +382,44 @@
                 [followers addObject:user];
             }
         }
-    }
+    }];
     
     return followers;
 }
 
 + (NSArray *)mrc_fetchFollowingWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
-    NSMutableArray *followers = nil;
+    __block NSMutableArray *followings = nil;
     
-    FMDatabase *db = [FMDatabase databaseWithPath:MRC_FMDB_PATH];
-    if ([db open]) {
-        @onExit {
-            [db close];
-        };
-        
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSNumber *limit = @0;
         if (page > 0 && perPage > 0) {
             limit = @(page * perPage);
         }
         
-       	NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id ORDER BY u.id LIMIT ?;";
+        NSString *sql = @"SELECT * FROM User_Following_User ufu, User u WHERE ufu.userId = ? AND ufu.targetUserId = u.id ORDER BY u.id LIMIT ?;";
         
         FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], limit];
+
+        @onExit {
+            [rs close];
+        };
+        
         if (rs == nil) {
             mrcLogLastError(db);
-            return nil;
+            return;
         }
         
         while ([rs next]) {
             @autoreleasepool {
-                if (followers == nil) followers = [NSMutableArray new];
+                if (followings == nil) followings = [NSMutableArray new];
                 OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
                 user.followingStatus = OCTUserFollowingStatusYES;
-                [followers addObject:user];
+                [followings addObject:user];
             }
         }
-    }
+    }];
     
-    return followers;
+    return followings;
 }
 
 - (void)increaseFollowers {
