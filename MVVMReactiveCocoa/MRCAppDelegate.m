@@ -129,18 +129,13 @@
 
 - (void)initializeFMDB {
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *version = [[NSUserDefaults standardUserDefaults] valueForKey:MRCApplicationVersionKey];
-        if (version == nil) {
-            [SSKeychain deleteAccessToken];
-            
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
-            NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-            
-            if (![db executeStatements:sql]) {
-                mrcLogLastError(db);
-            }
-        } else {
-        	// Future...
+        [SSKeychain deleteAccessToken];
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
+        NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        
+        if (![db executeStatements:sql]) {
+            mrcLogLastError(db);
         }
     }];
 }
