@@ -48,11 +48,10 @@
     
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
     
-//    UIImage *image = [UIImage octicon_imageWithIcon:@"GitMerge"
-//                                    backgroundColor:UIColor.whiteColor
-//                                          iconColor:HexRGB(colorI2)
-//                                          iconScale:1
-//                                            andSize:CGSizeMake(1024, 1024)];
+    // Save the application version info.
+    [[NSUserDefaults standardUserDefaults] setValue:MRC_APP_VERSION forKey:MRCApplicationVersionKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     return YES;
 }
 
@@ -130,11 +129,18 @@
 
 - (void)initializeFMDB {
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
-        NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        
-        if (![db executeStatements:sql]) {
-            mrcLogLastError(db);
+        NSString *version = [[NSUserDefaults standardUserDefaults] valueForKey:MRCApplicationVersionKey];
+        if (version == nil) {
+            [SSKeychain deleteAccessToken];
+            
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
+            NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+            
+            if (![db executeStatements:sql]) {
+                mrcLogLastError(db);
+            }
+        } else {
+        	// Future...
         }
     }];
 }
