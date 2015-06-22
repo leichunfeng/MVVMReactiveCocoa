@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		17E6F72A511CE2C576ED098A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E408154D3BF129981C1EFFEF /* libPods.a */; };
 		240393041B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */; };
+		240393121B37F11D0032C871 /* starred_repos.json in Resources */ = {isa = PBXBuildFile; fileRef = 240393111B37F11D0032C871 /* starred_repos.json */; };
+		240393141B37F14F0032C871 /* OCTRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 240393131B37F14F0032C871 /* OCTRepositoryTests.m */; };
 		24041CA41AFD111400B2DE7E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */; };
 		240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */; };
 		240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBE51AFF2420006ABC05 /* MRCSearchViewController.m */; };
@@ -355,6 +357,8 @@
 /* Begin PBXFileReference section */
 		240393021B37CD380032C871 /* FMDatabaseQueue+MRCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabaseQueue+MRCHelper.h"; sourceTree = "<group>"; };
 		240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabaseQueue+MRCHelper.m"; sourceTree = "<group>"; };
+		240393111B37F11D0032C871 /* starred_repos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starred_repos.json; sourceTree = "<group>"; };
+		240393131B37F14F0032C871 /* OCTRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTRepositoryTests.m; sourceTree = "<group>"; };
 		24041CA31AFD111400B2DE7E /* update_v1_0_1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_0_1.sql; sourceTree = "<group>"; };
 		240BFBD61AFF240B006ABC05 /* MRCSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewModel.h; sourceTree = "<group>"; };
 		240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchViewModel.m; sourceTree = "<group>"; };
@@ -668,6 +672,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		240393101B37F0DA0032C871 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				240393111B37F11D0032C871 /* starred_repos.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		24041CA21AFD111400B2DE7E /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,6 +1057,7 @@
 		242D4FF11A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */ = {
 			isa = PBXGroup;
 			children = (
+				240393101B37F0DA0032C871 /* Resource */,
 				24D1D4341AA9FBCC000F5AEA /* Model */,
 				242D4FF41A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m */,
 				242D4FF21A64B6FA0026ABC6 /* Supporting Files */,
@@ -1190,6 +1203,7 @@
 			isa = PBXGroup;
 			children = (
 				24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */,
+				240393131B37F14F0032C871 /* OCTRepositoryTests.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1528,6 +1542,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240393121B37F11D0032C871 /* starred_repos.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1729,6 +1744,7 @@
 			files = (
 				24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */,
 				242D4FF51A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.m in Sources */,
+				240393141B37F14F0032C871 /* OCTRepositoryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

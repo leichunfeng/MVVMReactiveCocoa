@@ -8,6 +8,10 @@
 
 #import "OCTRepository+MRCPersistence.h"
 
+#define INSERT_STATEMENT @"INSERT INTO Repository VALUES (:id, :name, :owner_login, :owner_avatar_url, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);"
+#define UPDATE_STATEMENT @"UPDATE Repository SET name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count, subscribers_count = :subscribers_count WHERE id = :id;"
+#define UPDATE_STATEMENT_LIST @"UPDATE Repository SET name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count WHERE id = :id;"
+
 @implementation OCTRepository (MRCPersistence)
 
 #pragma mark - Properties
@@ -26,8 +30,6 @@
     __block BOOL result = YES;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = nil;
-        
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? LIMIT 1;", self.objectID];
 
         @onExit {
@@ -40,18 +42,9 @@
             return;
         }
         
-        if (![rs next]) { // INSERT
-            sql = @"INSERT INTO Repository VALUES (:id, :name, :owner_login, :owner_avatar_url, :description, :language, :pushed_at, :created_at, :updated_at, :clone_url, :ssh_url, :git_url, :html_url, :default_branch, :private, :fork, :watchers_count, :forks_count, :stargazers_count, :open_issues_count, :subscribers_count);";
-        } else { // UPDATE
-            sql = @"UPDATE Repository SET name = :name, owner_login = :owner_login, owner_avatar_url = :owner_avatar_url, description = :description, language = :language, pushed_at = :pushed_at, created_at = :created_at, updated_at = :updated_at, clone_url = :clone_url, ssh_url = :ssh_url, git_url = :git_url, html_url = :html_url, default_branch = :default_branch, private = :private, fork = :fork, watchers_count = :watchers_count, forks_count = :forks_count, stargazers_count = :stargazers_count, open_issues_count = :open_issues_count, subscribers_count = :subscribers_count WHERE id = :id;";
-        }
-        
-        NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
-        
-        dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
-        dictionary[@"owner_avatar_url"] = dictionary[@"owner"][@"avatar_url"];
-        
-        BOOL success = [db executeUpdate:sql withParameterDictionary:dictionary];
+        NSString *sql = ![rs next] ? INSERT_STATEMENT : UPDATE_STATEMENT;
+
+        BOOL success = [db executeUpdate:sql withParameterDictionary:[self toDBDictionary]];
         if (!success) {
             mrcLogLastError(db);
             result = NO;
@@ -84,9 +77,7 @@
     
     __block BOOL result = YES;
     
-    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = @"";
-        
+    [[FMDatabaseQueue sharedInstance] inTransaction:^(FMDatabase *db, BOOL *rollback) {
         NSMutableArray *oldIDs = nil;
         
         FMResultSet *rs = [db executeQuery:@"SELECT id FROM Repository;"];
@@ -107,20 +98,14 @@
         }
         
         for (OCTRepository *repository in repositories) {
-            if (![oldIDs containsObject:repository.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO Repository VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@);", repository.objectID, repository.name.escapeSingleQuote, repository.ownerLogin.escapeSingleQuote, repository.ownerAvatarURL.absoluteString.escapeSingleQuote, repository.repoDescription.escapeSingleQuote, repository.language.escapeSingleQuote, [NSDateFormatter oct_stringFromDate:repository.datePushed], [NSDateFormatter oct_stringFromDate:repository.dateCreated], [NSDateFormatter oct_stringFromDate:repository.dateUpdated], repository.HTTPSURL.absoluteString.escapeSingleQuote, repository.SSHURL.escapeSingleQuote, repository.gitURL.absoluteString.escapeSingleQuote, repository.HTMLURL.absoluteString.escapeSingleQuote, repository.defaultBranch.escapeSingleQuote, @(repository.private), @(repository.fork), @(repository.watchersCount), @(repository.forksCount), @(repository.stargazersCount), @(repository.openIssuesCount), @(repository.subscribersCount)]];
-            } else { // UPDATE
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE Repository SET name = '%@', owner_login = '%@', owner_avatar_url = '%@', description = '%@', language = '%@', pushed_at = '%@', created_at = '%@', updated_at = '%@', clone_url = '%@', ssh_url = '%@', git_url = '%@', html_url = '%@', default_branch = '%@', private = %@, fork = %@, watchers_count = %@, forks_count = %@, stargazers_count = %@, open_issues_count = %@ WHERE id = %@;", repository.name.escapeSingleQuote, repository.ownerLogin.escapeSingleQuote, repository.ownerAvatarURL.absoluteString.escapeSingleQuote, repository.repoDescription.escapeSingleQuote, repository.language.escapeSingleQuote, [NSDateFormatter oct_stringFromDate:repository.datePushed], [NSDateFormatter oct_stringFromDate:repository.dateCreated], [NSDateFormatter oct_stringFromDate:repository.dateUpdated], repository.HTTPSURL.absoluteString.escapeSingleQuote, repository.SSHURL.escapeSingleQuote, repository.gitURL.absoluteString.escapeSingleQuote, repository.HTMLURL.absoluteString.escapeSingleQuote, repository.defaultBranch.escapeSingleQuote, @(repository.private), @(repository.fork), @(repository.watchersCount), @(repository.forksCount), @(repository.stargazersCount), @(repository.openIssuesCount), repository.objectID]];
+            NSString *sql = ![oldIDs containsObject:repository.objectID] ? INSERT_STATEMENT : UPDATE_STATEMENT_LIST;
+            
+            BOOL success = [db executeUpdate:sql withParameterDictionary:[repository toDBDictionary]];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
             }
-        }
-        
-        sql = [sql stringByReplacingOccurrencesOfString:@"'(null)'" withString:@"NULL"];
-        
-        BOOL success = [db executeStatements:sql];
-        if (!success) {
-            mrcLogLastError(db);
-            result = NO;
-            return;
         }
     }];
     
@@ -132,12 +117,17 @@
     
     __block BOOL result = YES;
     
-    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+    [[FMDatabaseQueue sharedInstance] inTransaction:^(FMDatabase *db, BOOL *rollback) {
         NSString *newIDs = [[repositories.rac_sequence map:^id(OCTUser *user) {
             return user.objectID;
         }].array componentsJoinedByString:@","];
         
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Starred_Repository WHERE userId = %@ AND repositoryId NOT IN (%@);", [OCTUser mrc_currentUserId], newIDs];
+        BOOL success = [db executeUpdate:@"DELETE FROM User_Starred_Repository WHERE userId = ? AND repositoryId NOT IN (?);", [OCTUser mrc_currentUserId], newIDs];
+        if (!success) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
         
         NSMutableArray *oldIDs = nil;
         
@@ -160,15 +150,13 @@
         
         for (OCTRepository *repository in repositories) {
             if (![oldIDs containsObject:repository.objectID]) { // INSERT
-                sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Starred_Repository VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], repository.objectID]];
+                success = [db executeUpdate:@"INSERT INTO User_Starred_Repository VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], repository.objectID];
+                if (!success) {
+                    mrcLogLastError(db);
+                    result = NO;
+                    return;
+                }
             }
-        }
-        
-        BOOL success = [db executeStatements:sql];
-        if (!success) {
-            mrcLogLastError(db);
-            result = NO;
-            return;
         }
     }];
     
@@ -193,10 +181,7 @@
         }
         
         if ([rs next]) {
-            NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
-            dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
-            
-            repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
+            repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
         }
     }];
     
@@ -222,11 +207,7 @@
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
                 
-                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
-                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
-                
-                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
-                
+                OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
             }
         }
@@ -254,11 +235,7 @@
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
                 
-                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
-                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
-                
-                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
-                
+                OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
             }
         }
@@ -271,20 +248,18 @@
     __block NSMutableArray *repos = nil;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM Repository WHERE owner_login = '%@' AND private = 0 ORDER BY LOWER(name)", [OCTUser mrc_currentUser].login];
+        FMResultSet *rs = nil;
         
-        NSNumber *limit = @(page * perPage);
-        if (![limit isEqualToNumber:@0]) {
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@" LIMIT %@", limit]];
-        }
-        
-        sql = [sql stringByAppendingString:@";"];
-        
-        FMResultSet *rs = [db executeQuery:sql];
-
         @onExit {
             [rs close];
         };
+        
+        NSNumber *limit = @(page * perPage);
+        if (![limit isEqualToNumber:@0]) {
+            rs = [db executeQuery:@"SELECT * FROM Repository WHERE owner_login = ? AND private = 0 ORDER BY LOWER(name) LIMIT ?;", [OCTUser mrc_currentUser].login, limit];
+        } else {
+            rs = [db executeQuery:@"SELECT * FROM Repository WHERE owner_login = ? AND private = 0 ORDER BY LOWER(name);", [OCTUser mrc_currentUser].login];
+        }
         
         if (rs == nil) {
             mrcLogLastError(db);
@@ -295,11 +270,7 @@
             @autoreleasepool {
                 if (repos == nil) repos = [NSMutableArray new];
                 
-                NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
-                dictionary[@"owner"] = @{ @"login": dictionary[@"owner_login"], @"avatar_url": dictionary[@"owner_avatar_url"] };
-                
-                OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
-                
+                OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
             }
         }
@@ -314,8 +285,6 @@
     __block BOOL result = YES;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = @"";
-        
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? LIMIT 1;", repository.objectID];
 
         @onExit {
@@ -329,14 +298,22 @@
         }
         
         if (![rs next]) { // INSERT
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO Repository VALUES (%@, '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', %@, %@, %@, %@, %@, %@, %@);", repository.objectID, repository.name.escapeSingleQuote, repository.ownerLogin.escapeSingleQuote, repository.ownerAvatarURL.absoluteString.escapeSingleQuote, repository.repoDescription.escapeSingleQuote, repository.language.escapeSingleQuote, [NSDateFormatter oct_stringFromDate:repository.datePushed], [NSDateFormatter oct_stringFromDate:repository.dateCreated], [NSDateFormatter oct_stringFromDate:repository.dateUpdated], repository.HTTPSURL.absoluteString.escapeSingleQuote, repository.SSHURL.escapeSingleQuote, repository.gitURL.absoluteString.escapeSingleQuote, repository.HTMLURL.absoluteString.escapeSingleQuote, repository.defaultBranch.escapeSingleQuote, @(repository.private), @(repository.fork), @(repository.watchersCount), @(repository.forksCount), @(repository.stargazersCount), @(repository.openIssuesCount), @(repository.subscribersCount)]];
+            BOOL success = [db executeUpdate:INSERT_STATEMENT withParameterDictionary:[repository toDBDictionary]];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
+            }
         }
         
-        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"INSERT INTO User_Starred_Repository VALUES (%@, %@, %@);", nil, [OCTUser mrc_currentUserId], repository.objectID]];
+        BOOL success = [db executeUpdate:@"INSERT INTO User_Starred_Repository VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], repository.objectID];
+        if (!success) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
         
-        sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE Repository SET stargazers_count = %@ WHERE id = %@;", @(repository.stargazersCount+1), repository.objectID]];
-        
-        BOOL success = [db executeStatements:sql];
+        success = [db executeUpdate:@"UPDATE Repository SET stargazers_count = ? WHERE id = ?;", @(repository.stargazersCount+1), repository.objectID];
         if (!success) {
             mrcLogLastError(db);
             result = NO;
@@ -354,17 +331,20 @@
     __block BOOL result = YES;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *sql = [NSString stringWithFormat:@"DELETE FROM User_Starred_Repository WHERE userId = %@ AND repositoryId = %@;", [OCTUser mrc_currentUserId], repository.objectID];
-        
-        if (repository.stargazersCount != 0) {
-            sql = [sql stringByAppendingString:[NSString stringWithFormat:@"UPDATE Repository SET stargazers_count = %@ WHERE id = %@;", @(repository.stargazersCount-1), repository.objectID]];
-        }
-        
-        BOOL success = [db executeStatements:sql];
+        BOOL success = [db executeUpdate:@"DELETE FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ?;", [OCTUser mrc_currentUserId], repository.objectID];
         if (!success) {
             mrcLogLastError(db);
             result = NO;
             return;
+        }
+        
+        if (repository.stargazersCount != 0) {
+            success = [db executeUpdate:@"UPDATE Repository SET stargazers_count = ? WHERE id = ?;", @(repository.stargazersCount-1), repository.objectID];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
+            }
         }
         
         repository.starredStatus = OCTRepositoryStarredStatusNO;
@@ -394,9 +374,31 @@
     return repositories;
 }
 
+#pragma mark - Private
+
++ (OCTRepository *)fromDBDictionary:(NSDictionary *)dictionary {
+    NSMutableDictionary *dic = dictionary.mutableCopy;
+    
+    dic[@"owner"] = @{
+    	@"login": dictionary[@"owner_login"],
+    	@"avatar_url": dictionary[@"owner_avatar_url"]
+    };
+    
+    return [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dic error:nil];
+}
+
+- (NSDictionary *)toDBDictionary {
+    NSMutableDictionary *dictionary = [MTLJSONAdapter JSONDictionaryFromModel:self].mutableCopy;
+    
+    dictionary[@"owner_login"] = dictionary[@"owner"][@"login"];
+    dictionary[@"owner_avatar_url"] = dictionary[@"owner"][@"avatar_url"];
+    
+    return dictionary;
+}
+
 - (void)increaseStargazersCount {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
-   
+    
     dictionary[@"stargazers_count"] = @([dictionary[@"stargazers_count"] unsignedIntegerValue] + 1);
     OCTRepository *repo = [MTLJSONAdapter modelOfClass:[OCTRepository class] fromJSONDictionary:dictionary error:nil];
     
