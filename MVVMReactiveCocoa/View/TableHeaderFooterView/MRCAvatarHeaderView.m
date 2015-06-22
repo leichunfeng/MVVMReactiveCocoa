@@ -54,27 +54,20 @@
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
     self.viewModel = viewModel;
     
+    [self.activityIndicatorView startAnimating];
+
     @weakify(self)
     if (viewModel.operationCommand == nil) {
         self.activityIndicatorView.hidden = YES;
         self.operationButton.hidden = YES;
     } else {
-        [[[RACObserve(viewModel.user, followingStatus)
+        [[RACObserve(viewModel.user, followingStatus)
            	deliverOnMainThread]
-          	doNext:^(NSNumber *followingStatus) {
-              	@strongify(self)
-              	[self.activityIndicatorView startAnimating];
-              	self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
-          	}]
          	subscribeNext:^(NSNumber *followingStatus) {
              	@strongify(self)
-             	if (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown) {
-                 	self.operationButton.hidden = YES;
-                 	self.activityIndicatorView.hidden = NO;
-             	} else {
-                 	self.activityIndicatorView.hidden = YES;
-                 	self.operationButton.hidden = NO;
-             	}
+                self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
+                self.activityIndicatorView.hidden = (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
+                self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
          	}];
     }
     

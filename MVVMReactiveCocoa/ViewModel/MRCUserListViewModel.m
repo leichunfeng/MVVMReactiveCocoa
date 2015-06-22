@@ -162,10 +162,9 @@
         MRCUserListItemViewModel *viewModel = [[MRCUserListItemViewModel alloc] initWithUser:user];
         
         if (user.followingStatus == OCTUserFollowingStatusUnknown) {
-            [[[[self.services
+            [[[self.services
                 client]
                 hasFollowUser:user]
-                takeUntil:viewModel.rac_willDeallocSignal]
                 subscribeNext:^(NSNumber *isFollowing) {
                     if (isFollowing.boolValue) {
                         user.followingStatus = OCTUserFollowingStatusYES;
