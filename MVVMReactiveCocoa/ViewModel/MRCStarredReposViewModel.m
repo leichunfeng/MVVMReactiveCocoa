@@ -64,7 +64,7 @@
     } else {
         return [[[self.services
         	client]
-        	fetchStarredRepositoriesWithUser:self.user page:page perPage:self.perPage].collect
+        	fetchStarredRepositoriesForUser:self.user page:page perPage:self.perPage].collect
         	map:^(NSArray *repositories) {
                 if (page != 1) {
                     repositories = @[ (self.repositories ?: @[]).rac_sequence, repositories.rac_sequence ].rac_sequence.flatten.array;

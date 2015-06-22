@@ -114,7 +114,7 @@
     if (self.type == MRCUserListViewModelTypeFollowers) {
         return [[[[[self.services
         	client]
-            fetchFollowersWithUser:self.user page:page perPage:self.perPage].collect
+            fetchFollowersForUser:self.user page:page perPage:self.perPage].collect
         	map:^(NSArray *users) {
                 for (OCTUser *user in users) {
                     if (self.isCurrentUser) user.followerStatus = OCTUserFollowerStatusYES;
@@ -133,7 +133,7 @@
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
         return [[[[[self.services
             client]
-            fetchFollowingWithUser:self.user page:page perPage:self.perPage].collect
+            fetchFollowingForUser:self.user page:page perPage:self.perPage].collect
             map:^(NSArray *users) {
                 for (OCTUser *user in users) {
                     if (self.isCurrentUser) user.followingStatus = OCTUserFollowingStatusYES;
