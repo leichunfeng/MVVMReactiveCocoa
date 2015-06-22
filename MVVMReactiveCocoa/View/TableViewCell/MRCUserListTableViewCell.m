@@ -38,24 +38,17 @@
     self.loginLabel.text = viewModel.login;
     self.htmlLabel.text = viewModel.user.HTMLURL.absoluteString;
     
+    [self.activityIndicatorView startAnimating];
+
     @weakify(self)
-    [[[[RACObserve(viewModel.user, followingStatus)
-       	takeUntil:viewModel.rac_willDeallocSignal]
+    [[[RACObserve(viewModel.user, followingStatus)
+       	takeUntil:self.rac_prepareForReuseSignal]
       	deliverOnMainThread]
-        doNext:^(NSNumber *followingStatus) {
-            @strongify(self)
-            [self.activityIndicatorView startAnimating];
-            self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
-        }]
         subscribeNext:^(NSNumber *followingStatus) {
             @strongify(self)
-            if (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown) {
-                self.operationButton.hidden = YES;
-                self.activityIndicatorView.hidden = NO;
-            } else {
-                self.activityIndicatorView.hidden = YES;
-                self.operationButton.hidden = NO;
-            }
+            self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
+            self.activityIndicatorView.hidden = (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
+            self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
         }];
 }
 
