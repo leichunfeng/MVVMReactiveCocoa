@@ -32,7 +32,6 @@ PODS:
   - OcticonsIOS (0.0.2)
   - Ono (1.2.2)
   - Reachability (3.1.1)
-  - Reveal-iOS-SDK (1.5.1)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
   - SDWebImage/Core (3.7.2)
@@ -54,7 +53,6 @@ DEPENDENCIES:
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `git@github.com:jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
   - Ono (~> 1.2.0)
-  - Reveal-iOS-SDK (~> 1.5.1)
   - SDWebImage (~> 3.7.1)
   - SSKeychain (~> 1.2.2)
   - SVPullToRefresh (~> 0.4.1)
@@ -84,7 +82,6 @@ SPEC CHECKSUMS:
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
