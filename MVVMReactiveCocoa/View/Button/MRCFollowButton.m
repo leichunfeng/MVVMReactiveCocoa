@@ -60,8 +60,6 @@ static UIImage *_selectedImage = nil;
     
     self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     self.contentEdgeInsets = UIEdgeInsetsMake(7, 1, 7, 3);
-    
-    self.selected = NO;
 }
 
 - (void)setSelected:(BOOL)selected {
