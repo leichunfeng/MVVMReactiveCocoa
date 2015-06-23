@@ -125,8 +125,8 @@
         	doNext:^(NSArray *users) {
                 if (self.isCurrentUser) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [OCTUser mrc_saveOrUpdateUsers:self.users];
-                        [OCTUser mrc_saveOrUpdateFollowerStatusWithUsers:self.users];
+                        [OCTUser mrc_saveOrUpdateUsers:users];
+                        [OCTUser mrc_saveOrUpdateFollowerStatusWithUsers:users];
                     });
                 }
             }];
@@ -144,8 +144,8 @@
         	doNext:^(NSArray *users) {
                 if (self.isCurrentUser) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [OCTUser mrc_saveOrUpdateUsers:self.users];
-                        [OCTUser mrc_saveOrUpdateFollowingStatusWithUsers:self.users];
+                        [OCTUser mrc_saveOrUpdateUsers:users];
+                        [OCTUser mrc_saveOrUpdateFollowingStatusWithUsers:users];
                     });
                 }
             }];
