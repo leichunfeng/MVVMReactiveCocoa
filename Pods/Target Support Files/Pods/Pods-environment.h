@@ -163,12 +163,6 @@
 #define COCOAPODS_VERSION_MINOR_UIActivityIndicator_for_SDWebImage 2
 #define COCOAPODS_VERSION_PATCH_UIActivityIndicator_for_SDWebImage 0
 
-// UMengAnalytics
-#define COCOAPODS_POD_AVAILABLE_UMengAnalytics
-#define COCOAPODS_VERSION_MAJOR_UMengAnalytics 3
-#define COCOAPODS_VERSION_MINOR_UMengAnalytics 4
-#define COCOAPODS_VERSION_PATCH_UMengAnalytics 6
-
 // UMengSocial
 #define COCOAPODS_POD_AVAILABLE_UMengSocial
 #define COCOAPODS_VERSION_MAJOR_UMengSocial 4

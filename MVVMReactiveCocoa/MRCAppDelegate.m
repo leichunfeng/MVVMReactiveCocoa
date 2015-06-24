@@ -43,7 +43,6 @@
     [self configureAppearance];
     [self configureKeyboardManager];
     [self configureReachability];
-    [self configureUMAnalytics];
     [self configureUMengSocial];
     
     NSLog(@"MRC_DOCUMENT_DIRECTORY: %@", MRC_DOCUMENT_DIRECTORY);
@@ -103,17 +102,6 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @strongify(self)
         [self.reachability startNotifier];
-    });
-}
-
-- (void)configureUMAnalytics {
-    [MobClick startWithAppkey:MRC_UM_APP_KEY reportPolicy:BATCH channelId:nil];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *adURL = [MobClick getAdURL];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.adURL = adURL;
-        });
     });
 }
 

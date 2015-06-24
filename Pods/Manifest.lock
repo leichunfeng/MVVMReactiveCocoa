@@ -39,7 +39,6 @@ PODS:
   - SVPullToRefresh (0.4.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UMengAnalytics (3.4.6)
   - UMengSocial (4.2.3)
   - WebViewJavascriptBridge (4.1.4)
 
@@ -57,7 +56,6 @@ DEPENDENCIES:
   - SSKeychain (~> 1.2.2)
   - SVPullToRefresh (~> 0.4.1)
   - UIActivityIndicator-for-SDWebImage
-  - UMengAnalytics (~> 3.4.6)
   - UMengSocial (~> 4.2.2)
   - WebViewJavascriptBridge (~> 4.1.4)
 
@@ -86,7 +84,6 @@ SPEC CHECKSUMS:
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UMengAnalytics: 24c06f0ea07295d2f1c093f0fe12d196fd801ea4
   UMengSocial: 85882abe5b20aa38ad558ece71360e16b5d50909
   WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
 

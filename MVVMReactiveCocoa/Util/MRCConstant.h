@@ -166,9 +166,9 @@ typedef id   (^IDBlock_id)  (id);
 
 #define MRC_README_CSS_STYLE @"<style type=\"text/css\">body { font-family: \"Helvetica Neue\", Helvetica, \"Segoe UI\", Arial, freesans, sans-serif; }</style>"
 
-///--------------------
-/// UMAnalytics & Share
-///--------------------
+///------------
+/// UMengSocial
+///------------
 
 #define MRC_UM_APP_KEY   @"553e402e67e58ed9f4004045"
 #define MRC_UM_SHARE_URL @"http://www.umeng.com/social"
