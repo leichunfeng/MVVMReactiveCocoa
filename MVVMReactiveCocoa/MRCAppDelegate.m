@@ -14,6 +14,8 @@
 #import "MRCHomepageViewController.h"
 #import "MRCNavigationControllerStack.h"
 #import "MRCNavigationController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface MRCAppDelegate ()
 
@@ -50,6 +52,8 @@
     // Save the application version info.
     [[NSUserDefaults standardUserDefaults] setValue:MRC_APP_VERSION forKey:MRCApplicationVersionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [Fabric with:@[ CrashlyticsKit ]];
     
     return YES;
 }
