@@ -53,6 +53,8 @@
     #import "MRCMemoryCache.h"
     #import "UINavigationController+FDFullscreenPopGesture.h"
     #import "FMDatabaseQueue+MRCHelper.h"
+    #import <Fabric/Fabric.h>
+    #import <Crashlytics/Crashlytics.h>
 #endif
 
 #endif
