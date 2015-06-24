@@ -8,15 +8,15 @@ The purpose that I developing this app is hope to provide a complete app which i
 
 Now, GitBucket mainly include the following features:
 
-1. View owned and starred GitHub repositories.
-2. View GitHub repository's `README` and source code.
-3. View profile、give feedback, etc.
+1. View Owned & Starred repos, repo's README and source code.
+2. View Followers & Following, Follow & Unfollow user.
+3. Search repos, Star & Unstar repo.
 
-The features is little now, but I will add more utility features at the iterative development in the future, such as **explore**、**issues**、**search**, etc.
+The features is little now, but I will add more utility features at the iterative development in the future, such as **Activity**、**Gists**、**Issues**, etc.
 
 # Contribution
 
-If you want to make some contributions to the project or just want to build the project, please using the following command:
+If you want to make some contributions to this project or just want to build the project, please using the following command:
 
 ```
 git clone --recursive git@github.com:leichunfeng/MVVMReactiveCocoa.git
