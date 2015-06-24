@@ -72,7 +72,21 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>239</string>
+	<string>240</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>c435528bbc96a4c28d87c642cdae90df2149c23e</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
