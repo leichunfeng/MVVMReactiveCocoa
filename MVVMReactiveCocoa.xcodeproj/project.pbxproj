@@ -56,7 +56,6 @@
 		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
 		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E901A8F455000D25218 /* MRCDoubleTitleView.m */; };
-		24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -450,8 +449,6 @@
 		24116E8F1A8F455000D25218 /* MRCDoubleTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCDoubleTitleView.h; sourceTree = "<group>"; };
 		24116E901A8F455000D25218 /* MRCDoubleTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCDoubleTitleView.m; sourceTree = "<group>"; };
 		24123E471AEE8AD300D5A074 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MRCUMAnalytics.h"; sourceTree = "<group>"; };
-		24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MRCUMAnalytics.m"; sourceTree = "<group>"; };
 		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -841,8 +838,6 @@
 				249674301A73F5490032771B /* MRCWebViewController.m */,
 				24116E481A8CC62700D25218 /* MRCNavigationController.h */,
 				24116E491A8CC62700D25218 /* MRCNavigationController.m */,
-				24123E4A1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.h */,
-				24123E4B1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m */,
 				24E84E821AEFC270003F700C /* MRCWebViewController.xib */,
 				24FDDEE31B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.h */,
 				24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */,
@@ -1729,7 +1724,6 @@
 				2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */,
 				2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */,
 				2489AD6A1B33AF0000D76523 /* MRCPublicReposViewController.m in Sources */,
-				24123E4C1AEE8D9100D5A074 /* UIViewController+MRCUMAnalytics.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				2489AD731B345F5D00D76523 /* OCTClient+MRCUser.m in Sources */,
 				24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */,
