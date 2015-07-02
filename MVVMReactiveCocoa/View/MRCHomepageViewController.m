@@ -20,6 +20,8 @@
 #import "MRCSearchViewController.h"
 #import "MRCGistsViewController.h"
 #import "MRCUserListViewModel.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 

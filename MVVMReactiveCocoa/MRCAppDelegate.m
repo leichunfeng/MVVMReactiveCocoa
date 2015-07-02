@@ -14,6 +14,8 @@
 #import "MRCHomepageViewController.h"
 #import "MRCNavigationControllerStack.h"
 #import "MRCNavigationController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface MRCAppDelegate ()
 
