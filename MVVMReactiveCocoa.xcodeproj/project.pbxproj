@@ -139,8 +139,6 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
-		24B7C0211B3A71EA00288E67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B7C01F1B3A71EA00288E67 /* Fabric.framework */; };
-		24B7C0221B3A71EA00288E67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B7C0201B3A71EA00288E67 /* Crashlytics.framework */; };
 		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
 		24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */; };
 		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
@@ -581,8 +579,6 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
-		24B7C01F1B3A71EA00288E67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		24B7C0201B3A71EA00288E67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		24D1D4251AA9FA4A000F5AEA /* MRCAppStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreService.h; sourceTree = "<group>"; };
 		24D1D4311AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreServiceImpl.h; sourceTree = "<group>"; };
 		24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAppStoreServiceImpl.m; sourceTree = "<group>"; };
@@ -653,9 +649,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24B7C0211B3A71EA00288E67 /* Fabric.framework in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
-				24B7C0221B3A71EA00288E67 /* Crashlytics.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
 				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
@@ -1233,8 +1227,6 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				24B7C01F1B3A71EA00288E67 /* Fabric.framework */,
-				24B7C0201B3A71EA00288E67 /* Crashlytics.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
 				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
 				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
@@ -1277,7 +1269,6 @@
 				94BC7850225D73433B852981 /* Copy Pods Resources */,
 				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
 				242453231A80D85300FFFCC1 /* Embed Frameworks */,
-				24B7C0131B3A710000288E67 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1566,20 +1557,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "REV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
-		};
-		24B7C0131B3A710000288E67 /* Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Crashlytics;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run c435528bbc96a4c28d87c642cdae90df2149c23e 9a404ce433caa8324961636a41dbd7ba294058cb1e549a018813593deac5e781";
 		};
 		711F146F5514DA4E99DDFB00 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
