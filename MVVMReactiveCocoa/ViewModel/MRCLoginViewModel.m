@@ -32,7 +32,9 @@
         [[MRCMemoryCache sharedInstance] setObject:authenticatedClient.user forKey:@"currentUser"];
 
         self.services.client = authenticatedClient;
+
         [authenticatedClient.user mrc_saveOrUpdate];
+        [authenticatedClient.user mrc_updateRawLogin]; // The only place to update rawLogin, I hate the logic of rawLogin.
         
         SSKeychain.rawLogin = authenticatedClient.user.rawLogin;
         SSKeychain.password = self.password;
