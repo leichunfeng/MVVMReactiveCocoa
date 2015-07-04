@@ -88,7 +88,9 @@
         [self presentViewController:viewController animated:YES completion:NULL];
     }];
     
-    RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
+    RAC(self.viewModel, username) = [self.usernameTextField.rac_textSignal map:^(NSString *username) {
+        return [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    }];
     RAC(self.viewModel, password) = self.passwordTextField.rac_textSignal;
     
     [[RACSignal
