@@ -8,9 +8,9 @@
 
 #import "OCTUser+MRCPersistence.h"
 
-#define INSERT_STATEMENT @"INSERT INTO User VALUES (:id, :rawLogin, :login, :name, :bio, :email, :avatar_url, :html_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);"
-#define UPDATE_STATEMENT @"UPDATE User SET rawLogin = :rawLogin, login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, html_url = :html_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage WHERE id = :id;"
-#define UPDATE_STATEMENT_LIST @"UPDATE User SET rawLogin = :rawLogin, login = :login, bio = :bio, avatar_url = :avatar_url, html_url = :html_url, collaborators = :collaborators, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, disk_usage = :disk_usage WHERE id = :id;"
+#define INSERT_STATEMENT @"INSERT INTO User (id, login, name, bio, email, avatar_url, html_url, blog, company, location, collaborators, public_repos, owned_private_repos, public_gists, private_gists, followers, following, disk_usage) VALUES (:id, :login, :name, :bio, :email, :avatar_url, :html_url, :blog, :company, :location, :collaborators, :public_repos, :owned_private_repos, :public_gists, :private_gists, :followers, :following, :disk_usage);"
+#define UPDATE_STATEMENT @"UPDATE User SET login = :login, name = :name, bio = :bio, email = :email, avatar_url = :avatar_url, html_url = :html_url, blog = :blog, company = :company, location = :location, collaborators = :collaborators, public_repos = :public_repos, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, followers = :followers, following = :following, disk_usage = :disk_usage WHERE id = :id;"
+#define UPDATE_STATEMENT_LIST @"UPDATE User SET login = :login, bio = :bio, avatar_url = :avatar_url, html_url = :html_url, collaborators = :collaborators, owned_private_repos = :owned_private_repos, public_gists = :public_gists, private_gists = :private_gists, disk_usage = :disk_usage WHERE id = :id;"
 
 @implementation OCTUser (MRCPersistence)
 
@@ -68,6 +68,35 @@
 }
 
 #pragma mark - Save Or Update Users
+
+- (BOOL)mrc_updateRawLogin {
+    __block BOOL result = YES;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE id = ? LIMIT 1;", self.objectID];
+        
+        @onExit {
+            [rs close];
+        };
+        
+        if (rs == nil) {
+            mrcLogLastError(db);
+            result = NO;
+            return;
+        }
+        
+        if ([rs next]) {
+            BOOL success = [db executeUpdate:@"UPDATE User SET rawLogin = ? WHERE id = ?;", self.rawLogin, self.objectID];
+            if (!success) {
+                mrcLogLastError(db);
+                result = NO;
+                return;
+            }
+        }
+    }];
+    
+    return result;
+}
 
 + (BOOL)mrc_saveOrUpdateUsers:(NSArray *)users {
     if (users.count == 0) return YES;
@@ -221,6 +250,9 @@
     OCTUser *currentUser = [[MRCMemoryCache sharedInstance] objectForKey:@"currentUser"];
     if (!currentUser) {
         currentUser = [self mrc_fetchUserWithRawLogin:[SSKeychain rawLogin]];
+        
+        NSAssert(currentUser != nil, @"The retrieved currentUser must not be nil.");
+
         [[MRCMemoryCache sharedInstance] setObject:currentUser forKey:@"currentUser"];
     }
     return currentUser;
@@ -232,7 +264,7 @@
     __block OCTUser *user = nil;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE login = ? OR email = ? LIMIT 1;", rawLogin, rawLogin];
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User WHERE rawLogin = ? OR login = ? OR email = ? LIMIT 1;", rawLogin, rawLogin, rawLogin];
         
         @onExit {
             [rs close];

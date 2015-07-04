@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
 @property (assign, nonatomic) OCTUserFollowerStatus followerStatus;
 @property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
 
+- (BOOL)mrc_updateRawLogin;
+
 + (BOOL)mrc_saveOrUpdateUsers:(NSArray *)users;
 + (BOOL)mrc_saveOrUpdateFollowerStatusWithUsers:(NSArray *)users;
 + (BOOL)mrc_saveOrUpdateFollowingStatusWithUsers:(NSArray *)users;
