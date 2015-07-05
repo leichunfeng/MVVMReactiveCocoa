@@ -53,6 +53,7 @@
     #import "MRCMemoryCache.h"
     #import "UINavigationController+FDFullscreenPopGesture.h"
     #import "FMDatabaseQueue+MRCHelper.h"
+    #import "MRCReactiveView.h"
 #endif
 
 #endif

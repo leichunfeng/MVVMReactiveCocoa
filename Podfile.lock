@@ -1,4 +1,15 @@
 PODS:
+  - DTCoreText (1.6.15):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.5)
+  - DTFoundation/DTAnimatedGIF (1.7.5)
+  - DTFoundation/DTHTMLParser (1.7.5):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.5):
+    - DTFoundation/Core
   - DZNEmptyDataSet (1.5.2)
   - FDFullscreenPopGesture (1.1)
   - FMDB (2.5):
@@ -44,6 +55,7 @@ PODS:
   - WebViewJavascriptBridge (4.1.4)
 
 DEPENDENCIES:
+  - DTCoreText (~> 1.6.15)
   - DZNEmptyDataSet (~> 1.5.1)
   - FDFullscreenPopGesture (~> 1.1)
   - FMDB
@@ -72,6 +84,8 @@ CHECKOUT OPTIONS:
     :git: git@github.com:jacksonh/OcticonsIOS.git
 
 SPEC CHECKSUMS:
+  DTCoreText: 13ce06e63204a3b47c9db974e3d9be982bb0b1ed
+  DTFoundation: 1d28080c20c3da041706545363f8238ab53a6204
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MRCReactiveView.h"
 
 @interface MRCAvatarHeaderView : UIView <MRCReactiveView>
 
