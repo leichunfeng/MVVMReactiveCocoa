@@ -14,7 +14,7 @@ Now, GitBucket mainly include the following features:
 
 The features is little now, but I will add more utility features at the iterative development in the future, such as **Activity**、**Gists**、**Issues**, etc.
 
-# Contribution
+# Contributions
 
 If you want to make some contributions to this project or just want to build the project, please using the following command:
 
