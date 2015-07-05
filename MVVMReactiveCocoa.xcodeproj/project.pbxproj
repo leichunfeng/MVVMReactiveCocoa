@@ -1556,7 +1556,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "REV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nREV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi;";
 		};
 		711F146F5514DA4E99DDFB00 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
