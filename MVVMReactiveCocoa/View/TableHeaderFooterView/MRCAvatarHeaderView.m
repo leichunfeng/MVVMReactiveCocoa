@@ -15,6 +15,7 @@
 #import "MRCAvatarHeaderViewModel.h"
 
 #define MRCAvatarHeaderViewContentOffsetRadix 40.0f
+#define MRCAvatarHeaderViewBlurEffectRadix    2.0f
 
 @interface MRCAvatarHeaderView () <UIViewControllerTransitioningDelegate>
 
@@ -32,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
 
 @property (strong, nonatomic) UIImage *avatarImage;
-@property (strong, nonatomic) NSArray *bluredAvatarImages;
 @property (assign, nonatomic) CGPoint lastContentOffsetBlurEffect;
 
 @property (strong, nonatomic) MRCAvatarHeaderViewModel *viewModel;
@@ -49,7 +49,6 @@
     self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.coverImageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
-    [self prepareForBluredImages:self.avatarImage];
 }
 
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
@@ -81,10 +80,7 @@
                                                          progress:NULL
                                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                                             @strongify(self)
-                                                            if (image && finished) {
-                                                                self.avatarImage = image;
-                                                                [self prepareForBluredImages:image];
-                                                            }
+                                                            if (image && finished) self.avatarImage = image;
                                                         }];
         }];
     
@@ -125,10 +121,10 @@
         CGFloat diff  = MIN(ABS(contentOffset.y), MRCAvatarHeaderViewContentOffsetRadix);
         CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
         
-        NSInteger index = (NSInteger)(scale * 20);
-        if (self.bluredAvatarImages && self.bluredAvatarImages.count > index) {
+        if (ABS(contentOffset.y - self.lastContentOffsetBlurEffect.y) >= MRCAvatarHeaderViewBlurEffectRadix) {
+            self.lastContentOffsetBlurEffect = contentOffset;
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.coverImageView.image = self.bluredAvatarImages[index];
+                self.coverImageView.image = [self.avatarImage applyBlurWithRadius:20 * (1 - scale) tintColor:nil saturationDeltaFactor:1 maskImage:nil];
             });
         }
         
@@ -142,22 +138,8 @@
 
 - (void)setAvatarImage:(UIImage *)avatarImage {
     _avatarImage = avatarImage;
+    self.coverImageView.image = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
     [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
-}
-
-- (void)prepareForBluredImages:(UIImage *)image {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray *tempImageArray = @[].mutableCopy;
-        for (NSUInteger i = 20; i > 0; i--) {
-            [tempImageArray addObject:[image applyBlurWithRadius:i tintColor:nil saturationDeltaFactor:1 maskImage:nil]];
-        }
-        [tempImageArray addObject:image];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.coverImageView.image = tempImageArray.firstObject;
-            [self performSelector:@selector(setBluredAvatarImages:) withObject:tempImageArray afterDelay:0 inModes:@[NSDefaultRunLoopMode]];
-        });
-    });
 }
 
 - (void)layoutSubviews {
