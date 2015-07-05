@@ -145,8 +145,7 @@
     [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
 }
 
-- (void)prepareForBluredImages:(UIImage *)image
-{
+- (void)prepareForBluredImages:(UIImage *)image {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray *tempImageArray = @[].mutableCopy;
         for (NSUInteger i = 20; i > 0; i--) {
