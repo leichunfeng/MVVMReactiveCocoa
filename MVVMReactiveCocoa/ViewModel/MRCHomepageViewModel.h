@@ -9,9 +9,8 @@
 #import "MRCTabBarViewModel.h"
 #import "MRCNewsViewModel.h"
 #import "MRCReposViewModel.h"
-#import "MRCGistsViewModel.h"
-#import "MRCProfileViewModel.h"
 #import "MRCSearchViewModel.h"
+#import "MRCProfileViewModel.h"
 
 @interface MRCHomepageViewModel : MRCTabBarViewModel
 
@@ -20,9 +19,6 @@
 
 // The view model of `Repositories` interface.
 @property (strong, nonatomic) MRCReposViewModel *reposViewModel;
-
-// The view model of `Gists` interface.
-@property (strong, nonatomic) MRCGistsViewModel *gistsViewModel;
 
 // The view model of `Search` interface.
 @property (strong, nonatomic) MRCSearchViewModel *searchViewModel;

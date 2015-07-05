@@ -15,7 +15,6 @@
     
     self.newsViewModel    = [[MRCNewsViewModel alloc] initWithServices:self.services params:nil];
     self.reposViewModel   = [[MRCReposViewModel alloc] initWithServices:self.services params:nil];
-    self.gistsViewModel   = [[MRCGistsViewModel alloc] initWithServices:self.services params:nil];
     self.searchViewModel  = [[MRCSearchViewModel alloc] initWithServices:self.services params:nil];
     self.profileViewModel = [[MRCProfileViewModel alloc] initWithServices:self.services params:nil];
 }
