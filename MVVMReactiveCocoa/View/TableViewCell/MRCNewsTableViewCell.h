@@ -10,4 +10,6 @@
 
 @interface MRCNewsTableViewCell : UITableViewCell <MRCReactiveView>
 
+- (CGFloat)height;
+
 @end

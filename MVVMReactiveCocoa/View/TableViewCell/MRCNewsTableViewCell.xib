@@ -33,13 +33,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y1w-sh-brN">
-                        <rect key="frame" x="156" y="14" width="18" height="18"/>
+                        <rect key="frame" x="153" y="15" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="18" id="3mC-JV-ncZ"/>
-                            <constraint firstAttribute="height" constant="18" id="Urh-7u-Kmc"/>
+                            <constraint firstAttribute="width" constant="15" id="3mC-JV-ncZ"/>
+                            <constraint firstAttribute="height" constant="15" id="Urh-7u-Kmc"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5V-lg-1Zq">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5V-lg-1Zq" customClass="DTAttributedLabel">
                         <rect key="frame" x="10" y="60" width="355" height="53.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -56,8 +56,8 @@
                     <constraint firstItem="Kwv-kB-ztk" firstAttribute="top" secondItem="5PO-3W-ywC" secondAttribute="bottom" id="dLJ-FR-UYw"/>
                     <constraint firstItem="p5V-lg-1Zq" firstAttribute="top" secondItem="WYP-se-FGw" secondAttribute="bottom" constant="10" id="jAW-HX-uAh"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y1w-sh-brN" secondAttribute="trailing" constant="10" id="jMt-sJ-vnN"/>
-                    <constraint firstItem="5PO-3W-ywC" firstAttribute="centerY" secondItem="y1w-sh-brN" secondAttribute="centerY" constant="-0.75" id="lPL-Ww-NY8"/>
-                    <constraint firstItem="y1w-sh-brN" firstAttribute="leading" secondItem="5PO-3W-ywC" secondAttribute="trailing" constant="8" id="q17-Ll-vv4"/>
+                    <constraint firstItem="5PO-3W-ywC" firstAttribute="centerY" secondItem="y1w-sh-brN" secondAttribute="centerY" id="lPL-Ww-NY8"/>
+                    <constraint firstItem="y1w-sh-brN" firstAttribute="leading" secondItem="5PO-3W-ywC" secondAttribute="trailing" constant="4.5" id="q17-Ll-vv4"/>
                     <constraint firstItem="WYP-se-FGw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="w8a-fF-zpj"/>
                 </constraints>
             </tableViewCellContentView>
@@ -68,7 +68,7 @@
                 <outlet property="nameLabel" destination="5PO-3W-ywC" id="E0x-Dt-ALh"/>
                 <outlet property="timeLabel" destination="Kwv-kB-ztk" id="pEe-vf-ctT"/>
             </connections>
-            <point key="canvasLocation" x="-182.5" y="283"/>
+            <point key="canvasLocation" x="-217.5" y="278"/>
         </tableViewCell>
     </objects>
 </document>
