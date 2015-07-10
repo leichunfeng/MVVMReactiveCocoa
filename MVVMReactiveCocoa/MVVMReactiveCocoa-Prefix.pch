@@ -54,6 +54,7 @@
     #import "UINavigationController+FDFullscreenPopGesture.h"
     #import "FMDatabaseQueue+MRCHelper.h"
     #import "MRCReactiveView.h"
+	#import <DTCoreText/DTCoreText.h>
 #endif
 
 #endif
