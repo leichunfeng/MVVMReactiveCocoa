@@ -12,7 +12,6 @@
 @interface MRCNewsItemViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTEvent *event;
-@property (strong, nonatomic, readwrite) NSString *imageIdentifier;
 @property (strong, nonatomic, readwrite) NSAttributedString *contentAttributedString;
 @property (copy, nonatomic, readwrite) NSString *occurTime;
 
@@ -27,25 +26,26 @@
 
         NSMutableAttributedString *attributedString = nil;
         NSString *string = nil;
+        NSString *actionIcon = @"";
         NSString *target = event.repositoryName;
         
-        NSDictionary *attributes = @{ NSForegroundColorAttributeName: HexRGB(0x4078c0),
-                                      NSFontAttributeName: [UIFont boldSystemFontOfSize:16] };
+        NSDictionary *stringAttributes = @{ NSForegroundColorAttributeName: HexRGB(0x4078c0),
+                                            NSFontAttributeName: [UIFont boldSystemFontOfSize:16] };
+        NSDictionary *actionIconAttributes = @{ NSFontAttributeName: [UIFont fontWithName:kOcticonsFamilyName size:16],
+                                                NSForegroundColorAttributeName: [UIColor grayColor] };
         
-        self.imageIdentifier = @"Unknown";
-
         if ([event.type isEqualToString:@"CommitCommentEvent"]) {
             OCTCommitCommentEvent *concreteEvent = (OCTCommitCommentEvent *)event;
             
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
+            
             NSString *commit = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, concreteEvent.comment.commitSHA];
-            string = [NSString stringWithFormat:@"%@ commented on commit %@", concreteEvent.actorLogin, commit];
+            string = [NSString stringWithFormat:@"%@  %@ commented on commit %@", actionIcon, concreteEvent.actorLogin, commit];
             
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
             
             target = commit;
-            
-            self.imageIdentifier = @"CommentDiscussion";
         } else if ([event.type isEqualToString:@"CreateEvent"] || [event.type isEqualToString:@"DeleteEvent"]) {
             OCTRefEvent *concreteEvent = (OCTRefEvent *)event;
             
@@ -59,64 +59,64 @@
             NSString *object = @"";
             if (concreteEvent.refType == OCTRefTypeBranch) {
                 object = @"branch";
-                self.imageIdentifier = @"GitBranch";
+                actionIcon = [NSString octicon_iconStringForEnum:OCTIconGitBranch];
             } else if (concreteEvent.refType == OCTRefTypeTag) {
                 object = @"tag";
-                self.imageIdentifier = @"Tag";
+                actionIcon = [NSString octicon_iconStringForEnum:OCTIconTag];
             } else if (concreteEvent.refType == OCTRefTypeRepository) {
                 object = @"repository";
-                self.imageIdentifier = @"Repo";
+                actionIcon = [NSString octicon_iconStringForEnum:OCTIconRepo];
             }
             
             NSString *refName = concreteEvent.refName ? [concreteEvent.refName stringByAppendingString:@" "] : @"";
             NSString *at = (concreteEvent.refType == OCTRefTypeBranch || concreteEvent.refType == OCTRefTypeTag ? @"at " : @"");
             
-            string = [NSString stringWithFormat:@"%@ %@ %@ %@%@%@", concreteEvent.actorLogin, action, object, refName, at, concreteEvent.repositoryName];
+            string = [NSString stringWithFormat:@"%@  %@ %@ %@ %@%@%@", actionIcon, concreteEvent.actorLogin, action, object, refName, at, concreteEvent.repositoryName];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
-            [attributedString addAttributes:attributes range:[string rangeOfString:refName]];
+            [attributedString addAttributes:stringAttributes range:[string rangeOfString:refName]];
         } else if ([event.type isEqualToString:@"ForkEvent"]) {
             OCTForkEvent *concreteEvent = (OCTForkEvent *)event;
             
-            string = [NSString stringWithFormat:@"%@ forked %@ to %@", concreteEvent.actorLogin, concreteEvent.repositoryName, concreteEvent.forkedRepositoryName];
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconGitBranch];
+            
+            string = [NSString stringWithFormat:@"%@  %@ forked %@ to %@", actionIcon, concreteEvent.actorLogin, concreteEvent.repositoryName, concreteEvent.forkedRepositoryName];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
-            [attributedString addAttributes:attributes range:[string rangeOfString:concreteEvent.forkedRepositoryName]];
-            
-            self.imageIdentifier = @"GitBranch";
+            [attributedString addAttributes:stringAttributes range:[string rangeOfString:concreteEvent.forkedRepositoryName]];
         } else if ([event.type isEqualToString:@"IssueCommentEvent"]) {
             OCTIssueCommentEvent *concreteEvent = (OCTIssueCommentEvent *)event;
             
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
+            
             NSString *issue = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
-            string = [NSString stringWithFormat:@"%@ commented on issue %@", concreteEvent.actorLogin, issue];
+            string = [NSString stringWithFormat:@"%@  %@ commented on issue %@", actionIcon, concreteEvent.actorLogin, issue];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
             
             target = issue;
-            
-            self.imageIdentifier = @"CommentDiscussion";
         } else if ([event.type isEqualToString:@"IssuesEvent"]) {
             OCTIssueEvent *concreteEvent = (OCTIssueEvent *)event;
             
             NSString *action = @"";
             if (concreteEvent.action == OCTIssueActionOpened) {
                 action = @"opened";
-                self.imageIdentifier = @"IssueOpened";
+                actionIcon = [NSString octicon_iconStringForEnum:OCTIconIssueOpened];
             } else if (concreteEvent.action == OCTIssueActionClosed) {
                 action = @"closed";
-                self.imageIdentifier = @"IssueClosed";
+                actionIcon = [NSString octicon_iconStringForEnum:OCTIconIssueClosed];
             } else if (concreteEvent.action == OCTIssueActionReopened) {
                 action = @"reopened";
-                self.imageIdentifier = @"IssueReopened";
+                actionIcon = [NSString octicon_iconStringForEnum:OCTIconIssueReopened];
             } else if (concreteEvent.action == OCTIssueActionSynchronized) {
                 action = @"synchronized";
             }
             
             NSString *issue = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
-            string = [NSString stringWithFormat:@"%@ %@ issue %@", concreteEvent.actorLogin, action, issue];
+            string = [NSString stringWithFormat:@"%@  %@ %@ issue %@", actionIcon, concreteEvent.actorLogin, action, issue];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
@@ -125,15 +125,19 @@
         } else if ([event.type isEqualToString:@"MemberEvent"]) {
             OCTMemberEvent *concreteEvent = (OCTMemberEvent *)event;
             
-            string = [NSString stringWithFormat:@"%@ added %@ to %@", concreteEvent.actorLogin, concreteEvent.memberLogin, concreteEvent.repositoryName];
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconOrganization];
+            
+            string = [NSString stringWithFormat:@"%@  %@ added %@ to %@", actionIcon, concreteEvent.actorLogin, concreteEvent.memberLogin, concreteEvent.repositoryName];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
-            [attributedString addAttributes:attributes range:[string rangeOfString:concreteEvent.memberLogin]];
+            [attributedString addAttributes:stringAttributes range:[string rangeOfString:concreteEvent.memberLogin]];
         } else if ([event.type isEqualToString:@"PublicEvent"]) {
             OCTPublicEvent *concreteEvent = (OCTPublicEvent *)event;
             
-            string = [NSString stringWithFormat:@"%@ open sourced %@", concreteEvent.actorLogin, concreteEvent.repositoryName];
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconRepo];
+            
+            string = [NSString stringWithFormat:@"%@  %@ open sourced %@", actionIcon, concreteEvent.actorLogin, concreteEvent.repositoryName];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
@@ -151,52 +155,53 @@
                 action = @"synchronized";
             }
             
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconGitPullRequest];
+            
             NSString *pullRequest = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.pullRequest.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
-            string = [NSString stringWithFormat:@"%@ %@ pull request %@", concreteEvent.actorLogin, action, pullRequest];
+            string = [NSString stringWithFormat:@"%@  %@ %@ pull request %@", actionIcon, concreteEvent.actorLogin, action, pullRequest];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
             
             target = pullRequest;
-            
-            self.imageIdentifier = @"GitPullRequest";
         } else if ([event.type isEqualToString:@"PullRequestReviewCommentEvent"]) {
             OCTPullRequestCommentEvent *concreteEvent = (OCTPullRequestCommentEvent *)event;
             
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
+            
             NSString *pullRequest = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.comment.pullRequestAPIURL.absoluteString componentsSeparatedByString:@"/"].lastObject];
-            string = [NSString stringWithFormat:@"%@ commented on pull request %@", concreteEvent.actorLogin, pullRequest];
+            string = [NSString stringWithFormat:@"%@  %@ commented on pull request %@", actionIcon, concreteEvent.actorLogin, pullRequest];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
             
             target = pullRequest;
-            
-            self.imageIdentifier = @"CommentDiscussion";
         } else if ([event.type isEqualToString:@"PushEvent"]) {
             OCTPushEvent *concreteEvent = (OCTPushEvent *)event;
             
-            string = [NSString stringWithFormat:@"%@ pushed to %@ at %@", concreteEvent.actorLogin, concreteEvent.branchName, concreteEvent.repositoryName];
+            actionIcon = [NSString octicon_iconStringForEnum:OCTIconGitCommit];
+            
+            string = [NSString stringWithFormat:@"%@  %@ pushed to %@ at %@", actionIcon, concreteEvent.actorLogin, concreteEvent.branchName, concreteEvent.repositoryName];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
-            [attributedString addAttributes:attributes range:[string rangeOfString:concreteEvent.branchName]];
-            
-            self.imageIdentifier = @"GitCommit";
+            [attributedString addAttributes:stringAttributes range:[string rangeOfString:concreteEvent.branchName]];
         } else if ([event.type isEqualToString:@"WatchEvent"]) {
             OCTWatchEvent *concreteEvent = (OCTWatchEvent *)event;
             
-            string = [NSString stringWithFormat:@"%@ starred %@", concreteEvent.actorLogin, concreteEvent.repositoryName];
+            actionIcon = [NSString octicon_iconStringForIconIdentifier:@"Star"];
+            
+            string = [NSString stringWithFormat:@"%@  %@ starred %@", actionIcon, concreteEvent.actorLogin, concreteEvent.repositoryName];
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
             
             [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:[string rangeOfString:string]];
-            
-            self.imageIdentifier = @"Star";
         } else {
             NSLog(@"Unknown event type: %@", event.type);
         }
 
-        [attributedString addAttributes:attributes range:[string rangeOfString:event.actorLogin]];
-        [attributedString addAttributes:attributes range:[string rangeOfString:target]];
+        [attributedString addAttributes:actionIconAttributes range:[string rangeOfString:actionIcon]];
+        [attributedString addAttributes:stringAttributes range:[string rangeOfString:event.actorLogin]];
+        [attributedString addAttributes:stringAttributes range:[string rangeOfString:target]];
         
         self.contentAttributedString = attributedString;
         

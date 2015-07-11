@@ -55,6 +55,7 @@
     #import "FMDatabaseQueue+MRCHelper.h"
     #import "MRCReactiveView.h"
 	#import <DTCoreText/DTCoreText.h>
+    #import "NSString+Octicons.h"
 #endif
 
 #endif
