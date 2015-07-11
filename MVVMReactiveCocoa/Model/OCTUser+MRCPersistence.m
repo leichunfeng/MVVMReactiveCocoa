@@ -246,6 +246,21 @@
 
 #pragma mark - Fetch User
 
++ (instancetype)mrc_userWithRawLogin:(NSString *)rawLogin server:(OCTServer *)server {
+    NSParameterAssert(rawLogin.length > 0);
+    NSParameterAssert(server);
+    
+    OCTUser *user = [self mrc_fetchUserWithRawLogin:rawLogin];
+    NSParameterAssert(user && user.login.length > 0);
+    
+    NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+    if (rawLogin.length > 0) userDict[@"rawLogin"] = rawLogin;
+    if (user.login.length > 0) userDict[@"login"] = user.login;
+    if (server.baseURL) userDict[@"baseURL"] = server.baseURL;
+    
+    return [self modelWithDictionary:userDict error:NULL];
+}
+
 + (instancetype)mrc_currentUser {
     OCTUser *currentUser = [[MRCMemoryCache sharedInstance] objectForKey:@"currentUser"];
     if (!currentUser) {

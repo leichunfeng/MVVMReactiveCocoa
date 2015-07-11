@@ -34,6 +34,7 @@ typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
 
 + (NSString *)mrc_currentUserId;
 
++ (instancetype)mrc_userWithRawLogin:(NSString *)rawLogin server:(OCTServer *)server;
 + (instancetype)mrc_currentUser;
 + (instancetype)mrc_fetchUserWithRawLogin:(NSString *)rawLogin;
 + (instancetype)mrc_fetchUser:(OCTUser *)user;
