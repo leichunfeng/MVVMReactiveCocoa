@@ -97,7 +97,6 @@
 		245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */; };
 		245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */; };
 		24619DAC1B1BF3CC0097258E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24619DAB1B1BF3CC0097258E /* update_v1_1_0.sql */; };
-		246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 246477CF1AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist */; };
 		2479C93D1AAD39150057B681 /* icon-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9331AAD39150057B681 /* icon-error.png */; };
 		2479C93E1AAD39150057B681 /* icon-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9341AAD39150057B681 /* icon-error@2x.png */; };
 		2479C93F1AAD39150057B681 /* icon-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9351AAD39150057B681 /* icon-info.png */; };
@@ -1324,7 +1323,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MRC;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = leichunfeng;
 				TargetAttributes = {
 					242D4FD41A64B6FA0026ABC6 = {
@@ -1504,7 +1503,6 @@
 				24619DAC1B1BF3CC0097258E /* update_v1_1_0.sql in Resources */,
 				243688211B25D18300D801D3 /* update_v1_2_0.sql in Resources */,
 				24E3B9F41B4922E4001C1DEE /* MRCNewsTableViewCell.xib in Resources */,
-				246477D11AC1ADBF006F49F8 /* MVVMReactiveCocoa-Info.plist in Resources */,
 				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
 				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
