@@ -63,7 +63,7 @@ DEPENDENCIES:
   - IQKeyboardManager (~> 3.2.0.3)
   - MBProgressHUD (~> 0.9)
   - MKNetworkKit (~> 0.87)
-  - OcticonsIOS (from `git@github.com:jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
+  - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
   - Ono (~> 1.2.0)
   - Reveal-iOS-SDK (~> 1.5.1)
   - SDWebImage (~> 3.7.1)
@@ -76,12 +76,12 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   OcticonsIOS:
     :commit: 4bd3b21
-    :git: git@github.com:jacksonh/OcticonsIOS.git
+    :git: https://github.com/jacksonh/OcticonsIOS.git
 
 CHECKOUT OPTIONS:
   OcticonsIOS:
     :commit: 4bd3b21
-    :git: git@github.com:jacksonh/OcticonsIOS.git
+    :git: https://github.com/jacksonh/OcticonsIOS.git
 
 SPEC CHECKSUMS:
   DTCoreText: 13ce06e63204a3b47c9db974e3d9be982bb0b1ed
