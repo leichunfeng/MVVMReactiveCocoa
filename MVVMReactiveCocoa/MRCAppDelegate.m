@@ -57,7 +57,7 @@
 - (UIViewController *)createInitialViewController {
     // The user has logged-in.
     if ([SSKeychain rawLogin].isExist && [SSKeychain accessToken].isExist) {
-        OCTUser *user = [OCTUser userWithRawLogin:[SSKeychain rawLogin] server:OCTServer.dotComServer];
+        OCTUser *user = [OCTUser mrc_userWithRawLogin:[SSKeychain rawLogin] server:OCTServer.dotComServer];
 
         OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:[SSKeychain accessToken]];
         self.services.client = authenticatedClient;
