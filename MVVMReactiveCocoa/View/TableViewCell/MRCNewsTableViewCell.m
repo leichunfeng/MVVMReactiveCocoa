@@ -12,7 +12,6 @@
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *actionImageView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
@@ -35,9 +34,6 @@
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {
     [self.avatarImageView sd_setImageWithURL:viewModel.event.actorAvatarURL];
     
-    self.nameLabel.text = viewModel.event.actorLogin;
-    
-//    self.actionImageView.image = [UIImage octicon_imageWithIcon:@"Star" backgroundColor:[UIColor clearColor] iconColor:HexRGB(0xbbbbbb) iconScale:1 andSize:self.actionImageView.frame.size];
     self.actionImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:self.actionImageView.frame.size];
     
     self.detailView.lineBreakMode = NSLineBreakByClipping;
@@ -49,7 +45,6 @@
     [super layoutSubviews];
     
     self.detailHeightLayoutConstraint.constant = ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height);
-//    self.detailView.frame = CGRectMake(10, 10 + 40 + 10, [self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:CGRectGetWidth(self.frame) - 10 * 2].width, [self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2].height);
 }
 
 - (CGFloat)height {
