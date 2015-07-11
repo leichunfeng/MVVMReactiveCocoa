@@ -11,7 +11,9 @@
 @interface MRCNewsItemViewModel : NSObject
 
 @property (strong, nonatomic, readonly) OCTEvent *event;
+@property (strong, nonatomic, readonly) NSString *imageIdentifier;
 @property (strong, nonatomic, readonly) NSAttributedString *contentAttributedString;
+@property (copy, nonatomic, readonly) NSString *occurTime;
 
 - (instancetype)initWithEvent:(OCTEvent *)event;
 

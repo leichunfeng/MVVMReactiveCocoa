@@ -9,6 +9,18 @@
 #import "MRCNewsTableViewCell.h"
 #import "MRCNewsItemViewModel.h"
 
+static NSDictionary *_imageDictionary   = nil;
+static UIImage *_commentDiscussionImage = nil;
+static UIImage *_gitBranchImage         = nil;
+static UIImage *_issueOpenedImage       = nil;
+static UIImage *_issueClosedImage       = nil;
+static UIImage *_issueReopenedImage     = nil;
+static UIImage *_gitPullRequestImage    = nil;
+static UIImage *_gitCommitImage         = nil;
+static UIImage *_repoImage              = nil;
+static UIImage *_tagImage               = nil;
+static UIImage *_starImage              = nil;
+
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -29,16 +41,41 @@
     self.detailView.frame = frame;
     
     self.detailView.delegate = self;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _commentDiscussionImage = [UIImage octicon_imageWithIdentifier:@"CommentDiscussion" size:self.actionImageView.frame.size];
+        _gitBranchImage         = [UIImage octicon_imageWithIdentifier:@"GitBranch" size:self.actionImageView.frame.size];
+        _issueOpenedImage       = [UIImage octicon_imageWithIdentifier:@"IssueOpened" size:self.actionImageView.frame.size];
+        _issueClosedImage       = [UIImage octicon_imageWithIdentifier:@"IssueClosed" size:self.actionImageView.frame.size];
+        _issueReopenedImage     = [UIImage octicon_imageWithIdentifier:@"IssueReopened" size:self.actionImageView.frame.size];
+        _gitPullRequestImage    = [UIImage octicon_imageWithIdentifier:@"GitPullRequest" size:self.actionImageView.frame.size];
+        _gitCommitImage         = [UIImage octicon_imageWithIdentifier:@"GitCommit" size:self.actionImageView.frame.size];
+        _repoImage              = [UIImage octicon_imageWithIdentifier:@"Repo" size:self.actionImageView.frame.size];
+        _tagImage               = [UIImage octicon_imageWithIdentifier:@"Tag" size:self.actionImageView.frame.size];
+        _starImage              = [UIImage octicon_imageWithIdentifier:@"Star" size:self.actionImageView.frame.size];
+        
+        _imageDictionary = @{ @"CommentDiscussion": _commentDiscussionImage,
+                              @"GitBranch": _gitBranchImage,
+                              @"IssueOpened": _issueOpenedImage,
+                              @"IssueClosed": _issueClosedImage,
+                              @"IssueReopened": _issueReopenedImage,
+                              @"GitPullRequest": _gitPullRequestImage,
+                              @"GitCommit": _gitCommitImage,
+                              @"Repo": _repoImage,
+                              @"Tag": _tagImage,
+                              @"Star": _starImage };
+    });
 }
 
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {
     [self.avatarImageView sd_setImageWithURL:viewModel.event.actorAvatarURL];
     
-    self.actionImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:self.actionImageView.frame.size];
-    
-    self.detailView.lineBreakMode = NSLineBreakByClipping;
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
     self.detailView.attributedString = viewModel.contentAttributedString;
+    
+    self.actionImageView.image = _imageDictionary[viewModel.imageIdentifier];
+    self.timeLabel.text = viewModel.occurTime;
 }
 
 - (void)layoutSubviews {
