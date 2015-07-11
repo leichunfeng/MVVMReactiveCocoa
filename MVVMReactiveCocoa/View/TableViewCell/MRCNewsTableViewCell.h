@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MRCNewsItemViewModel.h"
 
 @interface MRCNewsTableViewCell : UITableViewCell <MRCReactiveView>
 
-- (CGFloat)height;
++ (instancetype)sharedInstance;
++ (DTAttributedLabel *)sharedAttributedLabel;
+
++ (CGFloat)heightWithViewModel:(MRCNewsItemViewModel *)viewModel;
 
 @end

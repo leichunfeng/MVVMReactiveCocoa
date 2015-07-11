@@ -39,7 +39,7 @@
             
             actionIcon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
             
-            NSString *commit = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, concreteEvent.comment.commitSHA];
+            NSString *commit = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, [concreteEvent.comment.commitSHA substringToIndex:7]];
             string = [NSString stringWithFormat:@"%@  %@ commented on commit %@", actionIcon, concreteEvent.actorLogin, commit];
             
             attributedString = [[NSMutableAttributedString alloc] initWithString:string];
@@ -210,6 +210,25 @@
         self.occurTime = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:event.date].copy;
     }
     return self;
+}
+
+- (MRCNewsItemViewModelType)type {
+    if ([self.event.type isEqualToString:@"CommitCommentEvent"]) {
+        return MRCNewsItemViewModelTypeCommented;
+    } else if ([self.event.type isEqualToString:@"CreateEvent"] || [self.event.type isEqualToString:@"DeleteEvent"]) {
+    } else if ([self.event.type isEqualToString:@"ForkEvent"]) {
+    } else if ([self.event.type isEqualToString:@"IssueCommentEvent"]) {
+    } else if ([self.event.type isEqualToString:@"IssuesEvent"]) {
+    } else if ([self.event.type isEqualToString:@"MemberEvent"]) {
+    } else if ([self.event.type isEqualToString:@"PublicEvent"]) {
+    } else if ([self.event.type isEqualToString:@"PullRequestEvent"]) {
+    } else if ([self.event.type isEqualToString:@"PullRequestReviewCommentEvent"]) {
+    } else if ([self.event.type isEqualToString:@"PushEvent"]) {
+    } else if ([self.event.type isEqualToString:@"WatchEvent"]) {
+    } else {
+        NSLog(@"Unknown self.event type: %@", self.event.type);
+    }
+    return MRCNewsItemViewModelTypeStarred;
 }
 
 @end
