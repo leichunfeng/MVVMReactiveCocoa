@@ -37,8 +37,10 @@
     
     self.nameLabel.text = viewModel.event.actorLogin;
     
-    self.actionImageView.image = [UIImage octicon_imageWithIcon:@"Star" backgroundColor:[UIColor clearColor] iconColor:HexRGB(0xbbbbbb) iconScale:1 andSize:self.actionImageView.frame.size];
+//    self.actionImageView.image = [UIImage octicon_imageWithIcon:@"Star" backgroundColor:[UIColor clearColor] iconColor:HexRGB(0xbbbbbb) iconScale:1 andSize:self.actionImageView.frame.size];
+    self.actionImageView.image = [UIImage octicon_imageWithIdentifier:@"Star" size:self.actionImageView.frame.size];
     
+    self.detailView.lineBreakMode = NSLineBreakByClipping;
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
     self.detailView.attributedString = viewModel.contentAttributedString;
 }
@@ -51,7 +53,8 @@
 }
 
 - (CGFloat)height {
-    return 10 + 40 + 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 10;
+    CGFloat height = 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 2 + 15 + 10;
+    return MAX(height, 10 + 40 + 10);
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
