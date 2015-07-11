@@ -33,6 +33,16 @@
     
     self.attributedLabel = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 10 - 40 - 10 - 10, 15)];
     self.attributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
+    
+    @weakify(self)
+    [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
+        @strongify(self)
+        if (executing.boolValue && self.viewModel.dataSource == nil) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

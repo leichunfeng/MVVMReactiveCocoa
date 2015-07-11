@@ -6,19 +6,32 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCNewsViewController">
             <connections>
-                <outlet property="view" destination="gHx-br-G5o" id="RnX-Ph-ffm"/>
+                <outlet property="tableView" destination="gHx-br-G5o" id="kbK-xm-ngs"/>
+                <outlet property="view" destination="KKi-p3-Nst" id="VNO-rB-4yg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="22" sectionFooterHeight="22" id="gHx-br-G5o">
+        <view contentMode="scaleToFill" id="KKi-p3-Nst">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gHx-br-G5o">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="m8z-uo-4Tl"/>
+                        <outlet property="delegate" destination="-1" id="ENR-VP-45k"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <connections>
-                <outlet property="dataSource" destination="-1" id="m8z-uo-4Tl"/>
-                <outlet property="delegate" destination="-1" id="ENR-VP-45k"/>
-            </connections>
-            <point key="canvasLocation" x="398" y="264"/>
-        </tableView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="gHx-br-G5o" secondAttribute="trailing" id="9tc-Ye-sxi"/>
+                <constraint firstAttribute="bottom" secondItem="gHx-br-G5o" secondAttribute="bottom" id="YID-fK-TXr"/>
+                <constraint firstItem="gHx-br-G5o" firstAttribute="top" secondItem="KKi-p3-Nst" secondAttribute="top" id="agV-Vy-1fH"/>
+                <constraint firstItem="gHx-br-G5o" firstAttribute="leading" secondItem="KKi-p3-Nst" secondAttribute="leading" id="di8-ZF-DV5"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="118"/>
+        </view>
     </objects>
 </document>
