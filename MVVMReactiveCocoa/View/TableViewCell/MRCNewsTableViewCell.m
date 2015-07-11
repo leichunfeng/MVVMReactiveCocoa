@@ -7,7 +7,6 @@
 //
 
 #import "MRCNewsTableViewCell.h"
-#import "MRCNewsItemViewModel.h"
 
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
@@ -19,6 +18,25 @@
 @end
 
 @implementation MRCNewsTableViewCell
+
++ (instancetype)sharedInstance {
+    static MRCNewsTableViewCell *_sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] instantiateWithOwner:nil options:nil].firstObject;
+    });
+    return _sharedInstance;
+}
+
++ (DTAttributedLabel *)sharedAttributedLabel {
+    static DTAttributedLabel *_sharedAttributedLabel;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedAttributedLabel = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 10 - 40 - 10 - 10, 15)];
+        _sharedAttributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
+    });
+    return _sharedAttributedLabel;
+}
 
 - (void)awakeFromNib {
     CGRect frame = self.detailView.frame;
@@ -45,6 +63,13 @@
 
 - (CGFloat)height {
     CGFloat height = 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 2 + 15 + 10;
+    return MAX(height, 10 + 40 + 10);
+}
+
++ (CGFloat)heightWithViewModel:(MRCNewsItemViewModel *)viewModel {
+    DTAttributedLabel *attributedLabel = [self sharedAttributedLabel];
+    attributedLabel.attributedString = viewModel.contentAttributedString;
+    CGFloat height = 10 + ceilf([attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 2 + 15 + 10;
     return MAX(height, 10 + 40 + 10);
 }
 
