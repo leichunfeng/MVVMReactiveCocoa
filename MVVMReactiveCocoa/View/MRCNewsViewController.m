@@ -14,7 +14,6 @@
 @interface MRCNewsViewController ()
 
 @property (strong, nonatomic, readonly) MRCNewsViewModel *viewModel;
-@property (strong, nonatomic) NSCache *cache;
 @property (strong, nonatomic) DTAttributedLabel *attributedLabel;
 
 @end
@@ -25,8 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.cache = [[NSCache alloc] init];
     
     self.tableView.contentOffset = CGPointMake(0, -64);
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
@@ -46,26 +43,6 @@
     [cell bindViewModel:viewModel];
 }
 
-//- (MRCNewsTableViewCell *)tableView:(UITableView *)tableView preparedCellForIndexPath:(NSIndexPath *)indexPath {
-//    NSString *key = [NSString stringWithFormat:@"%ld-%ld", (long)indexPath.section, (long)indexPath.row];
-//    
-//    MRCNewsTableViewCell *cell = [self.cache objectForKey:key];
-//
-//    if (!cell) {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell"];
-//        [self.cache setObject:cell forKey:key];
-//    }
-//    
-//    [self configureCell:cell forIndexPath:indexPath];
-//    
-//    return cell;
-//}
-
-//- (void)configureCell:(MRCNewsTableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-//    MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-//    [cell bindViewModel:viewModel];
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
     
@@ -73,15 +50,6 @@
     CGFloat height = 10 + ceilf([self.attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 2 + 15 + 10;
     
     return MAX(height, 10 + 40 + 10);
-//    
-//    
-//    
-//    MRCNewsTableViewCell *cell = [self tableView:tableView preparedCellForIndexPath:indexPath];
-//    return [cell height];
 }
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [self tableView:tableView preparedCellForIndexPath:indexPath];
-//}
 
 @end
