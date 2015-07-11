@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *actionImageView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeightLayoutConstraint;
 
 @end
 
@@ -25,7 +26,7 @@
     self.avatarImageView.backgroundColor = HexRGB(colorI6);
     
     CGRect frame = self.detailView.frame;
-    frame.size.width = SCREEN_WIDTH - 10 * 2;
+    frame.size.width = SCREEN_WIDTH - 10 * 2 - 40 - 10;
     self.detailView.frame = frame;
     
     self.detailView.delegate = self;
@@ -38,27 +39,19 @@
     
     self.actionImageView.image = [UIImage octicon_imageWithIcon:@"Star" backgroundColor:[UIColor clearColor] iconColor:HexRGB(0xbbbbbb) iconScale:1 andSize:self.actionImageView.frame.size];
     
-    NSString *string = @"juntianzi starredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarredstarred leichunfeng/MVVMReactiveCocoa";
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-    
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:[string rangeOfString:string]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(0x4078c0) range:[string rangeOfString:@"juntianzi"]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:HexRGB(0x4078c0) range:[string rangeOfString:@"leichunfeng/MVVMReactiveCocoa"]];
-    [attributedString addAttribute:NSLinkAttributeName value:[NSURL URLWithString:@"https://github.com/leichunfeng/MVVMReactiveCocoa"] range:[string rangeOfString:@"leichunfeng/MVVMReactiveCocoa"]];
-    
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
-    self.detailView.attributedString = attributedString;
+    self.detailView.attributedString = viewModel.contentAttributedString;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    self.detailHeightLayoutConstraint.constant = ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height);
 //    self.detailView.frame = CGRectMake(10, 10 + 40 + 10, [self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:CGRectGetWidth(self.frame) - 10 * 2].width, [self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2].height);
 }
 
 - (CGFloat)height {
-    return 10 + 40 + 10 + [self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2].height + 10;
+    return 10 + 40 + 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 10;
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
