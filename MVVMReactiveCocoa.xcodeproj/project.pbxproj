@@ -107,9 +107,6 @@
 		2479C9441AAD39150057B681 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2479C93B1AAD39150057B681 /* LICENSE */; };
 		2479C9451AAD39150057B681 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2479C93C1AAD39150057B681 /* README.md */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
-		2484D5EE1B518522003B231F /* MRCNewsCommentedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2484D5ED1B518522003B231F /* MRCNewsCommentedTableViewCell.m */; };
-		2484D5FB1B518541003B231F /* MRCNewsCommentedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2484D5FA1B518541003B231F /* MRCNewsCommentedTableViewCell.xib */; };
-		2484D5FE1B518661003B231F /* MRCNewsItemCommentedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2484D5FD1B518661003B231F /* MRCNewsItemCommentedViewModel.m */; };
 		248973781B3028AA00A867DE /* MRCUserDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 248973771B3028AA00A867DE /* MRCUserDetailViewModel.m */; };
 		248973871B3028BC00A867DE /* MRCUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 248973851B3028BC00A867DE /* MRCUserDetailViewController.m */; };
 		248973881B3028BC00A867DE /* MRCUserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 248973861B3028BC00A867DE /* MRCUserDetailViewController.xib */; };
@@ -527,11 +524,6 @@
 		2479C93C1AAD39150057B681 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2483A4501A69559000BA0594 /* UIImage+MRCOcticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MRCOcticons.h"; sourceTree = "<group>"; };
 		2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MRCOcticons.m"; sourceTree = "<group>"; };
-		2484D5EC1B518522003B231F /* MRCNewsCommentedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsCommentedTableViewCell.h; sourceTree = "<group>"; };
-		2484D5ED1B518522003B231F /* MRCNewsCommentedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsCommentedTableViewCell.m; sourceTree = "<group>"; };
-		2484D5FA1B518541003B231F /* MRCNewsCommentedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNewsCommentedTableViewCell.xib; sourceTree = "<group>"; };
-		2484D5FC1B518661003B231F /* MRCNewsItemCommentedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsItemCommentedViewModel.h; sourceTree = "<group>"; };
-		2484D5FD1B518661003B231F /* MRCNewsItemCommentedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsItemCommentedViewModel.m; sourceTree = "<group>"; };
 		248973761B3028AA00A867DE /* MRCUserDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCUserDetailViewModel.h; sourceTree = "<group>"; };
 		248973771B3028AA00A867DE /* MRCUserDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCUserDetailViewModel.m; sourceTree = "<group>"; };
 		248973841B3028BC00A867DE /* MRCUserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCUserDetailViewController.h; sourceTree = "<group>"; };
@@ -1195,9 +1187,6 @@
 				24E3B9F01B4922E4001C1DEE /* MRCNewsTableViewCell.h */,
 				24E3B9F11B4922E4001C1DEE /* MRCNewsTableViewCell.m */,
 				24E3B9F21B4922E4001C1DEE /* MRCNewsTableViewCell.xib */,
-				2484D5EC1B518522003B231F /* MRCNewsCommentedTableViewCell.h */,
-				2484D5ED1B518522003B231F /* MRCNewsCommentedTableViewCell.m */,
-				2484D5FA1B518541003B231F /* MRCNewsCommentedTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1213,8 +1202,6 @@
 				243688451B25E33700D801D3 /* MRCUserListItemViewModel.m */,
 				24E3B9F51B492301001C1DEE /* MRCNewsItemViewModel.h */,
 				24E3B9F61B492301001C1DEE /* MRCNewsItemViewModel.m */,
-				2484D5FC1B518661003B231F /* MRCNewsItemCommentedViewModel.h */,
-				2484D5FD1B518661003B231F /* MRCNewsItemCommentedViewModel.m */,
 			);
 			path = ItemViewModel;
 			sourceTree = "<group>";
@@ -1540,7 +1527,6 @@
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
 				245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */,
-				2484D5FB1B518541003B231F /* MRCNewsCommentedTableViewCell.xib in Resources */,
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
 				249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */,
 				249E5B321B065D4600BFDEA1 /* LICENSE in Resources */,
@@ -1695,7 +1681,6 @@
 				240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */,
 				24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */,
 				243688461B25E33700D801D3 /* MRCUserListItemViewModel.m in Sources */,
-				2484D5EE1B518522003B231F /* MRCNewsCommentedTableViewCell.m in Sources */,
 				2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
@@ -1755,7 +1740,6 @@
 				2489AD6A1B33AF0000D76523 /* MRCPublicReposViewController.m in Sources */,
 				24DF45631A6B8BA500F23474 /* MRCRepoDetailViewController.m in Sources */,
 				2489AD731B345F5D00D76523 /* OCTClient+MRCUser.m in Sources */,
-				2484D5FE1B518661003B231F /* MRCNewsItemCommentedViewModel.m in Sources */,
 				24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */,
 				243688421B25E31A00D801D3 /* MRCUserListTableViewCell.m in Sources */,
 				24DF456D1A6BE8E600F23474 /* MRCOwnedReposViewController.m in Sources */,
