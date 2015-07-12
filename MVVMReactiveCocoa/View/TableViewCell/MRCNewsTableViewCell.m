@@ -11,7 +11,6 @@
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeightLayoutConstraint;
 
@@ -50,9 +49,7 @@
     [self.avatarImageView sd_setImageWithURL:viewModel.event.actorAvatarURL placeholderImage:[HexRGB(colorI6) color2Image]];
     
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
-    self.detailView.attributedString = viewModel.contentAttributedString;
-    
-    self.timeLabel.text = viewModel.occurTime;
+    self.detailView.attributedString = viewModel.attributedString;
 }
 
 - (void)layoutSubviews {
@@ -62,15 +59,15 @@
 }
 
 - (CGFloat)height {
-    CGFloat height = 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 2 + 15 + 10;
-    return MAX(height, 10 + 40 + 10);
+    CGFloat height = 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 10;
+    return MAX(height, 10 + 40 + 10 + 1);
 }
 
 + (CGFloat)heightWithViewModel:(MRCNewsItemViewModel *)viewModel {
     DTAttributedLabel *attributedLabel = [self sharedAttributedLabel];
-    attributedLabel.attributedString = viewModel.contentAttributedString;
-    CGFloat height = 10 + ceilf([attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 2 + 15 + 10;
-    return MAX(height, 10 + 40 + 10);
+    attributedLabel.attributedString = viewModel.attributedString;
+    CGFloat height = 10 + ceilf([attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 10;
+    return MAX(height, 10 + 40 + 10 + 1);
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate

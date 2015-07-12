@@ -10,7 +10,6 @@
 #import "MRCNewsViewModel.h"
 #import "MRCNewsTableViewCell.h"
 #import "MRCNewsItemViewModel.h"
-#import "MRCNewsCommentedTableViewCell.h"
 
 @interface MRCNewsViewController ()
 
@@ -31,7 +30,6 @@
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsCommentedTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsCommentedTableViewCell"];
     
     self.attributedLabel = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 10 - 40 - 10 - 10, 15)];
     self.attributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
@@ -48,20 +46,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    switch (viewModel.type) {
-        case MRCNewsItemViewModelTypeStarred:
-            return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell" forIndexPath:indexPath];
-        case MRCNewsItemViewModelTypeCommented:
-            return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsCommentedTableViewCell" forIndexPath:indexPath];
-        case MRCNewsItemViewModelTypePullRequest:
-            return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell" forIndexPath:indexPath];
-        case MRCNewsItemViewModelTypePushed:
-            return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell" forIndexPath:indexPath];
-        default: {
-            return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell" forIndexPath:indexPath];
-        }
-    }
+    return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell" forIndexPath:indexPath];
 }
 
 - (void)configureCell:(MRCNewsTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCNewsItemViewModel *)viewModel {
@@ -70,19 +55,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    switch (viewModel.type) {
-        case MRCNewsItemViewModelTypeStarred:
-            return [MRCNewsTableViewCell heightWithViewModel:viewModel];
-        case MRCNewsItemViewModelTypeCommented:
-            return [MRCNewsCommentedTableViewCell heightWithViewModel:viewModel];
-        case MRCNewsItemViewModelTypePullRequest:
-            return [MRCNewsTableViewCell heightWithViewModel:viewModel];
-        case MRCNewsItemViewModelTypePushed:
-            return [MRCNewsTableViewCell heightWithViewModel:viewModel];
-        default: {
-            return [MRCNewsTableViewCell heightWithViewModel:viewModel];
-        }
-    }
+    return [MRCNewsTableViewCell heightWithViewModel:viewModel];
 }
 
 @end
