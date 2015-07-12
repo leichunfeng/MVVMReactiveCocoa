@@ -26,12 +26,12 @@
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
         
         NSDictionary *normalTitleAttributes = @{
-        	NSFontAttributeName: [UIFont systemFontOfSize:15],
+        	NSFontAttributeName: [UIFont systemFontOfSize:16],
             NSForegroundColorAttributeName: HexRGB(0x666666)
         };
         
         NSDictionary *boldTitleAttributes = @{
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:16],
+            NSFontAttributeName: [UIFont boldSystemFontOfSize:17],
             NSForegroundColorAttributeName: HexRGB(0x333333)
         };
         
@@ -52,7 +52,7 @@
         };
         
         NSDictionary *timeAttributes = @{
-            NSFontAttributeName: [UIFont systemFontOfSize:12],
+            NSFontAttributeName: [UIFont systemFontOfSize:13],
             NSForegroundColorAttributeName: HexRGB(0xbbbbbb)
         };
         
@@ -293,7 +293,7 @@
                 }
                 */
                 NSString *shortSHA = [dictionary[@"sha"] substringToIndex:7];
-                NSString *plainCommit = [NSString stringWithFormat:@"\n%@ %@", shortSHA, dictionary[@"message"]];
+                NSString *plainCommit = [NSString stringWithFormat:@"\n%@ - %@", shortSHA, dictionary[@"message"]];
                
                 NSMutableAttributedString *commit = [[NSMutableAttributedString alloc] initWithString:plainCommit attributes:normalTitleAttributes];
                 
