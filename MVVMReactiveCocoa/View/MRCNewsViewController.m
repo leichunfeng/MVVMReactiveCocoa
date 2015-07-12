@@ -14,7 +14,6 @@
 @interface MRCNewsViewController ()
 
 @property (strong, nonatomic, readonly) MRCNewsViewModel *viewModel;
-@property (strong, nonatomic) DTAttributedLabel *attributedLabel;
 
 @end
 
@@ -30,9 +29,6 @@
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
-    
-    self.attributedLabel = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 10 - 40 - 10 - 10, 15)];
-    self.attributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
     
     @weakify(self)
     [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
