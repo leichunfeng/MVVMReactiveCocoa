@@ -234,6 +234,8 @@
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:pullRequest]];
+            
+            NSMutableAttributedString *detail = [[NSMutableAttributedString alloc] init];
 
             NSAttributedString *message = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.pullRequest.title]
                                                                           attributes:normalTitleAttributes];
@@ -253,9 +255,11 @@
             [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:additions].location, [plainPullInfo rangeOfString:additions].length - 9)];
             [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:deletions].location, [plainPullInfo rangeOfString:deletions].length - 9)];
             
+            [detail appendAttributedString:message];
+            [detail appendAttributedString:pullInfo];
+            
             [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:message];
-            [attributedString appendAttributedString:pullInfo];
+            [attributedString appendAttributedString:detail];
         } else if ([event.type isEqualToString:@"PullRequestReviewCommentEvent"]) {
             OCTPullRequestCommentEvent *concreteEvent = (OCTPullRequestCommentEvent *)event;
             
