@@ -26,12 +26,12 @@
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
         
         NSDictionary *normalTitleAttributes = @{
-        	NSFontAttributeName: [UIFont systemFontOfSize:13],
+        	NSFontAttributeName: [UIFont systemFontOfSize:15],
             NSForegroundColorAttributeName: HexRGB(0x666666)
         };
         
         NSDictionary *boldTitleAttributes = @{
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:14],
+            NSFontAttributeName: [UIFont boldSystemFontOfSize:16],
             NSForegroundColorAttributeName: HexRGB(0x333333)
         };
         
@@ -240,19 +240,19 @@
             
             NSString *pullOcticon = [NSString octicon_iconStringForEnum:OCTIconGitCommit];
             
-            NSString *commits   = @(concreteEvent.pullRequest.commits).stringValue;
-            NSString *additions = @(concreteEvent.pullRequest.additions).stringValue;
-            NSString *deletions = @(concreteEvent.pullRequest.deletions).stringValue;
+            NSString *commits   = [NSString stringWithFormat:@"%@ commits", @(concreteEvent.pullRequest.commits).stringValue];
+            NSString *additions = [NSString stringWithFormat:@"%@ additions", @(concreteEvent.pullRequest.additions).stringValue];
+            NSString *deletions = [NSString stringWithFormat:@"%@ deletions", @(concreteEvent.pullRequest.deletions).stringValue];
             
-            NSString *plainPullInfo = [NSString stringWithFormat:@"%@ %@ commits with %@ additions %@ deletions", pullOcticon, commits, additions, deletions];
-            NSMutableAttributedString *pullInfo = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:plainPullInfo]
+            NSString *plainPullInfo = [NSString stringWithFormat:@"\n%@ %@ with %@ %@", pullOcticon, commits, additions, deletions];
+            NSMutableAttributedString *pullInfo = [[NSMutableAttributedString alloc] initWithString:plainPullInfo
                                                                                          attributes:normalPullInfoAttributes];
             
             [pullInfo addAttributes:octiconAttributes range:[plainPullInfo rangeOfString:pullOcticon]];
-            [pullInfo addAttributes:boldPullInfoAttributes range:[plainPullInfo rangeOfString:commits]];
-            [pullInfo addAttributes:boldPullInfoAttributes range:[plainPullInfo rangeOfString:additions]];
-            [pullInfo addAttributes:boldPullInfoAttributes range:[plainPullInfo rangeOfString:deletions]];
-
+            [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:commits].location, [plainPullInfo rangeOfString:commits].length - 7)];
+            [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:additions].location, [plainPullInfo rangeOfString:additions].length - 9)];
+            [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:deletions].location, [plainPullInfo rangeOfString:deletions].length - 9)];
+            
             [attributedString appendAttributedString:title];
             [attributedString appendAttributedString:message];
             [attributedString appendAttributedString:pullInfo];
@@ -288,8 +288,8 @@
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.branchName]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
-            NSMutableAttributedString *detail = [[NSMutableAttributedString alloc] init];
             
+            NSMutableAttributedString *detail = [[NSMutableAttributedString alloc] init];
             for (NSDictionary *dictionary in concreteEvent.commits) {
                 /*
                 {
