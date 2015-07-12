@@ -85,8 +85,8 @@
     return button;
 }
 
-- (void)linkPushed:(id)sender {
-    NSLog(@"linkPushed...");
+- (void)linkPushed:(DTLinkButton *)button {
+    NSLog(@"linkPushed: %@", button);
 }
 
 @end
