@@ -8,6 +8,8 @@
 
 #import "MRCNewsTableViewCell.h"
 
+#define detailViewWidth (SCREEN_WIDTH - 10 * 2 - 40 - 10)
+
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -18,20 +20,11 @@
 
 @implementation MRCNewsTableViewCell
 
-+ (instancetype)sharedInstance {
-    static MRCNewsTableViewCell *_sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] instantiateWithOwner:nil options:nil].firstObject;
-    });
-    return _sharedInstance;
-}
-
 + (DTAttributedLabel *)sharedAttributedLabel {
     static DTAttributedLabel *_sharedAttributedLabel;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedAttributedLabel = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 10 - 40 - 10 - 10, 15)];
+        _sharedAttributedLabel = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(0, 0, detailViewWidth, 15)];
         _sharedAttributedLabel.layoutFrameHeightIsConstrainedByBounds = NO;
     });
     return _sharedAttributedLabel;
@@ -39,7 +32,7 @@
 
 - (void)awakeFromNib {
     CGRect frame = self.detailView.frame;
-    frame.size.width = SCREEN_WIDTH - 10 * 2 - 40 - 10;
+    frame.size.width = detailViewWidth;
     self.detailView.frame = frame;
     
     self.detailView.delegate = self;
@@ -55,19 +48,14 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.detailHeightLayoutConstraint.constant = ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height);
-}
-
-- (CGFloat)height {
-    CGFloat height = 10 + ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 10;
-    return MAX(height, 10 + 40 + 10 + 1);
+    self.detailHeightLayoutConstraint.constant = ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:detailViewWidth].height);
 }
 
 + (CGFloat)heightWithViewModel:(MRCNewsItemViewModel *)viewModel {
     DTAttributedLabel *attributedLabel = [self sharedAttributedLabel];
     attributedLabel.attributedString = viewModel.attributedString;
-    CGFloat height = 10 + ceilf([attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:SCREEN_WIDTH - 10 * 2 - 40 - 10].height) + 10;
-    return MAX(height, 10 + 40 + 10 + 1);
+    CGFloat height = 10 + ceilf([attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:detailViewWidth].height) + 10;
+    return MAX(height, 10 + 40 + 10);
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
