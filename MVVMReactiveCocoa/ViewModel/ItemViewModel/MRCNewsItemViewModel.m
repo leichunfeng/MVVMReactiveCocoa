@@ -35,6 +35,13 @@
             NSForegroundColorAttributeName: HexRGB(0x333333)
         };
         
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.paragraphSpacing = 5;
+
+        NSDictionary *paragraphAttributes = @{
+        	NSParagraphStyleAttributeName: paragraphStyle
+        };
+        
         NSDictionary *octiconAttributes = @{
             NSFontAttributeName: [UIFont fontWithName:kOcticonsFamilyName size:16],
             NSForegroundColorAttributeName: HexRGB(0xbbbbbb)
@@ -59,6 +66,9 @@
             NSForegroundColorAttributeName: RGBAlpha(0, 0, 0, 0.5)
         };
         
+        NSMutableAttributedString *title = nil;
+        NSMutableAttributedString *detail = nil;
+        
         if ([event.type isEqualToString:@"CommitCommentEvent"]) {
             OCTCommitCommentEvent *concreteEvent = (OCTCommitCommentEvent *)event;
             
@@ -67,17 +77,13 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ commented on commit %@", octicon, concreteEvent.actorLogin, target];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:target]];
             
-            NSAttributedString *detail = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body]
-                                                                         attributes:normalTitleAttributes];
-            
-            [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:detail];
+            detail = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body] attributes:normalTitleAttributes];
         } else if ([event.type isEqualToString:@"CreateEvent"] || [event.type isEqualToString:@"DeleteEvent"]) {
             OCTRefEvent *concreteEvent = (OCTRefEvent *)event;
             
@@ -106,14 +112,12 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ %@ %@ %@%@%@", octicon, concreteEvent.actorLogin, action, type, refName, at, concreteEvent.repositoryName];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:refName]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
-            
-            [attributedString appendAttributedString:title];
         } else if ([event.type isEqualToString:@"ForkEvent"]) {
             OCTForkEvent *concreteEvent = (OCTForkEvent *)event;
             
@@ -121,14 +125,12 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ forked %@ to %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName, concreteEvent.forkedRepositoryName];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.forkedRepositoryName]];
-            
-            [attributedString appendAttributedString:title];
         } else if ([event.type isEqualToString:@"IssueCommentEvent"]) {
             OCTIssueCommentEvent *concreteEvent = (OCTIssueCommentEvent *)event;
             
@@ -137,17 +139,13 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ commented on issue %@", octicon, concreteEvent.actorLogin, target];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:target]];
             
-            NSAttributedString *detail = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body]
-                                                                         attributes:normalTitleAttributes];
-            
-            [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:detail];
+            detail = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body]attributes:normalTitleAttributes];
         } else if ([event.type isEqualToString:@"IssuesEvent"]) {
             OCTIssueEvent *concreteEvent = (OCTIssueEvent *)event;
             
@@ -169,17 +167,13 @@
             NSString *issue = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ %@ issue %@", octicon, concreteEvent.actorLogin, action, issue];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:issue]];
             
-            NSAttributedString *detail = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.issue.title]
-                                                                         attributes:normalTitleAttributes];
-            
-            [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:detail];
+            detail = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.issue.title] attributes:normalTitleAttributes];
         } else if ([event.type isEqualToString:@"MemberEvent"]) {
             OCTMemberEvent *concreteEvent = (OCTMemberEvent *)event;
             
@@ -187,14 +181,12 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ added %@ to %@", octicon, concreteEvent.actorLogin, concreteEvent.memberLogin, concreteEvent.repositoryName];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.memberLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
-            
-            [attributedString appendAttributedString:title];
         } else if ([event.type isEqualToString:@"PublicEvent"]) {
             OCTPublicEvent *concreteEvent = (OCTPublicEvent *)event;
             
@@ -202,13 +194,11 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ open sourced %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
-
-            [attributedString appendAttributedString:title];
         } else if ([event.type isEqualToString:@"PullRequestEvent"]) {
             OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)event;
             
@@ -229,13 +219,13 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ %@ pull request %@", octicon, concreteEvent.actorLogin, action, pullRequest];
 
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:pullRequest]];
             
-            NSMutableAttributedString *detail = [[NSMutableAttributedString alloc] init];
+            detail = [[NSMutableAttributedString alloc] init];
 
             NSAttributedString *message = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.pullRequest.title]
                                                                           attributes:normalTitleAttributes];
@@ -257,9 +247,6 @@
             
             [detail appendAttributedString:message];
             [detail appendAttributedString:pullInfo];
-            
-            [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:detail];
         } else if ([event.type isEqualToString:@"PullRequestReviewCommentEvent"]) {
             OCTPullRequestCommentEvent *concreteEvent = (OCTPullRequestCommentEvent *)event;
             
@@ -268,17 +255,13 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ commented on pull request %@", octicon, concreteEvent.actorLogin, target];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:target]];
 
-            NSAttributedString *detail = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body]
-                                                                         attributes:normalTitleAttributes];
-            
-            [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:detail];
+            detail = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body] attributes:normalTitleAttributes];
         } else if ([event.type isEqualToString:@"PushEvent"]) {
             OCTPushEvent *concreteEvent = (OCTPushEvent *)event;
             
@@ -286,14 +269,14 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ pushed to %@ at %@", octicon, concreteEvent.actorLogin, concreteEvent.branchName, concreteEvent.repositoryName];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.branchName]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
             
-            NSMutableAttributedString *detail = [[NSMutableAttributedString alloc] init];
+            detail = [[NSMutableAttributedString alloc] init];
             for (NSDictionary *dictionary in concreteEvent.commits) {
                 /*
                 {
@@ -315,9 +298,6 @@
                 [commit addAttributes:tintedAttributes range:[plainCommit rangeOfString:shortSHA]];
                 [detail appendAttributedString:commit];
             }
-            
-            [attributedString appendAttributedString:title];
-            [attributedString appendAttributedString:detail];
         } else if ([event.type isEqualToString:@"WatchEvent"]) {
             OCTWatchEvent *concreteEvent = (OCTWatchEvent *)event;
             
@@ -325,24 +305,31 @@
             
             NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ starred %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName];
             
-            NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
+            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
 
             [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
             [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.repositoryName]];
-
-            [attributedString appendAttributedString:title];
         } else {
             NSLog(@"Unknown event type: %@", event.type);
+        }
+        
+        [attributedString appendAttributedString:title];
+        
+        if (detail) {
+            [detail addAttributes:paragraphAttributes range:NSMakeRange(0, 1)];
+            [attributedString appendAttributedString:detail];
         }
         
         TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
         timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
         NSString *originalDate = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:event.date];
         
-        NSAttributedString *date = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:originalDate]
-                                                                   attributes:timeAttributes];
+        NSMutableAttributedString *date = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:originalDate]
+                                                                                 attributes:timeAttributes];
         
+        [date addAttributes:paragraphAttributes range:NSMakeRange(0, 1)];
+
         [attributedString appendAttributedString:date];
         
         self.attributedString = attributedString;
