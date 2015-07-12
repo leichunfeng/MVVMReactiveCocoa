@@ -11,9 +11,6 @@
 
 @interface MRCNewsTableViewCell : UITableViewCell <MRCReactiveView>
 
-+ (instancetype)sharedInstance;
-+ (DTAttributedLabel *)sharedAttributedLabel;
-
 + (CGFloat)heightWithViewModel:(MRCNewsItemViewModel *)viewModel;
 
 @end
