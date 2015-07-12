@@ -11,11 +11,20 @@
 
 @interface MRCNewsViewModel ()
 
+@property (strong, nonatomic) OCTUser *user;
 @property (copy, nonatomic) NSArray *events;
 
 @end
 
 @implementation MRCNewsViewModel
+
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+    self = [super initWithServices:services params:params];
+    if (self) {
+        self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
+    }
+    return self;
+}
 
 - (void)initialize {
     [super initialize];
@@ -23,6 +32,7 @@
     self.title = @"News";
     
     self.shouldPullToRefresh = YES;
+    self.shouldInfiniteScrolling = YES;
     
     RAC(self, events) = self.requestRemoteDataCommand.executionSignals.switchToLatest;
     
@@ -34,17 +44,23 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[[self.services
+    return [[[[self.services
     	client]
-        fetchUserEventsNotMatchingEtag:nil]
-    	collect];
+        fetchEventsForUser:self.user page:page perPage:self.perPage]
+    	collect]
+    	map:^(NSArray *events) {
+            if (page != 1) {
+                events = @[ (self.events ?: @[]).rac_sequence, events.rac_sequence ].rac_sequence.flatten.array;
+            }
+            return events;
+        }];
 }
 
 - (NSArray *)dataSourceWithEvents:(NSArray *)events {
     if (events.count == 0) return nil;
     
-    NSArray *viewModels = [events.rac_sequence map:^(OCTResponse *response) {
-        return [[MRCNewsItemViewModel alloc] initWithEvent:response.parsedResult];
+    NSArray *viewModels = [events.rac_sequence map:^(OCTEvent *event) {
+        return [[MRCNewsItemViewModel alloc] initWithEvent:event];
     }].array;
     
     return @[ viewModels ];

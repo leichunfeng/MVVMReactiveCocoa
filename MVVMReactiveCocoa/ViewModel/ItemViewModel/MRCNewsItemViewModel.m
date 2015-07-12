@@ -26,12 +26,12 @@
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
         
         NSDictionary *normalTitleAttributes = @{
-        	NSFontAttributeName: [UIFont systemFontOfSize:16],
+        	NSFontAttributeName: [UIFont systemFontOfSize:15],
             NSForegroundColorAttributeName: HexRGB(0x666666)
         };
         
         NSDictionary *boldTitleAttributes = @{
-            NSFontAttributeName: [UIFont boldSystemFontOfSize:17],
+            NSFontAttributeName: [UIFont boldSystemFontOfSize:16],
             NSForegroundColorAttributeName: HexRGB(0x333333)
         };
         
