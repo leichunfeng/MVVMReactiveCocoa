@@ -8,11 +8,13 @@
 
 #import "MRCNewsViewModel.h"
 #import "MRCNewsItemViewModel.h"
+#import "MRCUserDetailViewModel.h"
 
 @interface MRCNewsViewModel ()
 
 @property (strong, nonatomic) OCTUser *user;
 @property (copy, nonatomic) NSArray *events;
+@property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
 
 @end
 
@@ -33,6 +35,16 @@
     
     self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = YES;
+    
+    self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *url) {
+        if ([url.scheme isEqualToString:@"user"]) {
+            NSDictionary *params = @{ @"login": url.host ?: @"" };
+            MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services
+                                                                                          params:@{ @"user": params }];
+            [self.services pushViewModel:viewModel animated:YES];
+        }
+        return [RACSignal empty];
+    }];
     
     RAC(self, events) = self.requestRemoteDataCommand.executionSignals.switchToLatest;
     
@@ -59,8 +71,12 @@
 - (NSArray *)dataSourceWithEvents:(NSArray *)events {
     if (events.count == 0) return nil;
     
+    @weakify(self)
     NSArray *viewModels = [events.rac_sequence map:^(OCTEvent *event) {
-        return [[MRCNewsItemViewModel alloc] initWithEvent:event];
+        @strongify(self)
+        MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
+        viewModel.didClickLinkCommand = self.didClickLinkCommand;
+        return viewModel;
     }].array;
     
     return @[ viewModels ];

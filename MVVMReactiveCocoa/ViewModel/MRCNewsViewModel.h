@@ -10,4 +10,6 @@
 
 @interface MRCNewsViewModel : MRCTableViewModel
 
+@property (strong, nonatomic, readonly) RACCommand *didClickLinkCommand;
+
 @end

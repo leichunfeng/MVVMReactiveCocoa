@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic, readonly) OCTEvent *event;
 @property (strong, nonatomic, readonly) NSAttributedString *attributedString;
+@property (strong, nonatomic) RACCommand *didClickLinkCommand;
 
 - (instancetype)initWithEvent:(OCTEvent *)event;
 
