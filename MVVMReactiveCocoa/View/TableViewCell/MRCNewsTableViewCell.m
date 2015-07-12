@@ -12,6 +12,7 @@
 
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
+@property (strong, nonatomic) MRCNewsItemViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeightLayoutConstraint;
@@ -39,6 +40,8 @@
 }
 
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {
+    self.viewModel = viewModel;
+    
     [self.avatarImageView sd_setImageWithURL:viewModel.event.actorAvatarURL placeholderImage:[HexRGB(colorI6) color2Image]];
     
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
@@ -78,7 +81,7 @@
     // get image for highlighted link text
     UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
     [button setImage:highlightImage forState:UIControlStateHighlighted];
-    
+
     // use normal push action for opening URL
     [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -86,7 +89,7 @@
 }
 
 - (void)linkPushed:(DTLinkButton *)button {
-    NSLog(@"linkPushed: %@", button);
+    [self.viewModel.didClickLinkCommand execute:button.URL];
 }
 
 @end

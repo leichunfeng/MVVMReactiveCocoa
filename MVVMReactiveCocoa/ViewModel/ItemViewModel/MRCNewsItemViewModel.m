@@ -66,6 +66,8 @@
             NSForegroundColorAttributeName: RGBAlpha(0, 0, 0, 0.5)
         };
         
+        NSString *plainTitle = nil;
+        
         NSMutableAttributedString *title = nil;
         NSMutableAttributedString *detail = nil;
         
@@ -75,7 +77,7 @@
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
             NSString *target  = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, [concreteEvent.comment.commitSHA substringToIndex:7]];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ commented on commit %@", octicon, concreteEvent.actorLogin, target];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ commented on commit %@", octicon, concreteEvent.actorLogin, target];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
@@ -110,7 +112,7 @@
             NSString *refName = concreteEvent.refName ? [concreteEvent.refName stringByAppendingString:@" "] : @"";
             NSString *at = (concreteEvent.refType == OCTRefTypeBranch || concreteEvent.refType == OCTRefTypeTag ? @"at " : @"");
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ %@ %@ %@%@%@", octicon, concreteEvent.actorLogin, action, type, refName, at, concreteEvent.repositoryName];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ %@ %@ %@%@%@", octicon, concreteEvent.actorLogin, action, type, refName, at, concreteEvent.repositoryName];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
@@ -123,7 +125,7 @@
             
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconGitBranch];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ forked %@ to %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName, concreteEvent.forkedRepositoryName];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ forked %@ to %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName, concreteEvent.forkedRepositoryName];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
@@ -137,7 +139,7 @@
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
             NSString *target  = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ commented on issue %@", octicon, concreteEvent.actorLogin, target];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ commented on issue %@", octicon, concreteEvent.actorLogin, target];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
@@ -165,7 +167,7 @@
             }
             
             NSString *issue = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ %@ issue %@", octicon, concreteEvent.actorLogin, action, issue];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ %@ issue %@", octicon, concreteEvent.actorLogin, action, issue];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
@@ -179,7 +181,7 @@
             
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconOrganization];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ added %@ to %@", octicon, concreteEvent.actorLogin, concreteEvent.memberLogin, concreteEvent.repositoryName];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ added %@ to %@", octicon, concreteEvent.actorLogin, concreteEvent.memberLogin, concreteEvent.repositoryName];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
@@ -192,7 +194,7 @@
             
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconRepo];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ open sourced %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ open sourced %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
             
@@ -217,7 +219,7 @@
             
             NSString *pullRequest = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.pullRequest.URL.absoluteString componentsSeparatedByString:@"/"].lastObject];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ %@ pull request %@", octicon, concreteEvent.actorLogin, action, pullRequest];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ %@ pull request %@", octicon, concreteEvent.actorLogin, action, pullRequest];
 
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
@@ -255,7 +257,7 @@
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
             NSString *target  = [NSString stringWithFormat:@"%@#%@", concreteEvent.repositoryName, [concreteEvent.comment.pullRequestAPIURL.absoluteString componentsSeparatedByString:@"/"].lastObject];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ commented on pull request %@", octicon, concreteEvent.actorLogin, target];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ commented on pull request %@", octicon, concreteEvent.actorLogin, target];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
@@ -269,7 +271,7 @@
             
             NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconGitCommit];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ pushed to %@ at %@", octicon, concreteEvent.actorLogin, concreteEvent.branchName, concreteEvent.repositoryName];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ pushed to %@ at %@", octicon, concreteEvent.actorLogin, concreteEvent.branchName, concreteEvent.repositoryName];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
             
@@ -305,7 +307,7 @@
             
             NSString *octicon = [NSString octicon_iconStringForIconIdentifier:@"Star"];
             
-            NSString *plainTitle = [NSString stringWithFormat:@"%@  %@ starred %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName];
+            plainTitle = [NSString stringWithFormat:@"%@  %@ starred %@", octicon, concreteEvent.actorLogin, concreteEvent.repositoryName];
             
             title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:normalTitleAttributes];
 
@@ -315,6 +317,9 @@
         } else {
             NSLog(@"Unknown event type: %@", event.type);
         }
+        
+        [title addAttributes:@{ NSLinkAttributeName: [NSURL URLWithString:[NSString stringWithFormat:@"user://%@", event.actorLogin]] }
+                       range:[plainTitle rangeOfString:event.actorLogin]];
         
         [attributedString appendAttributedString:title];
         
