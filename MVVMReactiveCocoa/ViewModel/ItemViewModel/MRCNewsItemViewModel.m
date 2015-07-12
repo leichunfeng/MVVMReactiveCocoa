@@ -236,7 +236,7 @@
             NSString *additions = [NSString stringWithFormat:@"%@ additions", @(concreteEvent.pullRequest.additions).stringValue];
             NSString *deletions = [NSString stringWithFormat:@"%@ deletions", @(concreteEvent.pullRequest.deletions).stringValue];
             
-            NSString *plainPullInfo = [NSString stringWithFormat:@"\n%@ %@ with %@ %@", pullOcticon, commits, additions, deletions];
+            NSString *plainPullInfo = [NSString stringWithFormat:@"\n %@ %@ with %@ %@ ", pullOcticon, commits, additions, deletions];
             NSMutableAttributedString *pullInfo = [[NSMutableAttributedString alloc] initWithString:plainPullInfo
                                                                                          attributes:normalPullInfoAttributes];
             
@@ -244,6 +244,8 @@
             [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:commits].location, [plainPullInfo rangeOfString:commits].length - 7)];
             [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:additions].location, [plainPullInfo rangeOfString:additions].length - 9)];
             [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:deletions].location, [plainPullInfo rangeOfString:deletions].length - 9)];
+            [pullInfo addAttributes:@{ NSBackgroundColorAttributeName: HexRGB(0xe8f1f6) } range:[plainPullInfo rangeOfString:plainPullInfo]];
+            [pullInfo addAttributes:paragraphAttributes range:NSMakeRange(0, 1)];
             
             [detail appendAttributedString:message];
             [detail appendAttributedString:pullInfo];
