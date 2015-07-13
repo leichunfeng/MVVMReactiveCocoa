@@ -32,4 +32,6 @@
 // Returns a new image.
 - (UIImage *)color2Image;
 
+- (UIImage *)color2ImageSized:(CGSize)size;
+
 @end
