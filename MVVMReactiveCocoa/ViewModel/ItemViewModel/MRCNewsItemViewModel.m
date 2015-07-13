@@ -318,7 +318,7 @@
             NSLog(@"Unknown event type: %@", event.type);
         }
         
-        [title addAttributes:@{ NSLinkAttributeName: [NSURL URLWithString:[NSString stringWithFormat:@"user://%@", event.actorLogin]] }
+        [title addAttributes:@{ NSLinkAttributeName: [NSURL mrc_userLinkWithLogin:event.actorLogin] }
                        range:[plainTitle rangeOfString:event.actorLogin]];
         
         [attributedString appendAttributedString:title];

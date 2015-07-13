@@ -37,10 +37,9 @@
     self.shouldInfiniteScrolling = YES;
     
     self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *url) {
-        if ([url.scheme isEqualToString:@"user"]) {
-            NSDictionary *params = @{ @"login": url.host ?: @"" };
+        if (url.type == MRCLinkTypeUser) {
             MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services
-                                                                                          params:@{ @"user": params }];
+                                                                                          params:@{ @"user": url.mrc_dictionary }];
             [self.services pushViewModel:viewModel animated:YES];
         }
         return [RACSignal empty];

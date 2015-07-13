@@ -1,0 +1,26 @@
+//
+//  NSURL+MRCLink.h
+//  MVVMReactiveCocoa
+//
+//  Created by leichunfeng on 15/7/13.
+//  Copyright (c) 2015年 leichunfeng. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+typedef NS_ENUM(NSUInteger, MRCLinkType) {
+    MRCLinkTypeUnknown,
+    MRCLinkTypeUser,
+    MRCLinkTypeRepository
+};
+
+@interface NSURL (MRCLink)
+
+@property (assign, nonatomic, readonly) MRCLinkType type;
+
++ (instancetype)mrc_userLinkWithLogin:(NSString *)login;
++ (instancetype)mrc_repositoryLinkWithName:(NSString *)name branch:(NSString *)branch;
+
+- (NSDictionary *)mrc_dictionary;
+
+@end

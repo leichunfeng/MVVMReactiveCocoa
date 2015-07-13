@@ -116,6 +116,8 @@
 		2489AD731B345F5D00D76523 /* OCTClient+MRCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489AD721B345F5D00D76523 /* OCTClient+MRCUser.m */; };
 		249674321A73F5490032771B /* MRCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674301A73F5490032771B /* MRCWebViewController.m */; };
 		249674361A73F5650032771B /* MRCWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674351A73F5650032771B /* MRCWebViewModel.m */; };
+		249A89EE1B53B65100E18582 /* NSURL+MRCLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 249A89ED1B53B65100E18582 /* NSURL+MRCLink.m */; };
+		249A8A281B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 249A8A271B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m */; };
 		249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */; };
 		249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B1E1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m */; };
 		249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B1F1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib */; };
@@ -540,6 +542,10 @@
 		249674301A73F5490032771B /* MRCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCWebViewController.m; sourceTree = "<group>"; };
 		249674341A73F5650032771B /* MRCWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCWebViewModel.h; sourceTree = "<group>"; };
 		249674351A73F5650032771B /* MRCWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCWebViewModel.m; sourceTree = "<group>"; };
+		249A89EC1B53B65100E18582 /* NSURL+MRCLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+MRCLink.h"; sourceTree = "<group>"; };
+		249A89ED1B53B65100E18582 /* NSURL+MRCLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MRCLink.m"; sourceTree = "<group>"; };
+		249A8A261B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+MRCEvents.h"; sourceTree = "<group>"; };
+		249A8A271B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+MRCEvents.m"; sourceTree = "<group>"; };
 		249E5B161B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsAvatarTableViewCell.h; sourceTree = "<group>"; };
 		249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoSettingsAvatarTableViewCell.m; sourceTree = "<group>"; };
 		249E5B1D1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsOwnerTableViewCell.h; sourceTree = "<group>"; };
@@ -747,6 +753,10 @@
 				24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */,
 				241DAC761B0893A0005FDA9C /* MRCMemoryCache.h */,
 				241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */,
+				249A89EC1B53B65100E18582 /* NSURL+MRCLink.h */,
+				249A89ED1B53B65100E18582 /* NSURL+MRCLink.m */,
+				249A8A261B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.h */,
+				249A8A271B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1702,6 +1712,7 @@
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
+				249A89EE1B53B65100E18582 /* NSURL+MRCLink.m in Sources */,
 				240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */,
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
@@ -1728,6 +1739,7 @@
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
 				245D62841AA8C73E00D7B081 /* MRCAboutHeaderView.m in Sources */,
 				24DF45721A6BE8FB00F23474 /* MRCStarredReposViewController.m in Sources */,
+				249A8A281B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m in Sources */,
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,
 				24E3B9F71B492301001C1DEE /* MRCNewsItemViewModel.m in Sources */,

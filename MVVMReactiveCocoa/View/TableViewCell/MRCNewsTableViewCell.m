@@ -63,7 +63,7 @@
 }
 
 - (IBAction)didClickAvatarButton:(id)sender {
-    [self.viewModel.didClickLinkCommand execute:[NSURL URLWithString:[NSString stringWithFormat:@"user://%@", self.viewModel.event.actorLogin]]];
+    [self.viewModel.didClickLinkCommand execute:[NSURL mrc_userLinkWithLogin:self.viewModel.event.actorLogin]];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
@@ -91,6 +91,21 @@
     [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
     
     return button;
+}
+
+- (BOOL)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView shouldDrawBackgroundForTextBlock:(DTTextBlock *)textBlock frame:(CGRect)frame context:(CGContextRef)context forLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame {
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:3];
+    
+    CGColorRef color = [textBlock.backgroundColor CGColor];
+    if (color) {
+        CGContextSetFillColorWithColor(context, color);
+        CGContextAddPath(context, [roundedRect CGPath]);
+        CGContextFillPath(context);
+
+        return NO;
+    }
+    
+    return YES; // draw standard background
 }
 
 - (void)linkPushed:(DTLinkButton *)button {

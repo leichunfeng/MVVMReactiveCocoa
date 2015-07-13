@@ -17,6 +17,7 @@
 @interface MRCRepoDetailViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
+@property (strong, nonatomic) NSString *branch;
 
 @end
 
@@ -25,7 +26,19 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.repository = self.params[@"repository"];
+        id repository = params[@"repository"];
+
+        if ([repository isKindOfClass:[OCTRepository class]]) {
+            self.repository = params[@"repository"];
+        } else if ([repository isKindOfClass:[NSDictionary class]]) {
+            self.repository = [OCTRepository modelWithDictionary:repository error:nil];
+        }
+        
+        NSParameterAssert(self.repository);
+
+        self.branch = params[@"branch"] ?: self.repository.defaultBranch;
+        
+        NSParameterAssert(self.branch);
     }
     return self;
 }
@@ -40,7 +53,7 @@
     self.subtitle = self.repository.ownerLogin;
 
     NSError *error = nil;
-    self.reference = [[OCTRef alloc] initWithDictionary:@{@"name": [NSString stringWithFormat:@"refs/heads/%@", self.repository.defaultBranch]}
+    self.reference = [[OCTRef alloc] initWithDictionary:@{ @"name": [NSString stringWithFormat:@"refs/heads/%@", self.branch] }
                                                   error:&error];
     if (error) NSLog(@"Error: %@", error);
     
@@ -55,8 +68,8 @@
     self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
-                                                                                       params:@{@"repository": self.repository,
-                                                                                                @"reference": self.reference}];
+                                                                                       params:@{ @"repository": self.repository,
+                                                                                                 @"reference": self.reference }];
         [self.services pushViewModel:gitTreeViewModel animated:YES];
         return [RACSignal empty];
     }];
