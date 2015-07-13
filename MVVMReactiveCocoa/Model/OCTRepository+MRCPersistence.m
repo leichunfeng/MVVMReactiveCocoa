@@ -169,7 +169,7 @@
     __block OCTRepository *repo = nil;
     
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE id = ? LIMIT 1;", repository.objectID];
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE ownerLogin = ? AND name = ? LIMIT 1;", repository.ownerLogin, repository.name];
 
         @onExit {
             [rs close];
