@@ -72,20 +72,8 @@
         NSMutableAttributedString *detail = nil;
         
         if ([event.type isEqualToString:@"CommitCommentEvent"]) {
-            OCTCommitCommentEvent *concreteEvent = (OCTCommitCommentEvent *)event;
-            
-            NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
-            NSString *target  = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, [concreteEvent.comment.commitSHA substringToIndex:7]];
-            
-            plainTitle = [NSString stringWithFormat:@"%@  %@ commented on commit %@", octicon, concreteEvent.actorLogin, target];
-            
-            title = [[NSMutableAttributedString alloc] initWithString:plainTitle attributes:boldTitleAttributes];
-            
-            [title addAttributes:octiconAttributes range:[plainTitle rangeOfString:octicon]];
-            [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:concreteEvent.actorLogin]];
-            [title addAttributes:tintedAttributes range:[plainTitle rangeOfString:target]];
-            
-            detail = [[NSMutableAttributedString alloc] initWithString:[@"\n" stringByAppendingString:concreteEvent.comment.body] attributes:normalTitleAttributes];
+            self.attributedString = event.mrc_attributedString;
+            return self;
         } else if ([event.type isEqualToString:@"CreateEvent"] || [event.type isEqualToString:@"DeleteEvent"]) {
             OCTRefEvent *concreteEvent = (OCTRefEvent *)event;
             

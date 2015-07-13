@@ -109,6 +109,7 @@
 }
 
 - (void)linkPushed:(DTLinkButton *)button {
+    NSLog(@"linkPushed: %@", button.URL);
     [self.viewModel.didClickLinkCommand execute:button.URL];
 }
 

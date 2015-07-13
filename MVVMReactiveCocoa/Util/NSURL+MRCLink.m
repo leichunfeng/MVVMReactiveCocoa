@@ -27,12 +27,12 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", MRCLinkUserScheme, login]];;
 }
 
-+ (instancetype)mrc_repositoryLinkWithName:(NSString *)name branch:(NSString *)branch {
++ (instancetype)mrc_repositoryLinkWithName:(NSString *)name referenceName:(NSString *)referenceName {
     NSParameterAssert(name.length > 0);
     
-    branch = branch ?: @"master"; // FIXME
+    referenceName = referenceName ?: @"refs/heads/master"; // FIXME
     
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@?branch=%@", MRCLinkRepositoryScheme, name, branch]];;
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@?referenceName=%@", MRCLinkRepositoryScheme, name, referenceName]];;
 }
 
 - (NSDictionary *)mrc_dictionary {
@@ -41,7 +41,7 @@
     } else if (self.type == MRCLinkTypeRepository) {
         return @{ @"ownerLogin": self.host ?: @"",
                   @"name": [self.path substringFromIndex:1] ?: @"",
-                  @"branch": [self.query componentsSeparatedByString:@"="].lastObject ?: @"" };
+                  @"referenceName": [self.query componentsSeparatedByString:@"="].lastObject ?: @"" };
     }
     return nil;
 }
