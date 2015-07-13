@@ -118,6 +118,7 @@
 		249674361A73F5650032771B /* MRCWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 249674351A73F5650032771B /* MRCWebViewModel.m */; };
 		249A89EE1B53B65100E18582 /* NSURL+MRCLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 249A89ED1B53B65100E18582 /* NSURL+MRCLink.m */; };
 		249A8A281B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 249A8A271B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m */; };
+		249A8A361B53EBC600E18582 /* OCTEvent+MRCAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 249A8A351B53EBC600E18582 /* OCTEvent+MRCAttributedString.m */; };
 		249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */; };
 		249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B1E1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m */; };
 		249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B1F1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib */; };
@@ -546,6 +547,8 @@
 		249A89ED1B53B65100E18582 /* NSURL+MRCLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+MRCLink.m"; sourceTree = "<group>"; };
 		249A8A261B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+MRCEvents.h"; sourceTree = "<group>"; };
 		249A8A271B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+MRCEvents.m"; sourceTree = "<group>"; };
+		249A8A341B53EBC600E18582 /* OCTEvent+MRCAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTEvent+MRCAttributedString.h"; sourceTree = "<group>"; };
+		249A8A351B53EBC600E18582 /* OCTEvent+MRCAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTEvent+MRCAttributedString.m"; sourceTree = "<group>"; };
 		249E5B161B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsAvatarTableViewCell.h; sourceTree = "<group>"; };
 		249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCRepoSettingsAvatarTableViewCell.m; sourceTree = "<group>"; };
 		249E5B1D1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsOwnerTableViewCell.h; sourceTree = "<group>"; };
@@ -757,6 +760,8 @@
 				249A89ED1B53B65100E18582 /* NSURL+MRCLink.m */,
 				249A8A261B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.h */,
 				249A8A271B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m */,
+				249A8A341B53EBC600E18582 /* OCTEvent+MRCAttributedString.h */,
+				249A8A351B53EBC600E18582 /* OCTEvent+MRCAttributedString.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1696,6 +1701,7 @@
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
 				245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */,
+				249A8A361B53EBC600E18582 /* OCTEvent+MRCAttributedString.m in Sources */,
 				248973781B3028AA00A867DE /* MRCUserDetailViewModel.m in Sources */,
 				2458A2541B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m in Sources */,
 				24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */,

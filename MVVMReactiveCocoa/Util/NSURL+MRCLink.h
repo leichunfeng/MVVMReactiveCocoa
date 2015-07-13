@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, MRCLinkType) {
 @property (assign, nonatomic, readonly) MRCLinkType type;
 
 + (instancetype)mrc_userLinkWithLogin:(NSString *)login;
-+ (instancetype)mrc_repositoryLinkWithName:(NSString *)name branch:(NSString *)branch;
++ (instancetype)mrc_repositoryLinkWithName:(NSString *)name referenceName:(NSString *)referenceName;
 
 - (NSDictionary *)mrc_dictionary;
 

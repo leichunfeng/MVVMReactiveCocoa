@@ -17,7 +17,7 @@
 @interface MRCRepoDetailViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
-@property (strong, nonatomic) NSString *branch;
+@property (strong, nonatomic) NSString *referenceName;
 
 @end
 
@@ -36,9 +36,9 @@
         
         NSParameterAssert(self.repository);
 
-        self.branch = params[@"branch"] ?: self.repository.defaultBranch;
+        self.referenceName = params[@"referenceName"] ?: [NSString stringWithFormat:@"refs/heads/%@", self.repository.defaultBranch];
         
-        NSParameterAssert(self.branch);
+        NSParameterAssert(self.referenceName);
     }
     return self;
 }
@@ -53,8 +53,7 @@
     self.subtitle = self.repository.ownerLogin;
 
     NSError *error = nil;
-    self.reference = [[OCTRef alloc] initWithDictionary:@{ @"name": [NSString stringWithFormat:@"refs/heads/%@", self.branch] }
-                                                  error:&error];
+    self.reference = [[OCTRef alloc] initWithDictionary:@{ @"name": self.referenceName } error:&error];
     if (error) NSLog(@"Error: %@", error);
     
     TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];

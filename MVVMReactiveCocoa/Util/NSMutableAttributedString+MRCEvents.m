@@ -33,74 +33,104 @@
 	paragraphStyle; \
 })
 
+@implementation NSString (MRCEvents)
+
+- (NSMutableAttributedString *)mrc_attributedString {
+    return [[NSMutableAttributedString alloc] initWithString:self];
+}
+
+@end
+
 @implementation NSMutableAttributedString (MRCEvents)
 
 #pragma mark - Font
 
-- (void)mrc_addNormalTitleFontAttribute {
+- (NSMutableAttributedString *)mrc_addNormalTitleFontAttribute {
 	[self addAttribute:NSFontAttributeName value:MRCEventsNormalTitleFont range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addBoldTitleFontAttribute {
+- (NSMutableAttributedString *)mrc_addBoldTitleFontAttribute {
 	[self addAttribute:NSFontAttributeName value:MRCEventsBoldTitleFont range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addOcticonFontAttribute {
+- (NSMutableAttributedString *)mrc_addOcticonFontAttribute {
 	[self addAttribute:NSFontAttributeName value:MRCEventsOcticonFont range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addTimeFontAttribute {
+- (NSMutableAttributedString *)mrc_addTimeFontAttribute {
 	[self addAttribute:NSFontAttributeName value:MRCEventsTimeFont range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addNormalPullInfoFontAttribute {
+- (NSMutableAttributedString *)mrc_addNormalPullInfoFontAttribute {
 	[self addAttribute:NSFontAttributeName value:MRCEventsNormalPullInfoFont range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addBoldPullInfoFontAttribute {
+- (NSMutableAttributedString *)mrc_addBoldPullInfoFontAttribute {
 	[self addAttribute:NSFontAttributeName value:MRCEventsBoldPullInfoFont range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
 #pragma mark - Foreground Color
 
-- (void)mrc_addTintedForegroundColorAttribute {
+- (NSMutableAttributedString *)mrc_addTintedForegroundColorAttribute {
 	[self addAttribute:NSForegroundColorAttributeName value:MRCEventsTintedForegroundColor range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addNormalTitleForegroundColorAttribute {
+- (NSMutableAttributedString *)mrc_addNormalTitleForegroundColorAttribute {
 	[self addAttribute:NSForegroundColorAttributeName value:MRCEventsNormalTitleForegroundColor range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addBoldTitleForegroundColorAttribute {
+- (NSMutableAttributedString *)mrc_addBoldTitleForegroundColorAttribute {
 	[self addAttribute:NSForegroundColorAttributeName value:MRCEventsBoldTitleForegroundColor range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addTimeForegroundColorAttribute {
+- (NSMutableAttributedString *)mrc_addTimeForegroundColorAttribute {
 	[self addAttribute:NSForegroundColorAttributeName value:MRCEventsTimeForegroundColor range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addPullInfoForegroundColorAttribute {
+- (NSMutableAttributedString *)mrc_addPullInfoForegroundColorAttribute {
 	[self addAttribute:NSForegroundColorAttributeName value:MRCEventsPullInfoForegroundColor range:[self.string rangeOfString:self.string]];
+	return self;
+}
+
+#pragma mark - Background Color
+
+- (NSMutableAttributedString *)mrc_addBackgroundColorAttribute {
+    [self addAttribute:NSBackgroundColorAttributeName value:HexRGB(0xe8f1f6) range:[self.string rangeOfString:self.string]];
+    return self;
 }
 
 #pragma mark - Paragraph Style
 
-- (void)mrc_addParagraphStyleAttribute {
-    [self addAttribute:NSParagraphStyleAttributeName value:MRCEventsParagraphStyle range:[self.string rangeOfString:self.string]];
+- (NSMutableAttributedString *)mrc_addParagraphStyleAttribute {
+    [self addAttribute:NSParagraphStyleAttributeName value:MRCEventsParagraphStyle range:NSMakeRange(0, 1)];
+    return self;
 }
 
 #pragma mark - Link
 
-- (void)mrc_addUserLink {
+- (NSMutableAttributedString *)mrc_addUserLinkAttribute {
 	[self addAttribute:NSLinkAttributeName value:[NSURL mrc_userLinkWithLogin:self.string] range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addRepositoryLinkWithBranch:(NSString *)branch {
-	[self addAttribute:NSLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:self.string branch:branch] range:[self.string rangeOfString:self.string]];
+- (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithReferenceName:(NSString *)referenceName {
+	[self addAttribute:NSLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:self.string referenceName:referenceName] range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
-- (void)mrc_addHTMLURL:(NSURL *)HTMLURL {
+- (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL {
 	[self addAttribute:NSLinkAttributeName value:HTMLURL range:[self.string rangeOfString:self.string]];
+	return self;
 }
 
 @end

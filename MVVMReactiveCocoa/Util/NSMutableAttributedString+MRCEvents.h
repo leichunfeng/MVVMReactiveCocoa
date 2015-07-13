@@ -8,34 +8,44 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NSString (MRCEvents)
+
+- (NSMutableAttributedString *)mrc_attributedString;
+
+@end
+
 @interface NSMutableAttributedString (MRCEvents)
 
 // Font
 
-- (void)mrc_addNormalTitleFontAttribute;
-- (void)mrc_addBoldTitleFontAttribute;
-- (void)mrc_addOcticonFontAttribute;
-- (void)mrc_addTimeFontAttribute;
-- (void)mrc_addNormalPullInfoFontAttribute;
-- (void)mrc_addBoldPullInfoFontAttribute;
+- (NSMutableAttributedString *)mrc_addNormalTitleFontAttribute;
+- (NSMutableAttributedString *)mrc_addBoldTitleFontAttribute;
+- (NSMutableAttributedString *)mrc_addOcticonFontAttribute;
+- (NSMutableAttributedString *)mrc_addTimeFontAttribute;
+- (NSMutableAttributedString *)mrc_addNormalPullInfoFontAttribute;
+- (NSMutableAttributedString *)mrc_addBoldPullInfoFontAttribute;
 
 // Foreground Color
 
-- (void)mrc_addTintedForegroundColorAttribute;
-- (void)mrc_addNormalTitleForegroundColorAttribute;
-- (void)mrc_addBoldTitleForegroundColorAttribute;
-- (void)mrc_addTimeForegroundColorAttribute;
-- (void)mrc_addPullInfoForegroundColorAttribute;
+- (NSMutableAttributedString *)mrc_addTintedForegroundColorAttribute;
+- (NSMutableAttributedString *)mrc_addNormalTitleForegroundColorAttribute;
+- (NSMutableAttributedString *)mrc_addBoldTitleForegroundColorAttribute;
+- (NSMutableAttributedString *)mrc_addTimeForegroundColorAttribute;
+- (NSMutableAttributedString *)mrc_addPullInfoForegroundColorAttribute;
+
+// Background Color
+
+- (NSMutableAttributedString *)mrc_addBackgroundColorAttribute;
 
 // Paragraph Style
 
-- (void)mrc_addParagraphStyleAttribute;
+- (NSMutableAttributedString *)mrc_addParagraphStyleAttribute;
 
 // Link
 
-- (void)mrc_addUserLink;
-- (void)mrc_addRepositoryLinkWithBranch:(NSString *)branch;
-- (void)mrc_addHTMLURL:(NSURL *)HTMLURL;
+- (NSMutableAttributedString *)mrc_addUserLinkAttribute;
+- (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithReferenceName:(NSString *)referenceName;
+- (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL;
 
 @end
 

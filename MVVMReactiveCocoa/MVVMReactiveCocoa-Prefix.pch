@@ -58,6 +58,7 @@
     #import "NSString+Octicons.h"
     #import "NSURL+MRCLink.h"
     #import "NSMutableAttributedString+MRCEvents.h"
+    #import "OCTEvent+MRCAttributedString.h"
 #endif
 
 #endif
