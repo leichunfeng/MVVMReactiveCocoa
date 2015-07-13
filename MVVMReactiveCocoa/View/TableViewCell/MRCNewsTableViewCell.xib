@@ -13,13 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WYP-se-FGw">
-                        <rect key="frame" x="10" y="10" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="4HU-m9-PtN"/>
-                            <constraint firstAttribute="width" constant="40" id="WKA-eE-Mca"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5V-lg-1Zq" customClass="DTAttributedLabel">
                         <rect key="frame" x="60" y="10" width="305" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,17 +20,30 @@
                             <constraint firstAttribute="height" constant="40" id="APT-pd-Jry"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAz-8n-U6H">
+                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="f8R-lB-Gir"/>
+                            <constraint firstAttribute="height" constant="40" id="p4Z-qA-Duq"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="didClickAvatarButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yfA-bg-p4w"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="p5V-lg-1Zq" secondAttribute="trailing" constant="10" id="GP3-we-czs"/>
-                    <constraint firstItem="WYP-se-FGw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OYI-6c-tdW"/>
-                    <constraint firstItem="p5V-lg-1Zq" firstAttribute="top" secondItem="WYP-se-FGw" secondAttribute="top" id="Oom-YD-5LQ"/>
-                    <constraint firstItem="p5V-lg-1Zq" firstAttribute="leading" secondItem="WYP-se-FGw" secondAttribute="trailing" constant="10" id="Y7G-5x-RrC"/>
-                    <constraint firstItem="WYP-se-FGw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="w8a-fF-zpj"/>
+                    <constraint firstItem="hAz-8n-U6H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="QYg-F2-R1g"/>
+                    <constraint firstItem="hAz-8n-U6H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="c8L-6q-inG"/>
+                    <constraint firstItem="p5V-lg-1Zq" firstAttribute="leading" secondItem="hAz-8n-U6H" secondAttribute="trailing" constant="10" id="cFj-Ft-0Ud"/>
+                    <constraint firstItem="p5V-lg-1Zq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="e9U-5T-6SK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="avatarImageView" destination="WYP-se-FGw" id="7SR-Fh-Hel"/>
+                <outlet property="avatarButton" destination="hAz-8n-U6H" id="r6c-YD-hdU"/>
                 <outlet property="detailHeightLayoutConstraint" destination="APT-pd-Jry" id="sJm-sJ-vP7"/>
                 <outlet property="detailView" destination="p5V-lg-1Zq" id="hnh-gz-K33"/>
             </connections>

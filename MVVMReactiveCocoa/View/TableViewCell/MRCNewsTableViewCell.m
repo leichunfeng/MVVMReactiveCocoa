@@ -13,7 +13,7 @@
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
 @property (strong, nonatomic) MRCNewsItemViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeightLayoutConstraint;
 
@@ -42,7 +42,9 @@
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {
     self.viewModel = viewModel;
     
-    [self.avatarImageView sd_setImageWithURL:viewModel.event.actorAvatarURL placeholderImage:[HexRGB(colorI6) color2Image]];
+    [self.avatarButton sd_setImageWithURL:viewModel.event.actorAvatarURL
+                                 forState:UIControlStateNormal
+                         placeholderImage:[HexRGB(colorI6) color2ImageSized:CGSizeMake(40, 40)]];
     
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
     self.detailView.attributedString = viewModel.attributedString;
@@ -50,7 +52,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     self.detailHeightLayoutConstraint.constant = ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:detailViewWidth].height);
 }
 
@@ -59,6 +60,10 @@
     attributedLabel.attributedString = viewModel.attributedString;
     CGFloat height = 10 + ceilf([attributedLabel suggestedFrameSizeToFitEntireStringConstraintedToWidth:detailViewWidth].height) + 10;
     return MAX(height, 10 + 40 + 10);
+}
+
+- (IBAction)didClickAvatarButton:(id)sender {
+    [self.viewModel.didClickLinkCommand execute:[NSURL URLWithString:[NSString stringWithFormat:@"user://%@", self.viewModel.event.actorLogin]]];
 }
 
 #pragma mark - DTAttributedTextContentViewDelegate
