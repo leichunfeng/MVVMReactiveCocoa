@@ -30,7 +30,7 @@
 + (instancetype)mrc_repositoryLinkWithName:(NSString *)name referenceName:(NSString *)referenceName {
     NSParameterAssert(name.length > 0);
     
-    referenceName = referenceName ?: @"refs/heads/master"; // FIXME
+    referenceName = referenceName ?: mrc_defaultReferenceName(); // FIXME
     
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@?referenceName=%@", MRCLinkRepositoryScheme, name, referenceName]];;
 }

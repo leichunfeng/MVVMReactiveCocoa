@@ -38,7 +38,7 @@ typedef NS_OPTIONS(NSUInteger, OCTEventOptions) {
 - (NSMutableAttributedString *)mrc_memberLoginAttributedString;
 - (NSMutableAttributedString *)mrc_pullRequestAttributedString;
 - (NSMutableAttributedString *)mrc_branchNameAttributedString;
-- (NSMutableAttributedString *)mrc_pushCommitAttributedString;
+- (NSMutableAttributedString *)mrc_pushedCommitAttributedStringWithSHA:(NSString *)SHA;
 - (NSMutableAttributedString *)mrc_refNameAttributedString;
 - (NSMutableAttributedString *)mrc_dateAttributedString;
 
