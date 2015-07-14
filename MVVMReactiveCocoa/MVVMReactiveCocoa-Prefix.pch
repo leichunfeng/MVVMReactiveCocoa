@@ -60,6 +60,7 @@
     #import "NSMutableAttributedString+MRCEvents.h"
     #import "OCTEvent+MRCAttributedString.h"
     #import "OCTRef+MRCAdditions.h"
+    #import "GPUImage.h"
 #endif
 
 #endif

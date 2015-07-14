@@ -40,7 +40,9 @@ typedef NS_OPTIONS(NSUInteger, MRCEventOptions) {
 - (NSMutableAttributedString *)mrc_pullRequestAttributedString;
 - (NSMutableAttributedString *)mrc_branchNameAttributedString;
 - (NSMutableAttributedString *)mrc_pushedCommitAttributedStringWithSHA:(NSString *)SHA;
+- (NSMutableAttributedString *)mrc_pushedCommitsAttributedString;
 - (NSMutableAttributedString *)mrc_refNameAttributedString;
 - (NSMutableAttributedString *)mrc_dateAttributedString;
+- (NSMutableAttributedString *)mrc_pullInfoAttributedString;
 
 @end

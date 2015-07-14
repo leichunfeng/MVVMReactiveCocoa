@@ -160,14 +160,12 @@
     NSMutableAttributedString *attributedString = string.mrc_attributedString;
     
     if (self.options & MRCEventOptionsBoldTitle) {
-        [attributedString mrc_addBoldTitleFontAttribute];
+        attributedString = attributedString.mrc_addBoldTitleFontAttribute;
     } else {
-        [attributedString mrc_addNormalTitleFontAttribute];
+        attributedString = attributedString.mrc_addNormalTitleAttributes;
     }
     
-    [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:nil];
-    
-    return attributedString;
+    return [attributedString.mrc_addTintedForegroundColorAttribute mrc_addRepositoryLinkAttributeWithReferenceName:nil];
 }
 
 - (NSMutableAttributedString *)mrc_issueAttributedString {
@@ -207,16 +205,13 @@
         HTMLURL = concreteEvent.pullRequest.HTMLURL;
     }
     
-    NSParameterAssert(pullRequestID.length > 0);
-    NSParameterAssert(HTMLURL);
-    
     NSMutableAttributedString *attributedString = [NSString stringWithFormat:@"%@#%@", self.repositoryName, pullRequestID].mrc_attributedString;
     
     [attributedString mrc_addBoldTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
     [attributedString mrc_addHTMLURLAttribute:HTMLURL];
     
-    return nil;
+    return attributedString;
 }
 
 - (NSMutableAttributedString *)mrc_branchNameAttributedString {
@@ -236,7 +231,7 @@
 - (NSMutableAttributedString *)mrc_pushedCommitAttributedStringWithSHA:(NSString *)SHA {
     NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
     
-    NSMutableAttributedString *attributedString = MRCShortSHA(SHA).mrc_attributedString;
+    NSMutableAttributedString *attributedString = [@"\n" stringByAppendingString:MRCShortSHA(SHA)].mrc_attributedString;
     
     NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/%@/commit/%@", self.repositoryName, SHA]];
     
@@ -244,7 +239,35 @@
     [attributedString mrc_addTintedForegroundColorAttribute];
     [attributedString mrc_addHTMLURLAttribute:HTMLURL];
     
-    return nil;
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_pushedCommitsAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
+    
+    OCTPushEvent *concreteEvent = (OCTPushEvent *)self;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
+    for (NSDictionary *dictionary in concreteEvent.commits) {
+        /* {
+            "sha": "6e4dc62cffe9f2d1b1484819936ee264dde36592",
+            "author": {
+                "email": "coderyi@foxmail.com",
+                "name": "coderyi"
+            },
+            "message": "增加iOS开发者coderyi的博客\n\n增加iOS开发者coderyi的博客",
+            "distinct": true,
+            "url": "https://api.github.com/repos/tangqiaoboy/iOSBlogCN/commits/6e4dc62cffe9f2d1b1484819936ee264dde36592"
+        } */
+        NSMutableAttributedString *commit = [NSMutableAttributedString new];
+        
+        [commit appendAttributedString:[self mrc_pushedCommitAttributedStringWithSHA:dictionary[@"sha"]]];
+        [commit appendAttributedString:[@" - " stringByAppendingString:dictionary[@"message"]].mrc_attributedString.mrc_addNormalTitleAttributes];
+
+        [attributedString appendAttributedString:commit];
+    }
+    
+    return attributedString.mrc_addParagraphStyleAttribute;
 }
 
 - (NSMutableAttributedString *)mrc_refNameAttributedString {
@@ -252,7 +275,7 @@
     
     OCTRefEvent *concreteEvent = (OCTRefEvent *)self;
 
-    if (!concreteEvent.refName) return nil;
+    if (!concreteEvent.refName) return @"".mrc_attributedString;
     
     NSMutableAttributedString *attributedString = concreteEvent.refName.mrc_attributedString;
     
@@ -284,6 +307,31 @@
     [attributedString mrc_addTimeFontAttribute];
     [attributedString mrc_addTimeForegroundColorAttribute];
     [attributedString mrc_addParagraphStyleAttribute];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_pullInfoAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTPullRequestEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)self;
+    
+    NSString *octicon = [NSString stringWithFormat:@"\n %@ ", [NSString octicon_iconStringForEnum:OCTIconGitCommit]];
+    
+    NSString *commits   = concreteEvent.pullRequest.commits > 1 ? @" commits with " : @" commit with ";
+    NSString *additions = concreteEvent.pullRequest.additions > 1 ? @" additions and " : @" addition and ";
+    NSString *deletions = concreteEvent.pullRequest.deletions > 1 ? @" deletions " : @" deletion ";
+    
+    [attributedString appendAttributedString:octicon.mrc_attributedString.mrc_addOcticonAttributes.mrc_addParagraphStyleAttribute];
+    [attributedString appendAttributedString:@(concreteEvent.pullRequest.commits).stringValue.mrc_attributedString.mrc_addBoldPullInfoFontAttribute.mrc_addPullInfoForegroundColorAttribute];
+    [attributedString appendAttributedString:commits.mrc_attributedString.mrc_addNormalPullInfoFontAttribute.mrc_addPullInfoForegroundColorAttribute];
+    [attributedString appendAttributedString:@(concreteEvent.pullRequest.additions).stringValue.mrc_attributedString.mrc_addBoldPullInfoFontAttribute.mrc_addPullInfoForegroundColorAttribute];
+    [attributedString appendAttributedString:additions.mrc_attributedString.mrc_addNormalPullInfoFontAttribute.mrc_addPullInfoForegroundColorAttribute];
+    [attributedString appendAttributedString:@(concreteEvent.pullRequest.deletions).stringValue.mrc_attributedString.mrc_addBoldPullInfoFontAttribute.mrc_addPullInfoForegroundColorAttribute];
+    [attributedString appendAttributedString:deletions.mrc_attributedString.mrc_addNormalPullInfoFontAttribute.mrc_addPullInfoForegroundColorAttribute];
+    [attributedString mrc_addBackgroundColorAttribute];
     
     return attributedString;
 }
@@ -354,6 +402,7 @@
     [attributedString appendAttributedString:@" added ".mrc_attributedString.mrc_addNormalTitleAttributes];
     [attributedString appendAttributedString:self.mrc_memberLoginAttributedString];
     [attributedString appendAttributedString:@" to ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
     
     return attributedString;
 }
@@ -364,6 +413,7 @@
     NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
     
     [attributedString appendAttributedString:@" open sourced ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
     
     return attributedString;
 }
@@ -397,48 +447,70 @@
         action = @"synchronized";
     }
     
-    NSString *pullOcticon = [NSString octicon_iconStringForEnum:OCTIconGitCommit];
-    
-    NSString *commits   = [NSString stringWithFormat:@"%@ commits", @(concreteEvent.pullRequest.commits).stringValue];
-    NSString *additions = [NSString stringWithFormat:@"%@ additions", @(concreteEvent.pullRequest.additions).stringValue];
-    NSString *deletions = [NSString stringWithFormat:@"%@ deletions", @(concreteEvent.pullRequest.deletions).stringValue];
-    
-    NSString *plainPullInfo = [NSString stringWithFormat:@"\n %@ %@ with %@ %@ ", pullOcticon, commits, additions, deletions];
-    
-    NSMutableAttributedString *pullInfo = [[NSMutableAttributedString alloc] initWithString:plainPullInfo];
-    
-    NSDictionary *octiconAttributes = @{
-        NSFontAttributeName: [UIFont fontWithName:kOcticonsFamilyName size:16],
-        NSForegroundColorAttributeName: HexRGB(0xbbbbbb)
-    };
-    
-    NSDictionary *boldPullInfoAttributes = @{
-        NSFontAttributeName: MRCEventsBoldPullInfoFont,
-        NSForegroundColorAttributeName: MRCEventsPullInfoForegroundColor
-    };
-    
-    [pullInfo addAttributes:octiconAttributes range:[plainPullInfo rangeOfString:pullOcticon]];
-    [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:commits].location, [plainPullInfo rangeOfString:commits].length - 7)];
-    [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:additions].location, [plainPullInfo rangeOfString:additions].length - 9)];
-    [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:deletions].location, [plainPullInfo rangeOfString:deletions].length - 9)];
-    
     [attributedString appendAttributedString:[NSString stringWithFormat:@" %@ pull request ", action].mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_pullRequestAttributedString];
     [attributedString appendAttributedString:[@"\n" stringByAppendingString:concreteEvent.pullRequest.title].mrc_attributedString.mrc_addNormalTitleAttributes.mrc_addParagraphStyleAttribute];
+    [attributedString appendAttributedString:self.mrc_pullInfoAttributedString];
     
     return attributedString;
 }
 
 - (NSMutableAttributedString *)mrc_pushEventAttributedString {
-    return nil;
+    NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" pushed to ".mrc_attributedString.mrc_addBoldTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_branchNameAttributedString];
+    [attributedString appendAttributedString:@" at ".mrc_attributedString.mrc_addBoldTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
+    [attributedString appendAttributedString:self.mrc_pushedCommitsAttributedString];
+    
+    return attributedString;
 }
 
 - (NSMutableAttributedString *)mrc_refEventAttributedString {
-    return nil;
+    NSParameterAssert([self isMemberOfClass:[OCTRefEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    OCTRefEvent *concreteEvent = (OCTRefEvent *)self;
+    
+    NSString *action = nil;
+    if (concreteEvent.eventType == OCTRefEventCreated) {
+        action = @"created";
+    } else if (concreteEvent.eventType == OCTRefEventDeleted) {
+        action = @"deleted";
+    }
+    
+    NSString *type = nil;
+    if (concreteEvent.refType == OCTRefTypeBranch) {
+        type = @"branch";
+    } else if (concreteEvent.refType == OCTRefTypeTag) {
+        type = @"tag";
+    } else if (concreteEvent.refType == OCTRefTypeRepository) {
+        type = @"repository";
+    }
+    
+    NSString *at = (concreteEvent.refType == OCTRefTypeBranch || concreteEvent.refType == OCTRefTypeTag ? @" at " : @"");
+    
+    [attributedString appendAttributedString:[NSString stringWithFormat:@" %@ %@ ", action, type].mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_refNameAttributedString];
+    [attributedString appendAttributedString:at.mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
+    
+    return attributedString;
 }
 
 - (NSMutableAttributedString *)mrc_watchEventAttributedString {
-    return nil;
+    NSParameterAssert([self isMemberOfClass:[OCTWatchEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" starred ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
+    
+    return attributedString;
 }
 
 #pragma mark - Private
