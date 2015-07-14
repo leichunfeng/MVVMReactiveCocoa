@@ -111,12 +111,11 @@
 #pragma mark - Combination
 
 - (NSMutableAttributedString *)mrc_addOcticonAttributes {
-    [self appendString:@"  "];
     return [[self mrc_addOcticonFontAttribute] mrc_addTimeForegroundColorAttribute];
 }
 
 - (NSMutableAttributedString *)mrc_addNormalTitleAttributes {
-    return [[self mrc_addBoldTitleFontAttribute] mrc_addBoldTitleForegroundColorAttribute];
+    return [[self mrc_addNormalTitleFontAttribute] mrc_addNormalTitleForegroundColorAttribute];
 }
 
 - (NSMutableAttributedString *)mrc_addBoldTitleAttributes {
