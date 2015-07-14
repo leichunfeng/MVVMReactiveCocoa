@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 Drobnik.com. All rights reserved.
 //
 
-#import "DTCoreText.h"
+#import "DTCompatibility.h"
 #import "DTAnchorHTMLElement.h"
+#import "DTColorFunctions.h"
 
 @implementation DTAnchorHTMLElement
 {

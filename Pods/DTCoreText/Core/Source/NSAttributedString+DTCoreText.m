@@ -6,10 +6,23 @@
 //  Copyright (c) 2012 Drobnik.com. All rights reserved.
 //
 
-#import "DTCoreText.h"
+#import "DTCompatibility.h"
 #import "NSAttributedString+DTCoreText.h"
 #import "DTHTMLWriter.h"
-#import "NSURL+DTComparing.h"
+#import "DTCoreTextConstants.h"
+#import "DTCoreTextFontDescriptor.h"
+#import "DTCoreTextParagraphStyle.h"
+#import "DTCSSListStyle.h"
+#import "DTImageTextAttachment.h"
+#import "NSString+Paragraphs.h"
+#import "NSDictionary+DTCoreText.h"
+#import "NSAttributedStringRunDelegates.h"
+
+#import <DTFoundation/NSURL+DTComparing.h>
+
+#if TARGET_OS_IPHONE
+#import "UIFont+DTCoreText.h"
+#endif
 
 @implementation NSAttributedString (DTCoreText)
 

@@ -10,9 +10,6 @@
 #import "SDWebImageDownloaderOperation.h"
 #import <ImageIO/ImageIO.h>
 
-NSString *const SDWebImageDownloadStartNotification = @"SDWebImageDownloadStartNotification";
-NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNotification";
-
 static NSString *const kProgressCallbackKey = @"progress";
 static NSString *const kCompletedCallbackKey = @"completed";
 
@@ -70,7 +67,11 @@ static NSString *const kCompletedCallbackKey = @"completed";
         _downloadQueue = [NSOperationQueue new];
         _downloadQueue.maxConcurrentOperationCount = 6;
         _URLCallbacks = [NSMutableDictionary new];
-        _HTTPHeaders = [NSMutableDictionary dictionaryWithObject:@"image/webp,image/*;q=0.8" forKey:@"Accept"];
+#ifdef SD_WEBP
+        _HTTPHeaders = [@{@"Accept": @"image/webp,image/*;q=0.8"} mutableCopy];
+#else
+        _HTTPHeaders = [@{@"Accept": @"image/*;q=0.8"} mutableCopy];
+#endif
         _barrierQueue = dispatch_queue_create("com.hackemist.SDWebImageDownloaderBarrierQueue", DISPATCH_QUEUE_CONCURRENT);
         _downloadTimeout = 15.0;
     }
@@ -113,7 +114,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
 
 - (id <SDWebImageOperation>)downloadImageWithURL:(NSURL *)url options:(SDWebImageDownloaderOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageDownloaderCompletedBlock)completedBlock {
     __block SDWebImageDownloaderOperation *operation;
-    __weak SDWebImageDownloader *wself = self;
+    __weak __typeof(self)wself = self;
 
     [self addProgressCallback:progressBlock andCompletedBlock:completedBlock forURL:url createCallback:^{
         NSTimeInterval timeoutInterval = wself.downloadTimeout;

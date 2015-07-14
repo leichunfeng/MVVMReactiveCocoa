@@ -6,9 +6,17 @@
 //  Copyright 2011 Drobnik.com. All rights reserved.
 //
 
-#import "NSMutableAttributedString+HTML.h"
+#import "DTCompatibility.h"
 
-#import "DTCoreText.h"
+#import "NSMutableAttributedString+HTML.h"
+#import "DTCoreTextFontDescriptor.h"
+#import "DTCoreTextParagraphStyle.h"
+#import "NSDictionary+DTCoreText.h"
+
+#if TARGET_OS_IPHONE
+#import "UIFont+DTCoreText.h"
+#endif
+
 
 @implementation NSMutableAttributedString (HTML)
 
@@ -135,6 +143,7 @@
 		{
 			[appendAttributes setObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
 		}
+		
 	}
 	else
 #endif
@@ -171,19 +180,33 @@
 	}
 
 	// transfer foreground color
-	id foregroundColor = [attributes objectForKey:(id)kCTForegroundColorAttributeName];
-	
-	if (foregroundColor)
+#if DTCORETEXT_SUPPORT_NS_ATTRIBUTES
+	if (___useiOS6Attributes)
 	{
-#if TARGET_OS_IPHONE
-		if ([foregroundColor isKindOfClass:[UIColor class]])
+		id foregroundColor = [attributes objectForKey:NSForegroundColorAttributeName];
+		
+		if (foregroundColor)
 		{
-			[appendAttributes setObject:(id)[foregroundColor CGColor] forKey:(id)kCTForegroundColorAttributeName];
+			[appendAttributes setObject:foregroundColor forKey:NSForegroundColorAttributeName];
 		}
-		else
+	}
+	else
 #endif
+	{
+		id foregroundColor = [attributes objectForKey:(id)kCTForegroundColorAttributeName];
+		
+		if (foregroundColor)
 		{
-			[appendAttributes setObject:foregroundColor forKey:(id)kCTForegroundColorAttributeName];
+#if TARGET_OS_IPHONE
+			if ([foregroundColor isKindOfClass:[UIColor class]])
+			{
+				[appendAttributes setObject:(id)[foregroundColor CGColor] forKey:(id)kCTForegroundColorAttributeName];
+			}
+			else
+#endif
+			{
+				[appendAttributes setObject:foregroundColor forKey:(id)kCTForegroundColorAttributeName];
+			}
 		}
 	}
 

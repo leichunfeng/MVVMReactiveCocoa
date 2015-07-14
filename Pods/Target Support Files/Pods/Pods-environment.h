@@ -10,31 +10,31 @@
 #define COCOAPODS_POD_AVAILABLE_DTCoreText
 #define COCOAPODS_VERSION_MAJOR_DTCoreText 1
 #define COCOAPODS_VERSION_MINOR_DTCoreText 6
-#define COCOAPODS_VERSION_PATCH_DTCoreText 15
+#define COCOAPODS_VERSION_PATCH_DTCoreText 16
 
 // DTFoundation/Core
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_Core
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_Core 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_Core 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_Core 5
+#define COCOAPODS_VERSION_PATCH_DTFoundation_Core 6
 
 // DTFoundation/DTAnimatedGIF
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_DTAnimatedGIF
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_DTAnimatedGIF 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_DTAnimatedGIF 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_DTAnimatedGIF 5
+#define COCOAPODS_VERSION_PATCH_DTFoundation_DTAnimatedGIF 6
 
 // DTFoundation/DTHTMLParser
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_DTHTMLParser
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_DTHTMLParser 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_DTHTMLParser 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_DTHTMLParser 5
+#define COCOAPODS_VERSION_PATCH_DTFoundation_DTHTMLParser 6
 
 // DTFoundation/UIKit
 #define COCOAPODS_POD_AVAILABLE_DTFoundation_UIKit
 #define COCOAPODS_VERSION_MAJOR_DTFoundation_UIKit 1
 #define COCOAPODS_VERSION_MINOR_DTFoundation_UIKit 7
-#define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 5
+#define COCOAPODS_VERSION_PATCH_DTFoundation_UIKit 6
 
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
@@ -126,6 +126,12 @@
 #define COCOAPODS_VERSION_MINOR_FormatterKit_UnitOfInformationFormatter 8
 #define COCOAPODS_VERSION_PATCH_FormatterKit_UnitOfInformationFormatter 0
 
+// GPUImage
+#define COCOAPODS_POD_AVAILABLE_GPUImage
+#define COCOAPODS_VERSION_MAJOR_GPUImage 0
+#define COCOAPODS_VERSION_MINOR_GPUImage 1
+#define COCOAPODS_VERSION_PATCH_GPUImage 7
+
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
 // This library does not follow semantic-versioning,
@@ -173,13 +179,13 @@
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage 7
-#define COCOAPODS_VERSION_PATCH_SDWebImage 2
+#define COCOAPODS_VERSION_PATCH_SDWebImage 3
 
 // SDWebImage/Core
 #define COCOAPODS_POD_AVAILABLE_SDWebImage_Core
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
-#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 2
+#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 3
 
 // SSKeychain
 #define COCOAPODS_POD_AVAILABLE_SSKeychain
