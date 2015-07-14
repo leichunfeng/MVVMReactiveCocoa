@@ -37,11 +37,19 @@
 
 - (NSDictionary *)mrc_dictionary {
     if (self.type == MRCLinkTypeUser) {
-        return @{ @"login": self.host ?: @"" };
+        return @{
+            @"user": @{
+            	@"login": self.host ?: @""
+            }
+    	};
     } else if (self.type == MRCLinkTypeRepository) {
-        return @{ @"ownerLogin": self.host ?: @"",
-                  @"name": [self.path substringFromIndex:1] ?: @"",
-                  @"referenceName": [self.query componentsSeparatedByString:@"="].lastObject ?: @"" };
+        return @{
+        	@"repository": @{
+                @"ownerLogin": self.host ?: @"",
+                @"name": [self.path substringFromIndex:1] ?: @"",
+            },
+            @"referenceName": [self.query componentsSeparatedByString:@"="].lastObject ?: @""
+        };
     }
     return nil;
 }
