@@ -30,9 +30,9 @@
 + (instancetype)mrc_repositoryLinkWithName:(NSString *)name referenceName:(NSString *)referenceName {
     NSParameterAssert(name.length > 0);
     
-    referenceName = referenceName ?: mrc_defaultReferenceName(); // FIXME
+    referenceName = referenceName ?: MRCDefaultReferenceName(); // FIXME
     
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@?referenceName=%@", MRCLinkRepositoryScheme, name, referenceName]];;
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@?referenceName=%@", MRCLinkRepositoryScheme, name, referenceName]];
 }
 
 - (NSDictionary *)mrc_dictionary {

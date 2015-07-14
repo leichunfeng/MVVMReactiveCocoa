@@ -8,23 +8,23 @@
 
 #import "OCTRef+MRCAdditions.h"
 
-#define OCTRefBranchReferenceNamePrefix @"refs/heads/"
-#define OCTRefTagReferenceNamePrefix    @"refs/tags/"
+#define MRCRefBranchReferenceNamePrefix @"refs/heads/"
+#define MRCRefTagReferenceNamePrefix    @"refs/tags/"
 
 @implementation OCTRef (MRCAdditions)
 
-NSString *mrc_defaultReferenceName() {
-    return [OCTRefBranchReferenceNamePrefix stringByAppendingString:@"master"];
+NSString *MRCDefaultReferenceName() {
+    return [MRCRefBranchReferenceNamePrefix stringByAppendingString:@"master"];
 }
 
-NSString *mrc_referenceNameWithBranchName(NSString *branchName) {
+NSString *MRCReferenceNameWithBranchName(NSString *branchName) {
     NSCParameterAssert(branchName.length > 0);
-    return [NSString stringWithFormat:@"%@%@", OCTRefBranchReferenceNamePrefix, branchName];
+    return [NSString stringWithFormat:@"%@%@", MRCRefBranchReferenceNamePrefix, branchName];
 }
 
-NSString *mrc_referenceNameWithTagName(NSString *tagName) {
+NSString *MRCReferenceNameWithTagName(NSString *tagName) {
     NSCParameterAssert(tagName.length > 0);
-    return [NSString stringWithFormat:@"%@%@", OCTRefTagReferenceNamePrefix, tagName];
+    return [NSString stringWithFormat:@"%@%@", MRCRefTagReferenceNamePrefix, tagName];
 }
 
 @end

@@ -78,7 +78,7 @@
     
     OCTCommitCommentEvent *concreteEvent = (OCTCommitCommentEvent *)self;
     
-    NSString *target = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, [concreteEvent.comment.commitSHA substringToIndex:7]];
+    NSString *target = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, MRCShortSHA(concreteEvent.comment.commitSHA)];
     NSMutableAttributedString *attributedString = target.mrc_attributedString;
     
     [attributedString mrc_addBoldTitleFontAttribute];
@@ -172,7 +172,7 @@
     
     [attributedString mrc_addBoldTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
-    [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:mrc_referenceNameWithBranchName(branchName)];
+    [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:MRCReferenceNameWithBranchName(branchName)];
     
     return attributedString;
 }
@@ -180,10 +180,13 @@
 - (NSMutableAttributedString *)mrc_pushedCommitAttributedStringWithSHA:(NSString *)SHA {
     NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
     
-    NSMutableAttributedString *attributedString = SHA.mrc_attributedString;
+    NSMutableAttributedString *attributedString = MRCShortSHA(SHA).mrc_attributedString;
+    
+    NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/%@/commit/%@", self.repositoryName, SHA]];
     
     [attributedString mrc_addNormalTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
+    [attributedString mrc_addHTMLURLAttribute:HTMLURL];
     
     return nil;
 }
@@ -203,9 +206,9 @@
         [attributedString mrc_addTintedForegroundColorAttribute];
         
         if (concreteEvent.refType == OCTRefTypeBranch) {
-            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:mrc_referenceNameWithBranchName(concreteEvent.refName)];
+            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:MRCReferenceNameWithBranchName(concreteEvent.refName)];
         } else if (concreteEvent.refType == OCTRefTypeTag) {
-            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:mrc_referenceNameWithTagName(concreteEvent.refName)];
+            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:MRCReferenceNameWithTagName(concreteEvent.refName)];
         }
     } else if (concreteEvent.eventType == OCTRefEventDeleted) {
         [attributedString mrc_addBackgroundColorAttribute];
@@ -286,6 +289,13 @@
 
 - (NSAttributedString *)mrc_watchEventAttributedString {
     return nil;
+}
+
+#pragma mark - Private
+
+static NSString *MRCShortSHA(NSString *SHA) {
+    NSCParameterAssert(SHA.length > 0);
+    return [SHA substringToIndex:7];
 }
 
 @end
