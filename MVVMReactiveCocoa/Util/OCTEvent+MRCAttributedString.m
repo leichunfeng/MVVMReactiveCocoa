@@ -165,7 +165,7 @@
         attributedString = attributedString.mrc_addNormalTitleAttributes;
     }
     
-    return [attributedString.mrc_addTintedForegroundColorAttribute mrc_addRepositoryLinkAttributeWithReferenceName:nil];
+    return [attributedString.mrc_addTintedForegroundColorAttribute mrc_addRepositoryLinkAttributeWithName:attributedString.string referenceName:nil];
 }
 
 - (NSMutableAttributedString *)mrc_issueAttributedString {
@@ -223,7 +223,7 @@
     
     [attributedString mrc_addBoldTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
-    [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:MRCReferenceNameWithBranchName(branchName)];
+    [attributedString mrc_addRepositoryLinkAttributeWithName:self.repositoryName referenceName:MRCReferenceNameWithBranchName(branchName)];
     
     return attributedString;
 }
@@ -285,9 +285,9 @@
         [attributedString mrc_addTintedForegroundColorAttribute];
         
         if (concreteEvent.refType == OCTRefTypeBranch) {
-            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:MRCReferenceNameWithBranchName(concreteEvent.refName)];
+            [attributedString mrc_addRepositoryLinkAttributeWithName:self.repositoryName referenceName:MRCReferenceNameWithBranchName(concreteEvent.refName)];
         } else if (concreteEvent.refType == OCTRefTypeTag) {
-            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:MRCReferenceNameWithTagName(concreteEvent.refName)];
+            [attributedString mrc_addRepositoryLinkAttributeWithName:self.repositoryName referenceName:MRCReferenceNameWithTagName(concreteEvent.refName)];
         }
     } else if (concreteEvent.eventType == OCTRefEventDeleted) {
         [attributedString mrc_addBackgroundColorAttribute];
