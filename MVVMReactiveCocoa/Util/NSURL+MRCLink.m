@@ -59,18 +59,37 @@
 @implementation OCTEvent (MRCLink)
 
 - (NSURL *)mrc_Link {
+    NSMutableAttributedString *attributedString = nil;
+    
     if ([self isMemberOfClass:[OCTCommitCommentEvent class]]) {
-        return [self.mrc_commentedCommitAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
-    } else if ([self isMemberOfClass:[OCTForkEvent class]] || [self isMemberOfClass:[OCTMemberEvent class]] ||
-               [self isMemberOfClass:[OCTPublicEvent class]] || [self isMemberOfClass:[OCTPushEvent class]] ||
-               [self isMemberOfClass:[OCTRefEvent class]] || [self isMemberOfClass:[OCTWatchEvent class]]) {
-        return [self.mrc_repositoryNameAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
-    } else if ([self isMemberOfClass:[OCTIssueCommentEvent class]] || [self isMemberOfClass:[OCTIssueEvent class]]) {
-        return [self.mrc_issueAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
-    } else if ([self isMemberOfClass:[OCTPullRequestCommentEvent class]] || [self isMemberOfClass:[OCTPullRequestEvent class]]) {
-        return [self.mrc_pullRequestAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+		attributedString = self.mrc_commentedCommitAttributedString;
+    } else if ([self isMemberOfClass:[OCTForkEvent class]]) {
+		attributedString = self.mrc_forkedRepositoryNameAttributedString;
+    } else if ([self isMemberOfClass:[OCTIssueCommentEvent class]]) {
+		attributedString = self.mrc_issueAttributedString;
+    } else if ([self isMemberOfClass:[OCTIssueEvent class]]) {
+		attributedString = self.mrc_issueAttributedString;
+    } else if ([self isMemberOfClass:[OCTMemberEvent class]]) {
+		attributedString = self.mrc_memberLoginAttributedString;
+    } else if ([self isMemberOfClass:[OCTPublicEvent class]]) {
+		attributedString = self.mrc_repositoryNameAttributedString;
+    } else if ([self isMemberOfClass:[OCTPullRequestCommentEvent class]]) {
+		attributedString = self.mrc_pullRequestAttributedString;
+    } else if ([self isMemberOfClass:[OCTPullRequestEvent class]]) {
+		attributedString = self.mrc_pullRequestAttributedString;
+    } else if ([self isMemberOfClass:[OCTPushEvent class]]) {
+		attributedString = self.mrc_branchNameAttributedString;
+    } else if ([self isMemberOfClass:[OCTRefEvent class]]) {
+        if ([self.mrc_refNameAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL]) {
+            attributedString = self.mrc_refNameAttributedString;
+        } else {
+            attributedString = self.mrc_repositoryNameAttributedString;
+        }
+    } else if ([self isMemberOfClass:[OCTWatchEvent class]]) {
+		attributedString = self.mrc_repositoryNameAttributedString;
     }
-    return nil;
+    
+    return [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
 }
 
 @end
