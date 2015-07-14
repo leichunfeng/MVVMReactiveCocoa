@@ -11,8 +11,8 @@
 
 @implementation OCTEvent (MRCAttributedString)
 
-- (OCTEventOptions)options {
-    OCTEventOptions options = 0;
+- (MRCEventOptions)options {
+    MRCEventOptions options = 0;
     
     if ([self isMemberOfClass:[OCTCommitCommentEvent class]] ||
         [self isMemberOfClass:[OCTIssueCommentEvent class]] ||
@@ -20,7 +20,7 @@
         [self isMemberOfClass:[OCTPullRequestCommentEvent class]] ||
         [self isMemberOfClass:[OCTPullRequestEvent class]] ||
         [self isMemberOfClass:[OCTPushEvent class]]) {
-        options |= OCTEventOptionsBoldTitle;
+        options |= MRCEventOptionsBoldTitle;
     }
     
     return options;
@@ -61,7 +61,7 @@
 - (NSMutableAttributedString *)mrc_loginAttributedStringWithString:(NSString *)string {
     NSMutableAttributedString *attributedString = string.mrc_attributedString;
     
-    if (self.options & OCTEventOptionsBoldTitle) {
+    if (self.options & MRCEventOptionsBoldTitle) {
         [attributedString mrc_addBoldTitleFontAttribute];
     } else {
         [attributedString mrc_addNormalTitleFontAttribute];
@@ -103,7 +103,7 @@
 - (NSMutableAttributedString *)mrc_repositoryNameAttributedStringWithString:(NSString *)string {
     NSMutableAttributedString *attributedString = string.mrc_attributedString;
     
-    if (self.options & OCTEventOptionsBoldTitle) {
+    if (self.options & MRCEventOptionsBoldTitle) {
         [attributedString mrc_addBoldTitleFontAttribute];
     } else {
         [attributedString mrc_addNormalTitleFontAttribute];

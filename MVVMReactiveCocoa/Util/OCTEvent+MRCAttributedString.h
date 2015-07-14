@@ -8,13 +8,13 @@
 
 #import <OctoKit/OctoKit.h>
 
-typedef NS_OPTIONS(NSUInteger, OCTEventOptions) {
-    OCTEventOptionsBoldTitle = 1 << 0
+typedef NS_OPTIONS(NSUInteger, MRCEventOptions) {
+    MRCEventOptionsBoldTitle = 1 << 0
 };
 
 @interface OCTEvent (MRCAttributedString)
 
-@property (assign, nonatomic, readonly) OCTEventOptions options;
+@property (assign, nonatomic, readonly) MRCEventOptions options;
 
 - (NSAttributedString *)mrc_attributedString;
 
