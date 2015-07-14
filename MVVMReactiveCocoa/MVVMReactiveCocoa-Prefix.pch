@@ -59,6 +59,7 @@
     #import "NSURL+MRCLink.h"
     #import "NSMutableAttributedString+MRCEvents.h"
     #import "OCTEvent+MRCAttributedString.h"
+    #import "OCTRef+MRCAdditions.h"
 #endif
 
 #endif

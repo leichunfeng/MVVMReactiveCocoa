@@ -47,6 +47,12 @@
 - (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithReferenceName:(NSString *)referenceName;
 - (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL;
 
+// Combination
+
+- (NSMutableAttributedString *)mrc_addOcticonAttributes;
+- (NSMutableAttributedString *)mrc_addNormalTitleAttributes;
+- (NSMutableAttributedString *)mrc_addBoldTitleAttributes;
+
 @end
 
 

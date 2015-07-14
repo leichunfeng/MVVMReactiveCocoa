@@ -36,7 +36,7 @@
         
         NSParameterAssert(self.repository);
 
-        self.referenceName = params[@"referenceName"] ?: [NSString stringWithFormat:@"refs/heads/%@", self.repository.defaultBranch];
+        self.referenceName = params[@"referenceName"] ?: mrc_referenceNameWithBranchName(self.repository.defaultBranch);
         
         NSParameterAssert(self.referenceName);
     }

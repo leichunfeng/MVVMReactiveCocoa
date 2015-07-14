@@ -172,15 +172,15 @@
     
     [attributedString mrc_addBoldTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
-    [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:[NSString stringWithFormat:@"refs/heads/%@", branchName]];
+    [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:mrc_referenceNameWithBranchName(branchName)];
     
     return attributedString;
 }
 
-- (NSMutableAttributedString *)mrc_pushCommitAttributedString:(NSString *)commitSHA {
+- (NSMutableAttributedString *)mrc_pushedCommitAttributedStringWithSHA:(NSString *)SHA {
     NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
     
-    NSMutableAttributedString *attributedString = commitSHA.mrc_attributedString;
+    NSMutableAttributedString *attributedString = SHA.mrc_attributedString;
     
     [attributedString mrc_addNormalTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
@@ -203,9 +203,9 @@
         [attributedString mrc_addTintedForegroundColorAttribute];
         
         if (concreteEvent.refType == OCTRefTypeBranch) {
-            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:[NSString stringWithFormat:@"refs/heads/%@", concreteEvent.refName]];
+            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:mrc_referenceNameWithBranchName(concreteEvent.refName)];
         } else if (concreteEvent.refType == OCTRefTypeTag) {
-            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:[NSString stringWithFormat:@"refs/tags/%@", concreteEvent.refName]];
+            [attributedString mrc_addRepositoryLinkAttributeWithReferenceName:mrc_referenceNameWithTagName(concreteEvent.refName)];
         }
     } else if (concreteEvent.eventType == OCTRefEventDeleted) {
         [attributedString mrc_addBackgroundColorAttribute];
@@ -236,13 +236,13 @@
     
     OCTCommitCommentEvent *concreteEvent = (OCTCommitCommentEvent *)self;
     
-    NSString *octicon = [[NSString octicon_iconStringForEnum:OCTIconCommentDiscussion] stringByAppendingString:@"  "];
+    NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
     
-    [attributedString appendAttributedString:[[octicon.mrc_attributedString mrc_addOcticonFontAttribute] mrc_addTimeForegroundColorAttribute]];
+    [attributedString appendAttributedString:octicon.mrc_attributedString.mrc_addOcticonAttributes];
     [attributedString appendAttributedString:self.mrc_actorLoginAttributedString];
-    [attributedString appendAttributedString:[[@" commented on commit ".mrc_attributedString mrc_addBoldTitleFontAttribute] mrc_addBoldTitleForegroundColorAttribute]];
+    [attributedString appendAttributedString:[@" commented on commit ".mrc_attributedString mrc_addBoldTitleAttributes]];
     [attributedString appendAttributedString:self.mrc_commentedCommitAttributedString];
-    [attributedString appendAttributedString:[[[[@"\n" stringByAppendingString:concreteEvent.comment.body].mrc_attributedString mrc_addNormalTitleFontAttribute] mrc_addNormalTitleForegroundColorAttribute] mrc_addParagraphStyleAttribute]];
+    [attributedString appendAttributedString:[[[@"\n" stringByAppendingString:concreteEvent.comment.body].mrc_attributedString mrc_addNormalTitleAttributes] mrc_addParagraphStyleAttribute]];
     [attributedString appendAttributedString:self.mrc_dateAttributedString];
 
     return attributedString;
