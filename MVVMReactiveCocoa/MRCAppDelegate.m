@@ -126,7 +126,7 @@
                 NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
                 
                 if (![db executeStatements:sql]) {
-                    mrcLogLastError(db);
+                    MRCLogLastError(db);
                 }
             }
         }
