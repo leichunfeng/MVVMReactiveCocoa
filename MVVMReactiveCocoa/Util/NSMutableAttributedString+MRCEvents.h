@@ -69,7 +69,7 @@ paragraphStyle; \
 // Link
 
 - (NSMutableAttributedString *)mrc_addUserLinkAttribute;
-- (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithReferenceName:(NSString *)referenceName;
+- (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithName:(NSString *)name referenceName:(NSString *)referenceName;
 - (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL;
 
 // Combination

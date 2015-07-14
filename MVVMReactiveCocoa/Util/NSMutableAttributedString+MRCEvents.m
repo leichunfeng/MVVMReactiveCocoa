@@ -98,8 +98,8 @@
     return self;
 }
 
-- (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithReferenceName:(NSString *)referenceName {
-    [self addAttribute:NSLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:self.string referenceName:referenceName] range:[self.string rangeOfString:self.string]];
+- (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithName:(NSString *)name referenceName:(NSString *)referenceName {
+    [self addAttribute:NSLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:name referenceName:referenceName] range:[self.string rangeOfString:self.string]];
     return self;
 }
 
