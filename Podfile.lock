@@ -1,14 +1,14 @@
 PODS:
-  - DTCoreText (1.6.15):
+  - DTCoreText (1.6.16):
     - DTFoundation/Core (~> 1.7.5)
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
     - DTFoundation/DTHTMLParser (~> 1.7.5)
     - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.5)
-  - DTFoundation/DTAnimatedGIF (1.7.5)
-  - DTFoundation/DTHTMLParser (1.7.5):
+  - DTFoundation/Core (1.7.6)
+  - DTFoundation/DTAnimatedGIF (1.7.6)
+  - DTFoundation/DTHTMLParser (1.7.6):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.5):
+  - DTFoundation/UIKit (1.7.6):
     - DTFoundation/Core
   - DZNEmptyDataSet (1.5.2)
   - FDFullscreenPopGesture (1.1)
@@ -36,6 +36,7 @@ PODS:
   - FormatterKit/TimeIntervalFormatter (1.8.0)
   - FormatterKit/UnitOfInformationFormatter (1.8.0)
   - FormatterKit/URLRequestFormatter (1.8.0)
+  - GPUImage (0.1.7)
   - IQKeyboardManager (3.2.0.3)
   - MBProgressHUD (0.9.1)
   - MKNetworkKit (0.87):
@@ -44,9 +45,9 @@ PODS:
   - Ono (1.2.2)
   - Reachability (3.1.1)
   - Reveal-iOS-SDK (1.5.1)
-  - SDWebImage (3.7.2):
-    - SDWebImage/Core (= 3.7.2)
-  - SDWebImage/Core (3.7.2)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - SSKeychain (1.2.3)
   - SVPullToRefresh (0.4.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - FDFullscreenPopGesture (~> 1.1)
   - FMDB
   - FormatterKit (~> 1.8.0)
+  - GPUImage (~> 0.1.7)
   - IQKeyboardManager (~> 3.2.0.3)
   - MBProgressHUD (~> 0.9)
   - MKNetworkKit (~> 0.87)
@@ -84,12 +86,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jacksonh/OcticonsIOS.git
 
 SPEC CHECKSUMS:
-  DTCoreText: 13ce06e63204a3b47c9db974e3d9be982bb0b1ed
-  DTFoundation: 1d28080c20c3da041706545363f8238ab53a6204
+  DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
+  DTFoundation: bf431de2292484461ff7d92295fdae7dc15a3820
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
@@ -97,7 +100,7 @@ SPEC CHECKSUMS:
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
-  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c

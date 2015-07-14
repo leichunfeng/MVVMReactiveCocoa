@@ -8,31 +8,6 @@
 
 #import "NSMutableAttributedString+MRCEvents.h"
 
-// Font
-
-#define MRCEventsNormalTitleFont    [UIFont systemFontOfSize:15]
-#define MRCEventsBoldTitleFont      [UIFont boldSystemFontOfSize:16]
-#define MRCEventsOcticonFont        [UIFont fontWithName:kOcticonsFamilyName size:16]
-#define MRCEventsTimeFont           [UIFont systemFontOfSize:13]
-#define MRCEventsNormalPullInfoFont [UIFont systemFontOfSize:12]
-#define MRCEventsBoldPullInfoFont   [UIFont boldSystemFontOfSize:12]
-
-// Foreground Color
-
-#define MRCEventsTintedForegroundColor      HexRGB(0x4078c0)
-#define MRCEventsNormalTitleForegroundColor HexRGB(0x666666)
-#define MRCEventsBoldTitleForegroundColor   HexRGB(0x333333)
-#define MRCEventsTimeForegroundColor        HexRGB(0xbbbbbb)
-#define MRCEventsPullInfoForegroundColor    RGBAlpha(0, 0, 0, 0.5)
-
-// Paragraph Style
-
-#define MRCEventsParagraphStyle ({ \
-	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
-	paragraphStyle.paragraphSpacing = 5; \
-	paragraphStyle; \
-})
-
 @implementation NSString (MRCEvents)
 
 - (NSMutableAttributedString *)mrc_attributedString {

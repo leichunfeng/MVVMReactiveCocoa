@@ -31,9 +31,15 @@
  */
 
 /**
- Generate an md5 checksum from the receiver
+ Generate an MD5 checksum from the receiver
  @returns An `NSData` containing the md5 digest.
  */
 -(NSData *)dataWithMD5Hash;
+
+/**
+ Generate an SHA1 checksum from the receiver
+ @returns An `NSData` containing the SHA digest.
+ */
+- (NSData *)dataWithSHA1Hash;
 
 @end

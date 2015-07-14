@@ -16,20 +16,21 @@ typedef NS_OPTIONS(NSUInteger, MRCEventOptions) {
 
 @property (assign, nonatomic, readonly) MRCEventOptions options;
 
-- (NSAttributedString *)mrc_attributedString;
+- (NSMutableAttributedString *)mrc_attributedString;
 
-- (NSAttributedString *)mrc_commitCommentEventAttributedString;
-- (NSAttributedString *)mrc_forkEventAttributedString;
-- (NSAttributedString *)mrc_issueCommentEventAttributedString;
-- (NSAttributedString *)mrc_issueEventAttributedString;
-- (NSAttributedString *)mrc_memberEventAttributedString;
-- (NSAttributedString *)mrc_publicEventAttributedString;
-- (NSAttributedString *)mrc_pullRequestCommentEventAttributedString;
-- (NSAttributedString *)mrc_pullRequestEventAttributedString;
-- (NSAttributedString *)mrc_pushEventAttributedString;
-- (NSAttributedString *)mrc_refEventAttributedString;
-- (NSAttributedString *)mrc_watchEventAttributedString;
+- (NSMutableAttributedString *)mrc_commitCommentEventAttributedString;
+- (NSMutableAttributedString *)mrc_forkEventAttributedString;
+- (NSMutableAttributedString *)mrc_issueCommentEventAttributedString;
+- (NSMutableAttributedString *)mrc_issueEventAttributedString;
+- (NSMutableAttributedString *)mrc_memberEventAttributedString;
+- (NSMutableAttributedString *)mrc_publicEventAttributedString;
+- (NSMutableAttributedString *)mrc_pullRequestCommentEventAttributedString;
+- (NSMutableAttributedString *)mrc_pullRequestEventAttributedString;
+- (NSMutableAttributedString *)mrc_pushEventAttributedString;
+- (NSMutableAttributedString *)mrc_refEventAttributedString;
+- (NSMutableAttributedString *)mrc_watchEventAttributedString;
 
+- (NSMutableAttributedString *)mrc_octiconAttributedString;
 - (NSMutableAttributedString *)mrc_actorLoginAttributedString;
 - (NSMutableAttributedString *)mrc_commentedCommitAttributedString;
 - (NSMutableAttributedString *)mrc_forkedRepositoryNameAttributedString;

@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+
 #if TARGET_OS_IPHONE
 #import <CoreText/CoreText.h>
 #elif TARGET_OS_MAC
@@ -27,8 +29,16 @@
 #import "DTCoreTextParagraphStyle.h"
 #import "DTHTMLAttributedStringBuilder.h"
 #import "DTHTMLElement.h"
+#import "DTAnchorHTMLElement.h"
+#import "DTBreakHTMLElement.h"
+#import "DTListItemHTMLElement.h"
+#import "DTHorizontalRuleHTMLElement.h"
+#import "DTStyleSheetHTMLElement.h"
+#import "DTTextAttachmentHTMLElement.h"
+#import "DTTextHTMLElement.h"
 #import "DTHTMLWriter.h"
 #import "NSCharacterSet+HTML.h"
+#import "NSCoder+DTCompatibility.h"
 #import "NSDictionary+DTCoreText.h"
 #import "NSAttributedString+HTML.h"
 #import "NSAttributedString+SmallCaps.h"
@@ -74,6 +84,10 @@
 #import "DTDictationPlaceholderView.h"
 
 #import "UIFont+DTCoreText.h"
+
+#import "DTAccessibilityElement.h"
+#import "DTAccessibilityViewProxy.h"
+#import "DTCoreTextLayoutFrameAccessibilityElementGenerator.h"
 
 #endif
 

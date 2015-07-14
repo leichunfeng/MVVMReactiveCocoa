@@ -82,6 +82,13 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * Use this flag to transform them anyway.
      */
     SDWebImageTransformAnimatedImage = 1 << 10,
+    
+    /**
+     * By default, image is added to the imageView after download. But in some cases, we want to
+     * have the hand before setting the image (apply a filter or add it with cross-fade animation for instance)
+     * Use this flag if you want to manually set the image in the completion when success
+     */
+    SDWebImageAvoidAutoSetImage = 1 << 11
 };
 
 typedef void(^SDWebImageCompletionBlock)(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL);
@@ -132,14 +139,14 @@ typedef NSString *(^SDWebImageCacheKeyFilterBlock)(NSURL *url);
  * @code
 
 SDWebImageManager *manager = [SDWebImageManager sharedManager];
-[manager downloadWithURL:imageURL
-                 options:0
-                progress:nil
-               completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                   if (image) {
-                       // do something with image
-                   }
-               }];
+[manager downloadImageWithURL:imageURL
+                      options:0
+                     progress:nil
+                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        if (image) {
+                            // do something with image
+                        }
+                    }];
 
  * @endcode
  */

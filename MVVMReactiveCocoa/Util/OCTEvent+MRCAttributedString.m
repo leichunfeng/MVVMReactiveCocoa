@@ -26,32 +26,88 @@
     return options;
 }
 
-- (NSAttributedString *)mrc_attributedString {
-    if ([self isMemberOfClass:[OCTCommitCommentEvent class]]) {
-        return [self mrc_commitCommentEventAttributedString];
+- (NSMutableAttributedString *)mrc_attributedString {
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:self.mrc_octiconAttributedString];
+    [attributedString appendAttributedString:self.mrc_actorLoginAttributedString];
+    
+    if ([self isMemberOfClass:[OCTCommitCommentEvent class]] ||
+        [self isMemberOfClass:[OCTIssueCommentEvent class]] ||
+        [self isMemberOfClass:[OCTPullRequestCommentEvent class]]) {
+        if ([self isMemberOfClass:[OCTCommitCommentEvent class]]) {
+            [attributedString appendAttributedString:[self mrc_commitCommentEventAttributedString]];
+        } else if ([self isMemberOfClass:[OCTIssueCommentEvent class]]) {
+            [attributedString appendAttributedString:[self mrc_issueCommentEventAttributedString]];
+        } else if ([self isMemberOfClass:[OCTPullRequestCommentEvent class]]) {
+            [attributedString appendAttributedString:[self mrc_pullRequestCommentEventAttributedString]];
+        }
+        
+        [attributedString appendAttributedString:[@"\n" stringByAppendingString:[self valueForKeyPath:@"comment.body"]].mrc_attributedString.mrc_addNormalTitleAttributes.mrc_addParagraphStyleAttribute];
     } else if ([self isMemberOfClass:[OCTForkEvent class]]) {
-        return [self mrc_forkEventAttributedString];
-    } else if ([self isMemberOfClass:[OCTIssueCommentEvent class]]) {
-        return [self mrc_issueCommentEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_forkEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTIssueEvent class]]) {
-        return [self mrc_issueEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_issueEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTMemberEvent class]]) {
-        return [self mrc_memberEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_memberEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTPublicEvent class]]) {
-        return [self mrc_publicEventAttributedString];
-    } else if ([self isMemberOfClass:[OCTPullRequestCommentEvent class]]) {
-        return [self mrc_pullRequestCommentEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_publicEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTPullRequestEvent class]]) {
-        return [self mrc_pullRequestEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_pullRequestEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTPushEvent class]]) {
-        return [self mrc_pushEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_pushEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTRefEvent class]]) {
-        return [self mrc_refEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_refEventAttributedString]];
     } else if ([self isMemberOfClass:[OCTWatchEvent class]]) {
-        return [self mrc_watchEventAttributedString];
+        [attributedString appendAttributedString:[self mrc_watchEventAttributedString]];
     }
     
-    return nil;
+    [attributedString appendAttributedString:self.mrc_dateAttributedString];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_octiconAttributedString {
+    OCTIcon icon = 0;
+    if ([self isMemberOfClass:[OCTCommitCommentEvent class]] ||
+        [self isMemberOfClass:[OCTIssueCommentEvent class]] ||
+        [self isMemberOfClass:[OCTPullRequestCommentEvent class]]) {
+        icon = OCTIconCommentDiscussion;
+    } else if ([self isMemberOfClass:[OCTForkEvent class]]) {
+        icon = OCTIconGitBranch;
+    } else if ([self isMemberOfClass:[OCTIssueEvent class]]) {
+        OCTIssueEvent *concreteEvent = (OCTIssueEvent *)self;
+        
+        if (concreteEvent.action == OCTIssueActionOpened) {
+            icon = OCTIconIssueOpened;
+        } else if (concreteEvent.action == OCTIssueActionClosed) {
+            icon = OCTIconIssueClosed;
+        } else if (concreteEvent.action == OCTIssueActionReopened) {
+            icon = OCTIconIssueReopened;
+        }
+    } else if ([self isMemberOfClass:[OCTMemberEvent class]]) {
+        icon = OCTIconOrganization;
+    } else if ([self isMemberOfClass:[OCTPublicEvent class]]) {
+        icon = OCTIconRepo;
+    } else if ([self isMemberOfClass:[OCTPullRequestEvent class]]) {
+        icon = OCTIconGitPullRequest;
+    } else if ([self isMemberOfClass:[OCTPushEvent class]]) {
+        icon = OCTIconGitCommit;
+    } else if ([self isMemberOfClass:[OCTRefEvent class]]) {
+        OCTRefEvent *concreteEvent = (OCTRefEvent *)self;
+        
+        if (concreteEvent.refType == OCTRefTypeBranch) {
+            icon = OCTIconGitBranch;
+        } else if (concreteEvent.refType == OCTRefTypeTag) {
+            icon = OCTIconTag;
+        } else if (concreteEvent.refType == OCTRefTypeRepository) {
+            icon = OCTIconRepo;
+        }
+    } else if ([self isMemberOfClass:[OCTWatchEvent class]]) {
+        icon = OCTIconStar;
+    }
+    
+    return [[NSString octicon_iconStringForEnum:icon] stringByAppendingString:@"  "].mrc_attributedString.mrc_addOcticonAttributes;
 }
 
 - (NSMutableAttributedString *)mrc_actorLoginAttributedString {
@@ -232,62 +288,156 @@
     return attributedString;
 }
 
-- (NSAttributedString *)mrc_commitCommentEventAttributedString {
+- (NSMutableAttributedString *)mrc_commitCommentEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTCommitCommentEvent class]]);
     
     NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
     
-    OCTCommitCommentEvent *concreteEvent = (OCTCommitCommentEvent *)self;
-    
-    NSString *octicon = [NSString octicon_iconStringForEnum:OCTIconCommentDiscussion];
-    
-    [attributedString appendAttributedString:octicon.mrc_attributedString.mrc_addOcticonAttributes];
-    [attributedString appendAttributedString:self.mrc_actorLoginAttributedString];
-    [attributedString appendAttributedString:[@" commented on commit ".mrc_attributedString mrc_addBoldTitleAttributes]];
+    [attributedString appendAttributedString:@" commented on commit ".mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_commentedCommitAttributedString];
-    [attributedString appendAttributedString:[[[@"\n" stringByAppendingString:concreteEvent.comment.body].mrc_attributedString mrc_addNormalTitleAttributes] mrc_addParagraphStyleAttribute]];
-    [attributedString appendAttributedString:self.mrc_dateAttributedString];
 
     return attributedString;
 }
 
-- (NSAttributedString *)mrc_forkEventAttributedString {
+- (NSMutableAttributedString *)mrc_forkEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTForkEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" forked ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_forkedRepositoryNameAttributedString];
+    [attributedString appendAttributedString:@" to ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_issueCommentEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTIssueCommentEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" commented on issue ".mrc_attributedString.mrc_addBoldTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_issueAttributedString];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_issueEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTIssueEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    OCTIssueEvent *concreteEvent = (OCTIssueEvent *)self;
+    
+    NSString *action = nil;
+    if (concreteEvent.action == OCTIssueActionOpened) {
+        action = @"opened";
+    } else if (concreteEvent.action == OCTIssueActionClosed) {
+        action = @"closed";
+    } else if (concreteEvent.action == OCTIssueActionReopened) {
+        action = @"reopened";
+    }
+    
+    [attributedString appendAttributedString:[NSString stringWithFormat:@" %@ issue ", action].mrc_attributedString.mrc_addBoldTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_issueAttributedString];
+    [attributedString appendAttributedString:[@"\n" stringByAppendingString:concreteEvent.issue.title].mrc_attributedString.mrc_addNormalTitleAttributes.mrc_addParagraphStyleAttribute];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_memberEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTMemberEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" added ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_memberLoginAttributedString];
+    [attributedString appendAttributedString:@" to ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_publicEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTPublicEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" open sourced ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_pullRequestCommentEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTPullRequestCommentEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    [attributedString appendAttributedString:@" commented on pull request ".mrc_attributedString.mrc_addBoldTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_pullRequestAttributedString];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_pullRequestEventAttributedString {
+    NSParameterAssert([self isMemberOfClass:[OCTPullRequestEvent class]]);
+    
+    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    
+    OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)self;
+    
+    NSString *action = nil;
+    if (concreteEvent.action == OCTIssueActionOpened) {
+        action = @"opened";
+    } else if (concreteEvent.action == OCTIssueActionClosed) {
+        action = @"closed";
+    } else if (concreteEvent.action == OCTIssueActionReopened) {
+        action = @"reopened";
+    } else if (concreteEvent.action == OCTIssueActionSynchronized) {
+        action = @"synchronized";
+    }
+    
+    NSString *pullOcticon = [NSString octicon_iconStringForEnum:OCTIconGitCommit];
+    
+    NSString *commits   = [NSString stringWithFormat:@"%@ commits", @(concreteEvent.pullRequest.commits).stringValue];
+    NSString *additions = [NSString stringWithFormat:@"%@ additions", @(concreteEvent.pullRequest.additions).stringValue];
+    NSString *deletions = [NSString stringWithFormat:@"%@ deletions", @(concreteEvent.pullRequest.deletions).stringValue];
+    
+    NSString *plainPullInfo = [NSString stringWithFormat:@"\n %@ %@ with %@ %@ ", pullOcticon, commits, additions, deletions];
+    
+    NSMutableAttributedString *pullInfo = [[NSMutableAttributedString alloc] initWithString:plainPullInfo];
+    
+    NSDictionary *octiconAttributes = @{
+        NSFontAttributeName: [UIFont fontWithName:kOcticonsFamilyName size:16],
+        NSForegroundColorAttributeName: HexRGB(0xbbbbbb)
+    };
+    
+    NSDictionary *boldPullInfoAttributes = @{
+        NSFontAttributeName: MRCEventsBoldPullInfoFont,
+        NSForegroundColorAttributeName: MRCEventsPullInfoForegroundColor
+    };
+    
+    [pullInfo addAttributes:octiconAttributes range:[plainPullInfo rangeOfString:pullOcticon]];
+    [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:commits].location, [plainPullInfo rangeOfString:commits].length - 7)];
+    [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:additions].location, [plainPullInfo rangeOfString:additions].length - 9)];
+    [pullInfo addAttributes:boldPullInfoAttributes range:NSMakeRange([plainPullInfo rangeOfString:deletions].location, [plainPullInfo rangeOfString:deletions].length - 9)];
+    
+    [attributedString appendAttributedString:[NSString stringWithFormat:@" %@ pull request ", action].mrc_attributedString.mrc_addBoldTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_pullRequestAttributedString];
+    [attributedString appendAttributedString:[@"\n" stringByAppendingString:concreteEvent.pullRequest.title].mrc_attributedString.mrc_addNormalTitleAttributes.mrc_addParagraphStyleAttribute];
+    
+    return attributedString;
+}
+
+- (NSMutableAttributedString *)mrc_pushEventAttributedString {
     return nil;
 }
 
-- (NSAttributedString *)mrc_issueCommentEventAttributedString {
+- (NSMutableAttributedString *)mrc_refEventAttributedString {
     return nil;
 }
 
-- (NSAttributedString *)mrc_issueEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_memberEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_publicEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_pullRequestCommentEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_pullRequestEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_pushEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_refEventAttributedString {
-    return nil;
-}
-
-- (NSAttributedString *)mrc_watchEventAttributedString {
+- (NSMutableAttributedString *)mrc_watchEventAttributedString {
     return nil;
 }
 
