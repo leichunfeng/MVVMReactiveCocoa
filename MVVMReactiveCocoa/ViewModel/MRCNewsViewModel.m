@@ -37,22 +37,31 @@
     self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = YES;
     
-    self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *url) {
-        if (url.type == MRCLinkTypeUser) {
-            MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services
-                                                                                          params:url.mrc_dictionary];
+    @weakify(self)
+    self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *URL) {
+        @strongify(self)
+        
+        NSLog(@"didClickLinkCommand: %@", URL);
+        
+        if (URL.type == MRCLinkTypeUser) {
+            MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:URL.mrc_dictionary];
             [self.services pushViewModel:viewModel animated:YES];
-        } else if (url.type == MRCLinkTypeRepository) {
-            MRCRepoDetailViewModel *viewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services
-                                                                                          params:url.mrc_dictionary];
+        } else if (URL.type == MRCLinkTypeRepository) {
+            MRCRepoDetailViewModel *viewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services params:URL.mrc_dictionary];
             [self.services pushViewModel:viewModel animated:YES];
         }
+        
         return [RACSignal empty];
+    }];
+    
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+        @strongify(self)
+        MRCNewsItemViewModel *viewModel = self.dataSource[indexPath.section][indexPath.row];
+        return [self.didClickLinkCommand execute:viewModel.event.mrc_Link];
     }];
     
     RAC(self, events) = self.requestRemoteDataCommand.executionSignals.switchToLatest;
     
-    @weakify(self)
     RAC(self, dataSource) = [RACObserve(self, events) map:^(NSArray *events) {
         @strongify(self)
         return [self dataSourceWithEvents:events];

@@ -24,3 +24,9 @@ typedef NS_ENUM(NSUInteger, MRCLinkType) {
 - (NSDictionary *)mrc_dictionary;
 
 @end
+
+@interface OCTEvent (MRCLink)
+
+- (NSURL *)mrc_Link;
+
+@end
