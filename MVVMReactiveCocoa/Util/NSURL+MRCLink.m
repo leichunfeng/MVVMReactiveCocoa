@@ -55,3 +55,22 @@
 }
 
 @end
+
+@implementation OCTEvent (MRCLink)
+
+- (NSURL *)mrc_Link {
+    if ([self isMemberOfClass:[OCTCommitCommentEvent class]]) {
+        return [self.mrc_commentedCommitAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    } else if ([self isMemberOfClass:[OCTForkEvent class]] || [self isMemberOfClass:[OCTMemberEvent class]] ||
+               [self isMemberOfClass:[OCTPublicEvent class]] || [self isMemberOfClass:[OCTPushEvent class]] ||
+               [self isMemberOfClass:[OCTRefEvent class]] || [self isMemberOfClass:[OCTWatchEvent class]]) {
+        return [self.mrc_repositoryNameAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    } else if ([self isMemberOfClass:[OCTIssueCommentEvent class]] || [self isMemberOfClass:[OCTIssueEvent class]]) {
+        return [self.mrc_issueAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    } else if ([self isMemberOfClass:[OCTPullRequestCommentEvent class]] || [self isMemberOfClass:[OCTPullRequestEvent class]]) {
+        return [self.mrc_pullRequestAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    }
+    return nil;
+}
+
+@end
