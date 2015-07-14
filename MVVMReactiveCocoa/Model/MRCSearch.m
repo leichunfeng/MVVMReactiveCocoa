@@ -27,7 +27,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -74,7 +74,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -90,7 +90,7 @@
         
         BOOL success = [db executeUpdate:sql withParameterDictionary:dictionary];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -105,7 +105,7 @@
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         BOOL success = [db executeUpdate:@"DELETE FROM Search WHERE id = ?;", self.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }

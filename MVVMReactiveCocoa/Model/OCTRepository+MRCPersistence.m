@@ -37,7 +37,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -46,7 +46,7 @@
 
         BOOL success = [db executeUpdate:sql withParameterDictionary:[self toDBDictionary]];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -61,7 +61,7 @@
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         BOOL success = [db executeUpdate:@"DELETE FROM Repository WHERE id = ?;", self.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -87,7 +87,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -102,7 +102,7 @@
             
             BOOL success = [db executeUpdate:sql withParameterDictionary:[repository toDBDictionary]];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -124,7 +124,7 @@
         
         BOOL success = [db executeUpdate:@"DELETE FROM User_Starred_Repository WHERE userId = ? AND repositoryId NOT IN (?);", [OCTUser mrc_currentUserId], newIDs];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -138,7 +138,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -152,7 +152,7 @@
             if (![oldIDs containsObject:repository.objectID]) { // INSERT
                 success = [db executeUpdate:@"INSERT INTO User_Starred_Repository VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], repository.objectID];
                 if (!success) {
-                    mrcLogLastError(db);
+                    MRCLogLastError(db);
                     result = NO;
                     return;
                 }
@@ -176,7 +176,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -199,7 +199,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -227,7 +227,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -262,7 +262,7 @@
         }
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -292,7 +292,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -300,7 +300,7 @@
         if (![rs next]) { // INSERT
             BOOL success = [db executeUpdate:INSERT_STATEMENT withParameterDictionary:[repository toDBDictionary]];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -308,14 +308,14 @@
         
         BOOL success = [db executeUpdate:@"INSERT INTO User_Starred_Repository VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], repository.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
         
         success = [db executeUpdate:@"UPDATE Repository SET stargazers_count = ? WHERE id = ?;", @(repository.stargazersCount+1), repository.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -333,7 +333,7 @@
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         BOOL success = [db executeUpdate:@"DELETE FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ?;", [OCTUser mrc_currentUserId], repository.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -341,7 +341,7 @@
         if (repository.stargazersCount != 0) {
             success = [db executeUpdate:@"UPDATE Repository SET stargazers_count = ? WHERE id = ?;", @(repository.stargazersCount-1), repository.objectID];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }

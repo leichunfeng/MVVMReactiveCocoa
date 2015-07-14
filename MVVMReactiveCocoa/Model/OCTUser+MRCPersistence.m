@@ -45,7 +45,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -54,7 +54,7 @@
         
         BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -80,7 +80,7 @@
         };
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -88,7 +88,7 @@
         if ([rs next]) {
             BOOL success = [db executeUpdate:@"UPDATE User SET rawLogin = ? WHERE id = ?;", self.rawLogin, self.objectID];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -113,7 +113,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -128,7 +128,7 @@
             
             BOOL success = [db executeUpdate:sql withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:user]];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -150,7 +150,7 @@
         
         BOOL success = [db executeUpdate:@"DELETE FROM User_Following_User WHERE userId NOT IN (?) AND targetUserId = ?;", newIDs, [OCTUser mrc_currentUserId]];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -162,7 +162,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -177,7 +177,7 @@
             if (![oldIDs containsObject:user.objectID]) { // INSERT
                 success = [db executeUpdate:@"INSERT INTO User_Following_User VALUES (?, ?, ?);", nil, user.objectID, [OCTUser mrc_currentUserId]];
                 if (!success) {
-                    mrcLogLastError(db);
+                    MRCLogLastError(db);
                     result = NO;
                     return;
                 }
@@ -200,7 +200,7 @@
         
         BOOL success = [db executeUpdate:@"DELETE FROM User_Following_User WHERE targetUserId NOT IN (?) AND userId = ?;", newIDs, [OCTUser mrc_currentUserId]];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -212,7 +212,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -227,7 +227,7 @@
             if (![oldIDs containsObject:user.objectID]) { // INSERT
                 success = [db executeUpdate:@"INSERT INTO User_Following_User VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], user.objectID];
                 if (!success) {
-                    mrcLogLastError(db);
+                    MRCLogLastError(db);
                     result = NO;
                     return;
                 }
@@ -286,7 +286,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -309,7 +309,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -332,7 +332,7 @@
         };
 
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -340,7 +340,7 @@
         if (![rs next]) { // INSERT
             BOOL success = [db executeUpdate:INSERT_STATEMENT withParameterDictionary:[MTLJSONAdapter JSONDictionaryFromModel:user]];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -348,21 +348,21 @@
         
         BOOL success = [db executeUpdate:@"INSERT INTO User_Following_User VALUES (?, ?, ?);", nil, [OCTUser mrc_currentUserId], user.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
         
         success = [db executeUpdate:@"UPDATE User SET followers = ? WHERE id = ?;", @(user.followers+1), user.objectID];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
         
         success = [db executeUpdate:@"UPDATE User SET following = ? WHERE id = ?;", @([OCTUser mrc_currentUser].following+1), [OCTUser mrc_currentUserId]];
         if (!success) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             result = NO;
             return;
         }
@@ -384,7 +384,7 @@
         if (user.followers != 0) {
             success = [db executeUpdate:@"UPDATE User SET followers = ? WHERE id = ?;", @(user.followers-1), user.objectID];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -393,7 +393,7 @@
         if ([OCTUser mrc_currentUser].following != 0) {
             success = [db executeUpdate:@"UPDATE User SET following = ? WHERE id = ?;", @([OCTUser mrc_currentUser].following-1), [OCTUser mrc_currentUserId]];
             if (!success) {
-                mrcLogLastError(db);
+                MRCLogLastError(db);
                 result = NO;
                 return;
             }
@@ -427,7 +427,7 @@
         }
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
@@ -462,7 +462,7 @@
         }
         
         if (rs == nil) {
-            mrcLogLastError(db);
+            MRCLogLastError(db);
             return;
         }
         
