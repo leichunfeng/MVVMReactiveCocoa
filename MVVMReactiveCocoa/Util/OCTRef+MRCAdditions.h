@@ -10,8 +10,8 @@
 
 @interface OCTRef (MRCAdditions)
 
-NSString *mrc_defaultReferenceName();
-NSString *mrc_referenceNameWithBranchName(NSString *branchName);
-NSString *mrc_referenceNameWithTagName(NSString *tagName);
+NSString *MRCDefaultReferenceName();
+NSString *MRCReferenceNameWithBranchName(NSString *branchName);
+NSString *MRCReferenceNameWithTagName(NSString *tagName);
 
 @end
