@@ -9,6 +9,7 @@
 #import "MRCNewsViewModel.h"
 #import "MRCNewsItemViewModel.h"
 #import "MRCUserDetailViewModel.h"
+#import "MRCRepoDetailViewModel.h"
 
 @interface MRCNewsViewModel ()
 
@@ -39,7 +40,11 @@
     self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *url) {
         if (url.type == MRCLinkTypeUser) {
             MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services
-                                                                                          params:@{ @"user": url.mrc_dictionary }];
+                                                                                          params:url.mrc_dictionary];
+            [self.services pushViewModel:viewModel animated:YES];
+        } else if (url.type == MRCLinkTypeRepository) {
+            MRCRepoDetailViewModel *viewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services
+                                                                                          params:url.mrc_dictionary];
             [self.services pushViewModel:viewModel animated:YES];
         }
         return [RACSignal empty];
