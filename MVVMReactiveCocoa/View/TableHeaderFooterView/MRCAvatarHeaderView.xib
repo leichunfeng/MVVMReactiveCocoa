@@ -11,9 +11,6 @@
             <rect key="frame" x="0.0" y="-1" width="400" height="381"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xbr-KA-lMJ" customClass="MRCImageView">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="323"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Yd-ZB-07H">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="381"/>
                     <subviews>
@@ -200,20 +197,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Xbr-KA-lMJ" secondAttribute="bottom" constant="58" id="6WZ-xe-Zh1"/>
                 <constraint firstAttribute="trailing" secondItem="3Yd-ZB-07H" secondAttribute="trailing" id="Edt-qL-Ob9"/>
                 <constraint firstItem="3Yd-ZB-07H" firstAttribute="leading" secondItem="5Gh-f3-t2G" secondAttribute="leading" id="Y3x-8f-L58"/>
-                <constraint firstAttribute="trailing" secondItem="Xbr-KA-lMJ" secondAttribute="trailing" id="a7G-HE-gU7"/>
                 <constraint firstAttribute="bottom" secondItem="3Yd-ZB-07H" secondAttribute="bottom" id="g0c-NC-z0l"/>
                 <constraint firstItem="3Yd-ZB-07H" firstAttribute="top" secondItem="5Gh-f3-t2G" secondAttribute="top" id="gf3-ma-4oj"/>
-                <constraint firstItem="Xbr-KA-lMJ" firstAttribute="leading" secondItem="5Gh-f3-t2G" secondAttribute="leading" id="i8w-hZ-5wk"/>
-                <constraint firstItem="Xbr-KA-lMJ" firstAttribute="top" secondItem="5Gh-f3-t2G" secondAttribute="top" id="pjR-xg-0e3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="activityIndicatorView" destination="DJB-bO-ym8" id="wly-vS-QIE"/>
                 <outlet property="avatarButton" destination="HhD-JH-4xb" id="Slo-1L-Pmz"/>
-                <outlet property="coverImageView" destination="Xbr-KA-lMJ" id="nnv-uo-dUJ"/>
                 <outlet property="followersButton" destination="KD9-5h-jdJ" id="QXn-Zm-BHg"/>
                 <outlet property="followersLabel" destination="J5Z-ju-2dA" id="kQz-XG-6gm"/>
                 <outlet property="followingButton" destination="dNM-dr-1mp" id="IAI-hm-cP0"/>
