@@ -469,7 +469,7 @@
 		2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCSourceEditorViewController.xib; sourceTree = "<group>"; };
 		242453401A811C3C00FFFCC1 /* MRCSourceEditorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSourceEditorViewModel.h; sourceTree = "<group>"; };
 		242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSourceEditorViewModel.m; sourceTree = "<group>"; };
-		242D4FD51A64B6FA0026ABC6 /* Gitbucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gitbucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		242D4FD51A64B6FA0026ABC6 /* GitBucket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBucket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		242D4FDA1A64B6FA0026ABC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		242D4FE81A64B6FA0026ABC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		242D4FEE1A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMReactiveCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1042,7 +1042,7 @@
 		242D4FD61A64B6FA0026ABC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				242D4FD51A64B6FA0026ABC6 /* Gitbucket.app */,
+				242D4FD51A64B6FA0026ABC6 /* GitBucket.app */,
 				242D4FEE1A64B6FA0026ABC6 /* MVVMReactiveCocoaTests.xctest */,
 			);
 			name = Products;
@@ -1313,7 +1313,7 @@
 			);
 			name = MVVMReactiveCocoa;
 			productName = MVVMReactiveCocoa;
-			productReference = 242D4FD51A64B6FA0026ABC6 /* Gitbucket.app */;
+			productReference = 242D4FD51A64B6FA0026ABC6 /* GitBucket.app */;
 			productType = "com.apple.product-type.application";
 		};
 		242D4FED1A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */ = {
@@ -1936,7 +1936,7 @@
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
-				PRODUCT_NAME = Gitbucket;
+				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1976,7 +1976,7 @@
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
-				PRODUCT_NAME = Gitbucket;
+				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
