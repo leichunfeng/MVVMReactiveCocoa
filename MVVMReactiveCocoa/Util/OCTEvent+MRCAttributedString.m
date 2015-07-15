@@ -137,9 +137,11 @@
     NSString *target = [NSString stringWithFormat:@"%@@%@", concreteEvent.repositoryName, MRCShortSHA(concreteEvent.comment.commitSHA)];
     NSMutableAttributedString *attributedString = target.mrc_attributedString;
     
+    NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?title=Commit", concreteEvent.comment.HTMLURL.absoluteString]];
+    
     [attributedString mrc_addBoldTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
-    [attributedString mrc_addHTMLURLAttribute:concreteEvent.comment.HTMLURL];
+    [attributedString mrc_addHTMLURLAttribute:HTMLURL];
     
     return attributedString;
 }
@@ -173,11 +175,14 @@
     
     OCTIssue *issue = [self valueForKey:@"issue"];
     
-    NSMutableAttributedString *attributedString = [NSString stringWithFormat:@"%@#%@", self.repositoryName, [issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject].mrc_attributedString;
+    NSString *issueID = [issue.URL.absoluteString componentsSeparatedByString:@"/"].lastObject;
+    NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?title=Issue-@%@", issue.HTMLURL.absoluteString, issueID]];
+    
+    NSMutableAttributedString *attributedString = [NSString stringWithFormat:@"%@#%@", self.repositoryName, issueID].mrc_attributedString;
     
     [attributedString mrc_addBoldTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
-    [attributedString mrc_addHTMLURLAttribute:issue.HTMLURL];
+    [attributedString mrc_addHTMLURLAttribute:HTMLURL];
     
     return attributedString;
 }
@@ -197,13 +202,18 @@
         OCTPullRequestCommentEvent *concreteEvent = (OCTPullRequestCommentEvent *)self;
         
         pullRequestID = [concreteEvent.comment.pullRequestAPIURL.absoluteString componentsSeparatedByString:@"/"].lastObject;
-        HTMLURL = concreteEvent.comment.HTMLURL;
+      
+        HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?title=Pull-Request-@%@", concreteEvent.comment.HTMLURL.absoluteString, pullRequestID]];
     } else if ([self isMemberOfClass:[OCTPullRequestEvent class]]) {
         OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)self;
         
         pullRequestID = [concreteEvent.pullRequest.URL.absoluteString componentsSeparatedByString:@"/"].lastObject;
-        HTMLURL = concreteEvent.pullRequest.HTMLURL;
+        
+        HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?title=Pull-Request-@%@", concreteEvent.pullRequest.HTMLURL.absoluteString, pullRequestID]];
     }
+    
+    NSParameterAssert(pullRequestID.length > 0);
+    NSParameterAssert(HTMLURL);
     
     NSMutableAttributedString *attributedString = [NSString stringWithFormat:@"%@#%@", self.repositoryName, pullRequestID].mrc_attributedString;
     
@@ -233,7 +243,7 @@
     
     NSMutableAttributedString *attributedString = [@"\n" stringByAppendingString:MRCShortSHA(SHA)].mrc_attributedString;
     
-    NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/%@/commit/%@", self.repositoryName, SHA]];
+    NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/%@/commit/%@?title=Commit", self.repositoryName, SHA]];
     
     [attributedString mrc_addNormalTitleFontAttribute];
     [attributedString mrc_addTintedForegroundColorAttribute];
