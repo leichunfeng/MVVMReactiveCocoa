@@ -27,8 +27,6 @@
 
 - (void)awakeFromNib {
     self.avatarImageView.backgroundColor = HexRGB(colorI6);
-    self.avatarImageView.layer.cornerRadius = 5;
-    self.avatarImageView.clipsToBounds = YES;
 }
 
 - (void)bindViewModel:(MRCUserListItemViewModel *)viewModel {

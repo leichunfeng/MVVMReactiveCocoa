@@ -20,7 +20,6 @@
 @interface MRCAvatarHeaderView () <UIViewControllerTransitioningDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *overView;
-@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followersLabel;
@@ -32,6 +31,9 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
 
+@property (strong, nonatomic) GPUImageView *coverImageView;
+@property (strong, nonatomic) GPUImagePicture *sourcePicture;
+@property (strong, nonatomic) GPUImageGaussianBlurFilter *gaussianBlurFilter;
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (assign, nonatomic) CGPoint lastContentOffsetBlurEffect;
 
@@ -47,16 +49,36 @@
     self.avatarButton.imageView.layer.cornerRadius = CGRectGetWidth(self.avatarButton.frame) / 2;
     self.avatarButton.imageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.coverImageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
 }
 
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
     self.viewModel = viewModel;
     
+    @weakify(self)
+    [RACObserve(self, avatarImage) subscribeNext:^(UIImage *avatarImage) {
+        @strongify(self)
+        [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
+    }];
+    
+    self.coverImageView = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 323)];
+    self.coverImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    [self insertSubview:self.coverImageView atIndex:0];
+    
+    self.gaussianBlurFilter = [[GPUImageGaussianBlurFilter alloc] init];
+    [self.gaussianBlurFilter addTarget:self.coverImageView];
+    
+    RAC(self, sourcePicture) = [[RACObserve(self, avatarImage)
+        map:^(UIImage *avatarImage) {
+            return [[GPUImagePicture alloc] initWithImage:avatarImage smoothlyScaleOutput:YES];
+        }]
+        doNext:^(GPUImagePicture *sourcePicture) {
+            @strongify(self)
+            [sourcePicture addTarget:self.gaussianBlurFilter];
+        }];
+    
     [self.activityIndicatorView startAnimating];
 
-    @weakify(self)
     if (viewModel.operationCommand == nil) {
         self.activityIndicatorView.hidden = YES;
         self.operationButton.hidden = YES;
@@ -95,13 +117,13 @@
         
         [MRCSharedAppDelegate.window.rootViewController presentViewController:viewController animated:YES completion:NULL];
     }];
-    
+
     RAC(self.nameLabel, text) = RACObserve(viewModel.user, login);
-    
+
     NSString * (^mapNumberToString)(NSNumber *) = ^(NSNumber *value) {
         return value.stringValue;
     };
-    
+
     RAC(self.repositoriesLabel, text) = [RACObserve(viewModel.user, publicRepoCount) map:mapNumberToString];
     RAC(self.followersLabel, text) = [[RACObserve(viewModel.user, followers) map:mapNumberToString] deliverOnMainThread];
     RAC(self.followingLabel, text) = [[RACObserve(viewModel.user, following) map:mapNumberToString] deliverOnMainThread];
@@ -109,24 +131,17 @@
     self.followersButton.rac_command = viewModel.followersCommand;
     self.repositoriesButton.rac_command = viewModel.repositoriesCommand;
     self.followingButton.rac_command = viewModel.followingCommand;
-    
+
     [[RACObserve(viewModel, contentOffset) filter:^BOOL(id value) {
-        return [value CGPointValue].y < 0;
+        return [value CGPointValue].y <= 0;
     }] subscribeNext:^(id x) {
     	@strongify(self)
         
         CGPoint contentOffset = [x CGPointValue];
-        self.coverImageView.frame = CGRectMake(0 + contentOffset.y/2, 0 + contentOffset.y, CGRectGetWidth(self.frame) + ABS(contentOffset.y), CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
+        self.coverImageView.frame = CGRectMake(0 + contentOffset.y/2, 0 + contentOffset.y, SCREEN_WIDTH + ABS(contentOffset.y), CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
         
         CGFloat diff  = MIN(ABS(contentOffset.y), MRCAvatarHeaderViewContentOffsetRadix);
         CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
-        
-        if (ABS(contentOffset.y - self.lastContentOffsetBlurEffect.y) >= MRCAvatarHeaderViewBlurEffectRadix) {
-            self.lastContentOffsetBlurEffect = contentOffset;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.coverImageView.image = [self.avatarImage applyBlurWithRadius:20 * (1 - scale) tintColor:nil saturationDeltaFactor:1 maskImage:nil];
-            });
-        }
         
         CGFloat alpha = 1 * (1 - scale);
         
@@ -134,12 +149,32 @@
         self.nameLabel.alpha = alpha;
         self.operationButton.alpha = alpha;
     }];
-}
 
-- (void)setAvatarImage:(UIImage *)avatarImage {
-    _avatarImage = avatarImage;
-    self.coverImageView.image = [avatarImage applyBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 maskImage:nil];
-    [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
+    RAC(self.gaussianBlurFilter, blurRadiusInPixels) = [[[[[RACObserve(viewModel, contentOffset)
+		filter:^BOOL(id value) {
+            return [value CGPointValue].y <= 0;
+        }]
+        filter:^BOOL(id value) {
+            @strongify(self)
+            return ABS([value CGPointValue].y - self.lastContentOffsetBlurEffect.y) >= MRCAvatarHeaderViewBlurEffectRadix;
+        }]
+    	doNext:^(id x) {
+            @strongify(self)
+            self.lastContentOffsetBlurEffect = [x CGPointValue];
+        }]
+        startWith:[NSValue valueWithCGPoint:CGPointMake(0, 0)]]
+    	map:^(id value) {
+            CGFloat diff  = MIN(ABS([value CGPointValue].y), MRCAvatarHeaderViewContentOffsetRadix);
+            CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
+            
+            return @(20 * (1 - scale));
+        }];
+    
+    [[RACSignal
+        combineLatest:@[ RACObserve(self, sourcePicture), RACObserve(self.gaussianBlurFilter, blurRadiusInPixels) ]]
+        subscribeNext:^(RACTuple *tuple) {
+            [tuple.first processImage];
+        }];
 }
 
 - (void)layoutSubviews {
