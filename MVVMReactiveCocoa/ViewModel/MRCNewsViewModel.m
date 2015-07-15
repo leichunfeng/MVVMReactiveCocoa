@@ -10,6 +10,7 @@
 #import "MRCNewsItemViewModel.h"
 #import "MRCUserDetailViewModel.h"
 #import "MRCRepoDetailViewModel.h"
+#import "MRCWebViewModel.h"
 
 @interface MRCNewsViewModel ()
 
@@ -41,13 +42,21 @@
     self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *URL) {
         @strongify(self)
         
-        NSLog(@"didClickLinkCommand: %@", URL);
+        NSString *title = [[[[URL.absoluteString componentsSeparatedByString:@"?"].lastObject componentsSeparatedByString:@"="].lastObject stringByReplacingOccurrencesOfString:@"-" withString:@" "] stringByReplacingOccurrencesOfString:@"@" withString:@"#"];
+        NSLog(@"didClickLinkCommand: %@, title: %@", URL, title);
         
         if (URL.type == MRCLinkTypeUser) {
             MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:URL.mrc_dictionary];
             [self.services pushViewModel:viewModel animated:YES];
         } else if (URL.type == MRCLinkTypeRepository) {
             MRCRepoDetailViewModel *viewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services params:URL.mrc_dictionary];
+            [self.services pushViewModel:viewModel animated:YES];
+        } else {
+            NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+            
+            MRCWebViewModel *viewModel = [[MRCWebViewModel alloc] initWithServices:self.services
+                                                                            params:@{ @"title": title ?: @"",
+                                                                                      @"request": request ?: @"" }];
             [self.services pushViewModel:viewModel animated:YES];
         }
         
