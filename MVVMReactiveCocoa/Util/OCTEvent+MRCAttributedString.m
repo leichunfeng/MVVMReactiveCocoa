@@ -285,7 +285,7 @@
     
     OCTRefEvent *concreteEvent = (OCTRefEvent *)self;
 
-    if (!concreteEvent.refName) return @"".mrc_attributedString;
+    if (!concreteEvent.refName) return @" ".mrc_attributedString;
     
     NSMutableAttributedString *attributedString = concreteEvent.refName.mrc_attributedString;
     
