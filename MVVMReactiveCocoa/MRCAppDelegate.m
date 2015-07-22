@@ -73,13 +73,14 @@
 - (void)configureAppearance {
     self.window.backgroundColor = UIColor.whiteColor;
     
-    UINavigationBar.appearance.barTintColor = [UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1];
-    UINavigationBar.appearance.barStyle = UIBarStyleBlack;
-    UINavigationBar.appearance.tintColor = UIColor.whiteColor;
-    
-    UISegmentedControl.appearance.tintColor = UIColor.whiteColor;
-    
-    UITabBar.appearance.tintColor = HexRGB(colorI2);
+    // 0x2F434F
+    [UINavigationBar appearance].barTintColor = RGB((47 - 40) / 215.0, (67 - 40) / 215.0, (79 - 40) / 215.0);
+    [UINavigationBar appearance].barStyle  = UIBarStyleBlack;
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+
+    [UISegmentedControl appearance].tintColor = [UIColor whiteColor];
+
+    [UITabBar appearance].tintColor = HexRGB(colorI2);
 }
 
 - (void)configureKeyboardManager {
