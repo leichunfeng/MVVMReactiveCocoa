@@ -363,9 +363,9 @@
     NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
     
     [attributedString appendAttributedString:@" forked ".mrc_attributedString.mrc_addNormalTitleAttributes];
-    [attributedString appendAttributedString:self.mrc_forkedRepositoryNameAttributedString];
-    [attributedString appendAttributedString:@" to ".mrc_attributedString.mrc_addNormalTitleAttributes];
     [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
+    [attributedString appendAttributedString:@" to ".mrc_attributedString.mrc_addNormalTitleAttributes];
+    [attributedString appendAttributedString:self.mrc_forkedRepositoryNameAttributedString];
     
     return attributedString;
 }
