@@ -139,9 +139,6 @@
                             <state key="normal" title="Button">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="didClickOperationButton:" destination="5Gh-f3-t2G" eventType="touchUpInside" id="3Rh-xy-Kzm"/>
-                            </connections>
                         </button>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DJB-bO-ym8">
                             <rect key="frame" x="367" y="77" width="20" height="20"/>
