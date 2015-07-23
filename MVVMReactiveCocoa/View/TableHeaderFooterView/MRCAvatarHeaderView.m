@@ -138,7 +138,7 @@
     	@strongify(self)
         
         CGPoint contentOffset = [x CGPointValue];
-        self.coverImageView.frame = CGRectMake(0 + contentOffset.y/2, 0 + contentOffset.y, SCREEN_WIDTH + ABS(contentOffset.y), CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
+        self.coverImageView.frame = CGRectMake(0, 0 + contentOffset.y, SCREEN_WIDTH, CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
         
         CGFloat diff  = MIN(ABS(contentOffset.y), MRCAvatarHeaderViewContentOffsetRadix);
         CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
