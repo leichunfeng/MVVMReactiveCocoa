@@ -61,7 +61,16 @@
 }
 
 - (IBAction)didClickOperationButton:(id)sender {
-    [self.viewModel.operationCommand execute:self.viewModel];
+    self.operationButton.enabled = NO;
+    
+    @weakify(self)
+    [[[self.viewModel.operationCommand
+        execute:self.viewModel]
+        deliverOnMainThread]
+        subscribeCompleted:^{
+            @strongify(self)
+            self.operationButton.enabled = YES;
+        }];
 }
 
 @end

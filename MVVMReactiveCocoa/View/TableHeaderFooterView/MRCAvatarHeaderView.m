@@ -83,6 +83,8 @@
         self.activityIndicatorView.hidden = YES;
         self.operationButton.hidden = YES;
     } else {
+        self.operationButton.rac_command = viewModel.operationCommand;
+        
         [[RACObserve(viewModel.user, followingStatus)
            	deliverOnMainThread]
          	subscribeNext:^(NSNumber *followingStatus) {
@@ -180,10 +182,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.overView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
-}
-
-- (IBAction)didClickOperationButton:(id)sender {
-    [self.viewModel.operationCommand execute:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate
