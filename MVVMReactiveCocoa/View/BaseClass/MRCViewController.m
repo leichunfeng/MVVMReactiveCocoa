@@ -10,6 +10,7 @@
 #import "MRCViewModel.h"
 #import "MRCLoginViewModel.h"
 #import "MRCDoubleTitleView.h"
+#import "MRCLoadingTitleView.h"
 
 @interface MRCViewController ()
 
@@ -55,25 +56,33 @@
             RAC(self, title) = RACObserve(self.viewModel, title);
             break;
         case MRCTitleViewTypeDoubleTitle: {
-            MRCDoubleTitleView *titleView = MRCDoubleTitleView.new;
+            MRCDoubleTitleView *titleView = [[MRCDoubleTitleView alloc] init];
             
-            titleView.titleLabel.text = self.viewModel.title;
-            titleView.subtitleLabel.text = self.viewModel.subtitle;
-            
-            self.navigationItem.titleView = titleView;
-            
-            [[self
+            [[[self
             	rac_signalForSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]
+             	startWith:nil]
             	subscribeNext:^(id x) {
                     @strongify(self)
                     titleView.titleLabel.text = self.viewModel.title;
                     titleView.subtitleLabel.text = self.viewModel.subtitle;
                 }];
+            
+            self.navigationItem.titleView = titleView;
         }
             break;
         default:
             break;
     }
+    
+    MRCLoadingTitleView *loadingTitleView = [[MRCLoadingTitleView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.0, 4, 1, 36)];
+    [self.navigationController.navigationBar addSubview:loadingTitleView];
+    
+    RACSignal *showLoadingTitleSignal = [RACObserve(self.viewModel, titleViewType).distinctUntilChanged map:^(NSNumber *titleViewType) {
+        return @(titleViewType.unsignedIntegerValue == MRCTitleViewTypeLoadingTitle);
+    }];
+    
+    RAC(self.navigationItem.titleView, hidden) = showLoadingTitleSignal;
+    RAC(loadingTitleView, hidden) = showLoadingTitleSignal.not;
     
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)

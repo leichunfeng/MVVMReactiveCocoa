@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
     MRCTitleViewTypeDefault,
-    MRCTitleViewTypeDoubleTitle
+    MRCTitleViewTypeDoubleTitle,
+    MRCTitleViewTypeLoadingTitle
 };
 
 @protocol MRCViewModelServices;

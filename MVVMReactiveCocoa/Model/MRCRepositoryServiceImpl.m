@@ -21,7 +21,7 @@
             
             NSString *path = [NSString stringWithFormat:@"repos/%@/%@/readme", repository.ownerLogin, repository.name];
             MKNetworkOperation *operation = [networkEngine operationWithPath:path
-                                                                      params:@{@"ref": reference}
+                                                                      params:@{ @"ref": reference }
                                                                   httpMethod:@"GET"
                                                                          ssl:YES];
             [operation addHeaders:@{ @"Accept": @"application/vnd.github.VERSION.html" }];
