@@ -82,7 +82,7 @@
         [params setValue:self.reference forKey:@"reference"];
         [params setValue:@(MRCSourceEditorViewModelTypeReadme) forKey:@"type"];
         
-        if (self.readmeHTMLString) [params setValue:self.readmeHTMLString forKey:@"readmeHTMLString"];
+        if (self.readmeHTML) [params setValue:self.readmeHTML forKey:@"readmeHTML"];
         
         MRCSourceEditorViewModel *sourceEditorViewModel = [[MRCSourceEditorViewModel alloc] initWithServices:self.services params:params.copy];
         [self.services pushViewModel:sourceEditorViewModel animated:YES];
@@ -156,16 +156,16 @@
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                          owner:self.repository.ownerLogin];
-    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTMLString:self.repository
-                                                                                            reference:self.reference.name];
+    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTML:self.repository
+                                                                                      reference:self.reference.name];
     @weakify(self)
     return [[[[RACSignal
         combineLatest:@[ fetchRepoSignal, fetchReadmeSignal ]]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
-            NSString *readmeHTMLString = tuple.last;
-            self.readmeHTMLString = readmeHTMLString;
-            self.summaryReadmeHTMLString = [self summaryReadmeHTMLStringFromReadmeHTMLString:readmeHTMLString];
+            NSString *readmeHTML = tuple.last;
+            self.readmeHTML = readmeHTML;
+            self.summaryReadmeHTML = [self summaryReadmeHTMLFromReadmeHTML:readmeHTML];
         }]
         map:^(RACTuple *tuple) {
             return tuple.first;
@@ -177,28 +177,28 @@
         }];
 }
 
-- (NSString *)summaryReadmeHTMLStringFromReadmeHTMLString:(NSString *)readmeHTMLString {
-    __block NSString *summaryReadmeHTMLString = MRC_README_CSS_STYLE;
+- (NSString *)summaryReadmeHTMLFromReadmeHTML:(NSString *)readmeHTML {
+    __block NSString *summaryReadmeHTML = MRC_README_CSS_STYLE;
     
     NSError *error = nil;
-    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:readmeHTMLString encoding:NSUTF8StringEncoding error:&error];
+    ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:readmeHTML encoding:NSUTF8StringEncoding error:&error];
     if (error != nil) NSLog(@"Error: %@", error);
     
     NSString *XPath = @"//article/*";
     [document enumerateElementsWithXPath:XPath usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
-        if (idx < 3) summaryReadmeHTMLString = [summaryReadmeHTMLString stringByAppendingString:element.description];
+        if (idx < 3) summaryReadmeHTML = [summaryReadmeHTML stringByAppendingString:element.description];
     }];
     
     // Not find the `article` element
     // So we try to search the element that match `id="readme"` instead
-    if ([summaryReadmeHTMLString isEqualToString:MRC_README_CSS_STYLE]) {
+    if ([summaryReadmeHTML isEqualToString:MRC_README_CSS_STYLE]) {
         NSString *CSS = @"div#readme";
         [document enumerateElementsWithCSS:CSS usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
-            if (idx < 3) summaryReadmeHTMLString = [summaryReadmeHTMLString stringByAppendingString:element.description];
+            if (idx < 3) summaryReadmeHTML = [summaryReadmeHTML stringByAppendingString:element.description];
         }];
     }
     
-    return summaryReadmeHTMLString;
+    return summaryReadmeHTML;
 }
 
 @end

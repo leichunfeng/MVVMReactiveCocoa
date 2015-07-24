@@ -21,11 +21,11 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.type  = [params[@"type"] unsignedIntegerValue];
+        self.type = [params[@"type"] unsignedIntegerValue];
         self.repository = params[@"repository"];
         self.reference  = params[@"reference"];
-        self.blobTreeEntry    = params[@"blobTreeEntry"];
-        self.readmeHTMLString = params[@"readmeHTMLString"];
+        self.blobTreeEntry = params[@"blobTreeEntry"];
+        self.readmeHTML = params[@"readmeHTML"];
         self.encoded = YES;
     }
     return self;
@@ -66,25 +66,25 @@
             takeUntil:self.rac_willDeallocSignal];
     }];
     
-    self.requestReadmeHTMLStringCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.requestReadmeHTMLCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
         return [[[self.services.repositoryService
-        	requestRepositoryReadmeHTMLString:self.repository reference:self.reference.name]
-            doNext:^(NSString *readmeHTMLString) {
+        	requestRepositoryReadmeHTML:self.repository reference:self.reference.name]
+            doNext:^(NSString *readmeHTML) {
                 @strongify(self)
-                self.readmeHTMLString = readmeHTMLString;
+                self.readmeHTML = readmeHTML;
             }]
             takeUntil:self.rac_willDeallocSignal];
     }];
     
     [[RACSignal
-     	merge:@[ self.requestReadmeMarkdownCommand.errors, self.requestBlobCommand.errors, self.requestReadmeHTMLStringCommand.errors ]]
+     	merge:@[ self.requestReadmeMarkdownCommand.errors, self.requestBlobCommand.errors, self.requestReadmeHTMLCommand.errors ]]
      	subscribe:self.errors];
 }
 
 - (NSString *)content {
     if (self.isMarkdown && !self.showRawMarkdown) {
-        return self.readmeHTMLString;
+        return self.readmeHTML;
     } else {
         return [[NSString alloc] initWithData:[NSData dataFromBase64String:self.rawContent] encoding:NSUTF8StringEncoding];
     }

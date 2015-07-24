@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 
 @property (copy, nonatomic) NSString *rawContent;
 @property (copy, nonatomic) NSString *content;
-@property (copy, nonatomic) NSString *readmeHTMLString;
+@property (copy, nonatomic) NSString *readmeHTML;
 
 @property (nonatomic, getter=isLineWrapping) BOOL lineWrapping;
 @property (nonatomic, getter=isEncoded)		 BOOL encoded;
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 @property (assign, nonatomic) BOOL showRawMarkdown;
 
 @property (strong, nonatomic) RACCommand *requestBlobCommand;
-@property (strong, nonatomic) RACCommand *requestReadmeHTMLStringCommand;
+@property (strong, nonatomic) RACCommand *requestReadmeHTMLCommand;
 @property (strong, nonatomic) RACCommand *requestReadmeMarkdownCommand;
 
 @property (copy, nonatomic) NSString *wrappingActionTitle;

@@ -88,7 +88,7 @@
      	merge:@[
             self.viewModel.requestReadmeMarkdownCommand.executing,
             self.viewModel.requestBlobCommand.executing,
-            self.viewModel.requestReadmeHTMLStringCommand.executing
+            self.viewModel.requestReadmeHTMLCommand.executing
         ]]
      	subscribeNext:^(NSNumber *executing) {
          	@strongify(self)
@@ -100,11 +100,11 @@
         }];
     
     if (self.viewModel.isMarkdown) {
-        if (self.viewModel.readmeHTMLString) {
+        if (self.viewModel.readmeHTML) {
             self.navigationItem.rightBarButtonItem = rightBarButtonItem;
             [self loadSource];
         } else {
-            [[self.viewModel.requestReadmeHTMLStringCommand
+            [[self.viewModel.requestReadmeHTMLCommand
                 execute:nil]
                 subscribeNext:^(id x) {
                     @strongify(self)
