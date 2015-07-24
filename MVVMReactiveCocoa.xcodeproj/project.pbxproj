@@ -177,6 +177,7 @@
 		24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */; };
 		24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */; };
 		24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */; };
+		24FE6E691B627A0600DF3BDA /* MRCLoadingTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */; };
 		24FF300C1B370CFA00915F8E /* BarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30071B370CFA00915F8E /* BarItem.m */; };
 		24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */; };
 		24FF300E1B370CFA00915F8E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24FF300A1B370CFA00915F8E /* LICENSE */; };
@@ -652,6 +653,8 @@
 		24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MRCBackBarButtonItem.m"; sourceTree = "<group>"; };
 		24FDDEE61B31C6660040B5C3 /* MRCFollowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCFollowButton.h; sourceTree = "<group>"; };
 		24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCFollowButton.m; sourceTree = "<group>"; };
+		24FE6E671B627A0600DF3BDA /* MRCLoadingTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCLoadingTitleView.h; sourceTree = "<group>"; };
+		24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCLoadingTitleView.m; sourceTree = "<group>"; };
 		24FF30061B370CFA00915F8E /* BarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarItem.h; sourceTree = "<group>"; };
 		24FF30071B370CFA00915F8E /* BarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarItem.m; sourceTree = "<group>"; };
 		24FF30081B370CFA00915F8E /* CBStoreHouseRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBStoreHouseRefreshControl.h; sourceTree = "<group>"; };
@@ -980,6 +983,8 @@
 			children = (
 				24116E8F1A8F455000D25218 /* MRCDoubleTitleView.h */,
 				24116E901A8F455000D25218 /* MRCDoubleTitleView.m */,
+				24FE6E671B627A0600DF3BDA /* MRCLoadingTitleView.h */,
+				24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */,
 			);
 			path = TitleView;
 			sourceTree = "<group>";
@@ -1674,6 +1679,7 @@
 				2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */,
 				24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
+				24FE6E691B627A0600DF3BDA /* MRCLoadingTitleView.m in Sources */,
 				242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */,
 				240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */,
 				240BFC091AFF31F3006ABC05 /* MRCReposSearchResultsViewController.m in Sources */,
