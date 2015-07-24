@@ -178,6 +178,7 @@
 		24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */; };
 		24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */; };
 		24FE6E691B627A0600DF3BDA /* MRCLoadingTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */; };
+		24FE6E761B628C1B00DF3BDA /* MRCLoadingTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FE6E751B628C1B00DF3BDA /* MRCLoadingTitleView.xib */; };
 		24FF300C1B370CFA00915F8E /* BarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30071B370CFA00915F8E /* BarItem.m */; };
 		24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */; };
 		24FF300E1B370CFA00915F8E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24FF300A1B370CFA00915F8E /* LICENSE */; };
@@ -655,6 +656,7 @@
 		24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCFollowButton.m; sourceTree = "<group>"; };
 		24FE6E671B627A0600DF3BDA /* MRCLoadingTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCLoadingTitleView.h; sourceTree = "<group>"; };
 		24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCLoadingTitleView.m; sourceTree = "<group>"; };
+		24FE6E751B628C1B00DF3BDA /* MRCLoadingTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCLoadingTitleView.xib; sourceTree = "<group>"; };
 		24FF30061B370CFA00915F8E /* BarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarItem.h; sourceTree = "<group>"; };
 		24FF30071B370CFA00915F8E /* BarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarItem.m; sourceTree = "<group>"; };
 		24FF30081B370CFA00915F8E /* CBStoreHouseRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBStoreHouseRefreshControl.h; sourceTree = "<group>"; };
@@ -985,6 +987,7 @@
 				24116E901A8F455000D25218 /* MRCDoubleTitleView.m */,
 				24FE6E671B627A0600DF3BDA /* MRCLoadingTitleView.h */,
 				24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */,
+				24FE6E751B628C1B00DF3BDA /* MRCLoadingTitleView.xib */,
 			);
 			path = TitleView;
 			sourceTree = "<group>";
@@ -1543,6 +1546,7 @@
 				2479C9401AAD39150057B681 /* icon-info@2x.png in Resources */,
 				24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */,
 				24DF45731A6BE8FB00F23474 /* MRCStarredReposViewController.xib in Resources */,
+				24FE6E761B628C1B00DF3BDA /* MRCLoadingTitleView.xib in Resources */,
 				248973881B3028BC00A867DE /* MRCUserDetailViewController.xib in Resources */,
 				24DF456E1A6BE8E600F23474 /* MRCOwnedReposViewController.xib in Resources */,
 				249E5B351B065D4600BFDEA1 /* TGRImageViewController.xib in Resources */,

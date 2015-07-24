@@ -23,18 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    @weakify(self)
-//    [[[RACObserve(self, showProgressHUD)
-//        skip:1]
-//        distinctUntilChanged]
-//        subscribeNext:^(NSNumber *showProgressHUD) {
-//            @strongify(self)
-//            if (showProgressHUD.boolValue) {
-//                [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
-//            } else {
-//                [MBProgressHUD hideHUDForView:self.view animated:YES];
-//            }
-//        }];
+    RACSignal *didFinishLoadSignal   = [self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)];
+    RACSignal *didFailLoadLoadSignal = [self rac_signalForSelector:@selector(webView:didFailLoadWithError:) fromProtocol:@protocol(UIWebViewDelegate)];
+    
+    MRCTitleViewType type = self.viewModel.titleViewType;
+    RAC(self.viewModel, titleViewType) = [[RACSignal merge:@[ didFinishLoadSignal, didFailLoadLoadSignal ]] mapReplace:@(type)];
     
     NSParameterAssert(self.viewModel.request);
     
@@ -46,7 +39,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeOther) {
         if ([request.URL.scheme isEqualToString:@"http"] || [request.URL.scheme isEqualToString:@"https"]) {
-//            self.showProgressHUD = YES;
             self.viewModel.titleViewType = MRCTitleViewTypeLoadingTitle;
         }
         return YES;
@@ -58,16 +50,8 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {}
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    self.showProgressHUD = NO;
-    self.viewModel.titleViewType = MRCTitleViewTypeDefault;
-}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {}
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-//    self.showProgressHUD = NO;
-    self.viewModel.titleViewType = MRCTitleViewTypeDefault;
-
-    [self.viewModel.errors sendNext:error];
-}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {}
 
 @end
