@@ -10,7 +10,7 @@
 
 @implementation MRCRepositoryServiceImpl
 
-- (RACSignal *)requestRepositoryReadmeHTMLString:(OCTRepository *)repository reference:(NSString *)reference {
+- (RACSignal *)requestRepositoryReadmeHTML:(OCTRepository *)repository reference:(NSString *)reference {
     return [[[RACSignal
         createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             NSString *accessToken   = [SSKeychain accessToken];
@@ -43,7 +43,7 @@
             }];
         }]
         replayLazily]
-        setNameWithFormat:@"-requestRepositoryReadmeHTMLString: %@ reference: %@", repository, reference];
+        setNameWithFormat:@"-requestRepositoryReadmeHTML: %@ reference: %@", repository, reference];
 }
 
 @end
