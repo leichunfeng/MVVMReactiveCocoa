@@ -50,39 +50,39 @@
 }
 
 - (void)bindViewModel {
+	// System title view
+    RAC(self, title) = RACObserve(self.viewModel, title);
+    
+    UIView *titleView = self.navigationItem.titleView;
+    
+	// Double title view
+    MRCDoubleTitleView *doubleTitleView = [[MRCDoubleTitleView alloc] init];
+    
     @weakify(self)
-    switch (self.viewModel.titleViewType) {
-        case MRCTitleViewTypeDefault:
-            RAC(self, title) = RACObserve(self.viewModel, title);
-            break;
-        case MRCTitleViewTypeDoubleTitle: {
-            MRCDoubleTitleView *titleView = [[MRCDoubleTitleView alloc] init];
-            
-            [[[self
-            	rac_signalForSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]
-             	startWith:nil]
-            	subscribeNext:^(id x) {
-                    @strongify(self)
-                    titleView.titleLabel.text = self.viewModel.title;
-                    titleView.subtitleLabel.text = self.viewModel.subtitle;
-                }];
-            
-            self.navigationItem.titleView = titleView;
+    [[[self
+    	rac_signalForSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]
+    	startWith:nil]
+    	subscribeNext:^(id x) {
+        	@strongify(self)
+            doubleTitleView.titleLabel.text    = self.viewModel.title;
+            doubleTitleView.subtitleLabel.text = self.viewModel.subtitle;
+    	}];
+    
+	// Loading title view
+    MRCLoadingTitleView *loadingTitleView = [[NSBundle mainBundle] loadNibNamed:@"MRCLoadingTitleView" owner:nil options:nil].firstObject;
+    loadingTitleView.frame = CGRectMake((SCREEN_WIDTH - CGRectGetWidth(loadingTitleView.frame)) / 2.0, 0, CGRectGetWidth(loadingTitleView.frame), CGRectGetHeight(loadingTitleView.frame));
+    
+    RAC(self.navigationItem, titleView) = [RACObserve(self.viewModel, titleViewType).distinctUntilChanged map:^(NSNumber *value) {
+        MRCTitleViewType titleViewType = value.unsignedIntegerValue;
+        switch (titleViewType) {
+            case MRCTitleViewTypeDefault:
+                return titleView;
+            case MRCTitleViewTypeDoubleTitle:
+                return (UIView *)doubleTitleView;
+            case MRCTitleViewTypeLoadingTitle:
+                return (UIView *)loadingTitleView;
         }
-            break;
-        default:
-            break;
-    }
-    
-    MRCLoadingTitleView *loadingTitleView = [[MRCLoadingTitleView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.0, 4, 1, 36)];
-    [self.navigationController.navigationBar addSubview:loadingTitleView];
-    
-    RACSignal *showLoadingTitleSignal = [RACObserve(self.viewModel, titleViewType).distinctUntilChanged map:^(NSNumber *titleViewType) {
-        return @(titleViewType.unsignedIntegerValue == MRCTitleViewTypeLoadingTitle);
     }];
-    
-    RAC(self.navigationItem.titleView, hidden) = showLoadingTitleSignal;
-    RAC(loadingTitleView, hidden) = showLoadingTitleSignal.not;
     
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)
