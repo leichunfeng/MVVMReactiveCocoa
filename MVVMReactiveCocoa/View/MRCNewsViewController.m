@@ -24,9 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentOffset = CGPointMake(0, -64);
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    if (!self.navigationController) {
+        self.tableView.contentOffset = CGPointMake(0, -64);
+        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+        self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    }
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
     

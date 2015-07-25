@@ -10,6 +10,7 @@
 
 @interface MRCNewsViewModel : MRCTableViewModel
 
+@property (assign, nonatomic, readonly) BOOL isCurrentUser;
 @property (strong, nonatomic, readonly) RACCommand *didClickLinkCommand;
 
 @end

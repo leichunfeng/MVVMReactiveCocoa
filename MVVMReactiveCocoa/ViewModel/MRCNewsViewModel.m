@@ -17,7 +17,7 @@
 @property (strong, nonatomic) OCTUser *user;
 @property (copy, nonatomic) NSArray *events;
 @property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
-@property (assign, nonatomic, getter=isCurrentUser) BOOL currentUser;
+@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
 
 @end
 
@@ -34,9 +34,9 @@
 - (void)initialize {
     [super initialize];
     
-    self.title = @"News";
-    
-    self.currentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
+    self.isCurrentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
+
+    self.title = self.isCurrentUser ? @"News" : @"Public Activity";
     
     self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = YES;
@@ -81,18 +81,18 @@
 }
 
 - (id)fetchLocalData {
-    return self.isCurrentUser ? [OCTEvent mrc_fetchUserEvents] : nil;
+    return self.isCurrentUser ? [OCTEvent mrc_fetchUserReceivedEvents] : nil;
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     return [[[[[self.services
     	client]
-        fetchEventsForUser:self.user page:page perPage:self.perPage]
+        fetchUserReceivedEventsWithPage:page perPage:self.perPage]
     	collect]
     	doNext:^(NSArray *events) {
-            if (page == 1) { // Cache the first page
+            if (self.isCurrentUser && page == 1) { // Cache the first page
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [OCTEvent mrc_saveUserEvents:events];
+                    [OCTEvent mrc_saveUserReceivedEvents:events];
                 });
             }
         }]
