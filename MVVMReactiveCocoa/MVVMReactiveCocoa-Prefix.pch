@@ -61,6 +61,7 @@
     #import "OCTEvent+MRCAttributedString.h"
     #import "OCTRef+MRCAdditions.h"
     #import "GPUImage.h"
+    #import "OCTEvent+MRCPersistence.h"
 #endif
 
 #endif
