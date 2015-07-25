@@ -45,13 +45,6 @@
         return [RACSignal empty];
     }];
     
-    RACSignal *fetchLocalDataOnInitializeSignal = [[RACSignal
-        return:nil]
-        filter:^BOOL(id value) {
-            @strongify(self)
-            return self.options & MRCReposViewModelOptionsFetchLocalDataOnInitialize;
-        }];
-    
     RACSignal *starredReposDidChangeSignal = [[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:MRCStarredReposDidChangeNotification object:nil]
         filter:^BOOL(id value) {
@@ -59,8 +52,8 @@
            return self.options & MRCReposViewModelOptionsObserveStarredReposChange;
         }];
     
-    RACSignal *fetchLocalDataSignal = [[fetchLocalDataOnInitializeSignal
-    	merge:starredReposDidChangeSignal]
+    RACSignal *fetchLocalDataSignal = [[starredReposDidChangeSignal
+    	startWith:nil]
         map:^(id value) {
             @strongify(self)
             return [self fetchLocalData];
@@ -115,7 +108,6 @@
 - (MRCReposViewModelOptions)options {
     MRCReposViewModelOptions options = 0;
     
-    options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
     options = options | MRCReposViewModelOptionsObserveStarredReposChange;
     options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;

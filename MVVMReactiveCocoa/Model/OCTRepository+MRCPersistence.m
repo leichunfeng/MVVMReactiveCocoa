@@ -244,6 +244,41 @@
     return repos;
 }
 
++ (NSArray *)mrc_fetchUserStarredRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
+    __block NSMutableArray *repos = nil;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = nil;
+        
+        @onExit {
+            [rs close];
+        };
+        
+        NSNumber *limit = @(page * perPage);
+        if (![limit isEqualToNumber:@0]) {
+            rs = [db executeQuery:@"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = ? AND usr.repositoryId = r.id LIMIT ?;", [OCTUser mrc_currentUserId], limit];
+        } else {
+            rs = [db executeQuery:@"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = ? AND usr.repositoryId = r.id;", [OCTUser mrc_currentUserId]];
+        }
+        
+        if (rs == nil) {
+            MRCLogLastError(db);
+            return;
+        }
+        
+        while ([rs next]) {
+            @autoreleasepool {
+                if (repos == nil) repos = [NSMutableArray new];
+                
+                OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
+                [repos addObject:repo];
+            }
+        }
+    }];
+    
+    return repos;
+}
+
 + (NSArray *)mrc_fetchUserPublicRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage {
     __block NSMutableArray *repos = nil;
     

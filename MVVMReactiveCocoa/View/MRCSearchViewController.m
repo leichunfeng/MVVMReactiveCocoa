@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
     self.tableView.tableFooterView = nil;
     
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
@@ -35,6 +34,10 @@
     self.searchController.searchBar.tintColor = HexRGB(colorI5);
     self.searchController.searchBar.delegate = self.searchResultsController;
     self.searchController.delegate = self;
+}
+
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCSearch *)search {

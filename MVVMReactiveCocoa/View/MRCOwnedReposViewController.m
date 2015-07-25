@@ -23,21 +23,7 @@
 @dynamic viewModel;
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
-    
-    if (self.viewModel.isCurrentUser) {
-        if (self.viewModel.type != MRCReposViewModelTypePublic) {
-            self.tableView.contentOffset = CGPointMake(0, -64);
-            
-            if (self.viewModel.type == MRCReposViewModelTypeOwned || self.viewModel.type == MRCReposViewModelTypeStarred) {
-                self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-            } else if (self.viewModel.type == MRCReposViewModelTypeSearch) {
-                self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-            }
-            
-            self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-        }
-    }
+    [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];
     
@@ -64,6 +50,10 @@
 
 - (NSString *)labelText {
     return MBPROGRESSHUD_LABEL_TEXT;
+}
+
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

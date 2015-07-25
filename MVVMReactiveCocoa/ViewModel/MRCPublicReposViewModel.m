@@ -24,7 +24,6 @@
     MRCReposViewModelOptions options = 0;
     
     if (self.isCurrentUser) {
-        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
 //        options = options | MRCReposViewModelOptionsObserveStarredReposChange;
         options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //        options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
@@ -33,7 +32,6 @@
 //        options = options | MRCReposViewModelOptionsShowOwnerLogin;
 //        options = options | MRCReposViewModelOptionsMarkStarredStatus;
     } else {
-//        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
 //        options = options | MRCReposViewModelOptionsObserveStarredReposChange;
 //        options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //        options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
@@ -47,7 +45,10 @@
 }
 
 - (NSArray *)fetchLocalData {
-    return [OCTRepository mrc_fetchUserPublicRepositoriesWithPage:1 perPage:self.perPage];
+    if (self.isCurrentUser) {
+        return [OCTRepository mrc_fetchUserPublicRepositoriesWithPage:self.page perPage:self.perPage];
+    }
+    return nil;
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {

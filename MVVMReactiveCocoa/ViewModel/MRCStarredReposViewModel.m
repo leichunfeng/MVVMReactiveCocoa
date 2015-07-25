@@ -8,7 +8,21 @@
 
 #import "MRCStarredReposViewModel.h"
 
+@interface MRCStarredReposViewModel ()
+
+@property (assign, nonatomic, readwrite) MRCStarredReposViewModelEntryPoint entryPoint;
+
+@end
+
 @implementation MRCStarredReposViewModel
+
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+    self = [super initWithServices:services params:params];
+    if (self) {
+        self.entryPoint = [params[@"entryPoint"] unsignedIntegerValue];
+    }
+    return self;
+}
 
 - (void)initialize {
     [super initialize];
@@ -23,23 +37,29 @@
 - (MRCReposViewModelOptions)options {
     MRCReposViewModelOptions options = 0;
     
-    if (self.isCurrentUser) {
-        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
+    if (self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
         options = options | MRCReposViewModelOptionsObserveStarredReposChange;
+    }
+    
+    if (self.isCurrentUser) {
         options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
+    }
+    
+    if (self.isCurrentUser) {
         options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
-//        options = options | MRCReposViewModelOptionsPagination;
-        options = options | MRCReposViewModelOptionsSectionIndex;
-        options = options | MRCReposViewModelOptionsShowOwnerLogin;
-//        options = options | MRCReposViewModelOptionsMarkStarredStatus;
-    } else {
-//        options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
-//        options = options | MRCReposViewModelOptionsObserveStarredReposChange;
-//        options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
-//        options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
+    }
+    
+    if ((self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointUserDetail) || !self.isCurrentUser) {
         options = options | MRCReposViewModelOptionsPagination;
-//        options = options | MRCReposViewModelOptionsSectionIndex;
-        options = options | MRCReposViewModelOptionsShowOwnerLogin;
+    }
+    
+    if (self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
+        options = options | MRCReposViewModelOptionsSectionIndex;
+    }
+    
+    options = options | MRCReposViewModelOptionsShowOwnerLogin;
+    
+    if (!self.isCurrentUser) {
         options = options | MRCReposViewModelOptionsMarkStarredStatus;
     }
     
@@ -47,14 +67,21 @@
 }
 
 - (NSArray *)fetchLocalData {
-    return [OCTRepository mrc_fetchUserStarredRepositories];
+    if (self.isCurrentUser) {
+        if (self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
+            return [OCTRepository mrc_fetchUserStarredRepositories];
+        } else if (self.entryPoint == MRCStarredReposViewModelEntryPointUserDetail) {
+            return [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:self.page perPage:self.perPage];
+        }
+    }
+    return nil;
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    if (self.isCurrentUser) {
+    if (self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
         return [[[self.services
-        	client]
-        	fetchUserStarredRepositories].collect
+            client]
+            fetchUserStarredRepositories].collect
             map:^(NSArray *repositories) {
                 for (OCTRepository *repo in repositories) {
                     repo.starredStatus = OCTRepositoryStarredStatusYES;
@@ -62,9 +89,16 @@
                 return repositories;
             }];
     } else {
-        return [[[self.services
+        return [[[[self.services
         	client]
         	fetchStarredRepositoriesForUser:self.user page:page perPage:self.perPage].collect
+            doNext:^(NSArray *repositories) {
+                if (self.isCurrentUser) {
+                    for (OCTRepository *repo in repositories) {
+                        repo.starredStatus = OCTRepositoryStarredStatusYES;
+                    }
+                }
+            }]
         	map:^(NSArray *repositories) {
                 if (page != 1) {
                     repositories = @[ (self.repositories ?: @[]).rac_sequence, repositories.rac_sequence ].rac_sequence.flatten.array;

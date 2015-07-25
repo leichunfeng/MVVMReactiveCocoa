@@ -22,12 +22,6 @@
 @dynamic viewModel;
 
 - (void)viewDidLoad {
-    if (self.viewModel.type == MRCNewsViewModelTypeNews) {
-        self.tableView.contentOffset = CGPointMake(0, -64);
-        self.tableView.contentInset  = UIEdgeInsetsMake(64, 0, 49, 0);
-        self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    }
-
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
@@ -41,6 +35,10 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
+}
+
+- (UIEdgeInsets)contentInset {
+    return self.viewModel.type == MRCNewsViewModelTypeNews ? UIEdgeInsetsMake(64, 0, 49, 0) : UIEdgeInsetsZero;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

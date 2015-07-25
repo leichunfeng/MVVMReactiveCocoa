@@ -8,6 +8,13 @@
 
 #import "MRCOwnedReposViewModel.h"
 
+typedef NS_ENUM(NSUInteger, MRCStarredReposViewModelEntryPoint) {
+    MRCStarredReposViewModelEntryPointHomepage,
+    MRCStarredReposViewModelEntryPointUserDetail
+};
+
 @interface MRCStarredReposViewModel : MRCOwnedReposViewModel
+
+@property (assign, nonatomic, readonly) MRCStarredReposViewModelEntryPoint entryPoint;
 
 @end

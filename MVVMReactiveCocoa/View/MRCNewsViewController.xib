@@ -21,6 +21,8 @@
                     <connections>
                         <outlet property="dataSource" destination="-1" id="m8z-uo-4Tl"/>
                         <outlet property="delegate" destination="-1" id="ENR-VP-45k"/>
+                        <outlet property="emptyDataSetDelegate" destination="-1" id="hCN-OM-z89"/>
+                        <outlet property="emptyDataSetSource" destination="-1" id="qCq-0G-zFm"/>
                     </connections>
                 </tableView>
             </subviews>
@@ -31,7 +33,7 @@
                 <constraint firstItem="gHx-br-G5o" firstAttribute="top" secondItem="KKi-p3-Nst" secondAttribute="top" id="agV-Vy-1fH"/>
                 <constraint firstItem="gHx-br-G5o" firstAttribute="leading" secondItem="KKi-p3-Nst" secondAttribute="leading" id="di8-ZF-DV5"/>
             </constraints>
-            <point key="canvasLocation" x="140" y="118"/>
+            <point key="canvasLocation" x="-122" y="123"/>
         </view>
     </objects>
 </document>

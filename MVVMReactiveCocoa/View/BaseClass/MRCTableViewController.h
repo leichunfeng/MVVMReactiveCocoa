@@ -12,6 +12,7 @@
 
 // The table view for tableView controller.
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (assign, nonatomic, readonly) UIEdgeInsets contentInset;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 
