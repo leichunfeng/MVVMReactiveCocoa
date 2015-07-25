@@ -138,7 +138,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
         if (indexPath.row == 2) {
@@ -146,6 +146,8 @@
         } else if (indexPath.row == 3) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.viewModel.blog]];
         }
+    } else {
+        [self.viewModel.didSelectCommand execute:indexPath];
     }
 }
 

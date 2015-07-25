@@ -10,12 +10,12 @@
 
 @implementation OCTEvent (MRCPersistence)
 
-+ (BOOL)mrc_saveUserEvents:(NSArray *)events {
-    return [NSKeyedArchiver archiveRootObject:events toFile:[self persistencePath]];
++ (BOOL)mrc_saveUserReceivedEvents:(NSArray *)events {
+    return [NSKeyedArchiver archiveRootObject:events toFile:[self receivedEventsPersistencePath]];
 }
 
-+ (NSArray *)mrc_fetchUserEvents {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self persistencePath]];
++ (NSArray *)mrc_fetchUserReceivedEvents {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self receivedEventsPersistencePath]];
 }
 
 #pragma mark - Private Method
@@ -41,8 +41,8 @@
     return path;
 }
 
-+ (NSString *)persistencePath {
-    return [[self persistenceDirectory] stringByAppendingPathComponent:@"Events"];
++ (NSString *)receivedEventsPersistencePath {
+    return [[self persistenceDirectory] stringByAppendingPathComponent:@"ReceivedEvents"];
 }
 
 + (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)filePathString {

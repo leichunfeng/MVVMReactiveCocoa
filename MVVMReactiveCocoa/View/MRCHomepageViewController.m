@@ -41,7 +41,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.newsViewController = [[MRCNewsViewController alloc] initWithViewModel:self.viewModel.newsViewModel];
-    UIImage *newsImage = [UIImage octicon_imageWithIdentifier:@"Home" size:CGSizeMake(25, 25)];
+    UIImage *newsImage = [UIImage octicon_imageWithIdentifier:@"Rss" size:CGSizeMake(25, 25)];
     self.newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News" image:newsImage tag:1];
     
     self.reposViewController = [[MRCReposViewController alloc] initWithViewModel:self.viewModel.reposViewModel];

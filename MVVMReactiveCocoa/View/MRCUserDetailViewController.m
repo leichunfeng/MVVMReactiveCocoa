@@ -33,7 +33,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 3;
     } else if (section == 1) {
         return 4;
     }
@@ -66,6 +66,15 @@
                                                           andSize:MRC_LEFT_IMAGE_SIZE];
             cell.textLabel.text = @"Starred Repos";
             
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if (indexPath.row == 2) {
+            cell.imageView.image = [UIImage octicon_imageWithIcon:@"Rss"
+                                                  backgroundColor:UIColor.clearColor
+                                                        iconColor:HexRGB(0x4078c0)
+                                                        iconScale:1
+                                                          andSize:MRC_LEFT_IMAGE_SIZE];
+            cell.textLabel.text = @"Public Activity";
+
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else if (indexPath.section == 1) {
@@ -122,7 +131,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 1) {
         if (indexPath.row == 2) {
@@ -130,6 +139,8 @@
         } else if (indexPath.row == 3) {
             [UIApplication.sharedApplication openURL:[NSURL URLWithString:self.viewModel.blog]];
         }
+    } else {
+        [self.viewModel.didSelectCommand execute:indexPath];
     }
 }
 

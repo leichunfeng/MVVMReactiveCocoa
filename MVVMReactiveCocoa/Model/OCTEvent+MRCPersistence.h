@@ -10,8 +10,8 @@
 
 @interface OCTEvent (MRCPersistence)
 
-+ (BOOL)mrc_saveUserEvents:(NSArray *)events;
++ (BOOL)mrc_saveUserReceivedEvents:(NSArray *)events;
 
-+ (NSArray *)mrc_fetchUserEvents;
++ (NSArray *)mrc_fetchUserReceivedEvents;
 
 @end
