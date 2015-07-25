@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (!self.navigationController) {
+    if (self.viewModel.type == MRCNewsViewModelTypeNews) {
         self.tableView.contentOffset = CGPointMake(0, -64);
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
         self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
