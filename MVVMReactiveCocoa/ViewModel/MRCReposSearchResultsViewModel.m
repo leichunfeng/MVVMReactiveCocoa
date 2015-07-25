@@ -23,10 +23,13 @@
     return MRCReposViewModelTypeSearch;
 }
 
+- (id)fetchLocalData {
+    return nil;
+}
+
 - (MRCReposViewModelOptions)options {
     MRCReposViewModelOptions options = 0;
     
-//    options = options | MRCReposViewModelOptionsFetchLocalDataOnInitialize;
 //    options = options | MRCReposViewModelOptionsObserveStarredReposChange;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;

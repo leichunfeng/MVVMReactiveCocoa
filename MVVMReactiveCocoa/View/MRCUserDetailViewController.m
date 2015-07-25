@@ -19,10 +19,8 @@
 
 @dynamic viewModel;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.contentInset = UIEdgeInsetsZero;
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsZero;
 }
 
 #pragma mark - UITableViewDataSource

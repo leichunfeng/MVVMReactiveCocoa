@@ -16,14 +16,13 @@ typedef NS_ENUM(NSUInteger, MRCReposViewModelType) {
 };
 
 typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
-    MRCReposViewModelOptionsFetchLocalDataOnInitialize = 1 << 0,
-    MRCReposViewModelOptionsObserveStarredReposChange = 1 << 1,
-    MRCReposViewModelOptionsSaveOrUpdateRepos = 1 << 2,
-    MRCReposViewModelOptionsSaveOrUpdateStarredStatus = 1 << 3,
-    MRCReposViewModelOptionsPagination = 1 << 4,
-    MRCReposViewModelOptionsSectionIndex = 1 << 5,
-    MRCReposViewModelOptionsShowOwnerLogin = 1 << 6,
-    MRCReposViewModelOptionsMarkStarredStatus = 1 << 7
+    MRCReposViewModelOptionsObserveStarredReposChange = 1 << 0,
+    MRCReposViewModelOptionsSaveOrUpdateRepos = 1 << 1,
+    MRCReposViewModelOptionsSaveOrUpdateStarredStatus = 1 << 2,
+    MRCReposViewModelOptionsPagination = 1 << 3,
+    MRCReposViewModelOptionsSectionIndex = 1 << 4,
+    MRCReposViewModelOptionsShowOwnerLogin = 1 << 5,
+    MRCReposViewModelOptionsMarkStarredStatus = 1 << 6
 };
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel

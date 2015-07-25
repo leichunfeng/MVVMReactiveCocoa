@@ -35,7 +35,6 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     @weakify(self)
@@ -44,6 +43,10 @@
         	@strongify(self)
         	[self.tableView reloadData];
     	}];
+}
+
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsMake(0, 0, 49, 0);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

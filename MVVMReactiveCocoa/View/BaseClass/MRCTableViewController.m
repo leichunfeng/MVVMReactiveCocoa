@@ -40,8 +40,16 @@
     if ([view isKindOfClass:UITableView.class]) self.tableView = (UITableView *)view;
 }
 
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsZero;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.contentOffset = CGPointMake(0, -self.contentInset.top);
+    self.tableView.contentInset  = self.contentInset;
+    self.tableView.scrollIndicatorInsets = self.contentInset;
     
     self.tableView.sectionIndexColor = [UIColor darkGrayColor];
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
@@ -107,12 +115,12 @@
     [super bindViewModel];
     
     @weakify(self)
-    [[[RACObserve(self.viewModel, dataSource) distinctUntilChanged] deliverOnMainThread] subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, dataSource).distinctUntilChanged.deliverOnMainThread subscribeNext:^(id x) {
         @strongify(self)
         [self.tableView reloadData];
     }];
     
-    [[RACObserve(self.viewModel, shouldDisplayEmptyDataSet) deliverOnMainThread] subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, shouldDisplayEmptyDataSet).deliverOnMainThread subscribeNext:^(id x) {
         @strongify(self)
         [self.tableView reloadEmptyDataSet];
     }];

@@ -10,4 +10,8 @@
 
 @implementation MRCPublicReposViewController
 
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsZero;
+}
+
 @end
