@@ -39,7 +39,15 @@
             return @(!executing.boolValue && sequenceOfSequences.flatten.array.count == 0);
         }];
     
-    [self.requestRemoteDataCommand.errors subscribe:self.errors];
+    [[self.requestRemoteDataCommand.errors
+        filter:[self requestRemoteDataErrorsFilter]]
+        subscribe:self.errors];
+}
+
+- (BOOL (^)(NSError *error))requestRemoteDataErrorsFilter {
+    return ^(NSError *error) {
+        return YES;
+    };
 }
 
 - (id)fetchLocalData {

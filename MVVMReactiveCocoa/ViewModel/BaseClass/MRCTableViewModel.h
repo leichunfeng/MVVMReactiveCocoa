@@ -29,6 +29,8 @@
 
 - (id)fetchLocalData;
 
+- (BOOL (^)(NSError *error))requestRemoteDataErrorsFilter;
+
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page;
 
 @end

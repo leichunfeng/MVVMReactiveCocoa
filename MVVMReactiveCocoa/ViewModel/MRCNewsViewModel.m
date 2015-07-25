@@ -86,6 +86,16 @@
     }];
 }
 
+- (BOOL (^)(NSError *))requestRemoteDataErrorsFilter {
+    return ^BOOL(NSError *error) {
+        if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorServiceRequestFailed) {
+            NSLog(@"error.localizedDescription: %@", error.localizedDescription);
+            return NO;
+        }
+        return YES;
+    };
+}
+
 - (id)fetchLocalData {
     NSArray *events = nil;
     
