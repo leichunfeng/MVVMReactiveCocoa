@@ -179,6 +179,7 @@
 		24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */; };
 		24FE6E691B627A0600DF3BDA /* MRCLoadingTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */; };
 		24FE6E761B628C1B00DF3BDA /* MRCLoadingTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FE6E751B628C1B00DF3BDA /* MRCLoadingTitleView.xib */; };
+		24FE6E791B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6E781B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m */; };
 		24FF300C1B370CFA00915F8E /* BarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30071B370CFA00915F8E /* BarItem.m */; };
 		24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */; };
 		24FF300E1B370CFA00915F8E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24FF300A1B370CFA00915F8E /* LICENSE */; };
@@ -657,6 +658,8 @@
 		24FE6E671B627A0600DF3BDA /* MRCLoadingTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCLoadingTitleView.h; sourceTree = "<group>"; };
 		24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCLoadingTitleView.m; sourceTree = "<group>"; };
 		24FE6E751B628C1B00DF3BDA /* MRCLoadingTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCLoadingTitleView.xib; sourceTree = "<group>"; };
+		24FE6E771B6334CC00DF3BDA /* OCTEvent+MRCPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTEvent+MRCPersistence.h"; sourceTree = "<group>"; };
+		24FE6E781B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTEvent+MRCPersistence.m"; sourceTree = "<group>"; };
 		24FF30061B370CFA00915F8E /* BarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarItem.h; sourceTree = "<group>"; };
 		24FF30071B370CFA00915F8E /* BarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarItem.m; sourceTree = "<group>"; };
 		24FF30081B370CFA00915F8E /* CBStoreHouseRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBStoreHouseRefreshControl.h; sourceTree = "<group>"; };
@@ -736,6 +739,8 @@
 				2489AD721B345F5D00D76523 /* OCTClient+MRCUser.m */,
 				240393021B37CD380032C871 /* FMDatabaseQueue+MRCHelper.h */,
 				240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */,
+				24FE6E771B6334CC00DF3BDA /* OCTEvent+MRCPersistence.h */,
+				24FE6E781B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1728,6 +1733,7 @@
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
+				24FE6E791B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m in Sources */,
 				24D899D91AAA9BAC00BC607C /* MRCFeedbackViewController.m in Sources */,
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
