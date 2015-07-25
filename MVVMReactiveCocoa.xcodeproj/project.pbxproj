@@ -31,8 +31,6 @@
 		240D01311A654D300033CC86 /* MRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00E61A654D300033CC86 /* MRCViewController.m */; };
 		240D01321A654D300033CC86 /* MRCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00EA1A654D300033CC86 /* MRCButton.m */; };
 		240D01351A654D300033CC86 /* MRCImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00F11A654D300033CC86 /* MRCImageView.m */; };
-		240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00F31A654D300033CC86 /* MRCGistsViewController.m */; };
-		240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240D00F41A654D300033CC86 /* MRCGistsViewController.xib */; };
 		240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00F61A654D300033CC86 /* MRCHomepageViewController.m */; };
 		240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240D00F71A654D300033CC86 /* MRCHomepageViewController.xib */; };
 		240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D00F91A654D300033CC86 /* MRCLoginViewController.m */; };
@@ -46,7 +44,6 @@
 		240D01461A654D300033CC86 /* MRCViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01101A654D300033CC86 /* MRCViewModel.m */; };
 		240D01471A654D300033CC86 /* MRCViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01141A654D300033CC86 /* MRCViewModelServicesImpl.m */; };
 		240D01481A654D300033CC86 /* MRCAvatarHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01171A654D300033CC86 /* MRCAvatarHeaderViewModel.m */; };
-		240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D011C1A654D300033CC86 /* MRCGistsViewModel.m */; };
 		240D014B1A654D300033CC86 /* MRCHomepageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D011E1A654D300033CC86 /* MRCHomepageViewModel.m */; };
 		240D014C1A654D300033CC86 /* MRCLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01201A654D300033CC86 /* MRCLoginViewModel.m */; };
 		240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240D01221A654D300033CC86 /* MRCNewsViewModel.m */; };
@@ -408,9 +405,6 @@
 		240D00EA1A654D300033CC86 /* MRCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCButton.m; sourceTree = "<group>"; };
 		240D00F01A654D300033CC86 /* MRCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCImageView.h; sourceTree = "<group>"; };
 		240D00F11A654D300033CC86 /* MRCImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCImageView.m; sourceTree = "<group>"; };
-		240D00F21A654D300033CC86 /* MRCGistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGistsViewController.h; sourceTree = "<group>"; };
-		240D00F31A654D300033CC86 /* MRCGistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGistsViewController.m; sourceTree = "<group>"; };
-		240D00F41A654D300033CC86 /* MRCGistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCGistsViewController.xib; sourceTree = "<group>"; };
 		240D00F51A654D300033CC86 /* MRCHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCHomepageViewController.h; sourceTree = "<group>"; };
 		240D00F61A654D300033CC86 /* MRCHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCHomepageViewController.m; sourceTree = "<group>"; };
 		240D00F71A654D300033CC86 /* MRCHomepageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCHomepageViewController.xib; sourceTree = "<group>"; };
@@ -436,8 +430,6 @@
 		240D01141A654D300033CC86 /* MRCViewModelServicesImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCViewModelServicesImpl.m; sourceTree = "<group>"; };
 		240D01161A654D300033CC86 /* MRCAvatarHeaderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAvatarHeaderViewModel.h; sourceTree = "<group>"; };
 		240D01171A654D300033CC86 /* MRCAvatarHeaderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAvatarHeaderViewModel.m; sourceTree = "<group>"; };
-		240D011B1A654D300033CC86 /* MRCGistsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCGistsViewModel.h; sourceTree = "<group>"; };
-		240D011C1A654D300033CC86 /* MRCGistsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCGistsViewModel.m; sourceTree = "<group>"; };
 		240D011D1A654D300033CC86 /* MRCHomepageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCHomepageViewModel.h; sourceTree = "<group>"; };
 		240D011E1A654D300033CC86 /* MRCHomepageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCHomepageViewModel.m; sourceTree = "<group>"; };
 		240D011F1A654D300033CC86 /* MRCLoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCLoginViewModel.h; sourceTree = "<group>"; };
@@ -790,9 +782,6 @@
 				240D00DE1A654D300033CC86 /* BaseClass */,
 				240D00E81A654D300033CC86 /* Button */,
 				240D00EF1A654D300033CC86 /* ImageView */,
-				240D00F21A654D300033CC86 /* MRCGistsViewController.h */,
-				240D00F31A654D300033CC86 /* MRCGistsViewController.m */,
-				240D00F41A654D300033CC86 /* MRCGistsViewController.xib */,
 				240D00F51A654D300033CC86 /* MRCHomepageViewController.h */,
 				240D00F61A654D300033CC86 /* MRCHomepageViewController.m */,
 				240D00F71A654D300033CC86 /* MRCHomepageViewController.xib */,
@@ -908,8 +897,6 @@
 				24B4DA171A66C1C600DDFA6C /* ItemViewModel */,
 				240D01091A654D300033CC86 /* BaseClass */,
 				240D01151A654D300033CC86 /* HeaderViewModel */,
-				240D011B1A654D300033CC86 /* MRCGistsViewModel.h */,
-				240D011C1A654D300033CC86 /* MRCGistsViewModel.m */,
 				240D011D1A654D300033CC86 /* MRCHomepageViewModel.h */,
 				240D011E1A654D300033CC86 /* MRCHomepageViewModel.m */,
 				240D011F1A654D300033CC86 /* MRCLoginViewModel.h */,
@@ -1537,7 +1524,6 @@
 				243688211B25D18300D801D3 /* update_v1_2_0.sql in Resources */,
 				24E3B9F41B4922E4001C1DEE /* MRCNewsTableViewCell.xib in Resources */,
 				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
-				240D01371A654D300033CC86 /* MRCGistsViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
 				243140131A7DD6E800FA357E /* assets.bundle in Resources */,
@@ -1678,8 +1664,6 @@
 				24D899EE1AAAAE9F00BC607C /* MRCFeedbackViewModel.m in Sources */,
 				240D01301A654D300033CC86 /* MRCTableViewController.m in Sources */,
 				249E5B371B065D4600BFDEA1 /* UIImage+AspectFit.m in Sources */,
-				240D01361A654D300033CC86 /* MRCGistsViewController.m in Sources */,
-				240D014A1A654D300033CC86 /* MRCGistsViewModel.m in Sources */,
 				249E5B4F1B07A8EA00BFDEA1 /* UIImage+RTTint.m in Sources */,
 				240D013A1A654D300033CC86 /* MRCLoginViewController.m in Sources */,
 				245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */,
