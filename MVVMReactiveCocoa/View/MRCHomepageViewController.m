@@ -12,7 +12,6 @@
 #import "MRCProfileViewController.h"
 #import "MRCNewsViewModel.h"
 #import "MRCReposViewModel.h"
-#import "MRCGistsViewModel.h"
 #import "MRCProfileViewModel.h"
 #import "MRCNavigationControllerStack.h"
 #import "MRCReposViewController.h"
