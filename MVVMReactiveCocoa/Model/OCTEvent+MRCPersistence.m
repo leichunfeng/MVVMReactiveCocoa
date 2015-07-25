@@ -14,8 +14,16 @@
     return [NSKeyedArchiver archiveRootObject:events toFile:[self receivedEventsPersistencePath]];
 }
 
++ (BOOL)mrc_saveUserPerformedEvents:(NSArray *)events {
+    return [NSKeyedArchiver archiveRootObject:events toFile:[self performedEventsPersistencePath]];
+}
+
 + (NSArray *)mrc_fetchUserReceivedEvents {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[self receivedEventsPersistencePath]];
+}
+
++ (NSArray *)mrc_fetchUserPerformedEvents {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self performedEventsPersistencePath]];
 }
 
 #pragma mark - Private Method
@@ -43,6 +51,10 @@
 
 + (NSString *)receivedEventsPersistencePath {
     return [[self persistenceDirectory] stringByAppendingPathComponent:@"ReceivedEvents"];
+}
+
++ (NSString *)performedEventsPersistencePath {
+    return [[self persistenceDirectory] stringByAppendingPathComponent:@"PerformedEvents"];
 }
 
 + (BOOL)addSkipBackupAttributeToItemAtPath:(NSString *)filePathString {

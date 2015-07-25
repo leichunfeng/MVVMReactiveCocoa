@@ -18,6 +18,7 @@
 @property (copy, nonatomic) NSArray *events;
 @property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+@property (assign, nonatomic, readwrite) MRCNewsViewModelType type;
 
 @end
 
@@ -26,6 +27,7 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
     self = [super initWithServices:services params:params];
     if (self) {
+        self.type = [params[@"type"] unsignedIntegerValue];
         self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
     }
     return self;
@@ -36,7 +38,11 @@
     
     self.isCurrentUser = [self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]];
 
-    self.title = self.isCurrentUser ? @"News" : @"Public Activity";
+    if (self.type == MRCNewsViewModelTypeNews) {
+        self.title = @"News";
+    } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+        self.title = @"Public Activity";
+    }
     
     self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = YES;
@@ -81,22 +87,42 @@
 }
 
 - (id)fetchLocalData {
-    return self.isCurrentUser ? [OCTEvent mrc_fetchUserReceivedEvents] : nil;
+    NSArray *events = nil;
+    
+    if (self.isCurrentUser) {
+        if (self.type == MRCNewsViewModelTypeNews) {
+            events = [OCTEvent mrc_fetchUserReceivedEvents];
+        } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+            events = [OCTEvent mrc_fetchUserPerformedEvents];
+        }
+    }
+
+    return events;
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[[[[self.services
-    	client]
-        fetchUserReceivedEventsWithPage:page perPage:self.perPage]
+    RACSignal *fetchSignal = [RACSignal empty];
+
+    if (self.type == MRCNewsViewModelTypeNews) {
+        fetchSignal = [[self.services client] fetchUserReceivedEventsWithPage:page perPage:self.perPage];
+    } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user page:page perPage:self.perPage];
+    }
+    
+    return [[[fetchSignal
     	collect]
     	doNext:^(NSArray *events) {
             if (self.isCurrentUser && page == 1) { // Cache the first page
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [OCTEvent mrc_saveUserReceivedEvents:events];
+                    if (self.type == MRCNewsViewModelTypeNews) {
+                        [OCTEvent mrc_saveUserReceivedEvents:events];
+                    } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+                        [OCTEvent mrc_saveUserPerformedEvents:events];
+                    }
                 });
             }
         }]
-    	map:^(NSArray *events) {
+        map:^(NSArray *events) {
             if (page != 1) {
                 events = @[ (self.events ?: @[]).rac_sequence, events.rac_sequence ].rac_sequence.flatten.array;
             }

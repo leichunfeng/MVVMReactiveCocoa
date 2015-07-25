@@ -49,7 +49,9 @@
                 MRCStarredReposViewModel *viewModel = [[MRCStarredReposViewModel alloc] initWithServices:self.services params:@{ @"user": self.user }];
                 [self.services pushViewModel:viewModel animated:YES];
             } else if (indexPath.row == 2) {
-                MRCNewsViewModel *viewModel = [[MRCNewsViewModel alloc] initWithServices:self.services params:@{ @"user": self.user }];
+                MRCNewsViewModel *viewModel = [[MRCNewsViewModel alloc] initWithServices:self.services
+                                                                                  params:@{ @"type": @(MRCNewsViewModelTypePublicActivity),
+                                                                                            @"user": self.user }];
                 [self.services pushViewModel:viewModel animated:YES];
             }
         }

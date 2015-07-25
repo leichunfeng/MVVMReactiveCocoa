@@ -8,9 +8,15 @@
 
 #import "MRCTableViewModel.h"
 
+typedef NS_ENUM(NSUInteger, MRCNewsViewModelType) {
+    MRCNewsViewModelTypeNews,
+    MRCNewsViewModelTypePublicActivity
+};
+
 @interface MRCNewsViewModel : MRCTableViewModel
 
 @property (assign, nonatomic, readonly) BOOL isCurrentUser;
+@property (assign, nonatomic, readonly) MRCNewsViewModelType type;
 @property (strong, nonatomic, readonly) RACCommand *didClickLinkCommand;
 
 @end
