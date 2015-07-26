@@ -71,13 +71,15 @@ static UIImage *_tintedStarIcon = nil;
     self.languageLabel.text  = viewModel.language;
     self.forkCountLabel.text = @(viewModel.repository.forksCount).stringValue;
     
-    RAC(self.starCountLabel, text) = [[[RACObserve(viewModel.repository, stargazersCount)
-        map:^(NSNumber *stargazersCount) {
-            return stargazersCount.stringValue;
-        }]
+    @weakify(self)
+	[[[RACObserve(viewModel.repository, stargazersCount)
 		deliverOnMainThread]
-        takeUntil:self.rac_prepareForReuseSignal];
-
+        takeUntil:self.rac_prepareForReuseSignal]
+    	subscribeNext:^(NSNumber *stargazersCount) {
+        	@strongify(self)
+            self.starCountLabel.text = stargazersCount.stringValue;
+        }];
+    
     if (viewModel.repository.isPrivate) {
         self.iconImageView.image = _lockIcon;
     } else if (viewModel.repository.isFork) {
@@ -93,12 +95,17 @@ static UIImage *_tintedStarIcon = nil;
     }
     
     if (viewModel.options & MRCReposViewModelOptionsMarkStarredStatus) {
-        RAC(self.starIconImageView, image) = [[[RACObserve(viewModel.repository, starredStatus)
-        	map:^(NSNumber *starredStatus) {
-                return starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES ? _tintedStarIcon : _starIcon;
-            }]
+        [[[RACObserve(viewModel.repository, starredStatus)
         	deliverOnMainThread]
-            takeUntil:self.rac_prepareForReuseSignal];
+            takeUntil:self.rac_prepareForReuseSignal]
+        	subscribeNext:^(NSNumber *starredStatus) {
+                @strongify(self)
+                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
+                    self.starIconImageView.image = _tintedStarIcon;
+                } else {
+                    self.starIconImageView.image = _starIcon;
+                }
+            }];
     } else {
         self.starIconImageView.image = _starIcon;
     }
