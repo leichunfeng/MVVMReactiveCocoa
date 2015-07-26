@@ -69,7 +69,7 @@
                 @strongify(self)
                 OCTTreeEntry *tempTreeEntry = treeEntry;
                 
-                NSMutableDictionary *dictionary = NSMutableDictionary.new;
+                NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
                 
                 NSString *identifier = (treeEntry.type == OCTTreeEntryTypeTree ? @"FileDirectory" : @"FileText");
                 NSNumber *hexRGB = (treeEntry.type == OCTTreeEntryTypeTree ? @(0x80a6cd) : @(0x777777));

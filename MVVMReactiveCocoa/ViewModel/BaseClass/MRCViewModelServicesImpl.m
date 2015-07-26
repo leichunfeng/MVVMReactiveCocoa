@@ -19,8 +19,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _repositoryService = MRCRepositoryServiceImpl.new;
-        _appStoreService   = MRCAppStoreServiceImpl.new;
+        _repositoryService = [[MRCRepositoryServiceImpl alloc] init];
+        _appStoreService   = [[MRCAppStoreServiceImpl alloc] init];
     }
     return self;
 }
