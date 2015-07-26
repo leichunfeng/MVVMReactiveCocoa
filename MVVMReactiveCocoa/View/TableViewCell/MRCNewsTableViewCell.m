@@ -15,7 +15,6 @@
 @property (strong, nonatomic) MRCNewsItemViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 @property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailHeightLayoutConstraint;
 
 @end
 
