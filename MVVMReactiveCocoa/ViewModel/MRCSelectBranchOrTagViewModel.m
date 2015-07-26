@@ -36,7 +36,7 @@
             return [reference.name componentsSeparatedByString:@"/"].count == 3;
         }]
         map:^id(OCTRef *reference) {
-            NSMutableDictionary *dictionary = NSMutableDictionary.new;
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
             [dictionary setValue:reference forKey:@"reference"];
             
             [dictionary setValue:[reference.name componentsSeparatedByString:@"/"].lastObject forKey:@"name"];

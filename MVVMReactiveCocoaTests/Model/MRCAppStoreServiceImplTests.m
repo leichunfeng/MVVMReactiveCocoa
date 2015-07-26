@@ -20,7 +20,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.appStoreService = MRCAppStoreServiceImpl.new;
+    self.appStoreService = [[MRCAppStoreServiceImpl alloc] init];
 }
 
 - (void)testRequestAppInfoFromAppStoreWithAppID {

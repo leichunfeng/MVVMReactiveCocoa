@@ -57,7 +57,7 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = UILabel.new;
+        _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont boldSystemFontOfSize:17];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = UIColor.whiteColor;
@@ -67,7 +67,7 @@
 
 - (UILabel *)subtitleLabel {
     if (!_subtitleLabel) {
-        _subtitleLabel = UILabel.new;
+        _subtitleLabel = [[UILabel alloc] init];
         _subtitleLabel.font = [UIFont systemFontOfSize:15];
         _subtitleLabel.textAlignment = NSTextAlignmentCenter;
         _subtitleLabel.textColor = UIColor.whiteColor;
