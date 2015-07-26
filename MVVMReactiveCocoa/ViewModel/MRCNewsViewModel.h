@@ -18,5 +18,8 @@ typedef NS_ENUM(NSUInteger, MRCNewsViewModelType) {
 @property (assign, nonatomic, readonly) BOOL isCurrentUser;
 @property (assign, nonatomic, readonly) MRCNewsViewModelType type;
 @property (strong, nonatomic, readonly) RACCommand *didClickLinkCommand;
+@property (copy, nonatomic, readonly) NSArray *events;
+
+- (NSArray *)dataSourceWithEvents:(NSArray *)events;
 
 @end

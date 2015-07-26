@@ -16,9 +16,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5V-lg-1Zq" customClass="DTAttributedLabel">
                         <rect key="frame" x="60" y="10" width="305" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="APT-pd-Jry"/>
-                        </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAz-8n-U6H">
                         <rect key="frame" x="10" y="10" width="40" height="40"/>
@@ -40,11 +37,11 @@
                     <constraint firstItem="hAz-8n-U6H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="c8L-6q-inG"/>
                     <constraint firstItem="p5V-lg-1Zq" firstAttribute="leading" secondItem="hAz-8n-U6H" secondAttribute="trailing" constant="10" id="cFj-Ft-0Ud"/>
                     <constraint firstItem="p5V-lg-1Zq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="e9U-5T-6SK"/>
+                    <constraint firstAttribute="bottom" secondItem="p5V-lg-1Zq" secondAttribute="bottom" constant="10" id="pu3-Jh-DQ1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarButton" destination="hAz-8n-U6H" id="r6c-YD-hdU"/>
-                <outlet property="detailHeightLayoutConstraint" destination="APT-pd-Jry" id="sJm-sJ-vP7"/>
                 <outlet property="detailView" destination="p5V-lg-1Zq" id="hnh-gz-K33"/>
             </connections>
             <point key="canvasLocation" x="-1640.5" y="148.5"/>

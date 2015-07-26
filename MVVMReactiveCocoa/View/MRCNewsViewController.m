@@ -35,6 +35,18 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
+    
+    RAC(self.viewModel, dataSource) = [[RACObserve(self.viewModel, events)
+        map:^(NSArray *events) {
+            @strongify(self)
+            return [self.viewModel dataSourceWithEvents:events];
+        }]
+        map:^(NSArray *viewModels) {
+            for (MRCNewsItemViewModel *viewModel in viewModels.firstObject) {
+                viewModel.height = [MRCNewsTableViewCell heightWithViewModel:viewModel];
+            }
+            return viewModels;
+        }];
 }
 
 - (UIEdgeInsets)contentInset {
@@ -50,8 +62,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    return [MRCNewsTableViewCell heightWithViewModel:viewModel];
+    return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
 }
 
 @end
