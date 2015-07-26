@@ -20,6 +20,7 @@ static UIImage *_tintedStarIcon = nil;
 
 @interface MRCReposTableViewCell ()
 
+@property (strong, nonatomic) MRCReposItemViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *updateTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *desLabel;
@@ -56,6 +57,8 @@ static UIImage *_tintedStarIcon = nil;
 }
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
+    self.viewModel = viewModel;
+    
     self.nameLabel.attributedText = viewModel.name;
     self.updateTimeLabel.text = viewModel.updateTime;
     
