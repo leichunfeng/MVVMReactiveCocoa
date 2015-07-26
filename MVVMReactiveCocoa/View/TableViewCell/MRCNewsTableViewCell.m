@@ -44,15 +44,10 @@
     
     [self.avatarButton sd_setImageWithURL:viewModel.event.actorAvatarURL
                                  forState:UIControlStateNormal
-                         placeholderImage:[HexRGB(colorI6) color2ImageSized:CGSizeMake(40, 40)]];
+                         placeholderImage:[MRCNewsTableViewCell placeholderImage]];
     
     self.detailView.layoutFrameHeightIsConstrainedByBounds = NO;
     self.detailView.attributedString = viewModel.attributedString;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.detailHeightLayoutConstraint.constant = ceilf([self.detailView suggestedFrameSizeToFitEntireStringConstraintedToWidth:detailViewWidth].height);
 }
 
 + (CGFloat)heightWithViewModel:(MRCNewsItemViewModel *)viewModel {
@@ -110,6 +105,17 @@
 
 - (void)linkPushed:(DTLinkButton *)button {
     [self.viewModel.didClickLinkCommand execute:button.URL];
+}
+
+#pragma mark - Private Method
+
++ (UIImage *)placeholderImage {
+    static UIImage *placeholderImage = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        placeholderImage = [HexRGB(colorI6) color2ImageSized:CGSizeMake(40, 40)];
+    });
+    return placeholderImage;
 }
 
 @end

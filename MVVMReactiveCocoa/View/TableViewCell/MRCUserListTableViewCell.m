@@ -33,31 +33,22 @@
     self.viewModel = viewModel;
     
     [self.avatarImageView sd_setImageWithURL:viewModel.avatarURL];
+    
     self.loginLabel.text = viewModel.login;
-    self.htmlLabel.text = viewModel.user.HTMLURL.absoluteString;
+    self.htmlLabel.text  = viewModel.user.HTMLURL.absoluteString;
     
     [self.activityIndicatorView startAnimating];
     
-    RAC(self.operationButton, selected) = [[[RACObserve(viewModel.user, followingStatus)
-    	map:^(NSNumber *followingStatus) {
-            return @(followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
-        }]
-    	deliverOnMainThread]
-        takeUntil:self.rac_prepareForReuseSignal];
-    
-    RAC(self.activityIndicatorView, hidden) = [[[RACObserve(viewModel.user, followingStatus)
-        map:^(NSNumber *followingStatus) {
-        	return @(followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
-        }]
+    @weakify(self)
+    [[[RACObserve(viewModel.user, followingStatus)
         deliverOnMainThread]
-        takeUntil:self.rac_prepareForReuseSignal];
-    
-    RAC(self.operationButton, hidden) = [[[RACObserve(viewModel.user, followingStatus)
-        map:^(NSNumber *followingStatus) {
-        	return @(followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
-        }]
-        deliverOnMainThread]
-        takeUntil:self.rac_prepareForReuseSignal];
+        takeUntil:self.rac_prepareForReuseSignal]
+        subscribeNext:^(NSNumber *followingStatus) {
+            @strongify(self)
+            self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
+            self.activityIndicatorView.hidden = (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
+            self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
+        }];
 }
 
 - (IBAction)didClickOperationButton:(id)sender {

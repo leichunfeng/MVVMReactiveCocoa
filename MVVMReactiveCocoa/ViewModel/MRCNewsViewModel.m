@@ -44,7 +44,7 @@
         self.title = @"Public Activity";
     }
     
-    self.shouldPullToRefresh = YES;
+//    self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = YES;
     
     @weakify(self)
@@ -79,11 +79,6 @@
     }];
     
     RAC(self, events) = [self.requestRemoteDataCommand.executionSignals.switchToLatest startWith:self.fetchLocalData];
-    
-    RAC(self, dataSource) = [RACObserve(self, events) map:^(NSArray *events) {
-        @strongify(self)
-        return [self dataSourceWithEvents:events];
-    }];
 }
 
 - (BOOL (^)(NSError *))requestRemoteDataErrorsFilter {
