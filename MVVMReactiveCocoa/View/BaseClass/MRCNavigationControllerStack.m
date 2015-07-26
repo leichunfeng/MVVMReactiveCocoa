@@ -37,7 +37,7 @@
     self = [super init];
     if (self) {
         _services = services;
-        _navigationControllers = [NSMutableArray new];
+        _navigationControllers = [[NSMutableArray alloc] init];
     }
     return self;
 }

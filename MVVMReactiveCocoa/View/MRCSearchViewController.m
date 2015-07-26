@@ -64,10 +64,10 @@
 #pragma mark - UITableViewDelegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [UIView new];
+    UIView *view = [[UIView alloc] init];
     view.backgroundColor = HexRGB(0xF7F7F7);
   
-    UILabel *label = [UILabel new];
+    UILabel *label = [[UILabel alloc] init];
     label.text = @"Recent Searches";
     label.font = [UIFont systemFontOfSize:15];
     [label sizeToFit];

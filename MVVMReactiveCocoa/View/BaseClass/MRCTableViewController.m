@@ -103,7 +103,7 @@
         }];
     }
     
-    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)dealloc {

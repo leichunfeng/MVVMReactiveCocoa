@@ -119,7 +119,7 @@
         }
         
         while ([rs next]) {
-            if (oldIDs == nil) oldIDs = [NSMutableArray new];
+            if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
         
@@ -169,7 +169,7 @@
         
         NSMutableArray *oldIDs = nil;
         while ([rs next]) {
-            if (oldIDs == nil) oldIDs = [NSMutableArray new];
+            if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
         
@@ -219,7 +219,7 @@
         
         NSMutableArray *oldIDs = nil;
         while ([rs next]) {
-            if (oldIDs == nil) oldIDs = [NSMutableArray new];
+            if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
         
@@ -433,7 +433,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (followers == nil) followers = [NSMutableArray new];
+                if (followers == nil) followers = [[NSMutableArray alloc] init];
                 OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
                 user.followerStatus = OCTUserFollowerStatusYES;
                 [followers addObject:user];
@@ -468,7 +468,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (followings == nil) followings = [NSMutableArray new];
+                if (followings == nil) followings = [[NSMutableArray alloc] init];
                 OCTUser *user = [MTLJSONAdapter modelOfClass:[OCTUser class] fromJSONDictionary:rs.resultDictionary error:nil];
                 user.followingStatus = OCTUserFollowingStatusYES;
                 [followings addObject:user];

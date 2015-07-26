@@ -146,18 +146,18 @@
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     if (repositories.count == 0) return nil;
     
-    NSMutableArray *repoOfRepos = [NSMutableArray new];
+    NSMutableArray *repoOfRepos = [[NSMutableArray alloc] init];
 
     if (self.options & MRCReposViewModelOptionsSectionIndex) {
         NSString *firstLetter = [repositories.firstObject name].firstLetter;
-        NSMutableArray *repos = [NSMutableArray new];
+        NSMutableArray *repos = [[NSMutableArray alloc] init];
         
         for (OCTRepository *repository in repositories) {
             if (![[repository.name firstLetter] isEqualToString:firstLetter]) {
                 [repoOfRepos addObject:repos];
                 
                 firstLetter = repository.name.firstLetter;
-                repos = [NSMutableArray new];
+                repos = [[NSMutableArray alloc] init];
             }
             [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options]];
         }

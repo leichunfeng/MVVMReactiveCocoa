@@ -93,7 +93,7 @@
         }
         
         while ([rs next]) {
-            if (oldIDs == nil) oldIDs = [NSMutableArray new];
+            if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
         
@@ -144,7 +144,7 @@
         }
         
         while ([rs next]) {
-            if (oldIDs == nil) oldIDs = [NSMutableArray new];
+            if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
             [oldIDs addObject:[rs stringForColumnIndex:0]];
         }
         
@@ -205,7 +205,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (repos == nil) repos = [NSMutableArray new];
+                if (repos == nil) repos = [[NSMutableArray alloc] init];
                 
                 OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
@@ -233,7 +233,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (repos == nil) repos = [NSMutableArray new];
+                if (repos == nil) repos = [[NSMutableArray alloc] init];
                 
                 OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
@@ -268,7 +268,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (repos == nil) repos = [NSMutableArray new];
+                if (repos == nil) repos = [[NSMutableArray alloc] init];
                 
                 OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
@@ -303,7 +303,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (repos == nil) repos = [NSMutableArray new];
+                if (repos == nil) repos = [[NSMutableArray alloc] init];
                 
                 OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];

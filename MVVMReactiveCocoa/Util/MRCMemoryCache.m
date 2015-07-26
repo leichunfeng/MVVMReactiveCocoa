@@ -29,7 +29,7 @@ static MRCMemoryCache *_memoryCache = nil;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _dictionary = [NSMutableDictionary new];
+        _dictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

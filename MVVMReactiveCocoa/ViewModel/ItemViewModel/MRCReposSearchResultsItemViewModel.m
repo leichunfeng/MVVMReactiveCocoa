@@ -61,7 +61,7 @@
 
 - (NSString *)updateTime {
     if (!_updateTime) {
-        TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
         timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
         _updateTime = [timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.repository.dateUpdated].copy;
     }

@@ -30,7 +30,7 @@
 
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
-    self.services = [MRCViewModelServicesImpl new];
+    self.services = [[MRCViewModelServicesImpl alloc] init];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
     UINavigationController *navigationController = [[MRCNavigationController alloc] initWithRootViewController:self.createInitialViewController];
