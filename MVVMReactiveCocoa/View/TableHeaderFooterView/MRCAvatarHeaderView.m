@@ -31,8 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
 
-@property (strong, nonatomic) GPUImageView *coverImageView;
-@property (strong, nonatomic) GPUImagePicture *sourcePicture;
+@property (strong, nonatomic) UIImageView *coverImageView;
 @property (strong, nonatomic) GPUImageGaussianBlurFilter *gaussianBlurFilter;
 @property (strong, nonatomic) UIImage *avatarImage;
 @property (assign, nonatomic) CGPoint lastContentOffsetBlurEffect;
@@ -61,21 +60,13 @@
         [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
     }];
     
-    self.coverImageView = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 323)];
-    self.coverImageView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 323)];
+    self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.coverImageView.clipsToBounds = YES;
+    
     [self insertSubview:self.coverImageView atIndex:0];
     
     self.gaussianBlurFilter = [[GPUImageGaussianBlurFilter alloc] init];
-    [self.gaussianBlurFilter addTarget:self.coverImageView];
-    
-    RAC(self, sourcePicture) = [[RACObserve(self, avatarImage)
-        map:^(UIImage *avatarImage) {
-            return [[GPUImagePicture alloc] initWithImage:avatarImage smoothlyScaleOutput:YES];
-        }]
-        doNext:^(GPUImagePicture *sourcePicture) {
-            @strongify(self)
-            [sourcePicture addTarget:self.gaussianBlurFilter];
-        }];
     
     [self.activityIndicatorView startAnimating];
 
@@ -172,10 +163,10 @@
             return @(20 * (1 - scale));
         }];
     
-    [[RACSignal
-        combineLatest:@[ RACObserve(self, sourcePicture), RACObserve(self.gaussianBlurFilter, blurRadiusInPixels) ]]
-        subscribeNext:^(RACTuple *tuple) {
-            [tuple.first processImage];
+    RAC(self.coverImageView, image) = [[RACSignal
+        combineLatest:@[ RACObserve(self, gaussianBlurFilter), RACObserve(self, avatarImage), RACObserve(self.gaussianBlurFilter, blurRadiusInPixels).distinctUntilChanged ]]
+        reduceEach:^(GPUImageGaussianBlurFilter *gaussianBlurFilter, UIImage *avatarImage, NSNumber *blurRadiusInPixels) {
+            return [gaussianBlurFilter imageByFilteringImage:avatarImage];
         }];
 }
 
