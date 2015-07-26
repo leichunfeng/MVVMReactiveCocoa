@@ -44,7 +44,7 @@
         self.title = @"Public Activity";
     }
     
-//    self.shouldPullToRefresh = YES;
+    self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = YES;
     
     @weakify(self)
