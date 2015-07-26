@@ -44,7 +44,7 @@
     
     cell.textLabel.text = dictionary[@"text"];
     
-    UILabel *detailLabel = [UILabel new];
+    UILabel *detailLabel = [[UILabel alloc] init];
     detailLabel.text = dictionary[@"detailText"];
     detailLabel.textColor = HexRGB(0x8E8E93);
     [detailLabel sizeToFit];

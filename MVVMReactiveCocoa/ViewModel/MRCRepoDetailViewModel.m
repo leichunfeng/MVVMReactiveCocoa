@@ -56,7 +56,7 @@
     self.reference = [[OCTRef alloc] initWithDictionary:@{ @"name": self.referenceName } error:&error];
     if (error) NSLog(@"Error: %@", error);
     
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     
     RAC(self, dateUpdated) = [[RACObserve(self.repository, dateUpdated) ignore:nil] map:^id(NSDate *dateUpdated) {
@@ -75,7 +75,7 @@
     
     self.readmeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self)
-        NSMutableDictionary *params = [NSMutableDictionary new];
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         
         [params setValue:@"README.md" forKey:@"title"];
         [params setValue:self.repository forKey:@"repository"];

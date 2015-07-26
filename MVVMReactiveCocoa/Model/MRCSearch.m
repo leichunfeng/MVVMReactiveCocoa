@@ -33,7 +33,7 @@
         
         while ([rs next]) {
             @autoreleasepool {
-                if (recentSearches == nil) recentSearches = [NSMutableArray new];
+                if (recentSearches == nil) recentSearches = [[NSMutableArray alloc] init];
                 
                 NSMutableDictionary *dictionary = rs.resultDictionary.mutableCopy;
                 [dictionary removeObjectForKey:@"userId"];

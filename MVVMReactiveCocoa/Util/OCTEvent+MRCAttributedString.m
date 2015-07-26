@@ -27,7 +27,7 @@
 }
 
 - (NSMutableAttributedString *)mrc_attributedString {
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:self.mrc_octiconAttributedString];
     [attributedString appendAttributedString:self.mrc_actorLoginAttributedString];
@@ -269,7 +269,7 @@
             "distinct": true,
             "url": "https://api.github.com/repos/tangqiaoboy/iOSBlogCN/commits/6e4dc62cffe9f2d1b1484819936ee264dde36592"
         } */
-        NSMutableAttributedString *commit = [NSMutableAttributedString new];
+        NSMutableAttributedString *commit = [[NSMutableAttributedString alloc] init];
         
         [commit appendAttributedString:[self mrc_pushedCommitAttributedStringWithSHA:dictionary[@"sha"]]];
         [commit appendAttributedString:[@" - " stringByAppendingString:dictionary[@"message"]].mrc_attributedString.mrc_addNormalTitleAttributes];
@@ -307,7 +307,7 @@
 }
 
 - (NSMutableAttributedString *)mrc_dateAttributedString {
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     
     timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     NSString *date = [@"\n" stringByAppendingString:[timeIntervalFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.date]];
@@ -324,7 +324,7 @@
 - (NSMutableAttributedString *)mrc_pullInfoAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTPullRequestEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)self;
     
@@ -349,7 +349,7 @@
 - (NSMutableAttributedString *)mrc_commitCommentEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTCommitCommentEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" commented on commit ".mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_commentedCommitAttributedString];
@@ -360,7 +360,7 @@
 - (NSMutableAttributedString *)mrc_forkEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTForkEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" forked ".mrc_attributedString.mrc_addNormalTitleAttributes];
     [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
@@ -373,7 +373,7 @@
 - (NSMutableAttributedString *)mrc_issueCommentEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTIssueCommentEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" commented on issue ".mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_issueAttributedString];
@@ -384,7 +384,7 @@
 - (NSMutableAttributedString *)mrc_issueEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTIssueEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     OCTIssueEvent *concreteEvent = (OCTIssueEvent *)self;
     
@@ -407,7 +407,7 @@
 - (NSMutableAttributedString *)mrc_memberEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTMemberEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" added ".mrc_attributedString.mrc_addNormalTitleAttributes];
     [attributedString appendAttributedString:self.mrc_memberLoginAttributedString];
@@ -420,7 +420,7 @@
 - (NSMutableAttributedString *)mrc_publicEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTPublicEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" open sourced ".mrc_attributedString.mrc_addNormalTitleAttributes];
     [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
@@ -431,7 +431,7 @@
 - (NSMutableAttributedString *)mrc_pullRequestCommentEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTPullRequestCommentEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" commented on pull request ".mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_pullRequestAttributedString];
@@ -442,7 +442,7 @@
 - (NSMutableAttributedString *)mrc_pullRequestEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTPullRequestEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)self;
     
@@ -468,7 +468,7 @@
 - (NSMutableAttributedString *)mrc_pushEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" pushed to ".mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_branchNameAttributedString];
@@ -482,7 +482,7 @@
 - (NSMutableAttributedString *)mrc_refEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTRefEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     OCTRefEvent *concreteEvent = (OCTRefEvent *)self;
     
@@ -515,7 +515,7 @@
 - (NSMutableAttributedString *)mrc_watchEventAttributedString {
     NSParameterAssert([self isMemberOfClass:[OCTWatchEvent class]]);
     
-    NSMutableAttributedString *attributedString = [NSMutableAttributedString new];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     
     [attributedString appendAttributedString:@" starred ".mrc_attributedString.mrc_addNormalTitleAttributes];
     [attributedString appendAttributedString:self.mrc_repositoryNameAttributedString];
