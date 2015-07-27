@@ -30,6 +30,11 @@
     
     self.title = @"Settings";
     
+    if (self.repository.starredStatus == OCTRepositoryStarredStatusUnknown) {
+        BOOL hasStarred = [OCTRepository mrc_hasUserStarredRepository:self.repository];
+        self.repository.starredStatus = hasStarred ? OCTRepositoryStarredStatusYES : OCTRepositoryStarredStatusNO;
+    }
+    
     @weakify(self)
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
