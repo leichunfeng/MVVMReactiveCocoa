@@ -45,7 +45,7 @@
         options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
     }
     
-    if (self.isCurrentUser) {
+    if (self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
         options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
     }
     
