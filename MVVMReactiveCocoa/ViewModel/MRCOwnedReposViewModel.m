@@ -60,15 +60,6 @@
         }];
     
     RACSignal *requestRemoteDataSignal = [[self.requestRemoteDataCommand.executionSignals.flatten
-    	map:^(NSArray *repositories) {
-            @strongify(self)
-            if (self.options & MRCReposViewModelOptionsSectionIndex) {
-                repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
-                    return [repo1.name caseInsensitiveCompare:repo2.name];
-                }];
-            }
-            return repositories;
-        }]
     	doNext:^(NSArray *repositories) {
             @strongify(self)
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -79,6 +70,15 @@
                     [OCTRepository mrc_saveOrUpdateStarredStatusWithRepositories:repositories];
                 }
             });
+        }]
+        map:^(NSArray *repositories) {
+        	@strongify(self)
+        	if (self.options & MRCReposViewModelOptionsSectionIndex) {
+            	repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                	return [repo1.name caseInsensitiveCompare:repo2.name];
+            	}];
+          }
+          return repositories;
         }];
     
     RAC(self, repositories) = [fetchLocalDataSignal merge:requestRemoteDataSignal];
