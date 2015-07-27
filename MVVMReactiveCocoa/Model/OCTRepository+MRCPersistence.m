@@ -316,6 +316,30 @@
 
 #pragma mark - Star Or Unstar Repository
 
++ (BOOL)mrc_hasUserStarredRepository:(OCTRepository *)repository {
+    __block BOOL result = YES;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        NSString *sql = @"SELECT * FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ? LIMIT 1;";
+
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], repository.objectID];
+
+        @onExit {
+            [rs close];
+        };
+        
+        if (!rs) {
+            MRCLogLastError(db);
+            result = NO;
+            return;
+        }
+        
+        result = [rs next];
+    }];
+    
+    return result;
+}
+
 + (BOOL)mrc_starRepository:(OCTRepository *)repository {
     __block BOOL result = YES;
     
