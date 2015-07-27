@@ -10,6 +10,7 @@
 #import "MRCNewsViewModel.h"
 #import "MRCNewsTableViewCell.h"
 #import "MRCNewsItemViewModel.h"
+#import "MRCNetworkHeaderView.h"
 
 @interface MRCNewsViewController ()
 
@@ -25,6 +26,15 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
+    
+    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    MRCNetworkHeaderView *networkHeaderView = [NSBundle.mainBundle loadNibNamed:@"MRCNetworkHeaderView" owner:nil options:nil].firstObject;
+    networkHeaderView.frame = tableHeaderView.bounds;
+    [tableHeaderView addSubview:networkHeaderView];
+    
+    RAC(self.tableView, tableHeaderView) = [RACObserve(MRCSharedAppDelegate, networkStatus) map:^(NSNumber *networkStatus) {
+        return networkStatus.integerValue == NotReachable ? tableHeaderView : nil;
+    }];
     
     @weakify(self)
     [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
