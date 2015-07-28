@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, OCTUserFollowingStatus) {
 
 @interface OCTUser (MRCPersistence) <MRCPersistenceProtocol>
 
-@property (assign, nonatomic) OCTUserFollowerStatus followerStatus;
+@property (assign, nonatomic) OCTUserFollowerStatus  followerStatus;
 @property (assign, nonatomic) OCTUserFollowingStatus followingStatus;
 
 - (BOOL)mrc_updateRawLogin;

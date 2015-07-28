@@ -13,8 +13,11 @@
 @interface MRCUserListViewModel ()
 
 @property (strong, nonatomic) OCTUser *user;
+
 @property (assign, nonatomic, readwrite) MRCUserListViewModelType type;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+@property (copy, nonatomic, readwrite) NSArray *users;
+
 @property (strong, nonatomic) RACCommand *operationCommand;
 
 @end

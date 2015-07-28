@@ -11,7 +11,8 @@
 @interface MRCUserListItemViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTUser *user;
-@property (strong, nonatomic, readwrite) NSURL *avatarURL;
+
+@property (copy, nonatomic, readwrite) NSURL *avatarURL;
 @property (copy, nonatomic, readwrite) NSString *login;
 
 @end

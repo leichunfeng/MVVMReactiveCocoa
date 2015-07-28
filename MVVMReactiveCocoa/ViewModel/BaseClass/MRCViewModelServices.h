@@ -19,7 +19,6 @@
 @property (strong, nonatomic) OCTClient *client;
 
 @property (strong, nonatomic, readonly) id<MRCRepositoryService> repositoryService;
-
 @property (strong, nonatomic, readonly) id<MRCAppStoreService> appStoreService;
 
 @end

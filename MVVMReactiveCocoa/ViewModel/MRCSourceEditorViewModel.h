@@ -16,26 +16,26 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 
 @interface MRCSourceEditorViewModel : MRCWebViewModel
 
-@property (assign, nonatomic) MRCSourceEditorViewModelType type;
+@property (assign, nonatomic, readonly) MRCSourceEditorViewModelType type;
 
 @property (strong, nonatomic, readonly) OCTRepository    *repository;
 @property (strong, nonatomic, readonly) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (copy, nonatomic) NSString *rawContent;
-@property (copy, nonatomic) NSString *content;
-@property (copy, nonatomic) NSString *readmeHTML;
+@property (copy, nonatomic, readonly) NSString *rawContent;
+@property (copy, nonatomic, readonly) NSString *content;
+@property (copy, nonatomic, readonly) NSString *readmeHTML;
 
-@property (nonatomic, getter=isLineWrapping) BOOL lineWrapping;
-@property (nonatomic, getter=isEncoded)		 BOOL encoded;
-@property (nonatomic, getter=isMarkdown)	 BOOL markdown;
+@property (assign, nonatomic, getter = isLineWrapping)       BOOL lineWrapping;
+@property (assign, nonatomic, getter = isEncoded, readonly)	 BOOL encoded;
+@property (assign, nonatomic, getter = isMarkdown, readonly) BOOL markdown;
 
 @property (assign, nonatomic) BOOL showRawMarkdown;
 
-@property (strong, nonatomic) RACCommand *requestBlobCommand;
-@property (strong, nonatomic) RACCommand *requestReadmeHTMLCommand;
-@property (strong, nonatomic) RACCommand *requestReadmeMarkdownCommand;
+@property (strong, nonatomic, readonly) RACCommand *requestBlobCommand;
+@property (strong, nonatomic, readonly) RACCommand *requestReadmeHTMLCommand;
+@property (strong, nonatomic, readonly) RACCommand *requestReadmeMarkdownCommand;
 
-@property (copy, nonatomic) NSString *wrappingActionTitle;
-@property (copy, nonatomic) NSString *markdownActionTitle;
+@property (copy, nonatomic, readonly) NSString *wrappingActionTitle;
+@property (copy, nonatomic, readonly) NSString *markdownActionTitle;
 
 @end

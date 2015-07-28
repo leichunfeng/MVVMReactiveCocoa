@@ -10,6 +10,6 @@
 
 @interface MRCSegmentedControlViewModel : MRCViewModel
 
-@property (strong, nonatomic) NSArray *viewModels;
+@property (copy, nonatomic) NSArray *viewModels;
 
 @end

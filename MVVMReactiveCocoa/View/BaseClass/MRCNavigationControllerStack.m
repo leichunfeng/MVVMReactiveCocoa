@@ -12,7 +12,7 @@
 
 @interface MRCNavigationControllerStack ()
 
-@property (strong, nonatomic, readonly) id<MRCViewModelServices> services;
+@property (strong, nonatomic) id<MRCViewModelServices> services;
 @property (strong, nonatomic) NSMutableArray *navigationControllers;
 
 @end

@@ -11,13 +11,13 @@
 @interface MRCTableViewModel : MRCViewModel
 
 // The data source of table view.
-@property (strong, nonatomic) NSArray *dataSource;
+@property (copy, nonatomic) NSArray *dataSource;
 
 @property (assign, nonatomic) NSUInteger page;
 @property (assign, nonatomic) NSUInteger perPage;
 
 // The list of section titles to display in section index view.
-@property (strong, nonatomic) NSArray *sectionIndexTitles;
+@property (copy, nonatomic) NSArray *sectionIndexTitles;
 
 @property (assign, nonatomic) BOOL shouldPullToRefresh;
 @property (assign, nonatomic) BOOL shouldInfiniteScrolling;

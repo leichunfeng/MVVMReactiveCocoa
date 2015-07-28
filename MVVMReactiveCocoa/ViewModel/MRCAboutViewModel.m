@@ -12,6 +12,12 @@
 
 #define kAppStoreVersionKey @"appStoreVersion"
 
+@interface MRCAboutViewModel ()
+
+@property (assign, nonatomic, readwrite) BOOL isLatestVersion;
+
+@end
+
 @implementation MRCAboutViewModel
 
 - (void)initialize {

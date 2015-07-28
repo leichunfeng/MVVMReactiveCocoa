@@ -21,6 +21,10 @@
 @property (strong, nonatomic) id<MRCViewModelProtocol> viewModel;
 @property (strong, nonatomic) Reachability *reachability;
 
+@property (strong, nonatomic, readwrite) MRCNavigationControllerStack *navigationControllerStack;
+@property (assign, nonatomic, readwrite) NetworkStatus networkStatus;
+@property (copy, nonatomic, readwrite) NSString *adURL;
+
 @end
 
 @implementation MRCAppDelegate

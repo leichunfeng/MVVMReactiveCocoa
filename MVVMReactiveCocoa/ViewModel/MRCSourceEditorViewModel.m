@@ -10,8 +10,25 @@
 
 @interface MRCSourceEditorViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTRepository *repository;
+@property (assign, nonatomic, readwrite) MRCSourceEditorViewModelType type;
+
+@property (strong, nonatomic, readwrite) OCTRepository    *repository;
 @property (strong, nonatomic, readwrite) OCTBlobTreeEntry *blobTreeEntry;
+
+@property (copy, nonatomic, readwrite) NSString *rawContent;
+@property (copy, nonatomic, readwrite) NSString *content;
+@property (copy, nonatomic, readwrite) NSString *readmeHTML;
+
+@property (assign, nonatomic, getter = isEncoded, readwrite)  BOOL encoded;
+@property (assign, nonatomic, getter = isMarkdown, readwrite) BOOL markdown;
+
+@property (strong, nonatomic, readwrite) RACCommand *requestBlobCommand;
+@property (strong, nonatomic, readwrite) RACCommand *requestReadmeHTMLCommand;
+@property (strong, nonatomic, readwrite) RACCommand *requestReadmeMarkdownCommand;
+
+@property (copy, nonatomic, readwrite) NSString *wrappingActionTitle;
+@property (copy, nonatomic, readwrite) NSString *markdownActionTitle;
+
 @property (strong, nonatomic) OCTRef *reference;
 
 @end

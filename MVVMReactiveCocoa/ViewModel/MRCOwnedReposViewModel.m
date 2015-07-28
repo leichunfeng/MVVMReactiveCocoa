@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic, readwrite) OCTUser *user;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+@property (copy, nonatomic, readwrite) NSArray *repositories;
 
 @end
 

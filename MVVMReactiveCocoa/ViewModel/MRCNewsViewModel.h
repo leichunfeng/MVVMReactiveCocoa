@@ -15,10 +15,10 @@ typedef NS_ENUM(NSUInteger, MRCNewsViewModelType) {
 
 @interface MRCNewsViewModel : MRCTableViewModel
 
+@property (copy, nonatomic, readonly) NSArray *events;
 @property (assign, nonatomic, readonly) BOOL isCurrentUser;
 @property (assign, nonatomic, readonly) MRCNewsViewModelType type;
 @property (strong, nonatomic, readonly) RACCommand *didClickLinkCommand;
-@property (copy, nonatomic, readonly) NSArray *events;
 
 - (NSArray *)dataSourceWithEvents:(NSArray *)events;
 

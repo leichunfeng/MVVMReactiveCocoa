@@ -15,10 +15,11 @@
 @interface MRCNewsViewModel ()
 
 @property (strong, nonatomic) OCTUser *user;
-@property (copy, nonatomic) NSArray *events;
-@property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
+
+@property (copy, nonatomic, readwrite) NSArray *events;
 @property (assign, nonatomic, readwrite) BOOL isCurrentUser;
 @property (assign, nonatomic, readwrite) MRCNewsViewModelType type;
+@property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
 
 @end
 

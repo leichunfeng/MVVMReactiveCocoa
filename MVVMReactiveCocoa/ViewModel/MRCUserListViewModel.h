@@ -17,6 +17,6 @@ typedef NS_ENUM(NSUInteger, MRCUserListViewModelType) {
 
 @property (assign, nonatomic, readonly) MRCUserListViewModelType type;
 @property (assign, nonatomic, readonly) BOOL isCurrentUser;
-@property (copy, nonatomic) NSArray *users;
+@property (copy, nonatomic, readonly) NSArray *users;
 
 @end
