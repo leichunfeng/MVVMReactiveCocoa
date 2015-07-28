@@ -11,6 +11,6 @@
 @interface MRCSettingsViewModel : MRCTableViewModel
 
 @property (copy, nonatomic) NSString *adURL;
-@property (strong, nonatomic) RACCommand *logoutCommand;
+@property (strong, nonatomic, readonly) RACCommand *logoutCommand;
 
 @end

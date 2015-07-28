@@ -15,8 +15,10 @@
 
 // The window of current application.
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) MRCNavigationControllerStack *navigationControllerStack;
-@property (assign, nonatomic) NetworkStatus networkStatus;
-@property (copy, nonatomic) NSString *adURL;
+
+@property (strong, nonatomic, readonly) MRCNavigationControllerStack *navigationControllerStack;
+@property (assign, nonatomic, readonly) NetworkStatus networkStatus;
+
+@property (copy, nonatomic, readonly) NSString *adURL;
 
 @end

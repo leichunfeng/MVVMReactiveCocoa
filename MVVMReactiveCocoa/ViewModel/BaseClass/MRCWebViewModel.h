@@ -10,6 +10,6 @@
 
 @interface MRCWebViewModel : MRCViewModel
 
-@property (strong, nonatomic) NSURLRequest *request;
+@property (copy, nonatomic) NSURLRequest *request;
 
 @end

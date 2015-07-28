@@ -40,7 +40,6 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 @property (assign, nonatomic) MRCTitleViewType titleViewType;
 
 @property (copy, nonatomic) NSString *title;
-
 @property (copy, nonatomic) NSString *subtitle;
 
 // The callback block.
@@ -52,7 +51,7 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 @property (assign, nonatomic) BOOL shouldFetchLocalDataOnViewModelInitialize;
 @property (assign, nonatomic) BOOL shouldRequestRemoteDataOnViewDidLoad;
 
-@property (strong, nonatomic) RACSubject *willDisappearSignal;
+@property (strong, nonatomic, readonly) RACSubject *willDisappearSignal;
 
 // An additional method, in which you can initialize data, RACCommand etc.
 //

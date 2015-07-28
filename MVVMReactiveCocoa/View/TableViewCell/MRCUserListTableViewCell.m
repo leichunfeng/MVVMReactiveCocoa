@@ -15,9 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *htmlLabel;
-
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) IBOutlet MRCFollowButton *operationButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
 
 @property (strong, nonatomic) MRCUserListItemViewModel *viewModel;
 

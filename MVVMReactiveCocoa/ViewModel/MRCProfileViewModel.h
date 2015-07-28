@@ -14,12 +14,12 @@
 // The current `user`.
 @property (strong, nonatomic, readonly) OCTUser *user;
 
-@property (strong, nonatomic, readonly) NSString *company;
-@property (strong, nonatomic, readonly) NSString *location;
-@property (strong, nonatomic, readonly) NSString *email;
-@property (strong, nonatomic, readonly) NSString *blog;
+@property (copy, nonatomic, readonly) NSString *company;
+@property (copy, nonatomic, readonly) NSString *location;
+@property (copy, nonatomic, readonly) NSString *email;
+@property (copy, nonatomic, readonly) NSString *blog;
 
 // The view model of `Profile` interface.
-@property (strong, nonatomic) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
+@property (strong, nonatomic, readonly) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
 
 @end

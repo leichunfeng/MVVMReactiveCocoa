@@ -29,7 +29,7 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
 
 @property (strong, nonatomic, readonly) OCTUser *user;
 @property (assign, nonatomic, readonly) BOOL isCurrentUser;
-@property (copy, nonatomic) NSArray *repositories;
+@property (copy, nonatomic, readonly) NSArray *repositories;
 
 @property (assign, nonatomic, readonly) MRCReposViewModelType type;
 @property (assign, nonatomic, readonly) MRCReposViewModelOptions options;

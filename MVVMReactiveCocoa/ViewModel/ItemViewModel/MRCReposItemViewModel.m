@@ -11,8 +11,13 @@
 @interface MRCReposItemViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
+
+@property (copy, nonatomic, readwrite) NSAttributedString *name;
+@property (copy, nonatomic, readwrite) NSAttributedString *repoDescription;
+@property (copy, nonatomic, readwrite) NSString *updateTime;
 @property (copy, nonatomic, readwrite) NSString *language;
 
+@property (assign, nonatomic, readwrite) CGFloat height;
 @property (assign, nonatomic, readwrite) MRCReposViewModelOptions options;
 
 @end

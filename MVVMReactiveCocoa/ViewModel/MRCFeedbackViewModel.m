@@ -8,6 +8,12 @@
 
 #import "MRCFeedbackViewModel.h"
 
+@interface MRCFeedbackViewModel ()
+
+@property (strong, nonatomic, readwrite) RACCommand *submitFeedbackCommand;
+
+@end
+
 @implementation MRCFeedbackViewModel
 
 - (void)initialize {

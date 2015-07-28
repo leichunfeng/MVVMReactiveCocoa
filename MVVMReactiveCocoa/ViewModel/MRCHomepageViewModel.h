@@ -15,15 +15,15 @@
 @interface MRCHomepageViewModel : MRCTabBarViewModel
 
 // The view model of `News` interface.
-@property (strong, nonatomic) MRCNewsViewModel *newsViewModel;
+@property (strong, nonatomic, readonly) MRCNewsViewModel *newsViewModel;
 
 // The view model of `Repositories` interface.
-@property (strong, nonatomic) MRCReposViewModel *reposViewModel;
+@property (strong, nonatomic, readonly) MRCReposViewModel *reposViewModel;
 
 // The view model of `Search` interface.
-@property (strong, nonatomic) MRCSearchViewModel *searchViewModel;
+@property (strong, nonatomic, readonly) MRCSearchViewModel *searchViewModel;
 
 // The view model of `Profile` interface.
-@property (strong, nonatomic) MRCProfileViewModel *profileViewModel;
+@property (strong, nonatomic, readonly) MRCProfileViewModel *profileViewModel;
 
 @end

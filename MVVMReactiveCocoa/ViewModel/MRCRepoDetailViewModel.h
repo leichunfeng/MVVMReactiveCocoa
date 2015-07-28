@@ -12,16 +12,16 @@
 
 @property (strong, nonatomic, readonly) OCTRepository *repository;
 
-@property (strong, nonatomic) NSArray *references;
-@property (strong, nonatomic) OCTRef *reference;
+@property (copy, nonatomic, readonly) NSArray *references;
+@property (strong, nonatomic, readonly) OCTRef *reference;
 
-@property (copy, nonatomic) NSString *dateUpdated;
-@property (copy, nonatomic) NSString *readmeHTML;
-@property (copy, nonatomic) NSString *summaryReadmeHTML;
+@property (copy, nonatomic, readonly) NSString *dateUpdated;
+@property (copy, nonatomic, readonly) NSString *readmeHTML;
+@property (copy, nonatomic, readonly) NSString *summaryReadmeHTML;
 
-@property (strong, nonatomic) RACCommand *viewCodeCommand;
-@property (strong, nonatomic) RACCommand *readmeCommand;
-@property (strong, nonatomic) RACCommand *selectBranchOrTagCommand;
-@property (strong, nonatomic) RACCommand *rightBarButtonItemCommand;
+@property (strong, nonatomic, readonly) RACCommand *viewCodeCommand;
+@property (strong, nonatomic, readonly) RACCommand *readmeCommand;
+@property (strong, nonatomic, readonly) RACCommand *selectBranchOrTagCommand;
+@property (strong, nonatomic, readonly) RACCommand *rightBarButtonItemCommand;
 
 @end

@@ -10,6 +10,12 @@
 #import "MRCLoginViewModel.h"
 #import "MRCAboutViewModel.h"
 
+@interface MRCSettingsViewModel ()
+
+@property (strong, nonatomic, readwrite) RACCommand *logoutCommand;
+
+@end
+
 @implementation MRCSettingsViewModel
 
 - (void)initialize {

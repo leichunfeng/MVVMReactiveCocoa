@@ -14,10 +14,13 @@
 @interface MRCProfileViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTUser *user;
-@property (strong, nonatomic, readwrite) NSString *company;
-@property (strong, nonatomic, readwrite) NSString *location;
-@property (strong, nonatomic, readwrite) NSString *email;
-@property (strong, nonatomic, readwrite) NSString *blog;
+
+@property (copy, nonatomic, readwrite) NSString *company;
+@property (copy, nonatomic, readwrite) NSString *location;
+@property (copy, nonatomic, readwrite) NSString *email;
+@property (copy, nonatomic, readwrite) NSString *blog;
+
+@property (strong, nonatomic, readwrite) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
 
 @end
 
@@ -75,10 +78,10 @@
         return (value.length > 0 && ![value isEqualToString:@"(null)"]) ? value : MRC_EMPTY_PLACEHOLDER;
     };
     
-    RAC(self, company) = [RACObserve(self.user, company) map:map];
+    RAC(self, company)  = [RACObserve(self.user, company) map:map];
     RAC(self, location) = [RACObserve(self.user, location) map:map];
-    RAC(self, email) = [RACObserve(self.user, email) map:map];
-    RAC(self, blog) = [RACObserve(self.user, blog) map:map];
+    RAC(self, email)    = [RACObserve(self.user, email) map:map];
+    RAC(self, blog)     = [RACObserve(self.user, blog) map:map];
     
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)

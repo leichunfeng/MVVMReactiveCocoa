@@ -17,7 +17,20 @@
 @interface MRCRepoDetailViewModel ()
 
 @property (strong, nonatomic, readwrite) OCTRepository *repository;
-@property (strong, nonatomic) NSString *referenceName;
+
+@property (copy, nonatomic, readwrite) NSArray *references;
+@property (strong, nonatomic, readwrite) OCTRef *reference;
+
+@property (copy, nonatomic, readwrite) NSString *dateUpdated;
+@property (copy, nonatomic, readwrite) NSString *readmeHTML;
+@property (copy, nonatomic, readwrite) NSString *summaryReadmeHTML;
+
+@property (strong, nonatomic, readwrite) RACCommand *viewCodeCommand;
+@property (strong, nonatomic, readwrite) RACCommand *readmeCommand;
+@property (strong, nonatomic, readwrite) RACCommand *selectBranchOrTagCommand;
+@property (strong, nonatomic, readwrite) RACCommand *rightBarButtonItemCommand;
+
+@property (copy, nonatomic) NSString *referenceName;
 
 @end
 

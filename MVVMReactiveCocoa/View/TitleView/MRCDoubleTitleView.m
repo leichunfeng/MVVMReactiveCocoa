@@ -8,6 +8,13 @@
 
 #import "MRCDoubleTitleView.h"
 
+@interface MRCDoubleTitleView ()
+
+@property (strong, nonatomic, readwrite) UILabel *titleLabel;
+@property (strong, nonatomic, readwrite) UILabel *subtitleLabel;
+
+@end
+
 @implementation MRCDoubleTitleView
 
 - (instancetype)initWithFrame:(CGRect)frame {
