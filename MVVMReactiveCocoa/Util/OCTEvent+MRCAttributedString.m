@@ -300,6 +300,9 @@
             [attributedString mrc_addRepositoryLinkAttributeWithName:self.repositoryName referenceName:MRCReferenceNameWithTagName(concreteEvent.refName)];
         }
     } else if (concreteEvent.eventType == OCTRefEventDeleted) {
+        [attributedString insertAttributedString:@" ".mrc_attributedString atIndex:0];
+        [attributedString appendString:@" "];
+        [attributedString mrc_addNormalTitleForegroundColorAttribute];
         [attributedString mrc_addBackgroundColorAttribute];
     }
 
