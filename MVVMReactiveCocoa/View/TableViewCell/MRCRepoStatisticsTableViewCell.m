@@ -8,6 +8,14 @@
 
 #import "MRCRepoStatisticsTableViewCell.h"
 
+@interface MRCRepoStatisticsTableViewCell ()
+
+@property (weak, nonatomic, readwrite) IBOutlet UILabel *watchLabel;
+@property (weak, nonatomic, readwrite) IBOutlet UILabel *starLabel;
+@property (weak, nonatomic, readwrite) IBOutlet UILabel *forkLabel;
+
+@end
+
 @implementation MRCRepoStatisticsTableViewCell
 
 - (void)layoutSubviews {

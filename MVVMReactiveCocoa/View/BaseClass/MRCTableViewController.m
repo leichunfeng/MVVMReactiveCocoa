@@ -12,6 +12,8 @@
 
 @interface MRCTableViewController ()
 
+@property (weak, nonatomic, readwrite) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic, readonly) MRCTableViewModel *viewModel;
 @property (strong, nonatomic) CBStoreHouseRefreshControl *refreshControl;
 

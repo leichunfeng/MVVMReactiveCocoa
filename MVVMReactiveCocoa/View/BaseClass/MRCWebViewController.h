@@ -10,6 +10,6 @@
 
 @interface MRCWebViewController : MRCViewController <UIWebViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic, readonly) UIWebView *webView;
 
 @end

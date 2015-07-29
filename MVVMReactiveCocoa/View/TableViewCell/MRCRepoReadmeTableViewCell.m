@@ -10,6 +10,10 @@
 
 @interface MRCRepoReadmeTableViewCell () <UIWebViewDelegate>
 
+@property (weak, nonatomic, readwrite) IBOutlet UIButton *readmeButton;
+@property (weak, nonatomic, readwrite) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic, readwrite) IBOutlet UIWebView *webView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *readmeImageView;
 @property (weak, nonatomic) IBOutlet UIView *wapperView;
 @property (weak, nonatomic) IBOutlet UIView *readmeWapperView;

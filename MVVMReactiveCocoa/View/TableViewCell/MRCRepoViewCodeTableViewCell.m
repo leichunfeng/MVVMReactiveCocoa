@@ -10,6 +10,9 @@
 
 @interface MRCRepoViewCodeTableViewCell ()
 
+@property (weak, nonatomic, readwrite) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic, readwrite) IBOutlet UIButton *viewCodeButton;
+
 @property (weak, nonatomic) IBOutlet UIView *wapperView;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (strong, nonatomic) UIView *separatorViewTopBorder;

@@ -10,7 +10,7 @@
 
 @interface MRCRepoViewCodeTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *viewCodeButton;
+@property (weak, nonatomic, readonly) UILabel *timeLabel;
+@property (weak, nonatomic, readonly) UIButton *viewCodeButton;
 
 @end
