@@ -18,8 +18,6 @@
 #import "MRCNavigationController.h"
 #import "MRCSearchViewController.h"
 #import "MRCUserListViewModel.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 
@@ -79,16 +77,6 @@
             }
         }];
     self.delegate = self;
-    
-//    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Crashlytics"
-//                                                                           style:UIBarButtonItemStylePlain
-//                                                                          target:self
-//                                                                          action:@selector(didClickCrashlytics:)];
-//    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-}
-
-- (void)didClickCrashlytics:(id)sender {
-    [[Crashlytics sharedInstance] crash];
 }
 
 @end
