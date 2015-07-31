@@ -190,8 +190,8 @@ char *DT__NewBase64Encode(const void *buffer, size_t length, bool separateLines,
 		return NULL;
 	}
     
-	size_t i = 0;
-	size_t j = 0;
+	size_t index = 0;
+	size_t index2 = 0;
 	const size_t lineLength = separateLines ? INPUT_LINE_LENGTH : length;
 	size_t lineEnd = lineLength;
     
@@ -202,17 +202,17 @@ char *DT__NewBase64Encode(const void *buffer, size_t length, bool separateLines,
 			lineEnd = length;
 		}
         
-		for (; i + BINARY_UNIT_SIZE - 1 < lineEnd; i += BINARY_UNIT_SIZE)
+		for (; index + BINARY_UNIT_SIZE - 1 < lineEnd; index += BINARY_UNIT_SIZE)
 		{
 			//
 			// Inner loop: turn 48 bytes into 64 base64 characters
 			//
-			outputBuffer[j++] = base64EncodeLookup[(inputBuffer[i] & 0xFC) >> 2];
-			outputBuffer[j++] = base64EncodeLookup[((inputBuffer[i] & 0x03) << 4)
-                                                   | ((inputBuffer[i + 1] & 0xF0) >> 4)];
-			outputBuffer[j++] = base64EncodeLookup[((inputBuffer[i + 1] & 0x0F) << 2)
-                                                   | ((inputBuffer[i + 2] & 0xC0) >> 6)];
-			outputBuffer[j++] = base64EncodeLookup[inputBuffer[i + 2] & 0x3F];
+			outputBuffer[index2++] = base64EncodeLookup[(inputBuffer[index] & 0xFC) >> 2];
+			outputBuffer[index2++] = base64EncodeLookup[((inputBuffer[index] & 0x03) << 4)
+                                                   | ((inputBuffer[index + 1] & 0xF0) >> 4)];
+			outputBuffer[index2++] = base64EncodeLookup[((inputBuffer[index + 1] & 0x0F) << 2)
+                                                   | ((inputBuffer[index + 2] & 0xC0) >> 6)];
+			outputBuffer[index2++] = base64EncodeLookup[inputBuffer[index + 2] & 0x3F];
 		}
         
 		if (lineEnd == length)
@@ -223,40 +223,40 @@ char *DT__NewBase64Encode(const void *buffer, size_t length, bool separateLines,
 		//
 		// Add the newline
 		//
-		outputBuffer[j++] = '\r';
-		outputBuffer[j++] = '\n';
+		outputBuffer[index2++] = '\r';
+		outputBuffer[index2++] = '\n';
 		lineEnd += lineLength;
 	}
     
-	if (i + 1 < length)
+	if (index + 1 < length)
 	{
 		//
 		// Handle the single '=' case
 		//
-		outputBuffer[j++] = base64EncodeLookup[(inputBuffer[i] & 0xFC) >> 2];
-		outputBuffer[j++] = base64EncodeLookup[((inputBuffer[i] & 0x03) << 4)
-                                               | ((inputBuffer[i + 1] & 0xF0) >> 4)];
-		outputBuffer[j++] = base64EncodeLookup[(inputBuffer[i + 1] & 0x0F) << 2];
-		outputBuffer[j++] =	'=';
+		outputBuffer[index2++] = base64EncodeLookup[(inputBuffer[index] & 0xFC) >> 2];
+		outputBuffer[index2++] = base64EncodeLookup[((inputBuffer[index] & 0x03) << 4)
+                                               | ((inputBuffer[index + 1] & 0xF0) >> 4)];
+		outputBuffer[index2++] = base64EncodeLookup[(inputBuffer[index + 1] & 0x0F) << 2];
+		outputBuffer[index2++] =	'=';
 	}
-	else if (i < length)
+	else if (index < length)
 	{
 		//
 		// Handle the double '=' case
 		//
-		outputBuffer[j++] = base64EncodeLookup[(inputBuffer[i] & 0xFC) >> 2];
-		outputBuffer[j++] = base64EncodeLookup[(inputBuffer[i] & 0x03) << 4];
-		outputBuffer[j++] = '=';
-		outputBuffer[j++] = '=';
+		outputBuffer[index2++] = base64EncodeLookup[(inputBuffer[index] & 0xFC) >> 2];
+		outputBuffer[index2++] = base64EncodeLookup[(inputBuffer[index] & 0x03) << 4];
+		outputBuffer[index2++] = '=';
+		outputBuffer[index2++] = '=';
 	}
-	outputBuffer[j] = 0;
+	outputBuffer[index2] = 0;
     
 	//
 	// Set the output length and return the buffer
 	//
 	if (outputLength)
 	{
-		*outputLength = j;
+		*outputLength = index2;
 	}
 	return outputBuffer;
 }
