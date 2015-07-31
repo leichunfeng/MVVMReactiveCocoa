@@ -12,7 +12,7 @@
 
 + (NSString *)stringByFormattingBytes:(long long)bytes
 {
-	NSArray *units = [NSArray arrayWithObjects:@"%1.0f Bytes", @"%1.1f KB", @"%1.1f MB", @"%1.1f GB", @"%1.1f TB", nil];
+	NSArray *units = @[@"%1.0f Bytes", @"%1.1f KB", @"%1.1f MB", @"%1.1f GB", @"%1.1f TB"];
 	
 	long long value = bytes * 10;
 	for (NSUInteger i=0; i<[units count]; i++)
@@ -23,10 +23,10 @@
 		}
 		if (value < 10000)
 		{
-			return [NSString stringWithFormat:[units objectAtIndex:i], value/10.0];
+			return [NSString stringWithFormat:units[i], value/10.0];
 		}
 	}
 	
-	return [NSString stringWithFormat:[units objectAtIndex:[units count]-1], value/10.0];
+	return [NSString stringWithFormat:units[[units count]-1], value/10.0];
 }
 @end
