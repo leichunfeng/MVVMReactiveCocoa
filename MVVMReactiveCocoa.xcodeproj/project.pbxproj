@@ -54,6 +54,7 @@
 		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E901A8F455000D25218 /* MRCDoubleTitleView.m */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
+		242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
@@ -455,6 +456,8 @@
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		241DAC761B0893A0005FDA9C /* MRCMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCMemoryCache.h; sourceTree = "<group>"; };
 		241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCMemoryCache.m; sourceTree = "<group>"; };
+		242307401B75A48700CBC74A /* UIView+MRCFrameAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MRCFrameAdditions.h"; sourceTree = "<group>"; };
+		242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MRCFrameAdditions.m"; sourceTree = "<group>"; };
 		242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = OctoKit/OctoKit.xcodeproj; sourceTree = "<group>"; };
 		242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = OctoKit/Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mantle.xcodeproj; path = OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj; sourceTree = "<group>"; };
@@ -769,6 +772,8 @@
 				249A8A351B53EBC600E18582 /* OCTEvent+MRCAttributedString.m */,
 				249A8A3D1B54A30700E18582 /* OCTRef+MRCAdditions.h */,
 				249A8A3E1B54A30700E18582 /* OCTRef+MRCAdditions.m */,
+				242307401B75A48700CBC74A /* UIView+MRCFrameAdditions.h */,
+				242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1755,6 +1760,7 @@
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,
 				24E3B9F71B492301001C1DEE /* MRCNewsItemViewModel.m in Sources */,
+				242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,
 				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,
