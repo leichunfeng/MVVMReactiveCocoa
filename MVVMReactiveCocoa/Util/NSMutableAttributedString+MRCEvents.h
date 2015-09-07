@@ -79,6 +79,3 @@ paragraphStyle; \
 - (NSMutableAttributedString *)mrc_addBoldTitleAttributes;
 
 @end
-
-
-
