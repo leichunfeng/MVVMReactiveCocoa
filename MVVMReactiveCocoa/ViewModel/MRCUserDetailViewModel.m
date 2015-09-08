@@ -31,7 +31,7 @@
     if (self.user.followingStatus == OCTUserFollowingStatusUnknown) {
         [[[self.services
         	client]
-        	hasFollowUser:self.user]
+        	doesFollowUser:self.user]
         	subscribeNext:^(NSNumber *isFollowing) {
                 @strongify(self)
              	if (isFollowing.boolValue) {

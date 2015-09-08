@@ -31,6 +31,8 @@
 
 - (BOOL (^)(NSError *error))requestRemoteDataErrorsFilter;
 
+- (NSUInteger)offsetForPage:(NSUInteger)page;
+
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page;
 
 @end

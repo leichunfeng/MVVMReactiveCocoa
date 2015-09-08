@@ -110,9 +110,9 @@
     RACSignal *fetchSignal = [RACSignal empty];
 
     if (self.type == MRCNewsViewModelTypeNews) {
-        fetchSignal = [[self.services client] fetchUserReceivedEventsWithPage:page perPage:self.perPage];
+        fetchSignal = [[self.services client] fetchUserReceivedEventsWithOffset:[self offsetForPage:page] perPage:self.perPage];
     } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user page:page perPage:self.perPage];
+        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage];
     }
     
     return [[[fetchSignal
