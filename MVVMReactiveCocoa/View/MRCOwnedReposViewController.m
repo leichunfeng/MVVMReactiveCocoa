@@ -13,7 +13,7 @@
 
 @interface MRCOwnedReposViewController ()
 
-@property (strong, nonatomic, readonly) MRCOwnedReposViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCOwnedReposViewModel *viewModel;
 
 @end
 

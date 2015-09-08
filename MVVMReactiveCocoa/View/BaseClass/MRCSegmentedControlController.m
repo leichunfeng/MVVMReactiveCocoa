@@ -10,8 +10,8 @@
 
 @interface MRCSegmentedControlController ()
 
-@property (strong, nonatomic, readwrite) UISegmentedControl *segmentedControl;
-@property (strong, nonatomic) UIViewController *currentViewController;
+@property (nonatomic, strong, readwrite) UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) UIViewController *currentViewController;
 
 @end
 

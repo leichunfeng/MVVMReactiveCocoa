@@ -10,7 +10,7 @@
 
 @interface MRCStarredReposViewModel ()
 
-@property (assign, nonatomic, readwrite) MRCStarredReposViewModelEntryPoint entryPoint;
+@property (nonatomic, assign, readwrite) MRCStarredReposViewModelEntryPoint entryPoint;
 
 @end
 

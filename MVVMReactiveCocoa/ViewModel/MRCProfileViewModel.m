@@ -13,14 +13,14 @@
 
 @interface MRCProfileViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTUser *user;
+@property (nonatomic, strong, readwrite) OCTUser *user;
 
-@property (copy, nonatomic, readwrite) NSString *company;
-@property (copy, nonatomic, readwrite) NSString *location;
-@property (copy, nonatomic, readwrite) NSString *email;
-@property (copy, nonatomic, readwrite) NSString *blog;
+@property (nonatomic, copy, readwrite) NSString *company;
+@property (nonatomic, copy, readwrite) NSString *location;
+@property (nonatomic, copy, readwrite) NSString *email;
+@property (nonatomic, copy, readwrite) NSString *blog;
 
-@property (strong, nonatomic, readwrite) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
+@property (nonatomic, strong, readwrite) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
 
 @end
 

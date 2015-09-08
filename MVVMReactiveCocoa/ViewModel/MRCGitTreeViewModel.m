@@ -11,11 +11,11 @@
 
 @interface MRCGitTreeViewModel ()
 
-@property (strong, nonatomic) OCTRepository *repository;
-@property (strong, nonatomic) OCTRef *reference;
+@property (nonatomic, strong) OCTRepository *repository;
+@property (nonatomic, strong) OCTRef *reference;
 
-@property (strong, nonatomic, readwrite) OCTTree *tree;
-@property (copy, nonatomic, readwrite) NSString *path;
+@property (nonatomic, strong, readwrite) OCTTree *tree;
+@property (nonatomic, copy, readwrite) NSString *path;
 
 @end
 

@@ -11,8 +11,8 @@
 
 @interface MRCNewsItemViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTEvent *event;
-@property (copy, nonatomic, readwrite) NSAttributedString *attributedString;
+@property (nonatomic, strong, readwrite) OCTEvent *event;
+@property (nonatomic, copy, readwrite) NSAttributedString *attributedString;
 
 @end
 

@@ -16,19 +16,19 @@
 
 @interface MRCLoginViewController () <UITextFieldDelegate, UIViewControllerTransitioningDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak) IBOutlet UIButton *avatarButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *usernameImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *usernameImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *passwordImageView;
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *usernameTextField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIButton *browserLoginButton;
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (nonatomic, weak) IBOutlet UIButton *browserLoginButton;
 
-@property (strong, nonatomic, readonly) MRCLoginViewModel *viewModel;
-@property (strong, nonatomic) IQKeyboardReturnKeyHandler *returnKeyHandler;
+@property (nonatomic, strong, readonly) MRCLoginViewModel *viewModel;
+@property (nonatomic, strong) IQKeyboardReturnKeyHandler *returnKeyHandler;
 
 @end
 

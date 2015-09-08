@@ -14,7 +14,7 @@ typedef NS_OPTIONS(NSUInteger, MRCEventOptions) {
 
 @interface OCTEvent (MRCAttributedString)
 
-@property (assign, nonatomic, readonly) MRCEventOptions options;
+@property (nonatomic, assign, readonly) MRCEventOptions options;
 
 - (NSMutableAttributedString *)mrc_attributedString;
 

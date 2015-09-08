@@ -12,7 +12,7 @@
 
 @interface MRCSettingsViewModel ()
 
-@property (strong, nonatomic, readwrite) RACCommand *logoutCommand;
+@property (nonatomic, strong, readwrite) RACCommand *logoutCommand;
 
 @end
 

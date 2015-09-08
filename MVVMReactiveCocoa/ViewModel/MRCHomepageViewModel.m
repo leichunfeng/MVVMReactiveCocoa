@@ -10,10 +10,10 @@
 
 @interface MRCHomepageViewModel ()
 
-@property (strong, nonatomic, readwrite) MRCNewsViewModel    *newsViewModel;
-@property (strong, nonatomic, readwrite) MRCReposViewModel   *reposViewModel;
-@property (strong, nonatomic, readwrite) MRCSearchViewModel  *searchViewModel;
-@property (strong, nonatomic, readwrite) MRCProfileViewModel *profileViewModel;
+@property (nonatomic, strong, readwrite) MRCNewsViewModel    *newsViewModel;
+@property (nonatomic, strong, readwrite) MRCReposViewModel   *reposViewModel;
+@property (nonatomic, strong, readwrite) MRCSearchViewModel  *searchViewModel;
+@property (nonatomic, strong, readwrite) MRCProfileViewModel *profileViewModel;
 
 @end
 

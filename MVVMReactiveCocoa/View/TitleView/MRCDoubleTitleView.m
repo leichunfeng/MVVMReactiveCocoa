@@ -10,8 +10,8 @@
 
 @interface MRCDoubleTitleView ()
 
-@property (strong, nonatomic, readwrite) UILabel *titleLabel;
-@property (strong, nonatomic, readwrite) UILabel *subtitleLabel;
+@property (nonatomic, strong, readwrite) UILabel *titleLabel;
+@property (nonatomic, strong, readwrite) UILabel *subtitleLabel;
 
 @end
 

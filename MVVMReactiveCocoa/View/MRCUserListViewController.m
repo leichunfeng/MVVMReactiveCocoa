@@ -14,8 +14,8 @@
 
 @interface MRCUserListViewController ()
 
-@property (strong, nonatomic, readonly) MRCUserListViewModel *viewModel;
-@property (strong, nonatomic) UIImage *image;
+@property (nonatomic, strong, readonly) MRCUserListViewModel *viewModel;
+@property (nonatomic, strong) UIImage *image;
 
 @end
 

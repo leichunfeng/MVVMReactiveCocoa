@@ -11,7 +11,7 @@
 
 @interface MRCSelectBranchOrTagViewController ()
 
-@property (strong, nonatomic, readonly) MRCSelectBranchOrTagViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCSelectBranchOrTagViewModel *viewModel;
 
 @end
 

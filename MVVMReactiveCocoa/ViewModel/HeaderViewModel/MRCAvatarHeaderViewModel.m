@@ -10,7 +10,7 @@
 
 @interface MRCAvatarHeaderViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTUser *user;
+@property (nonatomic, strong, readwrite) OCTUser *user;
 
 @end
 

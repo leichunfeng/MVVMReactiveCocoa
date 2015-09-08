@@ -10,7 +10,7 @@
 
 @interface MRCTableViewModel ()
 
-@property (strong, nonatomic, readwrite) RACCommand *requestRemoteDataCommand;
+@property (nonatomic, strong, readwrite) RACCommand *requestRemoteDataCommand;
 
 @end
 

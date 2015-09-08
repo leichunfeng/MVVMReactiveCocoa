@@ -11,11 +11,11 @@
 
 @interface MRCLoginViewModel ()
 
-@property (copy, nonatomic, readwrite) NSURL *avatarURL;
+@property (nonatomic, copy, readwrite) NSURL *avatarURL;
 
-@property (strong, nonatomic, readwrite) RACSignal *validLoginSignal;
-@property (strong, nonatomic, readwrite) RACCommand *loginCommand;
-@property (strong, nonatomic, readwrite) RACCommand *browserLoginCommand;
+@property (nonatomic, strong, readwrite) RACSignal *validLoginSignal;
+@property (nonatomic, strong, readwrite) RACCommand *loginCommand;
+@property (nonatomic, strong, readwrite) RACCommand *browserLoginCommand;
 
 @end
 

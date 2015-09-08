@@ -10,7 +10,7 @@
 
 @interface MRCFeedbackViewModel ()
 
-@property (strong, nonatomic, readwrite) RACCommand *submitFeedbackCommand;
+@property (nonatomic, strong, readwrite) RACCommand *submitFeedbackCommand;
 
 @end
 

@@ -11,15 +11,15 @@
 
 @interface MRCReposItemViewModel : NSObject
 
-@property (strong, nonatomic, readonly) OCTRepository *repository;
+@property (nonatomic, strong, readonly) OCTRepository *repository;
 
-@property (copy, nonatomic, readonly) NSAttributedString *name;
-@property (copy, nonatomic, readonly) NSAttributedString *repoDescription;
-@property (copy, nonatomic, readonly) NSString *updateTime;
-@property (copy, nonatomic, readonly) NSString *language;
+@property (nonatomic, copy, readonly) NSAttributedString *name;
+@property (nonatomic, copy, readonly) NSAttributedString *repoDescription;
+@property (nonatomic, copy, readonly) NSString *updateTime;
+@property (nonatomic, copy, readonly) NSString *language;
 
-@property (assign, nonatomic, readonly) CGFloat height;
-@property (assign, nonatomic, readonly) MRCReposViewModelOptions options;
+@property (nonatomic, assign, readonly) CGFloat height;
+@property (nonatomic, assign, readonly) MRCReposViewModelOptions options;
 
 - (instancetype)initWithRepository:(OCTRepository *)repository options:(MRCReposViewModelOptions)options;
 

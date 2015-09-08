@@ -10,10 +10,10 @@
 
 @interface MRCRepoSettingsOwnerTableViewCell ()
 
-@property (weak, nonatomic, readwrite) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic, readwrite) IBOutlet UIButton *avatarButton;
-@property (weak, nonatomic, readwrite) IBOutlet UILabel *topTextLabel;
-@property (weak, nonatomic, readwrite) IBOutlet UILabel *bottomTextLabel;
+@property (nonatomic, weak, readwrite) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak, readwrite) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *topTextLabel;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *bottomTextLabel;
 
 @end
 

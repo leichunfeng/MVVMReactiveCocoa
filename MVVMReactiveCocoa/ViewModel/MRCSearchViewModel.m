@@ -10,7 +10,7 @@
 
 @interface MRCSearchViewModel ()
 
-@property (strong, nonatomic, readwrite) MRCReposSearchResultsViewModel *searchResultsViewModel;
+@property (nonatomic, strong, readwrite) MRCReposSearchResultsViewModel *searchResultsViewModel;
 
 @end
 

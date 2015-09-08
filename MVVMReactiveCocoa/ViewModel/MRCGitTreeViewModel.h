@@ -10,7 +10,7 @@
 
 @interface MRCGitTreeViewModel : MRCTableViewModel
 
-@property (strong, nonatomic, readonly) OCTTree *tree;
-@property (copy, nonatomic, readonly) NSString *path;
+@property (nonatomic, strong, readonly) OCTTree *tree;
+@property (nonatomic, copy, readonly) NSString *path;
 
 @end

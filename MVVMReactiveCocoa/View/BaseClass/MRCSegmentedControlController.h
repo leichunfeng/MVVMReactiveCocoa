@@ -20,14 +20,14 @@
 
 @interface MRCSegmentedControlController : MRCViewController
 
-@property (copy, nonatomic) NSArray *viewControllers;
-@property (strong, nonatomic, readonly) UISegmentedControl *segmentedControl;
-@property (assign, nonatomic) id<MRCSegmentedControlControllerDelegate> delegate;
+@property (nonatomic, copy) NSArray *viewControllers;
+@property (nonatomic, strong, readonly) UISegmentedControl *segmentedControl;
+@property (nonatomic, assign) id<MRCSegmentedControlControllerDelegate> delegate;
 
 @end
 
 @interface UIViewController (MRCSegmentedControlItem)
 
-@property (copy, nonatomic) NSString *segmentedControlItem;
+@property (nonatomic, copy) NSString *segmentedControlItem;
 
 @end

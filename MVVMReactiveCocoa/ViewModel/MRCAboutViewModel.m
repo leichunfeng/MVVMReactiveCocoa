@@ -14,7 +14,7 @@
 
 @interface MRCAboutViewModel ()
 
-@property (assign, nonatomic, readwrite) BOOL isLatestVersion;
+@property (nonatomic, assign, readwrite) BOOL isLatestVersion;
 
 @end
 

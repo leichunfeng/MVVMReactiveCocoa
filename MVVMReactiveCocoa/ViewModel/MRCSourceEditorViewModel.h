@@ -16,26 +16,26 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 
 @interface MRCSourceEditorViewModel : MRCWebViewModel
 
-@property (assign, nonatomic, readonly) MRCSourceEditorViewModelType type;
+@property (nonatomic, assign, readonly) MRCSourceEditorViewModelType type;
 
-@property (strong, nonatomic, readonly) OCTRepository    *repository;
-@property (strong, nonatomic, readonly) OCTBlobTreeEntry *blobTreeEntry;
+@property (nonatomic, strong, readonly) OCTRepository    *repository;
+@property (nonatomic, strong, readonly) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (copy, nonatomic, readonly) NSString *rawContent;
-@property (copy, nonatomic, readonly) NSString *content;
-@property (copy, nonatomic, readonly) NSString *readmeHTML;
+@property (nonatomic, copy, readonly) NSString *rawContent;
+@property (nonatomic, copy, readonly) NSString *content;
+@property (nonatomic, copy, readonly) NSString *readmeHTML;
 
-@property (assign, nonatomic, getter = isLineWrapping)       BOOL lineWrapping;
-@property (assign, nonatomic, getter = isEncoded, readonly)	 BOOL encoded;
-@property (assign, nonatomic, getter = isMarkdown, readonly) BOOL markdown;
+@property (nonatomic, assign, getter = isLineWrapping)       BOOL lineWrapping;
+@property (nonatomic, assign, getter = isEncoded, readonly)	 BOOL encoded;
+@property (nonatomic, assign, getter = isMarkdown, readonly) BOOL markdown;
 
-@property (assign, nonatomic) BOOL showRawMarkdown;
+@property (nonatomic, assign) BOOL showRawMarkdown;
 
-@property (strong, nonatomic, readonly) RACCommand *requestBlobCommand;
-@property (strong, nonatomic, readonly) RACCommand *requestReadmeHTMLCommand;
-@property (strong, nonatomic, readonly) RACCommand *requestReadmeMarkdownCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestBlobCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestReadmeHTMLCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestReadmeMarkdownCommand;
 
-@property (copy, nonatomic, readonly) NSString *wrappingActionTitle;
-@property (copy, nonatomic, readonly) NSString *markdownActionTitle;
+@property (nonatomic, copy, readonly) NSString *wrappingActionTitle;
+@property (nonatomic, copy, readonly) NSString *markdownActionTitle;
 
 @end

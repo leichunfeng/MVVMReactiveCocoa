@@ -14,12 +14,12 @@
 
 @interface MRCNewsViewModel ()
 
-@property (strong, nonatomic) OCTUser *user;
+@property (nonatomic, strong) OCTUser *user;
 
-@property (copy, nonatomic, readwrite) NSArray *events;
-@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
-@property (assign, nonatomic, readwrite) MRCNewsViewModelType type;
-@property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
+@property (nonatomic, copy, readwrite) NSArray *events;
+@property (nonatomic, assign, readwrite) BOOL isCurrentUser;
+@property (nonatomic, assign, readwrite) MRCNewsViewModelType type;
+@property (nonatomic, strong, readwrite) RACCommand *didClickLinkCommand;
 
 @end
 

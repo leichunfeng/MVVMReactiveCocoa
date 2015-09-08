@@ -14,11 +14,11 @@
 @interface MRCAppDelegate : UIResponder <UIApplicationDelegate>
 
 // The window of current application.
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
 
-@property (strong, nonatomic, readonly) MRCNavigationControllerStack *navigationControllerStack;
-@property (assign, nonatomic, readonly) NetworkStatus networkStatus;
+@property (nonatomic, strong, readonly) MRCNavigationControllerStack *navigationControllerStack;
+@property (nonatomic, assign, readonly) NetworkStatus networkStatus;
 
-@property (copy, nonatomic, readonly) NSString *adURL;
+@property (nonatomic, copy, readonly) NSString *adURL;
 
 @end

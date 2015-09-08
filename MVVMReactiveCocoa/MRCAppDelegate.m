@@ -17,13 +17,13 @@
 
 @interface MRCAppDelegate ()
 
-@property (strong, nonatomic) MRCViewModelServicesImpl *services;
-@property (strong, nonatomic) id<MRCViewModelProtocol> viewModel;
-@property (strong, nonatomic) Reachability *reachability;
+@property (nonatomic, strong) MRCViewModelServicesImpl *services;
+@property (nonatomic, strong) id<MRCViewModelProtocol> viewModel;
+@property (nonatomic, strong) Reachability *reachability;
 
-@property (strong, nonatomic, readwrite) MRCNavigationControllerStack *navigationControllerStack;
-@property (assign, nonatomic, readwrite) NetworkStatus networkStatus;
-@property (copy, nonatomic, readwrite) NSString *adURL;
+@property (nonatomic, strong, readwrite) MRCNavigationControllerStack *navigationControllerStack;
+@property (nonatomic, assign, readwrite) NetworkStatus networkStatus;
+@property (nonatomic, copy, readwrite) NSString *adURL;
 
 @end
 

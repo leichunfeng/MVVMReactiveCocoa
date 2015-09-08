@@ -13,7 +13,7 @@
 
 @interface MRCReposViewController ()
 
-@property (strong, nonatomic, readonly) MRCReposViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCReposViewModel *viewModel;
 
 @end
 

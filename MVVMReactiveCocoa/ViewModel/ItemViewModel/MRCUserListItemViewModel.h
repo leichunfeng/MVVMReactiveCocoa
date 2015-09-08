@@ -10,12 +10,12 @@
 
 @interface MRCUserListItemViewModel : NSObject
 
-@property (strong, nonatomic, readonly) OCTUser *user;
+@property (nonatomic, strong, readonly) OCTUser *user;
 
-@property (copy, nonatomic, readonly) NSURL *avatarURL;
-@property (copy, nonatomic, readonly) NSString *login;
+@property (nonatomic, copy, readonly) NSURL *avatarURL;
+@property (nonatomic, copy, readonly) NSString *login;
 
-@property (strong, nonatomic) RACCommand *operationCommand;
+@property (nonatomic, strong) RACCommand *operationCommand;
 
 - (instancetype)initWithUser:(OCTUser *)user;
 
