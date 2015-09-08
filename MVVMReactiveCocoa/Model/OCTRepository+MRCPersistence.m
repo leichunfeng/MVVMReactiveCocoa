@@ -94,7 +94,7 @@
         
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
-            [oldIDs addObject:[rs stringForColumnIndex:0]];
+            [oldIDs mrc_addObject:[rs stringForColumnIndex:0]];
         }
         
         for (OCTRepository *repository in repositories) {
@@ -145,7 +145,7 @@
         
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
-            [oldIDs addObject:[rs stringForColumnIndex:0]];
+            [oldIDs mrc_addObject:[rs stringForColumnIndex:0]];
         }
         
         for (OCTRepository *repository in repositories) {
