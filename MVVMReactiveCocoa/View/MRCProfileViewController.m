@@ -14,8 +14,8 @@
 
 @interface MRCProfileViewController ()
 
-@property (strong, nonatomic, readonly) MRCProfileViewModel *viewModel;
-@property (strong, nonatomic) MRCAvatarHeaderView *tableHeaderView;
+@property (nonatomic, strong, readonly) MRCProfileViewModel *viewModel;
+@property (nonatomic, strong) MRCAvatarHeaderView *tableHeaderView;
 
 @end
 

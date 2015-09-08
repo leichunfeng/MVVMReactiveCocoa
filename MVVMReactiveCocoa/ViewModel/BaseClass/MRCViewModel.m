@@ -10,8 +10,8 @@
 
 @interface MRCViewModel ()
 
-@property (strong, nonatomic, readwrite) id<MRCViewModelServices> services;
-@property (strong, nonatomic, readwrite) id params;
+@property (nonatomic, strong, readwrite) id<MRCViewModelServices> services;
+@property (nonatomic, strong, readwrite) id params;
 
 @end
 

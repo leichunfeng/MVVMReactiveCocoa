@@ -14,7 +14,7 @@
 
 @interface MRCNewsViewController ()
 
-@property (strong, nonatomic, readonly) MRCNewsViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCNewsViewModel *viewModel;
 
 @end
 

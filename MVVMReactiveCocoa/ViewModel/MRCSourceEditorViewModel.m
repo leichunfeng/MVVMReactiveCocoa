@@ -10,26 +10,26 @@
 
 @interface MRCSourceEditorViewModel ()
 
-@property (assign, nonatomic, readwrite) MRCSourceEditorViewModelType type;
+@property (nonatomic, assign, readwrite) MRCSourceEditorViewModelType type;
 
-@property (strong, nonatomic, readwrite) OCTRepository    *repository;
-@property (strong, nonatomic, readwrite) OCTBlobTreeEntry *blobTreeEntry;
+@property (nonatomic, strong, readwrite) OCTRepository    *repository;
+@property (nonatomic, strong, readwrite) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (copy, nonatomic, readwrite) NSString *rawContent;
-@property (copy, nonatomic, readwrite) NSString *content;
-@property (copy, nonatomic, readwrite) NSString *readmeHTML;
+@property (nonatomic, copy, readwrite) NSString *rawContent;
+@property (nonatomic, copy, readwrite) NSString *content;
+@property (nonatomic, copy, readwrite) NSString *readmeHTML;
 
-@property (assign, nonatomic, getter = isEncoded, readwrite)  BOOL encoded;
-@property (assign, nonatomic, getter = isMarkdown, readwrite) BOOL markdown;
+@property (nonatomic, assign, getter = isEncoded, readwrite)  BOOL encoded;
+@property (nonatomic, assign, getter = isMarkdown, readwrite) BOOL markdown;
 
-@property (strong, nonatomic, readwrite) RACCommand *requestBlobCommand;
-@property (strong, nonatomic, readwrite) RACCommand *requestReadmeHTMLCommand;
-@property (strong, nonatomic, readwrite) RACCommand *requestReadmeMarkdownCommand;
+@property (nonatomic, strong, readwrite) RACCommand *requestBlobCommand;
+@property (nonatomic, strong, readwrite) RACCommand *requestReadmeHTMLCommand;
+@property (nonatomic, strong, readwrite) RACCommand *requestReadmeMarkdownCommand;
 
-@property (copy, nonatomic, readwrite) NSString *wrappingActionTitle;
-@property (copy, nonatomic, readwrite) NSString *markdownActionTitle;
+@property (nonatomic, copy, readwrite) NSString *wrappingActionTitle;
+@property (nonatomic, copy, readwrite) NSString *markdownActionTitle;
 
-@property (strong, nonatomic) OCTRef *reference;
+@property (nonatomic, strong) OCTRef *reference;
 
 @end
 

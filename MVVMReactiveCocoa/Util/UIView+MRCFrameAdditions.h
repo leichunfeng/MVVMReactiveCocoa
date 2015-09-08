@@ -10,9 +10,9 @@
 
 @interface UIView (MRCFrameAdditions)
 
-@property (assign, nonatomic) CGFloat mrc_x;
-@property (assign, nonatomic) CGFloat mrc_y;
-@property (assign, nonatomic) CGFloat mrc_width;
-@property (assign, nonatomic) CGFloat mrc_height;
+@property (nonatomic, assign) CGFloat mrc_x;
+@property (nonatomic, assign) CGFloat mrc_y;
+@property (nonatomic, assign) CGFloat mrc_width;
+@property (nonatomic, assign) CGFloat mrc_height;
 
 @end

@@ -13,7 +13,7 @@
 
 @interface MRCReposSearchResultsViewController ()
 
-@property (strong, nonatomic, readonly) MRCReposSearchResultsViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCReposSearchResultsViewModel *viewModel;
 
 @end
 

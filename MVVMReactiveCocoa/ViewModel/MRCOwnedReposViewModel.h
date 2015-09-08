@@ -27,11 +27,11 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel
 
-@property (strong, nonatomic, readonly) OCTUser *user;
-@property (assign, nonatomic, readonly) BOOL isCurrentUser;
-@property (copy, nonatomic, readonly) NSArray *repositories;
+@property (nonatomic, strong, readonly) OCTUser *user;
+@property (nonatomic, assign, readonly) BOOL isCurrentUser;
+@property (nonatomic, copy, readonly) NSArray *repositories;
 
-@property (assign, nonatomic, readonly) MRCReposViewModelType type;
-@property (assign, nonatomic, readonly) MRCReposViewModelOptions options;
+@property (nonatomic, assign, readonly) MRCReposViewModelType type;
+@property (nonatomic, assign, readonly) MRCReposViewModelOptions options;
 
 @end

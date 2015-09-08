@@ -12,13 +12,13 @@
 
 @interface MRCUserListTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel *loginLabel;
-@property (weak, nonatomic) IBOutlet UILabel *htmlLabel;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
+@property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak) IBOutlet UILabel *loginLabel;
+@property (nonatomic, weak) IBOutlet UILabel *htmlLabel;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, weak) IBOutlet MRCFollowButton *operationButton;
 
-@property (strong, nonatomic) MRCUserListItemViewModel *viewModel;
+@property (nonatomic, strong) MRCUserListItemViewModel *viewModel;
 
 @end
 

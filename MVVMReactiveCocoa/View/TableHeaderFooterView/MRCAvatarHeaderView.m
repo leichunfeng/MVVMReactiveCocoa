@@ -16,30 +16,30 @@
 
 @interface MRCAvatarHeaderView () <UIViewControllerTransitioningDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *overView;
+@property (nonatomic, weak) IBOutlet UIView *overView;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *followersLabel;
-@property (weak, nonatomic) IBOutlet UILabel *repositoriesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *followingLabel;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *followersLabel;
+@property (nonatomic, weak) IBOutlet UILabel *repositoriesLabel;
+@property (nonatomic, weak) IBOutlet UILabel *followingLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
-@property (weak, nonatomic) IBOutlet UIButton *followersButton;
-@property (weak, nonatomic) IBOutlet UIButton *repositoriesButton;
-@property (weak, nonatomic) IBOutlet UIButton *followingButton;
+@property (nonatomic, weak) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak) IBOutlet UIButton *followersButton;
+@property (nonatomic, weak) IBOutlet UIButton *repositoriesButton;
+@property (nonatomic, weak) IBOutlet UIButton *followingButton;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
-@property (weak, nonatomic) IBOutlet MRCFollowButton *operationButton;
+@property (nonatomic, weak) IBOutlet MRCFollowButton *operationButton;
 
-@property (strong, nonatomic) GPUImageGaussianBlurFilter *gaussianBlurFilter;
+@property (nonatomic, strong) GPUImageGaussianBlurFilter *gaussianBlurFilter;
 
-@property (strong, nonatomic) UIImageView *coverImageView;
-@property (strong, nonatomic) UIImageView *bluredCoverImageView;
+@property (nonatomic, strong) UIImageView *coverImageView;
+@property (nonatomic, strong) UIImageView *bluredCoverImageView;
 
-@property (strong, nonatomic) UIImage *avatarImage;
+@property (nonatomic, strong) UIImage *avatarImage;
 
-@property (strong, nonatomic) MRCAvatarHeaderViewModel *viewModel;
+@property (nonatomic, strong) MRCAvatarHeaderViewModel *viewModel;
 
 @end
 

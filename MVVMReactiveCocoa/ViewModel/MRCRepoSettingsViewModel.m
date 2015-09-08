@@ -11,7 +11,7 @@
 
 @interface MRCRepoSettingsViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTRepository *repository;
+@property (nonatomic, strong, readwrite) OCTRepository *repository;
 
 @end
 

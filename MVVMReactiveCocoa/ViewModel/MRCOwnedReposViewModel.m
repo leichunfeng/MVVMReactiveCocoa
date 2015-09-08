@@ -12,9 +12,9 @@
 
 @interface MRCOwnedReposViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTUser *user;
-@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
-@property (copy, nonatomic, readwrite) NSArray *repositories;
+@property (nonatomic, strong, readwrite) OCTUser *user;
+@property (nonatomic, assign, readwrite) BOOL isCurrentUser;
+@property (nonatomic, copy, readwrite) NSArray *repositories;
 
 @end
 

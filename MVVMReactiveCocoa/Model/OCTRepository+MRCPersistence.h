@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, OCTRepositoryStarredStatus) {
 
 @interface OCTRepository (MRCPersistence) <MRCPersistenceProtocol>
 
-@property (assign, nonatomic) OCTRepositoryStarredStatus starredStatus;
+@property (nonatomic, assign) OCTRepositoryStarredStatus starredStatus;
 
 + (BOOL)mrc_saveOrUpdateRepositories:(NSArray *)repositories;
 + (BOOL)mrc_saveOrUpdateStarredStatusWithRepositories:(NSArray *)repositories;

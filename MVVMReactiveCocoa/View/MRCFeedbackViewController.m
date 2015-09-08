@@ -11,8 +11,8 @@
 
 @interface MRCFeedbackViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic, readonly) MRCFeedbackViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, strong, readonly) MRCFeedbackViewModel *viewModel;
 
 @end
 

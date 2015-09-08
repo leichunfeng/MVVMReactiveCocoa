@@ -10,8 +10,8 @@
 
 @interface MRCSelectBranchOrTagViewModel ()
 
-@property (copy, nonatomic) NSArray *references;
-@property (strong, nonatomic, readwrite) OCTRef *selectedReference;
+@property (nonatomic, copy) NSArray *references;
+@property (nonatomic, strong, readwrite) OCTRef *selectedReference;
 
 @end
 
