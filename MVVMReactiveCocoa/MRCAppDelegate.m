@@ -61,6 +61,7 @@
 - (UIViewController *)createInitialViewController {
     // The user has logged-in.
     if ([SSKeychain rawLogin].isExist && [SSKeychain accessToken].isExist) {
+		// Some OctoKit APIs will use the `login` property of `OCTUser`.
         OCTUser *user = [OCTUser mrc_userWithRawLogin:[SSKeychain rawLogin] server:OCTServer.dotComServer];
 
         OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:[SSKeychain accessToken]];
