@@ -54,6 +54,10 @@
     return nil;
 }
 
+- (NSUInteger)offsetForPage:(NSUInteger)page {
+    return (page - 1) * self.perPage;
+}
+
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     return [RACSignal empty];
 }

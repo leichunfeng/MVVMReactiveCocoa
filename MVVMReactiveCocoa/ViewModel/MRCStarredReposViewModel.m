@@ -91,7 +91,7 @@
     } else {
         return [[[[self.services
         	client]
-        	fetchStarredRepositoriesForUser:self.user page:page perPage:self.perPage].collect
+            fetchStarredRepositoriesForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage].collect
             doNext:^(NSArray *repositories) {
                 if (self.isCurrentUser) {
                     for (OCTRepository *repo in repositories) {
