@@ -115,7 +115,8 @@
         fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage];
     }
     
-    return [[[fetchSignal
+    return [[[[fetchSignal
+        take:self.perPage]
     	collect]
     	doNext:^(NSArray *events) {
             if (self.isCurrentUser && page == 1) { // Cache the first page

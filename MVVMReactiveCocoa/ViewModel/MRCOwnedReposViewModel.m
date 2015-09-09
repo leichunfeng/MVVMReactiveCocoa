@@ -125,9 +125,10 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[self.services
+    return [[[self.services
     	client]
-        fetchUserRepositories].collect;
+        fetchUserRepositories]
+    	collect];
 }
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {
