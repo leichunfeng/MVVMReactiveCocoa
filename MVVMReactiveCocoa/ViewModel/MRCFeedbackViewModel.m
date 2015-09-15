@@ -21,9 +21,14 @@
     
     self.title = @"Feedback";
     
-    RACSignal *validSubmitSignal = [RACObserve(self, content) map:^id(NSString *content) {
-        return @(content.length > 0);
-    }];
+    RACSignal *validSubmitSignal = [[[RACObserve(self, content)
+        map:^(NSString *content) {
+        	return [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }]
+        map:^(NSString *content) {
+            return @(content.length > 0);
+        }]
+        distinctUntilChanged];
     
     OCTRepository *mvvmReactiveCocoa = [OCTRepository modelWithDictionary:@{ @"ownerLogin": MVVM_REACTIVECOCOA_OWNER_LOGIN, @"name": MVVM_REACTIVECOCOA_NAME } error:NULL];
     
