@@ -14,11 +14,12 @@
 
 @interface MRCNewsViewModel ()
 
-@property (strong, nonatomic) OCTUser *user;
-@property (copy, nonatomic) NSArray *events;
-@property (strong, nonatomic, readwrite) RACCommand *didClickLinkCommand;
-@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
-@property (assign, nonatomic, readwrite) MRCNewsViewModelType type;
+@property (nonatomic, strong) OCTUser *user;
+
+@property (nonatomic, copy, readwrite) NSArray *events;
+@property (nonatomic, assign, readwrite) BOOL isCurrentUser;
+@property (nonatomic, assign, readwrite) MRCNewsViewModelType type;
+@property (nonatomic, strong, readwrite) RACCommand *didClickLinkCommand;
 
 @end
 
@@ -109,12 +110,13 @@
     RACSignal *fetchSignal = [RACSignal empty];
 
     if (self.type == MRCNewsViewModelTypeNews) {
-        fetchSignal = [[self.services client] fetchUserReceivedEventsWithPage:page perPage:self.perPage];
+        fetchSignal = [[self.services client] fetchUserReceivedEventsWithOffset:[self offsetForPage:page] perPage:self.perPage];
     } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user page:page perPage:self.perPage];
+        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage];
     }
     
-    return [[[fetchSignal
+    return [[[[fetchSignal
+        take:self.perPage]
     	collect]
     	doNext:^(NSArray *events) {
             if (self.isCurrentUser && page == 1) { // Cache the first page

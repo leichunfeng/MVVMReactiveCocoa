@@ -12,7 +12,7 @@
 
 @interface MRCSettingsViewController ()
 
-@property (strong, nonatomic, readonly) MRCSettingsViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCSettingsViewModel *viewModel;
 
 @end
 

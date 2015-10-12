@@ -11,7 +11,7 @@
 
 @interface MRCUserDetailViewController ()
 
-@property (strong, nonatomic, readonly) MRCUserDetailViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCUserDetailViewModel *viewModel;
 
 @end
 

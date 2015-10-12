@@ -10,6 +10,6 @@
 
 @interface MRCRepoSettingsAvatarTableViewCell : MRCTableViewCellStyleValue1
 
-@property (strong, nonatomic, readonly) UIImageView *imageView;
+@property (nonatomic, strong, readonly) UIImageView *imageView;
 
 @end

@@ -17,9 +17,13 @@
 
 @interface MRCAppDelegate ()
 
-@property (strong, nonatomic) MRCViewModelServicesImpl *services;
-@property (strong, nonatomic) id<MRCViewModelProtocol> viewModel;
-@property (strong, nonatomic) Reachability *reachability;
+@property (nonatomic, strong) MRCViewModelServicesImpl *services;
+@property (nonatomic, strong) id<MRCViewModelProtocol> viewModel;
+@property (nonatomic, strong) Reachability *reachability;
+
+@property (nonatomic, strong, readwrite) MRCNavigationControllerStack *navigationControllerStack;
+@property (nonatomic, assign, readwrite) NetworkStatus networkStatus;
+@property (nonatomic, copy, readwrite) NSString *adURL;
 
 @end
 
@@ -57,6 +61,7 @@
 - (UIViewController *)createInitialViewController {
     // The user has logged-in.
     if ([SSKeychain rawLogin].isExist && [SSKeychain accessToken].isExist) {
+		// Some OctoKit APIs will use the `login` property of `OCTUser`.
         OCTUser *user = [OCTUser mrc_userWithRawLogin:[SSKeychain rawLogin] server:OCTServer.dotComServer];
 
         OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:[SSKeychain accessToken]];

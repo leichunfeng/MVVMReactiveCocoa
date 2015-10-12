@@ -22,7 +22,7 @@
 - (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel;
 
 // The `viewModel` parameter in `-initWithViewModel:` method.
-@property (strong, nonatomic, readonly) id<MRCViewModelProtocol> viewModel;
+@property (nonatomic, strong, readonly) id<MRCViewModelProtocol> viewModel;
 
 @optional
 

@@ -10,15 +10,15 @@
 
 @interface MRCAvatarHeaderViewModel : NSObject
 
-@property (strong, nonatomic, readonly) OCTUser *user;
+@property (nonatomic, strong, readonly) OCTUser *user;
 
 // The contentOffset of the scroll view.
-@property (assign, nonatomic) CGPoint contentOffset;
+@property (nonatomic, assign) CGPoint contentOffset;
 
-@property (strong, nonatomic) RACCommand *operationCommand;
-@property (strong, nonatomic) RACCommand *followersCommand;
-@property (strong, nonatomic) RACCommand *repositoriesCommand;
-@property (strong, nonatomic) RACCommand *followingCommand;
+@property (nonatomic, strong) RACCommand *operationCommand;
+@property (nonatomic, strong) RACCommand *followersCommand;
+@property (nonatomic, strong) RACCommand *repositoriesCommand;
+@property (nonatomic, strong) RACCommand *followingCommand;
 
 - (instancetype)initWithUser:(OCTUser *)user;
 

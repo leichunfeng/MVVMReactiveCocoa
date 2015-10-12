@@ -14,8 +14,8 @@
 
 @interface MRCRepoSettingsViewController () <UMSocialUIDelegate, UIViewControllerTransitioningDelegate>
 
-@property (strong, nonatomic, readonly) MRCRepoSettingsViewModel *viewModel;
-@property (strong, nonatomic) UIImageView *avatarImageView;
+@property (nonatomic, strong, readonly) MRCRepoSettingsViewModel *viewModel;
+@property (nonatomic, strong) UIImageView *avatarImageView;
 
 @end
 

@@ -12,10 +12,13 @@
 
 @interface MRCUserListViewModel ()
 
-@property (strong, nonatomic) OCTUser *user;
-@property (assign, nonatomic, readwrite) MRCUserListViewModelType type;
-@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
-@property (strong, nonatomic) RACCommand *operationCommand;
+@property (nonatomic, strong) OCTUser *user;
+
+@property (nonatomic, assign, readwrite) MRCUserListViewModelType type;
+@property (nonatomic, assign, readwrite) BOOL isCurrentUser;
+@property (nonatomic, copy, readwrite) NSArray *users;
+
+@property (nonatomic, strong) RACCommand *operationCommand;
 
 @end
 
@@ -112,9 +115,11 @@
     };
     
     if (self.type == MRCUserListViewModelTypeFollowers) {
-        return [[[[[self.services
+        return [[[[[[[self.services
         	client]
-            fetchFollowersForUser:self.user page:page perPage:self.perPage].collect
+            fetchFollowersForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
+            take:self.perPage]
+            collect]
         	map:^(NSArray *users) {
                 for (OCTUser *user in users) {
                     if (self.isCurrentUser) user.followerStatus = OCTUserFollowerStatusYES;
@@ -131,9 +136,11 @@
                 }
             }];
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
-        return [[[[[self.services
+        return [[[[[[[self.services
             client]
-            fetchFollowingForUser:self.user page:page perPage:self.perPage].collect
+            fetchFollowingForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
+        	take:self.perPage]
+            collect]
             map:^(NSArray *users) {
                 for (OCTUser *user in users) {
                     if (self.isCurrentUser) user.followingStatus = OCTUserFollowingStatusYES;
@@ -164,7 +171,7 @@
         if (user.followingStatus == OCTUserFollowingStatusUnknown) {
             [[[self.services
                 client]
-                hasFollowUser:user]
+                doesFollowUser:user]
                 subscribeNext:^(NSNumber *isFollowing) {
                     if (isFollowing.boolValue) {
                         user.followingStatus = OCTUserFollowingStatusYES;

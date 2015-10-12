@@ -9,12 +9,11 @@
 #import "MRCOwnedReposViewController.h"
 #import "MRCOwnedReposViewModel.h"
 #import "MRCReposTableViewCell.h"
-#import "MRCNetworkHeaderView.h"
 #import "MRCReposItemViewModel.h"
 
 @interface MRCOwnedReposViewController ()
 
-@property (strong, nonatomic, readonly) MRCOwnedReposViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCOwnedReposViewModel *viewModel;
 
 @end
 
@@ -27,17 +26,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCReposTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCReposTableViewCell"];
     
-    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    MRCNetworkHeaderView *networkHeaderView = [NSBundle.mainBundle loadNibNamed:@"MRCNetworkHeaderView" owner:nil options:nil].firstObject;
-    networkHeaderView.frame = tableHeaderView.bounds;
-    [tableHeaderView addSubview:networkHeaderView];
-    
     @weakify(self)
-    [RACObserve(MRCSharedAppDelegate, networkStatus) subscribeNext:^(NSNumber *networkStatus) {
-        @strongify(self)
-        self.tableView.tableHeaderView = (networkStatus.integerValue == NotReachable ? tableHeaderView : nil);
-    }];
-    
     [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue && self.viewModel.dataSource == nil) {

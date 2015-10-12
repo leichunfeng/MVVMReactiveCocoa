@@ -66,3 +66,12 @@
 }
 
 @end
+
+@implementation NSMutableArray (MRCSafeAdditions)
+
+- (void)mrc_addObject:(id)object {
+    if (!object) return;
+    [self addObject:object];
+}
+
+@end

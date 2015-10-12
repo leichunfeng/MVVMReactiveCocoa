@@ -8,6 +8,12 @@
 
 #import "MRCSearchViewModel.h"
 
+@interface MRCSearchViewModel ()
+
+@property (nonatomic, strong, readwrite) MRCReposSearchResultsViewModel *searchResultsViewModel;
+
+@end
+
 @implementation MRCSearchViewModel
 
 - (void)initialize {

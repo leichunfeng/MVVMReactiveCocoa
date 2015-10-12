@@ -35,3 +35,9 @@
 - (UIImage *)color2ImageSized:(CGSize)size;
 
 @end
+
+@interface NSMutableArray (MRCSafeAdditions)
+
+- (void)mrc_addObject:(id)object;
+
+@end

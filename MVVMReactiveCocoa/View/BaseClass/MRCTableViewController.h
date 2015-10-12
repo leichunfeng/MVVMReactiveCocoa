@@ -11,8 +11,8 @@
 @interface MRCTableViewController : MRCViewController <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 // The table view for tableView controller.
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (assign, nonatomic, readonly) UIEdgeInsets contentInset;
+@property (nonatomic, weak, readonly) UITableView *tableView;
+@property (nonatomic, assign, readonly) UIEdgeInsets contentInset;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 

@@ -8,6 +8,15 @@
 
 #import "MRCRepoSettingsOwnerTableViewCell.h"
 
+@interface MRCRepoSettingsOwnerTableViewCell ()
+
+@property (nonatomic, weak, readwrite) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak, readwrite) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *topTextLabel;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *bottomTextLabel;
+
+@end
+
 @implementation MRCRepoSettingsOwnerTableViewCell
 
 - (void)awakeFromNib {

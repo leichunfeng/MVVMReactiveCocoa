@@ -53,9 +53,11 @@
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     @weakify(self)
-    return [[[self.services
+    return [[[[[self.services
     	client]
-    	fetchPublicRepositoriesForUser:self.user page:page perPage:self.perPage].collect
+        fetchPublicRepositoriesForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
+    	take:self.perPage]
+        collect]
     	map:^(NSArray *repositories) {
             @strongify(self)
             if (page != 1) {

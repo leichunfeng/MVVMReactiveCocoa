@@ -14,7 +14,7 @@
 
 @interface MRCViewController ()
 
-@property (strong, nonatomic, readwrite) MRCViewModel *viewModel;
+@property (nonatomic, strong, readwrite) MRCViewModel *viewModel;
 
 @end
 
@@ -118,7 +118,7 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskPortrait;
 }
 

@@ -10,10 +10,11 @@
 
 @interface MRCNewsItemViewModel : NSObject
 
-@property (strong, nonatomic, readonly) OCTEvent *event;
-@property (strong, nonatomic, readonly) NSAttributedString *attributedString;
-@property (assign, nonatomic) CGFloat height;
-@property (strong, nonatomic) RACCommand *didClickLinkCommand;
+@property (nonatomic, strong, readonly) OCTEvent *event;
+@property (nonatomic, copy, readonly) NSAttributedString *attributedString;
+
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, strong) RACCommand *didClickLinkCommand;
 
 - (instancetype)initWithEvent:(OCTEvent *)event;
 

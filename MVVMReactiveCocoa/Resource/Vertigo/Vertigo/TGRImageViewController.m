@@ -50,6 +50,10 @@
     return YES;
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - UIScrollViewDelegate methods
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {

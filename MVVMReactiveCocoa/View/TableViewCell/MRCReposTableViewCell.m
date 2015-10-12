@@ -20,17 +20,17 @@ static UIImage *_tintedStarIcon = nil;
 
 @interface MRCReposTableViewCell ()
 
-@property (strong, nonatomic) MRCReposItemViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *updateTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *desLabel;
-@property (weak, nonatomic) IBOutlet UILabel *languageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *starCountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *forkCountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *starIconImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *forkIconImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutConstraint;
+@property (nonatomic, strong) MRCReposItemViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *updateTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *desLabel;
+@property (nonatomic, weak) IBOutlet UILabel *languageLabel;
+@property (nonatomic, weak) IBOutlet UILabel *starCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel *forkCountLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *iconImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *starIconImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *forkIconImageView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *layoutConstraint;
 
 @end
 

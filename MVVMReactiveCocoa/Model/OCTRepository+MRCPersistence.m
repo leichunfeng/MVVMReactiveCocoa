@@ -94,7 +94,7 @@
         
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
-            [oldIDs addObject:[rs stringForColumnIndex:0]];
+            [oldIDs mrc_addObject:[rs stringForColumnIndex:0]];
         }
         
         for (OCTRepository *repository in repositories) {
@@ -145,7 +145,7 @@
         
         while ([rs next]) {
             if (oldIDs == nil) oldIDs = [[NSMutableArray alloc] init];
-            [oldIDs addObject:[rs stringForColumnIndex:0]];
+            [oldIDs mrc_addObject:[rs stringForColumnIndex:0]];
         }
         
         for (OCTRepository *repository in repositories) {
@@ -315,6 +315,30 @@
 }
 
 #pragma mark - Star Or Unstar Repository
+
++ (BOOL)mrc_hasUserStarredRepository:(OCTRepository *)repository {
+    __block BOOL result = YES;
+    
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        NSString *sql = @"SELECT * FROM User_Starred_Repository WHERE userId = ? AND repositoryId = ? LIMIT 1;";
+
+        FMResultSet *rs = [db executeQuery:sql, [OCTUser mrc_currentUserId], repository.objectID];
+
+        @onExit {
+            [rs close];
+        };
+        
+        if (!rs) {
+            MRCLogLastError(db);
+            result = NO;
+            return;
+        }
+        
+        result = [rs next];
+    }];
+    
+    return result;
+}
 
 + (BOOL)mrc_starRepository:(OCTRepository *)repository {
     __block BOOL result = YES;

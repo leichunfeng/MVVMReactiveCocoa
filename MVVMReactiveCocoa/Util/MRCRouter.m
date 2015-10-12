@@ -13,7 +13,7 @@ static MRCRouter *_sharedInstance = nil;
 
 @interface MRCRouter ()
 
-@property (strong, nonatomic) NSDictionary *viewModelViewMappings; // viewModel到view的映射
+@property (nonatomic, copy) NSDictionary *viewModelViewMappings; // viewModel到view的映射
 
 @end
 

@@ -10,11 +10,12 @@
 #import "MRCProfileViewModel.h"
 #import "MRCAvatarHeaderView.h"
 #import "MRCAvatarHeaderViewModel.h"
+#import "SDWebImagePrefetcher.h"
 
 @interface MRCProfileViewController ()
 
-@property (strong, nonatomic, readonly) MRCProfileViewModel *viewModel;
-@property (strong, nonatomic) MRCAvatarHeaderView *tableHeaderView;
+@property (nonatomic, strong, readonly) MRCProfileViewModel *viewModel;
+@property (nonatomic, strong) MRCAvatarHeaderView *tableHeaderView;
 
 @end
 
@@ -25,8 +26,9 @@
 - (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
     self = [super initWithViewModel:viewModel];
     if (self) {
-        self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
-        [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
+        if (self.viewModel.avatarHeaderViewModel.user.avatarURL) {
+            [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[ self.viewModel.avatarHeaderViewModel.user.avatarURL ]];
+        }
     }
     return self;
 }
@@ -35,6 +37,9 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
+    [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     @weakify(self)

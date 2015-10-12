@@ -11,7 +11,7 @@
 
 @interface MRCStarredReposViewController ()
 
-@property (strong, nonatomic, readonly) MRCStarredReposViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCStarredReposViewModel *viewModel;
 
 @end
 

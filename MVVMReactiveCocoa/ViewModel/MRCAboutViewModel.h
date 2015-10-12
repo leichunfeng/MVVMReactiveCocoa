@@ -10,8 +10,8 @@
 
 @interface MRCAboutViewModel : MRCTableViewModel
 
-@property (assign, nonatomic) BOOL isLatestVersion;
+@property (nonatomic, assign, readonly) BOOL isLatestVersion;
 
-@property (copy, nonatomic) NSString *appStoreVersion;
+@property (nonatomic, copy, readonly) NSString *appStoreVersion;
 
 @end
