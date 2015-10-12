@@ -82,7 +82,6 @@
         		deliverOnMainThread]
             	subscribeNext:^(NSArray *results) {
                     @strongify(self)
-                    [self.tableView.infiniteScrollingView stopAnimating];
                     self.viewModel.page += 1;
                 } error:^(NSError *error) {
                     @strongify(self)
@@ -189,7 +188,6 @@
     	subscribeNext:^(id x) {
             @strongify(self)
             self.viewModel.page = 1;
-            [self.refreshControl finishingLoading];
         } error:^(NSError *error) {
             @strongify(self)
             [self.refreshControl finishingLoading];
