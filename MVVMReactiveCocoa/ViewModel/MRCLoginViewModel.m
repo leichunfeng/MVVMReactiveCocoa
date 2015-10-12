@@ -9,6 +9,16 @@
 #import "MRCLoginViewModel.h"
 #import "MRCHomepageViewModel.h"
 
+@interface MRCLoginViewModel ()
+
+@property (nonatomic, copy, readwrite) NSURL *avatarURL;
+
+@property (nonatomic, strong, readwrite) RACSignal *validLoginSignal;
+@property (nonatomic, strong, readwrite) RACCommand *loginCommand;
+@property (nonatomic, strong, readwrite) RACCommand *browserLoginCommand;
+
+@end
+
 @implementation MRCLoginViewModel
 
 - (void)initialize {

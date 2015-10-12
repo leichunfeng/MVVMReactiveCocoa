@@ -10,18 +10,18 @@
 
 @interface MRCRepoDetailViewModel : MRCTableViewModel
 
-@property (strong, nonatomic, readonly) OCTRepository *repository;
+@property (nonatomic, strong, readonly) OCTRepository *repository;
 
-@property (strong, nonatomic) NSArray *references;
-@property (strong, nonatomic) OCTRef *reference;
+@property (nonatomic, copy, readonly) NSArray *references;
+@property (nonatomic, strong, readonly) OCTRef *reference;
 
-@property (copy, nonatomic) NSString *dateUpdated;
-@property (copy, nonatomic) NSString *readmeHTML;
-@property (copy, nonatomic) NSString *summaryReadmeHTML;
+@property (nonatomic, copy, readonly) NSString *dateUpdated;
+@property (nonatomic, copy, readonly) NSString *readmeHTML;
+@property (nonatomic, copy, readonly) NSString *summaryReadmeHTML;
 
-@property (strong, nonatomic) RACCommand *viewCodeCommand;
-@property (strong, nonatomic) RACCommand *readmeCommand;
-@property (strong, nonatomic) RACCommand *selectBranchOrTagCommand;
-@property (strong, nonatomic) RACCommand *rightBarButtonItemCommand;
+@property (nonatomic, strong, readonly) RACCommand *viewCodeCommand;
+@property (nonatomic, strong, readonly) RACCommand *readmeCommand;
+@property (nonatomic, strong, readonly) RACCommand *selectBranchOrTagCommand;
+@property (nonatomic, strong, readonly) RACCommand *rightBarButtonItemCommand;
 
 @end

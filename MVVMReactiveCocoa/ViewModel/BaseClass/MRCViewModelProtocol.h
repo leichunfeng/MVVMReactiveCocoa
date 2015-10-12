@@ -30,29 +30,28 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params;
 
 // The `services` parameter in `-initWithServices:params:` method.
-@property (strong, nonatomic, readonly) id<MRCViewModelServices> services;
+@property (nonatomic, strong, readonly) id<MRCViewModelServices> services;
 
 // The `params` parameter in `-initWithServices:params:` method.
-@property (strong, nonatomic, readonly) id params;
+@property (nonatomic, strong, readonly) id params;
 
 @optional
 
-@property (assign, nonatomic) MRCTitleViewType titleViewType;
+@property (nonatomic, assign) MRCTitleViewType titleViewType;
 
-@property (copy, nonatomic) NSString *title;
-
-@property (copy, nonatomic) NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 
 // The callback block.
-@property (copy, nonatomic) VoidBlock_id callback;
+@property (nonatomic, copy) VoidBlock_id callback;
 
 // A RACSubject object, which representing all errors occurred in view model.
-@property (strong, nonatomic, readonly) RACSubject *errors;
+@property (nonatomic, strong, readonly) RACSubject *errors;
 
-@property (assign, nonatomic) BOOL shouldFetchLocalDataOnViewModelInitialize;
-@property (assign, nonatomic) BOOL shouldRequestRemoteDataOnViewDidLoad;
+@property (nonatomic, assign) BOOL shouldFetchLocalDataOnViewModelInitialize;
+@property (nonatomic, assign) BOOL shouldRequestRemoteDataOnViewDidLoad;
 
-@property (strong, nonatomic) RACSubject *willDisappearSignal;
+@property (nonatomic, strong, readonly) RACSubject *willDisappearSignal;
 
 // An additional method, in which you can initialize data, RACCommand etc.
 //

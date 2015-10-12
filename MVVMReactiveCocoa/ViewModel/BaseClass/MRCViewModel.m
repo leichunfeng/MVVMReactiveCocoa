@@ -10,8 +10,8 @@
 
 @interface MRCViewModel ()
 
-@property (strong, nonatomic, readwrite) id<MRCViewModelServices> services;
-@property (strong, nonatomic, readwrite) id params;
+@property (nonatomic, strong, readwrite) id<MRCViewModelServices> services;
+@property (nonatomic, strong, readwrite) id params;
 
 @end
 
@@ -30,6 +30,7 @@
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewModel *viewModel = [super allocWithZone:zone];
+    
     @weakify(viewModel)
     [[viewModel
     	rac_signalForSelector:@selector(initWithServices:params:)]
@@ -37,6 +38,7 @@
             @strongify(viewModel)
             [viewModel initialize];
         }];
+    
     return viewModel;
 }
 

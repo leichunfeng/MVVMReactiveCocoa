@@ -16,26 +16,26 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 
 @interface MRCSourceEditorViewModel : MRCWebViewModel
 
-@property (assign, nonatomic) MRCSourceEditorViewModelType type;
+@property (nonatomic, assign, readonly) MRCSourceEditorViewModelType type;
 
-@property (strong, nonatomic, readonly) OCTRepository    *repository;
-@property (strong, nonatomic, readonly) OCTBlobTreeEntry *blobTreeEntry;
+@property (nonatomic, strong, readonly) OCTRepository    *repository;
+@property (nonatomic, strong, readonly) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (copy, nonatomic) NSString *rawContent;
-@property (copy, nonatomic) NSString *content;
-@property (copy, nonatomic) NSString *readmeHTML;
+@property (nonatomic, copy, readonly) NSString *rawContent;
+@property (nonatomic, copy, readonly) NSString *content;
+@property (nonatomic, copy, readonly) NSString *readmeHTML;
 
-@property (nonatomic, getter=isLineWrapping) BOOL lineWrapping;
-@property (nonatomic, getter=isEncoded)		 BOOL encoded;
-@property (nonatomic, getter=isMarkdown)	 BOOL markdown;
+@property (nonatomic, assign, getter = isLineWrapping)       BOOL lineWrapping;
+@property (nonatomic, assign, getter = isEncoded, readonly)	 BOOL encoded;
+@property (nonatomic, assign, getter = isMarkdown, readonly) BOOL markdown;
 
-@property (assign, nonatomic) BOOL showRawMarkdown;
+@property (nonatomic, assign) BOOL showRawMarkdown;
 
-@property (strong, nonatomic) RACCommand *requestBlobCommand;
-@property (strong, nonatomic) RACCommand *requestReadmeHTMLCommand;
-@property (strong, nonatomic) RACCommand *requestReadmeMarkdownCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestBlobCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestReadmeHTMLCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestReadmeMarkdownCommand;
 
-@property (copy, nonatomic) NSString *wrappingActionTitle;
-@property (copy, nonatomic) NSString *markdownActionTitle;
+@property (nonatomic, copy, readonly) NSString *wrappingActionTitle;
+@property (nonatomic, copy, readonly) NSString *markdownActionTitle;
 
 @end

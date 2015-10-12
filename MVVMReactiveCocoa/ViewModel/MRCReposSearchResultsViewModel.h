@@ -10,6 +10,6 @@
 
 @interface MRCReposSearchResultsViewModel : MRCOwnedReposViewModel
 
-@property (copy, nonatomic) NSString *query;
+@property (nonatomic, copy) NSString *query;
 
 @end

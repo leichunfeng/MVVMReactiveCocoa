@@ -12,7 +12,7 @@
 
 @interface MRCAboutViewController ()
 
-@property (strong, nonatomic, readonly) MRCAboutViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCAboutViewModel *viewModel;
 
 @end
 

@@ -11,25 +11,27 @@
 @interface MRCTableViewModel : MRCViewModel
 
 // The data source of table view.
-@property (strong, nonatomic) NSArray *dataSource;
+@property (nonatomic, copy) NSArray *dataSource;
 
-@property (assign, nonatomic) NSUInteger page;
-@property (assign, nonatomic) NSUInteger perPage;
+@property (nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger perPage;
 
 // The list of section titles to display in section index view.
-@property (strong, nonatomic) NSArray *sectionIndexTitles;
+@property (nonatomic, copy) NSArray *sectionIndexTitles;
 
-@property (assign, nonatomic) BOOL shouldPullToRefresh;
-@property (assign, nonatomic) BOOL shouldInfiniteScrolling;
-@property (assign, nonatomic) BOOL shouldDisplayEmptyDataSet;
+@property (nonatomic, assign) BOOL shouldPullToRefresh;
+@property (nonatomic, assign) BOOL shouldInfiniteScrolling;
+@property (nonatomic, assign) BOOL shouldDisplayEmptyDataSet;
 
-@property (strong, nonatomic) RACCommand *didSelectCommand;
+@property (nonatomic, strong) RACCommand *didSelectCommand;
 
-@property (strong, nonatomic, readonly) RACCommand *requestRemoteDataCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestRemoteDataCommand;
 
 - (id)fetchLocalData;
 
 - (BOOL (^)(NSError *error))requestRemoteDataErrorsFilter;
+
+- (NSUInteger)offsetForPage:(NSUInteger)page;
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page;
 

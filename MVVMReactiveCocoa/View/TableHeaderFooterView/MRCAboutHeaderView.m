@@ -10,8 +10,8 @@
 
 @interface MRCAboutHeaderView ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UILabel *textLabel;
 
 @end
 

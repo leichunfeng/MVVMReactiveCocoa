@@ -8,6 +8,15 @@
 
 #import "MRCHomepageViewModel.h"
 
+@interface MRCHomepageViewModel ()
+
+@property (nonatomic, strong, readwrite) MRCNewsViewModel    *newsViewModel;
+@property (nonatomic, strong, readwrite) MRCReposViewModel   *reposViewModel;
+@property (nonatomic, strong, readwrite) MRCSearchViewModel  *searchViewModel;
+@property (nonatomic, strong, readwrite) MRCProfileViewModel *profileViewModel;
+
+@end
+
 @implementation MRCHomepageViewModel
 
 - (void)initialize {

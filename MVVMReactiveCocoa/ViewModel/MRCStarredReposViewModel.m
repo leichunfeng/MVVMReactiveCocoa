@@ -10,7 +10,7 @@
 
 @interface MRCStarredReposViewModel ()
 
-@property (assign, nonatomic, readwrite) MRCStarredReposViewModelEntryPoint entryPoint;
+@property (nonatomic, assign, readwrite) MRCStarredReposViewModelEntryPoint entryPoint;
 
 @end
 
@@ -45,7 +45,7 @@
         options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
     }
     
-    if (self.isCurrentUser) {
+    if (self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
         options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
     }
     
@@ -79,9 +79,10 @@
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     if (self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
-        return [[[self.services
+        return [[[[self.services
             client]
-            fetchUserStarredRepositories].collect
+            fetchUserStarredRepositories]
+        	collect]
             map:^(NSArray *repositories) {
                 for (OCTRepository *repo in repositories) {
                     repo.starredStatus = OCTRepositoryStarredStatusYES;
@@ -89,9 +90,11 @@
                 return repositories;
             }];
     } else {
-        return [[[[self.services
+        return [[[[[[self.services
         	client]
-        	fetchStarredRepositoriesForUser:self.user page:page perPage:self.perPage].collect
+            fetchStarredRepositoriesForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
+        	take:self.perPage]
+            collect]
             doNext:^(NSArray *repositories) {
                 if (self.isCurrentUser) {
                     for (OCTRepository *repo in repositories) {

@@ -10,8 +10,8 @@
 
 @interface MRCRepoStatisticsTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *watchLabel;
-@property (weak, nonatomic) IBOutlet UILabel *starLabel;
-@property (weak, nonatomic) IBOutlet UILabel *forkLabel;
+@property (nonatomic, weak, readonly) UILabel *watchLabel;
+@property (nonatomic, weak, readonly) UILabel *starLabel;
+@property (nonatomic, weak, readonly) UILabel *forkLabel;
 
 @end

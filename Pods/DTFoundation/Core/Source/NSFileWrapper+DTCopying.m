@@ -18,7 +18,7 @@
 		
 		[self.fileWrappers enumerateKeysAndObjectsUsingBlock:^(NSString *fileName, NSFileWrapper *fileWrapper, BOOL *stop) {
 			NSFileWrapper *copyWrapper = [fileWrapper fileWrapperByDeepCopying];
-			[subFileWrappers setObject:copyWrapper forKey:fileName];
+            subFileWrappers[fileName] = copyWrapper;
 		}];
 		
 		NSFileWrapper *fileWrapper = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:subFileWrappers];

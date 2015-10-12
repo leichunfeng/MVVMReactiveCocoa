@@ -12,9 +12,9 @@
 
 @interface MRCSearchViewController () <UISearchControllerDelegate, UISearchBarDelegate>
 
-@property (strong, nonatomic, readonly) MRCSearchViewModel *viewModel;
-@property (strong, nonatomic, readwrite) UISearchController *searchController;
-@property (strong, nonatomic) MRCReposSearchResultsViewController *searchResultsController;
+@property (nonatomic, strong, readonly) MRCSearchViewModel *viewModel;
+@property (nonatomic, strong, readwrite) UISearchController *searchController;
+@property (nonatomic, strong) MRCReposSearchResultsViewController *searchResultsController;
 
 @end
 

@@ -15,6 +15,6 @@ typedef NS_ENUM(NSUInteger, MRCStarredReposViewModelEntryPoint) {
 
 @interface MRCStarredReposViewModel : MRCOwnedReposViewModel
 
-@property (assign, nonatomic, readonly) MRCStarredReposViewModelEntryPoint entryPoint;
+@property (nonatomic, assign, readonly) MRCStarredReposViewModelEntryPoint entryPoint;
 
 @end

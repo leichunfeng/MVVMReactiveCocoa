@@ -12,7 +12,7 @@
 
 @interface MRCAppStoreServiceImplTests : XCTestCase
 
-@property (strong, nonatomic) MRCAppStoreServiceImpl *appStoreService;
+@property (nonatomic, strong) MRCAppStoreServiceImpl *appStoreService;
 
 @end
 

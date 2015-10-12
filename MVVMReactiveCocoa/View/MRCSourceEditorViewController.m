@@ -11,8 +11,8 @@
 
 @interface MRCSourceEditorViewController () <UIWebViewDelegate>
 
-@property (strong, nonatomic, readonly) MRCSourceEditorViewModel *viewModel;
-@property (strong, nonatomic) WebViewJavascriptBridge *bridge;
+@property (nonatomic, strong, readonly) MRCSourceEditorViewModel *viewModel;
+@property (nonatomic, strong) WebViewJavascriptBridge *bridge;
 
 @end
 
@@ -137,7 +137,7 @@
     });
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 

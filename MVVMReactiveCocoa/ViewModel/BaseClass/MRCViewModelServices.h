@@ -16,10 +16,9 @@
 @required
 
 // A reference to OCTClient instance.
-@property (strong, nonatomic) OCTClient *client;
+@property (nonatomic, strong) OCTClient *client;
 
-@property (strong, nonatomic, readonly) id<MRCRepositoryService> repositoryService;
-
-@property (strong, nonatomic, readonly) id<MRCAppStoreService> appStoreService;
+@property (nonatomic, strong, readonly) id<MRCRepositoryService> repositoryService;
+@property (nonatomic, strong, readonly) id<MRCAppStoreService> appStoreService;
 
 @end

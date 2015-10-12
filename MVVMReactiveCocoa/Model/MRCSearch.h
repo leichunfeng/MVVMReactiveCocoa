@@ -10,9 +10,8 @@
 
 @interface MRCSearch : OCTObject <MRCPersistenceProtocol>
 
-@property (copy, nonatomic, readonly) NSString *keyword;
-
-@property (strong, nonatomic, readonly) NSDate *dateSearched;
+@property (nonatomic, copy, readonly) NSString *keyword;
+@property (nonatomic, copy, readonly) NSDate *dateSearched;
 
 + (NSArray *)recentSearches;
 

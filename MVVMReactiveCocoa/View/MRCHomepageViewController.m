@@ -21,12 +21,12 @@
 
 @interface MRCHomepageViewController () <UITabBarControllerDelegate>
 
-@property (strong, nonatomic, readonly) MRCHomepageViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCHomepageViewModel *viewModel;
 
-@property (strong, nonatomic) MRCNewsViewController    *newsViewController;
-@property (strong, nonatomic) MRCReposViewController   *reposViewController;
-@property (strong, nonatomic) MRCSearchViewController  *searchViewController;
-@property (strong, nonatomic) MRCProfileViewController *profileViewController;
+@property (nonatomic, strong) MRCNewsViewController    *newsViewController;
+@property (nonatomic, strong) MRCReposViewController   *reposViewController;
+@property (nonatomic, strong) MRCSearchViewController  *searchViewController;
+@property (nonatomic, strong) MRCProfileViewController *profileViewController;
 
 @end
 

@@ -12,9 +12,9 @@
 
 @interface MRCNewsTableViewCell () <DTAttributedTextContentViewDelegate>
 
-@property (strong, nonatomic) MRCNewsItemViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
-@property (weak, nonatomic) IBOutlet DTAttributedLabel *detailView;
+@property (nonatomic, strong) MRCNewsItemViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak) IBOutlet DTAttributedLabel *detailView;
 
 @end
 

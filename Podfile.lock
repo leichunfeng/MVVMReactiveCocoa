@@ -4,11 +4,11 @@ PODS:
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
     - DTFoundation/DTHTMLParser (~> 1.7.5)
     - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.6)
-  - DTFoundation/DTAnimatedGIF (1.7.6)
-  - DTFoundation/DTHTMLParser (1.7.6):
+  - DTFoundation/Core (1.7.7)
+  - DTFoundation/DTAnimatedGIF (1.7.7)
+  - DTFoundation/DTHTMLParser (1.7.7):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.6):
+  - DTFoundation/UIKit (1.7.7):
     - DTFoundation/Core
   - DZNEmptyDataSet (1.5.2)
   - FDFullscreenPopGesture (1.1)
@@ -44,7 +44,6 @@ PODS:
   - OcticonsIOS (0.0.2)
   - Ono (1.2.2)
   - Reachability (3.1.1)
-  - Reveal-iOS-SDK (1.5.1)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -67,7 +66,6 @@ DEPENDENCIES:
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
   - Ono (~> 1.2.0)
-  - Reveal-iOS-SDK (~> 1.5.1)
   - SDWebImage (~> 3.7.1)
   - SSKeychain (~> 1.2.2)
   - SVPullToRefresh (~> 0.4.1)
@@ -87,7 +85,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
-  DTFoundation: bf431de2292484461ff7d92295fdae7dc15a3820
+  DTFoundation: c9b3362b83f0017389082ec067ede719826a579d
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
@@ -99,7 +97,6 @@ SPEC CHECKSUMS:
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c

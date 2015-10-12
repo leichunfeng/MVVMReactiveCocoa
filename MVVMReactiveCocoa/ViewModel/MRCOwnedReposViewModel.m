@@ -12,8 +12,9 @@
 
 @interface MRCOwnedReposViewModel ()
 
-@property (strong, nonatomic, readwrite) OCTUser *user;
-@property (assign, nonatomic, readwrite) BOOL isCurrentUser;
+@property (nonatomic, strong, readwrite) OCTUser *user;
+@property (nonatomic, assign, readwrite) BOOL isCurrentUser;
+@property (nonatomic, copy, readwrite) NSArray *repositories;
 
 @end
 
@@ -60,15 +61,6 @@
         }];
     
     RACSignal *requestRemoteDataSignal = [[self.requestRemoteDataCommand.executionSignals.flatten
-    	map:^(NSArray *repositories) {
-            @strongify(self)
-            if (self.options & MRCReposViewModelOptionsSectionIndex) {
-                repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
-                    return [repo1.name caseInsensitiveCompare:repo2.name];
-                }];
-            }
-            return repositories;
-        }]
     	doNext:^(NSArray *repositories) {
             @strongify(self)
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -79,6 +71,15 @@
                     [OCTRepository mrc_saveOrUpdateStarredStatusWithRepositories:repositories];
                 }
             });
+        }]
+        map:^(NSArray *repositories) {
+        	@strongify(self)
+        	if (self.options & MRCReposViewModelOptionsSectionIndex) {
+            	repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+                	return [repo1.name caseInsensitiveCompare:repo2.name];
+            	}];
+          }
+          return repositories;
         }];
     
     RAC(self, repositories) = [fetchLocalDataSignal merge:requestRemoteDataSignal];
@@ -124,9 +125,10 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[self.services
+    return [[[self.services
     	client]
-        fetchUserRepositories].collect;
+        fetchUserRepositories]
+    	collect];
 }
 
 - (NSArray *)sectionIndexTitlesWithRepositories:(NSArray *)repositories {

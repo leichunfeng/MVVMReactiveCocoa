@@ -10,6 +10,6 @@
 
 @interface MRCSelectBranchOrTagViewModel : MRCTableViewModel
 
-@property (strong, nonatomic, readonly) OCTRef *selectedReference;
+@property (nonatomic, strong, readonly) OCTRef *selectedReference;
 
 @end

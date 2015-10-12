@@ -30,8 +30,8 @@ CGSize DTCGSizeThatFillsKeepingAspectRatio(CGSize originalSize, CGSize sizeToFit
 
 BOOL DTCGSizeMakeWithDictionaryRepresentation(NSDictionary *dict, CGSize *size)
 {
-	NSNumber *widthNumber = [dict objectForKey:@"Width"];
-	NSNumber *heightNumber = [dict objectForKey:@"Height"];
+	NSNumber *widthNumber = dict[@"Width"];
+	NSNumber *heightNumber = dict[@"Height"];
 	
 	if (!widthNumber || !heightNumber)
 	{
@@ -62,16 +62,17 @@ NSDictionary *DTCGSizeCreateDictionaryRepresentation(CGSize size)
 	NSNumber *heightNumber = [NSNumber numberWithFloat:size.height];
 #endif
 	
-	return [NSDictionary dictionaryWithObjectsAndKeys:widthNumber, @"Width", heightNumber, @"Height", nil];
+    return @{@"Width": widthNumber,
+             @"Height": heightNumber};
 }
 
 
 BOOL DTCGRectMakeWithDictionaryRepresentation(NSDictionary *dict, CGRect *rect)
 {
-	NSNumber *widthNumber = [dict objectForKey:@"Width"];
-	NSNumber *heightNumber = [dict objectForKey:@"Height"];
-	NSNumber *xNumber = [dict objectForKey:@"X"];
-	NSNumber *yNumber = [dict objectForKey:@"Y"];
+	NSNumber *widthNumber = dict[@"Width"];
+	NSNumber *heightNumber = dict[@"Height"];
+	NSNumber *xNumber = dict[@"X"];
+	NSNumber *yNumber = dict[@"Y"];
 	
 	if (!widthNumber || !heightNumber || !xNumber || !yNumber)
 	{
@@ -110,7 +111,10 @@ NSDictionary *DTCGRectCreateDictionaryRepresentation(CGRect rect)
 	NSNumber *yNumber = [NSNumber numberWithFloat:rect.origin.y];
 #endif
 	
-	return [NSDictionary dictionaryWithObjectsAndKeys:widthNumber, @"Width", heightNumber, @"Height", xNumber, @"X", yNumber, @"Y", nil];
+    return @{@"Width": widthNumber,
+             @"Height": heightNumber,
+             @"X": xNumber,
+             @"Y": yNumber};
 }
 
 CGPoint DTCGRectCenter(CGRect rect)

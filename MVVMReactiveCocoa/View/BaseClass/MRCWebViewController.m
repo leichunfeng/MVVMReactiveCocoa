@@ -11,8 +11,10 @@
 
 @interface MRCWebViewController ()
 
-@property (strong, nonatomic, readonly) MRCWebViewModel *viewModel;
-@property (assign, nonatomic) BOOL showProgressHUD;
+@property (nonatomic, weak, readwrite) IBOutlet UIWebView *webView;
+
+@property (nonatomic, strong, readonly) MRCWebViewModel *viewModel;
+@property (nonatomic, assign) BOOL showProgressHUD;
 
 @end
 

@@ -11,6 +11,6 @@
 
 @interface MRCSearchViewModel : MRCTableViewModel
 
-@property (strong, nonatomic) MRCReposSearchResultsViewModel *searchResultsViewModel;
+@property (nonatomic, strong, readonly) MRCReposSearchResultsViewModel *searchResultsViewModel;
 
 @end

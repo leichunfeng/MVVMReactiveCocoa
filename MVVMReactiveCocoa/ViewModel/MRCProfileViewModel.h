@@ -12,14 +12,14 @@
 @interface MRCProfileViewModel : MRCTableViewModel
 
 // The current `user`.
-@property (strong, nonatomic, readonly) OCTUser *user;
+@property (nonatomic, strong, readonly) OCTUser *user;
 
-@property (strong, nonatomic, readonly) NSString *company;
-@property (strong, nonatomic, readonly) NSString *location;
-@property (strong, nonatomic, readonly) NSString *email;
-@property (strong, nonatomic, readonly) NSString *blog;
+@property (nonatomic, copy, readonly) NSString *company;
+@property (nonatomic, copy, readonly) NSString *location;
+@property (nonatomic, copy, readonly) NSString *email;
+@property (nonatomic, copy, readonly) NSString *blog;
 
 // The view model of `Profile` interface.
-@property (strong, nonatomic) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
+@property (nonatomic, strong, readonly) MRCAvatarHeaderViewModel *avatarHeaderViewModel;
 
 @end

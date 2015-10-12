@@ -17,10 +17,10 @@
 
 @interface MRCRepoDetailViewController () <UIWebViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (strong, nonatomic, readonly) MRCRepoDetailViewModel *viewModel;
-@property (strong, nonatomic) MRCRepoReadmeTableViewCell *readmeTableViewCell;
-@property (strong, nonatomic) RACSignal *webViewExecuting;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong, readonly) MRCRepoDetailViewModel *viewModel;
+@property (nonatomic, strong) MRCRepoReadmeTableViewCell *readmeTableViewCell;
+@property (nonatomic, strong) RACSignal *webViewExecuting;
 
 @end
 

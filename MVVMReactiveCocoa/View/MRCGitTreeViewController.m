@@ -11,7 +11,7 @@
 
 @interface MRCGitTreeViewController ()
 
-@property (strong, nonatomic, readonly) MRCGitTreeViewModel *viewModel;
+@property (nonatomic, strong, readonly) MRCGitTreeViewModel *viewModel;
 
 @end
 

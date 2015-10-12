@@ -12,7 +12,7 @@ static MRCMemoryCache *_memoryCache = nil;
 
 @interface MRCMemoryCache ()
 
-@property (strong, nonatomic) NSMutableDictionary *dictionary;
+@property (nonatomic, strong) NSMutableDictionary *dictionary;
 
 @end
 
