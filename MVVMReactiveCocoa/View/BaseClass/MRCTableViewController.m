@@ -78,7 +78,8 @@
     if (self.viewModel.shouldInfiniteScrolling) {
         [self.tableView addInfiniteScrollingWithActionHandler:^{
             @strongify(self)
-            [[[self.viewModel.requestRemoteDataCommand execute:@(self.viewModel.page + 1)]
+            [[[self.viewModel.requestRemoteDataCommand
+				execute:@(self.viewModel.page + 1)]
         		deliverOnMainThread]
             	subscribeNext:^(NSArray *results) {
                     @strongify(self)
