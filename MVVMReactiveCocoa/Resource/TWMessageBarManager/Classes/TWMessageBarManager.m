@@ -722,7 +722,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
 
 - (CGRect)orientFrame:(CGRect)frame
 {
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) || UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) || UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
     {
         frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.height, frame.size.width);
     }
