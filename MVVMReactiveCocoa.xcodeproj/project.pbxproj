@@ -1307,9 +1307,9 @@
 				BC079E67AC28819FE0EC438A /* Check Pods Manifest.lock */,
 				242D4FD11A64B6FA0026ABC6 /* Sources */,
 				242D4FD21A64B6FA0026ABC6 /* Frameworks */,
+				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
 				242D4FD31A64B6FA0026ABC6 /* Resources */,
 				94BC7850225D73433B852981 /* Copy Pods Resources */,
-				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
 				242453231A80D85300FFFCC1 /* Embed Frameworks */,
 			);
 			buildRules = (
