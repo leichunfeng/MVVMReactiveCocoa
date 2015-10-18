@@ -143,7 +143,24 @@
             [self.viewModel.loginCommand execute:nil];
         }];
     
-    self.browserLoginButton.rac_command = self.viewModel.browserLoginCommand;
+    [[self.browserLoginButton
+        rac_signalForControlEvents:UIControlEventTouchUpInside]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            NSString *message = [NSString stringWithFormat:@"“%@” wants to open “Safari”", MRC_APP_NAME];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                     message:message
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                @strongify(self)
+                [self.viewModel.browserLoginCommand execute:nil];
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:NULL];
+        }];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
