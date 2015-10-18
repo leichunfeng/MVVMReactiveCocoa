@@ -70,7 +70,7 @@ DEPENDENCIES:
   - SSKeychain (~> 1.2.2)
   - SVPullToRefresh (~> 0.4.1)
   - UIActivityIndicator-for-SDWebImage
-  - UMengSocial (~> 4.2.2)
+  - UMengSocial (~> 4.2.3)
   - WebViewJavascriptBridge (~> 4.1.4)
 
 EXTERNAL SOURCES:
