@@ -7,7 +7,7 @@
 //
 
 #import "UIWebView+DTFoundation.h"
-
+#if !TARGET_OS_TV
 @implementation UIWebView (DTFoundation)
 
 - (NSString *)documentTitle
@@ -16,3 +16,4 @@
 }
 
 @end
+#endif

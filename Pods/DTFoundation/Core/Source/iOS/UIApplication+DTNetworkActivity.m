@@ -18,13 +18,16 @@ static NSUInteger __internalOperationCount = 0;
 	{
 		__internalOperationCount++;
 		
-		dispatch_async(dispatch_get_main_queue(), ^{
+#if !TARGET_OS_TV
+        dispatch_async(dispatch_get_main_queue(), ^{
+
 			if (!self.isNetworkActivityIndicatorVisible && __internalOperationCount)
 			{
 				self.networkActivityIndicatorVisible = YES;
 			}
 		});
-	}
+#endif
+    }
 }
 
 - (void)popActiveNetworkOperation
@@ -38,14 +41,15 @@ static NSUInteger __internalOperationCount = 0;
 		}
 		
 		__internalOperationCount--;
-		
+#if !TARGET_OS_TV
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (self.isNetworkActivityIndicatorVisible && !__internalOperationCount)
 			{
 				self.networkActivityIndicatorVisible = NO;
 			}
 		});
-	}
+#endif
+    }
 }
 
 @end

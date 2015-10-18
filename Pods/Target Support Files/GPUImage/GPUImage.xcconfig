@@ -1,0 +1,2 @@
+GPUIMAGE_CLANG_MODULES_AUTOLINK = YES
+GPUIMAGE_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreMedia" -framework "OpenGLES" -framework "QuartzCore"
