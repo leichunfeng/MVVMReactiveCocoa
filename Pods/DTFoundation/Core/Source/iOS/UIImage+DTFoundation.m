@@ -69,7 +69,7 @@
 	
 	NSCachedURLResponse *cacheResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
 	
-	NSData *data;
+	__block NSData *data;
 	
 	if (cacheResponse)
 	{
@@ -80,10 +80,24 @@
 		DTLogDebug(@"cache fail for %@", [URL absoluteString]);
 	}
 	
-	NSURLResponse *response;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_9_0
+
+    NSURLResponse *response;
 	data = [NSURLConnection sendSynchronousRequest:request
 										 returningResponse:&response
 													 error:error];
+#else
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *responseData, NSURLResponse *response, NSError *responseError) {
+        
+        data = responseData;
+        *error = responseError;
+        dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+#endif
 	
 	if (!data)
 	{

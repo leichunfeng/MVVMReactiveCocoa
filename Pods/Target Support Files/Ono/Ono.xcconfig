@@ -1,0 +1,2 @@
+ONO_HEADER_SEARCH_PATHS = $(SDKROOT)/usr/include/libxml2
+ONO_OTHER_LDFLAGS = -l"xml2"

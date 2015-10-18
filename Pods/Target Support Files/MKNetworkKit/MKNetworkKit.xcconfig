@@ -1,0 +1,1 @@
+MKNETWORKKIT_OTHER_LDFLAGS = -framework "CFNetwork" -framework "Security"

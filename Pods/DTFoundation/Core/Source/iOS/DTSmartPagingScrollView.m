@@ -56,8 +56,9 @@
 
 - (void)_commonInit
 {
+#if !TARGET_OS_TV
 	self.pagingEnabled = YES;
-	
+#endif
 	// no indicators because zooming subview has there
 	self.showsVerticalScrollIndicator = NO;
 	self.showsHorizontalScrollIndicator = NO;

@@ -4,11 +4,11 @@ PODS:
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
     - DTFoundation/DTHTMLParser (~> 1.7.5)
     - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.7)
-  - DTFoundation/DTAnimatedGIF (1.7.7)
-  - DTFoundation/DTHTMLParser (1.7.7):
+  - DTFoundation/Core (1.7.8)
+  - DTFoundation/DTAnimatedGIF (1.7.8)
+  - DTFoundation/DTHTMLParser (1.7.8):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.7):
+  - DTFoundation/UIKit (1.7.8):
     - DTFoundation/Core
   - DZNEmptyDataSet (1.5.2)
   - FDFullscreenPopGesture (1.1)
@@ -85,7 +85,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
-  DTFoundation: c9b3362b83f0017389082ec067ede719826a579d
+  DTFoundation: 46e2b2fafe78d67febfd8d1f85fe9845a093f00e
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
@@ -104,4 +104,4 @@ SPEC CHECKSUMS:
   UMengSocial: 85882abe5b20aa38ad558ece71360e16b5d50909
   WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.38.2

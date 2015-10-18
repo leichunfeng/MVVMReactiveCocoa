@@ -40,24 +40,34 @@
 			NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:shortURL];
 			request.HTTPMethod = @"HEAD";
 			
-			NSError *error = nil;
-			NSHTTPURLResponse *response = nil;
-			
+            void (^networkCompletion)(NSURL *responseURL) = ^void(NSURL *responseURL) {
+                // cache result
+                
+                if (longURL)
+                {
+                    [unshortenCache setObject:longURL forKey:shortURL];
+                }
+                    
+                if (completion)
+                {
+                    completion(longURL);
+                }
+            };
+            
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_9_0
+            NSError *error = nil;
+            NSHTTPURLResponse *response = nil;
 			[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-			
-			longURL = [response URL];
-			
-			// cache result
-			if (longURL)
-			{
-				[unshortenCache setObject:longURL forKey:shortURL];
-			}
-		}
-		
-		if (completion)
-		{
-			completion(longURL);
-		}
+            networkCompletion([response URL]);
+#else
+            [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+                networkCompletion([response URL]);
+            }];
+#endif
+        } else if (completion) {
+            
+            completion(longURL);
+        }
 	});
 }
 
