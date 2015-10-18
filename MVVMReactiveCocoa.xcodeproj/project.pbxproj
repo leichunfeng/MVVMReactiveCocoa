@@ -1944,6 +1944,7 @@
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1984,6 +1985,7 @@
 					"$(PROJECT_DIR)/MMMarkdown/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/MVVMReactiveCocoa/Resource/UMAnalytics_Sdk_3.4.6",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
 				PROVISIONING_PROFILE = "05199931-604a-4f99-92ae-2a29718147a2";
 				TARGETED_DEVICE_FAMILY = "1,2";
