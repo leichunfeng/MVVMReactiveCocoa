@@ -11,9 +11,7 @@
 @implementation SSKeychain (MRCUtil)
 
 + (NSString *)rawLogin {
-    NSString *rawLogin = [[NSUserDefaults standardUserDefaults] objectForKey:MRC_RAW_LOGIN];
-    if (rawLogin == nil) NSLog(@"+rawLogin: %@", rawLogin);
-    return rawLogin;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:MRC_RAW_LOGIN];
 }
 
 + (NSString *)password {
