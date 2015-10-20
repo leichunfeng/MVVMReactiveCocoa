@@ -110,7 +110,7 @@
             @strongify(self)
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             
-            if (![viewController isKindOfClass:UINavigationController.class]) {
+            if (![viewController isKindOfClass:[UINavigationController class]]) {
                 viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
             }
             
