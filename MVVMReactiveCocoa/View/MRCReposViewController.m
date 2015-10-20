@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     MRCOwnedReposViewController *ownedReposViewController = [[MRCOwnedReposViewController alloc] initWithViewModel:self.viewModel.viewModels[0]];
     ownedReposViewController.segmentedControlItem = @"Owned";
     
@@ -31,6 +33,8 @@
     starredReposViewController.segmentedControlItem = @"Starred";
     
     self.viewControllers = @[ ownedReposViewController, starredReposViewController ];
+    
+    self.navigationItem.titleView = self.segmentedControl;
 }
 
 @end
