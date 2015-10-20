@@ -37,11 +37,8 @@
     self.services = [[MRCViewModelServicesImpl alloc] init];
     self.navigationControllerStack = [[MRCNavigationControllerStack alloc] initWithServices:self.services];
 
-    UINavigationController *navigationController = [[MRCNavigationController alloc] initWithRootViewController:self.createInitialViewController];
-    [self.navigationControllerStack pushNavigationController:navigationController];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
+    [self.services resetRootViewModel:[self createInitialViewModel]];
     [self.window makeKeyAndVisible];
     
     [self configureAppearance];
@@ -56,7 +53,7 @@
     return YES;
 }
 
-- (UIViewController *)createInitialViewController {
+- (id<MRCViewModelProtocol>)createInitialViewModel {
     // The user has logged-in.
     if ([SSKeychain rawLogin].isExist && [SSKeychain accessToken].isExist) {
 		// Some OctoKit APIs will use the `login` property of `OCTUser`.
@@ -64,12 +61,10 @@
 
         OCTClient *authenticatedClient = [OCTClient authenticatedClientWithUser:user token:[SSKeychain accessToken]];
         self.services.client = authenticatedClient;
-        self.viewModel = [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
         
-        return [[MRCHomepageViewController alloc] initWithViewModel:self.viewModel];
+        return [[MRCHomepageViewModel alloc] initWithServices:self.services params:nil];
     } else {
-        self.viewModel = [[MRCLoginViewModel alloc] initWithServices:self.services params:nil];
-        return [[MRCLoginViewController alloc] initWithViewModel:self.viewModel];
+        return [[MRCLoginViewModel alloc] initWithServices:self.services params:nil];
     }
 }
 

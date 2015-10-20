@@ -20,14 +20,6 @@
 
 @dynamic viewModel;
 
-- (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
-    self = [super initWithViewModel:viewModel];
-    if (self) {
-        self.hidesBottomBarWhenPushed = YES;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.viewModel.adURL = MRCSharedAppDelegate.adURL;
