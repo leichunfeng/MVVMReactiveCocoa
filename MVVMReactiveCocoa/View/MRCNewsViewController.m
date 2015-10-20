@@ -11,6 +11,7 @@
 #import "MRCNewsTableViewCell.h"
 #import "MRCNewsItemViewModel.h"
 #import "MRCNetworkHeaderView.h"
+#import "MRCSearchViewModel.h"
 
 @interface MRCNewsViewController ()
 
@@ -62,6 +63,17 @@
             }
             return viewModels;
         }];
+    
+    UIImage *image = [UIImage octicon_imageWithIdentifier:@"Search" size:CGSizeMake(22, 22)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(didClickSearchButton:)];
+}
+
+- (void)didClickSearchButton:(id)sender {
+    MRCSearchViewModel *searchViewModel = [[MRCSearchViewModel alloc] initWithServices:self.viewModel.services params:nil];
+    [self.viewModel.services pushViewModel:searchViewModel animated:YES];
 }
 
 - (UIEdgeInsets)contentInset {

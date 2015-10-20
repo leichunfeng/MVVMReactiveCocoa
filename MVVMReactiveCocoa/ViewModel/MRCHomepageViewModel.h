@@ -10,7 +10,6 @@
 #import "MRCNewsViewModel.h"
 #import "MRCReposViewModel.h"
 #import "MRCTrendingViewModel.h"
-#import "MRCSearchViewModel.h"
 #import "MRCProfileViewModel.h"
 
 @interface MRCHomepageViewModel : MRCTabBarViewModel
@@ -23,9 +22,6 @@
 
 /// The view model of `Trending` interface.
 @property (nonatomic, strong, readonly) MRCTrendingViewModel *trendingViewModel;
-
-/// The view model of `Search` interface.
-@property (nonatomic, strong, readonly) MRCSearchViewModel *searchViewModel;
 
 /// The view model of `Profile` interface.
 @property (nonatomic, strong, readonly) MRCProfileViewModel *profileViewModel;

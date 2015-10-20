@@ -17,12 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *image = [UIImage octicon_imageWithIdentifier:@"Gear" size:CGSizeMake(22, 22)];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
+    UIImage *image = [UIImage octicon_imageWithIdentifier:@"Settings" size:CGSizeMake(22, 22)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image
                                                                               style:UIBarButtonItemStylePlain
-                                                                             target:nil
-                                                                             action:NULL];
+                                                                             target:self
+                                                                             action:@selector(didClickSettingsButton:)];
+}
+
+- (void)didClickSettingsButton:(id)sender {
+    
 }
 
 @end
