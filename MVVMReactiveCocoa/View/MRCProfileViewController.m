@@ -43,11 +43,10 @@
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     @weakify(self)
-    [RACObserve(self.viewModel, user)
-    	subscribeNext:^(id x) {
-        	@strongify(self)
-        	[self.tableView reloadData];
-    	}];
+    [RACObserve(self.viewModel, user) subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
 }
 
 - (UIEdgeInsets)contentInset {

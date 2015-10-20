@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
-
-@class MRCNavigationControllerStack;
+#import "MRCNavigationControllerStack.h"
 
 @interface MRCAppDelegate : UIResponder <UIApplicationDelegate>
 

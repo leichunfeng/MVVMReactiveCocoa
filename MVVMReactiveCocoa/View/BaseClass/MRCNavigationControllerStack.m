@@ -64,6 +64,7 @@
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
+            viewController.hidesBottomBarWhenPushed = YES;
             [self.navigationControllers.lastObject pushViewController:viewController animated:[tuple.second boolValue]];
         }];
     
@@ -108,14 +109,14 @@
         rac_signalForSelector:@selector(resetRootViewModel:)]
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
-            UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
-            
-            if (![viewController isKindOfClass:UINavigationController.class]) {
-                viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
-            }
-            
             [self.navigationControllers removeAllObjects];
-            [self pushNavigationController:(UINavigationController *)viewController];
+
+            UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
+
+            if (![viewController isKindOfClass:[UINavigationController class]] && ![viewController isKindOfClass:[UITabBarController class]]) {
+                viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
+                [self pushNavigationController:(UINavigationController *)viewController];
+            }
             
             MRCSharedAppDelegate.window.rootViewController = viewController;
         }];

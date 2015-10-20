@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.tableView.tableFooterView = nil;
     
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
@@ -34,6 +36,10 @@
     self.searchController.searchBar.tintColor = HexRGB(colorI5);
     self.searchController.searchBar.delegate = self.searchResultsController;
     self.searchController.delegate = self;
+    
+    self.navigationItem.titleView = self.searchController.searchBar;
+    
+    self.definesPresentationContext = YES;
 }
 
 - (UIEdgeInsets)contentInset {
@@ -42,12 +48,6 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCSearch *)search {
     cell.textLabel.text = search.keyword;
-}
-
-#pragma mark - UISearchControllerDelegate
-
-- (void)presentSearchController:(UISearchController *)searchController {
-    [self presentViewController:searchController animated:YES completion:NULL];
 }
 
 #pragma mark - UITableViewDataSource
@@ -95,7 +95,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self presentSearchController:self.searchController];
+    [self presentViewController:self.searchController animated:YES completion:NULL];
 
     MRCSearch *search = self.viewModel.dataSource[indexPath.section][indexPath.row];
     self.searchController.searchBar.text = search.keyword;
