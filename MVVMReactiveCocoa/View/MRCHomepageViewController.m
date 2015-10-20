@@ -52,13 +52,13 @@
         [[MRCNavigationController alloc] initWithRootViewController:reposViewController];
     });
 
-    UINavigationController *searchNavigationController = ({
-        MRCSearchViewController *searchViewController = [[MRCSearchViewController alloc] initWithViewModel:self.viewModel.searchViewModel];
+    UINavigationController *trendingNavigationController = ({
+        MRCTrendingViewController *trendingViewController = [[MRCTrendingViewController alloc] initWithViewModel:self.viewModel.trendingViewModel];
 
-        UIImage *searchImage = [UIImage octicon_imageWithIdentifier:@"Search" size:CGSizeMake(25, 25)];
-        searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:searchImage tag:3];
+        UIImage *trendingImage = [UIImage octicon_imageWithIdentifier:@"Telescope" size:CGSizeMake(25, 25)];
+        trendingViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Trending" image:trendingImage tag:3];
 
-        [[MRCNavigationController alloc] initWithRootViewController:searchViewController];
+        [[MRCNavigationController alloc] initWithRootViewController:trendingViewController];
     });
 
     UINavigationController *profileNavigationController = ({
@@ -70,7 +70,7 @@
         [[MRCNavigationController alloc] initWithRootViewController:profileViewController];
     });
 
-    self.viewControllers = @[ newsNavigationController, reposNavigationController, searchNavigationController, profileNavigationController ];
+    self.viewControllers = @[ newsNavigationController, reposNavigationController, trendingNavigationController, profileNavigationController ];
 
     [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:newsNavigationController];
 

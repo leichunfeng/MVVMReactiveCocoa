@@ -6,8 +6,8 @@
 //  Copyright © 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCTableViewController.h"
+#import "MRCOwnedReposViewController.h"
 
-@interface MRCTrendingViewController : MRCTableViewController
+@interface MRCTrendingViewController : MRCOwnedReposViewController
 
 @end

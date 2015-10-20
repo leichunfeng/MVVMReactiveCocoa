@@ -6,8 +6,8 @@
 //  Copyright © 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCTableViewModel.h"
+#import "MRCOwnedReposViewModel.h"
 
-@interface MRCTrendingViewModel : MRCTableViewModel
+@interface MRCTrendingViewModel : MRCOwnedReposViewModel
 
 @end
