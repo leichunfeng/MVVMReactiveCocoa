@@ -57,6 +57,8 @@ static MRCRouter *_sharedInstance = nil;
         @"MRCPublicReposViewModel": @"MRCPublicReposViewController",
         @"MRCNewsViewModel": @"MRCNewsViewController",
         @"MRCSearchViewModel": @"MRCSearchViewController",
+        @"MRCTrendingViewModel": @"MRCTrendingViewController",
+        @"MRCTrendingSettingsViewModel": @"MRCTrendingSettingsViewController",
     };
 }
 

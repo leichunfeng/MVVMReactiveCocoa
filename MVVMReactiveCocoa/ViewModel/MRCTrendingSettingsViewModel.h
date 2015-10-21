@@ -1,14 +1,14 @@
 //
-//  MRCTrendingViewModel.h
+//  MRCTrendingSettingsViewModel.h
 //  MVVMReactiveCocoa
 //
-//  Created by leichunfeng on 15/10/20.
+//  Created by leichunfeng on 15/10/21.
 //  Copyright © 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCOwnedReposViewModel.h"
+#import "MRCTableViewModel.h"
 
-@interface MRCTrendingViewModel : MRCOwnedReposViewModel
+@interface MRCTrendingSettingsViewModel : MRCTableViewModel
 
 @property (nonatomic, copy) NSString *since;
 @property (nonatomic, copy) NSString *language;

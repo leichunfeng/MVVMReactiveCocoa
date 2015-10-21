@@ -7,12 +7,18 @@
 //
 
 #import "MRCTrendingViewController.h"
+#import "MRCTrendingViewModel.h"
+#import "MRCTrendingSettingsViewModel.h"
 
 @interface MRCTrendingViewController ()
+
+@property (nonatomic, strong, readonly) MRCTrendingViewModel *viewModel;
 
 @end
 
 @implementation MRCTrendingViewController
+
+@dynamic viewModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,8 +32,26 @@
                                                                              action:@selector(didClickSettingsButton:)];
 }
 
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsMake(64, 0, 0, 0);
+}
+
 - (void)didClickSettingsButton:(id)sender {
+    NSDictionary *params = @{ @"since": self.viewModel.since ?: @"", @"language": self.viewModel.language ?: @"", };
+
+    MRCTrendingSettingsViewModel *settingsViewModel = [[MRCTrendingSettingsViewModel alloc] initWithServices:self.viewModel.services params:params];
     
+    @weakify(self)
+    settingsViewModel.callback = ^(RACTuple *tuple) {
+        @strongify(self)
+        
+        RACTupleUnpack(NSString *since, NSString *language) = tuple;
+        
+        self.viewModel.since    = since;
+        self.viewModel.language = language;
+    };
+    
+    [self.viewModel.services presentViewModel:settingsViewModel animated:YES completion:NULL];
 }
 
 @end

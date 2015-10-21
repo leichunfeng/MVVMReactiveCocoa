@@ -56,7 +56,7 @@
         MRCSearchViewController *searchViewController = [[MRCSearchViewController alloc] initWithViewModel:self.viewModel.searchViewModel];
 
         UIImage *searchImage = [UIImage octicon_imageWithIdentifier:@"Search" size:CGSizeMake(25, 25)];
-        searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Explore" image:searchImage tag:3];
+        searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Discover" image:searchImage tag:3];
 
         [[MRCNavigationController alloc] initWithRootViewController:searchViewController];
     });
