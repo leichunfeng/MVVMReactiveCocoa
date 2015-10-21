@@ -12,7 +12,8 @@ typedef NS_ENUM(NSUInteger, MRCReposViewModelType) {
     MRCReposViewModelTypeOwned,
     MRCReposViewModelTypeStarred,
     MRCReposViewModelTypeSearch,
-    MRCReposViewModelTypePublic
+    MRCReposViewModelTypePublic,
+    MRCReposViewModelTypeTrending,
 };
 
 typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
@@ -22,7 +23,7 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
     MRCReposViewModelOptionsPagination                = 1 << 3,
     MRCReposViewModelOptionsSectionIndex              = 1 << 4,
     MRCReposViewModelOptionsShowOwnerLogin            = 1 << 5,
-    MRCReposViewModelOptionsMarkStarredStatus         = 1 << 6
+    MRCReposViewModelOptionsMarkStarredStatus         = 1 << 6,
 };
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel

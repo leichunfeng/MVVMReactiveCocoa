@@ -19,16 +19,18 @@
 - (void)initialize {
     [super initialize];
     
-    self.title = @"Search";
-        
     self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
     
     RAC(self, dataSource) = [[[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:MRCRecentSearchesDidChangeNotification object:nil]
         startWith:nil]
         map:^(id value) {
-            NSArray *recentSearches = [MRCSearch recentSearches];
-            return recentSearches ? @[ recentSearches ] : nil;
+            MRCSearch *trendingSearch = [[MRCSearch alloc] init];
+           
+            NSArray *trendingSearchs = @[ trendingSearch ];
+            NSArray *recentSearches  = [MRCSearch recentSearches] ?: @[];
+            
+            return @[ trendingSearchs, recentSearches ];
         }];
 }
 

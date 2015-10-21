@@ -46,4 +46,59 @@
         setNameWithFormat:@"-requestRepositoryReadmeHTML: %@ reference: %@", repository, reference];
 }
 
+- (RACSignal *)requestTrendingRepositoriesSince:(NSString *)since language:(NSString *)language {
+    since    = since.lowercaseString;
+    language = language.lowercaseString;
+    
+    if ([since isEqualToString:@"today"]) {
+        since = @"daily";
+    } else if ([since isEqualToString:@"this week"]) {
+        since = @"weekly";
+    } else if ([since isEqualToString:@"this month"]) {
+        since = @"monthly";
+    }
+    
+    if ([language isEqualToString:@"all languages"]) {
+        language = nil;
+    }
+    
+    return [[[RACSignal
+        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] initWithHostName:@"trending.codehub-app.com" apiPath:@"v2" customHeaderFields:nil];
+
+            MKNetworkOperation *operation = [networkEngine operationWithPath:@"trending"
+                                                                      params:@{ @"since": since ?: @"",
+                                                                                @"language": language ?: @"" }];
+
+            [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSArray *JSONArray = completedOperation.responseJSON;
+                    if (JSONArray.count > 0) {
+                        NSError *error = nil;
+                        NSArray *repositories = [MTLJSONAdapter modelsOfClass:[OCTRepository class] fromJSONArray:JSONArray error:&error];
+
+                        if (error) {
+                        		NSLog(@"Error: %@", error);
+                        } else {
+                            [subscriber sendNext:repositories];
+                        }
+                    }
+                    [subscriber sendCompleted];
+                });
+            } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                	[subscriber sendError:error];
+                });
+            }];
+
+            [networkEngine enqueueOperation:operation];
+
+            return [RACDisposable disposableWithBlock:^{
+            	[operation cancel];
+            }];
+        }]
+        replayLazily]
+        setNameWithFormat:@"-requestTrendingRepositoriesSince: %@ language: %@", since, language];
+}
+
 @end

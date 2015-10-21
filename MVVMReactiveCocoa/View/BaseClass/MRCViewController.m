@@ -58,10 +58,12 @@
 	// Double title view
     MRCDoubleTitleView *doubleTitleView = [[MRCDoubleTitleView alloc] init];
     
+    RAC(doubleTitleView.titleLabel, text)    = RACObserve(self.viewModel, title);
+    RAC(doubleTitleView.subtitleLabel, text) = RACObserve(self.viewModel, subtitle);
+    
     @weakify(self)
-    [[[self
+    [[self
     	rac_signalForSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]
-    	startWith:nil]
     	subscribeNext:^(id x) {
         	@strongify(self)
             doubleTitleView.titleLabel.text    = self.viewModel.title;
