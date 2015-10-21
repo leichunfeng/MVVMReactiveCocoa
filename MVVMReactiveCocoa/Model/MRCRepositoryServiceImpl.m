@@ -50,6 +50,18 @@
     since    = since.lowercaseString;
     language = language.lowercaseString;
     
+    if ([since isEqualToString:@"today"]) {
+        since = @"daily";
+    } else if ([since isEqualToString:@"this week"]) {
+        since = @"weekly";
+    } else if ([since isEqualToString:@"this month"]) {
+        since = @"monthly";
+    }
+    
+    if ([language isEqualToString:@"all languages"]) {
+        language = nil;
+    }
+    
     return [[[RACSignal
         createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] initWithHostName:@"trending.codehub-app.com" apiPath:@"v2" customHeaderFields:nil];

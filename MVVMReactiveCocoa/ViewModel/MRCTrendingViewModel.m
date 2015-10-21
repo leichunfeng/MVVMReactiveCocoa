@@ -8,25 +8,30 @@
 
 #import "MRCTrendingViewModel.h"
 
-@interface MRCTrendingViewModel ()
-
-@property (nonatomic, copy) NSString *since;
-@property (nonatomic, copy) NSString *language;
-
-@end
-
 @implementation MRCTrendingViewModel
 
 - (void)initialize {
     [super initialize];
     
-    self.since = @"weekly";
-    self.language = @"Objective-C";
+    self.since    = @"Today";
+    self.language = @"All languages";
     
     self.titleViewType = MRCTitleViewTypeDoubleTitle;
     
     RAC(self, title)    = RACObserve(self, language);
     RAC(self, subtitle) = RACObserve(self, since);
+    
+    @weakify(self)
+    [[[RACSignal
+    	combineLatest:@[
+            RACObserve(self, since).distinctUntilChanged,
+            RACObserve(self, language).distinctUntilChanged
+        ]]
+      	skip:1]
+    	subscribeNext:^(id x) {
+            @strongify(self)
+            [self.requestRemoteDataCommand execute:nil];
+        }];
 }
 
 - (MRCReposViewModelType)type {

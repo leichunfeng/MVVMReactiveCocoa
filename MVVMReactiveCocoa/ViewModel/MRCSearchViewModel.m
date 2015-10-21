@@ -25,8 +25,12 @@
         rac_addObserverForName:MRCRecentSearchesDidChangeNotification object:nil]
         startWith:nil]
         map:^(id value) {
-            NSArray *recentSearches = [MRCSearch recentSearches];
-            return recentSearches ? @[ recentSearches ] : nil;
+            MRCSearch *trendingSearch = [[MRCSearch alloc] init];
+           
+            NSArray *trendingSearchs = @[ trendingSearch ];
+            NSArray *recentSearches  = [MRCSearch recentSearches] ?: @[];
+            
+            return @[ trendingSearchs, recentSearches ];
         }];
 }
 

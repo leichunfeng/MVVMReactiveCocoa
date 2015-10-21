@@ -9,6 +9,7 @@
 #import "MRCSearchViewController.h"
 #import "MRCSearchViewModel.h"
 #import "MRCReposSearchResultsViewController.h"
+#import "MRCTrendingViewModel.h"
 
 @interface MRCSearchViewController () <UISearchControllerDelegate, UISearchBarDelegate>
 
@@ -47,7 +48,17 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCSearch *)search {
-    cell.textLabel.text = search.keyword;
+    if (indexPath.section == 0) {
+        cell.imageView.image = [UIImage octicon_imageWithIcon:@"Flame"
+                                              backgroundColor:[UIColor clearColor]
+                                                    iconColor:HexRGB(0x24AFFC)
+                                                    iconScale:1
+                                                      andSize:MRC_LEFT_IMAGE_SIZE];
+        cell.textLabel.text = @"Trending";
+    } else {
+        cell.textLabel.text = search.keyword;
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark - UITableViewDataSource
@@ -68,14 +79,14 @@
     view.backgroundColor = HexRGB(0xF7F7F7);
   
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"Recent Searches";
+    label.text = section == 0 ? @"Explore" : @"Recent Searches";
     label.font = [UIFont systemFontOfSize:15];
     [label sizeToFit];
     
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     
     CGRect frame = label.frame;
-    frame.origin.x = 20;
+    frame.origin.x = 15;
     frame.origin.y = (height - frame.size.height) / 2;
     label.frame = frame;
     
@@ -89,23 +100,28 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
+    return indexPath.section == 0 ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self presentViewController:self.searchController animated:YES completion:NULL];
-
-    MRCSearch *search = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    self.searchController.searchBar.text = search.keyword;
-    
-    if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
-        [self.searchController.searchBar.delegate searchBar:self.searchController.searchBar textDidChange:search.keyword];
-    }
-    
-    if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBarSearchButtonClicked:)]) {
-        [self.searchController.searchBar.delegate searchBarSearchButtonClicked:self.searchController.searchBar];
+    if (indexPath.section == 0) {
+        MRCTrendingViewModel *trendingViewModel = [[MRCTrendingViewModel alloc] initWithServices:self.viewModel.services params:nil];
+        [self.viewModel.services pushViewModel:trendingViewModel animated:YES];
+    } else {
+        [self presentViewController:self.searchController animated:YES completion:NULL];
+        
+        MRCSearch *search = self.viewModel.dataSource[indexPath.section][indexPath.row];
+        self.searchController.searchBar.text = search.keyword;
+        
+        if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
+            [self.searchController.searchBar.delegate searchBar:self.searchController.searchBar textDidChange:search.keyword];
+        }
+        
+        if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBarSearchButtonClicked:)]) {
+            [self.searchController.searchBar.delegate searchBarSearchButtonClicked:self.searchController.searchBar];
+        }
     }
 }
 

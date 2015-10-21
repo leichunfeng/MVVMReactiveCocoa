@@ -53,6 +53,9 @@
 		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
 		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E901A8F455000D25218 /* MRCDoubleTitleView.m */; };
+		24143F061BD783D300555179 /* MRCTrendingSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */; settings = {ASSET_TAGS = (); }; };
+		24143F151BD783F900555179 /* MRCTrendingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24143F131BD783F900555179 /* MRCTrendingSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		24143F161BD783F900555179 /* MRCTrendingSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24143F141BD783F900555179 /* MRCTrendingSettingsViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
 		242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
@@ -455,6 +458,11 @@
 		24116E8F1A8F455000D25218 /* MRCDoubleTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCDoubleTitleView.h; sourceTree = "<group>"; };
 		24116E901A8F455000D25218 /* MRCDoubleTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCDoubleTitleView.m; sourceTree = "<group>"; };
 		24123E471AEE8AD300D5A074 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		24143F041BD783D300555179 /* MRCTrendingSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTrendingSettingsViewModel.h; sourceTree = "<group>"; };
+		24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTrendingSettingsViewModel.m; sourceTree = "<group>"; };
+		24143F121BD783F900555179 /* MRCTrendingSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTrendingSettingsViewController.h; sourceTree = "<group>"; };
+		24143F131BD783F900555179 /* MRCTrendingSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTrendingSettingsViewController.m; sourceTree = "<group>"; };
+		24143F141BD783F900555179 /* MRCTrendingSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCTrendingSettingsViewController.xib; sourceTree = "<group>"; };
 		241545D51A67F3CF007AFD5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		241545D71A67F3EF007AFD5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		241545D91A67F3F4007AFD5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -861,6 +869,9 @@
 				24A47EB31BD5DA05000B79D0 /* MRCTrendingViewController.h */,
 				24A47EB41BD5DA05000B79D0 /* MRCTrendingViewController.m */,
 				24A47EB51BD5DA05000B79D0 /* MRCTrendingViewController.xib */,
+				24143F121BD783F900555179 /* MRCTrendingSettingsViewController.h */,
+				24143F131BD783F900555179 /* MRCTrendingSettingsViewController.m */,
+				24143F141BD783F900555179 /* MRCTrendingSettingsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -960,6 +971,8 @@
 				2489AD5A1B33AEE200D76523 /* MRCPublicReposViewModel.m */,
 				24A47EA51BD5D9E9000B79D0 /* MRCTrendingViewModel.h */,
 				24A47EA61BD5D9E9000B79D0 /* MRCTrendingViewModel.m */,
+				24143F041BD783D300555179 /* MRCTrendingSettingsViewModel.h */,
+				24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1586,6 +1599,7 @@
 				243688431B25E31A00D801D3 /* MRCUserListTableViewCell.xib in Resources */,
 				240D01391A654D300033CC86 /* MRCHomepageViewController.xib in Resources */,
 				240D013F1A654D300033CC86 /* MRCProfileViewController.xib in Resources */,
+				24143F161BD783F900555179 /* MRCTrendingSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1756,6 +1770,7 @@
 				240D01441A654D300033CC86 /* MRCTabBarViewModel.m in Sources */,
 				240D013C1A654D300033CC86 /* MRCNewsViewController.m in Sources */,
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
+				24143F151BD783F900555179 /* MRCTrendingSettingsViewController.m in Sources */,
 				24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */,
 				24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */,
 				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
@@ -1769,6 +1784,7 @@
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,
 				240D014B1A654D300033CC86 /* MRCHomepageViewModel.m in Sources */,
+				24143F061BD783D300555179 /* MRCTrendingSettingsViewModel.m in Sources */,
 				248973871B3028BC00A867DE /* MRCUserDetailViewController.m in Sources */,
 				24DF45891A6BF6CD00F23474 /* MRCReposViewController.m in Sources */,
 				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
