@@ -44,7 +44,7 @@
 - (MRCReposViewModelOptions)options {
     MRCReposViewModelOptions options = 0;
     
-    options = options | MRCReposViewModelOptionsObserveStarredReposChange;
+//    options = options | MRCReposViewModelOptionsObserveStarredReposChange;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
 //    options = options | MRCReposViewModelOptionsPagination;
