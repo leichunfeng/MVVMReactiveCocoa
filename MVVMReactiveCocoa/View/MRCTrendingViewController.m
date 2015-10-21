@@ -47,6 +47,9 @@
         
         RACTupleUnpack(NSString *since, NSString *language) = tuple;
         
+        [[NSUserDefaults standardUserDefaults] setValue:since forKey:@"since"];
+        [[NSUserDefaults standardUserDefaults] setValue:language forKey:@"language"];
+        
         self.viewModel.since    = since;
         self.viewModel.language = language;
     };

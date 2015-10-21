@@ -13,8 +13,11 @@
 - (void)initialize {
     [super initialize];
     
-    self.since    = @"Today";
-    self.language = @"All languages";
+    NSString *since    = [[NSUserDefaults standardUserDefaults] stringForKey:@"since"];
+    NSString *language = [[NSUserDefaults standardUserDefaults] stringForKey:@"language"];
+    
+    self.since    = since ?: @"Today";
+    self.language = language ?: @"All languages";
     
     self.titleViewType = MRCTitleViewTypeDoubleTitle;
     
