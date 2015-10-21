@@ -11,6 +11,7 @@
 #import "MRCNewsTableViewCell.h"
 #import "MRCNewsItemViewModel.h"
 #import "MRCNetworkHeaderView.h"
+#import "MRCSearchViewModel.h"
 
 @interface MRCNewsViewController ()
 
