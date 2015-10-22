@@ -23,6 +23,7 @@
     [super initialize];
     
     self.title = @"Options";
+    self.shouldRequestRemoteDataOnViewDidLoad = NO;
     
     NSArray *sinces = @[
 		@"Today",

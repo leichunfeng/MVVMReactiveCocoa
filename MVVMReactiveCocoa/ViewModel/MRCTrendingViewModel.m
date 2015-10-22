@@ -8,10 +8,19 @@
 
 #import "MRCTrendingViewModel.h"
 
+@interface MRCTrendingViewModel ()
+
+@property (nonatomic, strong) RACSignal *optionsSignal;
+
+@end
+
 @implementation MRCTrendingViewModel
 
 - (void)initialize {
     [super initialize];
+    
+    self.shouldRequestRemoteDataOnViewDidLoad = NO;
+    self.requestRemoteDataCommand.allowsConcurrentExecution = YES;
     
     NSString *since    = [[NSUserDefaults standardUserDefaults] stringForKey:@"since"];
     NSString *language = [[NSUserDefaults standardUserDefaults] stringForKey:@"language"];
@@ -24,17 +33,15 @@
     RAC(self, title)    = RACObserve(self, language);
     RAC(self, subtitle) = RACObserve(self, since);
     
+    self.optionsSignal = [RACSignal combineLatest:@[ RACObserve(self, since).distinctUntilChanged,
+                                                     RACObserve(self, language).distinctUntilChanged, ]];
+
     @weakify(self)
-    [[[RACSignal
-    	combineLatest:@[
-            RACObserve(self, since).distinctUntilChanged,
-            RACObserve(self, language).distinctUntilChanged
-        ]]
-      	skip:1]
-    	subscribeNext:^(id x) {
-            @strongify(self)
-            [self.requestRemoteDataCommand execute:nil];
-        }];
+    [self.optionsSignal subscribeNext:^(id x) {
+        @strongify(self)
+        self.dataSource = nil;
+        [self.requestRemoteDataCommand execute:nil];
+    }];
 }
 
 - (MRCReposViewModelType)type {
@@ -60,9 +67,10 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[self.services
-		repositoryService]
-        requestTrendingRepositoriesSince:self.since language:self.language];
+    return [[[self.services
+        repositoryService]
+        requestTrendingRepositoriesSince:self.since language:self.language]
+        takeUntil:[self.optionsSignal skip:1]];
 }
 
 @end
