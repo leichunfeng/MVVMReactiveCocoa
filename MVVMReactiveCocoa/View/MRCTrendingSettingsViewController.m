@@ -43,16 +43,16 @@
         }];
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSString *)string {
-    cell.textLabel.text = string;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSDictionary *)dictionary {
+    cell.textLabel.text = dictionary[@"name"];
     cell.accessoryType  = UITableViewCellAccessoryNone;
 
     if (indexPath.section == 0) {
-        if ([string isEqualToString:self.viewModel.since]) {
+        if ([dictionary isEqualToDictionary:self.viewModel.since]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     } else if (indexPath.section == 1) {
-        if ([string isEqualToString:self.viewModel.language]) {
+        if ([dictionary isEqualToDictionary:self.viewModel.language]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }
@@ -80,11 +80,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *string = self.viewModel.dataSource[indexPath.section][indexPath.row];
+    NSDictionary *dictionary = self.viewModel.dataSource[indexPath.section][indexPath.row];
     if (indexPath.section == 0) {
-        self.viewModel.since = string;
+        self.viewModel.since = dictionary;
     } else if (indexPath.section == 1) {
-        self.viewModel.language = string;
+        self.viewModel.language = dictionary;
     }
 }
 

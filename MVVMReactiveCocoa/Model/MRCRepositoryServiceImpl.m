@@ -47,28 +47,13 @@
 }
 
 - (RACSignal *)requestTrendingRepositoriesSince:(NSString *)since language:(NSString *)language {
-    since    = since.lowercaseString;
-    language = language.lowercaseString;
-    
-    if ([since isEqualToString:@"today"]) {
-        since = @"daily";
-    } else if ([since isEqualToString:@"this week"]) {
-        since = @"weekly";
-    } else if ([since isEqualToString:@"this month"]) {
-        since = @"monthly";
-    }
-    
-    if ([language isEqualToString:@"all languages"]) {
-        language = nil;
-    }
-    
     return [[[RACSignal
         createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] initWithHostName:@"trending.codehub-app.com" apiPath:@"v2" customHeaderFields:nil];
-
-            MKNetworkOperation *operation = [networkEngine operationWithPath:@"trending"
-                                                                      params:@{ @"since": since ?: @"",
-                                                                                @"language": language ?: @"" }];
+            MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
+            
+            NSString *URLString = [NSString stringWithFormat:@"http://trending.codehub-app.com/v2/trending?since=%@&language=%@", since, language];
+            URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            MKNetworkOperation *operation = [networkEngine operationWithURLString:URLString];
 
             [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Today",
+        "slug": "daily"
+    },
+    {
+        "name": "This week",
+        "slug": "weekly"
+    },
+    {
+        "name": "This month",
+        "slug": "monthly"
+    }
+]

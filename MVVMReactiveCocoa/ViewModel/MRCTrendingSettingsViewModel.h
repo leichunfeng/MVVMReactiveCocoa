@@ -10,7 +10,10 @@
 
 @interface MRCTrendingSettingsViewModel : MRCTableViewModel
 
-@property (nonatomic, copy) NSString *since;
-@property (nonatomic, copy) NSString *language;
+@property (nonatomic, copy) NSDictionary *since;
+@property (nonatomic, copy) NSDictionary *language;
+
+NSArray *MRCTrendingSinces();
+NSArray *MRCTrendingLanguages();
 
 @end
