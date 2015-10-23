@@ -14,6 +14,10 @@ Now, GitBucket mainly include the following features:
 
 The features is little now, but I will add more utility features at the iterative development in the future, such as **Activity**、**Gists**、**Issues**, etc.
 
+# Class diagram
+
+![MVVMReactiveCocoa](OmniGraffle/MVVMReactiveCocoa.png "MVVMReactiveCocoa")
+
 # Contribution
 
 If you want to make some contributions to this project or just want to build the project, please using the following command:
@@ -26,6 +30,6 @@ Everything will be done for you, and all you need to do is just waiting for it t
 
 Once finished, you can open the project through double-click the `MVVMReactiveCocoa.xcworkspace` file and build the `MVVMReactiveCocoa` target. Any pull request will be welcome.
 
-## License
+# License
 
 MVVMReactiveCocoa is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
