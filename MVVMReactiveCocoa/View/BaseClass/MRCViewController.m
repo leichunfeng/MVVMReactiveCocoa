@@ -89,7 +89,7 @@
     [self.viewModel.errors subscribeNext:^(NSError *error) {
         @strongify(self)
         
-        NSLog(@"error.localizedDescription: %@", error.localizedDescription);
+        MRCLogError(error);
         
         if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorAuthenticationFailed) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MRC_ALERT_TITLE

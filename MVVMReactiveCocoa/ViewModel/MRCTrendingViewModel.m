@@ -39,7 +39,7 @@
     }];
 
     self.optionsSignal = [RACSignal combineLatest:@[ RACObserve(self, since).distinctUntilChanged,
-                                                     RACObserve(self, language).distinctUntilChanged, ]];
+                                                     RACObserve(self, language).distinctUntilChanged ]];
 
     @weakify(self)
     [self.optionsSignal subscribeNext:^(id x) {

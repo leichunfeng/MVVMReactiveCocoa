@@ -37,7 +37,10 @@
 }
 
 - (void)didClickSettingsButton:(id)sender {
-    NSDictionary *params = @{ @"since": self.viewModel.since ?: @"", @"language": self.viewModel.language ?: @"" };
+    NSDictionary *params = @{
+		@"since": self.viewModel.since ?: @"",
+        @"language": self.viewModel.language ?: @""
+	};
 
     MRCTrendingSettingsViewModel *settingsViewModel = [[MRCTrendingSettingsViewModel alloc] initWithServices:self.viewModel.services params:params];
     

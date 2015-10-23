@@ -67,7 +67,7 @@
 
     NSError *error = nil;
     self.reference = [[OCTRef alloc] initWithDictionary:@{ @"name": self.referenceName } error:&error];
-    if (error) NSLog(@"Error: %@", error);
+    if (error) MRCLogError(error);
     
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
@@ -151,7 +151,7 @@
 }
 
 - (void)presentSelectBranchOrTagViewModel {
-    NSDictionary *params = @{@"references": self.references, @"selectedReference": self.reference };
+    NSDictionary *params = @{ @"references": self.references, @"selectedReference": self.reference };
     MRCSelectBranchOrTagViewModel *branchViewModel = [[MRCSelectBranchOrTagViewModel alloc] initWithServices:self.services params:params];
     
     @weakify(self)
@@ -195,7 +195,7 @@
     
     NSError *error = nil;
     ONOXMLDocument *document = [ONOXMLDocument HTMLDocumentWithString:readmeHTML encoding:NSUTF8StringEncoding error:&error];
-    if (error != nil) NSLog(@"Error: %@", error);
+    if (error != nil) MRCLogError(error);
     
     NSString *XPath = @"//article/*";
     [document enumerateElementsWithXPath:XPath usingBlock:^(ONOXMLElement *element, NSUInteger idx, BOOL *stop) {
