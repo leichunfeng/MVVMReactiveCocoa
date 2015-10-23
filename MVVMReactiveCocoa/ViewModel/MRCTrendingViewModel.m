@@ -18,21 +18,26 @@
 
 - (void)initialize {
     [super initialize];
-    
+
     self.shouldRequestRemoteDataOnViewDidLoad = NO;
     self.requestRemoteDataCommand.allowsConcurrentExecution = YES;
-    
-    NSString *since    = [[NSUserDefaults standardUserDefaults] stringForKey:@"since"];
-    NSString *language = [[NSUserDefaults standardUserDefaults] stringForKey:@"language"];
-    
-    self.since    = since ?: @"Today";
-    self.language = language ?: @"All languages";
-    
+
+    NSDictionary *since    = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"since"];
+    NSDictionary *language = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"language"];
+
+    self.since    = since ?: MRCTrendingSinces().firstObject;
+    self.language = language ?: MRCTrendingLanguages().firstObject;
+
     self.titleViewType = MRCTitleViewTypeDoubleTitle;
+
+    RAC(self, title) = [RACObserve(self, language) map:^(NSDictionary *language) {
+        return language[@"name"];
+    }];
     
-    RAC(self, title)    = RACObserve(self, language);
-    RAC(self, subtitle) = RACObserve(self, since);
-    
+    RAC(self, subtitle) = [RACObserve(self, since) map:^(NSDictionary *since) {
+        return since[@"name"];
+    }];
+
     self.optionsSignal = [RACSignal combineLatest:@[ RACObserve(self, since).distinctUntilChanged,
                                                      RACObserve(self, language).distinctUntilChanged, ]];
 
@@ -50,7 +55,7 @@
 
 - (MRCReposViewModelOptions)options {
     MRCReposViewModelOptions options = 0;
-    
+
 //    options = options | MRCReposViewModelOptionsObserveStarredReposChange;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
@@ -58,7 +63,7 @@
 //    options = options | MRCReposViewModelOptionsSectionIndex;
     options = options | MRCReposViewModelOptionsShowOwnerLogin;
     options = options | MRCReposViewModelOptionsMarkStarredStatus;
-    
+
     return options;
 }
 
@@ -69,7 +74,7 @@
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     return [[[self.services
         repositoryService]
-        requestTrendingRepositoriesSince:self.since language:self.language]
+        requestTrendingRepositoriesSince:self.since[@"slug"] language:self.language[@"slug"]]
         takeUntil:[self.optionsSignal skip:1]];
 }
 

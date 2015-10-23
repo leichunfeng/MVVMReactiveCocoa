@@ -1,0 +1,1182 @@
+[
+    {
+        "name": "All languages",
+        "slug": ""
+    },
+    {
+        "name": "ABAP",
+        "slug": "abap"
+    },
+    {
+        "name": "AGS Script",
+        "slug": "ags-script"
+    },
+    {
+        "name": "AMPL",
+        "slug": "ampl"
+    },
+    {
+        "name": "ANTLR",
+        "slug": "antlr"
+    },
+    {
+        "name": "API Blueprint",
+        "slug": "api-blueprint"
+    },
+    {
+        "name": "APL",
+        "slug": "apl"
+    },
+    {
+        "name": "ASP",
+        "slug": "aspx-vb"
+    },
+    {
+        "name": "ATS",
+        "slug": "ats"
+    },
+    {
+        "name": "ActionScript",
+        "slug": "as3"
+    },
+    {
+        "name": "Ada",
+        "slug": "ada"
+    },
+    {
+        "name": "Agda",
+        "slug": "agda"
+    },
+    {
+        "name": "Alloy",
+        "slug": "alloy"
+    },
+    {
+        "name": "ApacheConf",
+        "slug": "apacheconf"
+    },
+    {
+        "name": "Apex",
+        "slug": "apex"
+    },
+    {
+        "name": "AppleScript",
+        "slug": "applescript"
+    },
+    {
+        "name": "Arc",
+        "slug": "arc"
+    },
+    {
+        "name": "Arduino",
+        "slug": "arduino"
+    },
+    {
+        "name": "AspectJ",
+        "slug": "aspectj"
+    },
+    {
+        "name": "Assembly",
+        "slug": "nasm"
+    },
+    {
+        "name": "Augeas",
+        "slug": "augeas"
+    },
+    {
+        "name": "AutoHotkey",
+        "slug": "autohotkey"
+    },
+    {
+        "name": "AutoIt",
+        "slug": "autoit"
+    },
+    {
+        "name": "Awk",
+        "slug": "awk"
+    },
+    {
+        "name": "Batchfile",
+        "slug": "bat"
+    },
+    {
+        "name": "Befunge",
+        "slug": "befunge"
+    },
+    {
+        "name": "Bison",
+        "slug": "bison"
+    },
+    {
+        "name": "BitBake",
+        "slug": "bitbake"
+    },
+    {
+        "name": "BlitzBasic",
+        "slug": "blitzbasic"
+    },
+    {
+        "name": "BlitzMax",
+        "slug": "blitzmax"
+    },
+    {
+        "name": "Bluespec",
+        "slug": "bluespec"
+    },
+    {
+        "name": "Boo",
+        "slug": "boo"
+    },
+    {
+        "name": "Brainfuck",
+        "slug": "brainfuck"
+    },
+    {
+        "name": "Brightscript",
+        "slug": "brightscript"
+    },
+    {
+        "name": "Bro",
+        "slug": "bro"
+    },
+    {
+        "name": "C",
+        "slug": "c"
+    },
+    {
+        "name": "C#",
+        "slug": "csharp"
+    },
+    {
+        "name": "C++",
+        "slug": "cpp"
+    },
+    {
+        "name": "CLIPS",
+        "slug": "clips"
+    },
+    {
+        "name": "CMake",
+        "slug": "cmake"
+    },
+    {
+        "name": "COBOL",
+        "slug": "cobol"
+    },
+    {
+        "name": "CSS",
+        "slug": "css"
+    },
+    {
+        "name": "Cap'n Proto",
+        "slug": "cap'n-proto"
+    },
+    {
+        "name": "CartoCSS",
+        "slug": "cartocss"
+    },
+    {
+        "name": "Ceylon",
+        "slug": "ceylon"
+    },
+    {
+        "name": "Chapel",
+        "slug": "chapel"
+    },
+    {
+        "name": "Charity",
+        "slug": "charity"
+    },
+    {
+        "name": "ChucK",
+        "slug": "chuck"
+    },
+    {
+        "name": "Cirru",
+        "slug": "cirru"
+    },
+    {
+        "name": "Clarion",
+        "slug": "clarion"
+    },
+    {
+        "name": "Clean",
+        "slug": "clean"
+    },
+    {
+        "name": "Clojure",
+        "slug": "clojure"
+    },
+    {
+        "name": "CoffeeScript",
+        "slug": "coffeescript"
+    },
+    {
+        "name": "ColdFusion",
+        "slug": "cfm"
+    },
+    {
+        "name": "Common Lisp",
+        "slug": "common-lisp"
+    },
+    {
+        "name": "Component Pascal",
+        "slug": "component-pascal"
+    },
+    {
+        "name": "Cool",
+        "slug": "cool"
+    },
+    {
+        "name": "Coq",
+        "slug": "coq"
+    },
+    {
+        "name": "Crystal",
+        "slug": "crystal"
+    },
+    {
+        "name": "Cucumber",
+        "slug": "cucumber"
+    },
+    {
+        "name": "Cuda",
+        "slug": "cuda"
+    },
+    {
+        "name": "Cycript",
+        "slug": "cycript"
+    },
+    {
+        "name": "D",
+        "slug": "d"
+    },
+    {
+        "name": "DIGITAL Command Language",
+        "slug": "digital-command-language"
+    },
+    {
+        "name": "DM",
+        "slug": "dm"
+    },
+    {
+        "slug": "dot",
+        "name": "DOT"
+    },
+    {
+        "name": "DTrace",
+        "slug": "dtrace"
+    },
+    {
+        "name": "Darcs Patch",
+        "slug": "dpatch"
+    },
+    {
+        "name": "Dart",
+        "slug": "dart"
+    },
+    {
+        "name": "Diff",
+        "slug": "diff"
+    },
+    {
+        "name": "Dogescript",
+        "slug": "dogescript"
+    },
+    {
+        "name": "Dylan",
+        "slug": "dylan"
+    },
+    {
+        "name": "E",
+        "slug": "e"
+    },
+    {
+        "name": "ECL",
+        "slug": "ecl"
+    },
+    {
+        "name": "Eagle",
+        "slug": "eagle"
+    },
+    {
+        "name": "Eiffel",
+        "slug": "eiffel"
+    },
+    {
+        "name": "Elixir",
+        "slug": "elixir"
+    },
+    {
+        "name": "Elm",
+        "slug": "elm"
+    },
+    {
+        "name": "Emacs Lisp",
+        "slug": "emacs-lisp"
+    },
+    {
+        "name": "EmberScript",
+        "slug": "emberscript"
+    },
+    {
+        "name": "Erlang",
+        "slug": "erlang"
+    },
+    {
+        "name": "F#",
+        "slug": "fsharp"
+    },
+    {
+        "name": "FLUX",
+        "slug": "flux"
+    },
+    {
+        "name": "FORTRAN",
+        "slug": "fortran"
+    },
+    {
+        "name": "Factor",
+        "slug": "factor"
+    },
+    {
+        "name": "Fancy",
+        "slug": "fancy"
+    },
+    {
+        "name": "Fantom",
+        "slug": "fantom"
+    },
+    {
+        "name": "Forth",
+        "slug": "forth"
+    },
+    {
+        "name": "Frege",
+        "slug": "frege"
+    },
+    {
+        "name": "GAMS",
+        "slug": "gams"
+    },
+    {
+        "name": "GAP",
+        "slug": "gap"
+    },
+    {
+        "name": "GDScript",
+        "slug": "gdscript"
+    },
+    {
+        "name": "GLSL",
+        "slug": "glsl"
+    },
+    {
+        "name": "Game Maker Language",
+        "slug": "game-maker-language"
+    },
+    {
+        "name": "Genshi",
+        "slug": "genshi"
+    },
+    {
+        "name": "Gettext Catalog",
+        "slug": "pot"
+    },
+    {
+        "name": "Glyph",
+        "slug": "glyph"
+    },
+    {
+        "name": "Gnuplot",
+        "slug": "gnuplot"
+    },
+    {
+        "name": "Go",
+        "slug": "go"
+    },
+    {
+        "name": "Golo",
+        "slug": "golo"
+    },
+    {
+        "name": "Gosu",
+        "slug": "gosu"
+    },
+    {
+        "name": "Grace",
+        "slug": "grace"
+    },
+    {
+        "name": "Grammatical Framework",
+        "slug": "grammatical-framework"
+    },
+    {
+        "name": "Groff",
+        "slug": "groff"
+    },
+    {
+        "name": "Groovy",
+        "slug": "groovy"
+    },
+    {
+        "name": "HCL",
+        "slug": "hcl"
+    },
+    {
+        "name": "HTML",
+        "slug": "html"
+    },
+    {
+        "name": "Hack",
+        "slug": "hack"
+    },
+    {
+        "name": "Handlebars",
+        "slug": "handlebars"
+    },
+    {
+        "name": "Harbour",
+        "slug": "harbour"
+    },
+    {
+        "name": "Haskell",
+        "slug": "haskell"
+    },
+    {
+        "name": "Haxe",
+        "slug": "haxe"
+    },
+    {
+        "name": "Hy",
+        "slug": "hy"
+    },
+    {
+        "name": "HyPhy",
+        "slug": "hyphy"
+    },
+    {
+        "name": "IDL",
+        "slug": "idl"
+    },
+    {
+        "name": "IGOR Pro",
+        "slug": "igor-pro"
+    },
+    {
+        "name": "Idris",
+        "slug": "idris"
+    },
+    {
+        "name": "Inform 7",
+        "slug": "inform-7"
+    },
+    {
+        "name": "Inno Setup",
+        "slug": "inno-setup"
+    },
+    {
+        "name": "Io",
+        "slug": "io"
+    },
+    {
+        "name": "Ioke",
+        "slug": "ioke"
+    },
+    {
+        "name": "Isabelle",
+        "slug": "isabelle"
+    },
+    {
+        "name": "J",
+        "slug": "j"
+    },
+    {
+        "name": "JFlex",
+        "slug": "jflex"
+    },
+    {
+        "name": "JSONiq",
+        "slug": "jsoniq"
+    },
+    {
+        "name": "Jasmin",
+        "slug": "jasmin"
+    },
+    {
+        "name": "Java",
+        "slug": "java"
+    },
+    {
+        "name": "JavaScript",
+        "slug": "javascript"
+    },
+    {
+        "name": "Julia",
+        "slug": "julia"
+    },
+    {
+        "name": "KRL",
+        "slug": "krl"
+    },
+    {
+        "name": "KiCad",
+        "slug": "kicad"
+    },
+    {
+        "name": "Kit",
+        "slug": "kit"
+    },
+    {
+        "name": "Kotlin",
+        "slug": "kotlin"
+    },
+    {
+        "name": "LLVM",
+        "slug": "llvm"
+    },
+    {
+        "name": "LOLCODE",
+        "slug": "lolcode"
+    },
+    {
+        "name": "LSL",
+        "slug": "lsl"
+    },
+    {
+        "name": "LabVIEW",
+        "slug": "labview"
+    },
+    {
+        "name": "Lasso",
+        "slug": "lasso"
+    },
+    {
+        "name": "Lean",
+        "slug": "lean"
+    },
+    {
+        "name": "Lex",
+        "slug": "lex"
+    },
+    {
+        "name": "LilyPond",
+        "slug": "lilypond"
+    },
+    {
+        "name": "Limbo",
+        "slug": "limbo"
+    },
+    {
+        "name": "Liquid",
+        "slug": "liquid"
+    },
+    {
+        "name": "LiveScript",
+        "slug": "livescript"
+    },
+    {
+        "name": "Logos",
+        "slug": "logos"
+    },
+    {
+        "name": "Logtalk",
+        "slug": "logtalk"
+    },
+    {
+        "name": "LookML",
+        "slug": "lookml"
+    },
+    {
+        "name": "LoomScript",
+        "slug": "loomscript"
+    },
+    {
+        "name": "Lua",
+        "slug": "lua"
+    },
+    {
+        "name": "M",
+        "slug": "m"
+    },
+    {
+        "name": "MTML",
+        "slug": "mtml"
+    },
+    {
+        "name": "Makefile",
+        "slug": "makefile"
+    },
+    {
+        "name": "Mako",
+        "slug": "mako"
+    },
+    {
+        "name": "Markdown",
+        "slug": "markdown"
+    },
+    {
+        "name": "Mask",
+        "slug": "mask"
+    },
+    {
+        "name": "Mathematica",
+        "slug": "mathematica"
+    },
+    {
+        "name": "Matlab",
+        "slug": "matlab"
+    },
+    {
+        "name": "Max",
+        "slug": "max/msp"
+    },
+    {
+        "name": "Mercury",
+        "slug": "mercury"
+    },
+    {
+        "name": "MiniD",
+        "slug": "minid"
+    },
+    {
+        "name": "Mirah",
+        "slug": "mirah"
+    },
+    {
+        "name": "Modelica",
+        "slug": "modelica"
+    },
+    {
+        "name": "Modula-2",
+        "slug": "modula-2"
+    },
+    {
+        "name": "Module Management System",
+        "slug": "module-management-system"
+    },
+    {
+        "name": "Monkey",
+        "slug": "monkey"
+    },
+    {
+        "name": "Moocode",
+        "slug": "moocode"
+    },
+    {
+        "name": "MoonScript",
+        "slug": "moonscript"
+    },
+    {
+        "name": "Myghty",
+        "slug": "myghty"
+    },
+    {
+        "name": "NCL",
+        "slug": "ncl"
+    },
+    {
+        "name": "NSIS",
+        "slug": "nsis"
+    },
+    {
+        "name": "Nemerle",
+        "slug": "nemerle"
+    },
+    {
+        "name": "NetLinx",
+        "slug": "netlinx"
+    },
+    {
+        "name": "NetLinx+ERB",
+        "slug": "netlinx+erb"
+    },
+    {
+        "name": "NetLogo",
+        "slug": "netlogo"
+    },
+    {
+        "name": "NewLisp",
+        "slug": "newlisp"
+    },
+    {
+        "name": "Nginx",
+        "slug": "nginx"
+    },
+    {
+        "name": "Nimrod",
+        "slug": "nimrod"
+    },
+    {
+        "name": "Nit",
+        "slug": "nit"
+    },
+    {
+        "name": "Nix",
+        "slug": "nix"
+    },
+    {
+        "name": "Nu",
+        "slug": "nu"
+    },
+    {
+        "name": "OCaml",
+        "slug": "ocaml"
+    },
+    {
+        "name": "Objective-C",
+        "slug": "objective-c"
+    },
+    {
+        "name": "Objective-C++",
+        "slug": "objective-c++"
+    },
+    {
+        "name": "Objective-J",
+        "slug": "objective-j"
+    },
+    {
+        "name": "Omgrofl",
+        "slug": "omgrofl"
+    },
+    {
+        "name": "Opa",
+        "slug": "opa"
+    },
+    {
+        "name": "Opal",
+        "slug": "opal"
+    },
+    {
+        "name": "OpenEdge ABL",
+        "slug": "openedge-abl"
+    },
+    {
+        "name": "OpenSCAD",
+        "slug": "openscad"
+    },
+    {
+        "name": "Ox",
+        "slug": "ox"
+    },
+    {
+        "name": "Oxygene",
+        "slug": "oxygene"
+    },
+    {
+        "name": "Oz",
+        "slug": "oz"
+    },
+    {
+        "name": "PAWN",
+        "slug": "pawn"
+    },
+    {
+        "name": "PHP",
+        "slug": "php"
+    },
+    {
+        "name": "PLSQL",
+        "slug": "plsql"
+    },
+    {
+        "name": "PLpgSQL",
+        "slug": "plpgsql"
+    },
+    {
+        "name": "Pan",
+        "slug": "pan"
+    },
+    {
+        "name": "Papyrus",
+        "slug": "papyrus"
+    },
+    {
+        "name": "Parrot",
+        "slug": "parrot"
+    },
+    {
+        "name": "Pascal",
+        "slug": "pascal"
+    },
+    {
+        "name": "Perl",
+        "slug": "perl"
+    },
+    {
+        "name": "Perl6",
+        "slug": "perl6"
+    },
+    {
+        "name": "PicoLisp",
+        "slug": "picolisp"
+    },
+    {
+        "name": "PigLatin",
+        "slug": "piglatin"
+    },
+    {
+        "name": "Pike",
+        "slug": "pike"
+    },
+    {
+        "name": "PogoScript",
+        "slug": "pogoscript"
+    },
+    {
+        "name": "PostScript",
+        "slug": "postscript"
+    },
+    {
+        "name": "PowerShell",
+        "slug": "powershell"
+    },
+    {
+        "name": "Processing",
+        "slug": "processing"
+    },
+    {
+        "name": "Prolog",
+        "slug": "prolog"
+    },
+    {
+        "name": "Propeller Spin",
+        "slug": "propeller-spin"
+    },
+    {
+        "name": "Protocol Buffer",
+        "slug": "protocol-buffer"
+    },
+    {
+        "name": "Puppet",
+        "slug": "puppet"
+    },
+    {
+        "name": "Pure Data",
+        "slug": "pure-data"
+    },
+    {
+        "name": "PureBasic",
+        "slug": "purebasic"
+    },
+    {
+        "name": "PureScript",
+        "slug": "purescript"
+    },
+    {
+        "name": "Python",
+        "slug": "python"
+    },
+    {
+        "name": "QML",
+        "slug": "qml"
+    },
+    {
+        "name": "QMake",
+        "slug": "qmake"
+    },
+    {
+        "name": "R",
+        "slug": "r"
+    },
+    {
+        "name": "RAML",
+        "slug": "raml"
+    },
+    {
+        "name": "RDoc",
+        "slug": "rdoc"
+    },
+    {
+        "name": "REALbasic",
+        "slug": "realbasic"
+    },
+    {
+        "name": "Racket",
+        "slug": "racket"
+    },
+    {
+        "name": "Ragel in Ruby Host",
+        "slug": "ragel-in-ruby-host"
+    },
+    {
+        "name": "Rebol",
+        "slug": "rebol"
+    },
+    {
+        "name": "Red",
+        "slug": "red"
+    },
+    {
+        "name": "Redcode",
+        "slug": "redcode"
+    },
+    {
+        "name": "RenderScript",
+        "slug": "renderscript"
+    },
+    {
+        "name": "RobotFramework",
+        "slug": "robotframework"
+    },
+    {
+        "name": "Rouge",
+        "slug": "rouge"
+    },
+    {
+        "name": "Ruby",
+        "slug": "ruby"
+    },
+    {
+        "name": "Rust",
+        "slug": "rust"
+    },
+    {
+        "name": "SAS",
+        "slug": "sas"
+    },
+    {
+        "name": "SMT",
+        "slug": "smt"
+    },
+    {
+        "name": "SQF",
+        "slug": "sqf"
+    },
+    {
+        "name": "SQL",
+        "slug": "sql"
+    },
+    {
+        "name": "SQLPL",
+        "slug": "sqlpl"
+    },
+    {
+        "name": "SaltStack",
+        "slug": "saltstack"
+    },
+    {
+        "name": "Scala",
+        "slug": "scala"
+    },
+    {
+        "name": "Scheme",
+        "slug": "scheme"
+    },
+    {
+        "name": "Scilab",
+        "slug": "scilab"
+    },
+    {
+        "name": "Self",
+        "slug": "self"
+    },
+    {
+        "name": "Shell",
+        "slug": "bash"
+    },
+    {
+        "name": "ShellSession",
+        "slug": "shellsession"
+    },
+    {
+        "name": "Shen",
+        "slug": "shen"
+    },
+    {
+        "name": "Slash",
+        "slug": "slash"
+    },
+    {
+        "name": "Smali",
+        "slug": "smali"
+    },
+    {
+        "name": "Smalltalk",
+        "slug": "smalltalk"
+    },
+    {
+        "name": "Smarty",
+        "slug": "smarty"
+    },
+    {
+        "name": "SourcePawn",
+        "slug": "sourcepawn"
+    },
+    {
+        "name": "Squirrel",
+        "slug": "squirrel"
+    },
+    {
+        "name": "Standard ML",
+        "slug": "standard-ml"
+    },
+    {
+        "name": "Stata",
+        "slug": "stata"
+    },
+    {
+        "name": "SuperCollider",
+        "slug": "supercollider"
+    },
+    {
+        "name": "Swift",
+        "slug": "swift"
+    },
+    {
+        "name": "SystemVerilog",
+        "slug": "systemverilog"
+    },
+    {
+        "name": "TXL",
+        "slug": "txl"
+    },
+    {
+        "name": "Tcl",
+        "slug": "tcl"
+    },
+    {
+        "name": "TeX",
+        "slug": "tex"
+    },
+    {
+        "name": "Tea",
+        "slug": "tea"
+    },
+    {
+        "name": "Thrift",
+        "slug": "thrift"
+    },
+    {
+        "name": "Turing",
+        "slug": "turing"
+    },
+    {
+        "name": "TypeScript",
+        "slug": "typescript"
+    },
+    {
+        "name": "Unknown",
+        "slug": "unknown"
+    },
+    {
+        "name": "UnrealScript",
+        "slug": "unrealscript"
+    },
+    {
+        "name": "VCL",
+        "slug": "vcl"
+    },
+    {
+        "name": "VHDL",
+        "slug": "vhdl"
+    },
+    {
+        "name": "Vala",
+        "slug": "vala"
+    },
+    {
+        "name": "Verilog",
+        "slug": "verilog"
+    },
+    {
+        "name": "VimL",
+        "slug": "vim"
+    },
+    {
+        "name": "Visual Basic",
+        "slug": "visual-basic"
+    },
+    {
+        "name": "Volt",
+        "slug": "volt"
+    },
+    {
+        "name": "Vue",
+        "slug": "vue"
+    },
+    {
+        "name": "Web Ontology Language",
+        "slug": "web-ontology-language"
+    },
+    {
+        "name": "WebIDL",
+        "slug": "webidl"
+    },
+    {
+        "name": "X10",
+        "slug": "x10"
+    },
+    {
+        "name": "XC",
+        "slug": "xc"
+    },
+    {
+        "name": "XML",
+        "slug": "xml"
+    },
+    {
+        "name": "XPages",
+        "slug": "xpages"
+    },
+    {
+        "name": "XProc",
+        "slug": "xproc"
+    },
+    {
+        "name": "XQuery",
+        "slug": "xquery"
+    },
+    {
+        "name": "XS",
+        "slug": "xs"
+    },
+    {
+        "name": "XSLT",
+        "slug": "xslt"
+    },
+    {
+        "name": "Xojo",
+        "slug": "xojo"
+    },
+    {
+        "name": "Xtend",
+        "slug": "xtend"
+    },
+    {
+        "name": "Yacc",
+        "slug": "yacc"
+    },
+    {
+        "name": "Zephir",
+        "slug": "zephir"
+    },
+    {
+        "name": "Zimpl",
+        "slug": "zimpl"
+    },
+    {
+        "name": "eC",
+        "slug": "ec"
+    },
+    {
+        "name": "mupad",
+        "slug": "mupad"
+    },
+    {
+        "name": "nesC",
+        "slug": "nesc"
+    },
+    {
+        "name": "ooc",
+        "slug": "ooc"
+    },
+    {
+        "name": "wisp",
+        "slug": "wisp"
+    },
+    {
+        "name": "xBase",
+        "slug": "xbase"
+    }
+]

@@ -7,10 +7,11 @@
 //
 
 #import "MRCOwnedReposViewModel.h"
+#import "MRCTrendingSettingsViewModel.h"
 
 @interface MRCTrendingViewModel : MRCOwnedReposViewModel
 
-@property (nonatomic, copy) NSString *since;
-@property (nonatomic, copy) NSString *language;
+@property (nonatomic, copy) NSDictionary *since;
+@property (nonatomic, copy) NSDictionary *language;
 
 @end

@@ -21,47 +21,34 @@
 
 - (void)initialize {
     [super initialize];
-    
+
     self.title = @"Options";
     self.shouldRequestRemoteDataOnViewDidLoad = NO;
     
-    NSArray *sinces = @[
-		@"Today",
-        @"This week",
-        @"This month",
-    ];
+    self.sectionIndexTitles = @[ @"Time span", @"Languages" ];
+    self.dataSource = @[ MRCTrendingSinces() ?: @[], MRCTrendingLanguages() ?: @[] ];
+}
+
+NSArray *MRCTrendingSinces() {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Sinces" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
     
-    NSArray *languages = @[
-        @"All languages",
-        @"ActionScript",
-        @"C",
-        @"C#",
-        @"C++",
-        @"Clojure",
-        @"CoffeeScript",
-        @"CSS",
-        @"Go",
-        @"Haskell",
-        @"HTML",
-        @"Java",
-        @"JavaScript",
-        @"Lua",
-        @"Matlab",
-        @"Objective-C",
-        @"Perl",
-        @"PHP",
-        @"Python",
-        @"R",
-        @"Ruby",
-        @"Scala",
-        @"Shell",
-        @"Swift",
-        @"TeX",
-        @"VimL",
-    ];
+    NSError *error = nil;
+    NSArray *sinces = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (error) NSLog(@"Error: %@", error);
     
-    self.sectionIndexTitles = @[ @"Time span", @"Languages", ];
-    self.dataSource = @[ sinces, languages, ];
+    return sinces;
+}
+
+NSArray *MRCTrendingLanguages() {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Languages" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    NSError *error = nil;
+    NSArray *languages = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (error) NSLog(@"Error: %@", error);
+    
+    return languages;
 }
 
 @end
