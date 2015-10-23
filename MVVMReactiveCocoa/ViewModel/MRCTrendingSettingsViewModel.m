@@ -35,7 +35,7 @@ NSArray *MRCTrendingSinces() {
     
     NSError *error = nil;
     NSArray *sinces = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (error) NSLog(@"Error: %@", error);
+    if (error) MRCLogError(error);
     
     return sinces;
 }
@@ -46,7 +46,7 @@ NSArray *MRCTrendingLanguages() {
     
     NSError *error = nil;
     NSArray *languages = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (error) NSLog(@"Error: %@", error);
+    if (error) MRCLogError(error);
     
     return languages;
 }

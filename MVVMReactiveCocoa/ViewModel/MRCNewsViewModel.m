@@ -85,7 +85,7 @@
 - (BOOL (^)(NSError *))requestRemoteDataErrorsFilter {
     return ^BOOL(NSError *error) {
         if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorServiceRequestFailed) {
-            NSLog(@"error.localizedDescription: %@", error.localizedDescription);
+            MRCLogError(error);
             return NO;
         }
         return YES;

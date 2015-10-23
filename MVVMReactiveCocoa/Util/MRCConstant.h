@@ -19,6 +19,8 @@
     #define NSLog(...) {}
 #endif
 
+#define MRCLogError(error) NSLog(@"Error: %@", error)
+
 ///------
 /// Block
 ///------

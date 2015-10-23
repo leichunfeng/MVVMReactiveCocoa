@@ -42,7 +42,7 @@
         if (success) {
             [self addSkipBackupAttributeToItemAtPath:path];
         } else {
-            NSLog(@"Error: %@", error);
+            MRCLogError(error);
         }
     }
     
@@ -64,7 +64,7 @@
     
     NSError *error = nil;
     BOOL success = [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:&error];
-    if (!success) NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    if (error) MRCLogError(error);
     
     return success;
 }

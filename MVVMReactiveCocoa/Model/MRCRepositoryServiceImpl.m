@@ -63,7 +63,7 @@
                         NSArray *repositories = [MTLJSONAdapter modelsOfClass:[OCTRepository class] fromJSONArray:JSONArray error:&error];
 
                         if (error) {
-                        		NSLog(@"Error: %@", error);
+                        		MRCLogError(error);
                         } else {
                             [subscriber sendNext:repositories];
                         }
