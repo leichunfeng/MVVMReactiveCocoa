@@ -20,10 +20,7 @@
 @dynamic viewModel;
 
 - (UIEdgeInsets)contentInset {
-    if (self.viewModel.isCurrentUser && self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
-        return UIEdgeInsetsMake(64, 0, 49, 0);
-    }
-    return UIEdgeInsetsZero;
+    return self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointUserDetail ? UIEdgeInsetsMake(64, 0, 0, 0) : [super contentInset];
 }
 
 @end

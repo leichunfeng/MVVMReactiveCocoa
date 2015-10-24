@@ -27,14 +27,9 @@
     [super viewDidLoad];
     
     self.tableView.tintColor = HexRGB(colorI3);
-    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCRepoSettingsOwnerTableViewCell" bundle:nil]
          forCellReuseIdentifier:@"MRCRepoSettingsOwnerTableViewCell"];
-}
-
-- (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
