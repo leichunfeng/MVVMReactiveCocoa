@@ -28,9 +28,8 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.viewModel.dataSource = @[];
     self.viewModel.query = searchText;
-    self.viewModel.dataSource = nil;
-    self.viewModel.shouldDisplayEmptyDataSet = NO;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
