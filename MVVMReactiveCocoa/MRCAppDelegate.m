@@ -14,6 +14,7 @@
 #import "MRCHomepageViewController.h"
 #import "MRCNavigationControllerStack.h"
 #import "MRCNavigationController.h"
+#import "Appirater.h"
 
 @interface MRCAppDelegate ()
 
@@ -45,12 +46,25 @@
     [self configureKeyboardManager];
     [self configureReachability];
     [self configureUMengSocial];
+    [self configureAppirater];
     
     // Save the application version info.
     [[NSUserDefaults standardUserDefaults] setValue:MRC_APP_VERSION forKey:MRCApplicationVersionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([url.scheme isEqual:MRC_URL_SCHEME]) {
+        [OCTClient completeSignInWithCallbackURL:url];
+        return YES;
+    }
+    return [UMSocialSnsService handleOpenURL:url];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [Appirater appEnteredForeground:YES];
 }
 
 - (id<MRCViewModelProtocol>)createInitialViewModel {
@@ -114,6 +128,16 @@
     [UMSocialConfig hiddenNotInstallPlatforms:@[ UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline ]];
 }
 
+- (void)configureAppirater {
+    [Appirater setAppId:MRC_APP_ID];
+    [Appirater setDaysUntilPrompt:7];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
+}
+
 - (void)initializeFMDB {
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
         NSString *version = [[NSUserDefaults standardUserDefaults] valueForKey:MRCApplicationVersionKey];
@@ -130,14 +154,6 @@
             }
         }
     }];
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    if ([url.scheme isEqual:MRC_URL_SCHEME]) {
-        [OCTClient completeSignInWithCallbackURL:url];
-        return YES;
-    }
-    return [UMSocialSnsService handleOpenURL:url];
 }
 
 @end

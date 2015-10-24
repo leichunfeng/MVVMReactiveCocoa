@@ -14,6 +14,14 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2015. Arash Payan. This library is distributed under the terms of the MIT/X11.</string>
+			<key>Title</key>
+			<string>Appirater</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2011, Oliver Drobnik All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
