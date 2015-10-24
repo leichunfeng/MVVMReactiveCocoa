@@ -1,4 +1,5 @@
 PODS:
+  - Appirater (2.0.5)
   - DTCoreText (1.6.16):
     - DTFoundation/Core (~> 1.7.5)
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
@@ -56,6 +57,7 @@ PODS:
   - WebViewJavascriptBridge (4.1.4)
 
 DEPENDENCIES:
+  - Appirater
   - DTCoreText (~> 1.6.15)
   - DZNEmptyDataSet (~> 1.5.1)
   - FDFullscreenPopGesture (~> 1.1)
@@ -86,6 +88,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jacksonh/OcticonsIOS.git
 
 SPEC CHECKSUMS:
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
   DTFoundation: 46e2b2fafe78d67febfd8d1f85fe9845a093f00e
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772

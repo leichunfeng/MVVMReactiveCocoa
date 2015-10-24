@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Appirater
+
+Copyright 2015. Arash Payan. This library is distributed under the terms of the MIT/X11.
+
 ## DTCoreText
 
 Copyright (c) 2011, Oliver Drobnik All rights reserved.
