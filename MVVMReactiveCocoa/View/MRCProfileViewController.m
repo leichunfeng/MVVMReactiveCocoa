@@ -36,8 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
     [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
     self.tableView.tableHeaderView = self.tableHeaderView;

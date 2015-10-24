@@ -22,9 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
+        
     UIImage *image = [UIImage octicon_imageWithIdentifier:@"Settings" size:CGSizeMake(22, 22)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image
                                                                               style:UIBarButtonItemStylePlain

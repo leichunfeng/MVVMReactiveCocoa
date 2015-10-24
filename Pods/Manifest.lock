@@ -44,6 +44,7 @@ PODS:
   - OcticonsIOS (0.0.2)
   - Ono (1.2.2)
   - Reachability (3.1.1)
+  - Reveal-iOS-SDK (1.6.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -51,7 +52,7 @@ PODS:
   - SVPullToRefresh (0.4.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UMengSocial (4.2.3)
+  - UMengSocial (4.2.5)
   - WebViewJavascriptBridge (4.1.4)
 
 DEPENDENCIES:
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
   - Ono (~> 1.2.0)
+  - Reveal-iOS-SDK (~> 1.6.0)
   - SDWebImage (~> 3.7.1)
   - SSKeychain (~> 1.2.2)
   - SVPullToRefresh (~> 0.4.1)
@@ -97,11 +99,12 @@ SPEC CHECKSUMS:
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  Reveal-iOS-SDK: 6afacafd60f66f2822c09c43ae60562881bfab6e
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UMengSocial: 85882abe5b20aa38ad558ece71360e16b5d50909
+  UMengSocial: 76fb557ec9d2749a63dde17c28ab915f4642e52d
   WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
 
 COCOAPODS: 0.38.2

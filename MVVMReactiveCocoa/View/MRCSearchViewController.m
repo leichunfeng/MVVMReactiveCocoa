@@ -25,9 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
+        
     self.tableView.tableFooterView = nil;
     
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
@@ -44,7 +42,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64, 0, 0, 0);
+    return UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCSearch *)search {
@@ -56,7 +54,8 @@
                                                       andSize:MRC_LEFT_IMAGE_SIZE];
         cell.textLabel.text = @"Trending";
     } else {
-        cell.textLabel.text = search.keyword;
+        cell.imageView.image = nil;
+        cell.textLabel.text  = search.keyword;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }

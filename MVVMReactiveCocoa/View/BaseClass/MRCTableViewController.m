@@ -43,7 +43,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsZero;
+    return UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 - (void)viewDidLoad {
