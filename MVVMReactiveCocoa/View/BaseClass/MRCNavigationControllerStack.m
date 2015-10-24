@@ -9,6 +9,7 @@
 #import "MRCNavigationControllerStack.h"
 #import "MRCRouter.h"
 #import "MRCNavigationController.h"
+#import "MRCTabBarController.h"
 
 @interface MRCNavigationControllerStack ()
 
@@ -113,7 +114,7 @@
 
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
 
-            if (![viewController isKindOfClass:[UINavigationController class]] && ![viewController isKindOfClass:[UITabBarController class]]) {
+            if (![viewController isKindOfClass:[UINavigationController class]] && ![viewController isKindOfClass:[MRCTabBarController class]]) {
                 viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
                 [self pushNavigationController:(UINavigationController *)viewController];
             }

@@ -7,7 +7,10 @@
 //
 
 #import "MRCViewProtocol.h"
+#import "MRCViewController.h"
 
-@interface MRCTabBarController : UITabBarController <MRCViewProtocol>
+@interface MRCTabBarController : MRCViewController <UITabBarControllerDelegate>
+
+@property (nonatomic, strong, readonly) UITabBarController *tabBarController;
 
 @end
