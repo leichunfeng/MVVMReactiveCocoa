@@ -19,7 +19,7 @@
 #import "MRCUserListViewModel.h"
 #import "MRCSearchViewController.h"
 
-@interface MRCHomepageViewController () <UITabBarControllerDelegate>
+@interface MRCHomepageViewController ()
 
 @property (nonatomic, strong) MRCHomepageViewModel *viewModel;
 
@@ -70,7 +70,7 @@
         [[MRCNavigationController alloc] initWithRootViewController:profileViewController];
     });
 
-    self.viewControllers = @[ newsNavigationController, reposNavigationController, searchNavigationController, profileNavigationController ];
+    self.tabBarController.viewControllers = @[ newsNavigationController, reposNavigationController, searchNavigationController, profileNavigationController ];
 
     [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:newsNavigationController];
 
@@ -81,7 +81,7 @@
             [MRCSharedAppDelegate.navigationControllerStack popNavigationController];
             [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:tuple.second];
         }];
-    self.delegate = self;
+    self.tabBarController.delegate = self;
 }
 
 @end
