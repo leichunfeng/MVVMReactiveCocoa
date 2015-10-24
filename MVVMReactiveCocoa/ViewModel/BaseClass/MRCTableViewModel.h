@@ -21,7 +21,6 @@
 
 @property (nonatomic, assign) BOOL shouldPullToRefresh;
 @property (nonatomic, assign) BOOL shouldInfiniteScrolling;
-@property (nonatomic, assign) BOOL shouldDisplayEmptyDataSet;
 
 @property (nonatomic, strong) RACCommand *didSelectCommand;
 

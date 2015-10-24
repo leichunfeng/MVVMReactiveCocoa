@@ -29,7 +29,7 @@
     @weakify(self)
     [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
         @strongify(self)
-        if (executing.boolValue && self.viewModel.dataSource == nil) {
+        if (executing.boolValue && self.viewModel.dataSource.count == 0) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = self.labelText;
         } else {
             [MBProgressHUD hideHUDForView:self.view animated:YES];

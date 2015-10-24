@@ -28,17 +28,6 @@
         return [[self requestRemoteDataSignalWithPage:page.unsignedIntegerValue] takeUntil:self.rac_willDeallocSignal];
     }];
     
-    RAC(self, shouldDisplayEmptyDataSet) = [RACSignal
-        combineLatest:@[ self.requestRemoteDataCommand.executing, RACObserve(self, dataSource) ]
-        reduce:^(NSNumber *executing, NSArray *dataSource) {
-            RACSequence *sequenceOfSequences = [dataSource.rac_sequence map:^(NSArray *array) {
-                @strongify(self)
-                NSParameterAssert([array isKindOfClass:[NSArray class]]);
-                return array.rac_sequence;
-            }];
-            return @(!executing.boolValue && sequenceOfSequences.flatten.array.count == 0);
-        }];
-    
     [[self.requestRemoteDataCommand.errors
         filter:[self requestRemoteDataErrorsFilter]]
         subscribe:self.errors];

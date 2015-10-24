@@ -15,7 +15,6 @@
     [super initialize];
     
     self.shouldPullToRefresh = NO;
-    self.shouldDisplayEmptyDataSet = NO;
     self.shouldRequestRemoteDataOnViewDidLoad = NO;
 }
 
@@ -49,19 +48,19 @@
         }
     });
     
-    return [[[self.services
+    return [[[[self.services
         client]
         searchRepositoriesWithQuery:self.query orderBy:nil ascending:NO]
         map:^(OCTRepositoriesSearchResult *searchResult) {
-            self.shouldDisplayEmptyDataSet = YES;
             return searchResult.repositories;
-        }];
+        }]
+    	takeUntil:[RACObserve(self, query) skip:1]];
 }
 
 - (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
     if (repositories.count == 0) return nil;
     
-    NSArray *repos = [repositories.rac_sequence map:^id(OCTRepository *repository) {
+    NSArray *repos = [repositories.rac_sequence map:^(OCTRepository *repository) {
         return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository options:self.options];
     }].array;
     

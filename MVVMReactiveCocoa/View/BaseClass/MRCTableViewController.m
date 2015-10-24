@@ -121,10 +121,13 @@
         @strongify(self)
         [self.tableView reloadData];
     }];
-    
-    [RACObserve(self.viewModel, shouldDisplayEmptyDataSet).deliverOnMainThread subscribeNext:^(id x) {
+
+    [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
         @strongify(self)
-        [self.tableView reloadEmptyDataSet];
+        UIView *emptyDataSetView = [self.tableView.subviews.rac_sequence objectPassingTest:^(UIView *view) {
+            return [NSStringFromClass(view.class) isEqualToString:@"DZNEmptyDataSetView"];
+        }];
+        emptyDataSetView.alpha = 1.0 - executing.floatValue;
     }];
 }
 
@@ -207,7 +210,7 @@
 #pragma mark - DZNEmptyDataSetDelegate
 
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
-    return self.viewModel.shouldDisplayEmptyDataSet;
+    return self.viewModel.dataSource == nil;
 }
 
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
