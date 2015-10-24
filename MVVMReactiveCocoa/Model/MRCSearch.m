@@ -10,10 +10,6 @@
 
 @implementation MRCSearch
 
-- (void)setKeyword:(NSString *)keyword {
-    _keyword = keyword.lowercaseString;
-}
-
 #pragma mark - Query
 
 + (NSArray *)recentSearches {
