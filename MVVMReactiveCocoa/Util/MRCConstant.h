@@ -152,8 +152,9 @@ typedef id   (^IDBlock_id)  (id);
 
 #define MRCApplicationVersionKey @"MRCApplicationVersionKey"
 
-#define MRC_APP_ID        @"961330940"
-#define MRC_APP_STORE_URL @"https://itunes.apple.com/cn/app/id"MRC_APP_ID"?mt=8"
+#define MRC_APP_ID               @"961330940"
+#define MRC_APP_STORE_URL        @"https://itunes.apple.com/cn/app/id"MRC_APP_ID"?mt=8"
+#define MRC_APP_STORE_REVIEW_URL @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id="MRC_APP_ID@"&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
 
 #define MRC_APP_NAME    ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"])
 #define MRC_APP_VERSION ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"])
