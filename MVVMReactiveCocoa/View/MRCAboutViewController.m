@@ -91,7 +91,7 @@
 }
 
 - (void)openAppStore {
-    [UIApplication.sharedApplication openURL:[NSURL URLWithString:MRC_APP_STORE_URL]];
+    [UIApplication.sharedApplication openURL:[NSURL URLWithString:MRC_APP_STORE_REVIEW_URL]];
 }
 
 #pragma mark - UITalbeViewDataSource
