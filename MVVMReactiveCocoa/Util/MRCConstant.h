@@ -197,11 +197,17 @@ typedef id   (^IDBlock_id)  (id);
 #define MRC_FMDB_PATH [NSString stringWithFormat:@"%@/%@.db", MRC_DOCUMENT_DIRECTORY, MRC_APP_NAME]
 #define MRCLogLastError(db) NSLog(@"lastError: %@, lastErrorCode: %d, lastErrorMessage: %@", [db lastError], [db lastErrorCode], [db lastErrorMessage]);
 
-//--------------
+///-------------
 /// Notification
 ///-------------
 
 #define MRCStarredReposDidChangeNotification   @"MRCStarredReposDidChangeNotification"
 #define MRCRecentSearchesDidChangeNotification @"MRCRecentSearchesDidChangeNotification"
+
+///--------
+/// Bugtags
+///--------
+
+#define MRC_BUGTAGS_APP_KEY @"69f973866d636e2b4b3f42ef1ec2caec"
 
 #endif

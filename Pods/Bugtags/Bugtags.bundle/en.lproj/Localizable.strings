@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  Bugtags
+
+  Created by Stephen Zhang on 15/6/25.
+  Copyright (c) 2015年 bugtags.com. All rights reserved.
+*/
+
+"btg_btn_cancel" = "Cancel";
+"btg_btn_ok" = "OK";
+"btg_btn_edit" = "Edit";
+"btg_btn_delete" = "Delete";
+"btg_btn_signin" = "Sign in";
+"btg_btn_signout" = "Sign out";
+"btg_btn_myissues" = "My issues";
+"btg_btn_gotit" = "Got it!";
+
+"btg_issue_type_1" = "Bug";
+"btg_issue_type_2" = "Feature";
+
+"btg_tag_priority_0" = "Trivial";
+"btg_tag_priority_1" = "Minor";
+"btg_tag_priority_2" = "Major";
+"btg_tag_priority_3" = "Blocker";
+
+"btg_info_account" = "Account";
+"btg_info_password" = "Password";
+"btg_info_captcha" = "Captcha";
+"btg_info_tag_info" = "Tag info";
+"btg_info_tag_input_placeholder" = "issue description";
+"btg_info_discard_report" = "Sure to discard?";
+"btg_info_start_trace" = "Sure to restart trace?";
+"btg_info_signin_loading" = "Sign in...";
+"btg_info_signin_failed" = "Account or\npassword error";
+"btg_info_signin_captcha_invalid" = "Invalid captcha";
+
+"btg_info_tips_tag_0" = "Tagging tips";
+"btg_info_tips_tag_1" = "Tap screen to add a tag";
+"btg_info_tips_tag_2" = "Tap tag to flip";
+"btg_info_tips_tag_3" = "Longpress tag to edit or delete";
+
+"btg_info_tags_empty" = "Add one tag at least";
+"btg_info_tags_add_limit" = "Add three tags at most";

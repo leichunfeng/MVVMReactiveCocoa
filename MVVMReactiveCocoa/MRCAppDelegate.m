@@ -14,7 +14,8 @@
 #import "MRCHomepageViewController.h"
 #import "MRCNavigationControllerStack.h"
 #import "MRCNavigationController.h"
-#import "Appirater.h"
+#import <Appirater/Appirater.h>
+#import <Bugtags/Bugtags.h>
 
 @interface MRCAppDelegate ()
 
@@ -47,6 +48,7 @@
     [self configureReachability];
     [self configureUMengSocial];
     [self configureAppirater];
+    [self configureBugtags];
     
     // Save the application version info.
     [[NSUserDefaults standardUserDefaults] setValue:MRC_APP_VERSION forKey:MRCApplicationVersionKey];
@@ -136,6 +138,10 @@
     [Appirater setTimeBeforeReminding:2];
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
+}
+
+- (void)configureBugtags {
+    [Bugtags startWithAppKey:MRC_BUGTAGS_APP_KEY invocationEvent:BTGInvocationEventNone];
 }
 
 - (void)initializeFMDB {
