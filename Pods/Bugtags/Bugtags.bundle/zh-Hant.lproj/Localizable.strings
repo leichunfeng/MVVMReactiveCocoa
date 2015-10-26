@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  Bugtags
+
+  Created by Stephen Zhang on 15/6/25.
+  Copyright (c) 2015年 bugtags.com. All rights reserved.
+*/
+
+"btg_btn_cancel" = "取消";
+"btg_btn_ok" = "確定";
+"btg_btn_edit" = "編輯";
+"btg_btn_delete" = "刪除";
+"btg_btn_signin" = "登錄";
+"btg_btn_signout" = "退出登錄";
+"btg_btn_myissues" = "我的問題";
+"btg_btn_gotit" = "知道了";
+
+"btg_issue_type_1" = "錯誤";
+"btg_issue_type_2" = "改進";
+
+"btg_tag_priority_0" = "低";
+"btg_tag_priority_1" = "普通";
+"btg_tag_priority_2" = "高";
+"btg_tag_priority_3" = "緊急";
+
+"btg_info_account" = "帳號";
+"btg_info_password" = "密碼";
+"btg_info_captcha" = "驗證碼";
+"btg_info_tag_info" = "標籤信息";
+"btg_info_tag_input_placeholder" = "問題描述";
+"btg_info_discard_report" = "確定要放棄提交嗎？";
+"btg_info_start_trace" = "確定從現在開始記錄數據嗎？";
+"btg_info_signin_loading" = "正在登錄...";
+"btg_info_signin_failed" = "帳號或密碼錯誤";
+"btg_info_signin_captcha_invalid" = "驗證碼有誤";
+
+"btg_info_tips_tag_0" = "標籤要這麼玩";
+"btg_info_tips_tag_1" = "單擊屏幕選擇標籤位置";
+"btg_info_tips_tag_2" = "單擊標籤改變方向";
+"btg_info_tips_tag_3" = "長按標籤可編輯或刪除";
+
+"btg_info_tags_empty" = "至少添加1個標籤";
+"btg_info_tags_add_limit" = "最多添加3個標籤";
