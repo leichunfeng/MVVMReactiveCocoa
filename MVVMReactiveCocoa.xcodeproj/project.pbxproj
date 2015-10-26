@@ -52,14 +52,14 @@
 		24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E861A8E653200D25218 /* OCTRef+MRCUtil.m */; };
 		24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E891A8F28CE00D25218 /* SSKeychain+MRCUtil.m */; };
 		24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24116E901A8F455000D25218 /* MRCDoubleTitleView.m */; };
-		24143F061BD783D300555179 /* MRCTrendingSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */; settings = {ASSET_TAGS = (); }; };
-		24143F151BD783F900555179 /* MRCTrendingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24143F131BD783F900555179 /* MRCTrendingSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		24143F161BD783F900555179 /* MRCTrendingSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24143F141BD783F900555179 /* MRCTrendingSettingsViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		24182B521BDA229B0041B38E /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4C1BDA229B0041B38E /* Languages.json */; settings = {ASSET_TAGS = (); }; };
-		24182B531BDA229B0041B38E /* Sinces.json in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4D1BDA229B0041B38E /* Sinces.json */; settings = {ASSET_TAGS = (); }; };
-		24182B541BDA229B0041B38E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4F1BDA229B0041B38E /* update_v1_0_1.sql */; settings = {ASSET_TAGS = (); }; };
-		24182B551BDA229B0041B38E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B501BDA229B0041B38E /* update_v1_1_0.sql */; settings = {ASSET_TAGS = (); }; };
-		24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B511BDA229B0041B38E /* update_v1_2_0.sql */; settings = {ASSET_TAGS = (); }; };
+		24143F061BD783D300555179 /* MRCTrendingSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */; };
+		24143F151BD783F900555179 /* MRCTrendingSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24143F131BD783F900555179 /* MRCTrendingSettingsViewController.m */; };
+		24143F161BD783F900555179 /* MRCTrendingSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24143F141BD783F900555179 /* MRCTrendingSettingsViewController.xib */; };
+		24182B521BDA229B0041B38E /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4C1BDA229B0041B38E /* Languages.json */; };
+		24182B531BDA229B0041B38E /* Sinces.json in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4D1BDA229B0041B38E /* Sinces.json */; };
+		24182B541BDA229B0041B38E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4F1BDA229B0041B38E /* update_v1_0_1.sql */; };
+		24182B551BDA229B0041B38E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B501BDA229B0041B38E /* update_v1_1_0.sql */; };
+		24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B511BDA229B0041B38E /* update_v1_2_0.sql */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
 		242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
@@ -140,9 +140,11 @@
 		249F35051A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F34FE1A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.xib */; };
 		249F35061A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249F35001A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.m */; };
 		249F35071A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249F35011A72A1A0008F1C2A /* MRCRepoViewCodeTableViewCell.xib */; };
-		24A47EA71BD5D9E9000B79D0 /* MRCTrendingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A47EA61BD5D9E9000B79D0 /* MRCTrendingViewModel.m */; settings = {ASSET_TAGS = (); }; };
-		24A47EB61BD5DA05000B79D0 /* MRCTrendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A47EB41BD5DA05000B79D0 /* MRCTrendingViewController.m */; settings = {ASSET_TAGS = (); }; };
-		24A47EB71BD5DA05000B79D0 /* MRCTrendingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A47EB51BD5DA05000B79D0 /* MRCTrendingViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		24A47EA71BD5D9E9000B79D0 /* MRCTrendingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A47EA61BD5D9E9000B79D0 /* MRCTrendingViewModel.m */; };
+		24A47EB61BD5DA05000B79D0 /* MRCTrendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A47EB41BD5DA05000B79D0 /* MRCTrendingViewController.m */; };
+		24A47EB71BD5DA05000B79D0 /* MRCTrendingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A47EB51BD5DA05000B79D0 /* MRCTrendingViewController.xib */; };
+		24A7499C1BDE5CCF002B46A3 /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */; };
+		24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */; };
 		24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */; };
 		24AF977E1B02292700E2A737 /* MRCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF977D1B02292700E2A737 /* MRCSearch.m */; };
 		24B1045F1B04CE100046473E /* OCTClient+MRCRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B1045E1B04CE100046473E /* OCTClient+MRCRepository.m */; };
@@ -603,6 +605,8 @@
 		24A47EB31BD5DA05000B79D0 /* MRCTrendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTrendingViewController.h; sourceTree = "<group>"; };
 		24A47EB41BD5DA05000B79D0 /* MRCTrendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTrendingViewController.m; sourceTree = "<group>"; };
 		24A47EB51BD5DA05000B79D0 /* MRCTrendingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCTrendingViewController.xib; sourceTree = "<group>"; };
+		24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSPatch.framework; path = JSPatch/JSPatch.framework; sourceTree = "<group>"; };
+		24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		24AF97691B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+MRCShowsCancelButton.h"; sourceTree = "<group>"; };
 		24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+MRCShowsCancelButton.m"; sourceTree = "<group>"; };
 		24AF977C1B02292700E2A737 /* MRCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearch.h; sourceTree = "<group>"; };
@@ -694,6 +698,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */,
+				24A7499C1BDE5CCF002B46A3 /* JSPatch.framework in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
@@ -1309,6 +1315,8 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
+				24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
 				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
 				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
@@ -1978,6 +1986,7 @@
 					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/OctoKit/External/OctoKitDependencies/build/Debug-iphoneos",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/JSPatch",
 				);
 				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2019,6 +2028,7 @@
 					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/OctoKit/External/OctoKitDependencies/build/Debug-iphoneos",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/JSPatch",
 				);
 				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

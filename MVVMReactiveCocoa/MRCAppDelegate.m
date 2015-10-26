@@ -16,6 +16,7 @@
 #import "MRCNavigationController.h"
 #import <Appirater/Appirater.h>
 #import <Bugtags/Bugtags.h>
+#import <JSPatch/JSPatch.h>
 
 @interface MRCAppDelegate ()
 
@@ -31,8 +32,17 @@
 
 @implementation MRCAppDelegate
 
+#pragma mark - UIApplicationDelegate
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self initializeFMDB];
+    [self configureFMDB];
+    [self configureAppearance];
+    [self configureKeyboardManager];
+    [self configureReachability];
+    [self configureUMengSocial];
+    [self configureAppirater];
+    [self configureBugtags];
+    [self configureJSPatch];
 
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
@@ -42,13 +52,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.services resetRootViewModel:[self createInitialViewModel]];
     [self.window makeKeyAndVisible];
-    
-    [self configureAppearance];
-    [self configureKeyboardManager];
-    [self configureReachability];
-    [self configureUMengSocial];
-    [self configureAppirater];
-    [self configureBugtags];
     
     // Save the application version info.
     [[NSUserDefaults standardUserDefaults] setValue:MRC_APP_VERSION forKey:MRCApplicationVersionKey];
@@ -84,6 +87,26 @@
     }
 }
 
+#pragma mark - Application configuration
+
+- (void)configureFMDB {
+    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
+        NSString *version = [[NSUserDefaults standardUserDefaults] valueForKey:MRCApplicationVersionKey];
+        if (![version isEqualToString:MRC_APP_VERSION]) {
+            if (version == nil) {
+                [SSKeychain deleteAccessToken];
+                
+                NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
+                NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+                
+                if (![db executeStatements:sql]) {
+                    MRCLogLastError(db);
+                }
+            }
+        }
+    }];
+}
+
 - (void)configureAppearance {
     self.window.backgroundColor = UIColor.whiteColor;
     
@@ -105,11 +128,11 @@
 - (void)configureReachability {
     self.reachability = Reachability.reachabilityForInternetConnection;
     
-    RAC(self, networkStatus) = [[[[NSNotificationCenter.defaultCenter
+    RAC(self, networkStatus) = [[[[[NSNotificationCenter defaultCenter]
     	rac_addObserverForName:kReachabilityChangedNotification object:nil]
-        map:^id(NSNotification *notification) {
+        map:^(NSNotification *notification) {
             return @([notification.object currentReachabilityStatus]);
-        }]    	
+        }]
     	startWith:@(self.reachability.currentReachabilityStatus)]
         distinctUntilChanged];
     
@@ -144,22 +167,9 @@
     [Bugtags startWithAppKey:MRC_BUGTAGS_APP_KEY invocationEvent:BTGInvocationEventNone];
 }
 
-- (void)initializeFMDB {
-    [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        NSString *version = [[NSUserDefaults standardUserDefaults] valueForKey:MRCApplicationVersionKey];
-        if (![version isEqualToString:MRC_APP_VERSION]) {
-            if (version == nil) {
-                [SSKeychain deleteAccessToken];
-                
-                NSString *path = [[NSBundle mainBundle] pathForResource:@"update_v1_2_0" ofType:@"sql"];
-                NSString *sql  = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-                
-                if (![db executeStatements:sql]) {
-                    MRCLogLastError(db);
-                }
-            }
-        }
-    }];
+- (void)configureJSPatch {
+//    [JSPatch testScriptInBundle];
+    [JSPatch startWithAppKey:MRC_JSPATCH_APP_KEY];
 }
 
 @end
