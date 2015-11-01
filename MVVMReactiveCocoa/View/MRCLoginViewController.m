@@ -58,7 +58,9 @@
     }    
     
     @weakify(self)
-    [[self rac_signalForSelector:@selector(textFieldShouldReturn:) fromProtocol:@protocol(UITextFieldDelegate)]
+    [[self
+    	rac_signalForSelector:@selector(textFieldShouldReturn:)
+        fromProtocol:@protocol(UITextFieldDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             if (tuple.first == self.passwordTextField) [self.viewModel.loginCommand execute:nil];
@@ -76,25 +78,25 @@
         [self.avatarButton sd_setImageWithURL:avatarURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"default-avatar"]];
     }];
     
-    [[self.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *avatarButton) {
-        @strongify(self)
-        MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
-        
-        TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
-        
-        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        viewController.transitioningDelegate = self;
-        
-        [self presentViewController:viewController animated:YES completion:NULL];
-    }];
+    [[self.avatarButton
+        rac_signalForControlEvents:UIControlEventTouchUpInside]
+        subscribeNext:^(UIButton *avatarButton) {
+            @strongify(self)
+            MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
+            
+            TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
+            
+            viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            viewController.transitioningDelegate = self;
+            
+            [self presentViewController:viewController animated:YES completion:NULL];
+        }];
     
-    RAC(self.viewModel, username) = [self.usernameTextField.rac_textSignal map:^(NSString *username) {
-        return [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    }];
+    RAC(self.viewModel, username) = self.usernameTextField.rac_textSignal;
     RAC(self.viewModel, password) = self.passwordTextField.rac_textSignal;
     
     [[RACSignal
-      	merge:@[self.viewModel.loginCommand.executing, self.viewModel.browserLoginCommand.executing]]
+      	merge:@[ self.viewModel.loginCommand.executing, self.viewModel.browserLoginCommand.executing ]]
     	subscribeNext:^(NSNumber *executing) {
             @strongify(self)
             if (executing.boolValue) {
