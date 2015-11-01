@@ -25,13 +25,14 @@
     [super initialize];
     
     RAC(self, avatarURL) = [[RACObserve(self, username)
-        map:^id(NSString *username) {
+        map:^(NSString *username) {
             return [[OCTUser mrc_fetchUserWithRawLogin:username] avatarURL];
         }]
         distinctUntilChanged];
     
     self.validLoginSignal = [[RACSignal
-    	combineLatest:@[RACObserve(self, username), RACObserve(self, password)] reduce:^id(NSString *username, NSString *password) {
+    	combineLatest:@[ RACObserve(self, username), RACObserve(self, password) ]
+        reduce:^(NSString *username, NSString *password) {
         	return @(username.length > 0 && password.length > 0);
         }]
         distinctUntilChanged];
@@ -58,7 +59,7 @@
     
     [OCTClient setClientID:MRC_CLIENT_ID clientSecret:MRC_CLIENT_SECRET];
     
-    self.loginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *oneTimePassword) {
+    self.loginCommand = [[RACCommand alloc] initWithSignalBlock:^(NSString *oneTimePassword) {
     	@strongify(self)
         OCTUser *user = [OCTUser userWithRawLogin:self.username server:OCTServer.dotComServer];
         return [[OCTClient
@@ -66,11 +67,15 @@
             doNext:doNext];
     }];
 
-    self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         return [[OCTClient
         	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser | OCTClientAuthorizationScopesRepository]
             doNext:doNext];
     }];    
+}
+
+- (void)setUsername:(NSString *)username {
+    _username = [username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 @end
