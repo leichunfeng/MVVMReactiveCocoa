@@ -81,7 +81,7 @@
         return nil;
     }];
     
-    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.flatten;
+    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.switchToLatest;
     
     RAC(self, users) = [fetchLocalDataSignal merge:requestRemoteDataSignal];
     

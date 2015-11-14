@@ -41,7 +41,7 @@
         }
     }];
     
-    [[self.viewModel.submitFeedbackCommand.executionSignals.flatten deliverOnMainThread] subscribeNext:^(id x) {
+    [[self.viewModel.submitFeedbackCommand.executionSignals.switchToLatest deliverOnMainThread] subscribeNext:^(id x) {
         progressHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
         
         progressHUD.mode = MBProgressHUDModeCustomView;
