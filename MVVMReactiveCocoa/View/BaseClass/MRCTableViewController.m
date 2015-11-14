@@ -12,6 +12,7 @@
 
 @interface MRCTableViewController ()
 
+@property (nonatomic, weak, readwrite) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak, readwrite) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong, readonly) MRCTableViewModel *viewModel;
@@ -199,6 +200,28 @@
             @strongify(self)
             [self.refreshControl finishingLoading];
         }];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.viewModel.keyword = searchText;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+
+    searchBar.text = nil;
+    self.viewModel.keyword = nil;
 }
 
 #pragma mark - DZNEmptyDataSetSource

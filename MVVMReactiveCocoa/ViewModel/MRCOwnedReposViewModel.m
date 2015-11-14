@@ -48,19 +48,23 @@
     
     RACSignal *starredReposDidChangeSignal = [[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:MRCStarredReposDidChangeNotification object:nil]
-        filter:^BOOL(id value) {
+        filter:^(id value) {
            @strongify(self)
-           return self.options & MRCReposViewModelOptionsObserveStarredReposChange;
+           return @(self.options & MRCReposViewModelOptionsObserveStarredReposChange).boolValue;
         }];
-    
-    RACSignal *fetchLocalDataSignal = [[starredReposDidChangeSignal
+
+    // Represents the future value
+    RACSignal *futureSignal = [starredReposDidChangeSignal merge:[RACObserve(self, keyword) skip:1]];
+
+    // The nil as the initial value
+    RACSignal *fetchLocalDataSignal = [[futureSignal
     	startWith:nil]
         map:^(id value) {
             @strongify(self)
             return [self fetchLocalData];
         }];
     
-    RACSignal *requestRemoteDataSignal = [[self.requestRemoteDataCommand.executionSignals.flatten
+    RACSignal *requestRemoteDataSignal = [[self.requestRemoteDataCommand.executionSignals.switchToLatest
     	doNext:^(NSArray *repositories) {
             @strongify(self)
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -78,8 +82,8 @@
             	repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
                 	return [repo1.name caseInsensitiveCompare:repo2.name];
             	}];
-          }
-          return repositories;
+            }
+            return repositories;
         }];
     
     RAC(self, repositories) = [fetchLocalDataSignal merge:requestRemoteDataSignal];
@@ -121,7 +125,7 @@
 }
 
 - (NSArray *)fetchLocalData {
-    return [OCTRepository mrc_fetchUserRepositories];
+    return [OCTRepository mrc_fetchUserRepositoriesWithKeyword:self.keyword];
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {

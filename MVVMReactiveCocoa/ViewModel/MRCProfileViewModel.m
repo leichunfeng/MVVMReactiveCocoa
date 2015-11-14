@@ -93,7 +93,7 @@
     }];
     
     RACSignal *fetchLocalDataSignal = [RACSignal return:[self fetchLocalData]];
-    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.flatten;
+    RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.switchToLatest;
     
     [[[fetchLocalDataSignal
     	merge:requestRemoteDataSignal]

@@ -189,30 +189,42 @@
 }
 
 + (NSArray *)mrc_fetchUserRepositories {
+    return [self mrc_fetchUserRepositoriesWithKeyword:nil];
+}
+
++ (NSArray *)mrc_fetchUserRepositoriesWithKeyword:(NSString *)keyword {
     __block NSMutableArray *repos = nil;
-    
+
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Repository WHERE owner_login = ? ORDER BY LOWER(name);", [OCTUser mrc_currentUser].login];
+        NSString *sql = nil;
+        
+        if (keyword.length == 0) {
+            sql = [NSString stringWithFormat:@"SELECT * FROM Repository WHERE owner_login = '%@' ORDER BY LOWER(name);", [OCTUser mrc_currentUser].login];
+        } else {
+            sql = [NSString stringWithFormat:@"SELECT * FROM Repository WHERE owner_login = '%@' AND (name LIKE '%%%@%%' OR description LIKE '%%%@%%') ORDER BY LOWER(name);", [OCTUser mrc_currentUser].login, keyword, keyword];
+        }
+        
+        FMResultSet *rs = [db executeQuery:sql];
 
         @onExit {
             [rs close];
         };
-        
+
         if (rs == nil) {
             MRCLogLastError(db);
             return;
         }
-        
+
         while ([rs next]) {
             @autoreleasepool {
                 if (repos == nil) repos = [[NSMutableArray alloc] init];
-                
+
                 OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
             }
         }
     }];
-    
+
     return repos;
 }
 
