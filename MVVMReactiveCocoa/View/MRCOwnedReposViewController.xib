@@ -21,7 +21,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" id="Us6-sc-q3T">
+                    <searchBar key="tableHeaderView" contentMode="redraw" id="Us6-sc-q3T" customClass="MRCSearchBar">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
