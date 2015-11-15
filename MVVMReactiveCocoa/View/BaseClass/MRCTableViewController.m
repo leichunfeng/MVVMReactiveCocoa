@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.contentOffset = CGPointMake(0, -self.contentInset.top);
+    self.tableView.contentOffset = CGPointMake(0, self.searchBar.mrc_height - self.contentInset.top);
     self.tableView.contentInset  = self.contentInset;
     self.tableView.scrollIndicatorInsets = self.contentInset;
     
@@ -163,7 +163,22 @@
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if (self.searchBar != nil) {
+        if (self.viewModel.sectionIndexTitles.count != 0) {
+            return [self.viewModel.sectionIndexTitles.rac_sequence startWith:UITableViewIndexSearch].array;
+        }
+    }
     return self.viewModel.sectionIndexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    if (self.searchBar != nil) {
+        if (index == 0) {
+            [tableView scrollRectToVisible:self.searchBar.frame animated:NO];
+        }
+        return index - 1;
+    }
+    return index;
 }
 
 #pragma mark - UITableViewDelegate

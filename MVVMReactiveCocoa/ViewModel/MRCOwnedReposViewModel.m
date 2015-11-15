@@ -53,8 +53,12 @@
            return @(self.options & MRCReposViewModelOptionsObserveStarredReposChange).boolValue;
         }];
 
+    RACSignal *keywordSignal = [[RACObserve(self, keyword)
+        skip:1]
+        throttle:0.25];
+
     // Represents the future value
-    RACSignal *futureSignal = [starredReposDidChangeSignal merge:[RACObserve(self, keyword) skip:1]];
+    RACSignal *futureSignal = [starredReposDidChangeSignal merge:keywordSignal];
 
     // The nil as the initial value
     RACSignal *fetchLocalDataSignal = [[futureSignal

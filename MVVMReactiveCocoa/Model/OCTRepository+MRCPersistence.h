@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, OCTRepositoryStarredStatus) {
 + (NSArray *)mrc_fetchUserRepositories;
 + (NSArray *)mrc_fetchUserRepositoriesWithKeyword:(NSString *)keyword;
 + (NSArray *)mrc_fetchUserStarredRepositories;
-//+ (NSArray *)mrc_fetchUserStarredRepositoriesWithKeyword:(NSString *)keyword;
++ (NSArray *)mrc_fetchUserStarredRepositoriesWithKeyword:(NSString *)keyword;
 + (NSArray *)mrc_fetchUserStarredRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 + (NSArray *)mrc_fetchUserPublicRepositoriesWithPage:(NSUInteger)page perPage:(NSUInteger)perPage;
 

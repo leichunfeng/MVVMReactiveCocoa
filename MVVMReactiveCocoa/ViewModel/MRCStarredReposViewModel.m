@@ -69,7 +69,7 @@
 - (NSArray *)fetchLocalData {
     if (self.isCurrentUser) {
         if (self.entryPoint == MRCStarredReposViewModelEntryPointHomepage) {
-            return [OCTRepository mrc_fetchUserStarredRepositories];
+            return [OCTRepository mrc_fetchUserStarredRepositoriesWithKeyword:self.keyword];
         } else if (self.entryPoint == MRCStarredReposViewModelEntryPointUserDetail) {
             return [OCTRepository mrc_fetchUserStarredRepositoriesWithPage:self.page perPage:self.perPage];
         }

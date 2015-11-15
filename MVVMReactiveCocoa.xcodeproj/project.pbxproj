@@ -177,6 +177,7 @@
 		24E3B9F71B492301001C1DEE /* MRCNewsItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E3B9F61B492301001C1DEE /* MRCNewsItemViewModel.m */; };
 		24E84E831AEFC270003F700C /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E84E821AEFC270003F700C /* MRCWebViewController.xib */; };
 		24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
+		24EFEB631BF8315300C2AB61 /* MRCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */; };
 		24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */; };
 		24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120341AA7447A00A22D9A /* MRCSettingsViewController.m */; };
 		24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F120351AA7447A00A22D9A /* MRCSettingsViewController.xib */; };
@@ -661,6 +662,8 @@
 		24E3B9F51B492301001C1DEE /* MRCNewsItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsItemViewModel.h; sourceTree = "<group>"; };
 		24E3B9F61B492301001C1DEE /* MRCNewsItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsItemViewModel.m; sourceTree = "<group>"; };
 		24E84E821AEFC270003F700C /* MRCWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCWebViewController.xib; sourceTree = "<group>"; };
+		24EFEB611BF8315300C2AB61 /* MRCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchBar.h; sourceTree = "<group>"; };
+		24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchBar.m; sourceTree = "<group>"; };
 		24F120251AA7445800A22D9A /* MRCSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewModel.h; sourceTree = "<group>"; };
 		24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSettingsViewModel.m; sourceTree = "<group>"; };
 		24F120331AA7447A00A22D9A /* MRCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewController.h; sourceTree = "<group>"; };
@@ -801,6 +804,7 @@
 		240D00DD1A654D300033CC86 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24EFEB601BF8313F00C2AB61 /* SearchBar */,
 				245D627A1AA8C73E00D7B081 /* TableHeaderFooterView */,
 				24116E8E1A8F454200D25218 /* TitleView */,
 				24B4DA111A66B94800DDFA6C /* TableViewCell */,
@@ -1289,6 +1293,15 @@
 				240393131B37F14F0032C871 /* OCTRepositoryTests.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		24EFEB601BF8313F00C2AB61 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				24EFEB611BF8315300C2AB61 /* MRCSearchBar.h */,
+				24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		24FF30041B370CFA00915F8E /* CBStoreHouseRefreshControl */ = {
@@ -1786,6 +1799,7 @@
 				24D899D91AAA9BAC00BC607C /* MRCFeedbackViewController.m in Sources */,
 				240D014E1A654D300033CC86 /* MRCProfileViewModel.m in Sources */,
 				249F35041A72A1A0008F1C2A /* MRCRepoStatisticsTableViewCell.m in Sources */,
+				24EFEB631BF8315300C2AB61 /* MRCSearchBar.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,

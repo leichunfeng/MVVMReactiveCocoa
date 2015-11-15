@@ -229,30 +229,42 @@
 }
 
 + (NSArray *)mrc_fetchUserStarredRepositories {
+    return [self mrc_fetchUserStarredRepositoriesWithKeyword:nil];
+}
+
++ (NSArray *)mrc_fetchUserStarredRepositoriesWithKeyword:(NSString *)keyword {
     __block NSMutableArray *repos = nil;
-    
+
     [[FMDatabaseQueue sharedInstance] inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db executeQuery:@"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = ? AND usr.repositoryId = r.id ORDER BY LOWER(name);", [OCTUser mrc_currentUserId]];
-     
+        NSString *sql = nil;
+
+        if (keyword.length == 0) {
+            sql = [NSString stringWithFormat:@"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = '%@' AND usr.repositoryId = r.id ORDER BY LOWER(name);", [OCTUser mrc_currentUserId]];
+        } else {
+            sql = [NSString stringWithFormat:@"SELECT * FROM User_Starred_Repository usr, Repository r WHERE usr.userId = '%@' AND usr.repositoryId = r.id AND (r.name LIKE '%%%@%%' OR r.description LIKE '%%%@%%') ORDER BY LOWER(name);", [OCTUser mrc_currentUserId], keyword, keyword];
+        }
+
+        FMResultSet *rs = [db executeQuery:sql];
+
         @onExit {
             [rs close];
         };
-        
+
         if (rs == nil) {
             MRCLogLastError(db);
             return;
         }
-        
+
         while ([rs next]) {
             @autoreleasepool {
                 if (repos == nil) repos = [[NSMutableArray alloc] init];
-                
+
                 OCTRepository *repo = [OCTRepository fromDBDictionary:rs.resultDictionary];
                 [repos addObject:repo];
             }
         }
     }];
-    
+
     return repos;
 }
 
