@@ -18,7 +18,7 @@
     self.title = self.user.login;
     
     @weakify(self)
-    self.avatarHeaderViewModel.operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.avatarHeaderViewModel.operationCommand = [[RACCommand alloc] initWithSignalBlock:^(id _) {
         @strongify(self)
         if (self.user.followingStatus == OCTUserFollowingStatusYES) {
             return [[self.services client] mrc_unfollowUser:self.user];
@@ -42,7 +42,7 @@
          	}];
     }
     
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 0) {
             if (indexPath.row == 1) {
