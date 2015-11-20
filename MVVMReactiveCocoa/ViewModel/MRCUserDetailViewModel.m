@@ -18,16 +18,18 @@
     self.title = self.user.login;
     
     @weakify(self)
-    self.avatarHeaderViewModel.operationCommand = [[RACCommand alloc] initWithSignalBlock:^(id _) {
-        @strongify(self)
-        if (self.user.followingStatus == OCTUserFollowingStatusYES) {
-            return [[self.services client] mrc_unfollowUser:self.user];
-        } else if (self.user.followingStatus == OCTUserFollowingStatusNO) {
-            return [[self.services client] mrc_followUser:self.user];
-        }
-        return [RACSignal empty];
-    }];
-    
+    if (![self.user.objectID isEqualToString:[OCTUser mrc_currentUserId]]) { // Exclude myself
+        self.avatarHeaderViewModel.operationCommand = [[RACCommand alloc] initWithSignalBlock:^(id _) {
+            @strongify(self)
+            if (self.user.followingStatus == OCTUserFollowingStatusYES) {
+                return [[self.services client] mrc_unfollowUser:self.user];
+            } else if (self.user.followingStatus == OCTUserFollowingStatusNO) {
+                return [[self.services client] mrc_followUser:self.user];
+            }
+            return [RACSignal empty];
+        }];
+    }
+
     if (self.user.followingStatus == OCTUserFollowingStatusUnknown) {
         [[[self.services
         	client]
