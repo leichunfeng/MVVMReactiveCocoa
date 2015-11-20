@@ -35,19 +35,26 @@
     
     self.loginLabel.text = viewModel.login;
     self.htmlLabel.text  = viewModel.user.HTMLURL.absoluteString;
-    
-    [self.activityIndicatorView startAnimating];
-    
-    @weakify(self)
-    [[[RACObserve(viewModel.user, followingStatus)
-        deliverOnMainThread]
-        takeUntil:self.rac_prepareForReuseSignal]
-        subscribeNext:^(NSNumber *followingStatus) {
-            @strongify(self)
-            self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
-            self.activityIndicatorView.hidden = (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
-            self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
-        }];
+
+    if (viewModel.operationCommand == nil) {
+        self.activityIndicatorView.hidden = YES;
+        self.operationButton.hidden = YES;
+    } else {
+        if (!self.activityIndicatorView.isAnimating) {
+            [self.activityIndicatorView startAnimating];
+        }
+
+        @weakify(self)
+        [[[RACObserve(viewModel.user, followingStatus)
+            deliverOnMainThread]
+            takeUntil:self.rac_prepareForReuseSignal]
+            subscribeNext:^(NSNumber *followingStatus) {
+                @strongify(self)
+                self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
+                self.activityIndicatorView.hidden = (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
+                self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
+            }];
+    }
 }
 
 - (IBAction)didClickOperationButton:(id)sender {

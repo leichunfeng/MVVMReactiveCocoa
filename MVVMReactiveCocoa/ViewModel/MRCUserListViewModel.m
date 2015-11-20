@@ -180,8 +180,11 @@
                     }
              }];
         }
-        viewModel.operationCommand = self.operationCommand;
-        
+
+        if (![user.objectID isEqualToString:[OCTUser mrc_currentUserId]]) { // Exclude myself
+            viewModel.operationCommand = self.operationCommand;
+        }
+
         return viewModel;
     }].array;
     
