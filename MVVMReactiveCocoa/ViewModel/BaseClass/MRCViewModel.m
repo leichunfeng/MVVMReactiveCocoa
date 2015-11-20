@@ -13,20 +13,12 @@
 @property (nonatomic, strong, readwrite) id<MRCViewModelServices> services;
 @property (nonatomic, copy, readwrite) NSDictionary *params;
 
+@property (nonatomic, strong, readwrite) RACSubject *errors;
+@property (nonatomic, strong, readwrite) RACSubject *willDisappearSignal;
+
 @end
 
 @implementation MRCViewModel
-
-@synthesize services = _services;
-@synthesize params   = _params;
-@synthesize title    = _title;
-@synthesize subtitle = _subtitle;
-@synthesize callback = _callback;
-@synthesize errors   = _errors;
-@synthesize titleViewType = _titleViewType;
-@synthesize willDisappearSignal = _willDisappearSignal;
-@synthesize shouldFetchLocalDataOnViewModelInitialize = _shouldFetchLocalDataOnViewModelInitialize;
-@synthesize shouldRequestRemoteDataOnViewDidLoad = _shouldRequestRemoteDataOnViewDidLoad;
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewModel *viewModel = [super allocWithZone:zone];
