@@ -174,7 +174,14 @@
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>weibo.cn</key>
+			<key>7xkfnf.com1.z0.glb.clouddn.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+            <key>weibo.cn</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
