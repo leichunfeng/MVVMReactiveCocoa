@@ -20,8 +20,6 @@
 
 @implementation MRCViewController
 
-@synthesize viewModel = _viewModel;
-
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     MRCViewController *viewController = [super allocWithZone:zone];
 
