@@ -36,7 +36,7 @@
     return viewController;
 }
 
-- (id<MRCViewProtocol>)initWithViewModel:(id)viewModel {
+- (MRCViewController *)initWithViewModel:(id)viewModel {
     self = [super init];
     if (self) {
         self.viewModel = viewModel;

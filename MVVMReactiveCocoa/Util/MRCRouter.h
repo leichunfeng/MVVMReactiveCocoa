@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol MRCViewProtocol;
+#import "MRCViewController.h"
 
 @interface MRCRouter : NSObject
 
@@ -22,6 +21,6 @@
 // viewModel - The view model
 //
 // Returns the view corresponding to the given view model.
-- (id<MRCViewProtocol>)viewControllerForViewModel:(id<MRCViewModelProtocol>)viewModel;
+- (MRCViewController *)viewControllerForViewModel:(MRCViewModel *)viewModel;
 
 @end

@@ -412,7 +412,6 @@
 		240D00E41A654D300033CC86 /* MRCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewController.m; sourceTree = "<group>"; };
 		240D00E51A654D300033CC86 /* MRCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCViewController.h; sourceTree = "<group>"; };
 		240D00E61A654D300033CC86 /* MRCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCViewController.m; sourceTree = "<group>"; };
-		240D00E71A654D300033CC86 /* MRCViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCViewProtocol.h; sourceTree = "<group>"; };
 		240D00E91A654D300033CC86 /* MRCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCButton.h; sourceTree = "<group>"; };
 		240D00EA1A654D300033CC86 /* MRCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCButton.m; sourceTree = "<group>"; };
 		240D00F01A654D300033CC86 /* MRCImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCImageView.h; sourceTree = "<group>"; };
@@ -436,7 +435,6 @@
 		240D010E1A654D300033CC86 /* MRCTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewModel.m; sourceTree = "<group>"; };
 		240D010F1A654D300033CC86 /* MRCViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCViewModel.h; sourceTree = "<group>"; };
 		240D01101A654D300033CC86 /* MRCViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCViewModel.m; sourceTree = "<group>"; };
-		240D01111A654D300033CC86 /* MRCViewModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCViewModelProtocol.h; sourceTree = "<group>"; };
 		240D01121A654D300033CC86 /* MRCViewModelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCViewModelServices.h; sourceTree = "<group>"; };
 		240D01131A654D300033CC86 /* MRCViewModelServicesImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCViewModelServicesImpl.h; sourceTree = "<group>"; };
 		240D01141A654D300033CC86 /* MRCViewModelServicesImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCViewModelServicesImpl.m; sourceTree = "<group>"; };
@@ -892,7 +890,6 @@
 				240D00E41A654D300033CC86 /* MRCTableViewController.m */,
 				240D00E51A654D300033CC86 /* MRCViewController.h */,
 				240D00E61A654D300033CC86 /* MRCViewController.m */,
-				240D00E71A654D300033CC86 /* MRCViewProtocol.h */,
 				24DF45831A6BF04B00F23474 /* MRCSegmentedControlController.h */,
 				24DF45841A6BF04B00F23474 /* MRCSegmentedControlController.m */,
 				2496742F1A73F5490032771B /* MRCWebViewController.h */,
@@ -992,7 +989,6 @@
 				240D010E1A654D300033CC86 /* MRCTableViewModel.m */,
 				240D010F1A654D300033CC86 /* MRCViewModel.h */,
 				240D01101A654D300033CC86 /* MRCViewModel.m */,
-				240D01111A654D300033CC86 /* MRCViewModelProtocol.h */,
 				240D01121A654D300033CC86 /* MRCViewModelServices.h */,
 				240D01131A654D300033CC86 /* MRCViewModelServicesImpl.h */,
 				240D01141A654D300033CC86 /* MRCViewModelServicesImpl.m */,

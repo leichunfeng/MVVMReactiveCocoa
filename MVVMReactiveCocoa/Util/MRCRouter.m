@@ -7,9 +7,6 @@
 //
 
 #import "MRCRouter.h"
-#import "MRCViewProtocol.h"
-
-static MRCRouter *_sharedInstance = nil;
 
 @interface MRCRouter ()
 
@@ -20,19 +17,20 @@ static MRCRouter *_sharedInstance = nil;
 @implementation MRCRouter
 
 + (instancetype)sharedInstance {
+    static MRCRouter *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedInstance = [[super allocWithZone:NULL] init];
+        sharedInstance = [[self alloc] init];
     });
-    return _sharedInstance;
+    return sharedInstance;
 }
 
-- (id<MRCViewProtocol>)viewControllerForViewModel:(id<MRCViewModelProtocol>)viewModel {
-    NSString *viewController = [self.viewModelViewMappings valueForKey:NSStringFromClass(((NSObject *)viewModel).class)];
+- (MRCViewController *)viewControllerForViewModel:(MRCViewModel *)viewModel {
+    NSString *viewController = self.viewModelViewMappings[NSStringFromClass(viewModel.class)];
     
-    NSParameterAssert([NSClassFromString(viewController) conformsToProtocol:@protocol(MRCViewProtocol)]);
+    NSParameterAssert([NSClassFromString(viewController) isSubclassOfClass:[MRCViewController class]]);
     NSParameterAssert([NSClassFromString(viewController) instancesRespondToSelector:@selector(initWithViewModel:)]);
-
+    
     return [[NSClassFromString(viewController) alloc] initWithViewModel:viewModel];
 }
 
