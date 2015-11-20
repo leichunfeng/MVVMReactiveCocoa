@@ -21,7 +21,7 @@
 @interface MRCAppDelegate ()
 
 @property (nonatomic, strong) MRCViewModelServicesImpl *services;
-@property (nonatomic, strong) MRCViewModel * viewModel;
+@property (nonatomic, strong) MRCViewModel *viewModel;
 @property (nonatomic, strong) Reachability *reachability;
 
 @property (nonatomic, strong, readwrite) MRCNavigationControllerStack *navigationControllerStack;
