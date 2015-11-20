@@ -10,12 +10,12 @@
 
 @interface UIImage (MRCOcticons)
 
-// Generating icon image using the GitHub's icons font.
-//
-// identifier - The identifier of GitHub's icons font
-// size       - The size of icon image
-//
-// Returns the icon image.
+/// Generating icon image using the GitHub's icons font.
+///
+/// identifier - The identifier of GitHub's icons font
+/// size       - The size of icon image
+///
+/// Returns the icon image.
 + (UIImage *)octicon_imageWithIdentifier:(NSString *)identifier size:(CGSize)size;
 
 @end

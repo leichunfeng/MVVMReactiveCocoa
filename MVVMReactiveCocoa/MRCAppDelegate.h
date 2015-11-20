@@ -12,7 +12,7 @@
 
 @interface MRCAppDelegate : UIResponder <UIApplicationDelegate>
 
-// The window of current application.
+/// The window of current application.
 @property (nonatomic, strong) UIWindow *window;
 
 @property (nonatomic, strong, readonly) MRCNavigationControllerStack *navigationControllerStack;

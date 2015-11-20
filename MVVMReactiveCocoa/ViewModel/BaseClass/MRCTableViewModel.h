@@ -10,10 +10,10 @@
 
 @interface MRCTableViewModel : MRCViewModel
 
-// The data source of table view.
+/// The data source of table view.
 @property (nonatomic, copy) NSArray *dataSource;
 
-// The list of section titles to display in section index view.
+/// The list of section titles to display in section index view.
 @property (nonatomic, copy) NSArray *sectionIndexTitles;
 
 @property (nonatomic, assign) NSUInteger page;

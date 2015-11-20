@@ -14,9 +14,9 @@
 
 @interface NSString (Util)
 
-// Judging the string is not nil or empty.
-//
-// Returns YES or NO.
+/// Judging the string is not nil or empty.
+///
+/// Returns YES or NO.
 - (BOOL)isExist;
 
 - (NSString *)firstLetter;
@@ -27,9 +27,9 @@
 
 @interface UIColor (Util)
 
-// Generating a new image by the color.
-//
-// Returns a new image.
+/// Generating a new image by the color.
+///
+/// Returns a new image.
 - (UIImage *)color2Image;
 
 - (UIImage *)color2ImageSized:(CGSize)size;

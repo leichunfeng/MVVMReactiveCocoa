@@ -10,7 +10,7 @@
 
 @interface MRCTableViewController : MRCViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-// The table view for tableView controller.
+/// The table view for tableView controller.
 @property (nonatomic, weak, readonly) UISearchBar *searchBar;
 @property (nonatomic, weak, readonly) UITableView *tableView;
 @property (nonatomic, assign, readonly) UIEdgeInsets contentInset;

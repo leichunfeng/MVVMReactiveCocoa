@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong, readonly) OCTUser *user;
 
-// The contentOffset of the scroll view.
+/// The contentOffset of the scroll view.
 @property (nonatomic, assign) CGPoint contentOffset;
 
 @property (nonatomic, strong) RACCommand *operationCommand;

@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-// A protocol which is adopted by views which are backed by view models.
+/// A protocol which is adopted by views which are backed by view models.
 @protocol MRCReactiveView <NSObject>
 
-// Binds the given view model to the view.
-//
-// viewModel - The view model
+/// Binds the given view model to the view.
+///
+/// viewModel - The view model
 - (void)bindViewModel:(id)viewModel;
 
 @end

@@ -12,26 +12,26 @@
 
 @interface MRCNavigationControllerStack : NSObject
 
-// Initialization method. This is the preferred way to create a new navigation controller stack.
-//
-// services - The service bus of Model layer.
-//
-// Returns a new navigation controller stack.
+/// Initialization method. This is the preferred way to create a new navigation controller stack.
+///
+/// services - The service bus of the `Model` layer.
+///
+/// Returns a new navigation controller stack.
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services;
 
-// Pushes the navigation controller.
-//
-// navigationController - the navigation controller
+/// Pushes the navigation controller.
+///
+/// navigationController - the navigation controller
 - (void)pushNavigationController:(UINavigationController *)navigationController;
 
-// Pops the top navigation controller in the stack.
-//
-// Returns the popped navigation controller.
+/// Pops the top navigation controller in the stack.
+///
+/// Returns the popped navigation controller.
 - (UINavigationController *)popNavigationController;
 
-// Retrieves the top navigation controller in the stack.
-//
-// Returns the top navigation controller in the stack.
+/// Retrieves the top navigation controller in the stack.
+///
+/// Returns the top navigation controller in the stack.
 - (UINavigationController *)topNavigationController;
 
 @end

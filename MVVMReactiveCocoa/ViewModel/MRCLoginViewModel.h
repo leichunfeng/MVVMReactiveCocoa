@@ -10,21 +10,21 @@
 
 @interface MRCLoginViewModel : MRCViewModel
 
-// The avatar URL of the user.
+/// The avatar URL of the user.
 @property (nonatomic, copy, readonly) NSURL *avatarURL;
 
-// The username entered by the user.
+/// The username entered by the user.
 @property (nonatomic, copy) NSString *username;
 
-// The password entered by the user.
+/// The password entered by the user.
 @property (nonatomic, copy) NSString *password;
 
 @property (nonatomic, strong, readonly) RACSignal *validLoginSignal;
 
-// The command of login button.
+/// The command of login button.
 @property (nonatomic, strong, readonly) RACCommand *loginCommand;
 
-// The command of uses browser to login button.
+/// The command of uses browser to login button.
 @property (nonatomic, strong, readonly) RACCommand *browserLoginCommand;
 
 @end
