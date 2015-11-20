@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
-#import "MRCViewProtocol.h"
 #import "MRCViewController.h"
 
 @interface MRCTabBarController : MRCViewController <UITabBarControllerDelegate>

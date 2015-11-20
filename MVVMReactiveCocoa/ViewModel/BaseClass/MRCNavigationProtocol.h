@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol MRCViewModelProtocol;
+#import "MRCViewModel.h"
 
 @protocol MRCNavigationProtocol <NSObject>
 
@@ -19,7 +18,7 @@
 //
 // viewModel - the view model
 // animated  - use animation or not
-- (void)pushViewModel:(id<MRCViewModelProtocol>)viewModel animated:(BOOL)animated;
+- (void)pushViewModel:(MRCViewModel *)viewModel animated:(BOOL)animated;
 
 // Pops the top view controller in the stack.
 //
@@ -36,7 +35,7 @@
 // viewModel  - the view model
 // animated   - use animation or not
 // completion - the completion handler
-- (void)presentViewModel:(id<MRCViewModelProtocol>)viewModel animated:(BOOL)animated completion:(VoidBlock)completion;
+- (void)presentViewModel:(MRCViewModel *)viewModel animated:(BOOL)animated completion:(VoidBlock)completion;
 
 // Dismiss the presented view controller.
 //
@@ -47,6 +46,6 @@
 // Reset the corresponding view controller as the root view controller of the application's window.
 //
 // viewModel - the view model
-- (void)resetRootViewModel:(id<MRCViewModelProtocol>)viewModel;
+- (void)resetRootViewModel:(MRCViewModel *)viewModel;
 
 @end

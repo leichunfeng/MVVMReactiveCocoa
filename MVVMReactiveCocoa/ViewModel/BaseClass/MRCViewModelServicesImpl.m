@@ -25,16 +25,16 @@
     return self;
 }
 
-- (void)pushViewModel:(id<MRCViewModelProtocol>)viewModel animated:(BOOL)animated {}
+- (void)pushViewModel:(MRCViewModel *)viewModel animated:(BOOL)animated {}
 
 - (void)popViewModelAnimated:(BOOL)animated {}
 
 - (void)popToRootViewModelAnimated:(BOOL)animated {}
 
-- (void)presentViewModel:(id<MRCViewModelProtocol>)viewModel animated:(BOOL)animated completion:(VoidBlock)completion {}
+- (void)presentViewModel:(MRCViewModel *)viewModel animated:(BOOL)animated completion:(VoidBlock)completion {}
 
 - (void)dismissViewModelAnimated:(BOOL)animated completion:(VoidBlock)completion {}
 
-- (void)resetRootViewModel:(id<MRCViewModelProtocol>)viewModel {}
+- (void)resetRootViewModel:(MRCViewModel *)viewModel {}
 
 @end

@@ -24,7 +24,7 @@
 
 @dynamic viewModel;
 
-- (instancetype)initWithViewModel:(id<MRCViewModelProtocol>)viewModel {
+- (instancetype)initWithViewModel:(MRCViewModel *)viewModel {
     self = [super initWithViewModel:viewModel];
     if (self) {
         if ([viewModel shouldRequestRemoteDataOnViewDidLoad]) {
