@@ -11,7 +11,6 @@
 @protocol MRCRepositoryService <NSObject>
 
 - (RACSignal *)requestRepositoryReadmeHTML:(OCTRepository *)repository reference:(NSString *)reference;
-
 - (RACSignal *)requestTrendingRepositoriesSince:(NSString *)since language:(NSString *)language;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-// The error domain that uses in this application.
+/// The error domain that uses in this application.
 extern NSString * const MRCErrorDomain;
 
 @interface MRCErrors : NSObject

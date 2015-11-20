@@ -11,16 +11,16 @@
 
 @interface MRCRouter : NSObject
 
-// Retrieves the shared router instance.
-//
-// Returns the shared router instance.
+/// Retrieves the shared router instance.
+///
+/// Returns the shared router instance.
 + (instancetype)sharedInstance;
 
-// Retrieves the view corresponding to the given view model.
-//
-// viewModel - The view model
-//
-// Returns the view corresponding to the given view model.
+/// Retrieves the view corresponding to the given view model.
+///
+/// viewModel - The view model
+///
+/// Returns the view corresponding to the given view model.
 - (MRCViewController *)viewControllerForViewModel:(MRCViewModel *)viewModel;
 
 @end

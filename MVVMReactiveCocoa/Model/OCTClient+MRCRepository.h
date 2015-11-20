@@ -10,20 +10,20 @@
 
 @interface OCTClient (MRCRepository)
 
-// Star the given `repository`
-//
-// repository - The repository to star. Cannot be nil.
-//
-// Returns a signal, which will send completed on success. If the client
-// is not `authenticated`, the signal will error immediately.
+/// Star the given `repository`
+///
+/// repository - The repository to star. Cannot be nil.
+///
+/// Returns a signal, which will send completed on success. If the client
+/// is not `authenticated`, the signal will error immediately.
 - (RACSignal *)mrc_starRepository:(OCTRepository *)repository;
 
-// Unstar the given `repository`
-//
-// repository - The repository to unstar. Cannot be nil.
-//
-// Returns a signal, which will send completed on success. If the client
-// is not `authenticated`, the signal will error immediately.
+/// Unstar the given `repository`
+///
+/// repository - The repository to unstar. Cannot be nil.
+///
+/// Returns a signal, which will send completed on success. If the client
+/// is not `authenticated`, the signal will error immediately.
 - (RACSignal *)mrc_unstarRepository:(OCTRepository *)repository;
 
 @end

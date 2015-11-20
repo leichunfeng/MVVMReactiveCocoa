@@ -15,7 +15,7 @@
 
 @required
 
-// A reference to OCTClient instance.
+/// A reference to OCTClient instance.
 @property (nonatomic, strong) OCTClient *client;
 
 @property (nonatomic, strong, readonly) id<MRCRepositoryService> repositoryService;
