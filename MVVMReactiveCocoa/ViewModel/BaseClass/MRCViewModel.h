@@ -24,10 +24,10 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 @interface MRCViewModel : NSObject
 
 /// Initialization method. This is the preferred way to create a new view model.
-//
+///
 /// services - The service bus of the `Model` layer.
 /// params   - The parameters to be passed to view model.
-//
+///
 /// Returns a new view model.
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params;
 
@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, MRCTitleViewType) {
 @property (nonatomic, strong, readonly) RACSubject *willDisappearSignal;
 
 /// An additional method, in which you can initialize data, RACCommand etc.
-//
+///
 /// This method will be execute after the execution of `-initWithServices:params:` method. But
 /// the premise is that you need to inherit `MRCViewModel`.
 - (void)initialize;

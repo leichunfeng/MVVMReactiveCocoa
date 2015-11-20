@@ -9,9 +9,9 @@
 @interface MRCViewController : UIViewController
 
 /// Initialization method. This is the preferred way to create a new view.
-//
+///
 /// viewModel - corresponding view model
-//
+///
 /// Returns a new view.
 - (instancetype)initWithViewModel:(MRCViewModel *)viewModel;
 
