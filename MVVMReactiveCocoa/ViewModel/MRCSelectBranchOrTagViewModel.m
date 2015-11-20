@@ -17,7 +17,7 @@
 
 @implementation MRCSelectBranchOrTagViewModel
 
-- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(NSDictionary *)params {
     self = [super initWithServices:services params:params];
     if (self) {
         self.references = params[@"references"];

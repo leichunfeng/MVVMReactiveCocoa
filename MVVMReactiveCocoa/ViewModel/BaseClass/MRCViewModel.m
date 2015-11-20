@@ -11,7 +11,7 @@
 @interface MRCViewModel ()
 
 @property (nonatomic, strong, readwrite) id<MRCViewModelServices> services;
-@property (nonatomic, strong, readwrite) id params;
+@property (nonatomic, copy, readwrite) NSDictionary *params;
 
 @end
 
@@ -42,9 +42,9 @@
     return viewModel;
 }
 
-- (instancetype)initWithServices:(id)services params:(id)params {
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(NSDictionary *)params {
     self = [super init];
-    if (self) { 
+    if (self) {
         self.shouldFetchLocalDataOnViewModelInitialize = YES;
         self.shouldRequestRemoteDataOnViewDidLoad = YES;
         self.title    = params[@"title"];
