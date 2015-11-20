@@ -20,7 +20,7 @@
 
 @implementation MRCOwnedReposViewModel
 
-- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(id)params {
+- (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(NSDictionary *)params {
     self = [super initWithServices:services params:params];
     if (self) {
         self.user = params[@"user"] ?: [OCTUser mrc_currentUser];
