@@ -55,7 +55,7 @@
 
     RACSignal *keywordSignal = [[RACObserve(self, keyword)
         skip:1]
-        throttle:0.25];
+        throttle:0.5];
 
     // Represents the future value
     RACSignal *futureSignal = [starredReposDidChangeSignal merge:keywordSignal];
