@@ -1,6 +1,6 @@
 PODS:
   - Appirater (2.0.5)
-  - Bugtags (1.1.2)
+  - Bugtags (1.1.3)
   - DTCoreText (1.6.16):
     - DTFoundation/Core (~> 1.7.5)
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
@@ -46,7 +46,7 @@ PODS:
   - OcticonsIOS (0.0.2)
   - Ono (1.2.2)
   - Reachability (3.1.1)
-  - Reveal-iOS-SDK (1.6.1)
+  - Reveal-iOS-SDK (1.6.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -91,7 +91,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
-  Bugtags: 0a6b51a1298d32859b640a8901cdbdf822dac3e0
+  Bugtags: 3b46bb17d51f123256e5a597f7bc535c3bd8abcd
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
   DTFoundation: 46e2b2fafe78d67febfd8d1f85fe9845a093f00e
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
@@ -105,7 +105,7 @@ SPEC CHECKSUMS:
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  Reveal-iOS-SDK: ceae964076cebe3efe63e5e9abe3152efce46aa8
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c

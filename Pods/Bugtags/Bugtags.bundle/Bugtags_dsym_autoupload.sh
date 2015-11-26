@@ -28,7 +28,7 @@ exit 0
 fi
 
 # Check for debug builds
-if [ "$CONFIGURATION" == "Debug" ]; then
+if [ "$CONFIGURATION" == "Debug" ] || echo $GCC_PREPROCESSOR_DEFINITIONS | grep -iq DEBUG=1; then
 if [ "${SKIP_DEBUG_BUILDS}" ] && [ "${SKIP_DEBUG_BUILDS}" -eq 1 ]; then
 echo "Bugtags: Skipping debug build"
 exit 0

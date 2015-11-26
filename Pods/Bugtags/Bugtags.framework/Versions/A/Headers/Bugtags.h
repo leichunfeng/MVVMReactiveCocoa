@@ -5,7 +5,7 @@
  
  Copyright:  (c) 2015 by Bugtags, Ltd., all rights reserved.
  
- Version:    1.1.2
+ Version:    1.1.3
  */
 
 #import "BTGConstants.h"
@@ -35,10 +35,25 @@
 @property(nonatomic, assign) BOOL trackingUserLocation;
 
 /**
+ *  是否收集闪退时的界面截图，默认YES
+ */
+@property(nonatomic, assign) BOOL crashWithScreenshot;
+
+/**
  * 支持的屏幕方向，默认UIInterfaceOrientationMaskAllButUpsideDown，请根据您的App支持的屏幕方向来设置
  * 1.1.2+ 不需要手动设置，SDK会自动设置
  */
 @property(nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations __attribute__((deprecated));
+
+/**
+ *  设置应用版本号，默认自动获取应用的版本号
+ */
+@property(nonatomic, strong) NSString *version;
+
+/**
+ *  设置应用build，默认自动获取应用的build
+ */
+@property(nonatomic, strong) NSString *build;
 
 @end
 
