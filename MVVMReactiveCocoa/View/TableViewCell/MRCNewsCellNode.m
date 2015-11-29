@@ -10,7 +10,7 @@
 #import "SDImageCache+ASImageCacheProtocol.h"
 #import "SDWebImageDownloader+ASImageDownloaderProtocol.h"
 
-@interface MRCNewsCellNode ()
+@interface MRCNewsCellNode () <ASTextNodeDelegate>
 
 @property (nonatomic, strong) MRCNewsItemViewModel *viewModel;
 @property (nonatomic, strong) ASNetworkImageNode *avatarNode;
@@ -39,12 +39,21 @@
         
         self.detailNode = ({
             ASTextNode *detailNode = [[ASTextNode alloc] init];
+            
+            detailNode.delegate = self;
+            detailNode.userInteractionEnabled = YES;
             detailNode.attributedString = viewModel.attributedString;
+            
             detailNode;
         });
         [self addSubnode:self.detailNode];
     }
     return self;
+}
+
+- (void)didLoad {
+    self.layer.as_allowsHighlightDrawing = YES;
+    [super didLoad];
 }
 
 - (CGSize)calculateSizeThatFits:(CGSize)constrainedSize {
@@ -55,6 +64,16 @@
 - (void)layout {
     self.avatarNode.frame = CGRectMake(10, 10, 40, 40);
     self.detailNode.frame = CGRectMake(10 + 40 + 10, 10, self.detailNode.calculatedSize.width, self.detailNode.calculatedSize.height);
+}
+
+#pragma mark - ASTextNodeDelegate
+
+- (BOOL)textNode:(ASTextNode *)textNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point {
+    return YES;
+}
+
+- (void)textNode:(ASTextNode *)textNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange {
+    [self.viewModel.didClickLinkCommand execute:URL];
 }
 
 @end
