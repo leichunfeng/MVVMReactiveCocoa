@@ -8,6 +8,8 @@
 
 #import "NSMutableAttributedString+MRCEvents.h"
 
+NSString * const MRCLinkAttributeName = @"MRCLinkAttributeName";
+
 @implementation NSString (MRCEvents)
 
 - (NSMutableAttributedString *)mrc_attributedString {
@@ -94,17 +96,17 @@
 #pragma mark - Link
 
 - (NSMutableAttributedString *)mrc_addUserLinkAttribute {
-    [self addAttribute:NSLinkAttributeName value:[NSURL mrc_userLinkWithLogin:self.string] range:[self.string rangeOfString:self.string]];
+    [self addAttribute:MRCLinkAttributeName value:[NSURL mrc_userLinkWithLogin:self.string] range:[self.string rangeOfString:self.string]];
     return self;
 }
 
 - (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithName:(NSString *)name referenceName:(NSString *)referenceName {
-    [self addAttribute:NSLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:name referenceName:referenceName] range:[self.string rangeOfString:self.string]];
+    [self addAttribute:MRCLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:name referenceName:referenceName] range:[self.string rangeOfString:self.string]];
     return self;
 }
 
 - (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL {
-    [self addAttribute:NSLinkAttributeName value:HTMLURL range:[self.string rangeOfString:self.string]];
+    [self addAttribute:MRCLinkAttributeName value:HTMLURL range:[self.string rangeOfString:self.string]];
     return self;
 }
 
