@@ -32,6 +32,10 @@
             avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             avatarNode.preferredFrameSize = CGSizeMake(40, 40);
             avatarNode.URL = viewModel.event.actorAvatarURL;
+            
+            // configure the button
+            avatarNode.userInteractionEnabled = YES; // opt into touch handling
+            [avatarNode addTarget:self action:@selector(didClickAvatarNode:) forControlEvents:ASControlNodeEventTouchUpInside];
 
             avatarNode;
         });
@@ -64,6 +68,10 @@
 - (void)layout {
     self.avatarNode.frame = CGRectMake(10, 10, 40, 40);
     self.detailNode.frame = CGRectMake(10 + 40 + 10, 10, self.detailNode.calculatedSize.width, self.detailNode.calculatedSize.height);
+}
+
+- (void)didClickAvatarNode:(id)sender {
+    [self.viewModel.didClickLinkCommand execute:[NSURL mrc_userLinkWithLogin:self.viewModel.event.actorLogin]];
 }
 
 #pragma mark - ASTextNodeDelegate
