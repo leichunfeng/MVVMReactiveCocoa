@@ -10,6 +10,8 @@
 #import "SDImageCache+ASImageCacheProtocol.h"
 #import "SDWebImageDownloader+ASImageDownloaderProtocol.h"
 
+extern NSString * const MRCLinkAttributeName;
+
 @interface MRCNewsCellNode () <ASTextNodeDelegate>
 
 @property (nonatomic, strong) MRCNewsItemViewModel *viewModel;
@@ -44,8 +46,10 @@
         self.detailNode = ({
             ASTextNode *detailNode = [[ASTextNode alloc] init];
             
+            // configure node to support tappable links
             detailNode.delegate = self;
             detailNode.userInteractionEnabled = YES;
+            detailNode.linkAttributeNames = @[ MRCLinkAttributeName ];
             detailNode.attributedString = viewModel.attributedString;
             
             detailNode;
