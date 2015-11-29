@@ -20,10 +20,10 @@
     [super initialize];
     
     self.page = 1;
-    self.perPage = 30;
+    self.perPage = 100;
     
     @weakify(self)
-    self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSNumber *page) {
+    self.requestRemoteDataCommand = [[RACCommand alloc] initWithSignalBlock:^(NSNumber *page) {
         @strongify(self)
         return [[self requestRemoteDataSignalWithPage:page.unsignedIntegerValue] takeUntil:self.rac_willDeallocSignal];
     }];
