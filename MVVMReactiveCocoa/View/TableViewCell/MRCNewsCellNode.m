@@ -7,6 +7,8 @@
 //
 
 #import "MRCNewsCellNode.h"
+#import "SDImageCache+ASImageCacheProtocol.h"
+#import "SDWebImageDownloader+ASImageDownloaderProtocol.h"
 
 @interface MRCNewsCellNode ()
 
@@ -24,7 +26,8 @@
         self.viewModel = viewModel;
         
         self.avatarNode = ({
-            ASNetworkImageNode *avatarNode = [[ASNetworkImageNode alloc] init];
+            ASNetworkImageNode *avatarNode = [[ASNetworkImageNode alloc] initWithCache:[SDImageCache sharedImageCache]
+                                                                            downloader:[SDWebImageDownloader sharedDownloader]];
 
             avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
             avatarNode.preferredFrameSize = CGSizeMake(40, 40);
