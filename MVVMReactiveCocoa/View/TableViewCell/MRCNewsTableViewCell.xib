@@ -49,7 +49,7 @@
                 <outlet property="avatarButton" destination="hAz-8n-U6H" id="r6c-YD-hdU"/>
                 <outlet property="detailView" destination="p5V-lg-1Zq" id="hnh-gz-K33"/>
             </connections>
-            <point key="canvasLocation" x="-1640.5" y="148.5"/>
+            <point key="canvasLocation" x="-1952.5" y="304.5"/>
         </tableViewCell>
     </objects>
 </document>
