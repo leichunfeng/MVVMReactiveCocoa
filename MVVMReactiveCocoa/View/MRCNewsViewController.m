@@ -12,19 +12,25 @@
 #import "MRCNewsItemViewModel.h"
 #import "MRCNetworkHeaderView.h"
 #import "MRCSearchViewModel.h"
+#import "MRCNewsCellNode.h"
 
-@interface MRCNewsViewController ()
+@interface MRCNewsViewController () <ASTableViewDataSource, ASTableViewDelegate>
 
+@property (nonatomic, weak, readonly) ASTableView *tableView;
 @property (nonatomic, strong, readonly) MRCNewsViewModel *viewModel;
 
 @end
 
 @implementation MRCNewsViewController
 
+@dynamic tableView;
 @dynamic viewModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.asyncDataSource = self;
+    self.tableView.asyncDelegate   = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
     
@@ -77,6 +83,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
+}
+
+#pragma mark - ASTableViewDataSource
+
+- (ASCellNode *)tableView:(ASTableView *)tableView nodeForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
+    MRCNewsCellNode *cellNode = [[MRCNewsCellNode alloc] initWithViewModel:viewModel];
+    return cellNode;
 }
 
 @end
