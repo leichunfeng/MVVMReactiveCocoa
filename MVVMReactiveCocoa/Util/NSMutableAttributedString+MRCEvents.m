@@ -89,7 +89,9 @@ NSString * const MRCLinkAttributeName = @"MRCLinkAttributeName";
 #pragma mark - Paragraph Style
 
 - (NSMutableAttributedString *)mrc_addParagraphStyleAttribute {
-    [self addAttribute:NSParagraphStyleAttributeName value:MRCEventsParagraphStyle range:NSMakeRange(0, 1)];
+    if (self.length > 0) {
+        [self addAttribute:NSParagraphStyleAttributeName value:MRCEventsParagraphStyle range:NSMakeRange(0, 1)];
+    }
     return self;
 }
 

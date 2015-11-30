@@ -10,6 +10,8 @@
 #import "SDImageCache+ASImageCacheProtocol.h"
 #import "SDWebImageDownloader+ASImageDownloaderProtocol.h"
 
+#define MRCAvatarNodeSide 40
+
 extern NSString * const MRCLinkAttributeName;
 
 @interface MRCNewsCellNode () <ASTextNodeDelegate>
@@ -32,7 +34,7 @@ extern NSString * const MRCLinkAttributeName;
                                                                             downloader:[SDWebImageDownloader sharedDownloader]];
 
             avatarNode.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-            avatarNode.preferredFrameSize = CGSizeMake(40, 40);
+            avatarNode.preferredFrameSize = CGSizeMake(MRCAvatarNodeSide, MRCAvatarNodeSide);
             avatarNode.URL = viewModel.event.actorAvatarURL;
             
             // configure the button
@@ -66,13 +68,13 @@ extern NSString * const MRCLinkAttributeName;
 }
 
 - (CGSize)calculateSizeThatFits:(CGSize)constrainedSize {
-    CGSize detailSize = [self.detailNode measure:CGSizeMake(constrainedSize.width - 10 - 40 - 10 - 10, constrainedSize.height)];
-    return CGSizeMake(constrainedSize.width, 10 + MAX(40, detailSize.height) + 10);
+    CGSize detailSize = [self.detailNode measure:CGSizeMake(constrainedSize.width - 10 - MRCAvatarNodeSide - 10 - 10, constrainedSize.height)];
+    return CGSizeMake(constrainedSize.width, 10 + MAX(MRCAvatarNodeSide, detailSize.height) + 10);
 }
 
 - (void)layout {
-    self.avatarNode.frame = CGRectMake(10, 10, 40, 40);
-    self.detailNode.frame = CGRectMake(10 + 40 + 10, 10, self.detailNode.calculatedSize.width, self.detailNode.calculatedSize.height);
+    self.avatarNode.frame = CGRectMake(10, 10, MRCAvatarNodeSide, MRCAvatarNodeSide);
+    self.detailNode.frame = CGRectMake(10 + MRCAvatarNodeSide + 10, 10, self.detailNode.calculatedSize.width, self.detailNode.calculatedSize.height);
 }
 
 - (void)didClickAvatarNode:(id)sender {
