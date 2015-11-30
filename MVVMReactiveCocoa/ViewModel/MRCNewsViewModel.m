@@ -49,7 +49,7 @@
     self.shouldInfiniteScrolling = YES;
     
     @weakify(self)
-    self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSURL *URL) {
+    self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^(NSURL *URL) {
         @strongify(self)
         
         NSString *title = [[[[URL.absoluteString componentsSeparatedByString:@"?"].lastObject componentsSeparatedByString:@"="].lastObject stringByReplacingOccurrencesOfString:@"-" withString:@" "] stringByReplacingOccurrencesOfString:@"@" withString:@"#"];
@@ -73,7 +73,7 @@
         return [RACSignal empty];
     }];
     
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         MRCNewsItemViewModel *viewModel = self.dataSource[indexPath.section][indexPath.row];
         return [self.didClickLinkCommand execute:viewModel.event.mrc_Link];
