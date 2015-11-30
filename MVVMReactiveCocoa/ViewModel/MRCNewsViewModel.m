@@ -80,11 +80,6 @@
     }];
     
     RAC(self, events) = [self.requestRemoteDataCommand.executionSignals.switchToLatest startWith:self.fetchLocalData];
-
-    RAC(self, dataSource) = [RACObserve(self, events) map:^(NSArray *events) {
-        @strongify(self)
-        return [self dataSourceWithEvents:events];
-    }];
 }
 
 - (BOOL (^)(NSError *))requestRemoteDataErrorsFilter {
@@ -120,7 +115,7 @@
         fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage];
     }
     
-    return [[[[fetchSignal
+    return [[[fetchSignal
         take:self.perPage]
     	collect]
     	doNext:^(NSArray *events) {
@@ -133,12 +128,6 @@
                     }
                 });
             }
-        }]
-        map:^(NSArray *events) {
-            if (page != 1) {
-                events = @[ (self.events ?: @[]).rac_sequence, events.rac_sequence ].rac_sequence.flatten.array;
-            }
-            return events;
         }];
 }
 

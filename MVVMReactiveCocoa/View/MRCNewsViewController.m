@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 leichunfeng. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "MRCNewsViewController.h"
 #import "MRCNewsViewModel.h"
 #import "MRCNewsTableViewCell.h"
@@ -53,11 +54,38 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
+    
+    [[RACObserve(self.viewModel, events) deliverOnMainThread] subscribeNext:^(NSArray *events) {
+        @strongify(self)
+        
+        [self.tableView beginUpdates];
+        
+        if (self.viewModel.page == 1) {
+            self.viewModel.dataSource = [self.viewModel dataSourceWithEvents:events];
+            [self.tableView reloadData];
+        } else {
+            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+            [events enumerateObjectsUsingBlock:^(OCTEvent *_, NSUInteger idx, BOOL *__) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.viewModel.dataSource.firstObject count] + idx
+                                                            inSection:0];
+                [indexPaths addObject:indexPath];
+            }];
+            self.viewModel.dataSource = [self.viewModel.dataSource.rac_sequence map:^(NSArray *viewModels) {
+                @strongify(self)
+                return [viewModels.rac_sequence concat:[[self.viewModel dataSourceWithEvents:events].firstObject rac_sequence]].array;
+            }].array;
+            [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
+        }
+        
+        [self.tableView endUpdates];
+    }];
 }
 
 - (UIEdgeInsets)contentInset {
     return self.viewModel.type == MRCNewsViewModelTypeNews ? UIEdgeInsetsMake(64, 0, 49, 0) : [super contentInset];
 }
+
+- (void)reloadData {}
 
 #pragma mark - ASTableViewDataSource
 

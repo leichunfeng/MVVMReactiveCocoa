@@ -15,6 +15,7 @@
 @property (nonatomic, weak, readonly) UITableView *tableView;
 @property (nonatomic, assign, readonly) UIEdgeInsets contentInset;
 
+- (void)reloadData;
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
 
