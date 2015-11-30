@@ -74,7 +74,7 @@
                 @strongify(self)
                 return [viewModels.rac_sequence concat:[[self.viewModel dataSourceWithEvents:events].firstObject rac_sequence]].array;
             }].array;
-            [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationNone];
         }
         
         [self.tableView endUpdates];
