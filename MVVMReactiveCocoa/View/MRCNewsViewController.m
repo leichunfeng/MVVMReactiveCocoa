@@ -67,4 +67,14 @@
     return cellNode;
 }
 
+- (void)tableView:(ASTableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = HexRGB(colorI7);
+}
+
+- (void)tableView:(ASTableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+}
+
 @end

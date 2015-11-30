@@ -49,6 +49,7 @@ extern NSString * const MRCLinkAttributeName;
             // configure node to support tappable links
             detailNode.delegate = self;
             detailNode.userInteractionEnabled = YES;
+            detailNode.passthroughNonlinkTouches = YES;
             detailNode.linkAttributeNames = @[ MRCLinkAttributeName ];
             detailNode.attributedString = viewModel.attributedString;
             
