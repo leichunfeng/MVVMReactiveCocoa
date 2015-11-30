@@ -118,10 +118,13 @@
     [super bindViewModel];
     
     @weakify(self)
-    [RACObserve(self.viewModel, dataSource).distinctUntilChanged.deliverOnMainThread subscribeNext:^(id x) {
-        @strongify(self)
-        [self.tableView reloadData];
-    }];
+    [[[RACObserve(self.viewModel, dataSource)
+        distinctUntilChanged]
+        deliverOnMainThread]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self reloadData];
+        }];
 
     [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
         @strongify(self)
@@ -130,6 +133,10 @@
         }];
         emptyDataSetView.alpha = 1.0 - executing.floatValue;
     }];
+}
+
+- (void)reloadData {
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
