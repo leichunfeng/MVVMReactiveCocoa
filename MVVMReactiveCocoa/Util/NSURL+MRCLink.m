@@ -11,6 +11,8 @@
 #define MRCLinkUserScheme @"user"
 #define MRCLinkRepositoryScheme @"repository"
 
+extern NSString * const MRCLinkAttributeName;
+
 @implementation NSURL (MRCLink)
 
 - (MRCLinkType)type {
@@ -80,7 +82,7 @@
     } else if ([self isMemberOfClass:[OCTPushEvent class]]) {
 		attributedString = self.mrc_branchNameAttributedString;
     } else if ([self isMemberOfClass:[OCTRefEvent class]]) {
-        if ([self.mrc_refNameAttributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL]) {
+        if ([self.mrc_refNameAttributedString attribute:MRCLinkAttributeName atIndex:0 effectiveRange:NULL]) {
             attributedString = self.mrc_refNameAttributedString;
         } else {
             attributedString = self.mrc_repositoryNameAttributedString;
@@ -89,7 +91,7 @@
 		attributedString = self.mrc_repositoryNameAttributedString;
     }
     
-    return [attributedString attribute:NSLinkAttributeName atIndex:0 effectiveRange:NULL];
+    return [attributedString attribute:MRCLinkAttributeName atIndex:0 effectiveRange:NULL];
 }
 
 @end
