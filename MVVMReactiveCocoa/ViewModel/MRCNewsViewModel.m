@@ -12,6 +12,9 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCWebViewModel.h"
 
+#define MRCReceivedEventsEtag @"received_events_etag"
+#define MRCEventsEtag         @"events_etag"
+
 @interface MRCNewsViewModel ()
 
 @property (nonatomic, strong) OCTUser *user;
@@ -46,7 +49,6 @@
     }
     
     self.shouldPullToRefresh = YES;
-    self.shouldInfiniteScrolling = YES;
     
     @weakify(self)
     self.didClickLinkCommand = [[RACCommand alloc] initWithSignalBlock:^(NSURL *URL) {
@@ -79,11 +81,43 @@
         return [self.didClickLinkCommand execute:viewModel.event.mrc_Link];
     }];
     
-    RAC(self, events) = [self.requestRemoteDataCommand.executionSignals.switchToLatest startWith:self.fetchLocalData];
+    RAC(self, events) = [[self.requestRemoteDataCommand.executionSignals.switchToLatest
+        startWith:self.fetchLocalData]
+        map:^(NSArray *events) {
+            @strongify(self)
+            if (self.dataSource == nil) {
+                return events;
+            } else {
+                return [events.rac_sequence takeUntilBlock:^(OCTEvent *event) {
+                    @strongify(self)
+                    MRCNewsItemViewModel *viewModel = [self.dataSource.firstObject firstObject];
+                    return [event.objectID isEqualToString:viewModel.event.objectID];
+                }].array;
+            }
+        }];
+
+    if (self.isCurrentUser) {
+        [[[RACObserve(self, dataSource)
+            ignore:nil]
+            deliverOn:[RACScheduler scheduler]]
+            subscribeNext:^(NSArray *dataSource) {
+                @strongify(self)
+                NSArray *events = [[dataSource.firstObject
+                    rac_sequence]
+                    map:^(MRCNewsItemViewModel *viewModel) {
+                        return viewModel.event;
+                    }].array;
+                if (self.type == MRCNewsViewModelTypeNews) {
+                    [OCTEvent mrc_saveUserReceivedEvents:events];
+                } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+                    [OCTEvent mrc_saveUserPerformedEvents:events];
+                }
+            }];
+    }
 }
 
 - (BOOL (^)(NSError *))requestRemoteDataErrorsFilter {
-    return ^BOOL(NSError *error) {
+    return ^(NSError *error) {
         if ([error.domain isEqual:OCTClientErrorDomain] && error.code == OCTClientErrorServiceRequestFailed) {
             MRCLogError(error);
             return NO;
@@ -110,24 +144,29 @@
     RACSignal *fetchSignal = [RACSignal empty];
 
     if (self.type == MRCNewsViewModelTypeNews) {
-        fetchSignal = [[self.services client] fetchUserReceivedEventsWithOffset:[self offsetForPage:page] perPage:self.perPage];
+        NSString *etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCReceivedEventsEtag];
+        fetchSignal = [[self.services client] fetchUserEventsNotMatchingEtag:etag];
     } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage];
+        NSString *etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCEventsEtag];
+        fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user notMatchingEtag:etag];
     }
-    
+
     return [[[fetchSignal
-        take:self.perPage]
-    	collect]
-    	doNext:^(NSArray *events) {
-            if (self.isCurrentUser && page == 1) { // Cache the first page
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    if (self.type == MRCNewsViewModelTypeNews) {
-                        [OCTEvent mrc_saveUserReceivedEvents:events];
-                    } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-                        [OCTEvent mrc_saveUserPerformedEvents:events];
-                    }
-                });
+        collect]
+        doNext:^(NSArray *responses) {
+            if (responses.count > 0) {
+                if (self.type == MRCNewsViewModelTypeNews) {
+                    [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCReceivedEventsEtag];
+                } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+                    [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCEventsEtag];
+                }
+                [[NSUserDefaults standardUserDefaults] synchronize];
             }
+        }]
+        map:^(NSArray *responses) {
+            return [responses.rac_sequence map:^(OCTResponse *response) {
+                return response.parsedResult;
+            }].array;
         }];
 }
 
