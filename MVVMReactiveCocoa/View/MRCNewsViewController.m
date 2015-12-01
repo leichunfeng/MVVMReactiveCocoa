@@ -55,30 +55,61 @@
         }
     }];
     
-    [[RACObserve(self.viewModel, events) deliverOnMainThread] subscribeNext:^(NSArray *events) {
-        @strongify(self)
-        
-        [self.tableView beginUpdates];
-        
-        if (self.viewModel.page == 1) {
-            self.viewModel.dataSource = [self.viewModel dataSourceWithEvents:events];
-            [self.tableView reloadData];
-        } else {
-            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-            [events enumerateObjectsUsingBlock:^(OCTEvent *_, NSUInteger idx, BOOL *__) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.viewModel.dataSource.firstObject count] + idx
-                                                            inSection:0];
-                [indexPaths addObject:indexPath];
-            }];
-            self.viewModel.dataSource = [self.viewModel.dataSource.rac_sequence map:^(NSArray *viewModels) {
-                @strongify(self)
-                return [viewModels.rac_sequence concat:[[self.viewModel dataSourceWithEvents:events].firstObject rac_sequence]].array;
-            }].array;
-            [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationNone];
-        }
-        
-        [self.tableView endUpdates];
-    }];
+    [[[RACObserve(self.viewModel, events)
+        filter:^(NSArray *events) {
+            return @(events.count > 0).boolValue;
+        }]
+        deliverOnMainThread]
+        subscribeNext:^(NSArray *events) {
+            @strongify(self)
+
+            if (self.viewModel.dataSource == nil) {
+                NSArray *viewModels = [events.rac_sequence map:^(OCTEvent *event) {
+                    @strongify(self)
+                    MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
+                    viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
+                    return viewModel;
+                }].array;
+
+                self.viewModel.dataSource = @[ viewModels ];
+                
+                UIView *maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+                maskView.backgroundColor = [UIColor whiteColor];
+                [self.view insertSubview:maskView aboveSubview:self.tableView];
+                
+                [self.tableView beginUpdates];
+                [self.tableView reloadData];
+                [self.tableView endUpdatesAnimated:NO completion:^(BOOL completed) {
+                    [UIView animateWithDuration:1 animations:^{
+                        maskView.alpha = 0;
+                    } completion:^(BOOL finished) {
+                        [maskView removeFromSuperview];
+                    }];
+                }];
+            } else {
+                NSArray *viewModels = [[events.rac_sequence
+                    map:^(OCTEvent *event) {
+                        @strongify(self)
+                        MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
+                        viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
+                        return viewModel;
+                    }]
+                    concat:[self.viewModel.dataSource.firstObject rac_sequence]].array;
+
+                self.viewModel.dataSource = @[ viewModels ];
+
+                NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+
+                [events enumerateObjectsUsingBlock:^(OCTEvent *event, NSUInteger idx, BOOL *stop) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                    [indexPaths addObject:indexPath];
+                }];
+
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView endUpdates];
+            }
+        }];
 }
 
 - (UIEdgeInsets)contentInset {
