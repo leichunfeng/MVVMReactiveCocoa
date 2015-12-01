@@ -142,12 +142,19 @@
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     RACSignal *fetchSignal = [RACSignal empty];
+    
+    NSString *etag = nil;
+    if (self.isCurrentUser) {
+        if (self.type == MRCNewsViewModelTypeNews) {
+            etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCReceivedEventsEtag];
+        } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+            etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCEventsEtag];
+        }
+    }
 
     if (self.type == MRCNewsViewModelTypeNews) {
-        NSString *etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCReceivedEventsEtag];
         fetchSignal = [[self.services client] fetchUserEventsNotMatchingEtag:etag];
     } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-        NSString *etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCEventsEtag];
         fetchSignal = [[self.services client] fetchPerformedEventsForUser:self.user notMatchingEtag:etag];
     }
 
@@ -155,12 +162,14 @@
         collect]
         doNext:^(NSArray *responses) {
             if (responses.count > 0) {
-                if (self.type == MRCNewsViewModelTypeNews) {
-                    [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCReceivedEventsEtag];
-                } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-                    [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCEventsEtag];
+                if (self.isCurrentUser) {
+                    if (self.type == MRCNewsViewModelTypeNews) {
+                        [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCReceivedEventsEtag];
+                    } else if (self.type == MRCNewsViewModelTypePublicActivity) {
+                        [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCEventsEtag];
+                    }
+                    [[NSUserDefaults standardUserDefaults] synchronize];
                 }
-                [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }]
         map:^(NSArray *responses) {
