@@ -29,7 +29,7 @@
 
 #define MRCEventsParagraphStyle ({ \
 NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
-paragraphStyle.paragraphSpacing = 5; \
+paragraphStyle.paragraphSpacingBefore = 5; \
 paragraphStyle; \
 })
 

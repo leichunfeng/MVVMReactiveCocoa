@@ -90,7 +90,7 @@ NSString * const MRCLinkAttributeName = @"MRCLinkAttributeName";
 
 - (NSMutableAttributedString *)mrc_addParagraphStyleAttribute {
     if (self.length > 0) {
-        [self addAttribute:NSParagraphStyleAttributeName value:MRCEventsParagraphStyle range:NSMakeRange(0, 1)];
+        [self addAttribute:NSParagraphStyleAttributeName value:MRCEventsParagraphStyle range:NSMakeRange(0, MIN(2, self.length))];
     }
     return self;
 }
