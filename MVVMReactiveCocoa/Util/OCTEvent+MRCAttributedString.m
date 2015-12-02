@@ -271,7 +271,7 @@
         } */
         NSMutableAttributedString *commit = [[NSMutableAttributedString alloc] init];
         
-        [commit appendString:@"\n"];
+        [commit appendAttributedString:@"\n".mrc_attributedString];
         [commit appendAttributedString:[self mrc_pushedCommitAttributedStringWithSHA:dictionary[@"sha"]]];
         [commit appendAttributedString:[@" - " stringByAppendingString:dictionary[@"message"]].mrc_attributedString.mrc_addNormalTitleAttributes];
 
@@ -302,7 +302,7 @@
         }
     } else if (concreteEvent.eventType == OCTRefEventDeleted) {
         [attributedString insertAttributedString:@" ".mrc_attributedString atIndex:0];
-        [attributedString appendString:@" "];
+        [attributedString appendAttributedString:@"\n".mrc_attributedString];
         [attributedString mrc_addNormalTitleForegroundColorAttribute];
         [attributedString mrc_addBackgroundColorAttribute];
     }
@@ -464,7 +464,7 @@
     [attributedString appendAttributedString:[NSString stringWithFormat:@" %@ pull request ", action].mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_pullRequestAttributedString];
     [attributedString appendAttributedString:[@"\n" stringByAppendingString:concreteEvent.pullRequest.title].mrc_attributedString.mrc_addNormalTitleAttributes.mrc_addParagraphStyleAttribute];
-    [attributedString appendString:@"\n"];
+    [attributedString appendAttributedString:@"\n".mrc_attributedString];
     [attributedString appendAttributedString:self.mrc_pullInfoAttributedString];
     
     return attributedString;

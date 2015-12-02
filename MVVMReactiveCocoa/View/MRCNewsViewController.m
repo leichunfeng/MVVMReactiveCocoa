@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "MRCNewsViewController.h"
 #import "MRCNewsViewModel.h"
-#import "MRCNewsTableViewCell.h"
 #import "MRCNewsItemViewModel.h"
 #import "MRCNetworkHeaderView.h"
 #import "MRCSearchViewModel.h"
