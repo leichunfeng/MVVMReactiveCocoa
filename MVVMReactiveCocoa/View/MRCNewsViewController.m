@@ -46,6 +46,10 @@
     }
     
     @weakify(self)
+    RAC(self.viewModel, titleViewType) = [self.viewModel.requestRemoteDataCommand.executing map:^(NSNumber *executing) {
+        return executing.boolValue ? @(MRCTitleViewTypeLoadingTitle) : @(MRCTitleViewTypeDefault);
+    }];
+    
     [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
         @strongify(self)
         if (executing.boolValue && self.viewModel.dataSource == nil) {
@@ -110,6 +114,15 @@
                 [self.tableView endUpdates];
             }
         }];
+
+    [[[[NSNotificationCenter defaultCenter]
+        rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil]
+        takeUntil:self.rac_willDeallocSignal]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self.viewModel.requestRemoteDataCommand execute:nil];
+        }];
+
 }
 
 - (UIEdgeInsets)contentInset {
