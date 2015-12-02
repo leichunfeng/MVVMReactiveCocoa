@@ -12,9 +12,7 @@
 @interface MRCWebViewController ()
 
 @property (nonatomic, weak, readwrite) IBOutlet UIWebView *webView;
-
 @property (nonatomic, strong, readonly) MRCWebViewModel *viewModel;
-@property (nonatomic, assign) BOOL showProgressHUD;
 
 @end
 
@@ -31,7 +29,9 @@
     RACSignal *didFailLoadLoadSignal = [self rac_signalForSelector:@selector(webView:didFailLoadWithError:) fromProtocol:@protocol(UIWebViewDelegate)];
     
     MRCTitleViewType type = self.viewModel.titleViewType;
-    RAC(self.viewModel, titleViewType) = [[RACSignal merge:@[ didFinishLoadSignal, didFailLoadLoadSignal ]] mapReplace:@(type)];
+    RAC(self.viewModel, titleViewType) = [[RACSignal
+        merge:@[ didFinishLoadSignal, didFailLoadLoadSignal ]]
+        mapReplace:@(type)];
     
     NSParameterAssert(self.viewModel.request);
     
