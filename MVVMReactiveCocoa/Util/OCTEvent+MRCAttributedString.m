@@ -241,7 +241,7 @@
 - (NSMutableAttributedString *)mrc_pushedCommitAttributedStringWithSHA:(NSString *)SHA {
     NSParameterAssert([self isMemberOfClass:[OCTPushEvent class]]);
     
-    NSMutableAttributedString *attributedString = [@"\n" stringByAppendingString:MRCShortSHA(SHA)].mrc_attributedString;
+    NSMutableAttributedString *attributedString = MRCShortSHA(SHA).mrc_attributedString;
     
     NSURL *HTMLURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/%@/commit/%@?title=Commit", self.repositoryName, SHA]];
     
@@ -271,6 +271,7 @@
         } */
         NSMutableAttributedString *commit = [[NSMutableAttributedString alloc] init];
         
+        [commit appendString:@"\n"];
         [commit appendAttributedString:[self mrc_pushedCommitAttributedStringWithSHA:dictionary[@"sha"]]];
         [commit appendAttributedString:[@" - " stringByAppendingString:dictionary[@"message"]].mrc_attributedString.mrc_addNormalTitleAttributes];
 
@@ -331,7 +332,7 @@
     
     OCTPullRequestEvent *concreteEvent = (OCTPullRequestEvent *)self;
     
-    NSString *octicon = [NSString stringWithFormat:@"\n %@ ", [NSString octicon_iconStringForEnum:OCTIconGitCommit]];
+    NSString *octicon = [NSString stringWithFormat:@" %@ ", [NSString octicon_iconStringForEnum:OCTIconGitCommit]];
     
     NSString *commits   = concreteEvent.pullRequest.commits > 1 ? @" commits with " : @" commit with ";
     NSString *additions = concreteEvent.pullRequest.additions > 1 ? @" additions and " : @" addition and ";
@@ -463,6 +464,7 @@
     [attributedString appendAttributedString:[NSString stringWithFormat:@" %@ pull request ", action].mrc_attributedString.mrc_addBoldTitleAttributes];
     [attributedString appendAttributedString:self.mrc_pullRequestAttributedString];
     [attributedString appendAttributedString:[@"\n" stringByAppendingString:concreteEvent.pullRequest.title].mrc_attributedString.mrc_addNormalTitleAttributes.mrc_addParagraphStyleAttribute];
+    [attributedString appendString:@"\n"];
     [attributedString appendAttributedString:self.mrc_pullInfoAttributedString];
     
     return attributedString;
