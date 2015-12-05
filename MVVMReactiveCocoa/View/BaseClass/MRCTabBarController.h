@@ -7,10 +7,9 @@
 //
 
 #import "MRCViewController.h"
-#import "WXTabBarController.h"
 
 @interface MRCTabBarController : MRCViewController <UITabBarControllerDelegate>
 
-@property (nonatomic, strong, readonly) WXTabBarController *tabBarController;
+@property (nonatomic, strong, readonly) UITabBarController *tabBarController;
 
 @end

@@ -36,7 +36,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self configureFMDB];
-    [self configureAppearance];
     [self configureKeyboardManager];
     [self configureReachability];
     [self configureUMengSocial];
@@ -52,6 +51,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.services resetRootViewModel:[self createInitialViewModel]];
     [self.window makeKeyAndVisible];
+
+    [self configureAppearance];
     
     // Save the application version info.
     [[NSUserDefaults standardUserDefaults] setValue:MRC_APP_VERSION forKey:MRCApplicationVersionKey];
@@ -108,7 +109,7 @@
 }
 
 - (void)configureAppearance {
-    self.window.backgroundColor = UIColor.whiteColor;
+    self.window.backgroundColor = [UIColor whiteColor];
     
     // 0x2F434F
     [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1];

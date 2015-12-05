@@ -121,8 +121,6 @@
     });
 
     self.tabBarController.viewControllers = @[ newsNavigationController, reposNavigationController, searchNavigationController, profileNavigationController ];
-    
-    self.tabBarController.delegate = self;
 }
 
 @end

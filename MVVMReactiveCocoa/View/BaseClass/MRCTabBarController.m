@@ -7,10 +7,11 @@
 //
 
 #import "MRCTabBarController.h"
+#import "WXTabBarController.h"
 
 @interface MRCTabBarController ()
 
-@property (nonatomic, strong, readwrite) WXTabBarController *tabBarController;
+@property (nonatomic, strong, readwrite) UITabBarController *tabBarController;
 
 @end
 
@@ -36,12 +37,6 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return self.tabBarController.preferredStatusBarStyle;
-}
-
-#pragma mark - UITabBarControllerDelegate
-
-- (UIInterfaceOrientationMask)tabBarControllerSupportedInterfaceOrientations:(UITabBarController *)tabBarController {
-    return tabBarController.selectedViewController.supportedInterfaceOrientations;
 }
 
 @end
