@@ -41,6 +41,7 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.delegate = self;
+    [self.searchController setValue:self.mrcSearchBar forKey:@"searchBar"];
     
     self.definesPresentationContext = YES;
 }
@@ -64,15 +65,15 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (void)presentSearchController:(UISearchController *)searchController {
-    [self presentViewController:searchController animated:YES completion:NULL];
-}
+//- (void)presentSearchController:(UISearchController *)searchController {
+//    [self presentViewController:searchController animated:YES completion:NULL];
+//}
 
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-//    [self presentViewController:self.searchController animated:YES completion:NULL];
-    self.searchController.active = YES;
+    [self presentViewController:self.searchController animated:YES completion:NULL];
+//    self.searchController.active = YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
