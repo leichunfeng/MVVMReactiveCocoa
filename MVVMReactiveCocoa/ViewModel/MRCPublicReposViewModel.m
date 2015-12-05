@@ -31,6 +31,7 @@
 //        options = options | MRCReposViewModelOptionsSectionIndex;
 //        options = options | MRCReposViewModelOptionsShowOwnerLogin;
 //        options = options | MRCReposViewModelOptionsMarkStarredStatus;
+        options = options | MRCReposViewModelOptionsTableViewCellEditActions;
     } else {
 //        options = options | MRCReposViewModelOptionsObserveStarredReposChange;
 //        options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
@@ -39,6 +40,7 @@
 //        options = options | MRCReposViewModelOptionsSectionIndex;
         options = options | MRCReposViewModelOptionsShowOwnerLogin;
         options = options | MRCReposViewModelOptionsMarkStarredStatus;
+        options = options | MRCReposViewModelOptionsTableViewCellEditActions;
     }
     
     return options;

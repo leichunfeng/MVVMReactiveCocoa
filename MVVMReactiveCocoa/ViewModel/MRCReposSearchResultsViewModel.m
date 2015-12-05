@@ -36,6 +36,7 @@
 //    options = options | MRCReposViewModelOptionsSectionIndex;
     options = options | MRCReposViewModelOptionsShowOwnerLogin;
     options = options | MRCReposViewModelOptionsMarkStarredStatus;
+//    options = options | MRCReposViewModelOptionsTableViewCellEditActions;
     
     return options;
 }
