@@ -10,6 +10,4 @@
 
 @interface MRCSearchViewController : MRCTableViewController
 
-@property (nonatomic, strong, readonly) UISearchController *searchController;
-
 @end
