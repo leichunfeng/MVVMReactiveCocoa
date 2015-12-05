@@ -70,15 +70,15 @@
 
     self.tabBarController.viewControllers = @[ newsNavigationController, reposNavigationController, searchNavigationController, profileNavigationController ];
 
-    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:newsNavigationController];
+//    [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:newsNavigationController];
 
-    [[self
-        rac_signalForSelector:@selector(tabBarController:didSelectViewController:)
-        fromProtocol:@protocol(UITabBarControllerDelegate)]
-        subscribeNext:^(RACTuple *tuple) {
-            [MRCSharedAppDelegate.navigationControllerStack popNavigationController];
-            [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:tuple.second];
-        }];
+//    [[self
+//        rac_signalForSelector:@selector(tabBarController:didSelectViewController:)
+//        fromProtocol:@protocol(UITabBarControllerDelegate)]
+//        subscribeNext:^(RACTuple *tuple) {
+//            [MRCSharedAppDelegate.navigationControllerStack popNavigationController];
+//            [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:tuple.second];
+//        }];
     self.tabBarController.delegate = self;
 }
 

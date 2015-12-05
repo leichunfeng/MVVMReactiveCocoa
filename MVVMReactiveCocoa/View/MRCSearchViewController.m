@@ -10,11 +10,14 @@
 #import "MRCSearchViewModel.h"
 #import "MRCReposSearchResultsViewController.h"
 #import "MRCTrendingViewModel.h"
+#import "MRCSearchBar.h"
 
-@interface MRCSearchViewController () <UISearchControllerDelegate, UISearchBarDelegate>
+@interface MRCSearchViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
 @property (nonatomic, strong, readonly) MRCSearchViewModel *viewModel;
-@property (nonatomic, strong, readwrite) UISearchController *searchController;
+
+@property (nonatomic, strong) MRCSearchBar *mrcSearchBar;
+@property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) MRCReposSearchResultsViewController *searchResultsController;
 
 @end
@@ -28,15 +31,16 @@
         
     self.tableView.tableFooterView = nil;
     
+    self.mrcSearchBar = [[MRCSearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    self.mrcSearchBar.delegate = self;
+    
+    self.navigationItem.titleView = self.mrcSearchBar;
+    
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.searchBar.tintColor = HexRGB(colorI5);
-    self.searchController.searchBar.delegate = self.searchResultsController;
     self.searchController.delegate = self;
-    
-    self.navigationItem.titleView = self.searchController.searchBar;
     
     self.definesPresentationContext = YES;
 }
@@ -58,6 +62,28 @@
         cell.textLabel.text  = search.keyword;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (void)presentSearchController:(UISearchController *)searchController {
+    [self presentViewController:searchController animated:YES completion:NULL];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+//    [self presentViewController:self.searchController animated:YES completion:NULL];
+    self.searchController.active = YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.viewModel.searchResultsViewModel.dataSource = @[];
+    self.viewModel.searchResultsViewModel.query = searchText;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (searchBar.text.length > 0) {
+        [self.viewModel.searchResultsViewModel.requestRemoteDataCommand execute:nil];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -109,17 +135,18 @@
         MRCTrendingViewModel *trendingViewModel = [[MRCTrendingViewModel alloc] initWithServices:self.viewModel.services params:nil];
         [self.viewModel.services pushViewModel:trendingViewModel animated:YES];
     } else {
-        [self presentViewController:self.searchController animated:YES completion:NULL];
+//        [self presentViewController:self.searchController animated:YES completion:NULL];
+        self.searchController.active = YES;
         
         MRCSearch *search = self.viewModel.dataSource[indexPath.section][indexPath.row];
-        self.searchController.searchBar.text = search.keyword;
+        self.mrcSearchBar.text = search.keyword;
         
-        if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
-            [self.searchController.searchBar.delegate searchBar:self.searchController.searchBar textDidChange:search.keyword];
+        if ([self.mrcSearchBar.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
+            [self.mrcSearchBar.delegate searchBar:self.mrcSearchBar textDidChange:search.keyword];
         }
         
-        if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBarSearchButtonClicked:)]) {
-            [self.searchController.searchBar.delegate searchBarSearchButtonClicked:self.searchController.searchBar];
+        if ([self.mrcSearchBar.delegate respondsToSelector:@selector(searchBarSearchButtonClicked:)]) {
+            [self.mrcSearchBar.delegate searchBarSearchButtonClicked:self.mrcSearchBar];
         }
     }
 }

@@ -10,7 +10,7 @@
 
 @interface MRCTabBarController ()
 
-@property (nonatomic, strong, readwrite) UITabBarController *tabBarController;
+@property (nonatomic, strong, readwrite) WXTabBarController *tabBarController;
 
 @end
 
@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController = [[WXTabBarController alloc] init];
     self.tabBarController.view.frame = self.view.bounds;
 
     [self addChildViewController:self.tabBarController];

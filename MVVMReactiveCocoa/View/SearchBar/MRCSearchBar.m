@@ -10,12 +10,24 @@
 
 @implementation MRCSearchBar
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     self.layer.borderColor = HexRGB(colorB2).CGColor;
     self.layer.borderWidth = 0.5;
-    self.tintColor    = HexRGB(colorI5);
     self.barTintColor = HexRGB(0xF0EFF5);
-    self.placeholder  = @"Search";
+    [self initialize];
+}
+
+- (void)initialize {
+    self.tintColor   = HexRGB(colorI5);
+    self.placeholder = @"Search";
 }
 
 @end

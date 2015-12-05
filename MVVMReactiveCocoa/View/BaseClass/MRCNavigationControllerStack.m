@@ -114,7 +114,7 @@
 
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
 
-            if (![viewController isKindOfClass:[UINavigationController class]] && ![viewController isKindOfClass:[MRCTabBarController class]]) {
+            if (![viewController isKindOfClass:[UINavigationController class]]/* && ![viewController isKindOfClass:[MRCTabBarController class]]*/) {
                 viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
                 [self pushNavigationController:(UINavigationController *)viewController];
             }
