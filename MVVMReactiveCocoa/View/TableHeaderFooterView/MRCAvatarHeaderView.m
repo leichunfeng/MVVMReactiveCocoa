@@ -118,17 +118,19 @@
                                                         }];
         }];
     
-    [[self.avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *avatarButton) {
-        @strongify(self)
-        MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
-        
-        TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
-        
-        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        viewController.transitioningDelegate = self;
-        
-        [MRCSharedAppDelegate.window.rootViewController presentViewController:viewController animated:YES completion:NULL];
-    }];
+    [[self.avatarButton
+        rac_signalForControlEvents:UIControlEventTouchUpInside]
+        subscribeNext:^(UIButton *avatarButton) {
+            @strongify(self)
+            MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
+            
+            TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
+            
+            viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            viewController.transitioningDelegate = self;
+            
+            [MRCSharedAppDelegate.window.rootViewController presentViewController:viewController animated:YES completion:NULL];
+        }];
 
     RAC(self.nameLabel, text) = RACObserve(viewModel.user, login);
 
