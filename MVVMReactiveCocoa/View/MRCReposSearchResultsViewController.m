@@ -25,19 +25,6 @@
     return @"Searching";
 }
 
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    self.viewModel.dataSource = @[];
-    self.viewModel.query = searchText;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    if (searchBar.text.length > 0) {
-        [self.viewModel.requestRemoteDataCommand execute:nil];
-    }
-}
-
 #pragma mark - DZNEmptyDataSetSource
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {

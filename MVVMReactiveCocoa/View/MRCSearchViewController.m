@@ -15,8 +15,6 @@
 @interface MRCSearchViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
 @property (nonatomic, strong, readonly) MRCSearchViewModel *viewModel;
-
-@property (nonatomic, strong) MRCSearchBar *mrcSearchBar;
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) MRCReposSearchResultsViewController *searchResultsController;
 
@@ -31,17 +29,16 @@
         
     self.tableView.tableFooterView = nil;
     
-    self.mrcSearchBar = [[MRCSearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
-    self.mrcSearchBar.delegate = self;
-    
-    self.navigationItem.titleView = self.mrcSearchBar;
-    
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.delegate = self;
-    [self.searchController setValue:self.mrcSearchBar forKey:@"searchBar"];
+    
+    MRCSearchBar *searchBar = [[MRCSearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    searchBar.delegate = self;
+    self.navigationItem.titleView = searchBar;
+    [self.searchController setValue:searchBar forKey:@"searchBar"];
     
     self.definesPresentationContext = YES;
 }
@@ -65,24 +62,21 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
-//- (void)presentSearchController:(UISearchController *)searchController {
-//    [self presentViewController:searchController animated:YES completion:NULL];
-//}
-
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [self presentViewController:self.searchController animated:YES completion:NULL];
-//    self.searchController.active = YES;
+    self.searchController.active = YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.viewModel.searchResultsViewModel.dataSource = @[];
     self.viewModel.searchResultsViewModel.query = searchText;
+    self.searchController.view.subviews.firstObject.subviews.firstObject.hidden = (searchText.length == 0);
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if (searchBar.text.length > 0) {
+        [searchBar resignFirstResponder];
         [self.viewModel.searchResultsViewModel.requestRemoteDataCommand execute:nil];
     }
 }
@@ -136,18 +130,17 @@
         MRCTrendingViewModel *trendingViewModel = [[MRCTrendingViewModel alloc] initWithServices:self.viewModel.services params:nil];
         [self.viewModel.services pushViewModel:trendingViewModel animated:YES];
     } else {
-//        [self presentViewController:self.searchController animated:YES completion:NULL];
         self.searchController.active = YES;
         
         MRCSearch *search = self.viewModel.dataSource[indexPath.section][indexPath.row];
-        self.mrcSearchBar.text = search.keyword;
+        self.searchController.searchBar.text = search.keyword;
         
-        if ([self.mrcSearchBar.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
-            [self.mrcSearchBar.delegate searchBar:self.mrcSearchBar textDidChange:search.keyword];
+        if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBar:textDidChange:)]) {
+            [self.searchController.searchBar.delegate searchBar:self.searchController.searchBar textDidChange:search.keyword];
         }
         
-        if ([self.mrcSearchBar.delegate respondsToSelector:@selector(searchBarSearchButtonClicked:)]) {
-            [self.mrcSearchBar.delegate searchBarSearchButtonClicked:self.mrcSearchBar];
+        if ([self.searchController.searchBar.delegate respondsToSelector:@selector(searchBarSearchButtonClicked:)]) {
+            [self.searchController.searchBar.delegate searchBarSearchButtonClicked:self.searchController.searchBar];
         }
     }
 }
