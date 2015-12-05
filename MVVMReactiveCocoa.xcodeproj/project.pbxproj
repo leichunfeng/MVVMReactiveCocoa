@@ -14,7 +14,6 @@
 		24049AE01C0AD86800AFB431 /* MRCNewsCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24049ADF1C0AD86800AFB431 /* MRCNewsCellNode.m */; };
 		24049AEE1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 24049AED1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m */; };
 		24049AF11C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 24049AF01C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m */; };
-		2408C0361C129CF40094703A /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2408C0351C129CF40094703A /* WXTabBarController.m */; };
 		240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */; };
 		240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBE51AFF2420006ABC05 /* MRCSearchViewController.m */; };
 		240BFBE81AFF2420006ABC05 /* MRCSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240BFBE61AFF2420006ABC05 /* MRCSearchViewController.xib */; };
@@ -199,6 +198,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2408C06F1C130EA60094703A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 24D0FBC51BFF5B2D00725DD0;
+			remoteInfo = WXTabBarController;
+		};
 		242452EA1A80D78800FFFCC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
@@ -384,8 +390,7 @@
 		24049AED1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageDownloader+ASImageDownloaderProtocol.m"; sourceTree = "<group>"; };
 		24049AEF1C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDImageCache+ASImageCacheProtocol.h"; sourceTree = "<group>"; };
 		24049AF01C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDImageCache+ASImageCacheProtocol.m"; sourceTree = "<group>"; };
-		2408C0341C129CF40094703A /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
-		2408C0351C129CF40094703A /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
+		2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WXTabBarController.xcodeproj; path = WXTabBarController/WXTabBarController.xcodeproj; sourceTree = "<group>"; };
 		240BFBD61AFF240B006ABC05 /* MRCSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewModel.h; sourceTree = "<group>"; };
 		240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchViewModel.m; sourceTree = "<group>"; };
 		240BFBE41AFF2420006ABC05 /* MRCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewController.h; sourceTree = "<group>"; };
@@ -734,6 +739,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		2408C06C1C130EA50094703A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2408C0701C130EA60094703A /* 微信.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		240D00CB1A654D300033CC86 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,8 +903,6 @@
 		240D00DE1A654D300033CC86 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
-				2408C0341C129CF40094703A /* WXTabBarController.h */,
-				2408C0351C129CF40094703A /* WXTabBarController.m */,
 				240D00DF1A654D300033CC86 /* MRCNavigationControllerStack.h */,
 				240D00E01A654D300033CC86 /* MRCNavigationControllerStack.m */,
 				240D00E11A654D300033CC86 /* MRCTabBarController.h */,
@@ -1333,6 +1344,7 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */,
 				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
 				24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
@@ -1460,6 +1472,10 @@
 					ProductGroup = 242452F31A80D79D00FFFCC1 /* Products */;
 					ProjectRef = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
 				},
+				{
+					ProductGroup = 2408C06C1C130EA50094703A /* Products */;
+					ProjectRef = 2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1470,6 +1486,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2408C0701C130EA60094703A /* 微信.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "微信.app";
+			remoteRef = 2408C06F1C130EA60094703A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		242452EB1A80D78800FFFCC1 /* OctoKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1837,7 +1860,6 @@
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
 				245D62841AA8C73E00D7B081 /* MRCAboutHeaderView.m in Sources */,
-				2408C0361C129CF40094703A /* WXTabBarController.m in Sources */,
 				24DF45721A6BE8FB00F23474 /* MRCStarredReposViewController.m in Sources */,
 				249A8A281B53DCC400E18582 /* NSMutableAttributedString+MRCEvents.m in Sources */,
 				240D01381A654D300033CC86 /* MRCHomepageViewController.m in Sources */,
