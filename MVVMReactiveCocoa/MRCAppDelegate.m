@@ -117,7 +117,7 @@
 
     [UISegmentedControl appearance].tintColor = [UIColor whiteColor];
 
-    [UITabBar appearance].tintColor = HexRGB(colorI2);
+    [UITabBar appearance].tintColor = HexRGB(colorI3);
 }
 
 - (void)configureKeyboardManager {
