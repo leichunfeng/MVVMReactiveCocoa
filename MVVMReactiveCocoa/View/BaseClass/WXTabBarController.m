@@ -206,7 +206,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return self.backingViewControllers[self.backingSelectedIndex].preferredStatusBarStyle;
 }
 
 @end
