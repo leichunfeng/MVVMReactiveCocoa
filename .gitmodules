@@ -1,3 +1,6 @@
 [submodule "OctoKit"]
 	path = OctoKit
 url=https://github.com/leichunfeng/octokit.objc.git
+[submodule "WXTabBarController"]
+	path = WXTabBarController
+	url = https://github.com/leichunfeng/WXTabBarController.git
