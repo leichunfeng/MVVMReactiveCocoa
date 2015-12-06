@@ -46,9 +46,6 @@
                                                     iconScale:1
                                                       andSize:CGSizeMake(25, 25)];
         
-        newsImage   = [newsImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        newsHLImage = [newsHLImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
         newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News" image:newsImage selectedImage:newsHLImage];
 
         [[MRCNavigationController alloc] initWithRootViewController:newsViewController];
@@ -67,9 +64,6 @@
                                                      iconColor:HexRGB(colorI3)
                                                      iconScale:1
                                                        andSize:CGSizeMake(25, 25)];
-        
-        reposImage   = [reposImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        reposHLImage = [reposHLImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
         reposViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Repositories" image:reposImage selectedImage:reposHLImage];
 
@@ -90,9 +84,6 @@
                                                       iconScale:1
                                                         andSize:CGSizeMake(25, 25)];
         
-        searchImage   = [searchImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        searchHLImage = [searchHLImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
         searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Discover" image:searchImage selectedImage:searchHLImage];
 
         [[MRCNavigationController alloc] initWithRootViewController:searchViewController];
@@ -111,9 +102,6 @@
                                                        iconColor:HexRGB(colorI3)
                                                        iconScale:1
                                                          andSize:CGSizeMake(25, 25)];
-        
-        profileImage   = [profileImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        profileHLImage = [profileHLImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
         profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:profileImage selectedImage:profileHLImage];
 
