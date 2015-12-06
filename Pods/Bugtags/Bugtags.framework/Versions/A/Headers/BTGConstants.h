@@ -16,7 +16,7 @@
 /**
  *  Bugtags呼出方式
  */
-typedef enum BTGInvocationEventEvent {
+typedef enum BTGInvocationEvent {
     
     // 静默模式，收集Crash信息（如果允许）
     BTGInvocationEventNone,
@@ -27,6 +27,6 @@ typedef enum BTGInvocationEventEvent {
     // 通过悬浮小球呼出Bugtags
     BTGInvocationEventBubble,
     
-} BTGInvocationEventEvent;
+} BTGInvocationEvent;
 
 #endif

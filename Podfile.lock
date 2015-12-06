@@ -1,9 +1,9 @@
 PODS:
   - Appirater (2.0.5)
-  - AsyncDisplayKit (1.9.1):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.1)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.1)
-  - Bugtags (1.1.3)
+  - AsyncDisplayKit (1.9.2):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.2)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.9.2)
+  - Bugtags (1.1.4)
   - DZNEmptyDataSet (1.5.2)
   - FDFullscreenPopGesture (1.1)
   - FMDB (2.5):
@@ -46,7 +46,7 @@ PODS:
   - SVPullToRefresh (0.4.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UMengSocial (4.3)
+  - UMengSocial (4.4)
   - WebViewJavascriptBridge (4.1.4)
   - WXTabBarController (0.1)
 
@@ -87,8 +87,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
-  AsyncDisplayKit: 7bf2b3fa444284f80fd0c1e36655e324549f79d2
-  Bugtags: 3b46bb17d51f123256e5a597f7bc535c3bd8abcd
+  AsyncDisplayKit: 181097819b528d9337983acc5040df6687f06369
+  Bugtags: eb4a2a235d8007d4643716b58015b8754728765b
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
@@ -105,8 +105,8 @@ SPEC CHECKSUMS:
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UMengSocial: e649f30dd9a3686c74daba880e83f818f66bd890
+  UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
   WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
-  WXTabBarController: f7814296e5fcffb81c6257f4b50790910eca2aed
+  WXTabBarController: 28969aa166ad52ec1d5cde314117fc56874f3a75
 
 COCOAPODS: 0.38.2

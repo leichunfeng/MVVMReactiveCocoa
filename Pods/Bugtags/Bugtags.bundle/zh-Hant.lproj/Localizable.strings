@@ -15,7 +15,7 @@
 "btg_btn_myissues" = "我的問題";
 "btg_btn_gotit" = "知道了";
 
-"btg_issue_type_1" = "錯誤";
+"btg_issue_type_1" = "Bug";
 "btg_issue_type_2" = "改進";
 
 "btg_tag_priority_0" = "低";
