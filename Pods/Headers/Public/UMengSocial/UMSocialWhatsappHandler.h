@@ -1,1 +1,1 @@
-../../../UMengSocial/Umeng_SDK_Social_iOS_ARM64_4.3/UMSocial_Sdk_Extra_Frameworks/Whatsapp/UMSocialWhatsappHandler.h
+../../../UMengSocial/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Whatsapp/UMSocialWhatsappHandler.h
