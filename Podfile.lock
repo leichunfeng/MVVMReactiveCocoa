@@ -5,7 +5,6 @@ PODS:
   - AsyncDisplayKit/ASDealloc2MainObject (1.9.2)
   - Bugtags (1.1.4)
   - DZNEmptyDataSet (1.5.2)
-  - FDFullscreenPopGesture (1.1)
   - FMDB (2.5):
     - FMDB/standard (= 2.5)
   - FMDB/common (2.5)
@@ -55,7 +54,6 @@ DEPENDENCIES:
   - AsyncDisplayKit
   - Bugtags
   - DZNEmptyDataSet (~> 1.5.1)
-  - FDFullscreenPopGesture (~> 1.1)
   - FMDB
   - FormatterKit (~> 1.8.0)
   - GPUImage (~> 0.1.7)
@@ -90,7 +88,6 @@ SPEC CHECKSUMS:
   AsyncDisplayKit: 181097819b528d9337983acc5040df6687f06369
   Bugtags: eb4a2a235d8007d4643716b58015b8754728765b
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
-  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d

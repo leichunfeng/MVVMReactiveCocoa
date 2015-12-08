@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "838F8DE45FE537B7875D89B8"
+               BlueprintIdentifier = "3AC575E67BA322D4E39D1D6F"
                BuildableName = "libWXTabBarController.a"
                BlueprintName = "WXTabBarController"
                ReferencedContainer = "container:Pods.xcodeproj">

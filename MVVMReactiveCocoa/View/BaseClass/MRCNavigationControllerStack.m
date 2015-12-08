@@ -10,8 +10,9 @@
 #import "MRCRouter.h"
 #import "MRCNavigationController.h"
 #import "MRCTabBarController.h"
+#import "MRCViewControllerAnimatedTransition.h"
 
-@interface MRCNavigationControllerStack ()
+@interface MRCNavigationControllerStack () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) id<MRCViewModelServices> services;
 @property (nonatomic, strong) NSMutableArray *navigationControllers;
@@ -116,11 +117,31 @@
 
             if (![viewController isKindOfClass:[UINavigationController class]]/* && ![viewController isKindOfClass:[MRCTabBarController class]]*/) {
                 viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
+                ((UINavigationController *)viewController).delegate = self;
                 [self pushNavigationController:(UINavigationController *)viewController];
             }
 
             MRCSharedAppDelegate.window.rootViewController = viewController;
         }];
+}
+
+#pragma mark - UINavigationControllerDelegate
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(MRCViewControllerAnimatedTransition *)animationController {
+    if (animationController.operation == UINavigationControllerOperationPop) {
+        return animationController.fromViewController.interactivePopTransition;
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(MRCViewController *)fromVC
+                                                 toViewController:(MRCViewController *)toVC {
+    return [[MRCViewControllerAnimatedTransition alloc] initWithNavigationControllerOperation:operation
+                                                                           fromViewController:fromVC
+                                                                             toViewController:toVC];
 }
 
 @end
