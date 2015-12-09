@@ -65,6 +65,7 @@
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              fromViewController.snapshot.alpha = 0.0;
+                             fromViewController.snapshot.frame = CGRectInset(fromViewController.view.frame, 20, 20);
                              toViewController.view.frame = CGRectOffset(toViewController.view.frame, -CGRectGetWidth(toViewController.view.frame), 0);
 //                             toViewController.navigationController.navigationBar.frame = CGRectOffset(toViewController.navigationController.navigationBar.frame, -CGRectGetWidth(toViewController.navigationController.navigationBar.frame), 0);
                          }
@@ -80,8 +81,6 @@
         [[transitionContext containerView] addSubview:toViewController.view];
         [[transitionContext containerView] addSubview:toViewController.snapshot];
         [[transitionContext containerView] sendSubviewToBack:toViewController.snapshot];
-        
-        toViewController.snapshot.frame = CGRectInset(toViewController.view.frame, 20, 20);
         
         [fromViewController.view addSubview:fromViewController.snapshot];
         
