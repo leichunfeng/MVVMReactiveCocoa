@@ -65,6 +65,9 @@
         rac_signalForSelector:@selector(pushViewModel:animated:)]
         subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
+            MRCViewController *topViewController = (MRCViewController *)[self.navigationControllers.lastObject topViewController];
+            topViewController.snapshot = [[self.navigationControllers.lastObject view] snapshotViewAfterScreenUpdates:NO];
+            
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];
             viewController.hidesBottomBarWhenPushed = YES;
             [self.navigationControllers.lastObject pushViewController:viewController animated:[tuple.second boolValue]];
@@ -74,7 +77,10 @@
         rac_signalForSelector:@selector(popViewModelAnimated:)]
         subscribeNext:^(RACTuple *tuple) {
         	@strongify(self)
-        	[self.navigationControllers.lastObject popViewControllerAnimated:[tuple.first boolValue]];
+//            MRCViewController *topViewController = (MRCViewController *)[self.navigationControllers.lastObject topViewController];
+//            topViewController.snapshot = [[self.navigationControllers.lastObject view] snapshotViewAfterScreenUpdates:NO];
+
+            [self.navigationControllers.lastObject popViewControllerAnimated:[tuple.first boolValue]];
         }];
 
     [[(NSObject *)self.services

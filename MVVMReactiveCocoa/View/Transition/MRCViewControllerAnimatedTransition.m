@@ -31,12 +31,12 @@
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.3;
+    return 0.25;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toViewController   = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    MRCViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    MRCViewController *toViewController   = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     CGRect initialFrameForFromViewController = [transitionContext initialFrameForViewController:fromViewController];
     CGRect finalFrameForFromViewController   = [transitionContext finalFrameForViewController:fromViewController];
@@ -53,32 +53,84 @@
     NSTimeInterval duration = [self transitionDuration:transitionContext];
 
     if (self.operation == UINavigationControllerOperationPush) { // push
+        [[transitionContext containerView] addSubview:fromViewController.snapshot];
+        fromViewController.view.hidden = YES;
+        
         CGRect frame = [transitionContext finalFrameForViewController:toViewController];
         toViewController.view.frame = CGRectOffset(frame, CGRectGetWidth(frame), 0);
         [[transitionContext containerView] addSubview:toViewController.view];
 
         [UIView animateWithDuration:duration
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
-                             fromViewController.view.alpha = 0;
-//                             fromViewController.view.frame = CGRectInset(fromViewController.view.frame, 10, 10);
+                             fromViewController.snapshot.alpha = 0.0;
                              toViewController.view.frame = CGRectOffset(toViewController.view.frame, -CGRectGetWidth(toViewController.view.frame), 0);
+//                             toViewController.navigationController.navigationBar.frame = CGRectOffset(toViewController.navigationController.navigationBar.frame, -CGRectGetWidth(toViewController.navigationController.navigationBar.frame), 0);
                          }
                          completion:^(BOOL finished) {
+                             fromViewController.view.hidden = NO;
+                             [fromViewController.snapshot removeFromSuperview];
                              [transitionContext completeTransition:YES];
                          }];
     } else if (self.operation == UINavigationControllerOperationPop) { // pop
+//        fromViewController.view.hidden = YES;
+        toViewController.view.hidden = YES;
+        
         [[transitionContext containerView] addSubview:toViewController.view];
-        [[transitionContext containerView] sendSubviewToBack:toViewController.view];
-
+        [[transitionContext containerView] addSubview:toViewController.snapshot];
+        [[transitionContext containerView] sendSubviewToBack:toViewController.snapshot];
+        
+        toViewController.snapshot.frame = CGRectInset(toViewController.view.frame, 20, 20);
+        
+        [fromViewController.view addSubview:fromViewController.snapshot];
+        
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, 44)];
+//        view.backgroundColor = [UIColor blueColor];
+//        [fromViewController.view addSubview:view];
+//        [[transitionContext containerView] addSubview:fromViewController.snapshot];
+        
+        fromViewController.navigationController.navigationBar.hidden = YES;
+        
+//        toViewController.snapshot.alpha = 0.0;
+        
         [UIView animateWithDuration:duration
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveLinear
                          animations:^{
+//                             fromViewController.navigationController.navigationBar.frame = CGRectOffset(fromViewController.navigationController.navigationBar.frame, CGRectGetWidth(fromViewController.view.frame), 0);
                              fromViewController.view.frame = CGRectOffset(fromViewController.view.frame, CGRectGetWidth(fromViewController.view.frame), 0);
-                             toViewController.view.alpha = 1;
-//                             toViewController.view.frame = [transitionContext finalFrameForViewController:toViewController];
+//                             fromViewController.snapshot.frame = CGRectOffset(fromViewController.snapshot.frame, CGRectGetWidth(fromViewController.snapshot.frame), 0);
+                             
+//                             fromViewController.snapshot.frame = CGRectOffset(fromViewController.snapshot.frame, 0, 0);
+                             toViewController.snapshot.alpha = 1.0;
+                             toViewController.snapshot.frame = [transitionContext finalFrameForViewController:toViewController];
                          }
                          completion:^(BOOL finished) {
+                             toViewController.navigationController.navigationBar.hidden = NO;
+                             
+                             fromViewController.view.hidden = NO;
+                             toViewController.view.hidden   = NO;
+                             
+                             [fromViewController.snapshot removeFromSuperview];
+                             [toViewController.snapshot removeFromSuperview];
+                             
+//                             if (![transitionContext transitionWasCancelled]) {
+//                                 toViewController.navigationController.navigationBar.frame = CGRectOffset(toViewController.navigationController.navigationBar.frame, -CGRectGetWidth(toViewController.view.frame), 0);
+//                             }
+                             
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];
+//        [UIView animateWithDuration:duration
+//                         animations:^{
+////                             fromViewController.navigationController.navigationBar.frame = CGRectOffset(fromViewController.navigationController.navigationBar.frame, CGRectGetWidth(fromViewController.view.frame), 0);
+//                             fromViewController.view.frame = CGRectOffset(fromViewController.view.frame, CGRectGetWidth(fromViewController.view.frame), 0);
+//                             toViewController.view.alpha = 1;
+////                             toViewController.view.frame = [transitionContext finalFrameForViewController:toViewController];
+//                         }
+//                         completion:^(BOOL finished) {
+//                             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+//                         }];
     }
 }
 
