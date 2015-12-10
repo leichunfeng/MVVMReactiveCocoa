@@ -15,9 +15,7 @@
 @interface MRCViewController ()
 
 @property (nonatomic, strong, readwrite) MRCViewModel *viewModel;
-@property (nonatomic, strong, readwrite) UINavigationBar *navigationBar;
 @property (nonatomic, strong, readwrite) UIPercentDrivenInteractiveTransition *interactivePopTransition;
-//@property (nonatomic, strong, readwrite) UIView *snapshot;
 
 @end
 
@@ -51,32 +49,11 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     
-//    self.navigationBar = ({
-//        UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 44)];
-//        
-//        UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:self.viewModel.title];
-//        [navigationBar pushNavigationItem:navigationItem animated:YES];
-//        [self.view addSubview:navigationBar];
-//        
-//        UIImage *image = [UIImage octicon_imageWithIcon:@""
-//                                        backgroundColor:[UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1]
-//                                              iconColor:[UIColor clearColor]
-//                                              iconScale:1
-//                                                andSize:CGSizeMake(SCREEN_WIDTH, 64)];
-//        [navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-//        
-//        navigationBar;
-//    });
-    
-    UIScreenEdgePanGestureRecognizer *popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePopRecognizer:)];
+    UIScreenEdgePanGestureRecognizer *popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self
+                                                                                                        action:@selector(handlePopRecognizer:)];
     popRecognizer.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:popRecognizer];
-//    [self addGestureRecognizer:popRecognizer];
 }
-
-//- (void)addGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer {
-//    [self.view addGestureRecognizer:gestureRecognizer];
-//}
 
 - (void)bindViewModel {
 	// System title view
@@ -145,12 +122,10 @@
     
     [self.viewModel.willDisappearSignal sendNext:nil];
     
+    // Being popped, take a snapshot
     if ([self isMovingFromParentViewController]) {
         self.snapshot = [self.navigationController.view snapshotViewAfterScreenUpdates:NO];
     }
-
-//    NSLog(@"isMovingToParentViewController: %@", @([self isMovingToParentViewController]));
-//    NSLog(@"isMovingFromParentViewController: %@", @([self isMovingFromParentViewController]));
 }
 
 - (BOOL)shouldAutorotate {

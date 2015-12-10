@@ -109,7 +109,7 @@
 }
 
 - (void)configureAppearance {
-//    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor whiteColor];
     
     // 0x2F434F
     [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1];

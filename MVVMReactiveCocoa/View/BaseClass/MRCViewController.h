@@ -10,8 +10,6 @@
 
 /// The `viewModel` parameter in `-initWithViewModel:` method.
 @property (nonatomic, strong, readonly) MRCViewModel *viewModel;
-
-@property (nonatomic, strong, readonly) UINavigationBar *navigationBar;
 @property (nonatomic, strong, readonly) UIPercentDrivenInteractiveTransition *interactivePopTransition;
 @property (nonatomic, strong) UIView *snapshot;
 
@@ -24,7 +22,5 @@
 
 /// Binds the corresponding view model to the view.
 - (void)bindViewModel;
-
-- (void)addGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer;
 
 @end

@@ -77,9 +77,6 @@
         rac_signalForSelector:@selector(popViewModelAnimated:)]
         subscribeNext:^(RACTuple *tuple) {
         	@strongify(self)
-//            MRCViewController *topViewController = (MRCViewController *)[self.navigationControllers.lastObject topViewController];
-//            topViewController.snapshot = [[self.navigationControllers.lastObject view] snapshotViewAfterScreenUpdates:NO];
-
             [self.navigationControllers.lastObject popViewControllerAnimated:[tuple.first boolValue]];
         }];
 
