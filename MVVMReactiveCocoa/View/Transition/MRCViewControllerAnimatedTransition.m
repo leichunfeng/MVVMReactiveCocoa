@@ -31,7 +31,7 @@
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.25;
+    return 0.5;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -82,7 +82,7 @@
         [[transitionContext containerView] addSubview:toViewController.snapshot];
         [[transitionContext containerView] sendSubviewToBack:toViewController.snapshot];
         
-        toViewController.snapshot.transform = CGAffineTransformMakeScale(0.97, 0.97);
+        toViewController.snapshot.transform = CGAffineTransformMakeScale(0.95, 0.95);
         
         [fromViewController.view addSubview:fromViewController.snapshot];
         

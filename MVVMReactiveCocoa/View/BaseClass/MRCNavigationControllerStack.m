@@ -142,7 +142,7 @@
                                   animationControllerForOperation:(UINavigationControllerOperation)operation
                                                fromViewController:(MRCViewController *)fromVC
                                                  toViewController:(MRCViewController *)toVC {
-    if (operation == UINavigationControllerOperationPop) {
+    if (fromVC.interactivePopTransition != nil) {
         return [[MRCViewControllerAnimatedTransition alloc] initWithNavigationControllerOperation:operation
                                                                                fromViewController:fromVC
                                                                                  toViewController:toVC];
