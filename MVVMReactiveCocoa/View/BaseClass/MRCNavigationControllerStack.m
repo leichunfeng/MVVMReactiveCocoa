@@ -135,19 +135,19 @@
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                          interactionControllerForAnimationController:(MRCViewControllerAnimatedTransition *)animationController {
-    if (animationController.operation == UINavigationControllerOperationPop) {
-        return animationController.fromViewController.interactivePopTransition;
-    }
-    return nil;
+    return animationController.fromViewController.interactivePopTransition;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                   animationControllerForOperation:(UINavigationControllerOperation)operation
                                                fromViewController:(MRCViewController *)fromVC
                                                  toViewController:(MRCViewController *)toVC {
-    return [[MRCViewControllerAnimatedTransition alloc] initWithNavigationControllerOperation:operation
-                                                                           fromViewController:fromVC
-                                                                             toViewController:toVC];
+    if (operation == UINavigationControllerOperationPop) {
+        return [[MRCViewControllerAnimatedTransition alloc] initWithNavigationControllerOperation:operation
+                                                                               fromViewController:fromVC
+                                                                                 toViewController:toVC];
+    }
+    return nil;
 }
 
 @end

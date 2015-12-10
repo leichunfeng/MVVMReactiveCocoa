@@ -82,6 +82,8 @@
         [[transitionContext containerView] addSubview:toViewController.snapshot];
         [[transitionContext containerView] sendSubviewToBack:toViewController.snapshot];
         
+        toViewController.snapshot.transform = CGAffineTransformMakeScale(0.97, 0.97);
+        
         [fromViewController.view addSubview:fromViewController.snapshot];
         
 //        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, 44)];
@@ -91,7 +93,7 @@
         
         fromViewController.navigationController.navigationBar.hidden = YES;
         
-//        toViewController.snapshot.alpha = 0.0;
+        toViewController.snapshot.alpha = 0.0;
         
         [UIView animateWithDuration:duration
                               delay:0.0
@@ -103,7 +105,8 @@
                              
 //                             fromViewController.snapshot.frame = CGRectOffset(fromViewController.snapshot.frame, 0, 0);
                              toViewController.snapshot.alpha = 1.0;
-                             toViewController.snapshot.frame = [transitionContext finalFrameForViewController:toViewController];
+//                             toViewController.snapshot.frame = [transitionContext finalFrameForViewController:toViewController];
+                             toViewController.snapshot.transform = CGAffineTransformIdentity;
                          }
                          completion:^(BOOL finished) {
                              toViewController.navigationController.navigationBar.hidden = NO;
