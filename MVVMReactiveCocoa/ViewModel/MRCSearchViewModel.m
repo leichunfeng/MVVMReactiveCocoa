@@ -28,7 +28,7 @@
             MRCSearch *trendingSearch = [[MRCSearch alloc] init];
            
             NSArray *trendingSearchs = @[ trendingSearch ];
-            NSArray *recentSearches  = [MRCSearch recentSearches] ?: @[];
+            NSArray *recentSearches  = [[MRCSearch recentSearches].rac_sequence take:30].array ?: @[];
             
             return @[ trendingSearchs, recentSearches ];
         }];
