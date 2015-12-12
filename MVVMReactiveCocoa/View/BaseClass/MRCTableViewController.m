@@ -109,10 +109,6 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
-//- (void)addGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer {
-//    [self.tableView addGestureRecognizer:gestureRecognizer];
-//}
-
 - (void)dealloc {
     _tableView.dataSource = nil;
     _tableView.delegate = nil;
