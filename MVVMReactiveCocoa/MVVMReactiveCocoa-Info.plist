@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1</string>
+	<string>2.1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -126,6 +126,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>7xkfnf.com1.z0.glb.clouddn.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>log.umsns.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
@@ -174,14 +181,7 @@
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>7xkfnf.com1.z0.glb.clouddn.com</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-            <key>weibo.cn</key>
+			<key>weibo.cn</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
