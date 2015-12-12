@@ -19,6 +19,14 @@
 
 @dynamic viewModel;
 
+- (void)viewDidLoad {
+    if (!(self.viewModel.isCurrentUser && self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointHomepage)) {
+        self.searchBar.frame = CGRectZero;
+    }
+    
+    [super viewDidLoad];
+}
+
 - (UIEdgeInsets)contentInset {
     return self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointUserDetail ? UIEdgeInsetsMake(64, 0, 0, 0) : [super contentInset];
 }
