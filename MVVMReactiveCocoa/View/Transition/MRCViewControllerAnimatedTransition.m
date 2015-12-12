@@ -92,6 +92,11 @@
                              [fromViewController.snapshot removeFromSuperview];
                              [toViewController.snapshot removeFromSuperview];
                              
+                             // Reset toViewController's `snapshot` to nil
+                             if (![transitionContext transitionWasCancelled]) {
+                                 toViewController.snapshot = nil;
+                             }
+                             
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                          }];
     }
