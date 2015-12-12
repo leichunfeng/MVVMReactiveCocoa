@@ -131,7 +131,8 @@
     
     if (self.isCurrentUser) {
         if (self.type == MRCNewsViewModelTypeNews) {
-            events = [OCTEvent mrc_fetchUserReceivedEvents];
+            // Takes `300` items from local cache
+            events = [[OCTEvent mrc_fetchUserReceivedEvents].rac_sequence take:300].array;
         } else if (self.type == MRCNewsViewModelTypePublicActivity) {
             events = [OCTEvent mrc_fetchUserPerformedEvents];
         }
