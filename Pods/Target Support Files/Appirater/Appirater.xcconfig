@@ -1,1 +1,0 @@
-APPIRATER_OTHER_LDFLAGS = -framework "CFNetwork" -framework "SystemConfiguration" -weak_framework "StoreKit"

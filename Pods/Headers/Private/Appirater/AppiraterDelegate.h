@@ -1,1 +1,0 @@
-../../../Appirater/AppiraterDelegate.h
