@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData
+.idea/
 
 ## Various settings
 *.pbxuser
@@ -15,6 +16,8 @@ DerivedData
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
 xcuserdata
 
 ## Other
