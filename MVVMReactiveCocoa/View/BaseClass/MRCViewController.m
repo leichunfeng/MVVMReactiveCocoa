@@ -12,7 +12,7 @@
 #import "MRCDoubleTitleView.h"
 #import "MRCLoadingTitleView.h"
 
-@interface MRCViewController ()
+@interface MRCViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong, readwrite) MRCViewModel *viewModel;
 @property (nonatomic, strong, readwrite) UIPercentDrivenInteractiveTransition *interactivePopTransition;
@@ -52,6 +52,7 @@
     if (self.navigationController != nil && self != self.navigationController.viewControllers.firstObject) {
         UIPanGestureRecognizer *popRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePopRecognizer:)];
         [self.view addGestureRecognizer:popRecognizer];
+        popRecognizer.delegate = self;
     }
 }
 
@@ -163,6 +164,12 @@
 
         self.interactivePopTransition = nil;
     }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)recognizer {
+    return [recognizer velocityInView:self.view].x > 0;
 }
 
 @end
