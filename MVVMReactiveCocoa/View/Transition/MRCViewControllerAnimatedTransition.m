@@ -68,7 +68,7 @@
         fromViewController.navigationController.navigationBar.hidden = YES;
         
         toViewController.view.hidden = YES;
-        toViewController.snapshot.alpha = 0.0;
+        toViewController.snapshot.alpha = 0.5;
         toViewController.snapshot.transform = CGAffineTransformMakeScale(0.95, 0.95);
         
         [[transitionContext containerView] addSubview:toViewController.view];
