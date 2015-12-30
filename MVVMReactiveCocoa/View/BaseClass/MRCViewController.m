@@ -49,10 +49,10 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     
-    UIScreenEdgePanGestureRecognizer *popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self
-                                                                                                        action:@selector(handlePopRecognizer:)];
-    popRecognizer.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:popRecognizer];
+    if (self.navigationController != nil && self != self.navigationController.viewControllers.firstObject) {
+        UIPanGestureRecognizer *popRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePopRecognizer:)];
+        [self.view addGestureRecognizer:popRecognizer];
+    }
 }
 
 - (void)bindViewModel {
@@ -140,9 +140,9 @@
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark - UIScreenEdgePanGestureRecognizer handlers
+#pragma mark - UIPanGestureRecognizer handlers
 
-- (void)handlePopRecognizer:(UIScreenEdgePanGestureRecognizer *)recognizer {
+- (void)handlePopRecognizer:(UIPanGestureRecognizer *)recognizer {
     CGFloat progress = [recognizer translationInView:self.view].x / CGRectGetWidth(self.view.frame);
     progress = MIN(1.0, MAX(0.0, progress));
 
