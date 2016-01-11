@@ -1,15 +1,13 @@
 PODS:
   - Appirater (2.0.5)
-  - AsyncDisplayKit (1.9.2):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.2)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.2)
-  - Bugtags (1.1.4)
+  - AsyncDisplayKit (1.9.4):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.4)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.9.4)
+  - Bugtags (1.1.6)
   - DZNEmptyDataSet (1.5.2)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
   - FormatterKit (1.8.0):
     - FormatterKit/AddressFormatter (= 1.8.0)
     - FormatterKit/ArrayFormatter (= 1.8.0)
@@ -31,21 +29,21 @@ PODS:
   - FormatterKit/URLRequestFormatter (1.8.0)
   - GPUImage (0.1.7)
   - IQKeyboardManager (3.2.0.3)
-  - MBProgressHUD (0.9.1)
+  - MBProgressHUD (0.9.2)
   - MKNetworkKit (0.87):
     - Reachability (~> 3.1.0)
   - OcticonsIOS (0.0.2)
   - Ono (1.2.2)
   - Reachability (3.1.1)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
+  - SDWebImage (3.7.4):
+    - SDWebImage/Core (= 3.7.4)
+  - SDWebImage/Core (3.7.4)
   - SSKeychain (1.2.3)
   - SVPullToRefresh (0.4.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
   - UMengSocial (4.4)
-  - WebViewJavascriptBridge (4.1.4)
+  - WebViewJavascriptBridge (4.1.5)
   - WXTabBarController (0.1)
 
 DEPENDENCIES:
@@ -83,24 +81,24 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
-  AsyncDisplayKit: 181097819b528d9337983acc5040df6687f06369
-  Bugtags: eb4a2a235d8007d4643716b58015b8754728765b
+  AsyncDisplayKit: 0932ff6f78364130a195039ab9a1c2ff63adc665
+  Bugtags: a3dcf9fc5ce4ff1ad52c223b9b7e5124ac179b21
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
-  WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
+  WebViewJavascriptBridge: e7b6669bebfc4f151daa0fdec3c8c24c8dc3a24e
   WXTabBarController: 28969aa166ad52ec1d5cde314117fc56874f3a75
 
 COCOAPODS: 0.38.2
