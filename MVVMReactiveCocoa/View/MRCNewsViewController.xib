@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCNewsViewController">
             <connections>
-                <outlet property="tableView" destination="gHx-br-G5o" id="kbK-xm-ngs"/>
                 <outlet property="view" destination="KKi-p3-Nst" id="VNO-rB-4yg"/>
             </connections>
         </placeholder>
@@ -15,25 +14,7 @@
         <view contentMode="scaleToFill" id="KKi-p3-Nst">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gHx-br-G5o" customClass="ASTableView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="emptyDataSetDelegate" destination="-1" id="hCN-OM-z89"/>
-                        <outlet property="emptyDataSetSource" destination="-1" id="qCq-0G-zFm"/>
-                    </connections>
-                </tableView>
-            </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="gHx-br-G5o" secondAttribute="trailing" id="9tc-Ye-sxi"/>
-                <constraint firstAttribute="bottom" secondItem="gHx-br-G5o" secondAttribute="bottom" id="YID-fK-TXr"/>
-                <constraint firstItem="gHx-br-G5o" firstAttribute="top" secondItem="KKi-p3-Nst" secondAttribute="top" id="agV-Vy-1fH"/>
-                <constraint firstItem="gHx-br-G5o" firstAttribute="leading" secondItem="KKi-p3-Nst" secondAttribute="leading" id="di8-ZF-DV5"/>
-            </constraints>
             <point key="canvasLocation" x="-122" y="123"/>
         </view>
     </objects>

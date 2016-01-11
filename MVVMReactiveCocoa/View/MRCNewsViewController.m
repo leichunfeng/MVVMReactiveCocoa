@@ -16,7 +16,7 @@
 
 @interface MRCNewsViewController () <ASTableViewDataSource, ASTableViewDelegate>
 
-@property (nonatomic, weak, readonly) ASTableView *tableView;
+@property (nonatomic, strong) ASTableView *tableView;
 @property (nonatomic, strong, readonly) MRCNewsViewModel *viewModel;
 
 @end
@@ -27,10 +27,31 @@
 @dynamic viewModel;
 
 - (void)viewDidLoad {
+    self.tableView = ({
+        ASTableView *tableView = [[ASTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        [self.view addSubview:tableView];
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|"
+                                                                          options:0
+                                                                          metrics:0
+                                                                            views:NSDictionaryOfVariableBindings(tableView)]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|"
+                                                                          options:0
+                                                                          metrics:0
+                                                                            views:NSDictionaryOfVariableBindings(tableView)]];
+        
+        tableView;
+    });
+
     [super viewDidLoad];
     
     self.tableView.asyncDataSource = self;
     self.tableView.asyncDelegate   = self;
+    
+    self.tableView.emptyDataSetSource   = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     if (self.viewModel.type == MRCNewsViewModelTypeNews) {
         UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];

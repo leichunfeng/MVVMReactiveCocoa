@@ -68,7 +68,8 @@ extern NSString * const MRCLinkAttributeName;
 }
 
 - (CGSize)calculateSizeThatFits:(CGSize)constrainedSize {
-    CGSize detailSize = [self.detailNode measure:CGSizeMake(constrainedSize.width - 10 - MRCAvatarNodeSide - 10 - 10, constrainedSize.height)];
+    CGFloat width = MAX(constrainedSize.width - 10 - MRCAvatarNodeSide - 10 - 10, 0);
+    CGSize detailSize = [self.detailNode measure:CGSizeMake(width, constrainedSize.height)];
     return CGSizeMake(constrainedSize.width, 10 + MAX(MRCAvatarNodeSide, detailSize.height) + 10);
 }
 
