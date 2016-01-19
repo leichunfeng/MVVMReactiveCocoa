@@ -36,4 +36,6 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
 @property (nonatomic, assign, readonly) MRCReposViewModelType type;
 @property (nonatomic, assign, readonly) MRCReposViewModelOptions options;
 
+- (RACSignal *)dataSourceSignalWithRepositories:(NSArray *)repositories;
+
 @end

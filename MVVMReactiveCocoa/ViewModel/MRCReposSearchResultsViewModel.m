@@ -58,14 +58,14 @@
     	takeUntil:[RACObserve(self, query) skip:1]];
 }
 
-- (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
-    if (repositories.count == 0) return nil;
+- (RACSignal *)dataSourceSignalWithRepositories:(NSArray *)repositories {
+    if (repositories.count == 0) return [RACSignal empty];
     
-    NSArray *repos = [repositories.rac_sequence map:^(OCTRepository *repository) {
+    NSArray *viewModels = [repositories.rac_sequence map:^(OCTRepository *repository) {
         return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository options:self.options];
     }].array;
     
-    return @[ repos ];
+    return [RACSignal return:@[ viewModels ]];
 }
 
 @end

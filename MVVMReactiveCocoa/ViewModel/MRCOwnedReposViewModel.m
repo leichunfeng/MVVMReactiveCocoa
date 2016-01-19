@@ -83,7 +83,7 @@
         map:^(NSArray *repositories) {
         	@strongify(self)
         	if (self.options & MRCReposViewModelOptionsSectionIndex) {
-            	repositories = [repositories sortedArrayUsingComparator:^NSComparisonResult(OCTRepository *repo1, OCTRepository *repo2) {
+            	repositories = [repositories sortedArrayUsingComparator:^(OCTRepository *repo1, OCTRepository *repo2) {
                 	return [repo1.name caseInsensitiveCompare:repo2.name];
             	}];
             }
@@ -100,9 +100,9 @@
             @strongify(self)
             self.sectionIndexTitles = [self sectionIndexTitlesWithRepositories:repositories];
         }]
-    	map:^(NSArray *repositories) {
+    	flattenMap:^(NSArray *repositories) {
             @strongify(self)
-            return [self dataSourceWithRepositories:repositories];
+            return [self dataSourceSignalWithRepositories:repositories];
         }];
 }
 
@@ -154,37 +154,28 @@
     return nil;
 }
 
-- (NSArray *)dataSourceWithRepositories:(NSArray *)repositories {
-    if (repositories.count == 0) return nil;
+- (RACSignal *)dataSourceSignalWithRepositories:(NSArray *)repositories {
+    if (repositories.count == 0) return [RACSignal empty];
     
-    NSMutableArray *repoOfRepos = [[NSMutableArray alloc] init];
-
     if (self.options & MRCReposViewModelOptionsSectionIndex) {
-        NSString *firstLetter = [repositories.firstObject name].firstLetter;
-        NSMutableArray *repos = [[NSMutableArray alloc] init];
-        
-        for (OCTRepository *repository in repositories) {
-            if (![[repository.name firstLetter] isEqualToString:firstLetter]) {
-                [repoOfRepos addObject:repos];
-                
-                firstLetter = repository.name.firstLetter;
-                repos = [[NSMutableArray alloc] init];
-            }
-            [repos addObject:[[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options]];
-        }
-        
-        [repoOfRepos addObject:repos];
+        return [[[repositories.rac_sequence.signal
+            groupBy:^(OCTRepository *repository) {
+                return repository.name.firstLetter;
+            }]
+            flattenMap:^(RACSignal *signal) {
+                return [[signal
+                    map:^(OCTRepository *repository) {
+                        return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options];
+                    }]
+                    collect];
+            }]
+            collect];
     } else {
-        @weakify(self)
-        NSArray *repos = [repositories.rac_sequence map:^(OCTRepository *repository) {
-            @strongify(self)
+        NSArray *viewModels = [repositories.rac_sequence map:^(OCTRepository *repository) {
             return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options];
         }].array;
-        
-        [repoOfRepos addObject:repos];
+        return [RACSignal return:@[ viewModels ]];
     }
-    
-    return repoOfRepos;
 }
 
 @end
