@@ -102,6 +102,6 @@ SPEC CHECKSUMS:
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
   WebViewJavascriptBridge: e7b6669bebfc4f151daa0fdec3c8c24c8dc3a24e
-  WXTabBarController: 28969aa166ad52ec1d5cde314117fc56874f3a75
+  WXTabBarController: 2c63a94fc4258ce387667d85483e565bc30ec237
 
 COCOAPODS: 0.38.2
