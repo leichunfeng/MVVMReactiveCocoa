@@ -2075,7 +2075,7 @@
 			baseConfigurationReference = BFE8017449DC43C54C0B256E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chunfeng Lei";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chunfeng Lei";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -12,8 +12,8 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCWebViewModel.h"
 
-#define MRCReceivedEventsEtag @"received_events_etag"
-#define MRCEventsEtag         @"events_etag"
+#define MRCReceivedEventsETag @"received_events_etag"
+#define MRCEventsETag         @"events_etag"
 
 @interface MRCNewsViewModel ()
 
@@ -147,9 +147,9 @@
     NSString *etag = nil;
     if (self.isCurrentUser) {
         if (self.type == MRCNewsViewModelTypeNews) {
-            etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCReceivedEventsEtag];
+            etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCReceivedEventsETag];
         } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-            etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCEventsEtag];
+            etag = [[NSUserDefaults standardUserDefaults] stringForKey:MRCEventsETag];
         }
     }
 
@@ -165,9 +165,9 @@
             if (responses.count > 0) {
                 if (self.isCurrentUser) {
                     if (self.type == MRCNewsViewModelTypeNews) {
-                        [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCReceivedEventsEtag];
+                        [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCReceivedEventsETag];
                     } else if (self.type == MRCNewsViewModelTypePublicActivity) {
-                        [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCEventsEtag];
+                        [[NSUserDefaults standardUserDefaults] setValue:[responses.firstObject etag] forKey:MRCEventsETag];
                     }
                     [[NSUserDefaults standardUserDefaults] synchronize];
                 }
