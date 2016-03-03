@@ -130,7 +130,23 @@
 - (void)loadSource {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.viewModel.isMarkdown && !self.viewModel.showRawMarkdown) {
-            [self.webView loadHTMLString:[MRC_README_CSS_STYLE stringByAppendingString:self.viewModel.content] baseURL:nil];
+            // baseURL
+            // https://github.com/leichunfeng/MVVMReactiveCocoa/raw/master/
+            // https://github.com/leichunfeng/MVVMReactiveCocoa/raw/v2.1.1/
+            //
+            // fullURL
+            // https://github.com/leichunfeng/MVVMReactiveCocoa/raw/master/OmniGraffle/MVVMReactiveCocoa.png
+            // https://github.com/leichunfeng/MVVMReactiveCocoa/raw/v2.1.1/OmniGraffle/MVVMReactiveCocoa.png
+            
+            NSString *domain     = [OCTServer dotComServer].baseWebURL.absoluteString;
+            NSString *ownerLogin = self.viewModel.repository.ownerLogin;
+            NSString *name       = self.viewModel.repository.name;
+            NSString *branch     = [self.viewModel.reference.name componentsSeparatedByString:@"/"].lastObject;
+            
+            NSString *URLString = [NSString stringWithFormat:@"%@/%@/%@/raw/%@/", domain, ownerLogin, name, branch];
+            NSURL *baseURL = [NSURL URLWithString:URLString];
+            
+            [self.webView loadHTMLString:[MRC_README_CSS_STYLE stringByAppendingString:self.viewModel.content] baseURL:baseURL];
         } else {
             [self.webView loadRequest:self.viewModel.request];
         }

@@ -29,7 +29,7 @@
 @property (nonatomic, copy, readwrite) NSString *wrappingActionTitle;
 @property (nonatomic, copy, readwrite) NSString *markdownActionTitle;
 
-@property (nonatomic, strong) OCTRef *reference;
+@property (nonatomic, strong, readwrite) OCTRef *reference;
 
 @end
 

@@ -38,4 +38,6 @@ typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
 @property (nonatomic, copy, readonly) NSString *wrappingActionTitle;
 @property (nonatomic, copy, readonly) NSString *markdownActionTitle;
 
+@property (nonatomic, strong, readonly) OCTRef *reference;
+
 @end
