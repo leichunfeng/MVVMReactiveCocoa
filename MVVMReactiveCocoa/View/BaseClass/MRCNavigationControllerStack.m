@@ -21,25 +21,12 @@
 
 @implementation MRCNavigationControllerStack
 
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-    MRCNavigationControllerStack *navigationControllerStack = [super allocWithZone:zone];
-
-	@weakify(navigationControllerStack)
-    [[navigationControllerStack
-    	rac_signalForSelector:@selector(initWithServices:)]
-    	subscribeNext:^(id x) {
-            @strongify(navigationControllerStack)
-        	[navigationControllerStack registerNavigationHooks];
-     	}];
-
-    return navigationControllerStack;
-}
-
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services {
     self = [super init];
     if (self) {
-        _services = services;
-        _navigationControllers = [[NSMutableArray alloc] init];
+        self.services = services;
+        self.navigationControllers = [[NSMutableArray alloc] init];
+        [self registerNavigationHooks];
     }
     return self;
 }
