@@ -4,7 +4,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 inhibit_all_warnings!
 
-pod 'WXTabBarController', :path => 'WXTabBarController'
 pod 'SDWebImage', '~> 3.7.1'
 pod 'UIActivityIndicator-for-SDWebImage'
 pod 'MBProgressHUD', '~> 0.9'

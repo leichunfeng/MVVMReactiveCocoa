@@ -7,7 +7,6 @@
 //
 
 #import "MRCTabBarController.h"
-#import "WXTabBarController.h"
 
 @interface MRCTabBarController ()
 
@@ -20,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.tabBarController = [[WXTabBarController alloc] init];
+    self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.view.frame = self.view.bounds;
 
     [self addChildViewController:self.tabBarController];
