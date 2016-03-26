@@ -55,10 +55,6 @@
 
 #pragma mark - UITableViewDataSource
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.viewModel.options & MRCReposViewModelOptionsTableViewCellEditActions;
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {}
 
 #pragma mark - UITableViewDelegate
@@ -69,7 +65,7 @@
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCReposItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    
+
     void (^handlerStar)(UITableViewRowAction *, NSIndexPath *) = ^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         tableView.editing = false;
         [[[self.viewModel.services client] mrc_starRepository:viewModel.repository] subscribeNext:^(id x) {}];

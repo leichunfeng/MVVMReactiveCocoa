@@ -24,7 +24,6 @@ typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
     MRCReposViewModelOptionsSectionIndex              = 1 << 4,
     MRCReposViewModelOptionsShowOwnerLogin            = 1 << 5,
     MRCReposViewModelOptionsMarkStarredStatus         = 1 << 6,
-    MRCReposViewModelOptionsTableViewCellEditActions  = 1 << 7,
 };
 
 @interface MRCOwnedReposViewModel : MRCTableViewModel

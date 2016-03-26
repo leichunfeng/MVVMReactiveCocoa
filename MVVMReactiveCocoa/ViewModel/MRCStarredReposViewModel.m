@@ -63,10 +63,6 @@
         options = options | MRCReposViewModelOptionsMarkStarredStatus;
     }
     
-    if (!(self.isCurrentUser && self.entryPoint == MRCStarredReposViewModelEntryPointHomepage)) {
-        options = options | MRCReposViewModelOptionsTableViewCellEditActions;
-    }
-    
     return options;
 }
 
