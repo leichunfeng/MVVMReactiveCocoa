@@ -22,17 +22,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (!self.viewModel.tree) {
-        @weakify(self)
-        [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
-            @strongify(self)
-            if (executing.boolValue) {
-                if (!self.viewModel.tree) [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
-            } else {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            }
-        }];
-    }
+    @weakify(self)
+    [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
+        @strongify(self)
+        if (executing.boolValue && self.viewModel.dataSource == nil) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+        } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        }
+    }];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(NSDictionary *)dictionary {

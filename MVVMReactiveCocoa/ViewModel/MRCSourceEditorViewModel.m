@@ -14,7 +14,7 @@
 @property (nonatomic, assign, readwrite) MRCSourceEditorViewModelContentType contentType;
 
 @property (nonatomic, strong, readwrite) OCTRepository    *repository;
-@property (nonatomic, strong, readwrite) OCTBlobTreeEntry *blobTreeEntry;
+@property (nonatomic, strong, readwrite) OCTBlobTreeEntry *blobEntry;
 
 @property (nonatomic, copy, readwrite) NSString *Base64String;
 @property (nonatomic, copy, readwrite) NSString *UTF8String;
@@ -32,10 +32,10 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(NSDictionary *)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.entry         = [params[@"entry"] unsignedIntegerValue];
-        self.repository    = params[@"repository"];
-        self.reference     = params[@"reference"];
-        self.blobTreeEntry = params[@"blobTreeEntry"];
+        self.entry      = [params[@"entry"] unsignedIntegerValue];
+        self.repository = params[@"repository"];
+        self.reference  = params[@"reference"];
+        self.blobEntry  = params[@"blobEntry"];
     }
     return self;
 }
@@ -44,7 +44,7 @@
     [super initialize];
     
     self.titleViewType = MRCTitleViewTypeDoubleTitle;
-    self.title = self.title ?: [self.blobTreeEntry.path componentsSeparatedByString:@"/"].lastObject;
+    self.title = self.title ?: [self.blobEntry.path componentsSeparatedByString:@"/"].lastObject;
     self.subtitle = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
     
     if (self.title.isImage) {
@@ -65,7 +65,7 @@
         OCTClientMediaType mediaType = input.unsignedIntegerValue;
         
         return [[[[[self.services client]
-            fetchRelativePath:self.blobTreeEntry.path inRepository:self.repository reference:self.reference.name mediaType:mediaType]
+            fetchRelativePath:self.blobEntry.path inRepository:self.repository reference:self.reference.name mediaType:mediaType]
             deliverOnMainThread]
             takeUntil:self.rac_willDeallocSignal]
             doNext:^(id x) {

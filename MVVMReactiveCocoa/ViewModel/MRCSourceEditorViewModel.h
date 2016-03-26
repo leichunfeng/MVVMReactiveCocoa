@@ -33,7 +33,7 @@ typedef NS_OPTIONS(NSUInteger, MRCSourceEditorViewModelOptions) {
 @property (nonatomic, assign, readonly) MRCSourceEditorViewModelOptions options;
 
 @property (nonatomic, strong, readonly) OCTRepository    *repository;
-@property (nonatomic, strong, readonly) OCTBlobTreeEntry *blobTreeEntry;
+@property (nonatomic, strong, readonly) OCTBlobTreeEntry *blobEntry;
 
 @property (nonatomic, copy, readonly) NSString *Base64String;
 @property (nonatomic, copy, readonly) NSString *UTF8String;
