@@ -10,24 +10,18 @@
 
 @interface MRCSourceEditorViewModel ()
 
-@property (nonatomic, assign, readwrite) MRCSourceEditorViewModelType type;
+@property (nonatomic, assign, readwrite) MRCSourceEditorViewModelEntry entry;
+@property (nonatomic, assign, readwrite) MRCSourceEditorViewModelContentType contentType;
 
 @property (nonatomic, strong, readwrite) OCTRepository    *repository;
 @property (nonatomic, strong, readwrite) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (nonatomic, copy, readwrite) NSString *rawContent;
-@property (nonatomic, copy, readwrite) NSString *content;
-@property (nonatomic, copy, readwrite) NSString *readmeHTML;
+@property (nonatomic, copy, readwrite) NSString *Base64String;
+@property (nonatomic, copy, readwrite) NSString *UTF8String;
+@property (nonatomic, copy, readwrite) NSString *HTMLString;
 
-@property (nonatomic, assign, getter = isEncoded, readwrite)  BOOL encoded;
-@property (nonatomic, assign, getter = isMarkdown, readwrite) BOOL markdown;
-
-@property (nonatomic, strong, readwrite) RACCommand *requestBlobCommand;
-@property (nonatomic, strong, readwrite) RACCommand *requestReadmeHTMLCommand;
-@property (nonatomic, strong, readwrite) RACCommand *requestReadmeMarkdownCommand;
-
-@property (nonatomic, copy, readwrite) NSString *wrappingActionTitle;
-@property (nonatomic, copy, readwrite) NSString *markdownActionTitle;
+@property (nonatomic, strong, readwrite) RACCommand *requestContentsCommand;
+@property (nonatomic, strong, readwrite) RACCommand *requestReadmeCommand;
 
 @property (nonatomic, strong, readwrite) OCTRef *reference;
 
@@ -38,12 +32,10 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(NSDictionary *)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.type = [params[@"type"] unsignedIntegerValue];
-        self.repository = params[@"repository"];
-        self.reference  = params[@"reference"];
+        self.entry         = [params[@"entry"] unsignedIntegerValue];
+        self.repository    = params[@"repository"];
+        self.reference     = params[@"reference"];
         self.blobTreeEntry = params[@"blobTreeEntry"];
-        self.readmeHTML = params[@"readmeHTML"];
-        self.encoded = YES;
     }
     return self;
 }
@@ -55,64 +47,117 @@
     self.title = self.title ?: [self.blobTreeEntry.path componentsSeparatedByString:@"/"].lastObject;
     self.subtitle = [self.reference.name componentsSeparatedByString:@"/"].lastObject;
     
-    self.markdown = self.title.isMarkdown;
+    if (self.title.isImage) {
+        self.contentType = MRCSourceEditorViewModelContentTypeImage;
+    } else if (self.title.isMarkdown) {
+        self.contentType = MRCSourceEditorViewModelContentTypeMarkdown;
+    } else {
+        self.contentType = MRCSourceEditorViewModelContentTypeSourceCode;
+    }
     
-    NSString *path = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
-    self.request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+    NSString *URLString = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
+    self.request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
     @weakify(self)
-    self.requestBlobCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.requestContentsCommand = [[RACCommand alloc] initWithSignalBlock:^(NSNumber *input) {
         @strongify(self)
-        return [[[self.services.client
-        	fetchBlob:self.blobTreeEntry.SHA inRepository:self.repository]
-        	doNext:^(NSData *data) {
-            	@strongify(self)
-            	self.rawContent = data.base64EncodedString;
-            }]
-        	takeUntil:self.rac_willDeallocSignal];
+        
+        OCTClientMediaType mediaType = input.unsignedIntegerValue;
+        
+        return [[[[[self.services client]
+            fetchRelativePath:self.blobTreeEntry.path inRepository:self.repository reference:self.reference.name mediaType:mediaType]
+            deliverOnMainThread]
+            takeUntil:self.rac_willDeallocSignal]
+            doNext:^(id x) {
+                @strongify(self)
+                
+                if (mediaType == OCTClientMediaTypeJSON) {
+                    self.Base64String = [(OCTFileContent *)x content];
+                } else if (mediaType == OCTClientMediaTypeRaw) {
+                    self.UTF8String = x;
+                } else if (mediaType == OCTClientMediaTypeHTML) {
+                    self.HTMLString = x;
+                }
+            }];
     }];
     
-    self.requestReadmeMarkdownCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.requestReadmeCommand = [[RACCommand alloc] initWithSignalBlock:^(NSNumber *input) {
         @strongify(self)
-        return [[[self.services.client
-            fetchRepositoryReadme:self.repository reference:self.reference.name]
-            doNext:^(OCTFileContent *fileContent) {
+        
+        OCTClientMediaType mediaType = input.unsignedIntegerValue;
+        
+        return [[[[[self.services client]
+            fetchRepositoryReadme:self.repository reference:self.reference.name mediaType:mediaType]
+            deliverOnMainThread]
+            takeUntil:self.rac_willDeallocSignal]
+            doNext:^(id x) {
                 @strongify(self)
-                self.rawContent = fileContent.content;
-            }]
-            takeUntil:self.rac_willDeallocSignal];
+                
+                if (mediaType == OCTClientMediaTypeRaw) {
+                    self.UTF8String = x;
+                } else if (mediaType == OCTClientMediaTypeHTML) {
+                    self.HTMLString = x;
+                }
+            }];
+    }];
+
+    // KVO
+    [RACObserve(self, showRawMarkdown) subscribeNext:^(id x) {
+        @strongify(self)
+        [self willChangeValueForKey:@"options"];
+        [self didChangeValueForKey:@"options"];
+    }];
+
+    [RACObserve(self, UTF8String) subscribeNext:^(id x) {
+        @strongify(self)
+        [self willChangeValueForKey:@"options"];
+        [self didChangeValueForKey:@"options"];
     }];
     
-    self.requestReadmeHTMLCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    [RACObserve(self, HTMLString) subscribeNext:^(id x) {
         @strongify(self)
-        return [[[self.services.repositoryService
-        	requestRepositoryReadmeHTML:self.repository reference:self.reference.name]
-            doNext:^(NSString *readmeHTML) {
-                @strongify(self)
-                self.readmeHTML = readmeHTML;
-            }]
-            takeUntil:self.rac_willDeallocSignal];
+        [self willChangeValueForKey:@"options"];
+        [self didChangeValueForKey:@"options"];
     }];
     
     [[RACSignal
-     	merge:@[ self.requestReadmeMarkdownCommand.errors, self.requestBlobCommand.errors, self.requestReadmeHTMLCommand.errors ]]
+     	merge:@[ self.requestContentsCommand.errors, self.requestReadmeCommand.errors ]]
      	subscribe:self.errors];
-}
-
-- (NSString *)content {
-    if (self.isMarkdown && !self.showRawMarkdown) {
-        return self.readmeHTML;
-    } else {
-        return [[NSString alloc] initWithData:[NSData dataFromBase64String:self.rawContent] encoding:NSUTF8StringEncoding];
+    
+    // Initial request
+    if (self.entry == MRCSourceEditorViewModelEntryGitTree) {
+        if (self.contentType == MRCSourceEditorViewModelContentTypeImage) {
+            [self.requestContentsCommand execute:@(OCTClientMediaTypeJSON)];
+        } else if (self.contentType == MRCSourceEditorViewModelContentTypeSourceCode) {
+            [self.requestContentsCommand execute:@(OCTClientMediaTypeRaw)];
+        } else if (self.contentType == MRCSourceEditorViewModelContentTypeMarkdown) {
+            [self.requestContentsCommand execute:@(OCTClientMediaTypeHTML)];
+        }
+    } else if (self.entry == MRCSourceEditorViewModelEntryRepoDetail) {
+        [self.requestReadmeCommand execute:@(OCTClientMediaTypeHTML)];
     }
 }
 
-- (NSString *)wrappingActionTitle {
-    return self.isLineWrapping ? @"Disable wrapping": @"Enable wrapping";
-}
-
-- (NSString *)markdownActionTitle {
-    return self.showRawMarkdown ? @"Render markdown": @"Show raw markdown";
+- (MRCSourceEditorViewModelOptions)options {
+    MRCSourceEditorViewModelOptions options = 0;
+    
+    if (self.contentType == MRCSourceEditorViewModelContentTypeImage) {
+        options |= MRCSourceEditorViewModelOptionsScalesPageToFit;
+    }
+    
+    if ((self.contentType == MRCSourceEditorViewModelContentTypeSourceCode ||
+        (self.contentType == MRCSourceEditorViewModelContentTypeMarkdown && self.showRawMarkdown)) &&
+        self.UTF8String.length > 0 ) {
+        options |= MRCSourceEditorViewModelOptionsEnableWrapping;
+    }
+    
+    if (self.contentType == MRCSourceEditorViewModelContentTypeMarkdown &&
+        ((self.showRawMarkdown && self.UTF8String.length > 0) ||
+        (!self.showRawMarkdown && self.HTMLString.length > 0))) {
+        options |= MRCSourceEditorViewModelOptionsShowRawMarkdown;
+    }
+    
+    return options;
 }
 
 @end

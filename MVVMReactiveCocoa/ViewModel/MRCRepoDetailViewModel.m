@@ -93,7 +93,7 @@
         [params setValue:@"README.md" forKey:@"title"];
         [params setValue:self.repository forKey:@"repository"];
         [params setValue:self.reference forKey:@"reference"];
-        [params setValue:@(MRCSourceEditorViewModelTypeReadme) forKey:@"type"];
+        [params setValue:@(MRCSourceEditorViewModelEntryRepoDetail) forKey:@"entry"];
         
         if (self.readmeHTML) [params setValue:self.readmeHTML forKey:@"readmeHTML"];
         

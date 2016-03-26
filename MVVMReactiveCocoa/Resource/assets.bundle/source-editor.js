@@ -36,21 +36,21 @@ function connectWebViewJavascriptBridge(callback) {
 
 connectWebViewJavascriptBridge(function(bridge) {
   bridge.callHandler("getInitDataFromObjC", {}, function(response) {
-    var name = response["name"];
+    var title = response["title"];
 
-    var extension = getExtension(name);
+    var extension = getExtension(title);
     if ("png" == extension || "gif" == extension) {
-      loadImage(extension, response["rawContent"]);
+      loadImage(extension, response["Base64String"]);
       return;
     } else if ("jpg" == extension || "jpeg" == extension) {
-      loadImage("jpeg", response["rawContent"]);
+      loadImage("jpeg", response["Base64String"]);
       return;
     }
 
     CodeMirror.modeURL = "mode/%N/%N.js";
 
     var config = {};
-    config.value = response["content"];
+    config.value = response["UTF8String"];
     config.readOnly = "nocursor";
     config.lineNumbers = true;
     config.autofocus = false;

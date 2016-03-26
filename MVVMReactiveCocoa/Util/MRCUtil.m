@@ -18,12 +18,19 @@
     return self && ![self isEqualToString:@""];
 }
 
-- (NSString *)firstLetter {
-    return [[self substringToIndex:1] uppercaseString];
+- (BOOL)isImage {
+    if (!self.isExist) return NO;
+    
+    NSArray *imageExtensions = @[ @".png", @".gif", @".jpg", @".jpeg" ];
+    for (NSString *extension in imageExtensions) {
+        if ([self.lowercaseString hasSuffix:extension]) return YES;
+    }
+    
+    return NO;
 }
 
 - (BOOL)isMarkdown {
-    if (![self isExist]) return NO;
+    if (!self.isExist) return NO;
     
     NSArray *markdownExtensions = @[ @".md", @".mkdn", @".mdwn", @".mdown", @".markdown", @".mkd", @".mkdown", @".ron" ];
     for (NSString *extension in markdownExtensions) {
@@ -31,6 +38,10 @@
     }
     
     return NO;
+}
+
+- (NSString *)firstLetter {
+    return [[self substringToIndex:1] uppercaseString];
 }
 
 @end

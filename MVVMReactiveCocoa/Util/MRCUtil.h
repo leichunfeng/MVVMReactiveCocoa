@@ -18,10 +18,10 @@
 ///
 /// Returns YES or NO.
 - (BOOL)isExist;
+- (BOOL)isImage;
+- (BOOL)isMarkdown;
 
 - (NSString *)firstLetter;
-
-- (BOOL)isMarkdown;
 
 @end
 
@@ -31,7 +31,6 @@
 ///
 /// Returns a new image.
 - (UIImage *)color2Image;
-
 - (UIImage *)color2ImageSized:(CGSize)size;
 
 @end

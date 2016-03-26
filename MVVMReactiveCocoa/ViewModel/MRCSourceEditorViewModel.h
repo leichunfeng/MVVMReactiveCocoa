@@ -9,34 +9,41 @@
 #import "MRCViewModel.h"
 #import "MRCWebViewModel.h"
 
-typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelType) {
-    MRCSourceEditorViewModelTypeBlob,
-    MRCSourceEditorViewModelTypeReadme
+typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelEntry) {
+    MRCSourceEditorViewModelEntryGitTree,
+    MRCSourceEditorViewModelEntryRepoDetail,
+};
+
+typedef NS_ENUM(NSUInteger, MRCSourceEditorViewModelContentType) {
+    MRCSourceEditorViewModelContentTypeImage,
+    MRCSourceEditorViewModelContentTypeSourceCode,
+    MRCSourceEditorViewModelContentTypeMarkdown,
+};
+
+typedef NS_OPTIONS(NSUInteger, MRCSourceEditorViewModelOptions) {
+    MRCSourceEditorViewModelOptionsScalesPageToFit = 1 << 0,
+    MRCSourceEditorViewModelOptionsEnableWrapping  = 1 << 1,
+    MRCSourceEditorViewModelOptionsShowRawMarkdown = 1 << 2,
 };
 
 @interface MRCSourceEditorViewModel : MRCWebViewModel
 
-@property (nonatomic, assign, readonly) MRCSourceEditorViewModelType type;
+@property (nonatomic, assign, readonly) MRCSourceEditorViewModelEntry entry;
+@property (nonatomic, assign, readonly) MRCSourceEditorViewModelContentType contentType;
+@property (nonatomic, assign, readonly) MRCSourceEditorViewModelOptions options;
 
 @property (nonatomic, strong, readonly) OCTRepository    *repository;
 @property (nonatomic, strong, readonly) OCTBlobTreeEntry *blobTreeEntry;
 
-@property (nonatomic, copy, readonly) NSString *rawContent;
-@property (nonatomic, copy, readonly) NSString *content;
-@property (nonatomic, copy, readonly) NSString *readmeHTML;
+@property (nonatomic, copy, readonly) NSString *Base64String;
+@property (nonatomic, copy, readonly) NSString *UTF8String;
+@property (nonatomic, copy, readonly) NSString *HTMLString;
 
-@property (nonatomic, assign, getter = isLineWrapping)       BOOL lineWrapping;
-@property (nonatomic, assign, getter = isEncoded, readonly)	 BOOL encoded;
-@property (nonatomic, assign, getter = isMarkdown, readonly) BOOL markdown;
-
+@property (nonatomic, assign) BOOL lineWrapping;
 @property (nonatomic, assign) BOOL showRawMarkdown;
 
-@property (nonatomic, strong, readonly) RACCommand *requestBlobCommand;
-@property (nonatomic, strong, readonly) RACCommand *requestReadmeHTMLCommand;
-@property (nonatomic, strong, readonly) RACCommand *requestReadmeMarkdownCommand;
-
-@property (nonatomic, copy, readonly) NSString *wrappingActionTitle;
-@property (nonatomic, copy, readonly) NSString *markdownActionTitle;
+@property (nonatomic, strong, readonly) RACCommand *requestContentsCommand;
+@property (nonatomic, strong, readonly) RACCommand *requestReadmeCommand;
 
 @property (nonatomic, strong, readonly) OCTRef *reference;
 
