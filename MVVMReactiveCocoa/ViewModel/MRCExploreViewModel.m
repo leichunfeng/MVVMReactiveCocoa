@@ -23,6 +23,8 @@
 @property (nonatomic, strong, readwrite) RACCommand *requestPopularReposCommand;
 @property (nonatomic, strong, readwrite) RACCommand *requestPopularUsersCommand;
 
+@property (nonatomic, strong, readwrite) MRCReposSearchResultsViewModel *searchResultsViewModel;
+
 @end
 
 @implementation MRCExploreViewModel
@@ -150,6 +152,8 @@
             
             return @[ rows.copy ];
         }];
+    
+    self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
 }
 
 @end

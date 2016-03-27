@@ -9,10 +9,15 @@
 #import "MRCExploreViewController.h"
 #import "MRCExploreViewModel.h"
 #import "MRCExploreTableViewCell.h"
+#import "MRCReposSearchResultsViewController.h"
+#import "MRCSearchBar.h"
 
-@interface MRCExploreViewController ()
+@interface MRCExploreViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
 @property (nonatomic, strong) MRCExploreViewModel *viewModel;
+
+@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) MRCReposSearchResultsViewController *searchResultsController;
 
 @end
 
@@ -24,6 +29,19 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCExploreTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCExploreTableViewCell"];
+    
+    self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.delegate = self;
+    
+    MRCSearchBar *searchBar = [[MRCSearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    searchBar.delegate = self;
+    self.navigationItem.titleView = searchBar;
+    [self.searchController setValue:searchBar forKey:@"searchBar"];
+    
+    self.definesPresentationContext = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,6 +63,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 168;
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchController.active = YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.viewModel.searchResultsViewModel.dataSource = @[];
+    self.viewModel.searchResultsViewModel.query = searchText;
+    self.searchController.view.subviews.firstObject.subviews.firstObject.hidden = (searchText.length == 0);
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (searchBar.text.length > 0) {
+        [searchBar resignFirstResponder];
+        [self.viewModel.searchResultsViewModel.requestRemoteDataCommand execute:nil];
+    }
 }
 
 @end

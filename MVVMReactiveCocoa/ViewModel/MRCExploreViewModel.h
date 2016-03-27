@@ -8,6 +8,7 @@
 
 #import "MRCTableViewModel.h"
 #import "MRCExploreItemViewModel.h"
+#import "MRCReposSearchResultsViewModel.h"
 
 @interface MRCExploreViewModel : MRCTableViewModel
 
@@ -15,5 +16,7 @@
 @property (nonatomic, strong, readonly) RACCommand *requestTrendingReposCommand;
 @property (nonatomic, strong, readonly) RACCommand *requestPopularReposCommand;
 @property (nonatomic, strong, readonly) RACCommand *requestPopularUsersCommand;
+
+@property (nonatomic, strong, readonly) MRCReposSearchResultsViewModel *searchResultsViewModel;
 
 @end
