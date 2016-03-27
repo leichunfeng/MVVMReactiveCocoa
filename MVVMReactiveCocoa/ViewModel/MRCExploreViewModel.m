@@ -13,7 +13,8 @@
 
 @interface MRCExploreViewModel ()
 
-@property (nonatomic, copy) NSArray<NSDictionary *> *showcases;
+@property (nonatomic, copy, readwrite) NSArray *showcases;
+
 @property (nonatomic, copy) NSArray<OCTRepository *> *trendingRepos;
 @property (nonatomic, copy) NSArray<OCTRepository *> *popularRepos;
 @property (nonatomic, copy) NSArray<OCTUser *> *popularUsers;
