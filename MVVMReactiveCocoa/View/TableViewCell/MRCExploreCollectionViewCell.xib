@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MRCExploreCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="70" height="104"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="70" height="104"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yry-cl-dDR">
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="e88-Mc-glP"/>
+                            <constraint firstAttribute="width" constant="70" id="wHt-jj-7LJ"/>
+                        </constraints>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMU-EG-fdO">
+                        <rect key="frame" x="0.0" y="75" width="70" height="29"/>
+                        <string key="text">FreeCodeC
+amp</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="RMU-EG-fdO" firstAttribute="top" secondItem="yry-cl-dDR" secondAttribute="bottom" constant="5" id="EXM-hp-kCN"/>
+                <constraint firstAttribute="trailing" secondItem="RMU-EG-fdO" secondAttribute="trailing" id="M33-IN-IXG"/>
+                <constraint firstItem="yry-cl-dDR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lbW-q6-qsH"/>
+                <constraint firstItem="RMU-EG-fdO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="od8-go-uE5"/>
+                <constraint firstItem="yry-cl-dDR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="t8R-3L-Wwa"/>
+            </constraints>
+            <size key="customSize" width="70" height="109"/>
+            <connections>
+                <outlet property="avatarButton" destination="yry-cl-dDR" id="X0L-6k-oEz"/>
+                <outlet property="nameLabel" destination="RMU-EG-fdO" id="hFj-SG-S40"/>
+            </connections>
+            <point key="canvasLocation" x="376" y="399"/>
+        </collectionViewCell>
+    </objects>
+</document>

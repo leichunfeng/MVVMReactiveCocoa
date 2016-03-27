@@ -12,7 +12,7 @@
 
 - (RACSignal *)requestRepositoryReadmeHTML:(OCTRepository *)repository reference:(NSString *)reference {
     return [[[RACSignal
-        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        createSignal:^(id<RACSubscriber> subscriber) {
             NSString *accessToken   = [SSKeychain accessToken];
             NSString *authorization = [NSString stringWithFormat:@"token %@", accessToken];
             
@@ -47,8 +47,11 @@
 }
 
 - (RACSignal *)requestTrendingRepositoriesSince:(NSString *)since language:(NSString *)language {
+    since    = since ?: @"";
+    language = language ?: @"";
+    
     return [[[RACSignal
-        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        createSignal:^(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
             
             NSString *URLString = [NSString stringWithFormat:@"http://trending.codehub-app.com/v2/trending?since=%@&language=%@", since, language];
@@ -63,7 +66,7 @@
                         NSArray *repositories = [MTLJSONAdapter modelsOfClass:[OCTRepository class] fromJSONArray:JSONArray error:&error];
 
                         if (error) {
-                        		MRCLogError(error);
+                            MRCLogError(error);
                         } else {
                             [subscriber sendNext:repositories];
                         }
@@ -84,6 +87,30 @@
         }]
         replayLazily]
         setNameWithFormat:@"-requestTrendingRepositoriesSince: %@ language: %@", since, language];
+}
+
+- (RACSignal *)requestShowcases {
+    return [[RACSignal
+        createSignal:^(id<RACSubscriber> subscriber) {
+            MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
+            
+            NSString *URLString = @"http://trending.codehub-app.com/v2/showcases";
+            MKNetworkOperation *operation = [networkEngine operationWithURLString:URLString];
+            
+            [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+                [subscriber sendNext:completedOperation.responseJSON];
+                [subscriber sendCompleted];
+            } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+                [subscriber sendError:error];
+            }];
+            
+            [networkEngine enqueueOperation:operation];
+            
+            return [RACDisposable disposableWithBlock:^{
+                [operation cancel];
+            }];
+        }]
+        replayLazily];
 }
 
 @end

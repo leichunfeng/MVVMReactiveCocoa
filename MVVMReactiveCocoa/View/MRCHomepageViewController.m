@@ -15,7 +15,7 @@
 #import "MRCProfileViewModel.h"
 #import "MRCReposViewController.h"
 #import "MRCNavigationController.h"
-#import "MRCSearchViewController.h"
+#import "MRCExploreViewController.h"
 #import "MRCUserListViewModel.h"
 #import "MRCSearchViewController.h"
 
@@ -45,7 +45,7 @@
                                                     iconColor:HexRGB(colorI3)
                                                     iconScale:1
                                                       andSize:CGSizeMake(25, 25)];
-        
+
         newsViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"News" image:newsImage selectedImage:newsHLImage];
 
         [[MRCNavigationController alloc] initWithRootViewController:newsViewController];
@@ -53,7 +53,7 @@
 
     UINavigationController *reposNavigationController = ({
         MRCReposViewController *reposViewController = [[MRCReposViewController alloc] initWithViewModel:self.viewModel.reposViewModel];
-        
+
         UIImage *reposImage = [UIImage octicon_imageWithIcon:@"Repo"
                                              backgroundColor:[UIColor clearColor]
                                                    iconColor:[UIColor lightGrayColor]
@@ -70,23 +70,23 @@
         [[MRCNavigationController alloc] initWithRootViewController:reposViewController];
     });
 
-    UINavigationController *searchNavigationController = ({
-        MRCSearchViewController *searchViewController = [[MRCSearchViewController alloc] initWithViewModel:self.viewModel.searchViewModel];
+    UINavigationController *exploreNavigationController = ({
+        MRCExploreViewController *exploreViewController = [[MRCExploreViewController alloc] initWithViewModel:self.viewModel.exploreViewModel];
 
-        UIImage *searchImage = [UIImage octicon_imageWithIcon:@"Search"
-                                              backgroundColor:[UIColor clearColor]
-                                                    iconColor:[UIColor lightGrayColor]
-                                                    iconScale:1
+        UIImage *exploreImage = [UIImage octicon_imageWithIcon:@"Search"
+                                               backgroundColor:[UIColor clearColor]
+                                                     iconColor:[UIColor lightGrayColor]
+                                                     iconScale:1
                                                       andSize:CGSizeMake(25, 25)];
-        UIImage *searchHLImage = [UIImage octicon_imageWithIcon:@"Search"
-                                                backgroundColor:[UIColor clearColor]
-                                                      iconColor:HexRGB(colorI3)
-                                                      iconScale:1
-                                                        andSize:CGSizeMake(25, 25)];
-        
-        searchViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Discover" image:searchImage selectedImage:searchHLImage];
+        UIImage *exploreHLImage = [UIImage octicon_imageWithIcon:@"Search"
+                                                 backgroundColor:[UIColor clearColor]
+                                                       iconColor:HexRGB(colorI3)
+                                                       iconScale:1
+                                                         andSize:CGSizeMake(25, 25)];
 
-        [[MRCNavigationController alloc] initWithRootViewController:searchViewController];
+        exploreViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Explore" image:exploreImage selectedImage:exploreHLImage];
+
+        [[MRCNavigationController alloc] initWithRootViewController:exploreViewController];
     });
 
     UINavigationController *profileNavigationController = ({
@@ -102,14 +102,14 @@
                                                        iconColor:HexRGB(colorI3)
                                                        iconScale:1
                                                          andSize:CGSizeMake(25, 25)];
-        
+
         profileViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:profileImage selectedImage:profileHLImage];
 
         [[MRCNavigationController alloc] initWithRootViewController:profileViewController];
     });
 
-    self.tabBarController.viewControllers = @[ newsNavigationController, reposNavigationController, searchNavigationController, profileNavigationController ];
-    
+    self.tabBarController.viewControllers = @[ newsNavigationController, reposNavigationController, exploreNavigationController, profileNavigationController ];
+
     [MRCSharedAppDelegate.navigationControllerStack pushNavigationController:newsNavigationController];
 
     [[self

@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong, readwrite) MRCNewsViewModel    *newsViewModel;
 @property (nonatomic, strong, readwrite) MRCReposViewModel   *reposViewModel;
-@property (nonatomic, strong, readwrite) MRCSearchViewModel  *searchViewModel;
+@property (nonatomic, strong, readwrite) MRCExploreViewModel *exploreViewModel;
 @property (nonatomic, strong, readwrite) MRCProfileViewModel *profileViewModel;
 
 @end
@@ -24,7 +24,7 @@
     
     self.newsViewModel    = [[MRCNewsViewModel alloc] initWithServices:self.services params:nil];
     self.reposViewModel   = [[MRCReposViewModel alloc] initWithServices:self.services params:nil];
-    self.searchViewModel  = [[MRCSearchViewModel alloc] initWithServices:self.services params:nil];
+    self.exploreViewModel = [[MRCExploreViewModel alloc] initWithServices:self.services params:nil];
     self.profileViewModel = [[MRCProfileViewModel alloc] initWithServices:self.services params:nil];
 }
 

@@ -51,7 +51,6 @@
     #import "UMSocialQQHandler.h"
     #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
     #import "MRCMemoryCache.h"
-//    #import "UINavigationController+FDFullscreenPopGesture.h"
     #import "FMDatabaseQueue+MRCHelper.h"
     #import "MRCReactiveView.h"
     #import "NSString+Octicons.h"

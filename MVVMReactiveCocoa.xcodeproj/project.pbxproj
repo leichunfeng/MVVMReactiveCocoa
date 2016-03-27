@@ -151,6 +151,15 @@
 		24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */; };
 		24AF977E1B02292700E2A737 /* MRCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF977D1B02292700E2A737 /* MRCSearch.m */; };
 		24B1045F1B04CE100046473E /* OCTClient+MRCRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B1045E1B04CE100046473E /* OCTClient+MRCRepository.m */; };
+		24B29BFD1CA6D35D00963648 /* MRCExploreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B29BFC1CA6D35D00963648 /* MRCExploreViewModel.m */; };
+		24B29C0C1CA6D37500963648 /* MRCExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B29C0A1CA6D37500963648 /* MRCExploreViewController.m */; };
+		24B29C0D1CA6D37500963648 /* MRCExploreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B29C0B1CA6D37500963648 /* MRCExploreViewController.xib */; };
+		24B29C101CA6D40D00963648 /* MRCExploreItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B29C0F1CA6D40D00963648 /* MRCExploreItemViewModel.m */; };
+		24B29C141CA6D42500963648 /* MRCExploreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B29C121CA6D42500963648 /* MRCExploreTableViewCell.m */; };
+		24B29C151CA6D42500963648 /* MRCExploreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B29C131CA6D42500963648 /* MRCExploreTableViewCell.xib */; };
+		24B29C3F1CA787D000963648 /* MRCExploreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B29C3D1CA787D000963648 /* MRCExploreCollectionViewCell.m */; };
+		24B29C401CA787D000963648 /* MRCExploreCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B29C3E1CA787D000963648 /* MRCExploreCollectionViewCell.xib */; };
+		24B29C431CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B29C421CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m */; };
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
@@ -628,6 +637,21 @@
 		24AF977D1B02292700E2A737 /* MRCSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearch.m; sourceTree = "<group>"; };
 		24B1045D1B04CE100046473E /* OCTClient+MRCRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTClient+MRCRepository.h"; sourceTree = "<group>"; };
 		24B1045E1B04CE100046473E /* OCTClient+MRCRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTClient+MRCRepository.m"; sourceTree = "<group>"; };
+		24B29BFB1CA6D35D00963648 /* MRCExploreViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCExploreViewModel.h; sourceTree = "<group>"; };
+		24B29BFC1CA6D35D00963648 /* MRCExploreViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCExploreViewModel.m; sourceTree = "<group>"; };
+		24B29C091CA6D37500963648 /* MRCExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCExploreViewController.h; sourceTree = "<group>"; };
+		24B29C0A1CA6D37500963648 /* MRCExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCExploreViewController.m; sourceTree = "<group>"; };
+		24B29C0B1CA6D37500963648 /* MRCExploreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCExploreViewController.xib; sourceTree = "<group>"; };
+		24B29C0E1CA6D40D00963648 /* MRCExploreItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCExploreItemViewModel.h; sourceTree = "<group>"; };
+		24B29C0F1CA6D40D00963648 /* MRCExploreItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCExploreItemViewModel.m; sourceTree = "<group>"; };
+		24B29C111CA6D42500963648 /* MRCExploreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCExploreTableViewCell.h; sourceTree = "<group>"; };
+		24B29C121CA6D42500963648 /* MRCExploreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCExploreTableViewCell.m; sourceTree = "<group>"; };
+		24B29C131CA6D42500963648 /* MRCExploreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCExploreTableViewCell.xib; sourceTree = "<group>"; };
+		24B29C3C1CA787D000963648 /* MRCExploreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCExploreCollectionViewCell.h; sourceTree = "<group>"; };
+		24B29C3D1CA787D000963648 /* MRCExploreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCExploreCollectionViewCell.m; sourceTree = "<group>"; };
+		24B29C3E1CA787D000963648 /* MRCExploreCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCExploreCollectionViewCell.xib; sourceTree = "<group>"; };
+		24B29C411CA7880700963648 /* MRCExploreCollectionViewCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCExploreCollectionViewCellViewModel.h; sourceTree = "<group>"; };
+		24B29C421CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCExploreCollectionViewCellViewModel.m; sourceTree = "<group>"; };
 		24B4DA121A66B97900DDFA6C /* MRCReposTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposTableViewCell.h; sourceTree = "<group>"; };
 		24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposTableViewCell.m; sourceTree = "<group>"; };
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
@@ -900,6 +924,9 @@
 				24143F121BD783F900555179 /* MRCTrendingSettingsViewController.h */,
 				24143F131BD783F900555179 /* MRCTrendingSettingsViewController.m */,
 				24143F141BD783F900555179 /* MRCTrendingSettingsViewController.xib */,
+				24B29C091CA6D37500963648 /* MRCExploreViewController.h */,
+				24B29C0A1CA6D37500963648 /* MRCExploreViewController.m */,
+				24B29C0B1CA6D37500963648 /* MRCExploreViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1000,6 +1027,8 @@
 				24A47EA61BD5D9E9000B79D0 /* MRCTrendingViewModel.m */,
 				24143F041BD783D300555179 /* MRCTrendingSettingsViewModel.h */,
 				24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */,
+				24B29BFB1CA6D35D00963648 /* MRCExploreViewModel.h */,
+				24B29BFC1CA6D35D00963648 /* MRCExploreViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1296,6 +1325,12 @@
 				243688411B25E31A00D801D3 /* MRCUserListTableViewCell.xib */,
 				24049ADE1C0AD86800AFB431 /* MRCNewsCellNode.h */,
 				24049ADF1C0AD86800AFB431 /* MRCNewsCellNode.m */,
+				24B29C111CA6D42500963648 /* MRCExploreTableViewCell.h */,
+				24B29C121CA6D42500963648 /* MRCExploreTableViewCell.m */,
+				24B29C131CA6D42500963648 /* MRCExploreTableViewCell.xib */,
+				24B29C3C1CA787D000963648 /* MRCExploreCollectionViewCell.h */,
+				24B29C3D1CA787D000963648 /* MRCExploreCollectionViewCell.m */,
+				24B29C3E1CA787D000963648 /* MRCExploreCollectionViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1311,6 +1346,10 @@
 				243688451B25E33700D801D3 /* MRCUserListItemViewModel.m */,
 				24E3B9F51B492301001C1DEE /* MRCNewsItemViewModel.h */,
 				24E3B9F61B492301001C1DEE /* MRCNewsItemViewModel.m */,
+				24B29C0E1CA6D40D00963648 /* MRCExploreItemViewModel.h */,
+				24B29C0F1CA6D40D00963648 /* MRCExploreItemViewModel.m */,
+				24B29C411CA7880700963648 /* MRCExploreCollectionViewCellViewModel.h */,
+				24B29C421CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m */,
 			);
 			path = ItemViewModel;
 			sourceTree = "<group>";
@@ -1631,9 +1670,12 @@
 				245D62851AA8C73E00D7B081 /* MRCAboutHeaderView.xib in Resources */,
 				240D013D1A654D300033CC86 /* MRCNewsViewController.xib in Resources */,
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
+				24B29C401CA787D000963648 /* MRCExploreCollectionViewCell.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
 				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
+				24B29C0D1CA6D37500963648 /* MRCExploreViewController.xib in Resources */,
+				24B29C151CA6D42500963648 /* MRCExploreTableViewCell.xib in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
 				243140131A7DD6E800FA357E /* assets.bundle in Resources */,
 				24DF458A1A6BF6CD00F23474 /* MRCReposViewController.xib in Resources */,
@@ -1790,10 +1832,12 @@
 				24FE6E691B627A0600DF3BDA /* MRCLoadingTitleView.m in Sources */,
 				242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */,
 				240D01521A654D3D0033CC86 /* MRCAppDelegate.m in Sources */,
+				24B29C101CA6D40D00963648 /* MRCExploreItemViewModel.m in Sources */,
 				240BFC091AFF31F3006ABC05 /* MRCReposSearchResultsViewController.m in Sources */,
 				241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */,
 				24116E4A1A8CC62700D25218 /* MRCNavigationController.m in Sources */,
 				240D014C1A654D300033CC86 /* MRCLoginViewModel.m in Sources */,
+				24B29C3F1CA787D000963648 /* MRCExploreCollectionViewCell.m in Sources */,
 				24F1203B1AA7525700A22D9A /* MRCAboutViewController.m in Sources */,
 				2489AD5B1B33AEE200D76523 /* MRCPublicReposViewModel.m in Sources */,
 				24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */,
@@ -1833,6 +1877,7 @@
 				240D013E1A654D300033CC86 /* MRCProfileViewController.m in Sources */,
 				24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */,
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
+				24B29C431CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m in Sources */,
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
 				24FE6E791B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m in Sources */,
@@ -1842,6 +1887,7 @@
 				24EFEB631BF8315300C2AB61 /* MRCSearchBar.m in Sources */,
 				240D01351A654D300033CC86 /* MRCImageView.m in Sources */,
 				249674321A73F5490032771B /* MRCWebViewController.m in Sources */,
+				24B29C0C1CA6D37500963648 /* MRCExploreViewController.m in Sources */,
 				24A2066D1C171377005DCDE2 /* MRCViewControllerAnimatedTransition.m in Sources */,
 				240D014D1A654D300033CC86 /* MRCNewsViewModel.m in Sources */,
 				249A89EE1B53B65100E18582 /* NSURL+MRCLink.m in Sources */,
@@ -1867,6 +1913,7 @@
 				24143F061BD783D300555179 /* MRCTrendingSettingsViewModel.m in Sources */,
 				248973871B3028BC00A867DE /* MRCUserDetailViewController.m in Sources */,
 				24DF45891A6BF6CD00F23474 /* MRCReposViewController.m in Sources */,
+				24B29BFD1CA6D35D00963648 /* MRCExploreViewModel.m in Sources */,
 				24049AEE1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m in Sources */,
 				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
 				2479C9451AAD39150057B681 /* README.md in Sources */,
@@ -1880,6 +1927,7 @@
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,
 				24E3B9F71B492301001C1DEE /* MRCNewsItemViewModel.m in Sources */,
 				242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */,
+				24B29C141CA6D42500963648 /* MRCExploreTableViewCell.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,
 				24116E8A1A8F28CE00D25218 /* SSKeychain+MRCUtil.m in Sources */,

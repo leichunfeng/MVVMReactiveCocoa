@@ -13,4 +13,9 @@
 - (RACSignal *)requestRepositoryReadmeHTML:(OCTRepository *)repository reference:(NSString *)reference;
 - (RACSignal *)requestTrendingRepositoriesSince:(NSString *)since language:(NSString *)language;
 
+/// Request showcases from http://trending.codehub-app.com/v2/showcases
+///
+/// @return Showcases
+- (RACSignal *)requestShowcases;
+
 @end
