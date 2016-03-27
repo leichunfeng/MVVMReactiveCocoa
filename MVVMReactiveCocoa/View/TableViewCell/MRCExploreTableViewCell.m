@@ -63,4 +63,9 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    MRCExploreCollectionViewCellViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
+    [viewModel.didSelectCommand execute:viewModel];
+}
+
 @end

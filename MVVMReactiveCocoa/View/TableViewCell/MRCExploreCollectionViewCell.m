@@ -9,10 +9,11 @@
 #import "MRCExploreCollectionViewCell.h"
 #import "MRCExploreCollectionViewCellViewModel.h"
 #import <SDWebImage/UIButton+WebCache.h>
+#import "UIImage+RTTint.h"
 
 @interface MRCExploreCollectionViewCell ()
 
-@property (nonatomic, weak) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 
 @property (nonatomic, strong) MRCExploreCollectionViewCellViewModel *viewModel;
@@ -24,17 +25,16 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.avatarButton.layer.cornerRadius = 15;
-    self.avatarButton.clipsToBounds = YES;
-    self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.avatarImageView.layer.cornerRadius = 15;
+    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 - (void)bindViewModel:(MRCExploreCollectionViewCellViewModel *)viewModel {
     self.viewModel = viewModel;
     
-    [self.avatarButton sd_setImageWithURL:viewModel.avatarURL
-                                 forState:UIControlStateNormal
-                         placeholderImage:[HexRGB(colorI6) color2ImageSized:CGSizeMake(70, 70)]];
+    [self.avatarImageView sd_setImageWithURL:viewModel.avatarURL
+                            placeholderImage:[HexRGB(colorI6) color2ImageSized:self.avatarImageView.frame.size]];
     
     self.nameLabel.text = viewModel.name;
 }

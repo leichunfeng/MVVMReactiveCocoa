@@ -10,7 +10,11 @@
 
 @interface MRCExploreCollectionViewCellViewModel : NSObject
 
+@property (nonatomic, strong) OCTObject *object;
+
 @property (nonatomic, copy) NSURL *avatarURL;
 @property (nonatomic, copy) NSString *name;
+
+@property (nonatomic, strong) RACCommand *didSelectCommand;
 
 @end

@@ -13,13 +13,6 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="70" height="104"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yry-cl-dDR">
-                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="70" id="e88-Mc-glP"/>
-                            <constraint firstAttribute="width" constant="70" id="wHt-jj-7LJ"/>
-                        </constraints>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMU-EG-fdO">
                         <rect key="frame" x="0.0" y="75" width="70" height="29"/>
                         <string key="text">FreeCodeC
@@ -28,19 +21,26 @@ amp</string>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1yi-sx-Ut5">
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="OhF-YL-IHE"/>
+                            <constraint firstAttribute="height" constant="70" id="kxZ-Yx-U1j"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="RMU-EG-fdO" firstAttribute="top" secondItem="yry-cl-dDR" secondAttribute="bottom" constant="5" id="EXM-hp-kCN"/>
                 <constraint firstAttribute="trailing" secondItem="RMU-EG-fdO" secondAttribute="trailing" id="M33-IN-IXG"/>
-                <constraint firstItem="yry-cl-dDR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lbW-q6-qsH"/>
                 <constraint firstItem="RMU-EG-fdO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="od8-go-uE5"/>
-                <constraint firstItem="yry-cl-dDR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="t8R-3L-Wwa"/>
+                <constraint firstItem="RMU-EG-fdO" firstAttribute="top" secondItem="1yi-sx-Ut5" secondAttribute="bottom" constant="5" id="qJY-Fa-dxc"/>
+                <constraint firstItem="1yi-sx-Ut5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="shH-64-ent"/>
+                <constraint firstItem="1yi-sx-Ut5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xGh-wu-2QM"/>
             </constraints>
             <size key="customSize" width="70" height="109"/>
             <connections>
-                <outlet property="avatarButton" destination="yry-cl-dDR" id="X0L-6k-oEz"/>
+                <outlet property="avatarImageView" destination="1yi-sx-Ut5" id="l9y-dC-wfk"/>
                 <outlet property="nameLabel" destination="RMU-EG-fdO" id="hFj-SG-S40"/>
             </connections>
             <point key="canvasLocation" x="376" y="399"/>

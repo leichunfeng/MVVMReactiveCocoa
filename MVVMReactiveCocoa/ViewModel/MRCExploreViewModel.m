@@ -8,6 +8,8 @@
 
 #import "MRCExploreViewModel.h"
 #import "MRCExploreCollectionViewCellViewModel.h"
+#import "MRCRepoDetailViewModel.h"
+#import "MRCUserDetailViewModel.h"
 
 @interface MRCExploreViewModel ()
 
@@ -54,6 +56,20 @@
     RAC(self, popularRepos)  = self.requestPopularReposCommand.executionSignals.switchToLatest;
     RAC(self, popularUsers)  = self.requestPopularUsersCommand.executionSignals.switchToLatest;
     
+    RACCommand *didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(MRCExploreCollectionViewCellViewModel *viewModel) {
+        @strongify(self)
+        
+        if ([viewModel.object isKindOfClass:[OCTRepository class]]) {
+            MRCRepoDetailViewModel *detailViewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services params:@{ @"repository": viewModel.object }];
+            [self.services pushViewModel:detailViewModel animated:YES];
+        } else if ([viewModel.object isKindOfClass:[OCTUser class]]) {
+            MRCUserDetailViewModel *userViewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:@{ @"user": viewModel.object }];
+            [self.services pushViewModel:userViewModel animated:YES];
+        }
+        
+        return [RACSignal empty];
+    }];
+    
     RAC(self, dataSource) = [RACSignal
         combineLatest:@[ RACObserve(self, trendingRepos), RACObserve(self, popularRepos), RACObserve(self, popularUsers) ]
         reduce:^(NSArray *trendingRepos, NSArray *popularRepos, NSArray *popularUsers) {
@@ -70,11 +86,13 @@
                 viewModel.dataSource = ({
                     NSArray *array = [[trendingRepos.rac_sequence
                         take:20]
-                        map:^(OCTRepository *repo) {
+                        map:^(OCTRepository *repository) {
                             MRCExploreCollectionViewCellViewModel *viewModel = [[MRCExploreCollectionViewCellViewModel alloc] init];
                             
-                            viewModel.avatarURL = repo.ownerAvatarURL;
-                            viewModel.name = repo.name;
+                            viewModel.object = repository;
+                            viewModel.avatarURL = repository.ownerAvatarURL;
+                            viewModel.name = repository.name;
+                            viewModel.didSelectCommand = didSelectCommand;
                             
                             return viewModel;
                         }].array;
@@ -91,11 +109,13 @@
                 viewModel.dataSource = ({
                     NSArray *array = [[popularRepos.rac_sequence
                         take:20]
-                        map:^(OCTRepository *repo) {
+                        map:^(OCTRepository *repository) {
                             MRCExploreCollectionViewCellViewModel *viewModel = [[MRCExploreCollectionViewCellViewModel alloc] init];
                             
-                            viewModel.avatarURL = repo.ownerAvatarURL;
-                            viewModel.name = repo.name;
+                            viewModel.object = repository;
+                            viewModel.avatarURL = repository.ownerAvatarURL;
+                            viewModel.name = repository.name;
+                            viewModel.didSelectCommand = didSelectCommand;
                             
                             return viewModel;
                         }].array;
@@ -115,8 +135,10 @@
                         map:^(OCTUser *user) {
                             MRCExploreCollectionViewCellViewModel *viewModel = [[MRCExploreCollectionViewCellViewModel alloc] init];
                             
+                            viewModel.object = user;
                             viewModel.avatarURL = user.avatarURL;
                             viewModel.name = user.name;
+                            viewModel.didSelectCommand = didSelectCommand;
                             
                             return viewModel;
                         }].array;
