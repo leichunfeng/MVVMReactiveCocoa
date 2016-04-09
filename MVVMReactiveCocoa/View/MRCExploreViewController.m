@@ -12,6 +12,7 @@
 #import "MRCReposSearchResultsViewController.h"
 #import "MRCSearchBar.h"
 #import "SDCycleScrollView.h"
+#import "LCFInfiniteScrollView.h"
 
 @interface MRCExploreViewController () <UISearchBarDelegate, UISearchControllerDelegate, SDCycleScrollViewDelegate>
 
@@ -47,30 +48,51 @@
 //    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117)];
 //    self.tableView.tableHeaderView = tableHeaderView;
     
-    SDCycleScrollView *scrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117)
-                                                                       delegate:self
-                                                               placeholderImage:[HexRGB(colorI6) color2ImageSized:CGSizeMake(252, 117)]];
+//    SDCycleScrollView *scrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117)
+//                                                                       delegate:self
+//                                                               placeholderImage:[HexRGB(colorI6) color2ImageSized:CGSizeMake(252, 117)]];
 //    [tableHeaderView addSubview:scrollView];
-    self.tableView.tableHeaderView = scrollView;
+//    self.tableView.tableHeaderView = scrollView;
     
-    scrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-    scrollView.showPageControl = NO;
-    scrollView.autoScrollTimeInterval = 3;
+//    scrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+//    scrollView.showPageControl = NO;
+//    scrollView.autoScrollTimeInterval = 3;
     
-    RAC(scrollView, imageURLStringsGroup) = [RACObserve(self.viewModel, showcases) map:^(NSArray *showcases) {
+//    RAC(scrollView, imageURLStringsGroup) = [RACObserve(self.viewModel, showcases) map:^(NSArray *showcases) {
+//        return [showcases.rac_sequence map:^(NSDictionary *showcase) {
+//            return showcase[@"image_url"];
+//        }].array;
+//    }];
+    
+    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] init];
+    [self.view addSubview:infiniteScrollView];
+    
+    infiniteScrollView.itemSize = CGSizeMake(265, 129);
+    infiniteScrollView.itemSpacing = 5;
+    
+    RAC(infiniteScrollView, items) = [RACObserve(self.viewModel, showcases) map:^(NSArray *showcases) {
         return [showcases.rac_sequence map:^(NSDictionary *showcase) {
-            return showcase[@"image_url"];
+            LCFInfiniteScrollViewItem *infiniteScrollViewItem = [[LCFInfiniteScrollViewItem alloc] init];
+            
+            infiniteScrollViewItem.imageURL = showcase[@"image_url"];
+            infiniteScrollViewItem.text = showcase[@"name"];
+            
+            return infiniteScrollViewItem;
         }].array;
+    }];
+    
+    RAC(infiniteScrollView, frame) = [RACObserve(self.tableView, contentOffset) map:^(NSValue *contentOffset) {
+        CGFloat deltaY = contentOffset.CGPointValue.y - (-193);
+        if (deltaY <= 0) {
+            return [NSValue valueWithCGRect:CGRectMake(0, 64, SCREEN_WIDTH, 129)];
+        } else {
+            return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, SCREEN_WIDTH, 129)];
+        }
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.viewModel.requestShowcasesCommand execute:nil];
-    [self.viewModel.requestTrendingReposCommand execute:nil];
-    [self.viewModel.requestPopularReposCommand execute:nil];
-    [self.viewModel.requestPopularUsersCommand execute:nil];
+- (UIEdgeInsets)contentInset {
+    return UIEdgeInsetsMake(64 + 129, 0, 49, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

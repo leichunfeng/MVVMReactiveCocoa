@@ -92,6 +92,7 @@
 		243688421B25E31A00D801D3 /* MRCUserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 243688401B25E31A00D801D3 /* MRCUserListTableViewCell.m */; };
 		243688431B25E31A00D801D3 /* MRCUserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243688411B25E31A00D801D3 /* MRCUserListTableViewCell.xib */; };
 		243688461B25E33700D801D3 /* MRCUserListItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 243688451B25E33700D801D3 /* MRCUserListItemViewModel.m */; };
+		243AA6A01CB8DAFD007740DE /* LCFInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 243AA69F1CB8DAFD007740DE /* LCFInfiniteScrollView.m */; };
 		2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */; };
 		2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2441B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m */; };
 		2458A2541B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2521B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m */; };
@@ -537,6 +538,8 @@
 		243688411B25E31A00D801D3 /* MRCUserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCUserListTableViewCell.xib; sourceTree = "<group>"; };
 		243688441B25E33700D801D3 /* MRCUserListItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCUserListItemViewModel.h; sourceTree = "<group>"; };
 		243688451B25E33700D801D3 /* MRCUserListItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCUserListItemViewModel.m; sourceTree = "<group>"; };
+		243AA69E1CB8DAFD007740DE /* LCFInfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCFInfiniteScrollView.h; sourceTree = "<group>"; };
+		243AA69F1CB8DAFD007740DE /* LCFInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCFInfiniteScrollView.m; sourceTree = "<group>"; };
 		2458A22B1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposSearchResultsItemViewModel.h; sourceTree = "<group>"; };
 		2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposSearchResultsItemViewModel.m; sourceTree = "<group>"; };
 		2458A2431B00EFA000E9FB9B /* MRCRepoSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsViewModel.h; sourceTree = "<group>"; };
@@ -851,6 +854,7 @@
 		240D00DD1A654D300033CC86 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				243AA6921CB8DAA4007740DE /* CollectionView */,
 				24A2065E1C1712C2005DCDE2 /* Transition */,
 				24EFEB601BF8313F00C2AB61 /* SearchBar */,
 				245D627A1AA8C73E00D7B081 /* TableHeaderFooterView */,
@@ -1214,6 +1218,15 @@
 				243140121A7DD6E800FA357E /* assets.bundle */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		243AA6921CB8DAA4007740DE /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				243AA69E1CB8DAFD007740DE /* LCFInfiniteScrollView.h */,
+				243AA69F1CB8DAFD007740DE /* LCFInfiniteScrollView.m */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		245D627A1AA8C73E00D7B081 /* TableHeaderFooterView */ = {
@@ -1863,6 +1876,7 @@
 				2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */,
 				24DF45671A6B8BC800F23474 /* MRCRepoDetailViewModel.m in Sources */,
 				24DF45821A6BF01A00F23474 /* MRCSegmentedControlViewModel.m in Sources */,
+				243AA6A01CB8DAFD007740DE /* LCFInfiniteScrollView.m in Sources */,
 				242D83651A7A7E1300F5F424 /* MRCGitTreeViewController.m in Sources */,
 				245D62881AA8C73E00D7B081 /* MRCNetworkHeaderView.m in Sources */,
 				249A8A361B53EBC600E18582 /* OCTEvent+MRCAttributedString.m in Sources */,

@@ -155,6 +155,11 @@
         }];
     
     self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
+    
+    [self.requestShowcasesCommand execute:nil];
+    [self.requestTrendingReposCommand execute:nil];
+    [self.requestPopularReposCommand execute:nil];
+    [self.requestPopularUsersCommand execute:nil];
 }
 
 @end
