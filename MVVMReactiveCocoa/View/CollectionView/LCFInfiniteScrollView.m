@@ -160,13 +160,21 @@
                                                                  options:0
                                                                  metrics:nil
                                                                    views:@{ @"collectionView": self.collectionView }]];
-    
+
+    [self setUpTimer];
+}
+
+- (void)setUpTimer {
     self.timer = [NSTimer timerWithTimeInterval:3
                                          target:self
                                        selector:@selector(timerFire:)
                                        userInfo:nil
                                         repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)tearDownTimer {
+    [self.timer invalidate];
 }
 
 - (void)timerFire:(NSTimer *)timer {
@@ -241,11 +249,11 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    self.timer.fireDate = [NSDate distantFuture];
+    [self tearDownTimer];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    self.timer.fireDate = [NSDate distantPast];
+    [self setUpTimer];
 }
 
 @end
