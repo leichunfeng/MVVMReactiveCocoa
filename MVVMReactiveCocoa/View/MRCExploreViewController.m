@@ -11,10 +11,9 @@
 #import "MRCExploreTableViewCell.h"
 #import "MRCReposSearchResultsViewController.h"
 #import "MRCSearchBar.h"
-#import "SDCycleScrollView.h"
 #import "LCFInfiniteScrollView.h"
 
-@interface MRCExploreViewController () <UISearchBarDelegate, UISearchControllerDelegate, SDCycleScrollViewDelegate>
+@interface MRCExploreViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
 @property (nonatomic, strong) MRCExploreViewModel *viewModel;
 
@@ -44,25 +43,6 @@
     [self.searchController setValue:searchBar forKey:@"searchBar"];
     
     self.definesPresentationContext = YES;
-    
-//    UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117)];
-//    self.tableView.tableHeaderView = tableHeaderView;
-    
-//    SDCycleScrollView *scrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 117)
-//                                                                       delegate:self
-//                                                               placeholderImage:[HexRGB(colorI6) color2ImageSized:CGSizeMake(252, 117)]];
-//    [tableHeaderView addSubview:scrollView];
-//    self.tableView.tableHeaderView = scrollView;
-    
-//    scrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-//    scrollView.showPageControl = NO;
-//    scrollView.autoScrollTimeInterval = 3;
-    
-//    RAC(scrollView, imageURLStringsGroup) = [RACObserve(self.viewModel, showcases) map:^(NSArray *showcases) {
-//        return [showcases.rac_sequence map:^(NSDictionary *showcase) {
-//            return showcase[@"image_url"];
-//        }].array;
-//    }];
     
     LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] init];
     [self.view addSubview:infiniteScrollView];
