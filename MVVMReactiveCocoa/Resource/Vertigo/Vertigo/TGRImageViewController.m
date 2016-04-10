@@ -46,12 +46,8 @@
     self.imageView.image = self.image;
 }
 
-//- (BOOL)prefersStatusBarHidden {
-//    return YES;
-//}
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return isPad ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskPortrait;
+    return isPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - UIScrollViewDelegate methods
