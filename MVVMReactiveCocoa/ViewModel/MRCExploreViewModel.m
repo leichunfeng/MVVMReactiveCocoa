@@ -11,6 +11,7 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCUserDetailViewModel.h"
 #import "MRCUserListViewModel.h"
+#import "MRCTrendingViewModel.h"
 
 @interface MRCExploreViewModel ()
 
@@ -110,6 +111,12 @@
                         }].array;
                     array.count > 0 ? @[ array ] : nil;
                 });
+                viewModel.seeAllCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
+                    @strongify(self)
+                    MRCTrendingViewModel *trendingViewModel = [[MRCTrendingViewModel alloc] initWithServices:self.services params:nil];
+                    [self.services pushViewModel:trendingViewModel animated:YES];
+                    return [RACSignal empty];
+                }];
                 
                 [rows addObject:viewModel];
             }

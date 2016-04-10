@@ -30,6 +30,7 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCExploreTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCExploreTableViewCell"];
+    self.tableView.showsVerticalScrollIndicator = NO;
     
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
     
