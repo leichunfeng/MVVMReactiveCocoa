@@ -36,22 +36,30 @@
     @weakify(self)
     self.requestShowcasesCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
-        return [[self.services repositoryService] requestShowcases];
+        return [[[self.services repositoryService]
+            requestShowcases]
+            retry:3];
     }];
    
     self.requestTrendingReposCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
-        return [[self.services repositoryService] requestTrendingRepositoriesSince:@"weekly" language:nil];
+        return [[[self.services repositoryService]
+            requestTrendingRepositoriesSince:@"weekly" language:nil]
+            retry:3];
     }];
     
     self.requestPopularReposCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
-        return [[self.services client] fetchPopularRepositoriesWithLanguage:nil];
+        return [[[self.services client]
+            fetchPopularRepositoriesWithLanguage:nil]
+            retry:3];
     }];
     
     self.requestPopularUsersCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
-        return [[self.services client] fetchPopularUsersWithLocation:nil language:nil];
+        return [[[self.services client]
+            fetchPopularUsersWithLocation:nil language:nil]
+            retry:3];
     }];
     
     RAC(self, showcases)     = self.requestShowcasesCommand.executionSignals.switchToLatest;

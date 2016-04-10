@@ -112,8 +112,9 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[self.services.client
+    return [[[self.services.client
         fetchUserInfoForUser:self.user]
+        retry:3]
         doNext:^(OCTUser *user) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [user mrc_saveOrUpdate];
