@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSUInteger, MRCUserListViewModelType) {
     MRCUserListViewModelTypeFollowers,
-    MRCUserListViewModelTypeFollowing
+    MRCUserListViewModelTypeFollowing,
+    MRCUserListViewModelTypePopularUsers,
 };
 
 @interface MRCUserListViewModel : MRCTableViewModel
@@ -18,5 +19,8 @@ typedef NS_ENUM(NSUInteger, MRCUserListViewModelType) {
 @property (nonatomic, assign, readonly) MRCUserListViewModelType type;
 @property (nonatomic, assign, readonly) BOOL isCurrentUser;
 @property (nonatomic, copy, readonly) NSArray *users;
+
+@property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *language;
 
 @end

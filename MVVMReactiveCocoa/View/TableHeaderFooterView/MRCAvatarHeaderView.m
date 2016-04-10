@@ -64,42 +64,17 @@
     }];
     
     // configure coverImageView
-    self.coverImageView = [[UIImageView alloc] init];
-    [self insertSubview:self.coverImageView atIndex:0];
-    
-    self.coverImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[coverImageView]|"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:@{ @"coverImageView": self.coverImageView }]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[coverImageView(323)]"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:@{ @"coverImageView": self.coverImageView }]];
-    
+    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 323)];
     self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.coverImageView.clipsToBounds = YES;
 
     // configure bluredCoverImageView
     self.bluredCoverImageView = [[UIImageView alloc] initWithFrame:self.coverImageView.bounds];
-    [self.coverImageView addSubview:self.bluredCoverImageView];
-    
-    self.bluredCoverImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.coverImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[bluredCoverImageView]|"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:@{ @"bluredCoverImageView": self.bluredCoverImageView }]];
-    
-    [self.coverImageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[bluredCoverImageView]|"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:@{ @"bluredCoverImageView": self.bluredCoverImageView }]];
-
     self.bluredCoverImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.bluredCoverImageView.clipsToBounds = YES;
+
+    [self.coverImageView addSubview:self.bluredCoverImageView];
+    [self insertSubview:self.coverImageView atIndex:0];
 
     self.gaussianBlurFilter = [[GPUImageGaussianBlurFilter alloc] init];
     self.gaussianBlurFilter.blurRadiusInPixels = 20;

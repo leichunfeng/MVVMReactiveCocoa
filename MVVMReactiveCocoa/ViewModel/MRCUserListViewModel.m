@@ -40,13 +40,18 @@
         self.title = @"Followers";
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
         self.title = @"Following";
+    } else if (self.type == MRCUserListViewModelTypePopularUsers) {
+        self.titleViewType = MRCTitleViewTypeDoubleTitle;
+        
+        RAC(self, title, @"All countries")    = RACObserve(self, location);
+        RAC(self, subtitle, @"All languages") = RACObserve(self, language);
     }
     
     self.shouldPullToRefresh = YES;
-    self.shouldInfiniteScrolling = YES;
+    self.shouldInfiniteScrolling = self.type != MRCUserListViewModelTypePopularUsers;
     
     @weakify(self)
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         MRCUserListItemViewModel *itemViewModel = self.dataSource[indexPath.section][indexPath.row];
         
@@ -57,7 +62,7 @@
         return [RACSignal empty];
     }];
     
-    self.operationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(MRCUserListItemViewModel *viewModel) {
+    self.operationCommand = [[RACCommand alloc] initWithSignalBlock:^(MRCUserListItemViewModel *viewModel) {
         @strongify(self)
         if (viewModel.user.followingStatus == OCTUserFollowingStatusYES) {
             return [[self.services client] mrc_unfollowUser:viewModel.user];
@@ -69,7 +74,7 @@
 
     self.operationCommand.allowsConcurrentExecution = YES;
     
-    RACSignal *fetchLocalDataSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal *fetchLocalDataSignal = [RACSignal createSignal:^(id<RACSubscriber> subscriber) {
         @strongify(self)
         if (self.isCurrentUser) {
             if (self.type == MRCUserListViewModelTypeFollowers) {
@@ -78,7 +83,7 @@
                 [subscriber sendNext:[OCTUser mrc_fetchFollowingWithPage:1 perPage:self.perPage]];
             }
         }
-        return nil;
+        return (RACDisposable *)nil;
     }];
     
     RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.switchToLatest;
@@ -115,8 +120,7 @@
     };
     
     if (self.type == MRCUserListViewModelTypeFollowers) {
-        return [[[[[[[self.services
-        	client]
+        return [[[[[[[self.services client]
             fetchFollowersForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
             take:self.perPage]
             collect]
@@ -136,8 +140,7 @@
                 }
             }];
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
-        return [[[[[[[self.services
-            client]
+        return [[[[[[[self.services client]
             fetchFollowingForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
         	take:self.perPage]
             collect]
@@ -156,7 +159,12 @@
                     });
                 }
             }];
+    } else if (self.type == MRCUserListViewModelTypePopularUsers) {
+        return [[[self.services client]
+            fetchPopularUsersWithLocation:self.location language:self.language]
+            map:mapFollowingStatus];
     }
+    
     return [RACSignal empty];
 }
 

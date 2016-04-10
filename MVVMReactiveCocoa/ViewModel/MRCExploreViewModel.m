@@ -10,6 +10,7 @@
 #import "MRCExploreCollectionViewCellViewModel.h"
 #import "MRCRepoDetailViewModel.h"
 #import "MRCUserDetailViewModel.h"
+#import "MRCUserListViewModel.h"
 
 @interface MRCExploreViewModel ()
 
@@ -155,6 +156,14 @@
                         }].array;
                     array.count > 0 ? @[ array ] : nil;
                 });
+                viewModel.seeAllCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
+                    @strongify(self)
+                    MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
+                                                                                              params:@{ @"type": @(MRCUserListViewModelTypePopularUsers),
+                                                                                                        @"user": [OCTUser mrc_currentUser] }];
+                    [self.services pushViewModel:viewModel animated:YES];
+                    return [RACSignal empty];
+                }];
 
                 [rows addObject:viewModel];
             }

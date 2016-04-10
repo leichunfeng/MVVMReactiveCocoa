@@ -44,7 +44,10 @@
 
 - (void)bindViewModel:(MRCExploreItemViewModel *)viewModel {
     self.viewModel = viewModel;
+    
     self.titleLabel.text = viewModel.title;
+    self.seeAllButton.rac_command = viewModel.seeAllCommand;
+    
     [self.collectionView reloadData];
 }
 

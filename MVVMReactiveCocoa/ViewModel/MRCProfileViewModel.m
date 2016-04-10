@@ -50,7 +50,7 @@
     self.avatarHeaderViewModel = [[MRCAvatarHeaderViewModel alloc] initWithUser:self.user];
     
     @weakify(self)
-    self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.avatarHeaderViewModel.followersCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
                                                                                   params:@{ @"type": @0, @"user": self.user }];
@@ -58,7 +58,7 @@
         return [RACSignal empty];
     }];
     
-    self.avatarHeaderViewModel.repositoriesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.avatarHeaderViewModel.repositoriesCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         MRCPublicReposViewModel *viewModel = [[MRCPublicReposViewModel alloc] initWithServices:self.services
                                                                                         params:@{ @"user": self.user }];
@@ -66,7 +66,7 @@
         return [RACSignal empty];
     }];
 
-    self.avatarHeaderViewModel.followingCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.avatarHeaderViewModel.followingCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         MRCUserListViewModel *viewModel = [[MRCUserListViewModel alloc] initWithServices:self.services
                                                                                   params:@{ @"type": @1, @"user": self.user }];
@@ -83,7 +83,7 @@
     RAC(self, email)    = [RACObserve(self.user, email) map:map];
     RAC(self, blog)     = [RACObserve(self.user, blog) map:map];
     
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 1 && indexPath.row == 0) {
             MRCSettingsViewModel *settingsViewModel = [[MRCSettingsViewModel alloc] initWithServices:self.services params:nil];
