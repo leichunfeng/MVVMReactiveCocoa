@@ -21,4 +21,7 @@
 
 @property (nonatomic, strong, readonly) MRCReposSearchResultsViewModel *searchResultsViewModel;
 
+@property (nonatomic, assign) CGSize itemSize;
+@property (nonatomic, assign) CGFloat itemSpacing;
+
 @end

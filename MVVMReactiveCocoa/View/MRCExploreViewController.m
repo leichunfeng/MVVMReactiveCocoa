@@ -12,6 +12,7 @@
 #import "MRCReposSearchResultsViewController.h"
 #import "MRCSearchBar.h"
 #import "LCFInfiniteScrollView.h"
+#import "SDVersion.h"
 
 @interface MRCExploreViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
@@ -27,53 +28,61 @@
 @dynamic viewModel;
 
 - (void)viewDidLoad {
+    if ([SDVersion deviceVersion] == iPadPro) {
+        self.viewModel.itemSize = CGSizeMake(530, 260);
+        self.viewModel.itemSpacing = 5;
+    } else {
+        self.viewModel.itemSize = CGSizeMake(265, 129);
+        self.viewModel.itemSpacing = 5;
+    }
+
     [super viewDidLoad];
-    
+
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCExploreTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCExploreTableViewCell"];
     self.tableView.showsVerticalScrollIndicator = NO;
-    
+
     self.searchResultsController = [[MRCReposSearchResultsViewController alloc] initWithViewModel:self.viewModel.searchResultsViewModel];
-    
+
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsController];
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.delegate = self;
-    
+
     MRCSearchBar *searchBar = [[MRCSearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
     [self.searchController setValue:searchBar forKey:@"searchBar"];
-    
+
     self.definesPresentationContext = YES;
-    
+
     LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] init];
     [self.view addSubview:infiniteScrollView];
-    
-    infiniteScrollView.itemSize = CGSizeMake(265, 129);
-    infiniteScrollView.itemSpacing = 5;
-    
+
+    infiniteScrollView.itemSize = self.viewModel.itemSize;
+    infiniteScrollView.itemSpacing = self.viewModel.itemSpacing;
+
     RAC(infiniteScrollView, items) = [RACObserve(self.viewModel, showcases) map:^(NSArray *showcases) {
         return [showcases.rac_sequence map:^(NSDictionary *showcase) {
             LCFInfiniteScrollViewItem *infiniteScrollViewItem = [[LCFInfiniteScrollViewItem alloc] init];
-            
+
             infiniteScrollViewItem.imageURL = showcase[@"image_url"];
             infiniteScrollViewItem.text = showcase[@"name"];
-            
+
             return infiniteScrollViewItem;
         }].array;
     }];
-    
+
     RAC(infiniteScrollView, frame) = [RACObserve(self.tableView, contentOffset) map:^(NSValue *contentOffset) {
-        CGFloat deltaY = contentOffset.CGPointValue.y - (-193);
+        CGFloat deltaY = contentOffset.CGPointValue.y - (-(64 + self.viewModel.itemSize.height));
         if (deltaY <= 0) {
-            return [NSValue valueWithCGRect:CGRectMake(0, 64, SCREEN_WIDTH, 129)];
+            return [NSValue valueWithCGRect:CGRectMake(0, 64, SCREEN_WIDTH, self.viewModel.itemSize.height)];
         } else {
-            return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, SCREEN_WIDTH, 129)];
+            return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, SCREEN_WIDTH, self.viewModel.itemSize.height)];
         }
     }];
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64 + 129, 0, 49, 0);
+    return UIEdgeInsetsMake(64 + self.viewModel.itemSize.height, 0, 49, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

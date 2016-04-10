@@ -47,7 +47,7 @@
                                                          diskCapacity:20 * 1024 * 1024
                                                              diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
-
+    
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
     self.services = [[MRCViewModelServicesImpl alloc] init];
