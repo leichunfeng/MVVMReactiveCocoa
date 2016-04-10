@@ -33,6 +33,7 @@
 
 - (void)pushNavigationController:(UINavigationController *)navigationController {
     if ([self.navigationControllers containsObject:navigationController]) return;
+    navigationController.delegate = self;
     [self.navigationControllers addObject:navigationController];
 }
 
@@ -110,7 +111,6 @@
             if (![viewController isKindOfClass:[UINavigationController class]] &&
                 ![viewController isKindOfClass:[MRCTabBarController class]]) {
                 viewController = [[MRCNavigationController alloc] initWithRootViewController:viewController];
-                ((UINavigationController *)viewController).delegate = self;
                 [self pushNavigationController:(UINavigationController *)viewController];
             }
 
