@@ -30,21 +30,19 @@
 - (void)viewDidLoad {
     if ([SDVersion deviceSize] == Screen3Dot5inch ||
         [SDVersion deviceSize] == Screen4inch) {
-        self.viewModel.itemSize = CGSizeMake(320, 130);
+        self.viewModel.itemSize = CGSizeMake(640.0 / 2, 260.0 / 2);
         self.viewModel.itemSpacing = 0;
     } else if ([SDVersion deviceSize] == Screen4Dot7inch) {
-        self.viewModel.itemSize = CGSizeMake(375, 152);
+        self.viewModel.itemSize = CGSizeMake(750.0 / 2, 304.0 / 2);
         self.viewModel.itemSpacing = 0;
     } else if ([SDVersion deviceSize] == Screen5Dot5inch) {
-        self.viewModel.itemSize = CGSizeMake(265, 129);
+        self.viewModel.itemSize = CGSizeMake(796.0 / 3, 390.0 / 3);
         self.viewModel.itemSpacing = 5;
     } else {
-        if ([SDVersion deviceVersion] == iPadPro) {
-            self.viewModel.itemSize = CGSizeMake(530, 260);
-            self.viewModel.itemSpacing = 5;
-        }
+        self.viewModel.itemSize = CGSizeMake(1060.0 / 2, 520.0 / 2);
+        self.viewModel.itemSpacing = 5;
     }
-    
+
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCExploreTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCExploreTableViewCell"];
