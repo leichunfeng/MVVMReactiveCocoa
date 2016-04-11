@@ -160,6 +160,9 @@
                                                                  options:0
                                                                  metrics:nil
                                                                    views:@{ @"collectionView": self.collectionView }]];
+    
+    self.itemSize = self.frame.size;
+    self.itemSpacing = 0;
 
     [self setUpTimer];
 }

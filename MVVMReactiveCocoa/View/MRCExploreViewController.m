@@ -28,14 +28,23 @@
 @dynamic viewModel;
 
 - (void)viewDidLoad {
-    if ([SDVersion deviceVersion] == iPadPro) {
-        self.viewModel.itemSize = CGSizeMake(530, 260);
-        self.viewModel.itemSpacing = 5;
-    } else {
+    if ([SDVersion deviceSize] == Screen3Dot5inch ||
+        [SDVersion deviceSize] == Screen4inch) {
+        self.viewModel.itemSize = CGSizeMake(320, 130);
+        self.viewModel.itemSpacing = 0;
+    } else if ([SDVersion deviceSize] == Screen4Dot7inch) {
+        self.viewModel.itemSize = CGSizeMake(375, 152);
+        self.viewModel.itemSpacing = 0;
+    } else if ([SDVersion deviceSize] == Screen5Dot5inch) {
         self.viewModel.itemSize = CGSizeMake(265, 129);
         self.viewModel.itemSpacing = 5;
+    } else {
+        if ([SDVersion deviceVersion] == iPadPro) {
+            self.viewModel.itemSize = CGSizeMake(530, 260);
+            self.viewModel.itemSpacing = 5;
+        }
     }
-
+    
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"MRCExploreTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCExploreTableViewCell"];
@@ -54,7 +63,7 @@
 
     self.definesPresentationContext = YES;
 
-    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] init];
+    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, self.viewModel.itemSize.height)];
     [self.view addSubview:infiniteScrollView];
 
     infiniteScrollView.itemSize = self.viewModel.itemSize;
