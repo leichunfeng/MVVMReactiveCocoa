@@ -1,5 +1,8 @@
 # MVVMReactiveCocoa
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/leichunfeng/MVVMReactiveCocoa/master/LICENSE)
+[![GitHub tag](https://img.shields.io/github/tag/leichunfeng/MVVMReactiveCocoa.svg)](https://github.com/leichunfeng/MVVMReactiveCocoa/tags)
+
 This repository contains the source code for the [GitBucket](https://itunes.apple.com/cn/app/id961330940?mt=8) iOS app. It is a mobile client app for GitHub, built using [MVVM](http://en.wikipedia.org/wiki/Model_View_ViewModel) architectural pattern and some awesome frameworks, such as [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)、[Mantle](https://github.com/MantleFramework/Mantle)、[octokit.objc](https://github.com/octokit/octokit.objc), etc. You can use it for any purpose, free of charge.
 
 # Purpose
