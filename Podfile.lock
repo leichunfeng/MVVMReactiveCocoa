@@ -29,6 +29,8 @@ PODS:
   - FormatterKit/URLRequestFormatter (1.8.0)
   - GPUImage (0.1.7)
   - IQKeyboardManager (3.2.0.3)
+  - LCFInfiniteScrollView (0.1):
+    - SDWebImage
   - MBProgressHUD (0.9.2)
   - MKNetworkKit (0.87):
     - Reachability (~> 3.1.0)
@@ -37,9 +39,9 @@ PODS:
   - Reachability (3.1.1)
   - Reveal-iOS-SDK (1.6.2)
   - SDVersion (2.6)
-  - SDWebImage (3.7.4):
-    - SDWebImage/Core (= 3.7.4)
-  - SDWebImage/Core (3.7.4)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SSKeychain (1.2.3)
   - SVPullToRefresh (0.4.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
@@ -56,6 +58,8 @@ DEPENDENCIES:
   - FormatterKit (~> 1.8.0)
   - GPUImage (~> 0.1.7)
   - IQKeyboardManager (~> 3.2.0.3)
+  - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`,
+    tag `v0.1`)
   - MBProgressHUD (~> 0.9)
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
@@ -70,11 +74,17 @@ DEPENDENCIES:
   - WebViewJavascriptBridge (~> 4.1.4)
 
 EXTERNAL SOURCES:
+  LCFInfiniteScrollView:
+    :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
+    :tag: v0.1
   OcticonsIOS:
     :commit: 4bd3b21
     :git: https://github.com/jacksonh/OcticonsIOS.git
 
 CHECKOUT OPTIONS:
+  LCFInfiniteScrollView:
+    :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
+    :tag: v0.1
   OcticonsIOS:
     :commit: 4bd3b21
     :git: https://github.com/jacksonh/OcticonsIOS.git
@@ -88,6 +98,7 @@ SPEC CHECKSUMS:
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
+  LCFInfiniteScrollView: caf39a6c3242356cac9e97737016a4e2831c123f
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
@@ -95,7 +106,7 @@ SPEC CHECKSUMS:
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SDVersion: c036f7890279d188c17f5701b9feea0d93b9f8ee
-  SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c

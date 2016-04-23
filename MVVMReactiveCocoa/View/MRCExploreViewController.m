@@ -69,12 +69,7 @@
 
     RAC(infiniteScrollView, items) = [RACObserve(self.viewModel, showcases) map:^(NSArray *showcases) {
         return [showcases.rac_sequence map:^(NSDictionary *showcase) {
-            LCFInfiniteScrollViewItem *infiniteScrollViewItem = [[LCFInfiniteScrollViewItem alloc] init];
-
-            infiniteScrollViewItem.imageURL = showcase[@"image_url"];
-            infiniteScrollViewItem.text = showcase[@"name"];
-
-            return infiniteScrollViewItem;
+            return [LCFInfiniteScrollViewItem itemWithImageURL:showcase[@"image_url"] text:showcase[@"name"]];
         }].array;
     }];
 
