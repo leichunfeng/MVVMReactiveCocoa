@@ -79,6 +79,7 @@
         [self.tableView insertSubview:backgroundView atIndex:0];
         
         backgroundView.backgroundColor = [UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1];
+        backgroundView.backgroundColor = [UIColor colorWithWhite:45.f/255.f alpha:1];
         
         RAC(backgroundView, frame) = [RACObserve(self.tableView, contentOffset) map:^(NSValue *contentOffset) {
             if (contentOffset.CGPointValue.y > -64) return [NSValue valueWithCGRect:CGRectZero];
