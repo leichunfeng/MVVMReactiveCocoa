@@ -113,4 +113,39 @@
         replayLazily];
 }
 
+- (RACSignal *)requestShowcaseReposWithSlug:(NSString *)slug {
+    NSParameterAssert(slug.length > 0);
+    return [[RACSignal
+        createSignal:^(id<RACSubscriber> subscriber) {
+            MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
+            
+            NSString *URLString = [NSString stringWithFormat:@"http://trending.codehub-app.com/v2/showcases/%@", slug];
+            MKNetworkOperation *operation = [networkEngine operationWithURLString:URLString];
+            
+            [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+                NSArray *JSONArray = completedOperation.responseJSON[@"repositories"];
+                
+                NSError *error = nil;
+                NSArray *repositories = [MTLJSONAdapter modelsOfClass:[OCTRepository class] fromJSONArray:JSONArray error:&error];
+                
+                if (error) {
+                    MRCLogError(error);
+                } else {
+                    [subscriber sendNext:repositories];
+                }
+                
+                [subscriber sendCompleted];
+            } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+                [subscriber sendError:error];
+            }];
+            
+            [networkEngine enqueueOperation:operation];
+            
+            return [RACDisposable disposableWithBlock:^{
+                [operation cancel];
+            }];
+        }]
+        replayLazily];
+}
+
 @end

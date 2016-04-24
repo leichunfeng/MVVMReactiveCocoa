@@ -57,6 +57,7 @@
         @"MRCSearchViewModel": @"MRCSearchViewController",
         @"MRCTrendingViewModel": @"MRCTrendingViewController",
         @"MRCTrendingSettingsViewModel": @"MRCTrendingSettingsViewController",
+        @"MRCShowcaseReposViewModel": @"MRCShowcaseReposViewController",
     };
 }
 

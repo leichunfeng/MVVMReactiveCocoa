@@ -13,6 +13,7 @@
 #import "MRCSearchBar.h"
 #import "LCFInfiniteScrollView.h"
 #import "SDVersion.h"
+#import "MRCShowcaseReposViewModel.h"
 
 @interface MRCExploreViewController () <UISearchBarDelegate, UISearchControllerDelegate>
 
@@ -73,14 +74,25 @@
         }].array;
     }];
 
+    @weakify(self)
     RAC(infiniteScrollView, frame) = [RACObserve(self.tableView, contentOffset) map:^(NSValue *contentOffset) {
+        @strongify(self)
+        
         CGFloat deltaY = contentOffset.CGPointValue.y - (-(64 + self.viewModel.itemSize.height));
+       
         if (deltaY <= 0) {
             return [NSValue valueWithCGRect:CGRectMake(0, 64, SCREEN_WIDTH, self.viewModel.itemSize.height)];
         } else {
             return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, SCREEN_WIDTH, self.viewModel.itemSize.height)];
         }
     }];
+    
+    infiniteScrollView.didSelectItemAtIndex = ^(NSUInteger index) {
+        @strongify(self)
+        MRCShowcaseReposViewModel *viewModel = [[MRCShowcaseReposViewModel alloc] initWithServices:self.viewModel.services
+                                                                                            params:@{ @"showcase": self.viewModel.showcases[index] ?: [NSNull null] }];
+        [self.viewModel.services pushViewModel:viewModel animated:YES];
+    };
 }
 
 - (UIEdgeInsets)contentInset {

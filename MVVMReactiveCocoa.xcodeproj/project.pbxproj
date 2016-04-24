@@ -195,6 +195,12 @@
 		24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24F1203A1AA7525700A22D9A /* MRCAboutViewController.xib */; };
 		24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */; };
 		24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */; };
+		24FB0EB71CCC97AA005A151F /* MRCShowcaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB0EB61CCC97AA005A151F /* MRCShowcaseHeaderView.m */; };
+		24FB0EC51CCC97CC005A151F /* MRCShowcaseHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB0EC41CCC97CC005A151F /* MRCShowcaseHeaderViewModel.m */; };
+		24FB0EC71CCC990F005A151F /* MRCShowcaseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FB0EC61CCC990F005A151F /* MRCShowcaseHeaderView.xib */; };
+		24FB0ECE1CCCB2C2005A151F /* MRCShowcaseReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB0ECC1CCCB2C2005A151F /* MRCShowcaseReposViewController.m */; };
+		24FB0ECF1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24FB0ECD1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib */; };
+		24FB0ED21CCCB2F2005A151F /* MRCShowcaseReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FB0ED11CCCB2F2005A151F /* MRCShowcaseReposViewModel.m */; };
 		24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */; };
 		24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FDDEE71B31C6660040B5C3 /* MRCFollowButton.m */; };
 		24FE6E691B627A0600DF3BDA /* MRCLoadingTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6E681B627A0600DF3BDA /* MRCLoadingTitleView.m */; };
@@ -711,6 +717,16 @@
 		24F120411AA7528A00A22D9A /* MRCAboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAboutViewModel.m; sourceTree = "<group>"; };
 		24F120531AA8004400A22D9A /* MRCTableViewCellStyleValue1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTableViewCellStyleValue1.h; sourceTree = "<group>"; };
 		24F120541AA8004400A22D9A /* MRCTableViewCellStyleValue1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableViewCellStyleValue1.m; sourceTree = "<group>"; };
+		24FB0EB51CCC97AA005A151F /* MRCShowcaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCShowcaseHeaderView.h; sourceTree = "<group>"; };
+		24FB0EB61CCC97AA005A151F /* MRCShowcaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCShowcaseHeaderView.m; sourceTree = "<group>"; };
+		24FB0EC31CCC97CC005A151F /* MRCShowcaseHeaderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCShowcaseHeaderViewModel.h; sourceTree = "<group>"; };
+		24FB0EC41CCC97CC005A151F /* MRCShowcaseHeaderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCShowcaseHeaderViewModel.m; sourceTree = "<group>"; };
+		24FB0EC61CCC990F005A151F /* MRCShowcaseHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCShowcaseHeaderView.xib; sourceTree = "<group>"; };
+		24FB0ECB1CCCB2C2005A151F /* MRCShowcaseReposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCShowcaseReposViewController.h; sourceTree = "<group>"; };
+		24FB0ECC1CCCB2C2005A151F /* MRCShowcaseReposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCShowcaseReposViewController.m; sourceTree = "<group>"; };
+		24FB0ECD1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCShowcaseReposViewController.xib; sourceTree = "<group>"; };
+		24FB0ED01CCCB2F2005A151F /* MRCShowcaseReposViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCShowcaseReposViewModel.h; sourceTree = "<group>"; };
+		24FB0ED11CCCB2F2005A151F /* MRCShowcaseReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCShowcaseReposViewModel.m; sourceTree = "<group>"; };
 		24FDDEE31B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MRCBackBarButtonItem.h"; sourceTree = "<group>"; };
 		24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MRCBackBarButtonItem.m"; sourceTree = "<group>"; };
 		24FDDEE61B31C6660040B5C3 /* MRCFollowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCFollowButton.h; sourceTree = "<group>"; };
@@ -927,6 +943,9 @@
 				24B29C091CA6D37500963648 /* MRCExploreViewController.h */,
 				24B29C0A1CA6D37500963648 /* MRCExploreViewController.m */,
 				24B29C0B1CA6D37500963648 /* MRCExploreViewController.xib */,
+				24FB0ECB1CCCB2C2005A151F /* MRCShowcaseReposViewController.h */,
+				24FB0ECC1CCCB2C2005A151F /* MRCShowcaseReposViewController.m */,
+				24FB0ECD1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1029,6 +1048,8 @@
 				24143F051BD783D300555179 /* MRCTrendingSettingsViewModel.m */,
 				24B29BFB1CA6D35D00963648 /* MRCExploreViewModel.h */,
 				24B29BFC1CA6D35D00963648 /* MRCExploreViewModel.m */,
+				24FB0ED01CCCB2F2005A151F /* MRCShowcaseReposViewModel.h */,
+				24FB0ED11CCCB2F2005A151F /* MRCShowcaseReposViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1059,6 +1080,8 @@
 			children = (
 				240D01161A654D300033CC86 /* MRCAvatarHeaderViewModel.h */,
 				240D01171A654D300033CC86 /* MRCAvatarHeaderViewModel.m */,
+				24FB0EC31CCC97CC005A151F /* MRCShowcaseHeaderViewModel.h */,
+				24FB0EC41CCC97CC005A151F /* MRCShowcaseHeaderViewModel.m */,
 			);
 			path = HeaderViewModel;
 			sourceTree = "<group>";
@@ -1228,6 +1251,9 @@
 				245D62811AA8C73E00D7B081 /* MRCNetworkHeaderView.h */,
 				245D62821AA8C73E00D7B081 /* MRCNetworkHeaderView.m */,
 				245D62831AA8C73E00D7B081 /* MRCNetworkHeaderView.xib */,
+				24FB0EB51CCC97AA005A151F /* MRCShowcaseHeaderView.h */,
+				24FB0EB61CCC97AA005A151F /* MRCShowcaseHeaderView.m */,
+				24FB0EC61CCC990F005A151F /* MRCShowcaseHeaderView.xib */,
 			);
 			path = TableHeaderFooterView;
 			sourceTree = "<group>";
@@ -1672,6 +1698,7 @@
 				24F1203C1AA7525700A22D9A /* MRCAboutViewController.xib in Resources */,
 				24B29C401CA787D000963648 /* MRCExploreCollectionViewCell.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
+				24FB0ECF1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib in Resources */,
 				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				24B29C0D1CA6D37500963648 /* MRCExploreViewController.xib in Resources */,
@@ -1697,6 +1724,7 @@
 				2479C9411AAD39150057B681 /* icon-success.png in Resources */,
 				242D83591A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.xib in Resources */,
 				24A47EB71BD5DA05000B79D0 /* MRCTrendingViewController.xib in Resources */,
+				24FB0EC71CCC990F005A151F /* MRCShowcaseHeaderView.xib in Resources */,
 				242D83661A7A7E1300F5F424 /* MRCGitTreeViewController.xib in Resources */,
 				245D62891AA8C73E00D7B081 /* MRCNetworkHeaderView.xib in Resources */,
 				24F120371AA7447A00A22D9A /* MRCSettingsViewController.xib in Resources */,
@@ -1817,6 +1845,7 @@
 				24AF977E1B02292700E2A737 /* MRCSearch.m in Sources */,
 				2436883D1B25E2FB00D801D3 /* MRCUserListViewController.m in Sources */,
 				249E5B361B065D4600BFDEA1 /* TGRImageZoomAnimationController.m in Sources */,
+				24FB0ED21CCCB2F2005A151F /* MRCShowcaseReposViewModel.m in Sources */,
 				24D899EE1AAAAE9F00BC607C /* MRCFeedbackViewModel.m in Sources */,
 				240D01301A654D300033CC86 /* MRCTableViewController.m in Sources */,
 				249E5B371B065D4600BFDEA1 /* UIImage+AspectFit.m in Sources */,
@@ -1856,6 +1885,7 @@
 				242D835C1A7A5B3B00F5F424 /* MRCSelectBranchOrTagViewModel.m in Sources */,
 				24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */,
 				24A47EA71BD5D9E9000B79D0 /* MRCTrendingViewModel.m in Sources */,
+				24FB0EC51CCC97CC005A151F /* MRCShowcaseHeaderViewModel.m in Sources */,
 				240D012B1A654D300033CC86 /* MRCRouter.m in Sources */,
 				240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */,
 				24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */,
@@ -1897,6 +1927,7 @@
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
 				24143F151BD783F900555179 /* MRCTrendingSettingsViewController.m in Sources */,
 				24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */,
+				24FB0ECE1CCCB2C2005A151F /* MRCShowcaseReposViewController.m in Sources */,
 				24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */,
 				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
 				249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */,
@@ -1916,6 +1947,7 @@
 				24B29BFD1CA6D35D00963648 /* MRCExploreViewModel.m in Sources */,
 				24049AEE1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m in Sources */,
 				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
+				24FB0EB71CCC97AA005A151F /* MRCShowcaseHeaderView.m in Sources */,
 				2479C9451AAD39150057B681 /* README.md in Sources */,
 				240D012E1A654D300033CC86 /* MRCNavigationControllerStack.m in Sources */,
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MRCShowcaseHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEO-gU-WgZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBs-Ib-iLw">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Css preprocessors" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAJ-Lh-LCI">
+                            <rect key="frame" x="15" y="25" width="345" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="VBs-Ib-iLw" secondAttribute="trailing" id="7BC-tv-4ma"/>
+                        <constraint firstAttribute="height" constant="70" id="DHn-Go-J6X"/>
+                        <constraint firstItem="yAJ-Lh-LCI" firstAttribute="leading" secondItem="lEO-gU-WgZ" secondAttribute="leading" constant="15" id="FAr-DV-DJu"/>
+                        <constraint firstAttribute="bottom" secondItem="VBs-Ib-iLw" secondAttribute="bottom" id="Huh-pt-WKW"/>
+                        <constraint firstItem="VBs-Ib-iLw" firstAttribute="leading" secondItem="lEO-gU-WgZ" secondAttribute="leading" id="RJh-r8-Uvz"/>
+                        <constraint firstAttribute="trailing" secondItem="yAJ-Lh-LCI" secondAttribute="trailing" constant="15" id="fAb-DR-ajI"/>
+                        <constraint firstItem="VBs-Ib-iLw" firstAttribute="top" secondItem="lEO-gU-WgZ" secondAttribute="top" id="gjX-zn-crH"/>
+                        <constraint firstItem="yAJ-Lh-LCI" firstAttribute="centerY" secondItem="lEO-gU-WgZ" secondAttribute="centerY" id="qgu-Uo-J2L"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEZ-pd-dEH">
+                    <rect key="frame" x="0.0" y="70" width="375" height="85"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcq-LO-ikc">
+                            <rect key="frame" x="15" y="15" width="345" height="54"/>
+                            <string key="text">Developers use CSS preprocessors to build CSS faster. You can browse some of the most popular CSS preprocessors on GitHub below.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.45098039215686275" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="mcq-LO-ikc" secondAttribute="bottom" constant="15" id="5z3-Rd-m7w"/>
+                        <constraint firstAttribute="trailing" secondItem="mcq-LO-ikc" secondAttribute="trailing" constant="15" id="Q6J-sB-h2Z"/>
+                        <constraint firstAttribute="trailing" secondItem="mcq-LO-ikc" secondAttribute="trailing" constant="15" id="T8z-6U-4mH"/>
+                        <constraint firstItem="mcq-LO-ikc" firstAttribute="top" secondItem="cEZ-pd-dEH" secondAttribute="top" constant="15" id="TZk-5Y-rjZ"/>
+                        <constraint firstItem="mcq-LO-ikc" firstAttribute="leading" secondItem="cEZ-pd-dEH" secondAttribute="leading" constant="15" id="edf-aJ-mkd"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5z3-Rd-m7w"/>
+                            <exclude reference="Q6J-sB-h2Z"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="lEO-gU-WgZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5rX-zA-SpI"/>
+                <constraint firstItem="lEO-gU-WgZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Ln-KK-HQZ"/>
+                <constraint firstItem="cEZ-pd-dEH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HfY-7G-BvZ"/>
+                <constraint firstItem="cEZ-pd-dEH" firstAttribute="top" secondItem="lEO-gU-WgZ" secondAttribute="bottom" id="Xgh-Gy-9eD"/>
+                <constraint firstAttribute="trailing" secondItem="lEO-gU-WgZ" secondAttribute="trailing" id="YQQ-up-R7k"/>
+                <constraint firstAttribute="bottom" secondItem="cEZ-pd-dEH" secondAttribute="bottom" id="cRe-Vi-ZOq"/>
+                <constraint firstAttribute="trailing" secondItem="cEZ-pd-dEH" secondAttribute="trailing" id="joK-xg-bgF"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="descLabel" destination="mcq-LO-ikc" id="zyb-Ff-5uT"/>
+                <outlet property="imageView" destination="VBs-Ib-iLw" id="L6b-3x-zsS"/>
+                <outlet property="nameLabel" destination="yAJ-Lh-LCI" id="Wh7-Qm-9on"/>
+            </connections>
+            <point key="canvasLocation" x="-25.5" y="351.5"/>
+        </view>
+    </objects>
+</document>

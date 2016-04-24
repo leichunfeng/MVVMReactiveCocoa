@@ -9,11 +9,12 @@
 #import "MRCTableViewModel.h"
 
 typedef NS_ENUM(NSUInteger, MRCReposViewModelType) {
-    MRCReposViewModelTypeOwned,
-    MRCReposViewModelTypeStarred,
-    MRCReposViewModelTypeSearch,
-    MRCReposViewModelTypePublic,
-    MRCReposViewModelTypeTrending,
+    MRCReposViewModelTypeOwned    = 0,
+    MRCReposViewModelTypeStarred  = 1,
+    MRCReposViewModelTypeSearch   = 2,
+    MRCReposViewModelTypePublic   = 3,
+    MRCReposViewModelTypeTrending = 4,
+    MRCReposViewModelTypeShowcase = 5,
 };
 
 typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {

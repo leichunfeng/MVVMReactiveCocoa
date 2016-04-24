@@ -18,4 +18,11 @@
 /// @return Showcases
 - (RACSignal *)requestShowcases;
 
+/// Request showcase repos , such as http://trending.codehub-app.com/v2/showcases/swift
+///
+/// @param slug
+///
+/// @return
+- (RACSignal *)requestShowcaseReposWithSlug:(NSString *)slug;
+
 @end
