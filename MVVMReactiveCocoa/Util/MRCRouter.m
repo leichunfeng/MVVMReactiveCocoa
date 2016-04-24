@@ -58,6 +58,8 @@
         @"MRCTrendingViewModel": @"MRCTrendingViewController",
         @"MRCTrendingSettingsViewModel": @"MRCTrendingSettingsViewController",
         @"MRCShowcaseReposViewModel": @"MRCShowcaseReposViewController",
+        @"MRCPopularReposViewModel": @"MRCPopularReposViewController",
+        @"MRCLanguageViewModel": @"MRCLanguageViewController",
     };
 }
 

@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCPublicReposViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCPopularReposViewController">
             <connections>
-                <outlet property="tableView" destination="duF-vl-WiX" id="EXa-yr-VwR"/>
+                <outlet property="tableView" destination="jun-9w-HjA" id="h8A-rA-b2L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,25 +16,22 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="duF-vl-WiX">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jun-9w-HjA">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="k1P-c6-cIt"/>
-                        <outlet property="delegate" destination="-1" id="xk7-y2-VzV"/>
-                        <outlet property="emptyDataSetDelegate" destination="-1" id="rWb-BW-G16"/>
-                        <outlet property="emptyDataSetSource" destination="-1" id="UjB-oG-PUb"/>
+                        <outlet property="dataSource" destination="-1" id="lIp-kz-Dup"/>
+                        <outlet property="delegate" destination="-1" id="PDC-ve-ZgF"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="duF-vl-WiX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OiN-tN-d9y"/>
-                <constraint firstAttribute="trailing" secondItem="duF-vl-WiX" secondAttribute="trailing" id="QsY-is-18t"/>
-                <constraint firstAttribute="bottom" secondItem="duF-vl-WiX" secondAttribute="bottom" id="pUE-3i-Dux"/>
-                <constraint firstItem="duF-vl-WiX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xDK-qA-xpc"/>
+                <constraint firstAttribute="bottom" secondItem="jun-9w-HjA" secondAttribute="bottom" id="BU1-hW-0Zr"/>
+                <constraint firstAttribute="trailing" secondItem="jun-9w-HjA" secondAttribute="trailing" id="SJ7-km-URA"/>
+                <constraint firstItem="jun-9w-HjA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VeY-B0-mCM"/>
+                <constraint firstItem="jun-9w-HjA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gXv-lG-geC"/>
             </constraints>
-            <point key="canvasLocation" x="305" y="406"/>
         </view>
     </objects>
 </document>

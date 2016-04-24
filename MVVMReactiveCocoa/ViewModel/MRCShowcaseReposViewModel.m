@@ -47,8 +47,8 @@
     
 //    options = options | MRCReposViewModelOptionsObserveStarredReposChange;
 //    options = options | MRCReposViewModelOptionsSaveOrUpdateRepos;
-    //    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
-    //    options = options | MRCReposViewModelOptionsPagination;
+//    options = options | MRCReposViewModelOptionsSaveOrUpdateStarredStatus;
+//    options = options | MRCReposViewModelOptionsPagination;
 //    options = options | MRCReposViewModelOptionsSectionIndex;
     options = options | MRCReposViewModelOptionsShowOwnerLogin;
     options = options | MRCReposViewModelOptionsMarkStarredStatus;

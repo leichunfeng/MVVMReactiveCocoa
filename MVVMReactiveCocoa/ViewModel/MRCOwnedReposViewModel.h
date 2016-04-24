@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, MRCReposViewModelType) {
     MRCReposViewModelTypePublic   = 3,
     MRCReposViewModelTypeTrending = 4,
     MRCReposViewModelTypeShowcase = 5,
+    MRCReposViewModelTypePopular  = 6,
 };
 
 typedef NS_OPTIONS(NSUInteger, MRCReposViewModelOptions) {
