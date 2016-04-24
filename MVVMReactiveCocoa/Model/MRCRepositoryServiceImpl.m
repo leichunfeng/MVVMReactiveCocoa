@@ -113,7 +113,7 @@
         replayLazily];
 }
 
-- (RACSignal *)requestShowcaseReposWithSlug:(NSString *)slug {
+- (RACSignal *)requestShowcaseRepositoriesWithSlug:(NSString *)slug {
     NSParameterAssert(slug.length > 0);
     return [[RACSignal
         createSignal:^(id<RACSubscriber> subscriber) {

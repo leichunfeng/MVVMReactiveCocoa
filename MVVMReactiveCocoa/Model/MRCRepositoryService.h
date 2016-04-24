@@ -23,6 +23,6 @@
 /// @param slug
 ///
 /// @return
-- (RACSignal *)requestShowcaseReposWithSlug:(NSString *)slug;
+- (RACSignal *)requestShowcaseRepositoriesWithSlug:(NSString *)slug;
 
 @end

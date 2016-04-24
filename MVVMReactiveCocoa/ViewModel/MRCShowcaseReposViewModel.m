@@ -61,7 +61,7 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[self.services repositoryService] requestShowcaseReposWithSlug:self.showcase[@"slug"]];
+    return [[self.services repositoryService] requestShowcaseRepositoriesWithSlug:self.showcase[@"slug"]];
 }
 
 @end
