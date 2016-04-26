@@ -67,24 +67,13 @@
                                                                       target:self
                                                                refreshAction:@selector(refreshTriggered:)
                                                                        plist:@"storehouse"
-                                                                       color:[UIColor whiteColor]
+                                                                       color:[UIColor blackColor]
                                                                    lineWidth:1.5
                                                                   dropHeight:80
                                                                        scale:1
                                                         horizontalRandomness:150
                                                      reverseLoadingAnimation:YES
                                                      internalAnimationFactor:0.5];
-        
-        UIView *backgroundView = [[UIView alloc] init];
-        [self.tableView insertSubview:backgroundView atIndex:0];
-        
-        backgroundView.backgroundColor = [UIColor colorWithRed:(48 - 40) / 215.0 green:(67 - 40) / 215.0 blue:(78 - 40) / 215.0 alpha:1];
-        backgroundView.backgroundColor = [UIColor colorWithWhite:45.f/255.f alpha:1];
-        
-        RAC(backgroundView, frame) = [RACObserve(self.tableView, contentOffset) map:^(NSValue *contentOffset) {
-            if (contentOffset.CGPointValue.y > -64) return [NSValue valueWithCGRect:CGRectZero];
-            return [NSValue valueWithCGRect:CGRectMake(0, contentOffset.CGPointValue.y + 64, SCREEN_WIDTH, -contentOffset.CGPointValue.y - 64)];
-        }];
     }
     
     if (self.viewModel.shouldInfiniteScrolling) {
