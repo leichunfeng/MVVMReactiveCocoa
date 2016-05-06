@@ -17,8 +17,8 @@
     if (self) {
         self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
         
-        self.imageView.layer.cornerRadius = 5;
-        self.imageView.clipsToBounds = YES;
+        self.imageView.layer.cornerRadius  = 5;
+        self.imageView.layer.masksToBounds = YES;
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         
         NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.imageView

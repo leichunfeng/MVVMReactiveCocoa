@@ -54,6 +54,25 @@ static UIImage *_tintedStarIcon = nil;
     
     self.desLabel.numberOfLines = 3;
     self.forkIconImageView.image = _gitBranchIcon;
+    
+    RAC(self.starCountLabel, text) = [[RACObserve(self, viewModel.repository.stargazersCount)
+        map:^(NSNumber *stargazersCount) {
+            return stargazersCount.stringValue;
+        }]
+        deliverOnMainThread];
+    
+    RAC(self.starIconImageView, image) = [RACSignal
+        combineLatest:@[
+            RACObserve(self, viewModel.options),
+            RACObserve(self, viewModel.repository.starredStatus).deliverOnMainThread,
+        ]
+        reduce:^(NSNumber *options, NSNumber *starredStatus) {
+            if (options.unsignedIntegerValue & MRCReposViewModelOptionsMarkStarredStatus &&
+                starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
+                return _tintedStarIcon;
+            }
+            return _starIcon;
+        }];
 }
 
 - (void)bindViewModel:(MRCReposItemViewModel *)viewModel {
@@ -71,15 +90,6 @@ static UIImage *_tintedStarIcon = nil;
     self.languageLabel.text  = viewModel.language;
     self.forkCountLabel.text = @(viewModel.repository.forksCount).stringValue;
     
-    @weakify(self)
-	[[[RACObserve(viewModel.repository, stargazersCount)
-		deliverOnMainThread]
-        takeUntil:self.rac_prepareForReuseSignal]
-    	subscribeNext:^(NSNumber *stargazersCount) {
-        	@strongify(self)
-            self.starCountLabel.text = stargazersCount.stringValue;
-        }];
-    
     if (viewModel.repository.isPrivate) {
         self.iconImageView.image = _lockIcon;
     } else if (viewModel.repository.isFork) {
@@ -88,27 +98,7 @@ static UIImage *_tintedStarIcon = nil;
         self.iconImageView.image = _repoIcon;
     }
     
-    if (viewModel.language.length == 0) {
-        self.layoutConstraint.constant = 0;
-    } else {
-        self.layoutConstraint.constant = 10;
-    }
-    
-    if (viewModel.options & MRCReposViewModelOptionsMarkStarredStatus) {
-        [[[RACObserve(viewModel.repository, starredStatus)
-        	deliverOnMainThread]
-            takeUntil:self.rac_prepareForReuseSignal]
-        	subscribeNext:^(NSNumber *starredStatus) {
-                @strongify(self)
-                if (starredStatus.unsignedIntegerValue == OCTRepositoryStarredStatusYES) {
-                    self.starIconImageView.image = _tintedStarIcon;
-                } else {
-                    self.starIconImageView.image = _starIcon;
-                }
-            }];
-    } else {
-        self.starIconImageView.image = _starIcon;
-    }
+    self.layoutConstraint.constant = viewModel.language.length == 0 ? 0 : 10;
 }
 
 @end

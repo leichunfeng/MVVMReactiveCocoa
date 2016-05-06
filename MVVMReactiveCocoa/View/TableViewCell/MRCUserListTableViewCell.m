@@ -26,6 +26,27 @@
 
 - (void)awakeFromNib {
     self.avatarImageView.backgroundColor = HexRGB(colorI6);
+    
+    RACSignal *operationCommandSignal = RACObserve(self, viewModel.operationCommand);
+    RACSignal *followingStatusSignal  = RACObserve(self, viewModel.user.followingStatus).deliverOnMainThread;
+    
+    RACSignal *combinedSignal = [RACSignal combineLatest:@[ operationCommandSignal, followingStatusSignal ]];
+    
+    RAC(self.activityIndicatorView, hidden) = [combinedSignal reduceEach:^(RACCommand *operationCommand, NSNumber *followingStatus) {
+        if (operationCommand == nil) return @YES;
+        if (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown) return @YES;
+        return @NO;
+    }];
+    
+    RAC(self.operationButton, hidden) = [combinedSignal reduceEach:^(RACCommand *operationCommand, NSNumber *followingStatus) {
+        if (operationCommand == nil) return @YES;
+        if (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown) return @YES;
+        return @NO;
+    }];
+    
+    RAC(self.operationButton, selected) = [followingStatusSignal map:^(NSNumber *followingStatus) {
+        return followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES ? @YES : @NO;
+    }];
 }
 
 - (void)bindViewModel:(MRCUserListItemViewModel *)viewModel {
@@ -35,25 +56,9 @@
     
     self.loginLabel.text = viewModel.login;
     self.htmlLabel.text  = viewModel.user.HTMLURL.absoluteString;
-
-    if (viewModel.operationCommand == nil) {
-        self.activityIndicatorView.hidden = YES;
-        self.operationButton.hidden = YES;
-    } else {
-        if (!self.activityIndicatorView.isAnimating) {
-            [self.activityIndicatorView startAnimating];
-        }
-
-        @weakify(self)
-        [[[RACObserve(viewModel.user, followingStatus)
-            deliverOnMainThread]
-            takeUntil:self.rac_prepareForReuseSignal]
-            subscribeNext:^(NSNumber *followingStatus) {
-                @strongify(self)
-                self.operationButton.selected = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusYES);
-                self.activityIndicatorView.hidden = (followingStatus.unsignedIntegerValue != OCTUserFollowingStatusUnknown);
-                self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
-            }];
+    
+    if (!self.activityIndicatorView.isAnimating) {
+        [self.activityIndicatorView startAnimating];
     }
 }
 

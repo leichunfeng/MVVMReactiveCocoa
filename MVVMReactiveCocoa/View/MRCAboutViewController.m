@@ -57,8 +57,8 @@
                 cell.detailTextLabel.text = @"Latest version";
                 cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
                 cell.detailTextLabel.textColor = HexRGB(0x8E8E93);
-                cell.detailTextLabel.layer.cornerRadius = 0;
-                cell.detailTextLabel.clipsToBounds = YES;
+                cell.detailTextLabel.layer.cornerRadius  = 0;
+                cell.detailTextLabel.layer.masksToBounds = YES;
                 cell.detailTextLabel.backgroundColor = [UIColor clearColor];
                 cell.accessoryType  = UITableViewCellAccessoryNone;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -66,8 +66,8 @@
                 cell.detailTextLabel.text = [NSString stringWithFormat:@" new v%@ ", self.viewModel.appStoreVersion];
                 cell.detailTextLabel.textAlignment = NSTextAlignmentCenter;
                 cell.detailTextLabel.textColor = [UIColor whiteColor];
-                cell.detailTextLabel.layer.cornerRadius = 10;
-                cell.detailTextLabel.clipsToBounds = YES;
+                cell.detailTextLabel.layer.cornerRadius  = 10;
+                cell.detailTextLabel.layer.masksToBounds = YES;
                 cell.detailTextLabel.backgroundColor = HexRGB(0xF13839);
                 cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
                 cell.selectionStyle = UITableViewCellSelectionStyleDefault;

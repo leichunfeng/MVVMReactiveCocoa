@@ -25,8 +25,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.avatarImageView.layer.cornerRadius = 15;
-    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.layer.cornerRadius  = 15;
+    self.avatarImageView.layer.masksToBounds = YES;
     self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 

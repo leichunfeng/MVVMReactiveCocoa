@@ -55,8 +55,8 @@ static UIImage *_selectedImage = nil;
     });
     
     self.layer.borderColor = HexRGB(0xd5d5d5).CGColor;
-    self.layer.cornerRadius = 5;
-    self.clipsToBounds = YES;
+    self.layer.cornerRadius  = 5;
+    self.layer.masksToBounds = YES;
     
     self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     self.contentEdgeInsets = UIEdgeInsetsMake(7, 1, 7, 3);

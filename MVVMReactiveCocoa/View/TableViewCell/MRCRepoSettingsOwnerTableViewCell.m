@@ -20,8 +20,8 @@
 @implementation MRCRepoSettingsOwnerTableViewCell
 
 - (void)awakeFromNib {
-    self.avatarImageView.layer.cornerRadius = 5;
-    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.layer.cornerRadius  = 5;
+    self.avatarImageView.layer.masksToBounds = YES;
     self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.avatarImageView.backgroundColor = HexRGB(colorI6);
 }

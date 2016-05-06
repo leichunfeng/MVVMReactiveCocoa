@@ -68,8 +68,8 @@
 }
 
 - (void)initialize {
-    self.layer.cornerRadius = 3;
-    self.clipsToBounds = YES;
+    self.layer.cornerRadius  = 3;
+    self.layer.masksToBounds = YES;
     
     [self setBackgroundImage:[self backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self setBackgroundImage:[self backgroundImageForState:UIControlStateDisabled] forState:UIControlStateDisabled];
