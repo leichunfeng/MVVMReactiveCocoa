@@ -28,7 +28,6 @@ PODS:
   - FormatterKit/UnitOfInformationFormatter (1.8.0)
   - FormatterKit/URLRequestFormatter (1.8.0)
   - GPUImage (0.1.7)
-  - HMSegmentedControl (1.5.2)
   - IQKeyboardManager (3.2.0.3)
   - LCFInfiniteScrollView (0.1):
     - SDWebImage
@@ -58,7 +57,6 @@ DEPENDENCIES:
   - FMDB
   - FormatterKit (~> 1.8.0)
   - GPUImage (~> 0.1.7)
-  - HMSegmentedControl
   - IQKeyboardManager (~> 3.2.0.3)
   - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`,
     tag `v0.1`)
@@ -99,7 +97,6 @@ SPEC CHECKSUMS:
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
-  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
   LCFInfiniteScrollView: caf39a6c3242356cac9e97737016a4e2831c123f
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1

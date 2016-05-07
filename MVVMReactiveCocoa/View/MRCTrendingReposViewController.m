@@ -9,11 +9,10 @@
 #import "MRCTrendingReposViewController.h"
 #import "MRCTrendingReposViewModel.h"
 #import "MRCTrendingViewController.h"
-#import "HMSegmentedControl.h"
 
 @interface MRCTrendingReposViewController ()
 
-@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIViewController *currentViewController;
 @property (nonatomic, strong) MRCTrendingReposViewModel *viewModel;
@@ -31,12 +30,19 @@
     
     self.contentView = [[UIView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.contentView];
-
-    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 44)];
-    [self.view addSubview:self.segmentedControl];
     
-    self.segmentedControl.sectionTitles = @[ @"Daily", @"Weekly", @"Monthly" ];
-    [self.segmentedControl addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+    UIView *wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 45)];
+    [self.view addSubview:wrapperView];
+
+    wrapperView.backgroundColor = [UIColor whiteColor];
+    [wrapperView addBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
+
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[ @"Daily", @"Weekly", @"Monthly" ]];
+    [wrapperView addSubview:self.segmentedControl];
+    
+    self.segmentedControl.frame = CGRectMake(10, 8, SCREEN_WIDTH - 10 * 2, 29);
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.tintColor = HexRGB(colorI3);
 
     MRCTrendingViewController *dailyViewController   = [[MRCTrendingViewController alloc] initWithViewModel:self.viewModel.dailyViewModel];
     MRCTrendingViewController *weeklyViewController  = [[MRCTrendingViewController alloc] initWithViewModel:self.viewModel.weeklyViewModel];
@@ -53,21 +59,23 @@
     [self.contentView addSubview:dailyViewController.view];
     
     @weakify(self)
-    self.segmentedControl.indexChangeBlock = ^(NSInteger index) {
-        @strongify(self)
-        
-        UIViewController *toViewController = viewControllers[index];
-        
-        [self transitionFromViewController:self.currentViewController
-                          toViewController:toViewController
-                                  duration:0
-                                   options:0
-                                animations:NULL
-                                completion:^(BOOL finished) {
-                                    @strongify(self)
-                                    self.currentViewController = toViewController;
-                                }];
-    };
+    [[self.segmentedControl
+    	rac_newSelectedSegmentIndexChannelWithNilValue:@0]
+    	subscribeNext:^(NSNumber *selectedSegmentIndex) {
+            @strongify(self)
+            
+            UIViewController *toViewController = viewControllers[selectedSegmentIndex.unsignedIntegerValue];
+            
+            [self transitionFromViewController:self.currentViewController
+                              toViewController:toViewController
+                                      duration:0
+                                       options:0
+                                    animations:NULL
+                                    completion:^(BOOL finished) {
+                                    	@strongify(self)
+                                    	self.currentViewController = toViewController;
+                                    }];
+     }];
 }
 
 @end
