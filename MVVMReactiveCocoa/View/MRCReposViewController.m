@@ -31,8 +31,6 @@
     starredReposViewController.segmentedControlItem = @"Starred";
     
     self.viewControllers = @[ ownedReposViewController, starredReposViewController ];
-    
-    self.navigationItem.titleView = self.segmentedControl;
 }
 
 @end

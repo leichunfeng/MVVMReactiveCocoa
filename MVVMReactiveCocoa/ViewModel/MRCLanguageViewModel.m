@@ -13,43 +13,47 @@
 - (instancetype)initWithServices:(id<MRCViewModelServices>)services params:(NSDictionary *)params {
     self = [super initWithServices:services params:params];
     if (self) {
-        self.language = params[@"language"];
+        self.item = params[@"language"];
     }
     return self;
 }
 
 - (void)initialize {
     [super initialize];
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:[self resourceName] ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
     
-    self.title = @"Language";
+    NSError *error = nil;
+    NSArray *items = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
-    NSArray *languages = MRCTrendingLanguages();
-    
+    if (error) MRCLogError(error);
+
     @weakify(self)
     RAC(self, dataSource) = [[[RACObserve(self, keyword)
         map:^(NSString *keyword) {
-            if (keyword.length == 0) return languages;
+            if (keyword.length == 0) return items;
             
-            return [languages.rac_sequence filter:^(NSDictionary *language) {
-                NSString *name = language[@"name"];
+            return [items.rac_sequence filter:^(NSDictionary *item) {
+                NSString *name = item[@"name"];
                 return [name localizedCaseInsensitiveContainsString:keyword];
             }].array;
         }]
-        doNext:^(NSArray *languages) {
+        doNext:^(NSArray *items) {
             @strongify(self)
-            
-            NSArray *firstLetters = [languages.rac_sequence map:^(NSDictionary *language) {
-                return [language[@"name"] firstLetter];
+
+            NSArray *firstLetters = [items.rac_sequence map:^(NSDictionary *item) {
+                return [item[@"name"] firstLetter];
             }].array;
-            
+
             firstLetters = [NSSet setWithArray:firstLetters].allObjects;
-            
+
             self.sectionIndexTitles = [firstLetters sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
         }]
-        map:^(NSArray *languages) {
-            return [[[languages.rac_sequence.signal
-                groupBy:^(NSDictionary *language) {
-                    return [language[@"name"] firstLetter];
+        map:^(NSArray *items) {
+            return [[[items.rac_sequence.signal
+                groupBy:^(NSDictionary *item) {
+                    return [item[@"name"] firstLetter];
                 }]
                 map:^(RACSignal *signal) {
                     return signal.sequence;
@@ -60,15 +64,12 @@
         }];
 }
 
-static NSArray *MRCTrendingLanguages() {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Languages" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    
-    NSError *error = nil;
-    NSArray *languages = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (error) MRCLogError(error);
-    
-    return languages;
+- (NSString *)title {
+    return @"Language";
+}
+
+- (NSString *)resourceName {
+    return @"Languages";
 }
 
 @end

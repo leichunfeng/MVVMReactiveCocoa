@@ -43,6 +43,14 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
+    
+    if (self.viewModel.type == MRCUserListViewModelTypePopularUsers) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage octicon_imageWithIdentifier:@"Gear" size:CGSizeMake(22, 22)]
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:nil
+                                                                                 action:NULL];
+        self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.rightBarButtonItemCommand;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

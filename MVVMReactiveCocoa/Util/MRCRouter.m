@@ -60,6 +60,8 @@
         @"MRCShowcaseReposViewModel": @"MRCShowcaseReposViewController",
         @"MRCPopularReposViewModel": @"MRCPopularReposViewController",
         @"MRCLanguageViewModel": @"MRCLanguageViewController",
+        @"MRCCountryViewModel": @"MRCCountryViewController",
+        @"MRCCountryAndLanguageViewModel": @"MRCCountryAndLanguageViewController",
     };
 }
 

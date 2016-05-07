@@ -9,6 +9,7 @@
 #import "MRCUserListViewModel.h"
 #import "MRCUserListItemViewModel.h"
 #import "MRCUserDetailViewModel.h"
+#import "MRCCountryAndLanguageViewModel.h"
 
 @interface MRCUserListViewModel ()
 
@@ -19,6 +20,8 @@
 @property (nonatomic, copy, readwrite) NSArray *users;
 
 @property (nonatomic, strong) RACCommand *operationCommand;
+
+@property (nonatomic, strong, readwrite) RACCommand *rightBarButtonItemCommand;
 
 @end
 
@@ -34,8 +37,10 @@
 
 - (void)initialize {
     [super initialize];
-    
+
     self.type = [self.params[@"type"] unsignedIntegerValue];
+    
+    @weakify(self)
     if (self.type == MRCUserListViewModelTypeFollowers) {
         self.title = @"Followers";
     } else if (self.type == MRCUserListViewModelTypeFollowing) {
@@ -43,25 +48,79 @@
     } else if (self.type == MRCUserListViewModelTypePopularUsers) {
         self.titleViewType = MRCTitleViewTypeDoubleTitle;
         
-        RAC(self, title, @"All countries")    = RACObserve(self, location);
-        RAC(self, subtitle, @"All languages") = RACObserve(self, language);
+        self.country = @{
+            @"name": @"All Countries",
+            @"slug": @"",
+        };
+        
+        self.language = @{
+            @"name": @"All Languages",
+            @"slug": @"",
+        };
+
+        RAC(self, title) = [RACObserve(self, country) map:^(NSDictionary *country) {
+            return country[@"name"];
+        }];
+        
+        RAC(self, subtitle) = [RACObserve(self, language) map:^(NSDictionary *language) {
+            return language[@"name"];
+        }];
+        
+        RACSignal *countrySignal = [[RACObserve(self, country)
+            map:^(NSDictionary *country) {
+                return country[@"slug"];
+            }]
+            distinctUntilChanged];
+        
+        RACSignal *languageSignal = [[RACObserve(self, language)
+            map:^(NSDictionary *language) {
+                return language[@"slug"];
+            }]
+            distinctUntilChanged];
+        
+        [[[RACSignal
+            combineLatest:@[ countrySignal, languageSignal ]]
+            doNext:^(id x) {
+                @strongify(self)
+                self.dataSource = nil;
+            }]
+            subscribeNext:^(id x) {
+                @strongify(self)
+                [self.requestRemoteDataCommand execute:@0];
+            }];
+        
+        self.rightBarButtonItemCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
+            @strongify(self)
+
+            MRCCountryAndLanguageViewModel *viewModel = [[MRCCountryAndLanguageViewModel alloc] initWithServices:self.services
+                                                                                                          params:@{ @"country": self.country ?: @{},
+                                                                                                                    @"language": self.language ?: @{} }];
+            [self.services pushViewModel:viewModel animated:YES];
+
+            viewModel.callback = ^(NSDictionary *output) {
+                @strongify(self)
+                self.country  = output[@"country"];
+                self.language = output[@"language"];
+            };
+
+            return [RACSignal empty];
+        }];
     }
-    
+
     self.shouldPullToRefresh = YES;
     self.shouldInfiniteScrolling = self.type != MRCUserListViewModelTypePopularUsers;
-    
-    @weakify(self)
+
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         MRCUserListItemViewModel *itemViewModel = self.dataSource[indexPath.section][indexPath.row];
-        
+
         MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services
                                                                                       params:@{ @"user": itemViewModel.user }];
         [self.services pushViewModel:viewModel animated:YES];
-       
+
         return [RACSignal empty];
     }];
-    
+
     self.operationCommand = [[RACCommand alloc] initWithSignalBlock:^(MRCUserListItemViewModel *viewModel) {
         @strongify(self)
         if (viewModel.user.followingStatus == OCTUserFollowingStatusYES) {
@@ -73,7 +132,7 @@
     }];
 
     self.operationCommand.allowsConcurrentExecution = YES;
-    
+
     RACSignal *fetchLocalDataSignal = [RACSignal createSignal:^(id<RACSubscriber> subscriber) {
         @strongify(self)
         if (self.isCurrentUser) {
@@ -85,11 +144,11 @@
         }
         return (RACDisposable *)nil;
     }];
-    
+
     RACSignal *requestRemoteDataSignal = self.requestRemoteDataCommand.executionSignals.switchToLatest;
-    
+
     RAC(self, users) = [fetchLocalDataSignal merge:requestRemoteDataSignal];
-    
+
     RAC(self, dataSource) = [RACObserve(self, users) map:^(NSArray *users) {
         @strongify(self)
         return [self dataSourceWithUsers:users];
@@ -105,7 +164,7 @@
         if (page == 1) {
             for (OCTUser *user in users) {
                 if (user.followingStatus == OCTUserFollowingStatusYES) continue;
-                
+
                 for (OCTUser *preUser in self.users) {
                     if ([user.objectID isEqualToString:preUser.objectID]) {
                         user.followingStatus = preUser.followingStatus;
@@ -118,7 +177,7 @@
         }
         return users;
     };
-    
+
     if (self.type == MRCUserListViewModelTypeFollowers) {
         return [[[[[[[self.services client]
             fetchFollowersForUser:self.user offset:[self offsetForPage:page] perPage:self.perPage]
@@ -161,21 +220,21 @@
             }];
     } else if (self.type == MRCUserListViewModelTypePopularUsers) {
         return [[[self.services client]
-            fetchPopularUsersWithLocation:self.location language:self.language]
+            fetchPopularUsersWithLocation:self.country[@"slug"] language:self.language[@"slug"]]
             map:mapFollowingStatus];
     }
-    
+
     return [RACSignal empty];
 }
 
 - (NSArray *)dataSourceWithUsers:(NSArray *)users {
     if (users.count == 0) return nil;
-    
+
     @weakify(self)
     NSArray *viewModels = [users.rac_sequence map:^(OCTUser *user) {
         @strongify(self)
         MRCUserListItemViewModel *viewModel = [[MRCUserListItemViewModel alloc] initWithUser:user];
-        
+
         if (user.followingStatus == OCTUserFollowingStatusUnknown) {
             [[[self.services
                 client]
@@ -195,8 +254,8 @@
 
         return viewModel;
     }].array;
-    
-    return @[ viewModels ];
+
+    return @[ viewModels ?: @[] ];
 }
 
 @end

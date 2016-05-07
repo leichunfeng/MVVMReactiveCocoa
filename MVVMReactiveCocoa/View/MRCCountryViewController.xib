@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCLanguageViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCCountryViewController">
             <connections>
-                <outlet property="searchBar" destination="2LN-rY-Whi" id="cKf-4N-yib"/>
-                <outlet property="tableView" destination="DEd-sw-hAX" id="lBh-sU-9yJ"/>
+                <outlet property="searchBar" destination="fo9-HN-Gwl" id="KAw-gq-cSZ"/>
+                <outlet property="tableView" destination="ka8-d0-kfy" id="EyY-Eb-BSD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,29 +17,29 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DEd-sw-hAX">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ka8-d0-kfy">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" id="2LN-rY-Whi" customClass="MRCSearchBar">
+                    <searchBar key="tableHeaderView" contentMode="redraw" id="fo9-HN-Gwl" customClass="MRCSearchBar">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
-                            <outlet property="delegate" destination="-1" id="P7K-sI-LRq"/>
+                            <outlet property="delegate" destination="-1" id="9mW-K7-lEO"/>
                         </connections>
                     </searchBar>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="q8K-os-fXv"/>
-                        <outlet property="delegate" destination="-1" id="6uP-Th-mOx"/>
+                        <outlet property="dataSource" destination="-1" id="yNt-G1-wik"/>
+                        <outlet property="delegate" destination="-1" id="aUl-yb-OYH"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="DEd-sw-hAX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IQu-OM-a4Q"/>
-                <constraint firstAttribute="trailing" secondItem="DEd-sw-hAX" secondAttribute="trailing" id="S4n-wG-jBT"/>
-                <constraint firstAttribute="bottom" secondItem="DEd-sw-hAX" secondAttribute="bottom" id="vdf-tW-En7"/>
-                <constraint firstItem="DEd-sw-hAX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z5J-3G-NOY"/>
+                <constraint firstAttribute="trailing" secondItem="ka8-d0-kfy" secondAttribute="trailing" id="2DX-Cm-PxU"/>
+                <constraint firstAttribute="bottom" secondItem="ka8-d0-kfy" secondAttribute="bottom" id="KdU-uZ-eOq"/>
+                <constraint firstItem="ka8-d0-kfy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rEG-5l-rpm"/>
+                <constraint firstItem="ka8-d0-kfy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yiO-ca-rzy"/>
             </constraints>
         </view>
     </objects>

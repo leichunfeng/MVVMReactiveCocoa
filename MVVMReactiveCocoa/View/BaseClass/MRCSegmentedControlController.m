@@ -17,6 +17,12 @@
 
 @implementation MRCSegmentedControlController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+}
+
 - (void)initialize {
     for (UIViewController *viewController in self.viewControllers) {
         viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -26,12 +32,14 @@
     self.currentViewController = self.viewControllers.firstObject;
     [self.view addSubview:self.currentViewController.view];
 
-    NSArray *items = [self.viewControllers.rac_sequence map:^id(UIViewController *viewController) {
+    NSArray *items = [self.viewControllers.rac_sequence map:^(UIViewController *viewController) {
         return viewController.segmentedControlItem;
     }].array;
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
     self.segmentedControl.selectedSegmentIndex = 0;
+    
+    self.navigationItem.titleView = self.segmentedControl;
     
     @weakify(self)
     [[self.segmentedControl

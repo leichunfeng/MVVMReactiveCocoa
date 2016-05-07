@@ -10,6 +10,8 @@
 
 @interface MRCLanguageViewModel : MRCTableViewModel
 
-@property (nonatomic, copy) NSDictionary *language;
+@property (nonatomic, copy) NSDictionary *item;
+
+- (NSString *)resourceName;
 
 @end

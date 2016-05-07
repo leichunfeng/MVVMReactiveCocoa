@@ -20,7 +20,9 @@ typedef NS_ENUM(NSUInteger, MRCUserListViewModelType) {
 @property (nonatomic, assign, readonly) BOOL isCurrentUser;
 @property (nonatomic, copy, readonly) NSArray *users;
 
-@property (nonatomic, copy) NSString *location;
-@property (nonatomic, copy) NSString *language;
+@property (nonatomic, copy) NSDictionary *country;
+@property (nonatomic, copy) NSDictionary *language;
+
+@property (nonatomic, strong, readonly) RACCommand *rightBarButtonItemCommand;
 
 @end
