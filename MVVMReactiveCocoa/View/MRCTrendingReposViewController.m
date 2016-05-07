@@ -26,6 +26,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage octicon_imageWithIdentifier:@"Gear" size:CGSizeMake(22, 22)]
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:nil
+                                                                             action:NULL];
+    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.rightBarButtonItemCommand;
+    
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     self.contentView = [[UIView alloc] initWithFrame:self.view.bounds];

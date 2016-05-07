@@ -8,12 +8,6 @@
 
 #import "MRCTrendingViewModel.h"
 
-@interface MRCTrendingViewModel ()
-
-@property (nonatomic, strong) RACSignal *optionsSignal;
-
-@end
-
 @implementation MRCTrendingViewModel
 
 - (void)initialize {
@@ -22,31 +16,29 @@
     self.shouldRequestRemoteDataOnViewDidLoad = NO;
     self.requestRemoteDataCommand.allowsConcurrentExecution = YES;
 
-    NSDictionary *since    = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"since"];
-    NSDictionary *language = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"language"];
+    RACSignal *sinceSignal = [[RACObserve(self, since)
+        map:^(NSDictionary *since) {
+            return since[@"slug"];
+        }]
+        distinctUntilChanged];
 
-    self.since    = since ?: MRCTrendingSinces().firstObject;
-    self.language = language ?: MRCTrendingLanguages().firstObject;
-
-    self.titleViewType = MRCTitleViewTypeDoubleTitle;
-
-    RAC(self, title) = [RACObserve(self, language) map:^(NSDictionary *language) {
-        return language[@"name"];
-    }];
+    RACSignal *languageSignal = [[RACObserve(self, language)
+        map:^(NSDictionary *language) {
+            return language[@"slug"];
+        }]
+        distinctUntilChanged];
     
-    RAC(self, subtitle) = [RACObserve(self, since) map:^(NSDictionary *since) {
-        return since[@"name"];
-    }];
-
-    self.optionsSignal = [RACSignal combineLatest:@[ RACObserve(self, since).distinctUntilChanged,
-                                                     RACObserve(self, language).distinctUntilChanged ]];
-
     @weakify(self)
-    [self.optionsSignal subscribeNext:^(id x) {
-        @strongify(self)
-        self.dataSource = nil;
-        [self.requestRemoteDataCommand execute:nil];
-    }];
+    [[[RACSignal
+        combineLatest:@[ sinceSignal, languageSignal ]]
+        doNext:^(id x) {
+            @strongify(self)
+            self.dataSource = nil;
+        }]
+        subscribeNext:^(id x) {
+            @strongify(self)
+            [self.requestRemoteDataCommand execute:nil];
+        }];
 }
 
 - (MRCReposViewModelType)type {
@@ -72,10 +64,7 @@
 }
 
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
-    return [[[self.services
-        repositoryService]
-        requestTrendingRepositoriesSince:self.since[@"slug"] language:self.language[@"slug"]]
-        takeUntil:[self.optionsSignal skip:1]];
+    return [[self.services repositoryService] requestTrendingRepositoriesSince:self.since[@"slug"] language:self.language[@"slug"]];
 }
 
 @end

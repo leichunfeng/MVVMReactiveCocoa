@@ -11,6 +11,8 @@
 
 @interface MRCTrendingReposViewModel : MRCViewModel
 
+@property (nonatomic, strong, readonly) RACCommand *rightBarButtonItemCommand;
+
 @property (nonatomic, strong, readonly) MRCTrendingViewModel *dailyViewModel;
 @property (nonatomic, strong, readonly) MRCTrendingViewModel *weeklyViewModel;
 @property (nonatomic, strong, readonly) MRCTrendingViewModel *monthlyViewModel;
