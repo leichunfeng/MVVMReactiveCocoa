@@ -11,7 +11,7 @@
 #import "MRCRepoDetailViewModel.h"
 #import "MRCUserDetailViewModel.h"
 #import "MRCUserListViewModel.h"
-#import "MRCTrendingViewModel.h"
+#import "MRCTrendingReposViewModel.h"
 #import "MRCPopularReposViewModel.h"
 
 @interface MRCExploreViewModel ()
@@ -114,8 +114,10 @@
                 });
                 viewModel.seeAllCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
                     @strongify(self)
-                    MRCTrendingViewModel *viewModel = [[MRCTrendingViewModel alloc] initWithServices:self.services params:nil];
+                    
+                    MRCTrendingReposViewModel *viewModel = [[MRCTrendingReposViewModel alloc] initWithServices:self.services params:nil];
                     [self.services pushViewModel:viewModel animated:YES];
+                    
                     return [RACSignal empty];
                 }];
                 

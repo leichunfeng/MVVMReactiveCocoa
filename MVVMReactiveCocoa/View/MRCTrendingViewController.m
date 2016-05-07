@@ -31,7 +31,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64, 0, 0, 0);
+    return UIEdgeInsetsMake(64 + 44, 0, 0, 0);
 }
 
 - (void)didClickSettingsButton:(id)sender {
