@@ -23,22 +23,41 @@
     
     self.title = @"Language";
     
-    NSArray *firstLetters = [MRCTrendingLanguages().rac_sequence map:^(NSDictionary *language) {
-        return [language[@"name"] firstLetter];
-    }].array;
+    NSArray *languages = MRCTrendingLanguages();
     
-    self.sectionIndexTitles = [[NSSet setWithArray:firstLetters].rac_sequence.array sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
-    
-    self.dataSource = [[[MRCTrendingLanguages().rac_sequence.signal
-        groupBy:^(NSDictionary *language) {
-            return [language[@"name"] firstLetter];
+    @weakify(self)
+    RAC(self, dataSource) = [[[RACObserve(self, keyword)
+        map:^(NSString *keyword) {
+            if (keyword.length == 0) return languages;
+            
+            return [languages.rac_sequence filter:^(NSDictionary *language) {
+                NSString *name = language[@"name"];
+                return [name localizedCaseInsensitiveContainsString:keyword];
+            }].array;
         }]
-        map:^(RACSignal *signal) {
-            return signal.sequence;
-        }].sequence
-        map:^(RACSequence *sequence) {
-            return sequence.array;
-        }].array;
+        doNext:^(NSArray *languages) {
+            @strongify(self)
+            
+            NSArray *firstLetters = [languages.rac_sequence map:^(NSDictionary *language) {
+                return [language[@"name"] firstLetter];
+            }].array;
+            
+            firstLetters = [NSSet setWithArray:firstLetters].allObjects;
+            
+            self.sectionIndexTitles = [firstLetters sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
+        }]
+        map:^(NSArray *languages) {
+            return [[[languages.rac_sequence.signal
+                groupBy:^(NSDictionary *language) {
+                    return [language[@"name"] firstLetter];
+                }]
+                map:^(RACSignal *signal) {
+                    return signal.sequence;
+                }].sequence
+                map:^(RACSequence *sequence) {
+                    return sequence.array;
+                }].array;
+        }];
 }
 
 static NSArray *MRCTrendingLanguages() {
