@@ -18,11 +18,13 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    self.layer.borderColor = HexRGB(colorB2).CGColor;
-    self.layer.borderWidth = 0.5;
-    self.barTintColor = HexRGB(0xF0EFF5);
-    [self initialize];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+        self.searchBarStyle = UISearchBarStyleMinimal;
+    }
+    return self;
 }
 
 - (void)initialize {

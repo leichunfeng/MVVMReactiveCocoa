@@ -50,6 +50,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.searchBar != nil) {
+        UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        self.tableView.tableHeaderView = tableHeaderView;
+        
+        [tableHeaderView addSubview:self.searchBar];
+        
+        self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [tableHeaderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[searchBar]|"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:@{ @"searchBar": self.searchBar }]];
+        
+        [tableHeaderView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[searchBar]|"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:@{ @"searchBar": self.searchBar }]];
+    }
+    
     self.tableView.contentOffset = CGPointMake(0, self.searchBar.mrc_height - self.contentInset.top);
     self.tableView.contentInset  = self.contentInset;
     self.tableView.scrollIndicatorInsets = self.contentInset;
