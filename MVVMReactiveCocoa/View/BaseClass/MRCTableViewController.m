@@ -124,8 +124,6 @@
                 return @(count >= self.viewModel.perPage);
         }];
     }
-    
-    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)dealloc {
