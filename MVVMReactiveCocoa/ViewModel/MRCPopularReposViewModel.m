@@ -8,7 +8,7 @@
 
 #import "MRCPopularReposViewModel.h"
 #import "MRCLanguageViewModel.h"
-#import "MRCCountryViewModel.h"
+#import "MRCLanguageViewModel.h"
 
 @interface MRCPopularReposViewModel ()
 
@@ -35,8 +35,8 @@
     self.rightBarButtonItemCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         
-        MRCCountryViewModel *viewModel = [[MRCCountryViewModel alloc] initWithServices:self.services
-                                                                                  params:@{ @"country": self.language ?: @{} }];
+        MRCLanguageViewModel *viewModel = [[MRCLanguageViewModel alloc] initWithServices:self.services
+                                                                                  params:@{ @"language": self.language ?: @{} }];
         viewModel.callback = ^(NSDictionary *language) {
             @strongify(self)
             self.language = language;
