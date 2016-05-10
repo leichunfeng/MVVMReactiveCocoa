@@ -65,6 +65,14 @@
             retry:3];
     }];
     
+    NSURL *URL = [NSURL URLWithString:@"http://trending.codehub-app.com/v2/showcases"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSCachedURLResponse *response = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
+
+    if (response.data != nil) {
+        self.showcases = [NSJSONSerialization JSONObjectWithData:response.data options:0 error:nil];
+    }
+    
     RAC(self, showcases)     = self.requestShowcasesCommand.executionSignals.switchToLatest;
     RAC(self, trendingRepos) = self.requestTrendingReposCommand.executionSignals.switchToLatest;
     RAC(self, popularRepos)  = self.requestPopularReposCommand.executionSignals.switchToLatest;

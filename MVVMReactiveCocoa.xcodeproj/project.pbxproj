@@ -230,13 +230,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2408C06F1C130EA60094703A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 24D0FBC51BFF5B2D00725DD0;
-			remoteInfo = WXTabBarController;
-		};
 		242452EA1A80D78800FFFCC1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */;
@@ -422,7 +415,6 @@
 		24049AED1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageDownloader+ASImageDownloaderProtocol.m"; sourceTree = "<group>"; };
 		24049AEF1C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDImageCache+ASImageCacheProtocol.h"; sourceTree = "<group>"; };
 		24049AF01C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDImageCache+ASImageCacheProtocol.m"; sourceTree = "<group>"; };
-		2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WXTabBarController.xcodeproj; path = WXTabBarController/WXTabBarController.xcodeproj; sourceTree = "<group>"; };
 		240BFBD61AFF240B006ABC05 /* MRCSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewModel.h; sourceTree = "<group>"; };
 		240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchViewModel.m; sourceTree = "<group>"; };
 		240BFBE41AFF2420006ABC05 /* MRCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewController.h; sourceTree = "<group>"; };
@@ -822,14 +814,6 @@
 				240393111B37F11D0032C871 /* starred_repos.json */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		2408C06C1C130EA50094703A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2408C0701C130EA60094703A /* 微信.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		240D00CB1A654D300033CC86 /* Model */ = {
@@ -1490,7 +1474,6 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */,
 				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
 				24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
@@ -1618,10 +1601,6 @@
 					ProductGroup = 242452F31A80D79D00FFFCC1 /* Products */;
 					ProjectRef = 242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */;
 				},
-				{
-					ProductGroup = 2408C06C1C130EA50094703A /* Products */;
-					ProjectRef = 2408C06B1C130EA50094703A /* WXTabBarController.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1632,13 +1611,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		2408C0701C130EA60094703A /* 微信.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "微信.app";
-			remoteRef = 2408C06F1C130EA60094703A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		242452EB1A80D78800FFFCC1 /* OctoKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
