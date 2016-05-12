@@ -48,6 +48,9 @@ PODS:
     - SDWebImage (~> 3.7)
   - UMengSocial (4.4)
   - WebViewJavascriptBridge (4.1.5)
+  - YYKit (1.0.5):
+    - YYKit/no-arc (= 1.0.5)
+  - YYKit/no-arc (1.0.5)
 
 DEPENDENCIES:
   - Appirater
@@ -72,6 +75,7 @@ DEPENDENCIES:
   - UIActivityIndicator-for-SDWebImage
   - UMengSocial (~> 4.3)
   - WebViewJavascriptBridge (~> 4.1.4)
+  - YYKit
 
 EXTERNAL SOURCES:
   LCFInfiniteScrollView:
@@ -112,5 +116,6 @@ SPEC CHECKSUMS:
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
   WebViewJavascriptBridge: e7b6669bebfc4f151daa0fdec3c8c24c8dc3a24e
+  YYKit: f2654fe525de2283648db957bddb37ddd8e06549
 
 COCOAPODS: 0.38.2

@@ -142,8 +142,6 @@ typedef id   (^IDBlock_id)  (id);
 #define MRC_ALERT_TITLE @"Tips"
 #define MBPROGRESSHUD_LABEL_TEXT @"Loading..."
 
-#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-
 #define MRC_LEFT_IMAGE_SIZE CGSizeMake(25, 25)
 #define MRC_1PX_WIDTH (1 / [UIScreen mainScreen].scale)
 

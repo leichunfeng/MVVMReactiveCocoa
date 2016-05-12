@@ -47,7 +47,7 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return isPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
+    return [UIDevice currentDevice].isPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - UIScrollViewDelegate methods

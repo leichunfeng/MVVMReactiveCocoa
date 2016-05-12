@@ -195,6 +195,7 @@
 		24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF458F1A6BF96B00F23474 /* MRCOwnedReposViewModel.m */; };
 		24DF45931A6BF97C00F23474 /* MRCStarredReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */; };
 		24E3B9F71B492301001C1DEE /* MRCNewsItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E3B9F61B492301001C1DEE /* MRCNewsItemViewModel.m */; };
+		24E596BA1CE4B742004ADF35 /* YYCache+MRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E596B91CE4B742004ADF35 /* YYCache+MRCAdditions.m */; };
 		24E84E831AEFC270003F700C /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E84E821AEFC270003F700C /* MRCWebViewController.xib */; };
 		24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
 		24EFEB631BF8315300C2AB61 /* MRCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */; };
@@ -726,6 +727,8 @@
 		24DF45921A6BF97C00F23474 /* MRCStarredReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCStarredReposViewModel.m; sourceTree = "<group>"; };
 		24E3B9F51B492301001C1DEE /* MRCNewsItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsItemViewModel.h; sourceTree = "<group>"; };
 		24E3B9F61B492301001C1DEE /* MRCNewsItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsItemViewModel.m; sourceTree = "<group>"; };
+		24E596B81CE4B742004ADF35 /* YYCache+MRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYCache+MRCAdditions.h"; sourceTree = "<group>"; };
+		24E596B91CE4B742004ADF35 /* YYCache+MRCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYCache+MRCAdditions.m"; sourceTree = "<group>"; };
 		24E84E821AEFC270003F700C /* MRCWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCWebViewController.xib; sourceTree = "<group>"; };
 		24EFEB611BF8315300C2AB61 /* MRCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchBar.h; sourceTree = "<group>"; };
 		24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchBar.m; sourceTree = "<group>"; };
@@ -844,6 +847,8 @@
 				240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */,
 				24FE6E771B6334CC00DF3BDA /* OCTEvent+MRCPersistence.h */,
 				24FE6E781B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m */,
+				24E596B81CE4B742004ADF35 /* YYCache+MRCAdditions.h */,
+				24E596B91CE4B742004ADF35 /* YYCache+MRCAdditions.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1991,6 +1996,7 @@
 				240BFBFA1AFF31C8006ABC05 /* MRCReposSearchResultsViewModel.m in Sources */,
 				249674361A73F5650032771B /* MRCWebViewModel.m in Sources */,
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
+				24E596BA1CE4B742004ADF35 /* YYCache+MRCAdditions.m in Sources */,
 				249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */,
 				249E5B331B065D4600BFDEA1 /* README.md in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
