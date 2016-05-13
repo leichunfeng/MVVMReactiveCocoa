@@ -60,7 +60,7 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.viewModel.dataSource[indexPath.section][indexPath.row] height];
+    return [(MRCReposItemViewModel *)self.viewModel.dataSource[indexPath.section][indexPath.row] height];
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {

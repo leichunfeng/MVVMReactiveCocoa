@@ -14,7 +14,9 @@
     static YYCache *sharedCache = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedCache = [YYCache cacheWithName:MRC_APP_NAME];
+        NSString *login = [OCTUser mrc_currentUser].login;
+        NSParameterAssert(login.length > 0);
+        sharedCache = [YYCache cacheWithName:login];
     });
     return sharedCache;
 }

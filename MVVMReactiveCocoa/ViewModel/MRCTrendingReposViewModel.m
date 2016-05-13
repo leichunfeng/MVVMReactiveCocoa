@@ -26,10 +26,12 @@
 
 - (void)initialize {
     [super initialize];
-
-    self.language = @{
+    
+    NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:@"MRCTrendingReposViewModel.language"];
+    
+    self.language = language ?: @{
         @"name": @"All Languages",
-        @"slug": @""
+        @"slug": @"",
     };
 
     RAC(self, title) = [RACObserve(self, language) map:^(NSDictionary *language) {
@@ -44,7 +46,10 @@
                                                                                   params:@{ @"language": self.language ?: @{} }];
         viewModel.callback = ^(NSDictionary *language) {
             @strongify(self)
+            
             self.language = language;
+            
+            [[YYCache sharedCache] setObject:language forKey:@"MRCTrendingReposViewModel.language" withBlock:NULL];
         };
         [self.services pushViewModel:viewModel animated:YES];
 
