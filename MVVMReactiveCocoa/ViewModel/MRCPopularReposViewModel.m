@@ -22,9 +22,7 @@
 - (void)initialize {
     [super initialize];
     
-    static NSString *languageKey = @"MRCPopularReposViewModel/language";
-    
-    NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:languageKey];
+    NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:MRCPopularReposLanguageCacheKey];
     
     self.language = language ?: @{
         @"name": @"All Languages",
@@ -46,7 +44,7 @@
             
             self.language = language;
             
-            [[YYCache sharedCache] setObject:language forKey:languageKey withBlock:NULL];
+            [[YYCache sharedCache] setObject:language forKey:MRCPopularReposLanguageCacheKey withBlock:NULL];
         };
         [self.services pushViewModel:viewModel animated:YES];
         

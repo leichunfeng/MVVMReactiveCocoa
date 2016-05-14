@@ -50,7 +50,7 @@
     since    = since ?: @"";
     language = language ?: @"";
     
-    return [[[RACSignal
+    return [[[[RACSignal
         createSignal:^(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
             
@@ -86,11 +86,14 @@
             }];
         }]
         replayLazily]
+        doNext:^(NSArray *repositories) {
+            [[YYCache sharedCache] setObject:repositories forKey:MRCExploreTrendingReposCacheKey withBlock:NULL];
+        }]
         setNameWithFormat:@"-requestTrendingRepositoriesSince: %@ language: %@", since, language];
 }
 
 - (RACSignal *)requestShowcases {
-    return [[RACSignal
+    return [[[RACSignal
         createSignal:^(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
             
@@ -110,7 +113,10 @@
                 [operation cancel];
             }];
         }]
-        replayLazily];
+        replayLazily]
+        doNext:^(NSArray *showcases) {
+            [[YYCache sharedCache] setObject:showcases forKey:MRCExploreShowcasesCacheKey withBlock:NULL];
+        }];
 }
 
 - (RACSignal *)requestShowcaseRepositoriesWithSlug:(NSString *)slug {

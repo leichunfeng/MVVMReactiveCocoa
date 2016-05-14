@@ -53,25 +53,28 @@
     
     self.requestPopularReposCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
-        return [[[self.services client]
+        return [[[[self.services client]
             fetchPopularRepositoriesWithLanguage:nil]
-            retry:3];
+            retry:3]
+            doNext:^(NSArray *popularRepos) {
+                [[YYCache sharedCache] setObject:popularRepos forKey:MRCExplorePopularReposCacheKey withBlock:NULL];
+            }];
     }];
     
     self.requestPopularUsersCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
-        return [[[self.services client]
+        return [[[[self.services client]
             fetchPopularUsersWithLocation:nil language:nil]
-            retry:3];
+            retry:3]
+            doNext:^(NSArray *popularUsers) {
+                [[YYCache sharedCache] setObject:popularUsers forKey:MRCExplorePopularUsersCacheKey withBlock:NULL];
+            }];
     }];
     
-    NSURL *URL = [NSURL URLWithString:@"http://trending.codehub-app.com/v2/showcases"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    NSCachedURLResponse *response = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
-
-    if (response.data != nil) {
-        self.showcases = [NSJSONSerialization JSONObjectWithData:response.data options:0 error:nil];
-    }
+    self.showcases     = (NSArray *)[[YYCache sharedCache] objectForKey:MRCExploreShowcasesCacheKey];
+    self.trendingRepos = (NSArray *)[[YYCache sharedCache] objectForKey:MRCExploreTrendingReposCacheKey];
+    self.popularRepos  = (NSArray *)[[YYCache sharedCache] objectForKey:MRCExplorePopularReposCacheKey];
+    self.popularUsers  = (NSArray *)[[YYCache sharedCache] objectForKey:MRCExplorePopularUsersCacheKey];
     
     RAC(self, showcases)     = self.requestShowcasesCommand.executionSignals.switchToLatest;
     RAC(self, trendingRepos) = self.requestTrendingReposCommand.executionSignals.switchToLatest;

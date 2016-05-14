@@ -48,11 +48,8 @@
     } else if (self.type == MRCUserListViewModelTypePopularUsers) {
         self.titleViewType = MRCTitleViewTypeDoubleTitle;
         
-        static NSString *countryKey  = @"MRCUserListViewModel/country";
-        static NSString *languageKey = @"MRCUserListViewModel/language";
-        
-        NSDictionary *country  = (NSDictionary *)[[YYCache sharedCache] objectForKey:countryKey];
-        NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:languageKey];
+        NSDictionary *country  = (NSDictionary *)[[YYCache sharedCache] objectForKey:MRCPopularUsersCountryCacheKey];
+        NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:MRCPopularUsersLanguageCacheKey];
         
         self.country = country ?: @{
             @"name": @"All Countries",
@@ -86,8 +83,8 @@
                 self.country  = output[@"country"];
                 self.language = output[@"language"];
                 
-                [[YYCache sharedCache] setObject:output[@"country"] forKey:countryKey withBlock:NULL];
-                [[YYCache sharedCache] setObject:output[@"language"] forKey:languageKey withBlock:NULL];
+                [[YYCache sharedCache] setObject:output[@"country"] forKey:MRCPopularUsersCountryCacheKey withBlock:NULL];
+                [[YYCache sharedCache] setObject:output[@"language"] forKey:MRCPopularUsersLanguageCacheKey withBlock:NULL];
             };
 
             return [RACSignal empty];

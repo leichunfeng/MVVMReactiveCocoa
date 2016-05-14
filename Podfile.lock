@@ -61,8 +61,7 @@ DEPENDENCIES:
   - FormatterKit (~> 1.8.0)
   - GPUImage (~> 0.1.7)
   - IQKeyboardManager (~> 3.2.0.3)
-  - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`,
-    tag `v0.1`)
+  - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`)
   - MBProgressHUD (~> 0.9)
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
@@ -80,15 +79,14 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   LCFInfiniteScrollView:
     :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
-    :tag: v0.1
   OcticonsIOS:
     :commit: 4bd3b21
     :git: https://github.com/jacksonh/OcticonsIOS.git
 
 CHECKOUT OPTIONS:
   LCFInfiniteScrollView:
+    :commit: 790c256212c610c72127e57f945fbe4064cde98a
     :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
-    :tag: v0.1
   OcticonsIOS:
     :commit: 4bd3b21
     :git: https://github.com/jacksonh/OcticonsIOS.git
@@ -102,7 +100,7 @@ SPEC CHECKSUMS:
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
-  LCFInfiniteScrollView: caf39a6c3242356cac9e97737016a4e2831c123f
+  LCFInfiniteScrollView: 6552dc73dd573ecd54d8e151e3a1a742722723f7
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc

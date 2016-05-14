@@ -27,9 +27,7 @@
 - (void)initialize {
     [super initialize];
     
-    static NSString *languageKey = @"MRCTrendingReposViewModel/language";
-    
-    NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:languageKey];
+    NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:MRCTrendingReposLanguageCacheKey];
     
     self.language = language ?: @{
         @"name": @"All Languages",
@@ -51,7 +49,7 @@
             
             self.language = language;
             
-            [[YYCache sharedCache] setObject:language forKey:languageKey withBlock:NULL];
+            [[YYCache sharedCache] setObject:language forKey:MRCTrendingReposLanguageCacheKey withBlock:NULL];
         };
         [self.services pushViewModel:viewModel animated:YES];
 
