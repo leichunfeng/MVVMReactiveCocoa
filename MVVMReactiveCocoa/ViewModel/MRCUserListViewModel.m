@@ -47,12 +47,22 @@
         self.title = @"Following";
     } else if (self.type == MRCUserListViewModelTypePopularUsers) {
         self.titleViewType = MRCTitleViewTypeDoubleTitle;
-
-        self.country = @{ @"name": @"All Countries",
-                          @"slug": @"", };
         
-        self.language = @{ @"name": @"All Languages",
-                           @"slug": @"", };
+        static NSString *countryKey  = @"MRCUserListViewModel/country";
+        static NSString *languageKey = @"MRCUserListViewModel/language";
+        
+        NSDictionary *country  = (NSDictionary *)[[YYCache sharedCache] objectForKey:countryKey];
+        NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:languageKey];
+        
+        self.country = country ?: @{
+            @"name": @"All Countries",
+            @"slug": @"",
+        };
+        
+        self.language = language ?: @{
+            @"name": @"All Languages",
+            @"slug": @"",
+        };
 
         RAC(self, title) = [RACObserve(self, country) map:^(NSDictionary *country) {
             return country[@"name"];
@@ -72,8 +82,12 @@
 
             viewModel.callback = ^(NSDictionary *output) {
                 @strongify(self)
+                
                 self.country  = output[@"country"];
                 self.language = output[@"language"];
+                
+                [[YYCache sharedCache] setObject:output[@"country"] forKey:countryKey withBlock:NULL];
+                [[YYCache sharedCache] setObject:output[@"language"] forKey:languageKey withBlock:NULL];
             };
 
             return [RACSignal empty];
