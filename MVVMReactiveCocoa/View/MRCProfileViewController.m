@@ -27,8 +27,9 @@
     self = [super initWithViewModel:viewModel];
     if (self) {
         if (self.viewModel.avatarHeaderViewModel.user.avatarURL) {
-            [[SDImageCache sharedImageCache] removeImageForKey:self.viewModel.avatarHeaderViewModel.user.avatarURL.absoluteString fromDisk:YES];
-            [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:@[ self.viewModel.avatarHeaderViewModel.user.avatarURL ?: [NSNull null] ]];
+            SDWebImagePrefetcher *imagePrefetcher = [SDWebImagePrefetcher sharedImagePrefetcher];
+            imagePrefetcher.options = SDWebImageRefreshCached;
+            [imagePrefetcher prefetchURLs:@[ self.viewModel.avatarHeaderViewModel.user.avatarURL ?: [NSNull null] ]];
         }
     }
     return self;

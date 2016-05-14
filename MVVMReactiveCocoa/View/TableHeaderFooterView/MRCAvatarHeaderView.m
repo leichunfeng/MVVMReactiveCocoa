@@ -110,7 +110,7 @@
         distinctUntilChanged]
         subscribeNext:^(NSURL *avatarURL) {
             [SDWebImageManager.sharedManager downloadImageWithURL:avatarURL
-                                                          options:0
+                                                          options:SDWebImageRefreshCached
                                                          progress:NULL
                                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                                             @strongify(self)
