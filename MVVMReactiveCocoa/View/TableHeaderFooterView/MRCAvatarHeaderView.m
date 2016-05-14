@@ -56,13 +56,13 @@
 
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
     self.viewModel = viewModel;
-    
+
     @weakify(self)
     [RACObserve(self, avatarImage) subscribeNext:^(UIImage *avatarImage) {
         @strongify(self)
         [self.avatarButton setImage:avatarImage forState:UIControlStateNormal];
     }];
-    
+
     // configure coverImageView
     self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 323)];
     self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -78,14 +78,14 @@
 
     self.gaussianBlurFilter = [[GPUImageGaussianBlurFilter alloc] init];
     self.gaussianBlurFilter.blurRadiusInPixels = 20;
-    
+
     RAC(self.coverImageView, image) = RACObserve(self, avatarImage);
 
     RAC(self.bluredCoverImageView, image) = [RACObserve(self, avatarImage) map:^(UIImage *avatarImage) {
         @strongify(self)
         return [self.gaussianBlurFilter imageByFilteringImage:avatarImage];
     }];
-    
+
     // operation button
     [self.activityIndicatorView startAnimating];
 
@@ -94,7 +94,7 @@
         self.operationButton.hidden = YES;
     } else {
         self.operationButton.rac_command = viewModel.operationCommand;
-        
+
         [[RACObserve(viewModel.user, followingStatus)
            	deliverOnMainThread]
          	subscribeNext:^(NSNumber *followingStatus) {
@@ -104,7 +104,7 @@
                 self.operationButton.hidden = (followingStatus.unsignedIntegerValue == OCTUserFollowingStatusUnknown);
          	}];
     }
-    
+
     [[[RACObserve(viewModel.user, avatarURL)
         ignore:nil]
         distinctUntilChanged]
@@ -117,30 +117,36 @@
                                                             if (image && finished) self.avatarImage = image;
                                                         }];
         }];
-    
+
     [[self.avatarButton
         rac_signalForControlEvents:UIControlEventTouchUpInside]
         subscribeNext:^(UIButton *avatarButton) {
             @strongify(self)
             MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
-            
+
             TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
-            
+
             viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             viewController.transitioningDelegate = self;
-            
+
             [MRCSharedAppDelegate.window.rootViewController presentViewController:viewController animated:YES completion:NULL];
         }];
 
     RAC(self.nameLabel, text) = RACObserve(viewModel.user, login);
 
-    NSString * (^mapNumberToString)(NSNumber *) = ^(NSNumber *value) {
-        return value.stringValue;
+    NSString *(^toString)(NSNumber *) = ^(NSNumber *value) {
+        NSString *text = value.stringValue;
+        
+        if (value.unsignedIntegerValue >= 1000) {
+            text = [NSString stringWithFormat:@"%.1fk", value.unsignedIntegerValue / 1000.0];
+        }
+        
+        return text;
     };
 
-    RAC(self.repositoriesLabel, text) = [RACObserve(viewModel.user, publicRepoCount) map:mapNumberToString];
-    RAC(self.followersLabel, text)    = [[RACObserve(viewModel.user, followers) map:mapNumberToString] deliverOnMainThread];
-    RAC(self.followingLabel, text)    = [[RACObserve(viewModel.user, following) map:mapNumberToString] deliverOnMainThread];
+    RAC(self.repositoriesLabel, text) = [RACObserve(viewModel.user, publicRepoCount) map:toString];
+    RAC(self.followersLabel, text)    = [[RACObserve(viewModel.user, followers) map:toString] deliverOnMainThread];
+    RAC(self.followingLabel, text)    = [[RACObserve(viewModel.user, following) map:toString] deliverOnMainThread];
 
     self.followersButton.rac_command    = viewModel.followersCommand;
     self.repositoriesButton.rac_command = viewModel.repositoriesCommand;
@@ -150,17 +156,17 @@
         return [value CGPointValue].y <= 0;
     }] subscribeNext:^(id x) {
     	@strongify(self)
-        
+
         CGPoint contentOffset = [x CGPointValue];
-        
+
         self.coverImageView.frame = CGRectMake(0, 0 + contentOffset.y, SCREEN_WIDTH, CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
         self.bluredCoverImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.coverImageView.frame), CGRectGetHeight(self.coverImageView.frame));
-        
+
         CGFloat diff  = MIN(ABS(contentOffset.y), MRCAvatarHeaderViewContentOffsetRadix);
         CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
-        
+
         CGFloat alpha = 1 * (1 - scale);
-        
+
         self.avatarButton.imageView.alpha = alpha;
         self.nameLabel.alpha = alpha;
         self.operationButton.alpha = alpha;
