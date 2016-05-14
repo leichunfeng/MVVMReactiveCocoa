@@ -16,7 +16,6 @@
 @property (nonatomic, strong, readonly) OCTRef *reference;
 
 @property (nonatomic, copy, readonly) NSString *dateUpdated;
-@property (nonatomic, copy, readonly) NSString *readmeHTML;
 @property (nonatomic, copy, readonly) NSString *summaryReadmeHTML;
 
 @property (nonatomic, strong, readonly) RACCommand *viewCodeCommand;

@@ -22,7 +22,6 @@
 @property (nonatomic, strong, readwrite) OCTRef *reference;
 
 @property (nonatomic, copy, readwrite) NSString *dateUpdated;
-@property (nonatomic, copy, readwrite) NSString *readmeHTML;
 @property (nonatomic, copy, readwrite) NSString *summaryReadmeHTML;
 
 @property (nonatomic, strong, readwrite) RACCommand *viewCodeCommand;
@@ -95,8 +94,6 @@
         [params setValue:self.reference forKey:@"reference"];
         [params setValue:@(MRCSourceEditorViewModelEntryRepoDetail) forKey:@"entry"];
         
-        if (self.readmeHTML) [params setValue:self.readmeHTML forKey:@"readmeHTML"];
-        
         MRCSourceEditorViewModel *sourceEditorViewModel = [[MRCSourceEditorViewModel alloc] initWithServices:self.services params:params.copy];
         [self.services pushViewModel:sourceEditorViewModel animated:YES];
         
@@ -137,17 +134,27 @@
     [[[fetchLocalDataSignal
     	merge:requestRemoteDataSignal]
      	deliverOnMainThread]
-    	subscribeNext:^(OCTRepository *repo) {
+    	subscribeNext:^(OCTRepository *repository) {
             @strongify(self)
+            
             [self willChangeValueForKey:@"repository"];
-            repo.starredStatus = self.repository.starredStatus;
-            [self.repository mergeValuesForKeysFromModel:repo];
+            
+            repository.starredStatus = self.repository.starredStatus;
+            [self.repository mergeValuesForKeysFromModel:repository];
+            
             [self didChangeValueForKey:@"repository"];
         }];
+    
+    NSString *HTMLString = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForReadmeOfMediaType:OCTClientMediaTypeHTML]];
+    self.summaryReadmeHTML = [self summaryReadmeHTMLFromReadmeHTML:HTMLString];
 }
 
 - (OCTRepository *)fetchLocalData {
     return [OCTRepository mrc_fetchRepository:self.repository];
+}
+
+- (NSString *)cacheKeyForReadmeOfMediaType:(OCTClientMediaType)mediaType {
+    return [NSString stringWithFormat:@"repos/%@/%@/readme?ref=%@&accept=%@", self.repository.ownerLogin, self.repository.name, self.reference.name, @(mediaType)];
 }
 
 - (void)presentSelectBranchOrTagViewModel {
@@ -169,16 +176,22 @@
 - (RACSignal *)requestRemoteDataSignalWithPage:(NSUInteger)page {
     RACSignal *fetchRepoSignal = [self.services.client fetchRepositoryWithName:self.repository.name
                                                                          owner:self.repository.ownerLogin];
-    RACSignal *fetchReadmeSignal = [self.services.repositoryService requestRepositoryReadmeHTML:self.repository
-                                                                                      reference:self.reference.name];
+    
+    RACSignal *fetchReadmeSignal = [[self.services client] fetchRepositoryReadme:self.repository
+                                                                       reference:self.reference.name
+                                                                       mediaType:OCTClientMediaTypeHTML];
+
     @weakify(self)
     return [[[[RACSignal
         combineLatest:@[ fetchRepoSignal, fetchReadmeSignal ]]
         doNext:^(RACTuple *tuple) {
             @strongify(self)
-            NSString *readmeHTML = tuple.last;
-            self.readmeHTML = readmeHTML;
-            self.summaryReadmeHTML = [self summaryReadmeHTMLFromReadmeHTML:readmeHTML];
+            
+            self.summaryReadmeHTML = [self summaryReadmeHTMLFromReadmeHTML:tuple.last];
+            
+            [[YYCache sharedCache] setObject:tuple.last
+                                      forKey:[self cacheKeyForReadmeOfMediaType:OCTClientMediaTypeHTML]
+                                   withBlock:NULL];
         }]
         map:^(RACTuple *tuple) {
             return tuple.first;

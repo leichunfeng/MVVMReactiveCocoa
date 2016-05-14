@@ -106,7 +106,10 @@
     self.readmeTableViewCell.webView.delegate = self;
     
     // webView hidden or not
-    RAC(self.readmeTableViewCell.webView, hidden) = [[[finishLoadSignal mapReplace:@NO] distinctUntilChanged] startWith:@YES];
+    RAC(self.readmeTableViewCell.webView, hidden) = [[[finishLoadSignal
+        mapReplace:@NO]
+        distinctUntilChanged]
+        startWith:@YES];
     
     // once `webViewDidFinishLoad:` reload table
     [finishLoadSignal subscribeNext:^(RACTuple *tuple) {
@@ -130,7 +133,7 @@
     
     RAC(self.readmeTableViewCell.activityIndicatorView, hidden) = [RACSignal
         combineLatest:@[ self.viewModel.requestRemoteDataCommand.executing, self.webViewExecuting ]
-        reduce:^id(NSNumber *reqExecuting, NSNumber *webViewExecuting) {
+        reduce:^(NSNumber *reqExecuting, NSNumber *webViewExecuting) {
             return @(!reqExecuting.boolValue && !webViewExecuting.boolValue);
         }];
     

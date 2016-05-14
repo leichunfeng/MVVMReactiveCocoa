@@ -73,10 +73,22 @@
                 
                 if (mediaType == OCTClientMediaTypeJSON) {
                     self.Base64String = [(OCTFileContent *)x content];
+                    
+                    [[YYCache sharedCache] setObject:[(OCTFileContent *)x content]
+                                              forKey:[self cacheKeyForContentsOfMediaType:mediaType]
+                                           withBlock:NULL];
                 } else if (mediaType == OCTClientMediaTypeRaw) {
                     self.UTF8String = x;
+                    
+                    [[YYCache sharedCache] setObject:x
+                                              forKey:[self cacheKeyForContentsOfMediaType:mediaType]
+                                           withBlock:NULL];
                 } else if (mediaType == OCTClientMediaTypeHTML) {
                     self.HTMLString = x;
+                    
+                    [[YYCache sharedCache] setObject:x
+                                              forKey:[self cacheKeyForContentsOfMediaType:mediaType]
+                                           withBlock:NULL];
                 }
             }];
     }];
@@ -95,8 +107,16 @@
                 
                 if (mediaType == OCTClientMediaTypeRaw) {
                     self.UTF8String = x;
+                    
+                    [[YYCache sharedCache] setObject:x
+                                              forKey:[self cacheKeyForReadmeOfMediaType:mediaType]
+                                           withBlock:NULL];
                 } else if (mediaType == OCTClientMediaTypeHTML) {
                     self.HTMLString = x;
+                    
+                    [[YYCache sharedCache] setObject:x
+                                              forKey:[self cacheKeyForReadmeOfMediaType:mediaType]
+                                           withBlock:NULL];
                 }
             }];
     }];
@@ -127,15 +147,33 @@
     // Initial request
     if (self.entry == MRCSourceEditorViewModelEntryGitTree) {
         if (self.contentType == MRCSourceEditorViewModelContentTypeImage) {
+            self.Base64String = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForContentsOfMediaType:OCTClientMediaTypeJSON]];
+
             [self.requestContentsCommand execute:@(OCTClientMediaTypeJSON)];
         } else if (self.contentType == MRCSourceEditorViewModelContentTypeSourceCode) {
+            self.UTF8String = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForContentsOfMediaType:OCTClientMediaTypeRaw]];
+            
             [self.requestContentsCommand execute:@(OCTClientMediaTypeRaw)];
         } else if (self.contentType == MRCSourceEditorViewModelContentTypeMarkdown) {
+            self.HTMLString = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForContentsOfMediaType:OCTClientMediaTypeHTML]];
+            self.UTF8String = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForContentsOfMediaType:OCTClientMediaTypeRaw]];
+            
             [self.requestContentsCommand execute:@(OCTClientMediaTypeHTML)];
         }
     } else if (self.entry == MRCSourceEditorViewModelEntryRepoDetail) {
+        self.HTMLString = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForReadmeOfMediaType:OCTClientMediaTypeHTML]];
+        self.UTF8String = (NSString *)[[YYCache sharedCache] objectForKey:[self cacheKeyForReadmeOfMediaType:OCTClientMediaTypeRaw]];
+        
         [self.requestReadmeCommand execute:@(OCTClientMediaTypeHTML)];
     }
+}
+
+- (NSString *)cacheKeyForContentsOfMediaType:(OCTClientMediaType)mediaType {
+    return [NSString stringWithFormat:@"repos/%@/%@/contents/%@?ref=%@&accept=%@", self.repository.ownerLogin, self.repository.name, self.blobEntry.path, self.reference.name, @(mediaType)];
+}
+
+- (NSString *)cacheKeyForReadmeOfMediaType:(OCTClientMediaType)mediaType {
+    return [NSString stringWithFormat:@"repos/%@/%@/readme?ref=%@&accept=%@", self.repository.ownerLogin, self.repository.name, self.reference.name, @(mediaType)];
 }
 
 - (MRCSourceEditorViewModelOptions)options {
