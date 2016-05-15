@@ -8,6 +8,7 @@
 
 #import "MRCLoginViewModel.h"
 #import "MRCHomepageViewModel.h"
+#import "MRCOAuthViewModel.h"
 
 @interface MRCLoginViewModel ()
 
@@ -16,6 +17,7 @@
 @property (nonatomic, strong, readwrite) RACSignal *validLoginSignal;
 @property (nonatomic, strong, readwrite) RACCommand *loginCommand;
 @property (nonatomic, strong, readwrite) RACCommand *browserLoginCommand;
+@property (nonatomic, strong, readwrite) RACCommand *exchangeTokenCommand;
 
 @end
 
@@ -68,10 +70,49 @@
     }];
 
     self.browserLoginCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
-        return [[OCTClient
-        	signInToServerUsingWebBrowser:OCTServer.dotComServer scopes:OCTClientAuthorizationScopesUser | OCTClientAuthorizationScopesRepository]
+        @strongify(self)
+        
+        MRCOAuthViewModel *viewModel = [[MRCOAuthViewModel alloc] initWithServices:self.services params:nil];
+        
+        viewModel.callback = ^(NSString *code) {
+            @strongify(self)
+            [self.services popViewModelAnimated:YES];
+            [self.exchangeTokenCommand execute:code];
+        };
+        
+        [self.services pushViewModel:viewModel animated:YES];
+        
+        return [RACSignal empty];
+    }];
+    
+    self.exchangeTokenCommand = [[RACCommand alloc] initWithSignalBlock:^(NSString *code) {
+        OCTClient *client = [[OCTClient alloc] initWithServer:[OCTServer dotComServer]];
+        
+        return [[[[[client
+            exchangeAccessTokenWithCode:code]
+            doNext:^(OCTAccessToken *accessToken) {
+                [client setValue:accessToken.token forKey:@"token"];
+            }]
+            flattenMap:^(id value) {
+                return [[client
+                    fetchUserInfo]
+                    doNext:^(OCTUser *user) {
+                        NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] init];
+                        
+                        [mutableDictionary addEntriesFromDictionary:user.dictionaryValue];
+                        
+                        if (user.rawLogin.length == 0) {
+                            mutableDictionary[@keypath(user.rawLogin)] = user.login;
+                        }
+                        
+                        user = [OCTUser modelWithDictionary:mutableDictionary error:NULL];
+                        
+                        [client setValue:user forKey:@"user"];
+                    }];
+            }]
+            mapReplace:client]
             doNext:doNext];
-    }];    
+    }];
 }
 
 - (void)setUsername:(NSString *)username {

@@ -26,5 +26,6 @@
 
 /// The command of uses browser to login button.
 @property (nonatomic, strong, readonly) RACCommand *browserLoginCommand;
+@property (nonatomic, strong, readonly) RACCommand *exchangeTokenCommand;
 
 @end

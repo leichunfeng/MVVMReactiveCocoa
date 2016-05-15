@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCLoginViewController">
@@ -24,7 +24,6 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBt-lC-bHA">
                     <rect key="frame" x="258" y="79" width="85" height="85"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="85" id="Zfn-jM-uCj"/>
                         <constraint firstAttribute="width" constant="85" id="p1m-iz-cwI"/>
@@ -38,7 +37,6 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3x-NK-9yk">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="fkJ-GM-H0s"/>
@@ -46,7 +44,6 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-kK-Vbw">
                             <rect key="frame" x="15" y="50" width="570" height="1"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="YxY-yA-pal"/>
@@ -54,7 +51,6 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCh-7M-jmp">
                             <rect key="frame" x="0.0" y="99" width="600" height="1"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="eF6-bf-Iky"/>
@@ -62,7 +58,6 @@
                         </view>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GitHub username or email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-hG-uTO">
                             <rect key="frame" x="47" y="10" width="538" height="30"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="NSG-gy-dPI"/>
                             </constraints>
@@ -74,7 +69,6 @@
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GitHub password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Z4f-3o-lGq">
                             <rect key="frame" x="47" y="60" width="538" height="30"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="fh5-mf-Dcd"/>
                             </constraints>
@@ -83,7 +77,6 @@
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KrT-6D-ZHz">
                             <rect key="frame" x="15" y="14" width="22" height="22"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="iEl-N3-kaq"/>
                                 <constraint firstAttribute="width" constant="22" id="sAJ-xN-HRK"/>
@@ -91,14 +84,12 @@
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CAt-4M-whd">
                             <rect key="frame" x="15" y="64" width="22" height="22"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="6np-oO-8xs"/>
                                 <constraint firstAttribute="width" constant="22" id="clE-ui-XPf"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="0Qg-BU-QXc"/>
@@ -125,7 +116,6 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-FF-f2I" customClass="MRCButton">
                     <rect key="frame" x="15" y="326" width="570" height="40"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="lg4-Fz-ohP"/>
                     </constraints>
@@ -135,15 +125,13 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MP0-zc-ERu">
-                    <rect key="frame" x="227" y="555" width="147" height="30"/>
-                    <animations/>
-                    <state key="normal" title="Using Safari to Log In">
+                    <rect key="frame" x="239" y="555" width="122" height="30"/>
+                    <state key="normal" title="OAuth2 Authorize">
                         <color key="titleColor" red="0.42745098039215684" green="0.49411764705882355" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qGZ-FF-f2I" firstAttribute="top" secondItem="lgZ-Ah-0EN" secondAttribute="bottom" constant="22" id="6oL-Jg-OjH"/>

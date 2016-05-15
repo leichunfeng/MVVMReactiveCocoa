@@ -92,6 +92,9 @@
 		243688421B25E31A00D801D3 /* MRCUserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 243688401B25E31A00D801D3 /* MRCUserListTableViewCell.m */; };
 		243688431B25E31A00D801D3 /* MRCUserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243688411B25E31A00D801D3 /* MRCUserListTableViewCell.xib */; };
 		243688461B25E33700D801D3 /* MRCUserListItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 243688451B25E33700D801D3 /* MRCUserListItemViewModel.m */; };
+		243C5EB31CE8569500E70E42 /* MRCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 243C5EB11CE8569500E70E42 /* MRCOAuthViewController.m */; };
+		243C5EB41CE8569500E70E42 /* MRCOAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243C5EB21CE8569500E70E42 /* MRCOAuthViewController.xib */; };
+		243C5EC21CE856AC00E70E42 /* MRCOAuthViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 243C5EC11CE856AC00E70E42 /* MRCOAuthViewModel.m */; };
 		2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */; };
 		2458A2451B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2441B00EFA000E9FB9B /* MRCRepoSettingsViewModel.m */; };
 		2458A2541B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2458A2521B00EFBD00E9FB9B /* MRCRepoSettingsViewController.m */; };
@@ -552,6 +555,11 @@
 		243688411B25E31A00D801D3 /* MRCUserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCUserListTableViewCell.xib; sourceTree = "<group>"; };
 		243688441B25E33700D801D3 /* MRCUserListItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCUserListItemViewModel.h; sourceTree = "<group>"; };
 		243688451B25E33700D801D3 /* MRCUserListItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCUserListItemViewModel.m; sourceTree = "<group>"; };
+		243C5EB01CE8569500E70E42 /* MRCOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCOAuthViewController.h; sourceTree = "<group>"; };
+		243C5EB11CE8569500E70E42 /* MRCOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCOAuthViewController.m; sourceTree = "<group>"; };
+		243C5EB21CE8569500E70E42 /* MRCOAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCOAuthViewController.xib; sourceTree = "<group>"; };
+		243C5EC01CE856AC00E70E42 /* MRCOAuthViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCOAuthViewModel.h; sourceTree = "<group>"; };
+		243C5EC11CE856AC00E70E42 /* MRCOAuthViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCOAuthViewModel.m; sourceTree = "<group>"; };
 		2458A22B1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposSearchResultsItemViewModel.h; sourceTree = "<group>"; };
 		2458A22C1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposSearchResultsItemViewModel.m; sourceTree = "<group>"; };
 		2458A2431B00EFA000E9FB9B /* MRCRepoSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCRepoSettingsViewModel.h; sourceTree = "<group>"; };
@@ -992,6 +1000,9 @@
 				24A49AE01CDE0BFD0039A424 /* MRCTrendingReposViewController.h */,
 				24A49AE11CDE0BFD0039A424 /* MRCTrendingReposViewController.m */,
 				24A49AE21CDE0BFD0039A424 /* MRCTrendingReposViewController.xib */,
+				243C5EB01CE8569500E70E42 /* MRCOAuthViewController.h */,
+				243C5EB11CE8569500E70E42 /* MRCOAuthViewController.m */,
+				243C5EB21CE8569500E70E42 /* MRCOAuthViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1106,6 +1117,8 @@
 				24A49AD41CDDE3DF0039A424 /* MRCCountryAndLanguageViewModel.m */,
 				24A49AE51CDE0C110039A424 /* MRCTrendingReposViewModel.h */,
 				24A49AE61CDE0C110039A424 /* MRCTrendingReposViewModel.m */,
+				243C5EC01CE856AC00E70E42 /* MRCOAuthViewModel.h */,
+				243C5EC11CE856AC00E70E42 /* MRCOAuthViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1779,6 +1792,7 @@
 				24FB0EDF1CCCD77C005A151F /* MRCLanguageViewController.xib in Resources */,
 				24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */,
 				249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */,
+				243C5EB41CE8569500E70E42 /* MRCOAuthViewController.xib in Resources */,
 				249E5B321B065D4600BFDEA1 /* LICENSE in Resources */,
 				2489AD6B1B33AF0000D76523 /* MRCPublicReposViewController.xib in Resources */,
 				2479C93D1AAD39150057B681 /* icon-error.png in Resources */,
@@ -1964,6 +1978,7 @@
 				240D013E1A654D300033CC86 /* MRCProfileViewController.m in Sources */,
 				24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */,
 				240D012D1A654D300033CC86 /* UIImage+ImageEffects.m in Sources */,
+				243C5EC21CE856AC00E70E42 /* MRCOAuthViewModel.m in Sources */,
 				24B29C431CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m in Sources */,
 				24DF45901A6BF96B00F23474 /* MRCOwnedReposViewModel.m in Sources */,
 				240D012A1A654D300033CC86 /* MRCErrors.m in Sources */,
@@ -2005,6 +2020,7 @@
 				24143F061BD783D300555179 /* MRCTrendingSettingsViewModel.m in Sources */,
 				24A49AD51CDDE3DF0039A424 /* MRCCountryAndLanguageViewModel.m in Sources */,
 				248973871B3028BC00A867DE /* MRCUserDetailViewController.m in Sources */,
+				243C5EB31CE8569500E70E42 /* MRCOAuthViewController.m in Sources */,
 				24DF45891A6BF6CD00F23474 /* MRCReposViewController.m in Sources */,
 				24B29BFD1CA6D35D00963648 /* MRCExploreViewModel.m in Sources */,
 				24049AEE1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m in Sources */,

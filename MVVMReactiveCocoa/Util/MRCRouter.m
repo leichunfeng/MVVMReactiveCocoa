@@ -63,6 +63,7 @@
         @"MRCCountryViewModel": @"MRCCountryViewController",
         @"MRCCountryAndLanguageViewModel": @"MRCCountryAndLanguageViewController",
         @"MRCTrendingReposViewModel": @"MRCTrendingReposViewController",
+        @"MRCOAuthViewModel": @"MRCOAuthViewController",
     };
 }
 
