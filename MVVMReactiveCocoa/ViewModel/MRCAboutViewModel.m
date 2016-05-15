@@ -9,6 +9,8 @@
 #import "MRCAboutViewModel.h"
 #import "MRCFeedbackViewModel.h"
 #import "MRCWebViewModel.h"
+#import "MRCRepoDetailViewModel.h"
+#import "MRCUserDetailViewModel.h"
 
 #define kAppStoreVersionKey @"appStoreVersion"
 
@@ -31,15 +33,24 @@
     self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.row == 2) {
-            NSString *title = [NSString stringWithFormat:@"About %@", MRC_APP_NAME];
-            NSString *path = [NSBundle.mainBundle pathForResource:@"about-igithub" ofType:@"html" inDirectory:@"assets.bundle"];
-            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
-            
-            MRCWebViewModel *webViewModel = [[MRCWebViewModel alloc] initWithServices:self.services
-                                                                               params:@{ @"title": title,
-                                                                                         @"request": request }];
-            [self.services pushViewModel:webViewModel animated:YES];
+            NSDictionary *params = @{
+                @"repository": @{
+                    @"ownerLogin": MVVM_REACTIVECOCOA_OWNER_LOGIN,
+                    @"name": MVVM_REACTIVECOCOA_NAME
+                },
+                @"referenceName": @"refs/heads/master"
+            };
+            MRCRepoDetailViewModel *viewModel = [[MRCRepoDetailViewModel alloc] initWithServices:self.services params:params];
+            [self.services pushViewModel:viewModel animated:YES];
         } else if (indexPath.row == 3) {
+            NSDictionary *params = @{
+                @"user": @{
+                    @"login": MVVM_REACTIVECOCOA_OWNER_LOGIN
+                }
+            };
+            MRCUserDetailViewModel *viewModel = [[MRCUserDetailViewModel alloc] initWithServices:self.services params:params];
+            [self.services pushViewModel:viewModel animated:YES];
+        } else if (indexPath.row == 4) {
             MRCFeedbackViewModel *feedbackViewModel = [[MRCFeedbackViewModel alloc] initWithServices:self.services params:nil];
             [self.services pushViewModel:feedbackViewModel animated:YES];
         }

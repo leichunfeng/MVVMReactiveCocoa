@@ -37,7 +37,7 @@
     [self.tableView addSubview:usernameLabel];
     
     UILabel *copyRightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 10 - 14 - 64, SCREEN_WIDTH, 14)];
-    copyRightLabel.text = @"Copyright (c) 2015年 leichunfeng. All rights reserved.";
+    copyRightLabel.text = @"Copyright (c) 2015-2016 leichunfeng. All rights reserved.";
     copyRightLabel.font = [UIFont systemFontOfSize:12];
     copyRightLabel.textColor = UIColor.lightGrayColor;
     copyRightLabel.textAlignment = NSTextAlignmentCenter;
@@ -78,8 +78,10 @@
     } else if (indexPath.row == 1) {
         cell.textLabel.text = [NSString stringWithFormat:@"Rate %@", MRC_APP_NAME];
     } else if (indexPath.row == 2) {
-        cell.textLabel.text = [NSString stringWithFormat:@"About %@", MRC_APP_NAME];
+        cell.textLabel.text = @"Source Code";
     } else if (indexPath.row == 3) {
+        cell.textLabel.text = @"Author";
+    } else if (indexPath.row == 4) {
         cell.textLabel.text = @"Feedback";
     }
     
@@ -97,7 +99,7 @@
 #pragma mark - UITalbeViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 #pragma mark - UITableViewDelegate

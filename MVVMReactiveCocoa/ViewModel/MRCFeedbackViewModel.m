@@ -30,7 +30,9 @@
         }]
         distinctUntilChanged];
     
-    OCTRepository *mvvmReactiveCocoa = [OCTRepository modelWithDictionary:@{ @"ownerLogin": MVVM_REACTIVECOCOA_OWNER_LOGIN, @"name": MVVM_REACTIVECOCOA_NAME } error:NULL];
+    OCTRepository *mvvmReactiveCocoa = [OCTRepository modelWithDictionary:@{ @"ownerLogin": MVVM_REACTIVECOCOA_OWNER_LOGIN,
+                                                                             @"name": MVVM_REACTIVECOCOA_NAME }
+                                                                    error:NULL];
     
     @weakify(self)
     self.submitFeedbackCommand = [[RACCommand alloc] initWithEnabled:validSubmitSignal signalBlock:^RACSignal *(id input) {
