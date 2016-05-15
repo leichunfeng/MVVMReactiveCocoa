@@ -35,7 +35,7 @@
                                                                     error:NULL];
     
     @weakify(self)
-    self.submitFeedbackCommand = [[RACCommand alloc] initWithEnabled:validSubmitSignal signalBlock:^RACSignal *(id input) {
+    self.submitFeedbackCommand = [[RACCommand alloc] initWithEnabled:validSubmitSignal signalBlock:^(id input) {
         @strongify(self)
         return [[[[self.services
             client]

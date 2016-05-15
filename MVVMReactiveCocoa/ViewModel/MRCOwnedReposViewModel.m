@@ -35,7 +35,7 @@
     self.shouldInfiniteScrolling = self.options & MRCReposViewModelOptionsPagination;
 
     @weakify(self)
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         OCTRepository *repository = [self.dataSource[indexPath.section][indexPath.row] repository];
 

@@ -24,7 +24,7 @@
     self.title = @"Settings";
     
     @weakify(self)
-    self.logoutCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.logoutCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         [SSKeychain deleteAccessToken];
         
@@ -36,7 +36,7 @@
         return [RACSignal empty];
     }];
     
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.section == 1 && indexPath.row == 0) {
             MRCAboutViewModel *aboutViewModel = [[MRCAboutViewModel alloc] initWithServices:self.services params:nil];

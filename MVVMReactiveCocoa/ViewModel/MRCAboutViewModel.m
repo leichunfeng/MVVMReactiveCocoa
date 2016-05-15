@@ -30,7 +30,7 @@
     [self detectVersionUpgrade];
     
     @weakify(self)
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         if (indexPath.row == 2) {
             NSDictionary *params = @{

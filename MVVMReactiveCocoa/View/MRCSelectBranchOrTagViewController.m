@@ -24,7 +24,7 @@
     
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:NULL];
     @weakify(self)
-    leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         [self.viewModel.services dismissViewModelAnimated:YES completion:NULL];
         return [RACSignal empty];

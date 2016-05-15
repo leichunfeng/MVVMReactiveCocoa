@@ -76,7 +76,7 @@
     }];
     
     @weakify(self)
-    self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.viewCodeCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         MRCGitTreeViewModel *gitTreeViewModel = [[MRCGitTreeViewModel alloc] initWithServices:self.services
                                                                                        params:@{ @"repository": self.repository,
@@ -85,7 +85,7 @@
         return [RACSignal empty];
     }];
     
-    self.readmeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.readmeCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         
@@ -100,7 +100,7 @@
         return [RACSignal empty];
     }];
     
-    self.selectBranchOrTagCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.selectBranchOrTagCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         if (self.references) {
             [self presentSelectBranchOrTagViewModel];
@@ -120,7 +120,7 @@
     
     [self.selectBranchOrTagCommand.errors subscribe:self.errors];
     
-    self.rightBarButtonItemCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.rightBarButtonItemCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         MRCRepoSettingsViewModel *settingsViewModel = [[MRCRepoSettingsViewModel alloc] initWithServices:self.services
                                                                                                   params:@{ @"repository": self.repository }];

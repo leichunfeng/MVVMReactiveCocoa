@@ -48,7 +48,7 @@
     self.dataSource = @[ array ];
     
     @weakify(self)
-    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSIndexPath *indexPath) {
+    self.didSelectCommand = [[RACCommand alloc] initWithSignalBlock:^(NSIndexPath *indexPath) {
         @strongify(self)
         if (self.callback) {
             self.callback(self.dataSource[indexPath.section][indexPath.row][@"reference"]);
