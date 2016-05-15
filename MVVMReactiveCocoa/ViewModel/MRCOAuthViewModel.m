@@ -19,7 +19,7 @@
 - (void)initialize {
     [super initialize];
     
-    self.title = @"OAuth2 Authorize";
+    self.title = @"OAuth2 Authorization Login";
 
     CFUUIDRef UUID = CFUUIDCreate(NULL);
     self.UUIDString = CFBridgingRelease(CFUUIDCreateString(NULL, UUID));

@@ -125,8 +125,8 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MP0-zc-ERu">
-                    <rect key="frame" x="239" y="555" width="122" height="30"/>
-                    <state key="normal" title="OAuth2 Authorize">
+                    <rect key="frame" x="206" y="555" width="189" height="30"/>
+                    <state key="normal" title="OAuth2 Authorization Login">
                         <color key="titleColor" red="0.42745098039215684" green="0.49411764705882355" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

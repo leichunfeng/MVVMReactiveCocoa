@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     if (!(self.viewModel.isCurrentUser && self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointHomepage)) {
         self.searchBar.frame = CGRectZero;
+        [self setValue:nil forKey:@"searchBar"];
     }
     
     [super viewDidLoad];
