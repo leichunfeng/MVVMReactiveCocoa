@@ -58,7 +58,6 @@ PODS:
   - PINRemoteImage/iOS (3.0.0-beta.2):
     - PINRemoteImage/Core
   - Reachability (3.1.1)
-  - Reveal-iOS-SDK (1.6.2)
   - SDVersion (2.6)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -87,7 +86,6 @@ DEPENDENCIES:
   - MKNetworkKit (~> 0.87)
   - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
   - Ono (~> 1.2.0)
-  - Reveal-iOS-SDK (~> 1.6.0)
   - SDVersion
   - SDWebImage (~> 3.7.1)
   - SSKeychain (~> 1.2.2)
@@ -129,7 +127,6 @@ SPEC CHECKSUMS:
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
   PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SDVersion: c036f7890279d188c17f5701b9feea0d93b9f8ee
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
