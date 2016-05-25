@@ -176,6 +176,8 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
+		24C74C421CF5EDC200F451E5 /* MRCNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */; };
+		24C74C431CF5EDC200F451E5 /* MRCNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */; };
 		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
 		24D1D4361AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4351AA9FBDC000F5AEA /* MRCAppStoreServiceImplTests.m */; };
 		24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D32F0B1A77C879008E3994 /* MRCRepositoryServiceImpl.m */; };
@@ -696,6 +698,9 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
+		24C74C3F1CF5EDC200F451E5 /* MRCNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsTableViewCell.h; sourceTree = "<group>"; };
+		24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsTableViewCell.m; sourceTree = "<group>"; };
+		24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNewsTableViewCell.xib; sourceTree = "<group>"; };
 		24D1D4251AA9FA4A000F5AEA /* MRCAppStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreService.h; sourceTree = "<group>"; };
 		24D1D4311AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCAppStoreServiceImpl.h; sourceTree = "<group>"; };
 		24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCAppStoreServiceImpl.m; sourceTree = "<group>"; };
@@ -1427,6 +1432,9 @@
 				24B29C3C1CA787D000963648 /* MRCExploreCollectionViewCell.h */,
 				24B29C3D1CA787D000963648 /* MRCExploreCollectionViewCell.m */,
 				24B29C3E1CA787D000963648 /* MRCExploreCollectionViewCell.xib */,
+				24C74C3F1CF5EDC200F451E5 /* MRCNewsTableViewCell.h */,
+				24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */,
+				24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1759,6 +1767,7 @@
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
 				24FB0ECF1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib in Resources */,
 				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
+				24C74C431CF5EDC200F451E5 /* MRCNewsTableViewCell.xib in Resources */,
 				24FB0ED71CCCD249005A151F /* MRCPopularReposViewController.xib in Resources */,
 				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				24B29C0D1CA6D37500963648 /* MRCExploreViewController.xib in Resources */,
@@ -2005,6 +2014,7 @@
 				24FB0ECE1CCCB2C2005A151F /* MRCShowcaseReposViewController.m in Sources */,
 				24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */,
 				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
+				24C74C421CF5EDC200F451E5 /* MRCNewsTableViewCell.m in Sources */,
 				249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */,
 				24049AE01C0AD86800AFB431 /* MRCNewsCellNode.m in Sources */,
 				242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */,

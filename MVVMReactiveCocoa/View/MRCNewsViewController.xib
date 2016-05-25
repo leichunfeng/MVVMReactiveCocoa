@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCNewsViewController">
             <connections>
+                <outlet property="tableView" destination="49b-Ts-1GE" id="Hvz-xs-RrR"/>
                 <outlet property="view" destination="KKi-p3-Nst" id="VNO-rB-4yg"/>
             </connections>
         </placeholder>
@@ -14,8 +15,24 @@
         <view contentMode="scaleToFill" id="KKi-p3-Nst">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="49b-Ts-1GE">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Ebr-Mf-xHM"/>
+                        <outlet property="delegate" destination="-1" id="0J6-Ib-khF"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="-122" y="123"/>
+            <constraints>
+                <constraint firstItem="49b-Ts-1GE" firstAttribute="top" secondItem="KKi-p3-Nst" secondAttribute="top" id="L1A-JP-O0X"/>
+                <constraint firstAttribute="bottom" secondItem="49b-Ts-1GE" secondAttribute="bottom" id="Z8C-e3-o7L"/>
+                <constraint firstItem="49b-Ts-1GE" firstAttribute="leading" secondItem="KKi-p3-Nst" secondAttribute="leading" id="ah4-Rl-h9z"/>
+                <constraint firstAttribute="trailing" secondItem="49b-Ts-1GE" secondAttribute="trailing" id="c2e-1V-bxn"/>
+            </constraints>
+            <point key="canvasLocation" x="-396" y="111"/>
         </view>
     </objects>
 </document>
