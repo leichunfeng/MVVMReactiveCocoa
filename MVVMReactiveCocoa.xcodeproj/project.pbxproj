@@ -229,6 +229,8 @@
 		24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */; };
 		24FF300E1B370CFA00915F8E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24FF300A1B370CFA00915F8E /* LICENSE */; };
 		24FF300F1B370CFA00915F8E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 24FF300B1B370CFA00915F8E /* README.md */; };
+		4DBA732D5E1223D6ADCA5C2C /* libPods-MVVMReactiveCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 145C40A7282374531F02687E /* libPods-MVVMReactiveCocoa.a */; };
+		AF5100DD0213C43A4158CD54 /* libPods-MVVMReactiveCocoaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E027E439CDEE3A02FAE54AC /* libPods-MVVMReactiveCocoaTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,6 +409,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		145C40A7282374531F02687E /* libPods-MVVMReactiveCocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MVVMReactiveCocoa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CFF695F9C512FDAF1756F23 /* Pods-MVVMReactiveCocoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMReactiveCocoa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa.debug.xcconfig"; sourceTree = "<group>"; };
 		240393021B37CD380032C871 /* FMDatabaseQueue+MRCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabaseQueue+MRCHelper.h"; sourceTree = "<group>"; };
 		240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabaseQueue+MRCHelper.m"; sourceTree = "<group>"; };
 		240393111B37F11D0032C871 /* starred_repos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starred_repos.json; sourceTree = "<group>"; };
@@ -785,6 +789,10 @@
 		24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStoreHouseRefreshControl.m; sourceTree = "<group>"; };
 		24FF300A1B370CFA00915F8E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		24FF300B1B370CFA00915F8E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		336CB84375D1CDB43B3192D1 /* Pods-MVVMReactiveCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMReactiveCocoa.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa.release.xcconfig"; sourceTree = "<group>"; };
+		6744AD26DE1A37FD41B664E6 /* Pods-MVVMReactiveCocoaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMReactiveCocoaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMReactiveCocoaTests/Pods-MVVMReactiveCocoaTests.release.xcconfig"; sourceTree = "<group>"; };
+		6E027E439CDEE3A02FAE54AC /* libPods-MVVMReactiveCocoaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MVVMReactiveCocoaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC741F295238CC28B2C04E5 /* Pods-MVVMReactiveCocoaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMReactiveCocoaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMReactiveCocoaTests/Pods-MVVMReactiveCocoaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -799,6 +807,7 @@
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
 				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
 				242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */,
+				4DBA732D5E1223D6ADCA5C2C /* libPods-MVVMReactiveCocoa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +815,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF5100DD0213C43A4158CD54 /* libPods-MVVMReactiveCocoaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1231,6 +1241,7 @@
 				242D4FF11A64B6FA0026ABC6 /* MVVMReactiveCocoaTests */,
 				242D4FD61A64B6FA0026ABC6 /* Products */,
 				B881B6E71AA5A766D60C0E99 /* Frameworks */,
+				BAD0EF4934B9478EC8ACDECB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1500,8 +1511,21 @@
 				241545D71A67F3EF007AFD5B /* UIKit.framework */,
 				241545D51A67F3CF007AFD5B /* CoreGraphics.framework */,
 				242D4FFF1A64BD730026ABC6 /* OctoKit.framework */,
+				145C40A7282374531F02687E /* libPods-MVVMReactiveCocoa.a */,
+				6E027E439CDEE3A02FAE54AC /* libPods-MVVMReactiveCocoaTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAD0EF4934B9478EC8ACDECB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CFF695F9C512FDAF1756F23 /* Pods-MVVMReactiveCocoa.debug.xcconfig */,
+				336CB84375D1CDB43B3192D1 /* Pods-MVVMReactiveCocoa.release.xcconfig */,
+				BEC741F295238CC28B2C04E5 /* Pods-MVVMReactiveCocoaTests.debug.xcconfig */,
+				6744AD26DE1A37FD41B664E6 /* Pods-MVVMReactiveCocoaTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1511,11 +1535,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 242D4FF81A64B6FA0026ABC6 /* Build configuration list for PBXNativeTarget "MVVMReactiveCocoa" */;
 			buildPhases = (
+				354CC5B56FD04C5423FDF812 /* 📦 Check Pods Manifest.lock */,
 				242D4FD11A64B6FA0026ABC6 /* Sources */,
 				242D4FD21A64B6FA0026ABC6 /* Frameworks */,
 				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
 				242D4FD31A64B6FA0026ABC6 /* Resources */,
 				242453231A80D85300FFFCC1 /* Embed Frameworks */,
+				4D0057EB98400EC217E50A13 /* 📦 Embed Pods Frameworks */,
+				58D3FB052804791633D713B9 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1535,11 +1562,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 242D4FFB1A64B6FA0026ABC6 /* Build configuration list for PBXNativeTarget "MVVMReactiveCocoaTests" */;
 			buildPhases = (
-				EA9395FC63FCE26D7B991597 /* Check Pods Manifest.lock */,
+				EA9395FC63FCE26D7B991597 /* 📦 Check Pods Manifest.lock */,
 				242D4FEA1A64B6FA0026ABC6 /* Sources */,
 				242D4FEB1A64B6FA0026ABC6 /* Frameworks */,
 				242D4FEC1A64B6FA0026ABC6 /* Resources */,
-				711F146F5514DA4E99DDFB00 /* Copy Pods Resources */,
+				711F146F5514DA4E99DDFB00 /* 📦 Copy Pods Resources */,
+				953C8062A7A2B038E7B86E59 /* 📦 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1819,29 +1847,89 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nREV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi;";
 		};
-		711F146F5514DA4E99DDFB00 /* Copy Pods Resources */ = {
+		354CC5B56FD04C5423FDF812 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		EA9395FC63FCE26D7B991597 /* Check Pods Manifest.lock */ = {
+		4D0057EB98400EC217E50A13 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58D3FB052804791633D713B9 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		711F146F5514DA4E99DDFB00 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoaTests/Pods-MVVMReactiveCocoaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		953C8062A7A2B038E7B86E59 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoaTests/Pods-MVVMReactiveCocoaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA9395FC63FCE26D7B991597 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2139,6 +2227,7 @@
 		};
 		242D4FF91A64B6FA0026ABC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CFF695F9C512FDAF1756F23 /* Pods-MVVMReactiveCocoa.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2180,6 +2269,7 @@
 		};
 		242D4FFA1A64B6FA0026ABC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 336CB84375D1CDB43B3192D1 /* Pods-MVVMReactiveCocoa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
@@ -2221,6 +2311,7 @@
 		};
 		242D4FFC1A64B6FA0026ABC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEC741F295238CC28B2C04E5 /* Pods-MVVMReactiveCocoaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2242,6 +2333,7 @@
 		};
 		242D4FFD1A64B6FA0026ABC6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6744AD26DE1A37FD41B664E6 /* Pods-MVVMReactiveCocoaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
