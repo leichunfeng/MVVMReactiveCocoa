@@ -9,11 +9,14 @@
 #import "MRCTableViewController.h"
 #import "MRCTableViewModel.h"
 #import "MRCTableViewCellStyleValue1.h"
+#import "YYFPSLabel.h"
 
 @interface MRCTableViewController ()
 
 @property (nonatomic, weak, readwrite) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak, readwrite) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 
 @property (nonatomic, strong, readonly) MRCTableViewModel *viewModel;
 @property (nonatomic, strong) CBStoreHouseRefreshControl *refreshControl;
@@ -124,6 +127,17 @@
                 return @(count >= self.viewModel.perPage);
         }];
     }
+    
+#ifdef DEBUG
+    self.fpsLabel = [[YYFPSLabel alloc] init];
+    [self.view addSubview:self.fpsLabel];
+    
+    self.fpsLabel.top   = 64 + 12;
+    self.fpsLabel.left  = 12;
+    self.fpsLabel.alpha = 0;
+
+    [self.fpsLabel sizeToFit];
+#endif
 }
 
 - (void)dealloc {
@@ -226,8 +240,56 @@
     [self.refreshControl scrollViewDidScroll];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (self.fpsLabel.alpha == 0) {
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                            self.fpsLabel.alpha = 1;
+                         }
+                         completion:NULL];
+    }
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self.refreshControl scrollViewDidEndDragging];
+    
+    if (!decelerate) {
+        if (self.fpsLabel.alpha != 0) {
+            [UIView animateWithDuration:1
+                                  delay:2
+                                options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:^{
+                                 self.fpsLabel.alpha = 0;
+                             }
+                             completion:NULL];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.fpsLabel.alpha != 0) {
+        [UIView animateWithDuration:1
+                              delay:2
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.fpsLabel.alpha = 0;
+                         }
+                         completion:NULL];
+    }
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
+    if (self.fpsLabel.alpha == 0) {
+        [UIView animateWithDuration:0.3
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             self.fpsLabel.alpha = 1;
+                         }
+                         completion:NULL];
+    }
 }
 
 #pragma mark - Listening for the user to trigger a refresh

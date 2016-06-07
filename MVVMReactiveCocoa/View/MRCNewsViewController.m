@@ -64,27 +64,29 @@
         deliverOnMainThread]
         subscribeNext:^(NSArray *events) {
             @strongify(self)
-
+            
             if (self.viewModel.dataSource == nil) {
-                NSArray *viewModels = [events.rac_sequence map:^(OCTEvent *event) {
-                    @strongify(self)
-                    MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
-                    viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
-                    return viewModel;
-                }].array;
-
-                self.viewModel.dataSource = @[ viewModels ];
+                self.viewModel.dataSource = @[ [self viewModelsWithEvents:events] ];
+                
+                [self.tableView reloadData];
             } else {
-                NSArray *viewModels = [[events.rac_sequence
-                    map:^(OCTEvent *event) {
-                        @strongify(self)
-                        MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
-                        viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
-                        return viewModel;
-                    }]
-                    concat:[self.viewModel.dataSource.firstObject rac_sequence]].array;
+                NSMutableArray *viewModels = [[NSMutableArray alloc] init];
+                
+                [viewModels addObjectsFromArray:[self viewModelsWithEvents:events]];
+                [viewModels addObjectsFromArray:self.viewModel.dataSource.firstObject];
 
-                self.viewModel.dataSource = @[ viewModels ];
+                self.viewModel.dataSource = @[ viewModels.copy ];
+
+                NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+
+                [events enumerateObjectsUsingBlock:^(OCTEvent *event, NSUInteger idx, BOOL *stop) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                    [indexPaths addObject:indexPath];
+                }];
+
+                [self.tableView beginUpdates];
+                [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView endUpdates];
             }
         }];
 
@@ -96,6 +98,8 @@
             [self.viewModel.requestRemoteDataCommand execute:nil];
         }];
 }
+
+- (void)reloadData {}
 
 - (UIEdgeInsets)contentInset {
     return self.viewModel.type == MRCNewsViewModelTypeNews ? UIEdgeInsetsMake(64, 0, 49, 0) : [super contentInset];
@@ -122,6 +126,38 @@
     height += 10;
     
     return height;
+}
+
+- (MRCNewsItemViewModel *)viewModelWithEvent:(OCTEvent *)event {
+    MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
+    
+    viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
+    
+    // Create text container
+    YYTextContainer *container = [[YYTextContainer alloc] init];
+    container.size = CGSizeMake(SCREEN_WIDTH - 10 - 40 - 10 - 10, CGFLOAT_MAX);
+    container.maximumNumberOfRows = 0;
+    
+    // Generate a text layout.
+    YYTextLayout *textLayout = [YYTextLayout layoutWithContainer:container text:event.mrc_attributedString];
+    
+    viewModel.height = ({
+        CGFloat height = 0;
+        
+        height += 10;
+        height += MAX(ceil(textLayout.textBoundingSize.height), 40);
+        height += 10;
+        
+        height;
+    });
+    
+    return viewModel;
+}
+
+- (NSArray *)viewModelsWithEvents:(NSArray *)events {
+    return [events.rac_sequence map:^(OCTEvent *event) {
+        return [self viewModelWithEvent:event];
+    }].array;
 }
 
 @end
