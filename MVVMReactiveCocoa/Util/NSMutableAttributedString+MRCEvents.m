@@ -99,16 +99,36 @@ NSString * const MRCLinkAttributeName = @"MRCLinkAttributeName";
 
 - (NSMutableAttributedString *)mrc_addUserLinkAttribute {
     [self addAttribute:MRCLinkAttributeName value:[NSURL mrc_userLinkWithLogin:self.string] range:[self.string rangeOfString:self.string]];
+    [self mrc_addHighlightAttribute];
     return self;
 }
 
 - (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithName:(NSString *)name referenceName:(NSString *)referenceName {
     [self addAttribute:MRCLinkAttributeName value:[NSURL mrc_repositoryLinkWithName:name referenceName:referenceName] range:[self.string rangeOfString:self.string]];
+    [self mrc_addHighlightAttribute];
     return self;
 }
 
 - (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL {
     [self addAttribute:MRCLinkAttributeName value:HTMLURL range:[self.string rangeOfString:self.string]];
+    [self mrc_addHighlightAttribute];
+    return self;
+}
+
+#pragma mark - Highlight
+
+- (NSMutableAttributedString *)mrc_addHighlightAttribute {
+    YYTextBorder *highlightBorder = [[YYTextBorder alloc] init];
+    
+    highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
+    highlightBorder.cornerRadius = 3;
+    highlightBorder.fillColor = HexRGB(0xbfdffe);
+    
+    YYTextHighlight *highlight = [[YYTextHighlight alloc] init];
+    [highlight setBackgroundBorder:highlightBorder];
+    
+    [self setTextHighlight:highlight range:[self.string rangeOfString:self.string]];
+    
     return self;
 }
 

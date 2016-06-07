@@ -28,9 +28,9 @@
 // Paragraph Style
 
 #define MRCEventsParagraphStyle ({ \
-NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
-paragraphStyle.paragraphSpacingBefore = 5; \
-paragraphStyle; \
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
+    paragraphStyle.paragraphSpacingBefore = 5; \
+    paragraphStyle; \
 })
 
 @interface NSString (MRCEvents)
@@ -71,6 +71,10 @@ paragraphStyle; \
 - (NSMutableAttributedString *)mrc_addUserLinkAttribute;
 - (NSMutableAttributedString *)mrc_addRepositoryLinkAttributeWithName:(NSString *)name referenceName:(NSString *)referenceName;
 - (NSMutableAttributedString *)mrc_addHTMLURLAttribute:(NSURL *)HTMLURL;
+
+// Highlight
+
+- (NSMutableAttributedString *)mrc_addHighlightAttribute;
 
 // Combination
 
