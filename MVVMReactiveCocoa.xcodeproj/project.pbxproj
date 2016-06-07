@@ -1543,14 +1543,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 242D4FF81A64B6FA0026ABC6 /* Build configuration list for PBXNativeTarget "MVVMReactiveCocoa" */;
 			buildPhases = (
-				354CC5B56FD04C5423FDF812 /* 📦 Check Pods Manifest.lock */,
+				354CC5B56FD04C5423FDF812 /* [CP] Check Pods Manifest.lock */,
 				242D4FD11A64B6FA0026ABC6 /* Sources */,
 				242D4FD21A64B6FA0026ABC6 /* Frameworks */,
 				246AC34B1A65773E0021DCA2 /* Update Build With Number Of Commits */,
 				242D4FD31A64B6FA0026ABC6 /* Resources */,
 				242453231A80D85300FFFCC1 /* Embed Frameworks */,
-				4D0057EB98400EC217E50A13 /* 📦 Embed Pods Frameworks */,
-				58D3FB052804791633D713B9 /* 📦 Copy Pods Resources */,
+				4D0057EB98400EC217E50A13 /* [CP] Embed Pods Frameworks */,
+				58D3FB052804791633D713B9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1570,12 +1570,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 242D4FFB1A64B6FA0026ABC6 /* Build configuration list for PBXNativeTarget "MVVMReactiveCocoaTests" */;
 			buildPhases = (
-				EA9395FC63FCE26D7B991597 /* 📦 Check Pods Manifest.lock */,
+				EA9395FC63FCE26D7B991597 /* [CP] Check Pods Manifest.lock */,
 				242D4FEA1A64B6FA0026ABC6 /* Sources */,
 				242D4FEB1A64B6FA0026ABC6 /* Frameworks */,
 				242D4FEC1A64B6FA0026ABC6 /* Resources */,
-				711F146F5514DA4E99DDFB00 /* 📦 Copy Pods Resources */,
-				953C8062A7A2B038E7B86E59 /* 📦 Embed Pods Frameworks */,
+				711F146F5514DA4E99DDFB00 /* [CP] Copy Pods Resources */,
+				953C8062A7A2B038E7B86E59 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1856,14 +1856,14 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nREV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi;";
 		};
-		354CC5B56FD04C5423FDF812 /* 📦 Check Pods Manifest.lock */ = {
+		354CC5B56FD04C5423FDF812 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1871,14 +1871,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4D0057EB98400EC217E50A13 /* 📦 Embed Pods Frameworks */ = {
+		4D0057EB98400EC217E50A13 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1886,14 +1886,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		58D3FB052804791633D713B9 /* 📦 Copy Pods Resources */ = {
+		58D3FB052804791633D713B9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1901,14 +1901,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		711F146F5514DA4E99DDFB00 /* 📦 Copy Pods Resources */ = {
+		711F146F5514DA4E99DDFB00 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1916,14 +1916,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoaTests/Pods-MVVMReactiveCocoaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		953C8062A7A2B038E7B86E59 /* 📦 Embed Pods Frameworks */ = {
+		953C8062A7A2B038E7B86E59 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1931,14 +1931,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoaTests/Pods-MVVMReactiveCocoaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA9395FC63FCE26D7B991597 /* 📦 Check Pods Manifest.lock */ = {
+		EA9395FC63FCE26D7B991597 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
