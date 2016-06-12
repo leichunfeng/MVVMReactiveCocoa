@@ -122,7 +122,8 @@ NSString * const MRCLinkAttributeName = @"MRCLinkAttributeName";
     
     highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
     highlightBorder.cornerRadius = 3;
-    highlightBorder.fillColor = HexRGB(0xbfdffe);
+//    highlightBorder.fillColor = HexRGB(0xbfdffe);
+    highlightBorder.fillColor = HexRGB(0xD9D9D9);
     
     YYTextHighlight *highlight = [[YYTextHighlight alloc] init];
     [highlight setBackgroundBorder:highlightBorder];
