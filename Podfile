@@ -24,6 +24,7 @@ target 'MVVMReactiveCocoa' do
   pod 'AsyncDisplayKit'
   pod 'SDVersion'
   pod 'YYKit'
+  pod 'FBMemoryProfiler'
   pod 'OcticonsIOS', :git => 'https://github.com/jacksonh/OcticonsIOS.git', :commit => '4bd3b21'
   pod 'LCFInfiniteScrollView', :git => 'https://github.com/leichunfeng/LCFInfiniteScrollView.git'
 

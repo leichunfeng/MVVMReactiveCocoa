@@ -17,15 +17,18 @@
 #import <Appirater/Appirater.h>
 #import <Bugtags/Bugtags.h>
 #import <JSPatch/JSPatch.h>
+#import <FBMemoryProfiler/FBMemoryProfiler.h>
 
 @interface MRCAppDelegate ()
 
 @property (nonatomic, strong) MRCViewModelServicesImpl *services;
 @property (nonatomic, strong) MRCViewModel *viewModel;
 @property (nonatomic, strong) Reachability *reachability;
+@property (nonatomic, strong) FBMemoryProfiler *memoryProfiler;
 
 @property (nonatomic, strong, readwrite) MRCNavigationControllerStack *navigationControllerStack;
 @property (nonatomic, assign, readwrite) NetworkStatus networkStatus;
+
 @property (nonatomic, copy, readwrite) NSString *adURL;
 
 @end
@@ -42,6 +45,7 @@
     [self configureAppirater];
     [self configureBugtags];
     [self configureJSPatch];
+    [self configureFBMemoryProfiler];
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
@@ -171,6 +175,14 @@
 - (void)configureJSPatch {
 //    [JSPatch testScriptInBundle];
     [JSPatch startWithAppKey:MRC_JSPATCH_APP_KEY];
+}
+
+- (void)configureFBMemoryProfiler {
+    FBMemoryProfiler *memoryProfiler = [[FBMemoryProfiler alloc] init];
+    [memoryProfiler enable];
+    
+    // Store memory profiler somewhere to extend it's lifetime
+    self.memoryProfiler = memoryProfiler;
 }
 
 @end
