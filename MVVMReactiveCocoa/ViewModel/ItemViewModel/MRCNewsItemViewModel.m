@@ -23,6 +23,25 @@
     if (self) {
         self.event = event;
         self.attributedString = event.mrc_attributedString;
+        
+        // Create text container
+        YYTextContainer *container = [[YYTextContainer alloc] init];
+        
+        container.size = CGSizeMake(SCREEN_WIDTH - 10 - 40 - 10 - 10, CGFLOAT_MAX);
+        container.maximumNumberOfRows = 0;
+        
+        // Generate a text layout.
+        self.textLayout = [YYTextLayout layoutWithContainer:container text:event.mrc_attributedString];
+        
+        self.height = ({
+            CGFloat height = 0;
+            
+            height += 10;
+            height += self.textLayout.textBoundingSize.height;
+            height += 10;
+            
+            height;
+        });
     }
     return self;
 }

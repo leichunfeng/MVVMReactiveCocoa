@@ -25,14 +25,10 @@ extern NSString * const MRCLinkAttributeName;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.detailLabel.numberOfLines = 0;
-    
-    [self.avatarButton rac_liftSelector:@selector(sd_setBackgroundImageWithURL:forState:)
-                            withSignals:RACObserve(self, viewModel.event.actorAvatarURL), [RACSignal return:@(UIControlStateNormal)], nil];
+    self.detailLabel.displaysAsynchronously = YES;
+    self.detailLabel.ignoreCommonProperties = YES;
     
     [self.avatarButton addTarget:self action:@selector(didClickAvatarButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    RAC(self.detailLabel, attributedText) = RACObserve(self, viewModel.attributedString);
     
     @weakify(self)
     self.detailLabel.highlightTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
@@ -49,6 +45,11 @@ extern NSString * const MRCLinkAttributeName;
 
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {
     self.viewModel = viewModel;
+    
+    [self.avatarButton sd_setBackgroundImageWithURL:viewModel.event.actorAvatarURL forState:UIControlStateNormal];
+
+    self.detailLabel.size = viewModel.textLayout.textBoundingSize;
+    self.detailLabel.textLayout = viewModel.textLayout;
 }
 
 - (void)didClickAvatarButton:(id)sender {

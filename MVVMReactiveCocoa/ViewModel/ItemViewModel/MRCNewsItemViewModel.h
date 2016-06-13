@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, strong) RACCommand *didClickLinkCommand;
+@property (nonatomic, strong) YYTextLayout *textLayout;
 
 - (instancetype)initWithEvent:(OCTEvent *)event;
 

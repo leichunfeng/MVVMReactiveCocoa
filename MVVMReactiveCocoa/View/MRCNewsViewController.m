@@ -23,7 +23,6 @@
 
 @implementation MRCNewsViewController
 
-@dynamic tableView;
 @dynamic viewModel;
 
 - (void)viewDidLoad {
@@ -83,7 +82,7 @@
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
                     [indexPaths addObject:indexPath];
                 }];
-
+                
                 [self.tableView beginUpdates];
                 [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
                 [self.tableView endUpdates];
@@ -115,42 +114,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     MRCNewsItemViewModel *viewModel = self.viewModel.dataSource[indexPath.section][indexPath.row];
-    
-    YYTextLayout *textLayout = [YYTextLayout layoutWithContainerSize:CGSizeMake(SCREEN_WIDTH - 10 - 40 - 10 - 10, CGFLOAT_MAX)
-                                                                text:viewModel.attributedString];
-    
-    CGFloat height = 0;
-    
-    height += 10;
-    height += MAX(ceil(textLayout.textBoundingSize.height), 40);
-    height += 10;
-    
-    return height;
+    return viewModel.height;
 }
 
 - (MRCNewsItemViewModel *)viewModelWithEvent:(OCTEvent *)event {
     MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
-    
     viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
-    
-    // Create text container
-    YYTextContainer *container = [[YYTextContainer alloc] init];
-    container.size = CGSizeMake(SCREEN_WIDTH - 10 - 40 - 10 - 10, CGFLOAT_MAX);
-    container.maximumNumberOfRows = 0;
-    
-    // Generate a text layout.
-    YYTextLayout *textLayout = [YYTextLayout layoutWithContainer:container text:event.mrc_attributedString];
-    
-    viewModel.height = ({
-        CGFloat height = 0;
-        
-        height += 10;
-        height += MAX(ceil(textLayout.textBoundingSize.height), 40);
-        height += 10;
-        
-        height;
-    });
-    
     return viewModel;
 }
 
