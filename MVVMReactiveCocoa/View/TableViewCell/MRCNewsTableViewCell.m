@@ -14,8 +14,8 @@ extern NSString * const MRCLinkAttributeName;
 @interface MRCNewsTableViewCell ()
 
 @property (nonatomic, weak) IBOutlet UIButton *avatarButton;
-@property (nonatomic, weak) IBOutlet YYLabel *detailLabel;
 
+@property (nonatomic, strong) YYLabel *detailLabel;
 @property (nonatomic, strong) MRCNewsItemViewModel *viewModel;
 
 @end
@@ -24,6 +24,13 @@ extern NSString * const MRCLinkAttributeName;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.detailLabel = [[YYLabel alloc] init];
+    [self.contentView addSubview:self.detailLabel];
+    
+    self.detailLabel.top   = 10;
+    self.detailLabel.left  = 60;
+    self.detailLabel.width = SCREEN_WIDTH - 10 - 40 - 10 - 10;
     
     self.detailLabel.displaysAsynchronously = YES;
     self.detailLabel.ignoreCommonProperties = YES;
@@ -46,9 +53,9 @@ extern NSString * const MRCLinkAttributeName;
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {
     self.viewModel = viewModel;
     
-    [self.avatarButton sd_setBackgroundImageWithURL:viewModel.event.actorAvatarURL forState:UIControlStateNormal];
+    [self.avatarButton sd_setImageWithURL:viewModel.event.actorAvatarURL forState:UIControlStateNormal];
 
-    self.detailLabel.size = viewModel.textLayout.textBoundingSize;
+    self.detailLabel.height = viewModel.textLayout.textBoundingSize.height;
     self.detailLabel.textLayout = viewModel.textLayout;
 }
 

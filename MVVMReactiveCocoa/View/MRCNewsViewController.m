@@ -28,8 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"MRCNewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"MRCNewsTableViewCell"];
-    
     if (self.viewModel.type == MRCNewsViewModelTypeNews) {
         UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
         
@@ -105,7 +103,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    return [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell" forIndexPath:indexPath];
+    MRCNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MRCNewsTableViewCell"];
+    if (cell == nil) {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"MRCNewsTableViewCell" owner:nil options:nil].firstObject;
+    }
+    return cell;
 }
 
 - (void)configureCell:(MRCNewsTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath withObject:(MRCNewsItemViewModel *)viewModel {

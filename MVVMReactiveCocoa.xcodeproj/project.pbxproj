@@ -2294,8 +2294,8 @@
 			baseConfigurationReference = 336CB84375D1CDB43B3192D1 /* Pods-MVVMReactiveCocoa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
@@ -2326,7 +2326,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "1fb203fe-d426-40d6-b3ac-5d0883812da2";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

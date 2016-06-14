@@ -27,7 +27,7 @@
         // Create text container
         YYTextContainer *container = [[YYTextContainer alloc] init];
         
-        container.size = CGSizeMake(SCREEN_WIDTH - 10 - 40 - 10 - 10, CGFLOAT_MAX);
+        container.size = CGSizeMake(SCREEN_WIDTH - 10 - 40 - 10 - 10, HUGE);
         container.maximumNumberOfRows = 0;
         
         // Generate a text layout.
