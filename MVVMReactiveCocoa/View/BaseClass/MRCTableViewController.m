@@ -132,9 +132,9 @@
     self.fpsLabel = [[YYFPSLabel alloc] init];
     [self.view addSubview:self.fpsLabel];
     
-    self.fpsLabel.top   = 64 + 12;
-    self.fpsLabel.left  = 12;
-    self.fpsLabel.alpha = 0;
+    self.fpsLabel.left   = 12;
+    self.fpsLabel.bottom = SCREEN_HEIGHT - self.contentInset.bottom - 12;
+    self.fpsLabel.alpha  = 0;
 
     [self.fpsLabel sizeToFit];
 #endif

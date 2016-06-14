@@ -45,27 +45,35 @@
         return executing.boolValue ? @(MRCTitleViewTypeLoadingTitle) : @(MRCTitleViewTypeDefault);
     }];
     
-    [self.viewModel.requestRemoteDataCommand.executing subscribeNext:^(NSNumber *executing) {
-        @strongify(self)
-        if (executing.boolValue && self.viewModel.dataSource == nil) {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
-        } else {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }
-    }];
+    [[[RACSignal
+        combineLatest:@[ self.viewModel.requestRemoteDataCommand.executing, RACObserve(self.viewModel, dataSource) ]
+        reduce:^(NSNumber *executing, NSArray *dataSource) {
+            return @(executing.boolValue && dataSource.count == 0);
+        }]
+        deliverOnMainThread]
+        subscribeNext:^(NSNumber *showHUD) {
+            @strongify(self)
+            if (showHUD.boolValue) {
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = MBPROGRESSHUD_LABEL_TEXT;
+            } else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            }
+        }];
     
     [[[RACObserve(self.viewModel, events)
         filter:^(NSArray *events) {
             return @(events.count > 0).boolValue;
         }]
-        deliverOnMainThread]
+        deliverOn:[RACScheduler scheduler]]
         subscribeNext:^(NSArray *events) {
             @strongify(self)
             
             if (self.viewModel.dataSource == nil) {
                 self.viewModel.dataSource = @[ [self viewModelsWithEvents:events] ];
                 
-                [self.tableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
             } else {
                 NSMutableArray *viewModels = [[NSMutableArray alloc] init];
                 
@@ -81,9 +89,11 @@
                     [indexPaths addObject:indexPath];
                 }];
                 
-                [self.tableView beginUpdates];
-                [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
-                [self.tableView endUpdates];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView beginUpdates];
+                    [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
+                    [self.tableView endUpdates];
+                });
             }
         }];
 
@@ -119,15 +129,11 @@
     return viewModel.height;
 }
 
-- (MRCNewsItemViewModel *)viewModelWithEvent:(OCTEvent *)event {
-    MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
-    viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
-    return viewModel;
-}
-
 - (NSArray *)viewModelsWithEvents:(NSArray *)events {
     return [events.rac_sequence map:^(OCTEvent *event) {
-        return [self viewModelWithEvent:event];
+        MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
+        viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
+        return viewModel;
     }].array;
 }
 
