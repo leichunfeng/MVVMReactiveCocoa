@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/leichunfeng/MVVMReactiveCocoa/master/LICENSE)
 [![GitHub tag](https://img.shields.io/github/tag/leichunfeng/MVVMReactiveCocoa.svg)](https://github.com/leichunfeng/MVVMReactiveCocoa/tags)
 
-This repository contains the source code for the [GitBucket](https://itunes.apple.com/cn/app/id961330940?mt=8) iOS app. It is a mobile client app for GitHub, built using [MVVM](http://en.wikipedia.org/wiki/Model_View_ViewModel) architectural pattern and some awesome frameworks, such as [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)、[Mantle](https://github.com/MantleFramework/Mantle)、[octokit.objc](https://github.com/octokit/octokit.objc), etc. You can use it for any purpose, free of charge.
+This repository contains the source code for the [GitBucket](https://itunes.apple.com/cn/app/id961330940?mt=8) iOS app. It's a mobile client app for GitHub, building with [MVVM](http://en.wikipedia.org/wiki/Model_View_ViewModel) architectural pattern and some awesome frameworks, such as [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa)、[Mantle](https://github.com/MantleFramework/Mantle)、[octokit.objc](https://github.com/octokit/octokit.objc), etc. You can use it for any purpose, free of charge.
 
 # Purpose
 
@@ -20,6 +20,11 @@ The features is little now, but I will add more utility features at the iterativ
 # Class diagram
 
 ![MVVMReactiveCocoa](OmniGraffle/MVVMReactiveCocoa.png "MVVMReactiveCocoa")
+
+# Requirements
+
+- iOS 8.0+
+- CocoaPods 1.0+
 
 # Contribution
 
@@ -44,7 +49,7 @@ fatal: early EOF
 fatal: index-pack failed
 ```
 
-Please execute the following command and then the previous `git clone` command again:
+Please execute the following command and then retry the previous `git clone` command again:
 
 ``` objc
 git config --global core.compression -1
