@@ -46,6 +46,8 @@
 @implementation MRCAvatarHeaderView
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.avatarButton.imageView.layer.borderColor  = [UIColor whiteColor].CGColor;
     self.avatarButton.imageView.layer.borderWidth  = 2;
     self.avatarButton.imageView.layer.cornerRadius = CGRectGetWidth(self.avatarButton.frame) / 2;

@@ -37,6 +37,8 @@ static UIImage *_tintedStarIcon = nil;
 @implementation MRCReposTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _repoIcon = [UIImage octicon_imageWithIdentifier:@"Repo" size:self.iconImageView.frame.size];

@@ -17,6 +17,8 @@
 @implementation MRCNetworkHeaderView
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.backgroundColor = HexRGB(0xFED6D7);
     self.imageView.image = [UIImage octicon_imageWithIcon:@"IssueOpened"
                                           backgroundColor:UIColor.clearColor

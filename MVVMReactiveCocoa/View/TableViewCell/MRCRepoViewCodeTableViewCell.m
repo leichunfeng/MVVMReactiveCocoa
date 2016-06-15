@@ -22,6 +22,8 @@
 @implementation MRCRepoViewCodeTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.viewCodeButton.tintColor = HexRGB(colorI3);
 }
 

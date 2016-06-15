@@ -25,6 +25,8 @@
 @implementation MRCUserListTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.avatarImageView.backgroundColor = HexRGB(colorI6);
     
     RACSignal *operationCommandSignal = RACObserve(self, viewModel.operationCommand);

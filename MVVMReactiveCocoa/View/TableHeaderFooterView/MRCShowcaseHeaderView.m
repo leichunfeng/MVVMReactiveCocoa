@@ -23,6 +23,8 @@
 @implementation MRCShowcaseHeaderView
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     UIView *borderView = [self createViewBackedBottomBorderWithHeight:MRC_1PX_WIDTH andColor:HexRGB(colorB2)];
     [self addSubview:borderView];
     
