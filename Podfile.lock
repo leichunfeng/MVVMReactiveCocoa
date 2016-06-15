@@ -1,19 +1,6 @@
 PODS:
   - Appirater (2.0.5)
-  - AsyncDisplayKit (1.9.73):
-    - AsyncDisplayKit/PINRemoteImage (= 1.9.73)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.9.73)
-  - AsyncDisplayKit/Core (1.9.73):
-    - AsyncDisplayKit/ASDealloc2MainObject
-  - AsyncDisplayKit/PINRemoteImage (1.9.73):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (>= 3.0.0-beta.2)
   - DZNEmptyDataSet (1.5.2)
-  - FBAllocationTracker (0.1.5)
-  - FBMemoryProfiler (0.1.3):
-    - FBAllocationTracker (~> 0.1)
-    - FBRetainCycleDetector (~> 0.1)
-  - FBRetainCycleDetector (0.1.2)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -56,11 +43,6 @@ PODS:
     - Reachability (~> 3.1.0)
   - OcticonsIOS (0.0.2)
   - Ono (1.2.2)
-  - PINCache (2.2.2)
-  - PINRemoteImage/Core (3.0.0-beta.2):
-    - PINCache (>= 2.1)
-  - PINRemoteImage/iOS (3.0.0-beta.2):
-    - PINRemoteImage/Core
   - Reachability (3.1.1)
   - Reveal-iOS-SDK (1.6.2)
   - SDVersion (2.6)
@@ -79,9 +61,7 @@ PODS:
 
 DEPENDENCIES:
   - Appirater
-  - AsyncDisplayKit
   - DZNEmptyDataSet (~> 1.5.1)
-  - FBMemoryProfiler
   - FMDB
   - FormatterKit (~> 1.8.0)
   - GPUImage (~> 0.1.7)
@@ -118,11 +98,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
-  AsyncDisplayKit: cc906c5ddff9d34c8f5ea2f18ba092033c5516a3
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
-  FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
-  FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
-  FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FormatterKit: 11ad17b983200629246a5a466f6f1bfa2df823cb
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
@@ -132,8 +108,6 @@ SPEC CHECKSUMS:
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
   OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
-  PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
-  PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SDVersion: c036f7890279d188c17f5701b9feea0d93b9f8ee
@@ -145,6 +119,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: e7b6669bebfc4f151daa0fdec3c8c24c8dc3a24e
   YYKit: f2654fe525de2283648db957bddb37ddd8e06549
 
-PODFILE CHECKSUM: 9024df69d1cdd0757b7db41c55595c2cd6cb22fb
+PODFILE CHECKSUM: 9ecf29595707ba6f4c856317d92f3bc6900752cf
 
 COCOAPODS: 1.0.1

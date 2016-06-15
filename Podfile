@@ -1,9 +1,10 @@
+source 'https://github.com/Artsy/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '8.0'
+inhibit_all_warnings!
 
 target 'MVVMReactiveCocoa' do
-  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
   pod 'SDWebImage', '~> 3.7.1'
   pod 'UIActivityIndicator-for-SDWebImage'
   pod 'MBProgressHUD', '~> 0.9'
@@ -20,16 +21,12 @@ target 'MVVMReactiveCocoa' do
   pod 'GPUImage', '~> 0.1.7'
   pod 'Reveal-iOS-SDK', '~> 1.6.0'
   pod 'Appirater'
-  pod 'AsyncDisplayKit'
   pod 'SDVersion'
   pod 'YYKit'
-  pod 'FBMemoryProfiler'
   pod 'OcticonsIOS', :git => 'https://github.com/jacksonh/OcticonsIOS.git', :commit => '4bd3b21'
   pod 'LCFInfiniteScrollView', :git => 'https://github.com/leichunfeng/LCFInfiniteScrollView.git'
 
   target 'MVVMReactiveCocoaTests' do
     inherit! :search_paths
-    # Pods for testing
   end
-
 end

@@ -10,9 +10,6 @@
 		240393041B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */; };
 		240393121B37F11D0032C871 /* starred_repos.json in Resources */ = {isa = PBXBuildFile; fileRef = 240393111B37F11D0032C871 /* starred_repos.json */; };
 		240393141B37F14F0032C871 /* OCTRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 240393131B37F14F0032C871 /* OCTRepositoryTests.m */; };
-		24049AE01C0AD86800AFB431 /* MRCNewsCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24049ADF1C0AD86800AFB431 /* MRCNewsCellNode.m */; };
-		24049AEE1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 24049AED1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m */; };
-		24049AF11C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 24049AF01C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m */; };
 		240BFBD81AFF240B006ABC05 /* MRCSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */; };
 		240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240BFBE51AFF2420006ABC05 /* MRCSearchViewController.m */; };
 		240BFBE81AFF2420006ABC05 /* MRCSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240BFBE61AFF2420006ABC05 /* MRCSearchViewController.xib */; };
@@ -419,12 +416,6 @@
 		240393031B37CD380032C871 /* FMDatabaseQueue+MRCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabaseQueue+MRCHelper.m"; sourceTree = "<group>"; };
 		240393111B37F11D0032C871 /* starred_repos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starred_repos.json; sourceTree = "<group>"; };
 		240393131B37F14F0032C871 /* OCTRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTRepositoryTests.m; sourceTree = "<group>"; };
-		24049ADE1C0AD86800AFB431 /* MRCNewsCellNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsCellNode.h; sourceTree = "<group>"; };
-		24049ADF1C0AD86800AFB431 /* MRCNewsCellNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsCellNode.m; sourceTree = "<group>"; };
-		24049AEC1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageDownloader+ASImageDownloaderProtocol.h"; sourceTree = "<group>"; };
-		24049AED1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageDownloader+ASImageDownloaderProtocol.m"; sourceTree = "<group>"; };
-		24049AEF1C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDImageCache+ASImageCacheProtocol.h"; sourceTree = "<group>"; };
-		24049AF01C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDImageCache+ASImageCacheProtocol.m"; sourceTree = "<group>"; };
 		240BFBD61AFF240B006ABC05 /* MRCSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewModel.h; sourceTree = "<group>"; };
 		240BFBD71AFF240B006ABC05 /* MRCSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchViewModel.m; sourceTree = "<group>"; };
 		240BFBE41AFF2420006ABC05 /* MRCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchViewController.h; sourceTree = "<group>"; };
@@ -911,10 +902,6 @@
 				249A8A3E1B54A30700E18582 /* OCTRef+MRCAdditions.m */,
 				242307401B75A48700CBC74A /* UIView+MRCFrameAdditions.h */,
 				242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */,
-				24049AEC1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.h */,
-				24049AED1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m */,
-				24049AEF1C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.h */,
-				24049AF01C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m */,
 				24EF48091D0DA0E50056B090 /* UITableView+MRCAdditions.h */,
 				24EF480A1D0DA0E50056B090 /* UITableView+MRCAdditions.m */,
 			);
@@ -1437,8 +1424,6 @@
 				2436883F1B25E31A00D801D3 /* MRCUserListTableViewCell.h */,
 				243688401B25E31A00D801D3 /* MRCUserListTableViewCell.m */,
 				243688411B25E31A00D801D3 /* MRCUserListTableViewCell.xib */,
-				24049ADE1C0AD86800AFB431 /* MRCNewsCellNode.h */,
-				24049ADF1C0AD86800AFB431 /* MRCNewsCellNode.m */,
 				24B29C111CA6D42500963648 /* MRCExploreTableViewCell.h */,
 				24B29C121CA6D42500963648 /* MRCExploreTableViewCell.m */,
 				24B29C131CA6D42500963648 /* MRCExploreTableViewCell.xib */,
@@ -1978,7 +1963,6 @@
 				245D62861AA8C73E00D7B081 /* MRCAvatarHeaderView.m in Sources */,
 				240BFBE71AFF2420006ABC05 /* MRCSearchViewController.m in Sources */,
 				24FDDEE81B31C6660040B5C3 /* MRCFollowButton.m in Sources */,
-				24049AF11C0B15F300AFB431 /* SDImageCache+ASImageCacheProtocol.m in Sources */,
 				2458A22D1B00631E00E9FB9B /* MRCReposSearchResultsItemViewModel.m in Sources */,
 				24116E871A8E653200D25218 /* OCTRef+MRCUtil.m in Sources */,
 				242D4FDB1A64B6FA0026ABC6 /* main.m in Sources */,
@@ -2064,7 +2048,6 @@
 				24D32F0C1A77C879008E3994 /* MRCRepositoryServiceImpl.m in Sources */,
 				24C74C421CF5EDC200F451E5 /* MRCNewsTableViewCell.m in Sources */,
 				249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */,
-				24049AE01C0AD86800AFB431 /* MRCNewsCellNode.m in Sources */,
 				242D83691A7A7E4800F5F424 /* MRCGitTreeViewModel.m in Sources */,
 				240BFBFA1AFF31C8006ABC05 /* MRCReposSearchResultsViewModel.m in Sources */,
 				249674361A73F5650032771B /* MRCWebViewModel.m in Sources */,
@@ -2082,7 +2065,6 @@
 				243C5EB31CE8569500E70E42 /* MRCOAuthViewController.m in Sources */,
 				24DF45891A6BF6CD00F23474 /* MRCReposViewController.m in Sources */,
 				24B29BFD1CA6D35D00963648 /* MRCExploreViewModel.m in Sources */,
-				24049AEE1C0B15D800AFB431 /* SDWebImageDownloader+ASImageDownloaderProtocol.m in Sources */,
 				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
 				24FB0EB71CCC97AA005A151F /* MRCShowcaseHeaderView.m in Sources */,
 				2479C9451AAD39150057B681 /* README.md in Sources */,

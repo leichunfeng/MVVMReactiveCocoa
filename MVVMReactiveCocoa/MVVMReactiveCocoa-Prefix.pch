@@ -61,7 +61,6 @@
     #import "GPUImage.h"
     #import "OCTEvent+MRCPersistence.h"
     #import "UIView+MRCFrameAdditions.h"
-    #import <AsyncDisplayKit/AsyncDisplayKit.h>
     #import <YYKit/YYKit.h>
     #import "YYCache+MRCAdditions.h"
 #endif
