@@ -18,7 +18,7 @@ target 'MVVMReactiveCocoa' do
   pod 'FMDB'
   pod 'UMengSocial', '~> 4.3'
   pod 'GPUImage', '~> 0.1.7'
-#  pod 'Reveal-iOS-SDK', '~> 1.6.0'
+  pod 'Reveal-iOS-SDK', '~> 1.6.0'
   pod 'Appirater'
   pod 'AsyncDisplayKit'
   pod 'SDVersion'
