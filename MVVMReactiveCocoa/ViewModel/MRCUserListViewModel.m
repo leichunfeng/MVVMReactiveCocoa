@@ -89,6 +89,8 @@
 
             return [RACSignal empty];
         }];
+        
+        self.requestRemoteDataCommand.allowsConcurrentExecution = YES;
     }
 
     self.shouldPullToRefresh = YES;

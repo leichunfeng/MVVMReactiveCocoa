@@ -52,6 +52,7 @@
     }];
     
     self.shouldRequestRemoteDataOnViewDidLoad = NO;
+    self.requestRemoteDataCommand.allowsConcurrentExecution = YES;
     
     [[[[RACObserve(self, language)
         map:^(NSDictionary *language) {

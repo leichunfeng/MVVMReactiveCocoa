@@ -55,6 +55,7 @@
         }
         
         _repoDescription = attributedString.copy;
+        _repoDescription = [_repoDescription attributedSubstringFromRange:NSMakeRange(0, MIN(150, _repoDescription.length))];
     }
     return _repoDescription;
 }
