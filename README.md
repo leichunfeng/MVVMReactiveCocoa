@@ -32,8 +32,6 @@ If you want to make some contributions to this project or just want to build the
 
 ``` objc
 git clone --recursive https://github.com/leichunfeng/MVVMReactiveCocoa.git
-cd MVVMReactiveCocoa
-pod install
 ```
 
 Everything will be done for you, and all you need to do is just waiting for it to finished. Once finished, you can open the project through double-click the `MVVMReactiveCocoa.xcworkspace` file and build the `MVVMReactiveCocoa` target. Any pull request will be welcome.
