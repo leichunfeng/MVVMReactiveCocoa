@@ -1,0 +1,1 @@
+../../../LCFInfiniteScrollView/LCFInfiniteScrollView/LCFInfiniteScrollView/UIColor+LCFImageAdditions.h

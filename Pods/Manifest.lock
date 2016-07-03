@@ -1,0 +1,124 @@
+PODS:
+  - Appirater (2.0.5)
+  - DZNEmptyDataSet (1.5.2)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - FormatterKit (1.8.1):
+    - FormatterKit/AddressFormatter (= 1.8.1)
+    - FormatterKit/ArrayFormatter (= 1.8.1)
+    - FormatterKit/ColorFormatter (= 1.8.1)
+    - FormatterKit/LocationFormatter (= 1.8.1)
+    - FormatterKit/NameFormatter (= 1.8.1)
+    - FormatterKit/OrdinalNumberFormatter (= 1.8.1)
+    - FormatterKit/Resources (= 1.8.1)
+    - FormatterKit/TimeIntervalFormatter (= 1.8.1)
+    - FormatterKit/UnitOfInformationFormatter (= 1.8.1)
+    - FormatterKit/URLRequestFormatter (= 1.8.1)
+  - FormatterKit/AddressFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/ArrayFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/ColorFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/LocationFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/NameFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/OrdinalNumberFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/Resources (1.8.1)
+  - FormatterKit/TimeIntervalFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/UnitOfInformationFormatter (1.8.1):
+    - FormatterKit/Resources
+  - FormatterKit/URLRequestFormatter (1.8.1):
+    - FormatterKit/Resources
+  - GPUImage (0.1.7)
+  - IQKeyboardManager (3.2.0.3)
+  - LCFInfiniteScrollView (0.1):
+    - SDWebImage
+  - MBProgressHUD (0.9.2)
+  - MKNetworkKit (0.87):
+    - Reachability (~> 3.1.0)
+  - OcticonsIOS (0.0.2)
+  - Ono (1.2.2)
+  - Reachability (3.1.1)
+  - Reveal-iOS-SDK (1.6.2)
+  - SDVersion (2.6)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SSKeychain (1.2.3)
+  - SVPullToRefresh (0.4.1)
+  - UIActivityIndicator-for-SDWebImage (1.2):
+    - SDWebImage (~> 3.7)
+  - UMengSocial (4.4)
+  - WebViewJavascriptBridge (4.1.5)
+  - YYKit (1.0.5):
+    - YYKit/no-arc (= 1.0.5)
+  - YYKit/no-arc (1.0.5)
+
+DEPENDENCIES:
+  - Appirater
+  - DZNEmptyDataSet (~> 1.5.1)
+  - FMDB
+  - FormatterKit (~> 1.8.0)
+  - GPUImage (~> 0.1.7)
+  - IQKeyboardManager (~> 3.2.0.3)
+  - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`)
+  - MBProgressHUD (~> 0.9)
+  - MKNetworkKit (~> 0.87)
+  - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
+  - Ono (~> 1.2.0)
+  - Reveal-iOS-SDK (~> 1.6.0)
+  - SDVersion
+  - SDWebImage (~> 3.7.1)
+  - SSKeychain (~> 1.2.2)
+  - SVPullToRefresh (~> 0.4.1)
+  - UIActivityIndicator-for-SDWebImage
+  - UMengSocial (~> 4.3)
+  - WebViewJavascriptBridge (~> 4.1.4)
+  - YYKit
+
+EXTERNAL SOURCES:
+  LCFInfiniteScrollView:
+    :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
+  OcticonsIOS:
+    :commit: 4bd3b21
+    :git: https://github.com/jacksonh/OcticonsIOS.git
+
+CHECKOUT OPTIONS:
+  LCFInfiniteScrollView:
+    :commit: 790c256212c610c72127e57f945fbe4064cde98a
+    :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
+  OcticonsIOS:
+    :commit: 4bd3b21
+    :git: https://github.com/jacksonh/OcticonsIOS.git
+
+SPEC CHECKSUMS:
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
+  DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  FormatterKit: 11ad17b983200629246a5a466f6f1bfa2df823cb
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
+  LCFInfiniteScrollView: 6552dc73dd573ecd54d8e151e3a1a742722723f7
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
+  OcticonsIOS: e21204b48b0d83f7740008abed42f8b1573b3ffc
+  Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
+  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  SDVersion: c036f7890279d188c17f5701b9feea0d93b9f8ee
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
+  UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
+  WebViewJavascriptBridge: e7b6669bebfc4f151daa0fdec3c8c24c8dc3a24e
+  YYKit: f2654fe525de2283648db957bddb37ddd8e06549
+
+PODFILE CHECKSUM: 9ecf29595707ba6f4c856317d92f3bc6900752cf
+
+COCOAPODS: 1.0.1
