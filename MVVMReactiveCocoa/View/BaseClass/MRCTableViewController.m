@@ -13,7 +13,7 @@
 
 @interface MRCTableViewController ()
 
-@property (nonatomic, weak, readwrite) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong, readwrite) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak, readwrite) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
