@@ -107,8 +107,6 @@
 		2479C9411AAD39150057B681 /* icon-success.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9371AAD39150057B681 /* icon-success.png */; };
 		2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2479C9381AAD39150057B681 /* icon-success@2x.png */; };
 		2479C9431AAD39150057B681 /* TWMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2479C93A1AAD39150057B681 /* TWMessageBarManager.m */; };
-		2479C9441AAD39150057B681 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2479C93B1AAD39150057B681 /* LICENSE */; };
-		2479C9451AAD39150057B681 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2479C93C1AAD39150057B681 /* README.md */; };
 		2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2483A4511A69559000BA0594 /* UIImage+MRCOcticons.m */; };
 		248973781B3028AA00A867DE /* MRCUserDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 248973771B3028AA00A867DE /* MRCUserDetailViewModel.m */; };
 		248973871B3028BC00A867DE /* MRCUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 248973851B3028BC00A867DE /* MRCUserDetailViewController.m */; };
@@ -126,8 +124,6 @@
 		249E5B181B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B171B05EBBF00BFDEA1 /* MRCRepoSettingsAvatarTableViewCell.m */; };
 		249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B1E1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m */; };
 		249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B1F1B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib */; };
-		249E5B321B065D4600BFDEA1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B281B065D4600BFDEA1 /* LICENSE */; };
-		249E5B331B065D4600BFDEA1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B291B065D4600BFDEA1 /* README.md */; };
 		249E5B341B065D4600BFDEA1 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B2C1B065D4600BFDEA1 /* TGRImageViewController.m */; };
 		249E5B351B065D4600BFDEA1 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B2D1B065D4600BFDEA1 /* TGRImageViewController.xib */; };
 		249E5B361B065D4600BFDEA1 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B2F1B065D4600BFDEA1 /* TGRImageZoomAnimationController.m */; };
@@ -173,6 +169,7 @@
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
 		24B76A261D92B718000A3CE1 /* MRCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B76A251D92B718000A3CE1 /* MRCTableView.m */; };
+		24B76A281D92C1C2000A3CE1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B76A271D92C1C2000A3CE1 /* MobileCoreServices.framework */; };
 		24C74C421CF5EDC200F451E5 /* MRCNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */; };
 		24C74C431CF5EDC200F451E5 /* MRCNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */; };
 		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
@@ -227,8 +224,6 @@
 		24FE6E791B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FE6E781B6334CC00DF3BDA /* OCTEvent+MRCPersistence.m */; };
 		24FF300C1B370CFA00915F8E /* BarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30071B370CFA00915F8E /* BarItem.m */; };
 		24FF300D1B370CFA00915F8E /* CBStoreHouseRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FF30091B370CFA00915F8E /* CBStoreHouseRefreshControl.m */; };
-		24FF300E1B370CFA00915F8E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 24FF300A1B370CFA00915F8E /* LICENSE */; };
-		24FF300F1B370CFA00915F8E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 24FF300B1B370CFA00915F8E /* README.md */; };
 		4DBA732D5E1223D6ADCA5C2C /* libPods-MVVMReactiveCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 145C40A7282374531F02687E /* libPods-MVVMReactiveCocoa.a */; };
 		AF5100DD0213C43A4158CD54 /* libPods-MVVMReactiveCocoaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E027E439CDEE3A02FAE54AC /* libPods-MVVMReactiveCocoaTests.a */; };
 /* End PBXBuildFile section */
@@ -694,6 +689,7 @@
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
 		24B76A241D92B718000A3CE1 /* MRCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTableView.h; sourceTree = "<group>"; };
 		24B76A251D92B718000A3CE1 /* MRCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableView.m; sourceTree = "<group>"; };
+		24B76A271D92C1C2000A3CE1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		24C74C3F1CF5EDC200F451E5 /* MRCNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsTableViewCell.h; sourceTree = "<group>"; };
 		24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsTableViewCell.m; sourceTree = "<group>"; };
 		24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -799,6 +795,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B76A281D92C1C2000A3CE1 /* MobileCoreServices.framework in Frameworks */,
 				24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */,
 				24A7499C1BDE5CCF002B46A3 /* JSPatch.framework in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
@@ -1501,6 +1498,7 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24B76A271D92C1C2000A3CE1 /* MobileCoreServices.framework */,
 				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
 				24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
@@ -1772,10 +1770,8 @@
 				24B29C401CA787D000963648 /* MRCExploreCollectionViewCell.xib in Resources */,
 				2479C9421AAD39150057B681 /* icon-success@2x.png in Resources */,
 				24FB0ECF1CCCB2C2005A151F /* MRCShowcaseReposViewController.xib in Resources */,
-				24FF300E1B370CFA00915F8E /* LICENSE in Resources */,
 				24C74C431CF5EDC200F451E5 /* MRCNewsTableViewCell.xib in Resources */,
 				24FB0ED71CCCD249005A151F /* MRCPopularReposViewController.xib in Resources */,
-				2479C9441AAD39150057B681 /* LICENSE in Resources */,
 				24B29C0D1CA6D37500963648 /* MRCExploreViewController.xib in Resources */,
 				24B29C151CA6D42500963648 /* MRCExploreTableViewCell.xib in Resources */,
 				249F35031A72A1A0008F1C2A /* MRCRepoReadmeTableViewCell.xib in Resources */,
@@ -1808,7 +1804,6 @@
 				24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */,
 				249E5B211B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.xib in Resources */,
 				243C5EB41CE8569500E70E42 /* MRCOAuthViewController.xib in Resources */,
-				249E5B321B065D4600BFDEA1 /* LICENSE in Resources */,
 				2489AD6B1B33AF0000D76523 /* MRCPublicReposViewController.xib in Resources */,
 				2479C93D1AAD39150057B681 /* icon-error.png in Resources */,
 				24D899DA1AAA9BAC00BC607C /* MRCFeedbackViewController.xib in Resources */,
@@ -1987,7 +1982,6 @@
 				240D01311A654D300033CC86 /* MRCViewController.m in Sources */,
 				24FB0EE21CCCD791005A151F /* MRCLanguageViewModel.m in Sources */,
 				24B1045F1B04CE100046473E /* OCTClient+MRCRepository.m in Sources */,
-				24FF300F1B370CFA00915F8E /* README.md in Sources */,
 				24F120551AA8004400A22D9A /* MRCTableViewCellStyleValue1.m in Sources */,
 				24DF458D1A6BF6EC00F23474 /* MRCReposViewModel.m in Sources */,
 				24FB0EDE1CCCD77C005A151F /* MRCLanguageViewController.m in Sources */,
@@ -2058,7 +2052,6 @@
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				24E596BA1CE4B742004ADF35 /* YYCache+MRCAdditions.m in Sources */,
 				249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */,
-				249E5B331B065D4600BFDEA1 /* README.md in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,
 				240D014B1A654D300033CC86 /* MRCHomepageViewModel.m in Sources */,
@@ -2070,7 +2063,6 @@
 				24B29BFD1CA6D35D00963648 /* MRCExploreViewModel.m in Sources */,
 				2483A4521A69559000BA0594 /* UIImage+MRCOcticons.m in Sources */,
 				24FB0EB71CCC97AA005A151F /* MRCShowcaseHeaderView.m in Sources */,
-				2479C9451AAD39150057B681 /* README.md in Sources */,
 				240D012E1A654D300033CC86 /* MRCNavigationControllerStack.m in Sources */,
 				240D01451A654D300033CC86 /* MRCTableViewModel.m in Sources */,
 				240D012C1A654D300033CC86 /* MRCUtil.m in Sources */,
