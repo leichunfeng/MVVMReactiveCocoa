@@ -59,7 +59,6 @@
 		24182B551BDA229B0041B38E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B501BDA229B0041B38E /* update_v1_1_0.sql */; };
 		24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B511BDA229B0041B38E /* update_v1_2_0.sql */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
-		242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
@@ -173,6 +172,7 @@
 		24B4DA151A66B97900DDFA6C /* MRCReposTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA131A66B97900DDFA6C /* MRCReposTableViewCell.m */; };
 		24B4DA161A66B97900DDFA6C /* MRCReposTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */; };
 		24B4DA1A1A66C1DD00DDFA6C /* MRCReposItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */; };
+		24B76A261D92B718000A3CE1 /* MRCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24B76A251D92B718000A3CE1 /* MRCTableView.m */; };
 		24C74C421CF5EDC200F451E5 /* MRCNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */; };
 		24C74C431CF5EDC200F451E5 /* MRCNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */; };
 		24D1D4331AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D1D4321AA9FA5E000F5AEA /* MRCAppStoreServiceImpl.m */; };
@@ -200,7 +200,6 @@
 		24E596BA1CE4B742004ADF35 /* YYCache+MRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E596B91CE4B742004ADF35 /* YYCache+MRCAdditions.m */; };
 		24E84E831AEFC270003F700C /* MRCWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24E84E821AEFC270003F700C /* MRCWebViewController.xib */; };
 		24E84E841AEFD6E6003F700C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 242D4FE71A64B6FA0026ABC6 /* LaunchScreen.xib */; };
-		24EF480B1D0DA0E50056B090 /* UITableView+MRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF480A1D0DA0E50056B090 /* UITableView+MRCAdditions.m */; };
 		24EFEB631BF8315300C2AB61 /* MRCSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */; };
 		24F120271AA7445800A22D9A /* MRCSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120261AA7445800A22D9A /* MRCSettingsViewModel.m */; };
 		24F120361AA7447A00A22D9A /* MRCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F120341AA7447A00A22D9A /* MRCSettingsViewController.m */; };
@@ -513,8 +512,6 @@
 		24182B511BDA229B0041B38E /* update_v1_2_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_2_0.sql; sourceTree = "<group>"; };
 		241DAC761B0893A0005FDA9C /* MRCMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCMemoryCache.h; sourceTree = "<group>"; };
 		241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCMemoryCache.m; sourceTree = "<group>"; };
-		242307401B75A48700CBC74A /* UIView+MRCFrameAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MRCFrameAdditions.h"; sourceTree = "<group>"; };
-		242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MRCFrameAdditions.m"; sourceTree = "<group>"; };
 		242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = OctoKit/OctoKit.xcodeproj; sourceTree = "<group>"; };
 		242452F21A80D79D00FFFCC1 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = OctoKit/Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		242453011A80D7AB00FFFCC1 /* Mantle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mantle.xcodeproj; path = OctoKit/Carthage/Checkouts/Mantle/Mantle.xcodeproj; sourceTree = "<group>"; };
@@ -695,6 +692,8 @@
 		24B4DA141A66B97900DDFA6C /* MRCReposTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCReposTableViewCell.xib; sourceTree = "<group>"; };
 		24B4DA181A66C1DD00DDFA6C /* MRCReposItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCReposItemViewModel.h; sourceTree = "<group>"; };
 		24B4DA191A66C1DD00DDFA6C /* MRCReposItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCReposItemViewModel.m; sourceTree = "<group>"; };
+		24B76A241D92B718000A3CE1 /* MRCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTableView.h; sourceTree = "<group>"; };
+		24B76A251D92B718000A3CE1 /* MRCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTableView.m; sourceTree = "<group>"; };
 		24C74C3F1CF5EDC200F451E5 /* MRCNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCNewsTableViewCell.h; sourceTree = "<group>"; };
 		24C74C401CF5EDC200F451E5 /* MRCNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCNewsTableViewCell.m; sourceTree = "<group>"; };
 		24C74C411CF5EDC200F451E5 /* MRCNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCNewsTableViewCell.xib; sourceTree = "<group>"; };
@@ -740,8 +739,6 @@
 		24E596B81CE4B742004ADF35 /* YYCache+MRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YYCache+MRCAdditions.h"; sourceTree = "<group>"; };
 		24E596B91CE4B742004ADF35 /* YYCache+MRCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YYCache+MRCAdditions.m"; sourceTree = "<group>"; };
 		24E84E821AEFC270003F700C /* MRCWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCWebViewController.xib; sourceTree = "<group>"; };
-		24EF48091D0DA0E50056B090 /* UITableView+MRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MRCAdditions.h"; sourceTree = "<group>"; };
-		24EF480A1D0DA0E50056B090 /* UITableView+MRCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MRCAdditions.m"; sourceTree = "<group>"; };
 		24EFEB611BF8315300C2AB61 /* MRCSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSearchBar.h; sourceTree = "<group>"; };
 		24EFEB621BF8315300C2AB61 /* MRCSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCSearchBar.m; sourceTree = "<group>"; };
 		24F120251AA7445800A22D9A /* MRCSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCSettingsViewModel.h; sourceTree = "<group>"; };
@@ -900,10 +897,6 @@
 				249A8A351B53EBC600E18582 /* OCTEvent+MRCAttributedString.m */,
 				249A8A3D1B54A30700E18582 /* OCTRef+MRCAdditions.h */,
 				249A8A3E1B54A30700E18582 /* OCTRef+MRCAdditions.m */,
-				242307401B75A48700CBC74A /* UIView+MRCFrameAdditions.h */,
-				242307411B75A48700CBC74A /* UIView+MRCFrameAdditions.m */,
-				24EF48091D0DA0E50056B090 /* UITableView+MRCAdditions.h */,
-				24EF480A1D0DA0E50056B090 /* UITableView+MRCAdditions.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -911,6 +904,7 @@
 		240D00DD1A654D300033CC86 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				24B76A181D92B6EF000A3CE1 /* TableView */,
 				24A2065E1C1712C2005DCDE2 /* Transition */,
 				24EFEB601BF8313F00C2AB61 /* SearchBar */,
 				245D627A1AA8C73E00D7B081 /* TableHeaderFooterView */,
@@ -1454,6 +1448,15 @@
 				24B29C421CA7880700963648 /* MRCExploreCollectionViewCellViewModel.m */,
 			);
 			path = ItemViewModel;
+			sourceTree = "<group>";
+		};
+		24B76A181D92B6EF000A3CE1 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				24B76A241D92B718000A3CE1 /* MRCTableView.h */,
+				24B76A251D92B718000A3CE1 /* MRCTableView.m */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		24D1D4341AA9FBCC000F5AEA /* Model */ = {
@@ -2042,6 +2045,7 @@
 				249F34F81A72A197008F1C2A /* UIView+Borders.m in Sources */,
 				24143F151BD783F900555179 /* MRCTrendingSettingsViewController.m in Sources */,
 				24A49ACF1CDDB81E0039A424 /* MRCCountryViewController.m in Sources */,
+				24B76A261D92B718000A3CE1 /* MRCTableView.m in Sources */,
 				24F120421AA7528A00A22D9A /* MRCAboutViewModel.m in Sources */,
 				24FB0ECE1CCCB2C2005A151F /* MRCShowcaseReposViewController.m in Sources */,
 				24FDDEE51B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m in Sources */,
@@ -2054,7 +2058,6 @@
 				24DF45851A6BF04B00F23474 /* MRCSegmentedControlController.m in Sources */,
 				24E596BA1CE4B742004ADF35 /* YYCache+MRCAdditions.m in Sources */,
 				249E5B201B063CA600BFDEA1 /* MRCRepoSettingsOwnerTableViewCell.m in Sources */,
-				24EF480B1D0DA0E50056B090 /* UITableView+MRCAdditions.m in Sources */,
 				249E5B331B065D4600BFDEA1 /* README.md in Sources */,
 				240D01291A654D300033CC86 /* OCTUser+MRCPersistence.m in Sources */,
 				240D012F1A654D300033CC86 /* MRCTabBarController.m in Sources */,
@@ -2078,7 +2081,6 @@
 				24116E911A8F455000D25218 /* MRCDoubleTitleView.m in Sources */,
 				24E3B9F71B492301001C1DEE /* MRCNewsItemViewModel.m in Sources */,
 				24A077131D07120000AC3A58 /* YYFPSLabel.m in Sources */,
-				242307421B75A48700CBC74A /* UIView+MRCFrameAdditions.m in Sources */,
 				24B29C141CA6D42500963648 /* MRCExploreTableViewCell.m in Sources */,
 				240D01281A654D300033CC86 /* OCTRepository+MRCPersistence.m in Sources */,
 				242D83581A7A5B0300F5F424 /* MRCSelectBranchOrTagViewController.m in Sources */,

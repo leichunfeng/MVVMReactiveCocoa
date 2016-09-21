@@ -7,7 +7,6 @@
 
 #import "UIView+Borders.h"
 
-
 @implementation UIView(Borders)
 
 //////////
@@ -29,7 +28,6 @@
 -(void)addViewBackedTopBorderWithHeight: (CGFloat)height andColor:(UIColor*)color{
     [self addViewBackedOneSidedBorderWithFrame:CGRectMake(0, 0, self.frame.size.width, height) andColor:color];
 }
-
 
 //////////
 // Top + Offset
@@ -58,7 +56,6 @@
     [self addViewBackedOneSidedBorderWithFrame:CGRectMake(0 + leftOffset, 0 + topOffset, self.frame.size.width - leftOffset - rightOffset, height) andColor:color];
 }
 
-
 //////////
 // Right
 //////////
@@ -78,8 +75,6 @@
 -(void)addViewBackedRightBorderWithWidth: (CGFloat)width andColor:(UIColor*)color{
     [self addViewBackedOneSidedBorderWithFrame:CGRectMake(self.frame.size.width-width, 0, width, self.frame.size.height) andColor:color];
 }
-
-
 
 //////////
 // Right + Offset

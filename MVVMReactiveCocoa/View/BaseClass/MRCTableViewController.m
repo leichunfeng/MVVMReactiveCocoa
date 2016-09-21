@@ -72,7 +72,7 @@
                                                                                   views:@{ @"searchBar": self.searchBar }]];
     }
     
-    self.tableView.contentOffset = CGPointMake(0, self.searchBar.mrc_height - self.contentInset.top);
+    self.tableView.contentOffset = CGPointMake(0, CGRectGetHeight(self.searchBar.frame) - self.contentInset.top);
     self.tableView.contentInset  = self.contentInset;
     self.tableView.scrollIndicatorInsets = self.contentInset;
     

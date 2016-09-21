@@ -60,7 +60,6 @@
     #import "OCTRef+MRCAdditions.h"
     #import "GPUImage.h"
     #import "OCTEvent+MRCPersistence.h"
-    #import "UIView+MRCFrameAdditions.h"
     #import <YYKit/YYKit.h>
     #import "YYCache+MRCAdditions.h"
 #endif
