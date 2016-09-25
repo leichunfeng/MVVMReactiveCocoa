@@ -67,13 +67,17 @@
         [fromViewController.view addSubview:fromViewController.snapshot];
         fromViewController.navigationController.navigationBar.hidden = YES;
         
-        toViewController.view.hidden = YES;
         toViewController.snapshot.alpha = 0.5;
         toViewController.snapshot.transform = CGAffineTransformMakeScale(0.95, 0.95);
         
-        [[transitionContext containerView] addSubview:toViewController.view];
+        UIView *toViewWrapperView = [[UIView alloc] initWithFrame:[transitionContext containerView].bounds];
+        [toViewWrapperView addSubview:toViewController.view];
+        
+        toViewWrapperView.hidden = YES;
+        
+        [[transitionContext containerView] addSubview:toViewWrapperView];
         [[transitionContext containerView] addSubview:toViewController.snapshot];
-        [[transitionContext containerView] sendSubviewToBack:toViewController.snapshot];
+        [[transitionContext containerView] bringSubviewToFront:fromViewController.view];
         
         [UIView animateWithDuration:duration
                               delay:0.0
@@ -87,13 +91,17 @@
                              MRCSharedAppDelegate.window.backgroundColor = [UIColor whiteColor];
                              
                              toViewController.navigationController.navigationBar.hidden = NO;
-                             toViewController.view.hidden = NO;
                              
                              [fromViewController.snapshot removeFromSuperview];
                              [toViewController.snapshot removeFromSuperview];
                              
-                             // Reset toViewController's `snapshot` to nil
+                             [toViewWrapperView removeFromSuperview];
+                             
                              if (![transitionContext transitionWasCancelled]) {
+                                 for (UIView *subview in toViewWrapperView.subviews) {
+                                     [[transitionContext containerView] addSubview:subview];
+                                 }
+                                 
                                  toViewController.snapshot = nil;
                              }
                              
