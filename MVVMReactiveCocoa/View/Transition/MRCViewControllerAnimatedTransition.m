@@ -65,7 +65,11 @@
         MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
         
         [fromViewController.view addSubview:fromViewController.snapshot];
+        
+        BOOL tabBarHidden = fromViewController.tabBarController.tabBar.hidden;
+        
         fromViewController.navigationController.navigationBar.hidden = YES;
+        fromViewController.tabBarController.tabBar.hidden = YES;
         
         toViewController.snapshot.alpha = 0.5;
         toViewController.snapshot.transform = CGAffineTransformMakeScale(0.95, 0.95);
@@ -91,6 +95,7 @@
                              MRCSharedAppDelegate.window.backgroundColor = [UIColor whiteColor];
                              
                              toViewController.navigationController.navigationBar.hidden = NO;
+                             toViewController.tabBarController.tabBar.hidden = tabBarHidden;
                              
                              [fromViewController.snapshot removeFromSuperview];
                              [toViewController.snapshot removeFromSuperview];
