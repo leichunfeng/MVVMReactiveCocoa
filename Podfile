@@ -23,6 +23,7 @@ target 'MVVMReactiveCocoa' do
   pod 'Appirater'
   pod 'SDVersion'
   pod 'YYKit'
+  pod 'MLeaksFinder'
   pod 'OcticonsIOS', :git => 'https://github.com/jacksonh/OcticonsIOS.git', :commit => '4bd3b21'
   pod 'LCFInfiniteScrollView', :git => 'https://github.com/leichunfeng/LCFInfiniteScrollView.git'
 
