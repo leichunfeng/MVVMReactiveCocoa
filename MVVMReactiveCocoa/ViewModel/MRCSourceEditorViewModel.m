@@ -8,6 +8,8 @@
 
 #import "MRCSourceEditorViewModel.h"
 
+static NSString * const MRCLineWrappingKey = @"MRCLineWrappingKey";
+
 @interface MRCSourceEditorViewModel ()
 
 @property (nonatomic, assign, readwrite) MRCSourceEditorViewModelEntry entry;
@@ -54,6 +56,15 @@
     } else {
         self.contentType = MRCSourceEditorViewModelContentTypeSourceCode;
     }
+    
+    NSNumber *lineWrapping = (NSNumber *)[[YYCache sharedCache] objectForKey:MRCLineWrappingKey];
+    self.lineWrapping = (lineWrapping == nil ? YES : lineWrapping.boolValue);
+    
+    [[RACObserve(self, lineWrapping)
+        skip:1]
+        subscribeNext:^(NSNumber *lineWrapping) {
+            [[YYCache sharedCache] setObject:lineWrapping forKey:MRCLineWrappingKey withBlock:NULL];
+        }];
     
     NSString *URLString = [NSBundle.mainBundle pathForResource:@"source-editor" ofType:@"html" inDirectory:@"assets.bundle"];
     self.request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
