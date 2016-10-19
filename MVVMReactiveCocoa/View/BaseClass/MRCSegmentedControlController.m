@@ -25,13 +25,13 @@
 
 - (void)initialize {
     for (UIViewController *viewController in self.viewControllers) {
-        viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         [self addChildViewController:viewController];
     }
     
-    self.currentViewController = self.viewControllers.firstObject;
-    [self.view addSubview:self.currentViewController.view];
-
+    UIViewController *currentViewController = self.viewControllers.firstObject;
+    [self.view addSubview:currentViewController.view];
+    self.currentViewController = currentViewController;
+    
     NSArray *items = [self.viewControllers.rac_sequence map:^(UIViewController *viewController) {
         return viewController.segmentedControlItem;
     }].array;
@@ -65,6 +65,23 @@
 - (void)setViewControllers:(NSArray *)viewControllers {
     _viewControllers = viewControllers;
     [self initialize];
+}
+
+- (void)setCurrentViewController:(UIViewController *)currentViewController {
+    currentViewController.view.frame = self.view.bounds;
+    currentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[subview]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:@{ @"subview": currentViewController.view }]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subview]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:@{ @"subview": currentViewController.view }]];
+    
+    _currentViewController = currentViewController;
 }
 
 @end
