@@ -8,42 +8,39 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MRCStarredReposViewController">
             <connections>
-                <outlet property="searchBar" destination="ENa-ee-wJH" id="nPc-LP-AZu"/>
-                <outlet property="tableView" destination="Qho-Iz-nsM" id="zhV-5p-K3O"/>
-                <outlet property="view" destination="aif-Ut-kNn" id="CcT-PW-hLS"/>
+                <outlet property="searchBar" destination="JQ2-w8-PxF" id="ssT-Rl-Ury"/>
+                <outlet property="tableView" destination="ubN-gL-vP8" id="V0E-uj-NYZ"/>
+                <outlet property="view" destination="xk5-Me-r63" id="ggX-VR-xNk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="aif-Ut-kNn">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="xk5-Me-r63">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qho-Iz-nsM">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ubN-gL-vP8">
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" id="ENa-ee-wJH" customClass="MRCSearchBar">
+                    <searchBar key="tableHeaderView" contentMode="redraw" id="JQ2-w8-PxF" customClass="MRCSearchBar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textInputTraits key="textInputTraits"/>
-                        <connections>
-                            <outlet property="delegate" destination="-1" id="0cq-8f-2Xb"/>
-                        </connections>
                     </searchBar>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="Ue1-7D-LoE"/>
-                        <outlet property="delegate" destination="-1" id="2N9-WV-3Py"/>
-                        <outlet property="emptyDataSetDelegate" destination="-1" id="jYA-sm-y7X"/>
-                        <outlet property="emptyDataSetSource" destination="-1" id="sIR-lA-wCM"/>
+                        <outlet property="dataSource" destination="-1" id="IsY-NO-0zM"/>
+                        <outlet property="delegate" destination="-1" id="I1L-7W-j9t"/>
+                        <outlet property="emptyDataSetDelegate" destination="-1" id="BN4-o2-C0N"/>
+                        <outlet property="emptyDataSetSource" destination="-1" id="EHv-I3-7P3"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Qho-Iz-nsM" secondAttribute="bottom" id="6gB-T5-cnA"/>
-                <constraint firstAttribute="trailing" secondItem="Qho-Iz-nsM" secondAttribute="trailing" id="Uoz-So-RVG"/>
-                <constraint firstItem="Qho-Iz-nsM" firstAttribute="top" secondItem="aif-Ut-kNn" secondAttribute="top" id="emO-9O-3XA"/>
-                <constraint firstItem="Qho-Iz-nsM" firstAttribute="leading" secondItem="aif-Ut-kNn" secondAttribute="leading" id="ugx-BQ-0A0"/>
+                <constraint firstAttribute="trailing" secondItem="ubN-gL-vP8" secondAttribute="trailing" id="90v-wQ-cy3"/>
+                <constraint firstAttribute="bottom" secondItem="ubN-gL-vP8" secondAttribute="bottom" id="dRw-ev-9rw"/>
+                <constraint firstItem="ubN-gL-vP8" firstAttribute="top" secondItem="xk5-Me-r63" secondAttribute="top" id="ji2-VX-aYV"/>
+                <constraint firstItem="ubN-gL-vP8" firstAttribute="leading" secondItem="xk5-Me-r63" secondAttribute="leading" id="xjN-0h-lr4"/>
             </constraints>
-            <point key="canvasLocation" x="280" y="290"/>
+            <point key="canvasLocation" x="43" y="49"/>
         </view>
     </objects>
 </document>

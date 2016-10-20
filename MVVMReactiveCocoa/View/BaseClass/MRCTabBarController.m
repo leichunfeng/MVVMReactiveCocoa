@@ -20,7 +20,6 @@
     [super viewDidLoad];
 
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.view.frame = self.view.bounds;
 
     [self addChildViewController:self.tabBarController];
     [self.view addSubview:self.tabBarController.view];

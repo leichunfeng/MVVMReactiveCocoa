@@ -17,19 +17,14 @@
 
 @implementation MRCSegmentedControlController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-}
-
 - (void)initialize {
-    for (UIViewController *viewController in self.viewControllers) {
-        [self addChildViewController:viewController];
-    }
-    
     UIViewController *currentViewController = self.viewControllers.firstObject;
+    
+    [self addChildViewController:currentViewController];
+    currentViewController.view.frame = self.view.bounds;
     [self.view addSubview:currentViewController.view];
+    [currentViewController didMoveToParentViewController:self];
+    
     self.currentViewController = currentViewController;
     
     NSArray *items = [self.viewControllers.rac_sequence map:^(UIViewController *viewController) {
@@ -47,41 +42,40 @@
     	subscribeNext:^(NSNumber *selectedSegmentIndex) {
             @strongify(self)
             UIViewController *toViewController = self.viewControllers[selectedSegmentIndex.integerValue];
-            [self transitionFromViewController:self.currentViewController
-                              toViewController:toViewController
-                                      duration:0
-                                       options:0
-                                    animations:NULL
-                                    completion:^(BOOL finished) {
-                                    	@strongify(self)
-                                    	self.currentViewController = toViewController;
-                                    	if ([self.delegate respondsToSelector:@selector(segmentedControlController:didSelectViewController:)]) {
-                                    		[self.delegate segmentedControlController:self didSelectViewController:self.currentViewController];
-                                        }
-                                    }];
-     }];
+            [self cycleFromViewController:self.currentViewController toViewController:toViewController];
+        }];
+}
+
+- (void)cycleFromViewController:(UIViewController *)fromViewController toViewController:(UIViewController *)toViewController {
+    // Prepare the two view controllers for the change.
+    [fromViewController willMoveToParentViewController:nil];
+    [self addChildViewController:toViewController];
+    
+    toViewController.view.frame = self.view.bounds;
+    
+    // Queue up the transition animation.
+    [self transitionFromViewController:fromViewController
+                      toViewController:toViewController
+                              duration:0
+                               options:0
+                            animations:NULL
+                            completion:^(BOOL finished) {
+                                // Remove the old view controller and send the final
+                                // notification to the new view controller.
+                                [fromViewController removeFromParentViewController];
+                                [toViewController didMoveToParentViewController:self];
+                                
+                                self.currentViewController = toViewController;
+                                
+                                if ([self.delegate respondsToSelector:@selector(segmentedControlController:didSelectViewController:)]) {
+                                    [self.delegate segmentedControlController:self didSelectViewController:toViewController];
+                                }
+                            }];
 }
 
 - (void)setViewControllers:(NSArray *)viewControllers {
     _viewControllers = viewControllers;
     [self initialize];
-}
-
-- (void)setCurrentViewController:(UIViewController *)currentViewController {
-    currentViewController.view.frame = self.view.bounds;
-    currentViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[subview]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{ @"subview": currentViewController.view }]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subview]|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:@{ @"subview": currentViewController.view }]];
-    
-    _currentViewController = currentViewController;
 }
 
 @end

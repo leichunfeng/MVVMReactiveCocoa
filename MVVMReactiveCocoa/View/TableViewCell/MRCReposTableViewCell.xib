@@ -102,10 +102,10 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="gAD-Nz-YrW"/>
-                        <exclude reference="3Hm-6b-R1U"/>
-                        <exclude reference="C8d-CL-FFz"/>
                         <exclude reference="Yxw-sQ-gbT"/>
+                        <exclude reference="C8d-CL-FFz"/>
+                        <exclude reference="3Hm-6b-R1U"/>
+                        <exclude reference="gAD-Nz-YrW"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
