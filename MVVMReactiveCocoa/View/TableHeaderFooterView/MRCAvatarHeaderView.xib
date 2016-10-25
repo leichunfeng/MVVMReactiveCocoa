@@ -197,7 +197,7 @@
                 <outlet property="repositoriesButton" destination="St6-Mx-YFz" id="tl8-u5-IOP"/>
                 <outlet property="repositoriesLabel" destination="26k-s4-QL7" id="nJm-nG-MNP"/>
             </connections>
-            <point key="canvasLocation" x="6" y="-123.5"/>
+            <point key="canvasLocation" x="-135" y="-130"/>
         </view>
     </objects>
 </document>

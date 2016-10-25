@@ -53,6 +53,7 @@
     self.avatarButton.imageView.layer.cornerRadius = CGRectGetWidth(self.avatarButton.frame) / 2;
     self.avatarButton.imageView.backgroundColor = HexRGB(0xEBE9E5);
     self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
 }
 
@@ -66,12 +67,16 @@
     }];
 
     // configure coverImageView
-    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 323)];
+    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 323)];
+    
+    self.coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.coverImageView.clipsToBounds = YES;
-
+    
     // configure bluredCoverImageView
     self.bluredCoverImageView = [[UIImageView alloc] initWithFrame:self.coverImageView.bounds];
+    
+    self.bluredCoverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.bluredCoverImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.bluredCoverImageView.clipsToBounds = YES;
 
@@ -124,10 +129,11 @@
         rac_signalForControlEvents:UIControlEventTouchUpInside]
         subscribeNext:^(UIButton *avatarButton) {
             @strongify(self)
+            
             MRCSharedAppDelegate.window.backgroundColor = [UIColor blackColor];
 
             TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[avatarButton imageForState:UIControlStateNormal]];
-
+            
             viewController.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             viewController.transitioningDelegate = self;
 
@@ -154,26 +160,27 @@
     self.repositoriesButton.rac_command = viewModel.repositoriesCommand;
     self.followingButton.rac_command    = viewModel.followingCommand;
 
-    [[RACObserve(viewModel, contentOffset) filter:^BOOL(id value) {
-        return [value CGPointValue].y <= 0;
-    }] subscribeNext:^(id x) {
-    	@strongify(self)
+    [[RACObserve(viewModel, contentOffset)
+        filter:^(id value) {
+            return @([value CGPointValue].y <= 0).boolValue;
+        }]
+        subscribeNext:^(id x) {
+            @strongify(self)
 
-        CGPoint contentOffset = [x CGPointValue];
+            CGPoint contentOffset = [x CGPointValue];
 
-        self.coverImageView.frame = CGRectMake(0, 0 + contentOffset.y, SCREEN_WIDTH, CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
-        self.bluredCoverImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.coverImageView.frame), CGRectGetHeight(self.coverImageView.frame));
+            self.coverImageView.frame = CGRectMake(0, 0 + contentOffset.y, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) + ABS(contentOffset.y) - 58);
 
-        CGFloat diff  = MIN(ABS(contentOffset.y), MRCAvatarHeaderViewContentOffsetRadix);
-        CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
+            CGFloat diff  = MIN(ABS(contentOffset.y), MRCAvatarHeaderViewContentOffsetRadix);
+            CGFloat scale = diff / MRCAvatarHeaderViewContentOffsetRadix;
 
-        CGFloat alpha = 1 * (1 - scale);
+            CGFloat alpha = 1 * (1 - scale);
 
-        self.avatarButton.imageView.alpha = alpha;
-        self.nameLabel.alpha = alpha;
-        self.operationButton.alpha = alpha;
-        self.bluredCoverImageView.alpha = alpha;
-    }];
+            self.avatarButton.imageView.alpha = alpha;
+            self.nameLabel.alpha = alpha;
+            self.operationButton.alpha = alpha;
+            self.bluredCoverImageView.alpha = alpha;
+        }];
 }
 
 - (void)layoutSubviews {
@@ -184,14 +191,14 @@
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    if ([presented isKindOfClass:TGRImageViewController.class]) {
+    if ([presented isKindOfClass:[TGRImageViewController class]]) {
         return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
     }
     return nil;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    if ([dismissed isKindOfClass:TGRImageViewController.class]) {
+    if ([dismissed isKindOfClass:[TGRImageViewController class]]) {
         return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.avatarButton.imageView];
     }
     return nil;
