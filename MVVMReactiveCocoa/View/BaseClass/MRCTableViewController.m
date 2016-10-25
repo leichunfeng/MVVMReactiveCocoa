@@ -133,8 +133,9 @@
     [self.view addSubview:self.fpsLabel];
     
     self.fpsLabel.left   = 12;
-    self.fpsLabel.bottom = SCREEN_HEIGHT - self.contentInset.bottom - 12;
+    self.fpsLabel.bottom = CGRectGetHeight(self.view.frame) - self.contentInset.bottom - 12;
     self.fpsLabel.alpha  = 0;
+    self.fpsLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
 
     [self.fpsLabel sizeToFit];
 #endif
