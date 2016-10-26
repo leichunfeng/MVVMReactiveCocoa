@@ -35,10 +35,10 @@
     
     self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.collectionViewLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.collectionViewLayout];
     [self addSubview:self.collectionView];
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor  = [UIColor whiteColor];
     self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
     
     [self.collectionView registerClass:[LCFCollectionViewCell class] forCellWithReuseIdentifier:@"LCFCollectionViewCell"];
@@ -49,17 +49,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate   = self;
     
-    self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:@{ @"collectionView": self.collectionView }]];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|"
-                                                                 options:0
-                                                                 metrics:nil
-                                                                   views:@{ @"collectionView": self.collectionView }]];
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     self.itemSize = self.frame.size;
     self.itemSpacing = 0;
@@ -68,6 +58,35 @@
     _timeInterval = 5;
     
     [self setUpTimer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidChangeStatusBarOrientationNotification:)
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
+                                               object:nil];
+}
+
+- (void)applicationDidChangeStatusBarOrientationNotification:(NSNotification *)notification {
+    self.collectionView.contentOffset = [self.collectionViewLayout targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset withScrollingVelocity:CGPointZero];
+}
+
+- (void)didMoveToWindow {
+    if (self.window == nil) return;
+    
+    self.collectionView.contentOffset = [self.collectionViewLayout targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset withScrollingVelocity:CGPointZero];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Getters and Setters
+
+- (UIImage *)placeholderImage {
+    if (!_placeholderImage) {
+        UIColor *color = [UIColor colorWithRed:237 / 255.0 green:237 / 255.0 blue:237 / 255.0 alpha:1];
+        _placeholderImage = [color lcf_imageSized:self.itemSize];
+    }
+    return _placeholderImage;
 }
 
 - (void)setItems:(NSArray *)items {
@@ -111,14 +130,6 @@
 - (void)setTimeInterval:(NSTimeInterval)timeInterval {
     _timeInterval = timeInterval;
     [self setUpTimer];
-}
-
-- (UIImage *)placeholderImage {
-    if (!_placeholderImage) {
-        UIColor *color = [UIColor colorWithRed:237 / 255.0 green:237 / 255.0 blue:237 / 255.0 alpha:1];
-        _placeholderImage = [color lcf_imageSized:self.itemSize];
-    }
-    return _placeholderImage;
 }
 
 #pragma mark - Timer
@@ -195,6 +206,10 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self setUpTimer];
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    self.collectionView.contentOffset = [self.collectionViewLayout targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset withScrollingVelocity:CGPointZero];
 }
 
 @end

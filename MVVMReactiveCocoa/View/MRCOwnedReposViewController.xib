@@ -43,7 +43,7 @@
                 <constraint firstItem="dTf-Q8-vpT" firstAttribute="top" secondItem="7aS-bi-oJ2" secondAttribute="top" id="XiU-e7-pKN"/>
                 <constraint firstAttribute="bottom" secondItem="dTf-Q8-vpT" secondAttribute="bottom" id="nZp-nD-IyC"/>
             </constraints>
-            <point key="canvasLocation" x="43" y="49"/>
+            <point key="canvasLocation" x="-234" y="-98"/>
         </view>
     </objects>
 </document>

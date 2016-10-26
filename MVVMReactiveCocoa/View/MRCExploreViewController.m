@@ -62,9 +62,11 @@
 
     self.definesPresentationContext = YES;
 
-    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, self.viewModel.itemSize.height)];
+    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), self.viewModel.itemSize.height)];
     [self.view addSubview:infiniteScrollView];
-
+    
+    infiniteScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
     infiniteScrollView.itemSize = self.viewModel.itemSize;
     infiniteScrollView.itemSpacing = self.viewModel.itemSpacing;
 
@@ -76,14 +78,15 @@
 
     @weakify(self)
     RAC(infiniteScrollView, frame) = [RACObserve(self.tableView, contentOffset) map:^(NSValue *contentOffset) {
-        @strongify(self)
+        CGFloat width  = CGRectGetWidth(infiniteScrollView.frame);
+        CGFloat height = CGRectGetHeight(infiniteScrollView.frame);
         
-        CGFloat deltaY = contentOffset.CGPointValue.y - (-(64 + self.viewModel.itemSize.height));
+        CGFloat deltaY = contentOffset.CGPointValue.y - (-(64 + height));
        
         if (deltaY <= 0) {
-            return [NSValue valueWithCGRect:CGRectMake(0, 64, SCREEN_WIDTH, self.viewModel.itemSize.height)];
+            return [NSValue valueWithCGRect:CGRectMake(0, 64, width, height)];
         } else {
-            return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, SCREEN_WIDTH, self.viewModel.itemSize.height)];
+            return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, width, height)];
         }
     }];
     
