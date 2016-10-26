@@ -128,7 +128,7 @@
         }];
     }
     
-#ifdef DEBUG
+#if 0
     self.fpsLabel = [[YYFPSLabel alloc] init];
     [self.view addSubview:self.fpsLabel];
     
