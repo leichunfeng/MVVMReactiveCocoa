@@ -63,30 +63,31 @@ PODS:
   - YYKit/no-arc (1.0.5)
 
 DEPENDENCIES:
-  - Appirater
-  - DZNEmptyDataSet (~> 1.5.1)
-  - FMDB
-  - FormatterKit (~> 1.8.0)
-  - GPUImage (~> 0.1.7)
-  - IQKeyboardManager (~> 3.2.0.3)
-  - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`)
-  - MBProgressHUD (~> 0.9)
-  - MKNetworkKit (~> 0.87)
-  - MLeaksFinder
+  - Appirater (= 2.0.5)
+  - DZNEmptyDataSet (= 1.5.2)
+  - FMDB (= 2.6.2)
+  - FormatterKit (= 1.8.1)
+  - GPUImage (= 0.1.7)
+  - IQKeyboardManager (= 3.2.0.3)
+  - LCFInfiniteScrollView (from `https://github.com/leichunfeng/LCFInfiniteScrollView.git`, commit `44c10a2`)
+  - MBProgressHUD (= 0.9.2)
+  - MKNetworkKit (= 0.87)
+  - MLeaksFinder (= 0.2.0)
   - OcticonsIOS (from `https://github.com/jacksonh/OcticonsIOS.git`, commit `4bd3b21`)
-  - Ono (~> 1.2.0)
-  - Reveal-iOS-SDK (~> 1.6.0)
-  - SDVersion
-  - SDWebImage (~> 3.7.1)
-  - SSKeychain (~> 1.2.2)
-  - SVPullToRefresh (~> 0.4.1)
-  - UIActivityIndicator-for-SDWebImage
-  - UMengSocial (~> 4.3)
-  - WebViewJavascriptBridge (~> 4.1.4)
-  - YYKit
+  - Ono (= 1.2.2)
+  - Reveal-iOS-SDK (= 1.6.2)
+  - SDVersion (= 2.6)
+  - SDWebImage (= 3.7.6)
+  - SSKeychain (= 1.2.3)
+  - SVPullToRefresh (= 0.4.1)
+  - UIActivityIndicator-for-SDWebImage (= 1.2)
+  - UMengSocial (= 4.4)
+  - WebViewJavascriptBridge (= 4.1.5)
+  - YYKit (= 1.0.5)
 
 EXTERNAL SOURCES:
   LCFInfiniteScrollView:
+    :commit: 44c10a2
     :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
   OcticonsIOS:
     :commit: 4bd3b21
@@ -94,7 +95,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   LCFInfiniteScrollView:
-    :commit: 790c256212c610c72127e57f945fbe4064cde98a
+    :commit: 44c10a2
     :git: https://github.com/leichunfeng/LCFInfiniteScrollView.git
   OcticonsIOS:
     :commit: 4bd3b21
@@ -125,6 +126,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: e7b6669bebfc4f151daa0fdec3c8c24c8dc3a24e
   YYKit: f2654fe525de2283648db957bddb37ddd8e06549
 
-PODFILE CHECKSUM: 5f22bfbcab1058ec019d20b1473b1d92854ea62a
+PODFILE CHECKSUM: 6967fc500e9b84d96faa886630755adf29f989e0
 
 COCOAPODS: 1.0.1

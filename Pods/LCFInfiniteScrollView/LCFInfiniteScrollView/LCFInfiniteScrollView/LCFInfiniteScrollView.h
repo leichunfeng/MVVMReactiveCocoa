@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "LCFInfiniteScrollViewItem.h"
 
+@class LCFInfiniteScrollView;
+
+@protocol LCFInfiniteScrollViewDelegate <NSObject>
+
+@optional
+
+- (void)infiniteScrollView:(LCFInfiniteScrollView *)infiniteScrollView didDisplayItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface LCFInfiniteScrollView : UIView
 
 @property (nonatomic, copy) NSArray<LCFInfiniteScrollViewItem *> *items;
@@ -22,5 +32,7 @@
 @property (nonatomic, strong) UIImage *placeholderImage;
 
 @property (nonatomic, copy) void (^didSelectItemAtIndex)(NSUInteger index);
+
+@property (nonatomic, weak) id<LCFInfiniteScrollViewDelegate> delegate;
 
 @end

@@ -638,7 +638,7 @@ Do you agree to be bound by the terms of this agreement?
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Sebastian Dobrincu
+Copyright (c) 2016 Sebastian Dobrincu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

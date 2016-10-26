@@ -65,6 +65,17 @@
                                                object:nil];
 }
 
+- (void)reportStatus {
+    CGPoint point = CGPointMake(CGRectGetMidX(self.collectionView.bounds), CGRectGetMidY(self.collectionView.bounds));
+    
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    indexPath = [NSIndexPath indexPathForItem:indexPath.row % (self.items.count / 3) inSection:indexPath.section];
+    
+    if ([self.delegate respondsToSelector:@selector(infiniteScrollView:didDisplayItemAtIndexPath:)]) {
+        [self.delegate infiniteScrollView:self didDisplayItemAtIndexPath:indexPath];
+    }
+}
+
 - (void)applicationDidChangeStatusBarOrientationNotification:(NSNotification *)notification {
     self.collectionView.contentOffset = [self.collectionViewLayout targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset withScrollingVelocity:CGPointZero];
 }
@@ -102,11 +113,14 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView reloadData];
+       
         dispatch_async(dispatch_get_main_queue(), ^{
             if (CGPointEqualToPoint(self.collectionView.contentOffset, CGPointZero)) {
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:items.count inSection:0]
                                             atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                     animated:NO];
+                
+                [self reportStatus];
             }
         });
     });
@@ -136,7 +150,7 @@
 
 - (void)setUpTimer {
     [self tearDownTimer];
-
+    
     if (!self.autoscroll) return;
     
     self.timer = [NSTimer timerWithTimeInterval:self.timeInterval
@@ -208,7 +222,13 @@
     [self setUpTimer];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self reportStatus];
+}
+
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self reportStatus];
+    
     self.collectionView.contentOffset = [self.collectionViewLayout targetContentOffsetForProposedContentOffset:self.collectionView.contentOffset withScrollingVelocity:CGPointZero];
 }
 
