@@ -58,7 +58,7 @@
 }
 
 - (RACSignal *)dataSourceSignalWithRepositories:(NSArray *)repositories {
-    if (repositories.count == 0) return [RACSignal empty];
+    if (repositories.count == 0) return [RACSignal return:nil];
     
     NSArray *viewModels = [repositories.rac_sequence map:^(OCTRepository *repository) {
         return [[MRCReposSearchResultsItemViewModel alloc] initWithRepository:repository options:self.options];

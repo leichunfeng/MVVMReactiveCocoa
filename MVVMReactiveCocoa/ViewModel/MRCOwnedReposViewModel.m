@@ -55,7 +55,7 @@
 
     RACSignal *keywordSignal = [[RACObserve(self, keyword)
         skip:1]
-        throttle:0.5];
+        throttle:0.25];
 
     // Represents the future value
     RACSignal *futureSignal = [starredReposDidChangeSignal merge:keywordSignal];
@@ -154,7 +154,7 @@
 }
 
 - (RACSignal *)dataSourceSignalWithRepositories:(NSArray *)repositories {
-    if (repositories.count == 0) return [RACSignal empty];
+    if (repositories.count == 0) return [RACSignal return:nil];
     
     if (self.options & MRCReposViewModelOptionsSectionIndex) {
         return [[[repositories.rac_sequence.signal
@@ -173,6 +173,7 @@
         NSArray *viewModels = [repositories.rac_sequence map:^(OCTRepository *repository) {
             return [[MRCReposItemViewModel alloc] initWithRepository:repository options:self.options];
         }].array;
+        
         return [RACSignal return:@[ viewModels ]];
     }
 }

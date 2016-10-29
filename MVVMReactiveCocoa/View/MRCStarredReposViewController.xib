@@ -24,6 +24,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="snr-Wq-cVv"/>
+                        </connections>
                     </searchBar>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="IsY-NO-0zM"/>
@@ -40,7 +43,7 @@
                 <constraint firstItem="ubN-gL-vP8" firstAttribute="top" secondItem="xk5-Me-r63" secondAttribute="top" id="ji2-VX-aYV"/>
                 <constraint firstItem="ubN-gL-vP8" firstAttribute="leading" secondItem="xk5-Me-r63" secondAttribute="leading" id="xjN-0h-lr4"/>
             </constraints>
-            <point key="canvasLocation" x="43" y="49"/>
+            <point key="canvasLocation" x="-560" y="35"/>
         </view>
     </objects>
 </document>
