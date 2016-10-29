@@ -195,6 +195,7 @@ static void URLInBlackListAdd(NSURL *url) {
     _finished = NO;
     _cancelled = NO;
     _taskID = UIBackgroundTaskInvalid;
+    _lock = [NSRecursiveLock new];
     return self;
 }
 
@@ -435,7 +436,7 @@ static void URLInBlackListAdd(NSURL *url) {
             _data = [NSMutableData dataWithCapacity:_expectedSize > 0 ? _expectedSize : 0];
             if (_progress) {
                 [_lock lock];
-                if ([self isCancelled]) _progress(0, _expectedSize);
+                if (![self isCancelled]) _progress(0, _expectedSize);
                 [_lock unlock];
             }
         }

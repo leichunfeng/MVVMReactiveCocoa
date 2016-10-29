@@ -624,10 +624,14 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
                     YYTextRange *range = [YYTextRange rangeWithStart:start end:end];
                     CGRect rect = [self._innerLayout rectForRange:range];
                     rect = [self _convertRectFromLayout:rect];
-                    tapAction(self, _innerText, _highlightRange, rect);
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        tapAction(self, _innerText, _highlightRange, rect);
+                    });
                 }
             }
-            [self _removeHighlightAnimated:_fadeOnHighlight];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self _removeHighlightAnimated:_fadeOnHighlight];
+            });
         }
     }
     
@@ -1164,7 +1168,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         }
         [layer removeAnimationForKey:@"contents"];
         
-        YYLabel *view = layer.delegate;
+        __strong YYLabel *view = (YYLabel *)layer.delegate;
         if (!view) return;
         if (view->_state.layoutNeedUpdate && layoutUpdated) {
             view->_innerLayout = layout;

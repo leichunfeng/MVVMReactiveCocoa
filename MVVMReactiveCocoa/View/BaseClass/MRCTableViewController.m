@@ -222,19 +222,6 @@
 
 #pragma mark - UITableViewDelegate
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    UINavigationController *topNavigationController = MRCSharedAppDelegate.navigationControllerStack.topNavigationController;
-    
-    MRCViewController *topViewController = (MRCViewController *)topNavigationController.topViewController;
-    if (topViewController.tabBarController) {
-        topViewController.snapshot = [topViewController.tabBarController.view snapshotViewAfterScreenUpdates:NO];
-    } else {
-        topViewController.snapshot = [topNavigationController.view snapshotViewAfterScreenUpdates:NO];
-    }
-    
-    return YES;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.viewModel.didSelectCommand execute:indexPath];
