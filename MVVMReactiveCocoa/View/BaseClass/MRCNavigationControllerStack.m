@@ -55,12 +55,10 @@
             @strongify(self)
            
             MRCViewController *topViewController = (MRCViewController *)[self.navigationControllers.lastObject topViewController];
-            if (topViewController.snapshot == nil) {
-                if (topViewController.tabBarController) {
-                    topViewController.snapshot = [topViewController.tabBarController.view snapshotViewAfterScreenUpdates:NO];
-                } else {
-                    topViewController.snapshot = [[self.navigationControllers.lastObject view] snapshotViewAfterScreenUpdates:NO];
-                }
+            if (topViewController.tabBarController) {
+                topViewController.snapshot = [topViewController.tabBarController.view snapshotViewAfterScreenUpdates:NO];
+            } else {
+                topViewController.snapshot = [[self.navigationControllers.lastObject view] snapshotViewAfterScreenUpdates:NO];
             }
             
             UIViewController *viewController = (UIViewController *)[MRCRouter.sharedInstance viewControllerForViewModel:tuple.first];

@@ -106,8 +106,6 @@
                                  for (UIView *subview in toViewWrapperView.subviews) {
                                      [[transitionContext containerView] addSubview:subview];
                                  }
-                                 
-                                 toViewController.snapshot = nil;
                              }
                              
                              [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
