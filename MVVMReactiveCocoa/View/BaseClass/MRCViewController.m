@@ -156,7 +156,7 @@
         [self.interactivePopTransition updateInteractiveTransition:progress];
     } else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
         // Finish or cancel the interactive transition
-        if (progress > 0.25) {
+        if (progress > 0.2) {
             [self.interactivePopTransition finishInteractiveTransition];
         } else {
             [self.interactivePopTransition cancelInteractiveTransition];
