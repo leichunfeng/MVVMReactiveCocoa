@@ -13,6 +13,7 @@
 #import "MRCNetworkHeaderView.h"
 #import "MRCSearchViewModel.h"
 #import "MRCNewsTableViewCell.h"
+#import "SDWebImageCompat.h"
 
 @interface MRCNewsViewController ()
 
@@ -59,18 +60,17 @@
             }
         }];
     
-    [[[RACObserve(self.viewModel, events)
+    [[RACObserve(self.viewModel, events)
         filter:^(NSArray *events) {
             return @(events.count > 0).boolValue;
         }]
-        deliverOn:[RACScheduler scheduler]]
         subscribeNext:^(NSArray *events) {
             @strongify(self)
             
             if (self.viewModel.dataSource == nil) {
                 self.viewModel.dataSource = @[ [self viewModelsWithEvents:events] ];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_main_async_safe(^{
                     [self.tableView reloadData];
                 });
             } else {
@@ -88,7 +88,7 @@
                     [indexPaths addObject:indexPath];
                 }];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_main_async_safe(^{
                     [self.tableView beginUpdates];
                     [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
                     [self.tableView endUpdates];
