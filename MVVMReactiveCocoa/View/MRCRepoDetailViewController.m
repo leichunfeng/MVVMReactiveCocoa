@@ -114,10 +114,11 @@
     // once `webViewDidFinishLoad:` reload table
     [finishLoadSignal subscribeNext:^(RACTuple *tuple) {
         @strongify(self)
+        
         UIWebView *webView = tuple.first;
         
         CGRect webViewFrame = webView.frame;
-        webViewFrame.size.height = webView.scrollView.contentSize.height + 3;
+        webViewFrame.size.height = webView.scrollView.contentSize.height;
         webView.frame = webViewFrame;
         
         [self.tableView reloadData];
