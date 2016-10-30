@@ -1596,6 +1596,7 @@
 					242D4FD41A64B6FA0026ABC6 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = V45CY933KN;
+						ProvisioningStyle = Manual;
 					};
 					242D4FED1A64B6FA0026ABC6 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2232,7 +2233,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = V45CY933KN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
@@ -2263,7 +2265,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1fb203fe-d426-40d6-b3ac-5d0883812da2";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution: MVVMReactiveCocoa";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2274,7 +2277,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = V45CY933KN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/MVVMReactiveCocoa-dkjcswigkwolokaimgekabgjuzne/Build/Products/Debug",
@@ -2305,7 +2309,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1fb203fe-d426-40d6-b3ac-5d0883812da2";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution: MVVMReactiveCocoa";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
