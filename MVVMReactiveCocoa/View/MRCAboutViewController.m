@@ -85,7 +85,9 @@
         cell.textLabel.text = @"Feedback";
     }
     
+    @weakify(cell)
     [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
+        @strongify(cell)
         cell.detailTextLabel.text = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         cell.hidden = NO;

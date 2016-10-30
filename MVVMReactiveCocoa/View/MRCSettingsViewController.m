@@ -50,7 +50,9 @@
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
+    @weakify(cell)
     [cell.rac_prepareForReuseSignal subscribeNext:^(id x) {
+        @strongify(cell)
         cell.hidden = NO;
         cell.detailTextLabel.text = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
