@@ -11,5 +11,6 @@
 @interface MRCReposSearchResultsViewModel : MRCOwnedReposViewModel
 
 @property (nonatomic, copy) NSString *query;
+@property (nonatomic, copy) NSDictionary *language;
 
 @end

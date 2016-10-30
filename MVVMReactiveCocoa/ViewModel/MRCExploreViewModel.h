@@ -14,6 +14,7 @@
 
 @property (nonatomic, copy, readonly) NSArray<NSDictionary *> *showcases;
 
+@property (nonatomic, strong, readonly) RACCommand *switchLanguageCommand;
 @property (nonatomic, strong, readonly) RACCommand *requestShowcasesCommand;
 @property (nonatomic, strong, readonly) RACCommand *requestTrendingReposCommand;
 @property (nonatomic, strong, readonly) RACCommand *requestPopularReposCommand;

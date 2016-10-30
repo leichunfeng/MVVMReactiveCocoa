@@ -8,6 +8,8 @@
 
 #import "YYCache.h"
 
+extern NSString * const MRCExploreSearchLanguageCacheKey;
+
 extern NSString * const MRCExploreShowcasesCacheKey;
 extern NSString * const MRCExploreTrendingReposCacheKey;
 extern NSString * const MRCExplorePopularReposCacheKey;

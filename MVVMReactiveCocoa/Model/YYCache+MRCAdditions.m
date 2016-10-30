@@ -8,10 +8,12 @@
 
 #import "YYCache+MRCAdditions.h"
 
-NSString * const MRCExploreShowcasesCacheKey     = @"MRCExploreShowcasesCacheKey";
-NSString * const MRCExploreTrendingReposCacheKey = @"MRCExploreTrendingReposCacheKey";
-NSString * const MRCExplorePopularReposCacheKey  = @"MRCExplorePopularReposCacheKey";
-NSString * const MRCExplorePopularUsersCacheKey  = @"MRCExplorePopularUsersCacheKey";
+NSString * const MRCExploreSearchLanguageCacheKey = @"MRCExploreSearchLanguageCacheKey";
+
+NSString * const MRCExploreShowcasesCacheKey      = @"MRCExploreShowcasesCacheKey";
+NSString * const MRCExploreTrendingReposCacheKey  = @"MRCExploreTrendingReposCacheKey";
+NSString * const MRCExplorePopularReposCacheKey   = @"MRCExplorePopularReposCacheKey";
+NSString * const MRCExplorePopularUsersCacheKey   = @"MRCExplorePopularUsersCacheKey";
 
 NSString * const MRCTrendingReposLanguageCacheKey = @"MRCTrendingReposLanguageCacheKey";
 NSString * const MRCPopularReposLanguageCacheKey  = @"MRCPopularReposLanguageCacheKey";

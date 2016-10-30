@@ -50,7 +50,7 @@
     
     return [[[[self.services
         client]
-        searchRepositoriesWithQuery:self.query orderBy:nil ascending:NO]
+        searchRepositoriesWithQuery:self.query language:self.language[@"slug"] orderBy:nil ascending:NO]
         map:^(OCTRepositoriesSearchResult *searchResult) {
             return searchResult.repositories;
         }]

@@ -13,6 +13,7 @@
 #import "MRCUserListViewModel.h"
 #import "MRCTrendingReposViewModel.h"
 #import "MRCPopularReposViewModel.h"
+#import "MRCLanguageViewModel.h"
 
 @interface MRCExploreViewModel ()
 
@@ -22,6 +23,7 @@
 @property (nonatomic, copy) NSArray<OCTRepository *> *popularRepos;
 @property (nonatomic, copy) NSArray<OCTUser *> *popularUsers;
 
+@property (nonatomic, strong, readwrite) RACCommand *switchLanguageCommand;
 @property (nonatomic, strong, readwrite) RACCommand *requestShowcasesCommand;
 @property (nonatomic, strong, readwrite) RACCommand *requestTrendingReposCommand;
 @property (nonatomic, strong, readwrite) RACCommand *requestPopularReposCommand;
@@ -36,7 +38,33 @@
 - (void)initialize {
     [super initialize];
     
+    self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
+    
+    NSDictionary *language = (NSDictionary *)[[YYCache sharedCache] objectForKey:MRCExploreSearchLanguageCacheKey];
+    self.searchResultsViewModel.language = language ?: @{
+        @"name": @"All Languages",
+        @"slug": @"",
+    };
+    
     @weakify(self)
+    self.switchLanguageCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
+        @strongify(self)
+        
+        MRCLanguageViewModel *viewModel = [[MRCLanguageViewModel alloc] initWithServices:self.services
+                                                                                  params:@{ @"language": self.searchResultsViewModel.language ?: @{} }];
+        viewModel.callback = ^(NSDictionary *language) {
+            @strongify(self)
+            
+            self.searchResultsViewModel.language = language;
+            
+            [[YYCache sharedCache] setObject:language forKey:MRCExploreSearchLanguageCacheKey withBlock:NULL];
+        };
+        
+        [self.services pushViewModel:viewModel animated:YES];
+        
+        return [RACSignal empty];
+    }];
+    
     self.requestShowcasesCommand = [[RACCommand alloc] initWithSignalBlock:^(id input) {
         @strongify(self)
         return [[[self.services repositoryService]
@@ -196,8 +224,6 @@
             
             return @[ rows.copy ];
         }];
-    
-    self.searchResultsViewModel = [[MRCReposSearchResultsViewModel alloc] initWithServices:self.services params:nil];
     
     [self.requestShowcasesCommand execute:nil];
     [self.requestTrendingReposCommand execute:nil];

@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) MRCReposSearchResultsViewController *searchResultsController;
+@property (nonatomic, strong) UIButton *switchLanguageButton;
 
 @end
 
@@ -59,7 +60,26 @@
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
     [self.searchController setValue:searchBar forKey:@"searchBar"];
-
+    
+    RAC(searchBar, placeholder) = [RACObserve(self.viewModel.searchResultsViewModel, language) map:^(NSDictionary *language) {
+        return [NSString stringWithFormat:@"Search for %@", language[@"name"]];
+    }];
+    
+    self.switchLanguageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBar addSubview:self.switchLanguageButton];
+    
+    self.switchLanguageButton.frame = CGRectMake(0, 8, 28, 28);
+    self.switchLanguageButton.backgroundColor = [UIColor whiteColor];
+    self.switchLanguageButton.hidden = YES;
+    
+    self.switchLanguageButton.layer.cornerRadius  = 5;
+    self.switchLanguageButton.layer.masksToBounds = YES;
+    
+    [self.switchLanguageButton setImage:[UIImage octicon_imageWithIdentifier:@"TriangleDown" size:CGSizeMake(13, 13)]
+            forState:UIControlStateNormal];
+    
+    self.switchLanguageButton.rac_command = self.viewModel.switchLanguageCommand;
+    
     self.definesPresentationContext = YES;
 
     LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), self.viewModel.itemSize.height)];
@@ -118,6 +138,7 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     self.searchController.active = YES;
+    self.switchLanguageButton.hidden = NO;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -126,8 +147,15 @@
     self.searchController.view.subviews.firstObject.subviews.firstObject.hidden = (searchText.length == 0);
 }
 
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    if (searchBar.text.length == 0) {
+        self.switchLanguageButton.hidden = YES;
+    }
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if (searchBar.text.length > 0) {
+        self.viewModel.searchResultsViewModel.dataSource = @[];
         [searchBar resignFirstResponder];
         [self.viewModel.searchResultsViewModel.requestRemoteDataCommand execute:nil];
     }
