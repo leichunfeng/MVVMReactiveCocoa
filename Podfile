@@ -19,7 +19,7 @@ target 'MVVMReactiveCocoa' do
     pod 'FMDB', '2.6.2'
     pod 'UMengSocial', '4.4'
     pod 'GPUImage', '0.1.7'
-    pod 'Reveal-iOS-SDK', '1.6.2'
+    #pod 'Reveal-iOS-SDK', '1.6.2'
     pod 'Appirater', '2.0.5'
     pod 'SDVersion', '2.6'
     pod 'MLeaksFinder', '0.2.0'
