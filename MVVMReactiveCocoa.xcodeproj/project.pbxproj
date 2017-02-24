@@ -2232,8 +2232,8 @@
 			baseConfigurationReference = 1CFF695F9C512FDAF1756F23 /* Pods-MVVMReactiveCocoa.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
 				DEVELOPMENT_TEAM = V45CY933KN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2265,7 +2265,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "1fb203fe-d426-40d6-b3ac-5d0883812da2";
+				PROVISIONING_PROFILE = "2c0b57c2-b051-442f-9863-d20daa08bb05";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution: MVVMReactiveCocoa";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2276,8 +2276,8 @@
 			baseConfigurationReference = 336CB84375D1CDB43B3192D1 /* Pods-MVVMReactiveCocoa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chunfeng Lei (V45CY933KN)";
 				DEVELOPMENT_TEAM = V45CY933KN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2309,7 +2309,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "1fb203fe-d426-40d6-b3ac-5d0883812da2";
+				PROVISIONING_PROFILE = "2c0b57c2-b051-442f-9863-d20daa08bb05";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution: MVVMReactiveCocoa";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
