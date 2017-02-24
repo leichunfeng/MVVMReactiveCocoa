@@ -59,16 +59,16 @@
 		24182B551BDA229B0041B38E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B501BDA229B0041B38E /* update_v1_1_0.sql */; };
 		24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B511BDA229B0041B38E /* update_v1_2_0.sql */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
-		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
-		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
-		242453251A80D86300FFFCC1 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; };
-		242453291A80D86E00FFFCC1 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; };
-		2424532D1A80D87300FFFCC1 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; };
-		242453311A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2424531F1A80D85300FFFCC1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
+		242453201A80D85300FFFCC1 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242453241A80D86300FFFCC1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; };
+		242453251A80D86300FFFCC1 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452FE1A80D79E00FFFCC1 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242453281A80D86E00FFFCC1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; };
+		242453291A80D86E00FFFCC1 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424530D1A80D7AC00FFFCC1 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2424532C1A80D87300FFFCC1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; };
+		2424532D1A80D87300FFFCC1 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531A1A80D81700FFFCC1 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242453301A80D87D00FFFCC1 /* ReferenceProxy in Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; };
+		242453311A80D87D00FFFCC1 /* ReferenceProxy in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2424531E1A80D81700FFFCC1 /* ISO8601DateFormatter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2424533E1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2424533C1A811B9E00FFFCC1 /* MRCSourceEditorViewController.m */; };
 		2424533F1A811B9F00FFFCC1 /* MRCSourceEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2424533D1A811B9E00FFFCC1 /* MRCSourceEditorViewController.xib */; };
 		242453421A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 242453411A811C3C00FFFCC1 /* MRCSourceEditorViewModel.m */; };
@@ -392,11 +392,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				242453311A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Embed Frameworks */,
-				242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */,
-				2424532D1A80D87300FFFCC1 /* AFNetworking.framework in Embed Frameworks */,
-				242453251A80D86300FFFCC1 /* ReactiveCocoa.framework in Embed Frameworks */,
-				242453291A80D86E00FFFCC1 /* Mantle.framework in Embed Frameworks */,
+				242453311A80D87D00FFFCC1 /* ReferenceProxy in Embed Frameworks */,
+				242453201A80D85300FFFCC1 /* ReferenceProxy in Embed Frameworks */,
+				2424532D1A80D87300FFFCC1 /* ReferenceProxy in Embed Frameworks */,
+				242453251A80D86300FFFCC1 /* ReferenceProxy in Embed Frameworks */,
+				242453291A80D86E00FFFCC1 /* ReferenceProxy in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,11 +798,11 @@
 				24B76A281D92C1C2000A3CE1 /* MobileCoreServices.framework in Frameworks */,
 				24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */,
 				24A7499C1BDE5CCF002B46A3 /* JSPatch.framework in Frameworks */,
-				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
-				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
-				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
-				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
-				242453281A80D86E00FFFCC1 /* Mantle.framework in Frameworks */,
+				2424531F1A80D85300FFFCC1 /* ReferenceProxy in Frameworks */,
+				2424532C1A80D87300FFFCC1 /* ReferenceProxy in Frameworks */,
+				242453301A80D87D00FFFCC1 /* ReferenceProxy in Frameworks */,
+				242453241A80D86300FFFCC1 /* ReferenceProxy in Frameworks */,
+				242453281A80D86E00FFFCC1 /* ReferenceProxy in Frameworks */,
 				4DBA732D5E1223D6ADCA5C2C /* libPods-MVVMReactiveCocoa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1848,7 +1848,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nREV=`git rev-list HEAD | wc -l | awk '{print $1}'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi;";
+			shellScript = "if [ ${CONFIGURATION} == \"Release\" ]; then\nREV=`git rev-list HEAD | wc -l | awk \'{print $1}\'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${REV}\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi;";
 		};
 		354CC5B56FD04C5423FDF812 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1862,7 +1862,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4D0057EB98400EC217E50A13 /* [CP] Embed Pods Frameworks */ = {
@@ -1937,7 +1937,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
