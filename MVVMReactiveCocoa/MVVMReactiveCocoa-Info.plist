@@ -174,7 +174,7 @@
 				<key>NSTemporaryExceptionMinimumTLSVersion</key>
 				<string>TLSv1.1</string>
 			</dict>
-			<key>trending.codehub-app.com</key>
+			<key>trending.leichunfeng.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>

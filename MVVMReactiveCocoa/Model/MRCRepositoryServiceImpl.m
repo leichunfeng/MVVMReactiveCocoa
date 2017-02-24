@@ -54,7 +54,7 @@
         createSignal:^(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
             
-            NSString *URLString = [NSString stringWithFormat:@"http://trending.codehub-app.com/v2/trending?since=%@&language=%@", since, language];
+            NSString *URLString = [NSString stringWithFormat:@"http://trending.leichunfeng.com/v2/trending?since=%@&language=%@", since, language];
             URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             MKNetworkOperation *operation = [networkEngine operationWithURLString:URLString];
 
@@ -97,7 +97,7 @@
         createSignal:^(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
             
-            NSString *URLString = @"http://trending.codehub-app.com/v2/showcases";
+            NSString *URLString = @"http://trending.leichunfeng.com/v2/showcases";
             MKNetworkOperation *operation = [networkEngine operationWithURLString:URLString];
             
             [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
@@ -125,7 +125,7 @@
         createSignal:^(id<RACSubscriber> subscriber) {
             MKNetworkEngine *networkEngine = [[MKNetworkEngine alloc] init];
             
-            NSString *URLString = [NSString stringWithFormat:@"http://trending.codehub-app.com/v2/showcases/%@", slug];
+            NSString *URLString = [NSString stringWithFormat:@"http://trending.leichunfeng.com/v2/showcases/%@", slug];
             MKNetworkOperation *operation = [networkEngine operationWithURLString:URLString];
             
             [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
