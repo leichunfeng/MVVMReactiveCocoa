@@ -24,6 +24,12 @@
     [super viewDidLoad];
 
     self.webView.scalesPageToFit = self.viewModel.options & MRCSourceEditorViewModelOptionsScalesPageToFit;
+    
+    UIScrollView *scrollView = [self.webView.subviews.rac_sequence objectPassingTest:^(UIView *subview) {
+        return [subview isKindOfClass:[UIScrollView class]];
+    }];
+    
+    scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"]
                                                                            style:UIBarButtonItemStylePlain
