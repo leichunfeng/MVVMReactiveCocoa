@@ -151,7 +151,6 @@
 		24A49AE31CDE0BFD0039A424 /* MRCTrendingReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A49AE11CDE0BFD0039A424 /* MRCTrendingReposViewController.m */; };
 		24A49AE41CDE0BFD0039A424 /* MRCTrendingReposViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A49AE21CDE0BFD0039A424 /* MRCTrendingReposViewController.xib */; };
 		24A49AE71CDE0C110039A424 /* MRCTrendingReposViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A49AE61CDE0C110039A424 /* MRCTrendingReposViewModel.m */; };
-		24A7499C1BDE5CCF002B46A3 /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */; };
 		24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */; };
 		24AF976B1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */; };
 		24AF977E1B02292700E2A737 /* MRCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AF977D1B02292700E2A737 /* MRCSearch.m */; };
@@ -659,7 +658,6 @@
 		24A49AE21CDE0BFD0039A424 /* MRCTrendingReposViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MRCTrendingReposViewController.xib; sourceTree = "<group>"; };
 		24A49AE51CDE0C110039A424 /* MRCTrendingReposViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCTrendingReposViewModel.h; sourceTree = "<group>"; };
 		24A49AE61CDE0C110039A424 /* MRCTrendingReposViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCTrendingReposViewModel.m; sourceTree = "<group>"; };
-		24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSPatch.framework; path = JSPatch/JSPatch.framework; sourceTree = "<group>"; };
 		24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		24AF97691B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+MRCShowsCancelButton.h"; sourceTree = "<group>"; };
 		24AF976A1B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+MRCShowsCancelButton.m"; sourceTree = "<group>"; };
@@ -797,7 +795,6 @@
 			files = (
 				24B76A281D92C1C2000A3CE1 /* MobileCoreServices.framework in Frameworks */,
 				24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */,
-				24A7499C1BDE5CCF002B46A3 /* JSPatch.framework in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
@@ -1500,7 +1497,6 @@
 			children = (
 				24B76A271D92C1C2000A3CE1 /* MobileCoreServices.framework */,
 				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
-				24A7499B1BDE5CCE002B46A3 /* JSPatch.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
 				242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */,
 				242453101A80D81700FFFCC1 /* OctoKitDependencies.xcodeproj */,
@@ -2241,7 +2237,6 @@
 					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/OctoKit/External/OctoKitDependencies/build/Debug-iphoneos",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/JSPatch",
 				);
 				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2285,7 +2280,6 @@
 					"$(PROJECT_DIR)/OctoKit/Carthage/Checkouts/Mantle/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/OctoKit/External/OctoKitDependencies/build/Debug-iphoneos",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/JSPatch",
 				);
 				GCC_PREFIX_HEADER = "MVVMReactiveCocoa/MVVMReactiveCocoa-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

@@ -15,7 +15,6 @@
 #import "MRCNavigationControllerStack.h"
 #import "MRCNavigationController.h"
 #import <Appirater/Appirater.h>
-#import <JSPatch/JSPatch.h>
 
 @interface MRCAppDelegate ()
 
@@ -40,7 +39,6 @@
     [self configureReachability];
     [self configureUMengSocial];
     [self configureAppirater];
-    [self configureJSPatch];
     
     AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
     
@@ -161,11 +159,6 @@
     [Appirater setTimeBeforeReminding:2];
     [Appirater setDebug:NO];
     [Appirater appLaunched:YES];
-}
-
-- (void)configureJSPatch {
-//    [JSPatch testScriptInBundle];
-    [JSPatch startWithAppKey:MRC_JSPATCH_APP_KEY];
 }
 
 @end
