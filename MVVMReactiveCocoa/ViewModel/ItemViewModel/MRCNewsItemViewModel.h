@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong, readonly) OCTEvent *event;
 @property (nonatomic, copy, readonly) NSAttributedString *attributedString;
+@property (nonatomic, copy) NSString *time;
 
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, strong) RACCommand *didClickLinkCommand;

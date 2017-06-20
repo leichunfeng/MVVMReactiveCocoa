@@ -14,6 +14,7 @@
 #import "MRCSearchViewModel.h"
 #import "MRCNewsTableViewCell.h"
 #import "SDWebImageCompat.h"
+#import "TTTTimeIntervalFormatter.h"
 
 @interface MRCNewsViewController ()
 
@@ -60,78 +61,41 @@
             }
         }];
     
-    [RACObserve(self.viewModel, events) subscribeNext:^(NSArray *events) {
-        @strongify(self)
-        
-        if (self.viewModel.dataSource.count == 0 && events.count > 0) {
-            // reloadData
+    [[RACObserve(self.viewModel, events)
+        filter:^(NSArray *events) {
+            return @(events.count > 0).boolValue;
+        }]
+        subscribeNext:^(NSArray *events) {
+            @strongify(self)
             
-            self.viewModel.dataSource = @[ [self viewModelsWithEvents:events] ];
-            
-            dispatch_main_async_safe(^{
-                [self.tableView reloadData];
-            });
-        } else if (self.viewModel.dataSource.count > 0 && events.count > 0) {
-            // insertRows & reloadRows
-            
-            NSMutableArray *viewModels = [[NSMutableArray alloc] init];
-            
-            NSArray *array = [[self.viewModel.dataSource.firstObject
-                rac_sequence]
-                map:^(MRCNewsItemViewModel *viewModel) {
-                    return viewModel.event;
-                }].array;
-            
-            [viewModels addObjectsFromArray:[self viewModelsWithEvents:events]];
-            [viewModels addObjectsFromArray:[self viewModelsWithEvents:array]];
+            if (self.viewModel.dataSource == nil) {
+                self.viewModel.dataSource = @[ [self viewModelsWithEvents:events] ];
+                
+                dispatch_main_async_safe(^{
+                    [self.tableView reloadData];
+                });
+            } else {
+                NSMutableArray *viewModels = [[NSMutableArray alloc] init];
+                
+                [viewModels addObjectsFromArray:[self viewModelsWithEvents:events]];
+                [viewModels addObjectsFromArray:self.viewModel.dataSource.firstObject];
 
-            self.viewModel.dataSource = @[ viewModels.copy ];
-            
-            NSMutableArray *insertRowsAtIndexPaths = [[NSMutableArray alloc] init];
-            
-            [events enumerateObjectsUsingBlock:^(OCTEvent *event, NSUInteger idx, BOOL *stop) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-                [insertRowsAtIndexPaths addObject:indexPath];
-            }];
-            
-            NSMutableArray *reloadRowsAtIndexPaths = [[NSMutableArray alloc] init];
-            
-            [array enumerateObjectsUsingBlock:^(OCTEvent *event, NSUInteger idx, BOOL *stop) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-                [reloadRowsAtIndexPaths addObject:indexPath];
-            }];
-            
-            dispatch_main_async_safe(^{
-                [self.tableView beginUpdates];
-                [self.tableView insertRowsAtIndexPaths:insertRowsAtIndexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
-                [self.tableView reloadRowsAtIndexPaths:reloadRowsAtIndexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
-                [self.tableView endUpdates];
-            });
-        }/* else if (self.viewModel.dataSource.count > 0 && events.count == 0) {
-            // reloadRows
-            
-            NSArray *array = [[self.viewModel.dataSource.firstObject
-                rac_sequence]
-                map:^(MRCNewsItemViewModel *viewModel) {
-                    return viewModel.event;
-                }].array;
+                self.viewModel.dataSource = @[ viewModels.copy ];
 
-            self.viewModel.dataSource = @[ [self viewModelsWithEvents:array] ];
-            
-            NSMutableArray *reloadRowsAtIndexPaths = [[NSMutableArray alloc] init];
-            
-            [array enumerateObjectsUsingBlock:^(OCTEvent *event, NSUInteger idx, BOOL *stop) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-                [reloadRowsAtIndexPaths addObject:indexPath];
-            }];
-            
-            dispatch_main_async_safe(^{
-                [self.tableView beginUpdates];
-                [self.tableView reloadRowsAtIndexPaths:reloadRowsAtIndexPaths.copy withRowAnimation:UITableViewRowAnimationNone];
-                [self.tableView endUpdates];
-            });
-        } */
-    }];
+                NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+
+                [events enumerateObjectsUsingBlock:^(OCTEvent *event, NSUInteger idx, BOOL *stop) {
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                    [indexPaths addObject:indexPath];
+                }];
+                
+                dispatch_main_async_safe(^{
+                    [self.tableView beginUpdates];
+                    [self.tableView insertRowsAtIndexPaths:indexPaths.copy withRowAnimation:UITableViewRowAnimationFade];
+                    [self.tableView endUpdates];
+                });
+            }
+        }];
 
     [[[[NSNotificationCenter defaultCenter]
         rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil]
@@ -168,7 +132,18 @@
 - (NSArray *)viewModelsWithEvents:(NSArray *)events {
     return [events.rac_sequence map:^(OCTEvent *event) {
         MRCNewsItemViewModel *viewModel = [[MRCNewsItemViewModel alloc] initWithEvent:event];
+        
         viewModel.didClickLinkCommand = self.viewModel.didClickLinkCommand;
+        
+        RAC(viewModel, time) = [[[RACSignal
+            interval:60 onScheduler:[RACScheduler mainThreadScheduler] withLeeway:0]
+            startWith:[NSDate date]]
+            map:^(NSDate *date) {
+                TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+                timeIntervalFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+                return [timeIntervalFormatter stringForTimeIntervalFromDate:date toDate:event.date];
+            }];
+        
         return viewModel;
     }].array;
 }

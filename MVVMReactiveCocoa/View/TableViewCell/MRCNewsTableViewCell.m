@@ -14,6 +14,7 @@ extern NSString * const MRCLinkAttributeName;
 @interface MRCNewsTableViewCell ()
 
 @property (nonatomic, weak) IBOutlet UIButton *avatarButton;
+@property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 
 @property (nonatomic, strong) YYLabel *detailLabel;
 @property (nonatomic, strong) MRCNewsItemViewModel *viewModel;
@@ -48,6 +49,8 @@ extern NSString * const MRCLinkAttributeName;
         
         [self.viewModel.didClickLinkCommand execute:URL];
     };
+    
+    RAC(self.timeLabel, text) = RACObserve(self, viewModel.time);
 }
 
 - (void)bindViewModel:(MRCNewsItemViewModel *)viewModel {

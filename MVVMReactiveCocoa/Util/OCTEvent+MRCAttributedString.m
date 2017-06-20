@@ -61,9 +61,7 @@
     } else if ([self isMemberOfClass:[OCTWatchEvent class]]) {
         [attributedString appendAttributedString:[self mrc_watchEventAttributedString]];
     }
-    
-    [attributedString appendAttributedString:self.mrc_dateAttributedString];
-    
+        
     return attributedString;
 }
 

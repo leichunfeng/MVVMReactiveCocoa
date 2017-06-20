@@ -38,6 +38,8 @@
             
             height += 10;
             height += self.textLayout.textBoundingSize.height;
+            height += 5;
+            height += 16;
             height += 10;
             
             height;
