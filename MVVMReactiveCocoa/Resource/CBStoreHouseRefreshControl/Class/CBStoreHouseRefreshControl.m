@@ -144,7 +144,7 @@ NSString *const yKey = @"y";
 
 - (void)scrollViewDidEndDragging
 {
-    if (self.state == CBStoreHouseRefreshControlStateIdle && self.realContentOffsetY < -self.dropHeight) {
+    if (self.state == CBStoreHouseRefreshControlStateIdle && self.realContentOffsetY <= -self.dropHeight) {
 
         if (self.animationProgress == 1) self.state = CBStoreHouseRefreshControlStateRefreshing;
         

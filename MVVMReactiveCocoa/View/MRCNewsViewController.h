@@ -10,4 +10,6 @@
 
 @interface MRCNewsViewController : MRCTableViewController
 
+- (void)refresh;
+
 @end

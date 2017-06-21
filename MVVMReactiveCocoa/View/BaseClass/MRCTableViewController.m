@@ -19,7 +19,7 @@
 @property (nonatomic, strong) YYFPSLabel *fpsLabel;
 
 @property (nonatomic, strong, readonly) MRCTableViewModel *viewModel;
-@property (nonatomic, strong) CBStoreHouseRefreshControl *refreshControl;
+@property (nonatomic, strong, readwrite) CBStoreHouseRefreshControl *refreshControl;
 
 @end
 

@@ -106,6 +106,11 @@
         }];
 }
 
+- (void)refresh {
+    self.tableView.contentOffset = CGPointMake(0, 0 - 64 - 80);
+    [self.refreshControl scrollViewDidEndDragging];
+}
+
 - (void)reloadData {}
 
 - (UIEdgeInsets)contentInset {

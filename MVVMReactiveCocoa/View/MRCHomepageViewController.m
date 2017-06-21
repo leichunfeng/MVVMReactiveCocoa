@@ -122,4 +122,16 @@
     self.tabBarController.delegate = self;
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if (self.tabBarController.selectedViewController == viewController) {
+        UINavigationController *navigationController = (UINavigationController *)self.tabBarController.selectedViewController;
+        UIViewController *viewController = navigationController.topViewController;
+        if ([viewController isKindOfClass:[MRCNewsViewController class]]) {
+            MRCNewsViewController *newsViewController = (MRCNewsViewController *)viewController;
+            [newsViewController refresh];
+        }
+    }
+    return YES;
+}
+
 @end
