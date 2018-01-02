@@ -81,12 +81,13 @@ namespace FB { namespace RetainCycleDetector { namespace Parser {
   static const auto kLiteralEndingCharacters = "\"}";
   static const auto kQuote = "\"";
   
-  static struct _StructParseResult _ParseStructEncodingWithScanner(_StringScanner &scanner) {
+  static struct _StructParseResult _ParseStructEncodingWithScanner(_StringScanner &scanner,
+                                                                   NSString *debugStruct) {
     std::vector<std::shared_ptr<BaseType>> types;
     
     // Every struct starts with '{'
     __unused const auto scannedCorrectly = scanner.scanString(kOpenStruct);
-    NSCAssert(scannedCorrectly, @"The first character of struct encoding should be {");
+    NSCAssert(scannedCorrectly, @"The first character of struct encoding should be {; debug_struct: %@", debugStruct);
     
     // Parse name
     const auto structTypeName = scanner.scanUpToString("=");
@@ -102,12 +103,16 @@ namespace FB { namespace RetainCycleDetector { namespace Parser {
       } else if (scanner.currentCharacter() == '{') {
         // We do not want to consume '{' because we will call parser recursively
         const auto locBefore = scanner.index;
-        auto parseResult = _ParseStructEncodingWithScanner(scanner);
+        auto parseResult = _ParseStructEncodingWithScanner(scanner, debugStruct);
         
-        const auto nameFromBefore = std::dynamic_pointer_cast<Unresolved>(types.back());
-        NSCAssert(nameFromBefore, @"There should always be a name from before if we hit a struct");
-        types.pop_back();
-        std::shared_ptr<Struct> type = std::make_shared<Struct>(nameFromBefore->value,
+        std::shared_ptr<Unresolved> valueFromBefore;
+        if (!types.empty()) {
+          valueFromBefore = std::dynamic_pointer_cast<Unresolved>(types.back());
+          types.pop_back();
+        }
+        const auto extractedNameFromBefore = valueFromBefore ? valueFromBefore->value
+                                                             : "";
+        std::shared_ptr<Struct> type = std::make_shared<Struct>(extractedNameFromBefore,
                                                                 scanner.string.substr(locBefore, (scanner.index - locBefore)),
                                                                 parseResult.typeName,
                                                                 parseResult.containedTypes);
@@ -149,7 +154,9 @@ namespace FB { namespace RetainCycleDetector { namespace Parser {
   Struct parseStructEncodingWithName(const std::string &structEncodingString,
                                      const std::string &structName) {
     _StringScanner scanner = _StringScanner(structEncodingString);
-    auto result = _ParseStructEncodingWithScanner(scanner);
+    auto result = _ParseStructEncodingWithScanner(scanner,
+                                                  [NSString stringWithCString:structEncodingString.c_str()
+                                                                     encoding:NSUTF8StringEncoding]);
     
     Struct outerStruct = Struct(structName,
                                 structEncodingString,

@@ -1,7 +1,7 @@
 PODS:
   - Appirater (2.0.5)
   - DZNEmptyDataSet (1.5.2)
-  - FBRetainCycleDetector (0.1.3)
+  - FBRetainCycleDetector (0.1.4)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -108,7 +108,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   DZNEmptyDataSet: 741da409081a4bf707c949c964623a6ad1799772
-  FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FormatterKit: 11ad17b983200629246a5a466f6f1bfa2df823cb
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
@@ -131,4 +131,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9cf2a1d0001bfa021879453f59f4764af16d7e8f
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
