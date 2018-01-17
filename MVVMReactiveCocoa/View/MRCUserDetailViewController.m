@@ -20,7 +20,7 @@
 @dynamic viewModel;
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsZero;
+    return iPhoneX ? UIEdgeInsetsMake(24, 0, 0, 0) : UIEdgeInsetsZero;
 }
 
 #pragma mark - UITableViewDataSource

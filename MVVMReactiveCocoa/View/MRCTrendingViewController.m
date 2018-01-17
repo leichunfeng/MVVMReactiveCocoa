@@ -13,7 +13,7 @@
 @implementation MRCTrendingViewController
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64 + 45, 0, 0, 0);
+    return iPhoneX ? UIEdgeInsetsMake(88 + 45, 0, 0, 0) : UIEdgeInsetsMake(64 + 45, 0, 0, 0);
 }
 
 @end

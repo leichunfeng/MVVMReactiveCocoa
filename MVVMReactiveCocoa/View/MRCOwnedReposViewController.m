@@ -42,7 +42,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64, 0, 49, 0);
+    return iPhoneX ? UIEdgeInsetsMake(88, 0, 83, 0) : UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

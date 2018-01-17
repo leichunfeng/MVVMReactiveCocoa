@@ -47,11 +47,17 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64, 0, 0, 0);
+    return iPhoneX ? UIEdgeInsetsMake(88, 0, 0, 0) : UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (IOS11) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     if (self.searchBar != nil) {
         UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];

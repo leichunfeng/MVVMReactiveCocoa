@@ -107,14 +107,18 @@
 }
 
 - (void)refresh {
-    self.tableView.contentOffset = CGPointMake(0, 0 - 64 - 80);
+    if (iPhoneX) {
+        self.tableView.contentOffset = CGPointMake(0, 0 - 88 - 80);
+    } else {
+        self.tableView.contentOffset = CGPointMake(0, 0 - 64 - 80);
+    }
     [self.refreshControl scrollViewDidEndDragging];
 }
 
 - (void)reloadData {}
 
 - (UIEdgeInsets)contentInset {
-    return self.viewModel.type == MRCNewsViewModelTypeNews ? UIEdgeInsetsMake(64, 0, 49, 0) : [super contentInset];
+    return self.viewModel.type == MRCNewsViewModelTypeNews ? iPhoneX ? UIEdgeInsetsMake(88, 0, 83, 0) : UIEdgeInsetsMake(64, 0, 49, 0) : [super contentInset];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {

@@ -67,8 +67,11 @@
     
     self.switchLanguageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [searchBar addSubview:self.switchLanguageButton];
-    
-    self.switchLanguageButton.frame = CGRectMake(0, 8, 28, 28);
+    if (IOS11) {
+        self.switchLanguageButton.frame = CGRectMake(17, 13, 28, 28);
+    } else {
+        self.switchLanguageButton.frame = CGRectMake(0, 8, 28, 28);
+    }
     self.switchLanguageButton.backgroundColor = [UIColor whiteColor];
     self.switchLanguageButton.hidden = YES;
     
@@ -82,7 +85,8 @@
     
     self.definesPresentationContext = YES;
 
-    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), self.viewModel.itemSize.height)];
+    CGFloat scrollViewY = iPhoneX ? 88 : 64;
+    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, scrollViewY, CGRectGetWidth(self.view.frame), self.viewModel.itemSize.height)];
     [self.view addSubview:infiniteScrollView];
     
     infiniteScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -119,7 +123,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64 + self.viewModel.itemSize.height, 0, 49, 0);
+    return iPhoneX ? UIEdgeInsetsMake(88 + self.viewModel.itemSize.height, 0, 83, 0) : UIEdgeInsetsMake(64 + self.viewModel.itemSize.height, 0, 49, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
