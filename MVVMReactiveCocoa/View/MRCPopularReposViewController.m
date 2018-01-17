@@ -30,7 +30,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64, 0, 0, 0);
+    return iPhoneX ? UIEdgeInsetsMake(88, 0, 0, 0) : UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 @end

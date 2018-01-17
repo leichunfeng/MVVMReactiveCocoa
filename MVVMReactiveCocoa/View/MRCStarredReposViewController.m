@@ -29,7 +29,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointUserDetail ? UIEdgeInsetsMake(64, 0, 0, 0) : [super contentInset];
+    return self.viewModel.entryPoint == MRCStarredReposViewModelEntryPointUserDetail ? iPhoneX ? UIEdgeInsetsMake(88, 0, 0, 0) : UIEdgeInsetsMake(64, 0, 0, 0) : [super contentInset];
 }
 
 @end

@@ -50,7 +50,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(0, 0, 49, 0);
+    return iPhoneX ? UIEdgeInsetsMake(24, 0, 0, 0) : UIEdgeInsetsMake(0, 0, 49, 0);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

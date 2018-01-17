@@ -82,7 +82,8 @@
     
     self.definesPresentationContext = YES;
 
-    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), self.viewModel.itemSize.height)];
+    CGFloat scrollViewY = iPhoneX ? 88 : 64;
+    LCFInfiniteScrollView *infiniteScrollView = [[LCFInfiniteScrollView alloc] initWithFrame:CGRectMake(0, scrollViewY, CGRectGetWidth(self.view.frame), self.viewModel.itemSize.height)];
     [self.view addSubview:infiniteScrollView];
     
     infiniteScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -119,7 +120,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return UIEdgeInsetsMake(64 + self.viewModel.itemSize.height, 0, 49, 0);
+    return iPhoneX ? UIEdgeInsetsMake(88 + self.viewModel.itemSize.height, 0, 83, 0) : UIEdgeInsetsMake(64 + self.viewModel.itemSize.height, 0, 49, 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
