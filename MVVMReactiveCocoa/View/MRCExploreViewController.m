@@ -67,8 +67,11 @@
     
     self.switchLanguageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [searchBar addSubview:self.switchLanguageButton];
-    
-    self.switchLanguageButton.frame = CGRectMake(0, 8, 28, 28);
+    if (IOS11) {
+        self.switchLanguageButton.frame = CGRectMake(17, 13, 28, 28);
+    } else {
+        self.switchLanguageButton.frame = CGRectMake(0, 8, 28, 28);
+    }
     self.switchLanguageButton.backgroundColor = [UIColor whiteColor];
     self.switchLanguageButton.hidden = YES;
     
