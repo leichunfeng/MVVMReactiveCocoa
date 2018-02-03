@@ -23,6 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (iPhoneX) {
+        if (IOS11) {
+            self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            self.webView.scrollView.contentInset = UIEdgeInsetsMake(88, 0, 0, 0);
+        }
+    }
+    
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     RACSignal *didFinishLoadSignal   = [self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)];

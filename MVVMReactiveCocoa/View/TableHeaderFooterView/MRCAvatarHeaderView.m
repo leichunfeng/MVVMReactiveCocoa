@@ -32,6 +32,9 @@
 
 @property (nonatomic, weak) IBOutlet MRCFollowButton *operationButton;
 
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *operationButtonTopConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *avatarButtonCenterYConstraint;
+
 @property (nonatomic, strong) GPUImageGaussianBlurFilter *gaussianBlurFilter;
 
 @property (nonatomic, strong) UIImageView *coverImageView;
@@ -55,6 +58,9 @@
     self.avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     self.avatarImage = [UIImage imageNamed:@"default-avatar"];
+    
+    self.operationButtonTopConstraint.constant  = iPhoneX ? 77 + 24 : 77;
+    self.avatarButtonCenterYConstraint.constant = iPhoneX ? 0 : 12;
 }
 
 - (void)bindViewModel:(MRCAvatarHeaderViewModel *)viewModel {
@@ -67,7 +73,7 @@
     }];
 
     // configure coverImageView
-    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 323)];
+    self.coverImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), iPhoneX ? 323 + 24 : 323)];
     
     self.coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.coverImageView.contentMode = UIViewContentModeScaleAspectFill;

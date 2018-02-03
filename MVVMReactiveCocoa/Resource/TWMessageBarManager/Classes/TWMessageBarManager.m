@@ -593,7 +593,7 @@ static UIColor *kTWDefaultMessageBarStyleSheetInfoStrokeColor = nil;
 
 - (CGFloat)height
 {
-    return 64;
+    return iPhoneX ? 88 : 64;
 }
 
 - (CGFloat)width

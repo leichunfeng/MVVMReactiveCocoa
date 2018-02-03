@@ -18,7 +18,10 @@
 @interface MRCRepoDetailViewController () <UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *toolbarBottomConstraint;
+
 @property (nonatomic, strong, readonly) MRCRepoDetailViewModel *viewModel;
+
 @property (nonatomic, strong) MRCRepoReadmeTableViewCell *readmeTableViewCell;
 @property (nonatomic, strong) RACSignal *webViewExecuting;
 
@@ -57,13 +60,23 @@
     button.rac_command = self.viewModel.selectBranchOrTagCommand;
     
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.toolbar.items = @[ barButtonItem ];
+    
+    UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                       target:nil
+                                                                                       action:NULL];
+    
+    self.toolbarBottomConstraint.constant = iPhoneX ? 38 : 0;
+    self.toolbar.items = @[ barButtonItem, flexibleSpaceItem ];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"]
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:nil
                                                                              action:NULL];
     self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.rightBarButtonItemCommand;
+}
+
+- (UIEdgeInsets)contentInset {
+    return iPhoneX ? UIEdgeInsetsMake(88, 0, 44 + 38, 0) : UIEdgeInsetsMake(64, 0, 44, 0);
 }
 
 - (MRCRepoReadmeTableViewCell *)readmeTableViewCell {

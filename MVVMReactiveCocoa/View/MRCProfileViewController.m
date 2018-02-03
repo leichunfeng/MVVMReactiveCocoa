@@ -39,7 +39,10 @@
     [super viewDidLoad];
     
     self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"MRCAvatarHeaderView" owner:nil options:nil].firstObject;
+    
+    self.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, iPhoneX ? 381 + 24 : 381);
     [self.tableHeaderView bindViewModel:self.viewModel.avatarHeaderViewModel];
+    
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     @weakify(self)
@@ -50,7 +53,7 @@
 }
 
 - (UIEdgeInsets)contentInset {
-    return iPhoneX ? UIEdgeInsetsMake(24, 0, 0, 0) : UIEdgeInsetsMake(0, 0, 49, 0);
+    return iPhoneX ? UIEdgeInsetsMake(0, 0, 83, 0) : UIEdgeInsetsMake(0, 0, 49, 0);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

@@ -24,12 +24,7 @@
     [super viewDidLoad];
 
     self.webView.scalesPageToFit = self.viewModel.options & MRCSourceEditorViewModelOptionsScalesPageToFit;
-    
-    UIScrollView *scrollView = [self.webView.subviews.rac_sequence objectPassingTest:^(UIView *subview) {
-        return [subview isKindOfClass:[UIScrollView class]];
-    }];
-    
-    scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
 
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"]
                                                                            style:UIBarButtonItemStylePlain
@@ -236,5 +231,17 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return [UIDevice currentDevice].isPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
+
+#ifdef __IPHONE_11_0
+
+- (void)viewSafeAreaInsetsDidChange {
+    [super viewSafeAreaInsetsDidChange];
+    
+    if (iPhoneX) {
+        self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.view.safeAreaInsets.top, 0, 0, 0);
+    }
+}
+
+#endif
 
 @end

@@ -58,6 +58,7 @@
 		24182B541BDA229B0041B38E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4F1BDA229B0041B38E /* update_v1_0_1.sql */; };
 		24182B551BDA229B0041B38E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B501BDA229B0041B38E /* update_v1_1_0.sql */; };
 		24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B511BDA229B0041B38E /* update_v1_2_0.sql */; };
+		241AA2C82025AFAF008B5B6D /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 241AA2C72025AFAE008B5B6D /* Reveal.framework */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -504,6 +505,7 @@
 		24182B4F1BDA229B0041B38E /* update_v1_0_1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_0_1.sql; sourceTree = "<group>"; };
 		24182B501BDA229B0041B38E /* update_v1_1_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_1_0.sql; sourceTree = "<group>"; };
 		24182B511BDA229B0041B38E /* update_v1_2_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_2_0.sql; sourceTree = "<group>"; };
+		241AA2C72025AFAE008B5B6D /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		241DAC761B0893A0005FDA9C /* MRCMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCMemoryCache.h; sourceTree = "<group>"; };
 		241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCMemoryCache.m; sourceTree = "<group>"; };
 		242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = OctoKit/OctoKit.xcodeproj; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 				24B76A281D92C1C2000A3CE1 /* MobileCoreServices.framework in Frameworks */,
 				24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
+				241AA2C82025AFAF008B5B6D /* Reveal.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
 				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
@@ -1015,9 +1018,9 @@
 				24DF45841A6BF04B00F23474 /* MRCSegmentedControlController.m */,
 				2496742F1A73F5490032771B /* MRCWebViewController.h */,
 				249674301A73F5490032771B /* MRCWebViewController.m */,
+				24E84E821AEFC270003F700C /* MRCWebViewController.xib */,
 				24116E481A8CC62700D25218 /* MRCNavigationController.h */,
 				24116E491A8CC62700D25218 /* MRCNavigationController.m */,
-				24E84E821AEFC270003F700C /* MRCWebViewController.xib */,
 				24FDDEE31B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.h */,
 				24FDDEE41B31BDE20040B5C3 /* UINavigationItem+MRCBackBarButtonItem.m */,
 				24AF97691B01E19000E2A737 /* UISearchBar+MRCShowsCancelButton.h */,
@@ -1495,6 +1498,7 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				241AA2C72025AFAE008B5B6D /* Reveal.framework */,
 				24B76A271D92C1C2000A3CE1 /* MobileCoreServices.framework */,
 				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
@@ -1886,7 +1890,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MVVMReactiveCocoa/Pods-MVVMReactiveCocoa-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle,
 				"${PODS_ROOT}/FormatterKit/Localizations/ar.lproj",
 				"${PODS_ROOT}/FormatterKit/Localizations/ca.lproj",
 				"${PODS_ROOT}/FormatterKit/Localizations/cs.lproj",
@@ -2320,7 +2324,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "f2d7027c-e4fa-4493-b212-f488ed36b32e";
+				PROVISIONING_PROFILE = "b7f7b6c8-ff5b-4fb8-97f6-b64f8c0ab281";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Development: MVVMReactiveCocoa";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2363,7 +2367,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leichunfeng.MVVMReactiveCocoa;
 				PRODUCT_NAME = GitBucket;
-				PROVISIONING_PROFILE = "2c0b57c2-b051-442f-9863-d20daa08bb05";
+				PROVISIONING_PROFILE = "26790572-3b21-43c6-bea2-6ee0a5e32f9e";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Distribution: MVVMReactiveCocoa";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
