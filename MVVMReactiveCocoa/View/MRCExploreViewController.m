@@ -41,8 +41,13 @@
         self.viewModel.itemSize = CGSizeMake(796.0 / 3, 390.0 / 3);
         self.viewModel.itemSpacing = 5;
     } else {
-        self.viewModel.itemSize = CGSizeMake(1060.0 / 2, 520.0 / 2);
-        self.viewModel.itemSpacing = 5;
+        if (iPhoneX) {
+            self.viewModel.itemSize = CGSizeMake(750.0 / 2, 304.0 / 2);
+            self.viewModel.itemSpacing = 0;
+        } else {
+            self.viewModel.itemSize = CGSizeMake(1060.0 / 2, 520.0 / 2);
+            self.viewModel.itemSpacing = 5;
+        }
     }
 
     [super viewDidLoad];
@@ -105,12 +110,12 @@
         CGFloat width  = CGRectGetWidth(infiniteScrollView.frame);
         CGFloat height = CGRectGetHeight(infiniteScrollView.frame);
         
-        CGFloat deltaY = contentOffset.CGPointValue.y - (-(64 + height));
+        CGFloat deltaY = contentOffset.CGPointValue.y - (-(scrollViewY + height));
        
         if (deltaY <= 0) {
-            return [NSValue valueWithCGRect:CGRectMake(0, 64, width, height)];
+            return [NSValue valueWithCGRect:CGRectMake(0, scrollViewY, width, height)];
         } else {
-            return [NSValue valueWithCGRect:CGRectMake(0, 64 - deltaY, width, height)];
+            return [NSValue valueWithCGRect:CGRectMake(0, scrollViewY - deltaY, width, height)];
         }
     }];
     
