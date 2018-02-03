@@ -232,16 +232,4 @@
     return [UIDevice currentDevice].isPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
-#ifdef __IPHONE_11_0
-
-- (void)viewSafeAreaInsetsDidChange {
-    [super viewSafeAreaInsetsDidChange];
-    
-    if (iPhoneX) {
-        self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.view.safeAreaInsets.top, 0, 0, 0);
-    }
-}
-
-#endif
-
 @end

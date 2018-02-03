@@ -12,6 +12,7 @@
 @interface MRCWebViewController ()
 
 @property (nonatomic, weak, readwrite) IBOutlet UIWebView *webView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *webViewTopConstraint;
 @property (nonatomic, strong, readonly) MRCWebViewModel *viewModel;
 
 @end
@@ -26,7 +27,6 @@
     if (iPhoneX) {
         if (IOS11) {
             self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            self.webView.scrollView.contentInset = UIEdgeInsetsMake(88, 0, 0, 0);
         }
     }
     
@@ -44,6 +44,18 @@
     
     [self.webView loadRequest:self.viewModel.request];
 }
+
+#ifdef __IPHONE_11_0
+
+- (void)viewSafeAreaInsetsDidChange {
+    [super viewSafeAreaInsetsDidChange];
+    
+    if (iPhoneX) {
+        self.webViewTopConstraint.constant = self.view.safeAreaInsets.top;
+    }
+}
+
+#endif
 
 #pragma mark - UIWebViewDelegate
 

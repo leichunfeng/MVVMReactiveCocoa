@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="view" destination="4Cz-bH-zR1" id="rkN-7V-r7V"/>
                 <outlet property="webView" destination="SFt-0G-odH" id="sqe-xh-1to"/>
+                <outlet property="webViewTopConstraint" destination="Dqa-QA-tnX" id="A8Z-AD-zlS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
