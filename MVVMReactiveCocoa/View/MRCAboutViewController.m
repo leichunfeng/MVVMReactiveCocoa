@@ -29,14 +29,14 @@
     [tableHeaderView addSubview:aboutHeaderView];
     self.tableView.tableHeaderView = tableHeaderView;
     
-    UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 10 - 14 - 64 - 14, SCREEN_WIDTH, 14)];
+    UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 10 - 14 - 64 - 14 - (iPhoneX ? 24 + 34 : 0), SCREEN_WIDTH, 14)];
     usernameLabel.text = @"leichunfeng";
     usernameLabel.font = [UIFont systemFontOfSize:12];
     usernameLabel.textColor = UIColor.lightGrayColor;
     usernameLabel.textAlignment = NSTextAlignmentCenter;
     [self.tableView addSubview:usernameLabel];
     
-    UILabel *copyRightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 10 - 14 - 64, SCREEN_WIDTH, 14)];
+    UILabel *copyRightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 10 - 14 - 64 - (iPhoneX ? 24 + 34 : 0), SCREEN_WIDTH, 14)];
     copyRightLabel.text = @"Copyright (c) 2015-2016 leichunfeng. All rights reserved.";
     copyRightLabel.font = [UIFont systemFontOfSize:12];
     copyRightLabel.textColor = UIColor.lightGrayColor;

@@ -27,6 +27,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;
 @property (nonatomic, weak) IBOutlet UIButton *browserLoginButton;
 
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *browserLoginButtonBottomConstraint;
+
 @property (nonatomic, strong, readonly) MRCLoginViewModel *viewModel;
 @property (nonatomic, strong) IQKeyboardReturnKeyHandler *returnKeyHandler;
 
@@ -65,6 +67,8 @@
         }];
 
     self.passwordTextField.delegate = self;
+    
+    self.browserLoginButtonBottomConstraint.constant = iPhoneX ? 15 + 34 : 15;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

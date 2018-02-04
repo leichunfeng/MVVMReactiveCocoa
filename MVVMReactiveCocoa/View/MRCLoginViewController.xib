@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,6 +13,7 @@
             <connections>
                 <outlet property="avatarButton" destination="vBt-lC-bHA" id="yFG-HJ-G1Y"/>
                 <outlet property="browserLoginButton" destination="MP0-zc-ERu" id="uaM-51-R7Z"/>
+                <outlet property="browserLoginButtonBottomConstraint" destination="7CV-J8-Y54" id="w8k-4z-MUT"/>
                 <outlet property="loginButton" destination="qGZ-FF-f2I" id="9DR-zA-yh3"/>
                 <outlet property="passwordImageView" destination="CAt-4M-whd" id="mBw-mh-MZd"/>
                 <outlet property="passwordTextField" destination="Z4f-3o-lGq" id="eN6-ir-C7E"/>
@@ -24,6 +28,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBt-lC-bHA">
+                    <rect key="frame" x="145" y="112.5" width="85" height="85"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="85" id="Zfn-jM-uCj"/>
                         <constraint firstAttribute="width" constant="85" id="p1m-iz-cwI"/>
@@ -33,26 +38,31 @@
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgZ-Ah-0EN">
+                    <rect key="frame" x="0.0" y="237.5" width="375" height="100"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3x-NK-9yk">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
                             <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="fkJ-GM-H0s"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-kK-Vbw">
+                            <rect key="frame" x="15" y="50" width="345" height="1"/>
                             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="YxY-yA-pal"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCh-7M-jmp">
+                            <rect key="frame" x="0.0" y="99" width="375" height="1"/>
                             <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="eF6-bf-Iky"/>
                             </constraints>
                         </view>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GitHub username or email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-hG-uTO">
+                            <rect key="frame" x="47" y="10" width="313" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="NSG-gy-dPI"/>
                             </constraints>
@@ -63,6 +73,7 @@
                             </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GitHub password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Z4f-3o-lGq">
+                            <rect key="frame" x="47" y="60" width="313" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="fh5-mf-Dcd"/>
                             </constraints>
@@ -70,12 +81,14 @@
                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KrT-6D-ZHz">
+                            <rect key="frame" x="15" y="14" width="22" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="iEl-N3-kaq"/>
                                 <constraint firstAttribute="width" constant="22" id="sAJ-xN-HRK"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CAt-4M-whd">
+                            <rect key="frame" x="15" y="64" width="22" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="6np-oO-8xs"/>
                                 <constraint firstAttribute="width" constant="22" id="clE-ui-XPf"/>
@@ -107,6 +120,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-FF-f2I" customClass="MRCButton">
+                    <rect key="frame" x="15" y="359.5" width="345" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="lg4-Fz-ohP"/>
                     </constraints>
@@ -116,6 +130,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MP0-zc-ERu">
+                    <rect key="frame" x="93" y="622" width="189" height="30"/>
                     <state key="normal" title="OAuth2 Authorization Login">
                         <color key="titleColor" red="0.35401704907417297" green="0.41863027215003967" blue="0.45472562313079834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
