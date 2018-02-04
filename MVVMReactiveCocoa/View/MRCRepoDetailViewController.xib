@@ -37,6 +37,10 @@
                     </constraints>
                     <items/>
                 </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zcm-8X-51V">
+                    <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -44,11 +48,15 @@
                 <constraint firstItem="1YY-Hb-Lik" firstAttribute="top" secondItem="6yb-24-2vO" secondAttribute="top" id="0Dc-bd-6Ig"/>
                 <constraint firstAttribute="bottom" secondItem="BLE-up-6ov" secondAttribute="bottom" id="3yZ-Nh-YaX"/>
                 <constraint firstAttribute="bottom" secondItem="1YY-Hb-Lik" secondAttribute="bottom" id="4JC-WC-Ln3"/>
+                <constraint firstAttribute="trailing" secondItem="Zcm-8X-51V" secondAttribute="trailing" id="5BS-jp-s0X"/>
+                <constraint firstItem="Zcm-8X-51V" firstAttribute="top" secondItem="BLE-up-6ov" secondAttribute="bottom" id="5zg-f7-h3C"/>
+                <constraint firstItem="Zcm-8X-51V" firstAttribute="leading" secondItem="6yb-24-2vO" secondAttribute="leading" id="XGP-uA-5x8"/>
                 <constraint firstItem="BLE-up-6ov" firstAttribute="leading" secondItem="6yb-24-2vO" secondAttribute="leading" id="flW-B9-f5L"/>
                 <constraint firstAttribute="trailing" secondItem="BLE-up-6ov" secondAttribute="trailing" id="iGe-Wg-Y81"/>
                 <constraint firstAttribute="trailing" secondItem="1YY-Hb-Lik" secondAttribute="trailing" id="mmn-dy-BUf"/>
+                <constraint firstAttribute="bottom" secondItem="Zcm-8X-51V" secondAttribute="bottom" id="uyz-ZS-P7r"/>
             </constraints>
-            <point key="canvasLocation" x="1033" y="-65"/>
+            <point key="canvasLocation" x="1032.5" y="-65.5"/>
         </view>
     </objects>
 </document>

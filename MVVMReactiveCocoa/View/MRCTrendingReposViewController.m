@@ -37,7 +37,7 @@
     
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    UIView *wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 45)];
+    UIView *wrapperView = [[UIView alloc] initWithFrame:CGRectMake(0, iPhoneX ? 88 : 64, CGRectGetWidth(self.view.frame), 45)];
     [self.view addSubview:wrapperView];
 
     wrapperView.backgroundColor  = [UIColor whiteColor];
