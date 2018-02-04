@@ -25,6 +25,20 @@
     return @"Searching";
 }
 
+- (UIEdgeInsets)contentInset {
+    CGFloat top = 0;
+    
+    top += iPhoneX ? 88 : 64;
+    
+    if (IOS11) {
+        top += 12;
+    }
+    
+    CGFloat bottom = iPhoneX ? 83 : 49;
+    
+    return UIEdgeInsetsMake(top, 0, bottom, 0);
+}
+
 #pragma mark - DZNEmptyDataSetSource
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
