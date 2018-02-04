@@ -10,4 +10,6 @@
 
 @interface MRCSearchBar : UISearchBar
 
+- (UIImageView *)imageView;
+
 @end
