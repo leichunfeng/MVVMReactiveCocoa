@@ -58,7 +58,6 @@
 		24182B541BDA229B0041B38E /* update_v1_0_1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B4F1BDA229B0041B38E /* update_v1_0_1.sql */; };
 		24182B551BDA229B0041B38E /* update_v1_1_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B501BDA229B0041B38E /* update_v1_1_0.sql */; };
 		24182B561BDA229B0041B38E /* update_v1_2_0.sql in Resources */ = {isa = PBXBuildFile; fileRef = 24182B511BDA229B0041B38E /* update_v1_2_0.sql */; };
-		241AA2C82025AFAF008B5B6D /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 241AA2C72025AFAE008B5B6D /* Reveal.framework */; };
 		241DAC781B0893A0005FDA9C /* MRCMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */; };
 		2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; };
 		242453201A80D85300FFFCC1 /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 242452EF1A80D78800FFFCC1 /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -505,7 +504,6 @@
 		24182B4F1BDA229B0041B38E /* update_v1_0_1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_0_1.sql; sourceTree = "<group>"; };
 		24182B501BDA229B0041B38E /* update_v1_1_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_1_0.sql; sourceTree = "<group>"; };
 		24182B511BDA229B0041B38E /* update_v1_2_0.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = update_v1_2_0.sql; sourceTree = "<group>"; };
-		241AA2C72025AFAE008B5B6D /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		241DAC761B0893A0005FDA9C /* MRCMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCMemoryCache.h; sourceTree = "<group>"; };
 		241DAC771B0893A0005FDA9C /* MRCMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCMemoryCache.m; sourceTree = "<group>"; };
 		242452E21A80D78800FFFCC1 /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = OctoKit/OctoKit.xcodeproj; sourceTree = "<group>"; };
@@ -798,7 +796,6 @@
 				24B76A281D92C1C2000A3CE1 /* MobileCoreServices.framework in Frameworks */,
 				24A749A01BDE5F75002B46A3 /* JavaScriptCore.framework in Frameworks */,
 				2424531F1A80D85300FFFCC1 /* OctoKit.framework in Frameworks */,
-				241AA2C82025AFAF008B5B6D /* Reveal.framework in Frameworks */,
 				2424532C1A80D87300FFFCC1 /* AFNetworking.framework in Frameworks */,
 				242453301A80D87D00FFFCC1 /* ISO8601DateFormatter.framework in Frameworks */,
 				242453241A80D86300FFFCC1 /* ReactiveCocoa.framework in Frameworks */,
@@ -1498,7 +1495,6 @@
 		B881B6E71AA5A766D60C0E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				241AA2C72025AFAE008B5B6D /* Reveal.framework */,
 				24B76A271D92C1C2000A3CE1 /* MobileCoreServices.framework */,
 				24A7499F1BDE5F75002B46A3 /* JavaScriptCore.framework */,
 				24123E471AEE8AD300D5A074 /* libz.dylib */,
